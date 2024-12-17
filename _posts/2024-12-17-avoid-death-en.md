@@ -19,6 +19,8 @@ Once you get older, your life cycle starts to remain unchanged—just family, co
 
 As your life depends largely on work and family, be careful to maintain a good family atmosphere and good work relationships with colleagues.
 
+And learn to deal with stress. Stress is a large part of modern life. We need to learn more, understand how other people live in this world, and know how people lived long ago. We need to read a lot to gain correct views about things.
+
 ## Be Self-Disciplined, Avoid Gambling and Tons of Debt
 
 Gambling is bad behavior with high risks. It is not rational. Gambling easily makes you lose a lot of money quickly and can lead to depression.
@@ -29,9 +31,6 @@ Once your mind accepts the loss, you will be calm about it. So I decided to acce
 
 It is house mortgage. Other types of gambling will make things worse. I have heard of some cases in my surroundings.
 
-## Learn to Deal with Stress
-
-Learn to deal with stress. Stress is a large part of modern life. We need to learn more, understand how other people live in this world, and know how people lived long ago. We need to read a lot to gain correct views about things.
 
 ## Be Careful of Scams or Crimes
 
