@@ -22,7 +22,7 @@ def save_progress(progress):
     with open(PROGRESS_FILE, 'w') as f:
         json.dump(progress, f, indent=4)
 
-def split_text(text, max_bytes=5000):
+def split_text(text, max_bytes=4000):
     chunks = []
     current_chunk = ""
     for line in text.split('\n'):
@@ -140,7 +140,7 @@ def md_to_text(md_file):
         print(f"Error reading or parsing {md_file}: {e}")
         return ""
 
-def process_markdown_files(input_dir, output_dir, max_files=4, dry_run=False):
+def process_markdown_files(input_dir, output_dir, max_files=100, dry_run=False):
     os.makedirs(output_dir, exist_ok=True)
     all_md_files = [f for f in os.listdir(input_dir) if f.endswith('.md')]
     total_files = len(all_md_files)
