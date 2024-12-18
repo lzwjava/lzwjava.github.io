@@ -28,7 +28,7 @@ rougify style base16.monokai.dark > _sass/syntax.css
 ```
 
 ```bash
-python3.11 audio-pipeline.py --task posts --n 10\n
+python3.11 audio-pipeline.py --task posts --n 10
 ```
 
 ```bash
