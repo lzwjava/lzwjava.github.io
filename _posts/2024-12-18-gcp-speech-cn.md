@@ -3,6 +3,10 @@ layout: post
 title: "快速入门 Google Text-to-Speech API"
 ---
 
+我计划将一些王垠的文章转换为音频。为此，我正在尝试使用 Google Text-to-Speech API。以下是 ChatGPT 提供的一些教程，帮助我完成这个过程。完成后，我会在这里上传音频。
+
+---
+
 ### 第一步：设置 Google Cloud 账户
 
 1. **创建 Google Cloud 账户**

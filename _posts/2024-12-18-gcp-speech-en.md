@@ -3,6 +3,10 @@ layout: post
 title: "Getting Started with Google Text-to-Speech API"
 ---
 
+I plan to convert some of Yin Wang's articles into audio. To do this, I'm experimenting with the Google Text-to-Speech API. Below are some tutorials provided by ChatGPT to guide the process. Once it's ready, I'll upload the audio here.
+
+---
+
 ### Step 1: Set Up Google Cloud Account
 
 1. **Create a Google Cloud Account**
