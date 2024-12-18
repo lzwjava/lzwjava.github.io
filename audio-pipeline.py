@@ -34,26 +34,57 @@ def save_progress(task, progress):
         with open(progress_file, 'w') as f:
             json.dump(progress, f, indent=4)
 
-def split_text(text, max_bytes=3000):
+def split_into_sentences(text):
+    """
+    Splits text into sentences using regex.
+    Handles common sentence endings.
+    """
+    sentence_endings = re.compile(r'(?<=[.!?]) +')
+    sentences = sentence_endings.split(text)
+    return sentences
+
+def split_text(text, max_bytes=4000):
+    """
+    Splits text into chunks not exceeding max_bytes.
+    First splits text into sentences to ensure sentences are not split across chunks.
+    If a single sentence exceeds max_bytes, it further splits the sentence.
+    """
+    sentences = split_into_sentences(text)
     chunks = []
     current_chunk = ""
-    for line in text.split('\n'):
-        if current_chunk:
-            tentative_chunk = current_chunk + '\n' + line
+
+    for sentence in sentences:
+        sentence = sentence.strip()
+        if not sentence:
+            continue
+
+        # Check if the sentence itself exceeds max_bytes
+        if len(sentence.encode('utf-8')) > max_bytes:
+            # Further split the sentence by commas or other delimiters
+            sub_sentences = re.split(r', |; |: ', sentence)
+            for sub_sentence in sub_sentences:
+                sub_sentence = sub_sentence.strip()
+                if not sub_sentence:
+                    continue
+                tentative_chunk = f"{current_chunk} {sub_sentence}".strip()
+                if len(tentative_chunk.encode('utf-8')) > max_bytes:
+                    if current_chunk:
+                        chunks.append(current_chunk)
+                    current_chunk = sub_sentence
+                else:
+                    current_chunk = tentative_chunk
         else:
-            tentative_chunk = line
-        if len(tentative_chunk.encode('utf-8')) > max_bytes:
-            if current_chunk:
-                chunks.append(current_chunk)
-            if len(line.encode('utf-8')) > max_bytes:
-                chunks.append(line)
-                current_chunk = ""
+            tentative_chunk = f"{current_chunk} {sentence}".strip()
+            if len(tentative_chunk.encode('utf-8')) > max_bytes:
+                if current_chunk:
+                    chunks.append(current_chunk)
+                current_chunk = sentence
             else:
-                current_chunk = line
-        else:
-            current_chunk = tentative_chunk
+                current_chunk = tentative_chunk
+
     if current_chunk:
         chunks.append(current_chunk)
+
     return chunks
 
 def text_to_speech(text, output_filename, task, language_code="en-US", voice_name=None, dry_run=False, start_chunk=0, progress=None):
@@ -72,7 +103,10 @@ def text_to_speech(text, output_filename, task, language_code="en-US", voice_nam
         # If resuming, load already processed chunks
         if progress and output_filename in progress:
             processed_chunks = progress[output_filename].get('processed_chunks', [])
-            audio_segments = [AudioSegment.from_mp3(chunk_path) for chunk_path in progress[output_filename].get('temp_files', [])]
+            temp_files = progress[output_filename].get('temp_files', [])
+            for chunk_path in temp_files:
+                if os.path.exists(chunk_path):
+                    audio_segments.append(AudioSegment.from_mp3(chunk_path))
             start_chunk = len(processed_chunks)
             print(f"Resuming from chunk {start_chunk + 1}/{len(text_chunks)}")
         else:
@@ -91,21 +125,53 @@ def text_to_speech(text, output_filename, task, language_code="en-US", voice_nam
                 audio_encoding=texttospeech.AudioEncoding.MP3,
                 effects_profile_id=["small-bluetooth-speaker-class-device"]    
             )
-            
-            # Retry logic
-            retries = 3
-            for attempt in range(1, retries + 1):
-                try:
-                    response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
-                    break  # Success, exit retry loop
-                except Exception as e:
+
+            try:
+                response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
+            except Exception as e:
+                # Check if the error is due to sentences being too long
+                error_message = str(e).lower()
+                if 'sentences that are too long' in error_message:
+                    print(f"Chunk {idx + 1} has sentences that are too long. Attempting to split further.")
+                    # Split the chunk into smaller parts and process each
+                    sub_sentences = split_into_sentences(chunk)
+                    for sub_idx, sub_sentence in enumerate(sub_sentences):
+                        sub_sentence = sub_sentence.strip()
+                        if not sub_sentence:
+                            continue
+                        sub_synthesis_input = texttospeech.SynthesisInput(text=sub_sentence)
+                        try:
+                            sub_response = client.synthesize_speech(input=sub_synthesis_input, voice=voice, audio_config=audio_config)
+                            with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_sub_file:
+                                tmp_sub_file.write(sub_response.audio_content)
+                                sub_temp_filename = tmp_sub_file.name
+                            sub_audio_segment = AudioSegment.from_mp3(sub_temp_filename)
+                            audio_segments.append(sub_audio_segment)
+                            os.remove(sub_temp_filename)
+                            print(f"Sub-chunk {sub_idx + 1}/{len(sub_sentences)} of chunk {idx + 1} processed.")
+                        except Exception as sub_e:
+                            print(f"Failed to process sub-chunk {sub_idx + 1} of chunk {idx + 1}: {sub_e}")
+                            continue
+                    # After handling sub-chunks, skip adding the original chunk
+                    progress[output_filename]['processed_chunks'].append(idx)
+                    save_progress(task, progress)
+                    continue  # Move to the next chunk
+                else:
                     print(f"Error on chunk {idx + 1}: {e}")
-                    if attempt < retries:
-                        wait_time = 2 ** attempt  # Exponential backoff
-                        print(f"Retrying chunk {idx + 1} in {wait_time} seconds (Attempt {attempt + 1}/{retries})...")
-                        time.sleep(wait_time)
-                    else:
-                        raise e  # Exceeded retries
+                    # Implement retry logic or other error handling as needed
+                    retries = 3
+                    for attempt in range(1, retries + 1):
+                        try:
+                            wait_time = 2 ** attempt
+                            print(f"Retrying chunk {idx + 1} in {wait_time} seconds (Attempt {attempt}/{retries})...")
+                            time.sleep(wait_time)
+                            response = client.synthesize_speech(input=synthesis_input, voice=voice, audio_config=audio_config)
+                            break  # Success
+                        except Exception as retry_e:
+                            print(f"Retry attempt {attempt} failed for chunk {idx + 1}: {retry_e}")
+                            if attempt == retries:
+                                print(f"Failed to process chunk {idx + 1} after {retries} attempts.")
+                                raise retry_e
 
             with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as tmp_file:
                 tmp_file.write(response.audio_content)
@@ -114,7 +180,7 @@ def text_to_speech(text, output_filename, task, language_code="en-US", voice_nam
             audio_segments.append(audio_segment)
             os.remove(temp_filename)
             print(f"Chunk {idx + 1}/{len(text_chunks)} processed.")
-            
+
             # Update progress
             progress[output_filename]['processed_chunks'].append(idx)
             progress[output_filename]['temp_files'].append(temp_filename)
@@ -144,6 +210,7 @@ def md_to_text(md_file):
     try:
         with open(md_file, 'r', encoding='utf-8') as file:
             md_content = file.read()
+        # Remove front matter (--- ... ---)
         md_content = re.sub(r'---\n.*?\n---', '', md_content, flags=re.DOTALL)
         html = markdown.markdown(md_content)
         text = unescape(BeautifulSoup(html, "html.parser").get_text())
