@@ -18,6 +18,9 @@ PROGRESS_FILES = {
     'posts': 'progress_posts.json'
 }
 
+# Fixed output directory
+OUTPUT_DIRECTORY = "assets/audios"
+
 def load_progress(task):
     progress_file = PROGRESS_FILES.get(task)
     if progress_file and os.path.exists(progress_file):
@@ -32,7 +35,6 @@ def save_progress(task, progress):
             json.dump(progress, f, indent=4)
 
 def split_text(text, max_bytes=4000):
-    # Same as before
     chunks = []
     current_chunk = ""
     for line in text.split('\n'):
@@ -55,7 +57,6 @@ def split_text(text, max_bytes=4000):
     return chunks
 
 def text_to_speech(text, output_filename, language_code="en-US", voice_name=None, dry_run=False, start_chunk=0, progress=None):
-    # Same as before
     if dry_run:
         print(f"Dry run: Would generate audio for file: {output_filename}")
         return
@@ -139,7 +140,6 @@ def text_to_speech(text, output_filename, language_code="en-US", voice_name=None
         save_progress(task, progress)  # Ensure progress is saved even on error
 
 def md_to_text(md_file):
-    # Same as before
     print(f"Reading file: {md_file}")
     try:
         with open(md_file, 'r', encoding='utf-8') as file:
@@ -153,16 +153,18 @@ def md_to_text(md_file):
         return ""
 
 def get_last_n_files(input_dir, n=10):
-    # Same as before
+    # Get all markdown files with their modification time
     md_files = [
         (f, os.path.getmtime(os.path.join(input_dir, f)))
         for f in os.listdir(input_dir) if f.endswith('.md')
     ]
+    # Sort by modification time descending
     md_files_sorted = sorted(md_files, key=lambda x: x[1], reverse=True)
+    # Get the last n files
     last_n_files = [f[0] for f in md_files_sorted[:n]]
     return last_n_files
 
-def process_markdown_files(task, input_dir, output_dir, n=10, max_files=10, dry_run=False):
+def process_markdown_files(task, input_dir, output_dir, n=10, max_files=100, dry_run=False):
     os.makedirs(output_dir, exist_ok=True)
     
     if task == 'pages':
@@ -216,7 +218,10 @@ def process_markdown_files(task, input_dir, output_dir, n=10, max_files=10, dry_
                 )
             files_processed += 1
             print(f"File {files_processed}/{total_files} processed.\n")
-            if files_processed >= max_files:
+            if task == 'pages' and files_processed >= max_files:
+                print("Processed the maximum allowed files.")
+                break
+            if task == 'posts' and files_processed >= max_files:
                 print("Processed the maximum allowed files.")
                 break
         except Exception as e:
@@ -228,19 +233,30 @@ def process_markdown_files(task, input_dir, output_dir, n=10, max_files=10, dry_
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Process Markdown files to generate audio.")
     parser.add_argument('--task', choices=['pages', 'posts'], required=True, help="Task to perform: 'pages' or 'posts'")
-    parser.add_argument('--input_dir', type=str, required=True, help="Input directory containing Markdown files.")
-    parser.add_argument('--output_dir', type=str, required=True, help="Output directory to save audio files.")
     parser.add_argument('--n', type=int, default=10, help="Number of last files to process (only for 'posts').")
-    parser.add_argument('--max_files', type=int, default=10, help="Maximum number of files to process.")
+    parser.add_argument('--max_files', type=int, default=100, help="Maximum number of files to process (only for 'pages').")
     parser.add_argument('--dry_run', action='store_true', help="Perform a dry run without generating audio.")
     
     args = parser.parse_args()
 
+    # Determine input_dir based on task
+    if args.task == 'pages':
+        input_directory = "pages"
+        max_files = args.max_files
+        n = None  # Not used for 'pages'
+    elif args.task == 'posts':
+        input_directory = "_posts"
+        n = args.n
+        max_files = args.max_files  # Typically 10 for 'posts', but keeping flexibility
+    else:
+        print("Invalid task specified. Choose either 'pages' or 'posts'.")
+        exit(1)
+
     process_markdown_files(
         task=args.task,
-        input_dir=args.input_dir,
-        output_dir=args.output_dir,
-        n=args.n,
-        max_files=args.max_files,
+        input_dir=input_directory,
+        output_dir=OUTPUT_DIRECTORY,
+        n=args.n if args.task == 'posts' else 0,
+        max_files=args.max_files if args.task == 'pages' else 10,
         dry_run=args.dry_run
     )
