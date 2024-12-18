@@ -27,6 +27,14 @@ rougify style gruvbox.dark > _sass/syntax.css
 rougify style base16.monokai.dark > _sass/syntax.css
 ```
 
+```bash
+python3.11 audio-pipeline.py --task posts --n 10\n
+```
+
+```bash
+python3.11 audio-pipeline.py --task pages
+```
+
 Refer:
 
 https://mcpride.github.io/posts/development/2018/03/06/syntax-highlighting-with-jekyll/
