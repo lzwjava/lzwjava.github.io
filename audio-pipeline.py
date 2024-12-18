@@ -56,7 +56,7 @@ def split_text(text, max_bytes=4000):
         chunks.append(current_chunk)
     return chunks
 
-def text_to_speech(text, output_filename, language_code="en-US", voice_name=None, dry_run=False, start_chunk=0, progress=None):
+def text_to_speech(text, output_filename, task, language_code="en-US", voice_name=None, dry_run=False, start_chunk=0, progress=None):
     if dry_run:
         print(f"Dry run: Would generate audio for file: {output_filename}")
         return
@@ -205,6 +205,7 @@ def process_markdown_files(task, input_dir, output_dir, n=10, max_files=100, dry
                 text_to_speech(
                     article_text, 
                     output_filename, 
+                    task=task, 
                     language_code="cmn-CN", 
                     dry_run=dry_run,
                     progress=progress
@@ -213,6 +214,7 @@ def process_markdown_files(task, input_dir, output_dir, n=10, max_files=100, dry
                 text_to_speech(
                     article_text, 
                     output_filename, 
+                    task=task, 
                     dry_run=dry_run,
                     progress=progress
                 )
@@ -252,11 +254,22 @@ if __name__ == "__main__":
         print("Invalid task specified. Choose either 'pages' or 'posts'.")
         exit(1)
 
-    process_markdown_files(
-        task=args.task,
-        input_dir=input_directory,
-        output_dir=OUTPUT_DIRECTORY,
-        n=args.n if args.task == 'posts' else 0,
-        max_files=args.max_files if args.task == 'pages' else 10,
-        dry_run=args.dry_run
-    )
+    # Handle 'n' and 'max_files' based on task
+    if args.task == 'pages':
+        process_markdown_files(
+            task=args.task,
+            input_dir=input_directory,
+            output_dir=OUTPUT_DIRECTORY,
+            n=0,  # Not used
+            max_files=args.max_files,
+            dry_run=args.dry_run
+        )
+    elif args.task == 'posts':
+        process_markdown_files(
+            task=args.task,
+            input_dir=input_directory,
+            output_dir=OUTPUT_DIRECTORY,
+            n=args.n,
+            max_files=args.max_files,  # Typically 10
+            dry_run=args.dry_run
+        )
