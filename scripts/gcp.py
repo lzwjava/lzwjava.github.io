@@ -10,14 +10,17 @@ def text_to_speech(text, output_filename):
 
     # Choose the voice parameters
     voice = texttospeech.VoiceSelectionParams(
-        language_code="en-US",  # You can change to another language if needed
-        # You can change to MALE or FEMALE
-        ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+        language_code="en-US",  # Simplified Chinese
+        ssml_gender=texttospeech.SsmlVoiceGender.FEMALE,  # Female voice
+        name="en-US-Journey-F"  # Specific voice name
     )
 
     # Set audio configuration
     audio_config = texttospeech.AudioConfig(
-        audio_encoding=texttospeech.AudioEncoding.MP3  # You can choose MP3 or LINEAR16
+        audio_encoding=texttospeech.AudioEncoding.MP3,  # Output format: MP3
+        # speaking_rate=1.0,  # Speech speed (1.0 is normal speed)
+        # pitch=5.0,  # Higher pitch
+        volume_gain_db=5.0  # Louder volume
     )
 
     # Perform the text-to-speech request
@@ -34,8 +37,8 @@ def text_to_speech(text, output_filename):
 
 # Example usage
 article_text = """
-Your article content goes here. You can paste your entire article text in this string.
-Make sure the text is appropriately formatted and does not exceed API limits.
+Your article content goes here. Paste your article text in this string. 
+Ensure it's properly formatted and does not exceed API limits.
 """
 output_file = "output_audio.mp3"
 
