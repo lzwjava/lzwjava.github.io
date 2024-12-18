@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "How to Avoid Death"
+audio: true
 ---
 
 I am about to turn 30 years old. I didn't know much about death growing up until 2019, when one of my relatives died. In 2022, another relative passed away. I learned that two of my classmates had also died. During the three-year COVID period, we witnessed a lot of death in the news.

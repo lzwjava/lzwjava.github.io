@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "让 Zsh 在运行网络命令前自动显示代理设置"
+audio: true
 ---
 
 <div style="text-align: center;">  
