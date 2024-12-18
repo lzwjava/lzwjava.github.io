@@ -34,7 +34,7 @@ def save_progress(task, progress):
         with open(progress_file, 'w') as f:
             json.dump(progress, f, indent=4)
 
-def split_text(text, max_bytes=4000):
+def split_text(text, max_bytes=3000):
     chunks = []
     current_chunk = ""
     for line in text.split('\n'):
