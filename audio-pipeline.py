@@ -50,6 +50,7 @@ def md_to_text(md_file):
     with open(md_file, 'r', encoding='utf-8') as file:
         md_content = file.read()
 
+    # Remove YAML front matter
     md_content = re.sub(r'---\n.*?\n---', '', md_content, flags=re.DOTALL)
 
     html = markdown.markdown(md_content)
@@ -72,11 +73,19 @@ def process_markdown_files(input_dir, output_dir, max_files=4, dry_run=False):
 
     for filename in os.listdir(input_dir):
         if filename.endswith('.md'):
-            files_processed += 1
+            # Construct full path for input and output files
             md_file_path = os.path.join(input_dir, filename)
-            article_text = md_to_text(md_file_path)
             output_filename = os.path.join(
                 output_dir, f"{os.path.splitext(filename)[0]}.mp3")
+
+            # Check if the output MP3 already exists
+            if os.path.exists(output_filename):
+                print(f"Skipping {filename}: {output_filename} already exists.")
+                continue  # Skip to the next file
+
+            # Process the file
+            files_processed += 1
+            article_text = md_to_text(md_file_path)
 
             print(f"\nProcessing {files_processed}/{total_files}: {filename}")
 
@@ -97,8 +106,9 @@ def process_markdown_files(input_dir, output_dir, max_files=4, dry_run=False):
     print(f"Processing complete! {files_processed}/{total_files} files processed.")
 
 
-input_directory = "pages"
-output_directory = "assets/audios"
-dry_run = False
+if __name__ == "__main__":
+    input_directory = "pages"
+    output_directory = "assets/audios"
+    dry_run = False  # Set to True for a dry run without generating audio files
 
-process_markdown_files(input_directory, output_directory, max_files=4, dry_run=dry_run)
+    process_markdown_files(input_directory, output_directory, max_files=4, dry_run=dry_run)
