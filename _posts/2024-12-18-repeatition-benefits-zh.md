@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "编程中重复的好处"
+audio: true
 ---
 
 ```bash

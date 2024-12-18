@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "The Benefits of Repetition in Programming"
+audio: true
 ---
 
 ```bash

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "ChatGPT 无法完美处理嵌套代码块的输出"
+audio: true
 ---
 
 当我要求 ChatGPT 精炼以下内容时：
