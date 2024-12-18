@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Thinking"
+audio: true
 ---
 
 * By categorizing, abstracting, or reasoning about things, you think.
