@@ -2,6 +2,7 @@
 layout: post
 title:  "Résumé"
 link: "pages/resume-zh"
+audio: true
 ---
 
 ## Note
