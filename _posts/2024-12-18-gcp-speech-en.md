@@ -170,7 +170,7 @@ If your service account key doesn’t match the example above, you can generate 
 ### Example Audio Output
 
 Once everything is set up, you can generate an audio file, which will be available here:  
-[Download the audio file](./assets/audios/gcp-speech/output_audio.mp3).
+[Download the audio file](./assets/audios/output-audio.mp3).
 
 ---
 
