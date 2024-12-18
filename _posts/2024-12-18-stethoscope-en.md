@@ -13,6 +13,8 @@ I bought a stethoscope to learn how to use it, and after a few days, I discovere
 
 I’m excited to explore more creative ways to use this tool!
 
+Then, ChatGPT gave me these answers:
+
 ### Other Possible Uses:
 - **Listening Through Walls or Doors**: Hear faint sounds from the other side.
 - **Detecting Mechanical Noises**: Identify problems in machines, like engines or appliances.
