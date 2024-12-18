@@ -2,6 +2,7 @@
 layout: post
 title:  "Resume"
 link: "pages/resume-en"
+audio: true
 ---
 
 ## 提示
