@@ -1,7 +1,4 @@
-当然可以！以下是您提供的文章的中文翻译，确保嵌套代码块在Markdown中正确渲染，特别是在使用Jekyll时。
-
 ---
-
 layout: post
 title: "ChatGPT 无法提供嵌套代码块的完美输出"
 audio: true
