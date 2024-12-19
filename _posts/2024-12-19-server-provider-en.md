@@ -12,3 +12,7 @@ As a result, I decided to try AWS Lightsail again. Although it takes around ten 
 
 Some decisions may feel troublesome at first, but they often become easier as time goes on. By applying this long-term perspective when choosing your proxy server provider—and in every aspect of your life—you can ultimately enjoy a much better experience.
 
+<div style="text-align: center;">
+    <img src="/assets/images/server-provider/outline.png" alt="cloud"/>
+    <p style="font-size: 12px;">Source: getoutline.org</p>
+</div>
