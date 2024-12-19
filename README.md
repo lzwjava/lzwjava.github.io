@@ -35,6 +35,10 @@ python3.11 audio-pipeline.py --task posts --n 10
 python3.11 audio-pipeline.py --task pages
 ```
 
+```bash
+python pdf-pipeline.py --task pages --max_files 1
+```
+
 Refer:
 
 https://mcpride.github.io/posts/development/2018/03/06/syntax-highlighting-with-jekyll/
