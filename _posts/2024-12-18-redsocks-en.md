@@ -466,3 +466,25 @@ By following the steps outlined above, you've set up your Mac as a Shadowsocks p
 - **Consider Direct Router Configuration:** For a more streamlined setup, explore configuring Shadowsocks directly on your OpenWRT router.
 
 If you encounter any issues or need further assistance with specific configurations, feel free to reach out!
+
+
+```
+base {
+    log_debug = on;
+    log_info = on;
+    log = "file:/var/log/redsocks.log";
+    daemon = on;
+    redirector = generic;
+}
+
+redsocks {
+    local_ip = 0.0.0.0;
+    local_port = 7891;
+    ip = 192.168.1.113;
+    port = 7890;
+    type = http-connect;
+    login = "";
+    password = "";
+}
+```
+
