@@ -26,7 +26,7 @@ The PDF file of the English version can be found [here](/assets/resume/Zhiwei.Li
 * Read over 320 books spanning textbooks, personal development, business, technology and history.
 * Developed 10 open-source GitHub projects as a main developer, each with over 500 commits available at https://github.com/lzwjava.
 * Self-taught researcher with three academic-style papers on reversing myopia and natural vision restoration, inspired by the works of Yin Wang and Todd Becker, backed by three years of experimentation.
-* Detailed software portfolio available at https://lzwjava.github.io/pages/portfolio.
+* Detailed software portfolio available at https://lzwjava.github.io/pages/portfolio-en.
 
 ## Work Experience
 
