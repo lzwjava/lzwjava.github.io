@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "iOS中的每个应用设置、开关控制和辅助触控"  
+audio: true
 ---
 
 ## 每个应用设置

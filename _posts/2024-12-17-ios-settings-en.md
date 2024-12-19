@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "Per-App Settings, Switch Control, and AssistiveTouch in iOS"  
+audio: true
 ---
 
 ## Per-App Settings
