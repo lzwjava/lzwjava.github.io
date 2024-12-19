@@ -1,6 +1,6 @@
 ---
 layout: post  
-title: "Redsocks"  
+title: "Redsocks in Action" 
 audio: true
 ---
 
@@ -52,7 +52,7 @@ You can use either **Shadowsocks-NG** or **Clash** as your Shadowsocks client. B
 3. **Import the Shadowsocks URL:**
    - **Copy Your Shadowsocks URL:**
      ```
-     ss://Y2hhY2hhMjAtaWV0Zi1wb2x5MTMwNToyeU15SVJYTG9FblZoVTFvSmN0Mkd2@159.89.199.198:42387/?outline=1
+     ss://[ENCRYPTED_PASSWORD]@xxx.xxx.xxx.xxx:xxxxx/?outline=1
      ```
    - **Import Method:**
      - Click **"Import"**.
@@ -102,10 +102,10 @@ You can use either **Shadowsocks-NG** or **Clash** as your Shadowsocks client. B
      proxies:
        - name: "MyShadowsocks"
          type: ss
-         server: 159.89.199.198
-         port: 42387
+         server: xxx.xxx.xxx.xxx
+         port: xxxxx
          cipher: chacha20-ietf-poly1305
-         password: "yMiIRXLoEnVhU1oJct2Gv"
+         password: "xxxxxx"
 
      proxy-groups:
        - name: "Default"
@@ -149,7 +149,7 @@ By default, Shadowsocks clients bind the proxy to `localhost` (`127.0.0.1`), mea
 
 3. **Set the Listening Address:**
    - Change the **"Listen Address"** from `127.0.0.1` to `0.0.0.0` to allow connections from any interface.
-   - Alternatively, specify the Mac's LAN IP (e.g., `192.168.1.100`).
+   - Alternatively, specify the Mac's LAN IP (e.g., `192.168.1.xxx`).
 
 4. **Save and Restart Shadowsocks-NG:**
    - Click **"OK"** to save changes.
@@ -189,7 +189,7 @@ To ensure consistent connectivity between your OpenWRT router and the Mac, assig
    - Change **"Configure IPv4"** from **"Using DHCP"** to **"Manually"**.
 
 5. **Set Static IP Address:**
-   - **IP Address:** Choose an IP outside your router's DHCP range to prevent conflicts (e.g., `192.168.1.100`).
+   - **IP Address:** Choose an IP outside your router's DHCP range to prevent conflicts (e.g., `192.168.1.xxx`).
    - **Subnet Mask:** Typically `255.255.255.0`.
    - **Router:** Your router's IP address (e.g., `192.168.1.1`).
    - **DNS Server:** You can use your router's IP or another DNS service like `8.8.8.8`.
@@ -242,8 +242,8 @@ To ensure consistent connectivity between your OpenWRT router and the Mac, assig
    redsocks {
        local_ip = 0.0.0.0;
        local_port = 12345;  # Local port for Redsocks to listen on
-       ip = 192.168.1.100;  # Mac's static IP
-       port = 1080;          # Shadowsocks-NG's local SOCKS5 proxy port
+       ip = xxx.xxx.xxx.xxx;  # Mac's static IP
+       port = xxxxx;          # Shadowsocks-NG's local SOCKS5 proxy port
        type = socks5;
        login = "";           # If your proxy requires authentication
        password = "";
@@ -252,7 +252,7 @@ To ensure consistent connectivity between your OpenWRT router and the Mac, assig
 
    **Notes:**
    - **`local_port`**: The port Redsocks listens on for incoming connections from iptables redirects.
-   - **`ip` and `port`**: Point to your Mac's Shadowsocks SOCKS5 proxy (`192.168.1.100:1080` based on previous steps).
+   - **`ip`** and **`port`**: Point to your Mac's Shadowsocks SOCKS5 proxy (`xxx.xxx.xxx.xxx:xxxxx` based on previous steps).
    - **`type`**: Set to `socks5` as Shadowsocks provides a SOCKS5 proxy.
 
 3. **Save and Exit:**
@@ -300,7 +300,7 @@ Now that Redsocks is set up on OpenWRT, configure iptables to redirect all outbo
    ```bash
    # Redirect all TCP traffic to Redsocks (except traffic to the proxy itself)
    iptables -t nat -N REDSOCKS
-   iptables -t nat -A REDSOCKS -d 192.168.1.100 -p tcp --dport 1080 -j RETURN
+   iptables -t nat -A REDSOCKS -d xxx.xxx.xxx.xxx -p tcp --dport xxxxx -j RETURN
    iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports 12345
 
    # Apply the REDSOCKS chain to all outgoing traffic
@@ -326,7 +326,7 @@ Now that Redsocks is set up on OpenWRT, configure iptables to redirect all outbo
    ```bash
    # Redirect all TCP traffic to Redsocks (except proxy)
    iptables -t nat -N REDSOCKS
-   iptables -t nat -A REDSOCKS -d 192.168.1.100 -p tcp --dport 1080 -j RETURN
+   iptables -t nat -A REDSOCKS -d xxx.xxx.xxx.xxx -p tcp --dport xxxxx -j RETURN
    iptables -t nat -A REDSOCKS -p tcp -j REDIRECT --to-ports 12345
 
    # Apply the REDSOCKS chain
@@ -354,7 +354,6 @@ Now that Redsocks is set up on OpenWRT, configure iptables to redirect all outbo
    You should see logs indicating that traffic is being processed through Redsocks.
 
 2. **Test from a Client Device:**
-
    - Connect a device to your OpenWRT router.
    - Visit a website or perform an action that uses the internet.
    - Verify that the traffic is routed through the Shadowsocks proxy by checking the external IP address (e.g., via [WhatIsMyIP.com](https://www.whatismyip.com/)) to see if it reflects the proxy's IP.
@@ -369,7 +368,7 @@ Ensure that the entire setup works as intended by performing the following tests
 
 1. **Check Shadowsocks Client Status:**
    - Ensure that Shadowsocks-NG or Clash is actively connected to the Shadowsocks server.
-   - Verify that the local proxy (e.g., `192.168.1.100:1080`) is accessible.
+   - Verify that the local proxy (e.g., `xxx.xxx.xxx.xxx:xxxxx`) is accessible.
 
 2. **Test the Proxy Locally:**
    - On your Mac, open a browser and configure it to use `localhost:1080` as the SOCKS5 proxy.
@@ -405,7 +404,7 @@ Ensure that the entire setup works as intended by performing the following tests
   **On macOS:**
   
   - Go to **System Preferences** > **Security & Privacy** > **Firewall**.
-  - Configure the firewall to allow incoming connections on the proxy port (`1080`) only from the OpenWRT router's IP.
+  - Configure the firewall to allow incoming connections on the proxy port (`xxxxx`) only from the OpenWRT router's IP.
 
 - **Authentication:**
   - Shadowsocks already provides some level of security via encryption. Ensure strong passwords and encryption methods.
@@ -467,7 +466,6 @@ By following the steps outlined above, you've set up your Mac as a Shadowsocks p
 
 If you encounter any issues or need further assistance with specific configurations, feel free to reach out!
 
-
 ```
 base {
     log_debug = on;
@@ -480,8 +478,8 @@ base {
 redsocks {
     local_ip = 0.0.0.0;
     local_port = 7891;
-    ip = 192.168.1.113;
-    port = 7890;
+    ip = xxx.xxx.xxx.xxx;
+    port = xxxxx;
     type = http-connect;
     login = "";
     password = "";
