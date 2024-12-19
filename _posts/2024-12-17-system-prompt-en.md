@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "Exploring System Prompts in Grok and Claude"  
+audio: true
 ---
 
 I reposted it here to learn the prompt engineering.
