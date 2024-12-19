@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "血压计、听诊器和视力表"
+audio: true
 ---
 
 <div style="text-align: center;">

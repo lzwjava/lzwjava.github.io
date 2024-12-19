@@ -1,6 +1,7 @@
 ---
 layout: post  
 title: "Blood Pressure Monitor, Stethoscope, and Vision Chart"
+audio: true
 ---
 
 <div style="text-align: center;">
