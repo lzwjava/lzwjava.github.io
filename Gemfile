@@ -24,6 +24,9 @@ gem "wdm", "~> 0.1.1", :install_if => Gem.win_platform?
 # Additional plugins
 gem 'jekyll-sitemap', '~> 1.4'
 gem 'jekyll-seo-tag', '~> 2.8'
+
+gem 'jekyll-toc'
+
 # gem 'webrick', '~> 1.7'
 
 # Ensure compatibility with the logger gem
