@@ -38,8 +38,9 @@ for file_name in os.listdir('_posts'):
         elif '-zh' in file_name:
             chinese_titles.append((title, title_slug, post_date))
 
-english_titles.sort(key=lambda x: datetime.strptime(x[2], '%Y-%m-%d'), reverse=True)
-chinese_titles.sort(key=lambda x: datetime.strptime(x[2], '%Y-%m-%d'), reverse=True)
+# Sorting: first by date descending, second by title alphabetically ascending
+english_titles.sort(key=lambda x: (datetime.strptime(x[2], '%Y-%m-%d'), x[0]), reverse=True)
+chinese_titles.sort(key=lambda x: (datetime.strptime(x[2], '%Y-%m-%d'), x[0]), reverse=True)
 
 english_content = ""
 for title, slug, _ in english_titles:
