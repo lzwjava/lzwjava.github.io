@@ -132,7 +132,7 @@ def move(name):
     """Deletes the specified files and moves the original English markdown file to the notes directory."""
     delete_md(name)
 
-    original_file = os.path.join('_posts', 'en', f"{name}-en.md")
+    original_file = os.path.join('original', f"{name}-en.md")
     
     if os.path.exists(original_file):
         notes_file = os.path.join('notes', f"{name}-en.md")
