@@ -16,15 +16,17 @@ def generate_notes_links():
             post = frontmatter.load(f)
             title = post.get('title', file.replace('.md', ''))  # Default to filename if no title is found
             lang = post.get('lang', 'en') # Default to english if no lang is found
+        
+            date = file.split('-')[:3] # Extract date from filename
             
             # Generate the markdown link with the title and add an asterisk (*) in front
             link = f"* [{title}](/notes/{file.replace('.md', '')})"
-            all_links.append((title, link))
+            all_links.append((date, link))
 
     # Generate and update the markdown file for each language
     
-    # Sort links alphabetically by title
-    all_links.sort(key=lambda item: item[0])
+    # Sort links by date descending
+    all_links.sort(key=lambda item: item[0], reverse=True)
     sorted_links = [link for _, link in all_links]
     file_path = os.path.join('original', '2025-01-11-notes-en.md')
     content = f"""---
