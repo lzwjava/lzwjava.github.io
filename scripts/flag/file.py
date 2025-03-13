@@ -128,19 +128,20 @@ def delete_md(name):
         else:
             print(f"File not found: {audio_file_pattern}")
 
-def move(name):
+def move(file_path):
     """Deletes the specified files and moves the original English markdown file to the notes directory."""
+    # Extract the file name from the path
+    file_name = os.path.basename(file_path)
+    name = file_name.split('-en.md')[0]
     delete_md(name)
-
-    original_file = os.path.join('original', f"{name}-en.md")
     
-    if os.path.exists(original_file):
-        notes_file = os.path.join('notes', f"{name}-en.md")
+    if os.path.exists(file_path):
+        notes_file = os.path.join('notes', file_name)
         os.makedirs('notes', exist_ok=True)
-        os.rename(original_file, notes_file)
-        print(f"Moved {original_file} to {notes_file}")
+        os.rename(file_path, notes_file)
+        print(f"Moved {file_path} to {notes_file}")
     else:
-        print(f"Original file not found: {original_file}")
+        print(f"Original file not found: {file_path}")
 
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
