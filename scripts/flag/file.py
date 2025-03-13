@@ -128,10 +128,24 @@ def delete_md(name):
         else:
             print(f"File not found: {audio_file_pattern}")
 
+def move(name):
+    """Deletes the specified files and moves the original English markdown file to the notes directory."""
+    delete_md(name)
+
+    original_file = os.path.join('_posts', 'en', f"{name}-en.md")
+    
+    if os.path.exists(original_file):
+        notes_file = os.path.join('notes', f"{name}-en.md")
+        os.makedirs('notes', exist_ok=True)
+        os.rename(original_file, notes_file)
+        print(f"Moved {original_file} to {notes_file}")
+    else:
+        print(f"Original file not found: {original_file}")
+
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
     if len(sys.argv) < 3:
-        print("Usage: python scripts/file.py <create|create-note|create-original|delete> <name>")
+        print("Usage: python scripts/file.py <create|create-note|create-original|delete|move> <name>")
     else:
         action = sys.argv[1]
         name = sys.argv[2]
@@ -143,5 +157,7 @@ if __name__ == "__main__":
             create_original(name)
         elif action == "delete":
             delete_md(name)
+        elif action == "move":
+            move(name)
         else:
-            print("Invalid action. Use 'create', 'create-note', 'create-original', or 'delete'.")
+            print("Invalid action. Use 'create', 'create-note', 'create-original', 'delete', or 'move'.")
