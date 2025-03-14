@@ -3,14 +3,14 @@ audio: false
 generated: true
 lang: hant
 layout: post
-title: 《CN-紐約時報》
+title: 《紐約時報》新聞（CN）文章
 translated: true
 ---
 
-* <a href="https://www.nytimes.com/2025/03/10/world/asia/covid-anniversary-photos.html">鏡頭中的新冠疫情：我們經歷了怎樣一場全球危機</a>
+* <a href="https://www.nytimes.com/2025/03/10/world/asia/covid-anniversary-photos.html">新冠疫情：我們經歷了怎樣一場全球危機</a>
 * <a href="https://www.nytimes.com/2025/03/12/world/australia/china-warships-australia-aukus.html">中國軍艦環澳航行為何引發轟動</a>
-* <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-tesla-musk-china-beijing.html">開進中南海的特斯拉：回顧馬斯克的中國「高光時刻」</a>
-* <a href="https://www.nytimes.com/2025/03/13/business/tesla-china-sales-elon-musk.html">特斯拉為何在中国「失寵」</a>
+* <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-tesla-musk-china-beijing.html">特斯拉進入中南海：回顧馬斯克的中國「高光時刻」</a>
+* <a href="https://www.nytimes.com/2025/03/13/business/tesla-china-sales-elon-musk.html">特斯拉為何在中國「失寵」</a>
 * <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-trade-war-europe-canada.html">「胆小鬼博弈」：特朗普政策或導致全球經濟爭端失控</a>
 * <a href="https://www.nytimes.com/2025/03/11/opinion/trump-economy-tariffs.html">一場大災難正在發生</a>
 * <a href="https://www.nytimes.com/2025/03/11/opinion/trump-tariffs-recession-ukraine.html">民主死於愚蠢</a>

@@ -3,7 +3,7 @@ audio: false
 generated: true
 lang: en
 layout: post
-title: CN-NYTimes
+title: NYTimes News (CN) Articles
 translated: false
 ---
 

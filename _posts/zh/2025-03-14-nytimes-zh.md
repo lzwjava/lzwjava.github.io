@@ -3,13 +3,13 @@ audio: false
 generated: true
 lang: zh
 layout: post
-title: 《纽约时报》
+title: 纽约时报新闻（CN）文章
 translated: true
 ---
 
-* <a href="https://www.nytimes.com/2025/03/10/world/asia/covid-anniversary-photos.html">镜头中的新冠疫情：我们经历了怎样一场全球危机</a>
+* <a href="https://www.nytimes.com/2025/03/10/world/asia/covid-anniversary-photos.html">新冠疫情：我们经历了怎样一场全球危机</a>
 * <a href="https://www.nytimes.com/2025/03/12/world/australia/china-warships-australia-aukus.html">中国军舰环澳航行为何引发轩然大波</a>
-* <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-tesla-musk-china-beijing.html">开进中南海的特斯拉：回顾马斯克的中国“高光时刻”</a>
+* <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-tesla-musk-china-beijing.html">特斯拉开进中南海：回顾马斯克的中国“高光时刻”</a>
 * <a href="https://www.nytimes.com/2025/03/13/business/tesla-china-sales-elon-musk.html">特斯拉为何在中国“失宠”</a>
 * <a href="https://www.nytimes.com/2025/03/13/us/politics/trump-trade-war-europe-canada.html">“胆小鬼博弈”：特朗普政策或导致全球经济争端失控</a>
 * <a href="https://www.nytimes.com/2025/03/11/opinion/trump-economy-tariffs.html">一场大灾难正在发生</a>
