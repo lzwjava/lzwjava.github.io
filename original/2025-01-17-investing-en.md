@@ -39,3 +39,5 @@ title: Investing
 - Regular investing is very interesting. The price of stocks or coins goes up and down. I observe how the market works. Often, people debate or react to news in emotional ways. But I understand a lot about what I invest in. Every time I question its long-term value, I haven't changed much about my strategy.
 
 - Regular investing gives you a good feeling when you see the prices of stocks come back. Prices go up and down, and you know time will tell.
+
+- Don't borrow money to invest; save money instead. Regular investing takes years to generate profit, and anything can happen in the market. Money that is due soon won't help you invest for the long term. If a bad situation arises and you have to liquidate your investments to repay the money, you will probably incur a significant loss.
