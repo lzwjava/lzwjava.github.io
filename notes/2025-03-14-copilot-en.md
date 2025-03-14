@@ -159,4 +159,5 @@ While powerful, Copilot isn’t flawless. Here’s what to keep in mind:
 ---
 
 ### **Summary**
+
 GitHub Copilot works in VSCode by using OpenAI’s Codex to analyze your code’s context and generate real-time suggestions, from single lines to full functions. It integrates seamlessly into your editor, offering both passive completions (accepted with `Tab`) and interactive help via Inline Chat (`Ctrl+I`). Supporting numerous languages and frameworks, it adapts to your project and boosts productivity. However, it’s most effective when paired with your own coding knowledge—review its output, experiment with its features, and use it as a tool to enhance, not replace, your skills.
