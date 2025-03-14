@@ -7,54 +7,58 @@ title: Prompts útiles
 translated: true
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir conocimientos y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compromisos y discutir tendencias emergentes. Amplía a 50+ turnos.
-
-El formato debe ser el siguiente:
-
 ```json
 [
     {
       "speaker": "A",
-      "line": "Hola, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?"
+      "line": "嘿，我听说很多关于某个主题的事情。你能给我解释一下吗？"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
+      "line": "当然可以！我们从基础开始。"
     }
 ]
 ```
 
-Sobre el examen 04730, el examen de autoestudio de China y la tecnología básica de electrónica 3.
+关于04730考试、自学中国考试和基本电子技术3。
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir conocimientos y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compromisos y discutir tendencias emergentes. Amplía a 50+ turnos.
+创建一个自然且延伸的对话，两位专家A和B，至少50个回合。专家们应该深入讨论一个特定的主题，对话来回流动。两位参与者都应该提出问题，分享见解，探索主题的细微差别。使用技能，如深入探讨子部分，比较技术，探索用例，辩论权衡，讨论新兴趋势。扩展到50+回合。
 
-Sobre el contenido del PDF. El formato debe ser el siguiente:
+关于PDF内容。格式如下：
 
-A: Hola, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
+A: 嘿，我听说很多关于某个主题的事情。你能给我解释一下吗？
 
-B: ¡Claro! Empecemos con los conceptos básicos.
-
----
-
-Genera una imagen feliz del Año Nuevo de la Serpiente Lunar con nombres de texto incluidos.
+B: 当然可以！我们从基础开始。
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: AI, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto supergrande DeepSeek R1 en el centro.
+生成一个带有文本名称的快乐农历蛇年图像
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+创建一个480p YouTube视频封面图像，包含以下元素：AI、鲨鱼、未来主义、生动、色彩鲜艳、日出、城市，中间有超大文字DeepSeek R1
 
 ---
 
-Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código. Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert. Si es aplicable, incluye un alcance en paréntesis para describir la parte del código afectada. El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas iniciales ni finales.
+创建一个480p YouTube视频封面图像，包含以下元素：基本电子、未来主义、令人兴奋。
 
-Archivos cambiados:
+---
+
+为以下代码更改生成简洁的提交信息，使用Conventional Commits格式。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，包括范围以描述代码库受影响的部分。提交信息不应超过70个字符。只给出提交信息，不包括任何前导或尾随说明。
+
+更改的文件：
 {', '.join(file_changes)}
 
 ----
 
-Crea un título de YouTube.
+创建一个YouTube标题
+
+----
+
+蕾(つぼみ) - Tsubomi
+
+给出其日语歌词，并解释每个词和发音。
+
+```
