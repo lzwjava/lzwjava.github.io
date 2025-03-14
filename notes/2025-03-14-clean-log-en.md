@@ -78,7 +78,7 @@ def clean_log(input_path=None, output_path=None):
         outfile = sys.stdout  # Default to stdout if no input_path
 
     for line in lines:
-        line = line.strip()
+        #line = line.strip() # remove strip()
         parts = line.split(" | ", 3)
 
         if len(parts) == 4:
@@ -86,10 +86,10 @@ def clean_log(input_path=None, output_path=None):
             current_standard = (level, thread, message)
 
             if previous_standard is None or current_standard != previous_standard:
-                print(line, file=outfile)
+                print(line, end='', file=outfile) # added end=''
                 previous_standard = current_standard
         else:
-            print(line, file=outfile)
+            print(line, end='', file=outfile) # added end=''
             previous_standard = None
 
     if output_path or input_path:
