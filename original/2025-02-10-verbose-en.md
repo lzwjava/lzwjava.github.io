@@ -62,3 +62,5 @@ translated: false
 - For verbose output with Kubernetes `kubectl`, use the `--v` flag followed by a number indicating the verbosity level (e.g., `--v=6` or `--v=9`): `kubectl get pods --v=6`.
 
 - To get verbose output from systemd, use `journalctl -b -x` to view logs with explanations or `systemctl --full --all status <service>`.
+
+- To enable verbose output with `bundle install`, use `bundle install --verbose`.
