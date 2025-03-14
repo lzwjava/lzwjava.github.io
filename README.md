@@ -1,5 +1,7 @@
 # lzwjava.github.io
 
+[![Deploy Jekyll](https://github.com/lzwjava/lzwjava.github.io/actions/workflows/gh-pages.yml/badge.svg?branch=main)](https://github.com/lzwjava/lzwjava.github.io/actions/workflows/gh-pages.yml)
+
 Welcome to my personal blog! Here, I share my thoughts, experiences, and knowledge on various topics.
 
 ## Key Improvements
