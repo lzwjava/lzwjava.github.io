@@ -8,6 +8,7 @@ on:
 jobs:
   update_nytimes:
     runs-on: ubuntu-latest
+    environment: github-pages    
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -27,7 +28,7 @@ jobs:
       - name: Run NYTimes Script
         id: nytimes_update
         run: |
-          OUTPUT=$(python scripts/nytimes/nytimes.py)
+          OUTPUT=$(python -m scripts.nytimes.nytimes)
           if [[ "$OUTPUT" == *"The Markdown file was updated with new links."* ]]; then
             echo "nytimes_updated=true" >> "$GITHUB_OUTPUT"
           else

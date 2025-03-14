@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import ssl
+from ..llm.test_mistral import call_mistral_api
 
 def fetch_html_content(url):
     """Fetches the HTML content of a given URL."""
@@ -28,6 +29,17 @@ def extract_links(html):
             })
     return links
 
+def translate_title(title):
+    """Translates the title from Chinese to English using Mistral """
+    base_prompt = "Translate the following title to {target_language}. Provide only the translated title, without any additional notes or explanations. Do not repeat or mention the input text.\n"
+    prompt = base_prompt.format(target_language="English") + f"{title}"
+    translated_title = call_mistral_api(prompt)
+    if translated_title:
+        return translated_title.strip()
+    else:
+        print(f"Failed to translate title: {title}")
+        return title  # Return original title if translation fails
+
 def extract_nytimes_links(html):
     """Extracts NYTimes links from a given HTML page."""
     soup = BeautifulSoup(html, 'html.parser')
@@ -52,7 +64,8 @@ def generate_markdown_list(links):
 
     markdown_list = ''
     for link in links:
-        markdown_list += f'* [{link["title"]}]({link["url"]})\n'
+        translated_title = translate_title(link["title"])
+        markdown_list += f'* [{translated_title}]({link["url"]})\n'
     return markdown_list
 
 def update_markdown_file(filename, markdown_content):
