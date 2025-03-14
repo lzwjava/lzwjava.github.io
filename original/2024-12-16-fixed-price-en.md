@@ -8,7 +8,7 @@ title: Fixed-Price Subscriptions Are Outdated
 
 ### The Case for Flexible Pricing in Subscription Services
 
-Fixed-price subscription models, such as ChatGPT Plus's current \$20/month fee, are increasingly becoming outdated. Whether it's ChatGPT Plus, Netflix Premium, Google Play Pass, or Apple One, a shift toward a more flexible, usage-based pricing model is long overdue.
+Fixed-price subscription models, such as ChatGPT Plus's current $20/month fee, are increasingly becoming outdated. Whether it's ChatGPT Plus, Netflix Premium, Google Play Pass, or Apple One, a shift toward a more flexible, usage-based pricing model is long overdue.
 
 ### Why Fixed-Price Subscriptions Aren't Ideal
 
