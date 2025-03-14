@@ -1,5 +1,5 @@
 ---
-title: "Lyrics of "蕾(つぼみ)" by Kobukuro"
+title: "Lyrics of 蕾(つぼみ) by Kobukuro"
 lang: en
 layout: post
 audio: false

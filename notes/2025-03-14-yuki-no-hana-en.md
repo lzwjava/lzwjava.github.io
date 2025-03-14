@@ -1,5 +1,5 @@
 ---
-title: "Lyrics of "雪の華" (Yuki No Hana)"
+title: "Lyrics of 雪の華 (Yuki No Hana)"
 lang: en
 layout: post
 audio: false
