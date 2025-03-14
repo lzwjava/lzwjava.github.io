@@ -1,5 +1,5 @@
 ---
-title: Cyber Security Best Practices
+title: Cyber Security in the Company
 lang: en
 layout: post
 audio: false
