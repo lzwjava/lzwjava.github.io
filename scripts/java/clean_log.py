@@ -46,6 +46,7 @@ def clean_log(input_path=None, output_path=None, similarity_threshold=1.0, lines
 
     num_lines = len(lines)
     i = 0
+    removed_lines = 0
     while i < num_lines:
         # Collect 'lines_to_compare' lines or remaining lines if less than 'lines_to_compare'
         current_lines = lines[i:min(i + lines_to_compare, num_lines)]
@@ -93,6 +94,7 @@ def clean_log(input_path=None, output_path=None, similarity_threshold=1.0, lines
                                 print(line, end='', file=outfile)
                         else:
                             print(f"Skipping duplicate lines: { ''.join([line.strip() for line in current_lines])}")
+                            removed_lines += len(current_lines)
                     else:
                         for line in current_lines:
                             print(line, end='', file=outfile)
@@ -113,6 +115,8 @@ def clean_log(input_path=None, output_path=None, similarity_threshold=1.0, lines
 
     if output_path or input_path:
         outfile.close()
+
+    print(f"Removed {removed_lines} duplicate lines.")
 
 
 def is_valid_similarity_threshold(value):
