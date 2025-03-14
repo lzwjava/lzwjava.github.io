@@ -69,3 +69,8 @@ Changed files:
 Create a Youtube title 
 
 ----
+
+蕾(つぼみ) - Tsubomi
+
+give its lyrics in Japanese, and explain them, for every word and prounciation 
+
