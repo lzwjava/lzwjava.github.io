@@ -2,7 +2,7 @@ import sys
 import argparse
 from difflib import SequenceMatcher
 
-def clean_log(input_path=None, output_path=None, similarity_threshold=1.0):
+def clean_log(input_path=None, output_path=None, similarity_threshold=1.0, lines_to_compare=1):
     """
     Reads a log file, removes duplicate consecutive standard log lines based on similarity,
     and writes the cleaned log to a specified file, defaulting to overwriting the input file.
@@ -11,9 +11,11 @@ def clean_log(input_path=None, output_path=None, similarity_threshold=1.0):
         input_path (str, optional): Path to the input log file. If None, reads from stdin.
         output_path (str, optional): Path to the output log file. If None, overwrites the input file.
         similarity_threshold (float, optional): Similarity ratio (0.0 to 1.0) to consider lines as duplicates. Defaults to 1.0 (exact match).
+        lines_to_compare (int, optional): Number of consecutive lines to compare. Defaults to 1.
     """
 
-    previous_standard = None
+    if not isinstance(lines_to_compare, int) or lines_to_compare < 1:
+        raise ValueError("lines_to_compare must be an integer greater than or equal to 1.")
 
     # Determine the input source
     if input_path:
@@ -42,30 +44,72 @@ def clean_log(input_path=None, output_path=None, similarity_threshold=1.0):
     else:
         outfile = sys.stdout  # Default to stdout if no input_path
 
-    for line in lines:
-        #line = line.strip() # remove strip()
-        parts = line.split(" | ", 3)
+    num_lines = len(lines)
+    i = 0
+    while i < num_lines:
+        # Collect 'lines_to_compare' lines or remaining lines if less than 'lines_to_compare'
+        current_lines = lines[i:min(i + lines_to_compare, num_lines)]
 
-        if len(parts) == 4:
-            level, _, thread, message = parts
-            current_standard = (thread, message)
-
-            if previous_standard is None:
-                print(f"First standard line: {line.strip()}")
-                print(line, end='', file=outfile) # added end=''
-                previous_standard = current_standard
-            else:
-                similarity = SequenceMatcher(None, ' '.join(current_standard), ' '.join(previous_standard)).ratio()
-                print(f"Similarity: {similarity:.4f}, Threshold: {similarity_threshold:.4f}")
-                if similarity < similarity_threshold:
-                    print(line, end='', file=outfile) # added end=''
-                    previous_standard = current_standard
+        # Process only if we have enough lines to compare
+        if len(current_lines) == lines_to_compare:
+            # Extract standard information from the first set of lines
+            current_standards = []
+            all_standard = True
+            for line in current_lines:
+                parts = line.split(" | ", 3)
+                if len(parts) == 4:
+                    level, _, thread, message = parts
+                    current_standards.append((thread, message))
                 else:
-                    print(f"Skipping duplicate line: {line.strip()}")
+                    print(f"Non-standard line: {line.strip()}")
+                    print(line, end='', file=outfile)
+                    all_standard = False
+                    break  # Stop processing this group if a non-standard line is found
+
+            if all_standard:
+                # Extract standard information from the second set of lines (if available)
+                next_lines_start_index = i + lines_to_compare
+                next_lines_end_index = min(next_lines_start_index + lines_to_compare, num_lines)
+                next_lines = lines[next_lines_start_index:next_lines_end_index]
+
+                if len(next_lines) == lines_to_compare:
+                    next_standards = []
+                    for line in next_lines:
+                        parts = line.split(" | ", 3)
+                        if len(parts) == 4:
+                            level, _, thread, message = parts
+                            next_standards.append((thread, message))
+                        else:
+                            # Treat the next lines as non-standard if any of them are non-standard
+                            next_standards = None
+                            break
+
+                    if next_standards:
+                        similarity = SequenceMatcher(None, ' '.join([' '.join(x) for x in current_standards]), ' '.join([' '.join(x) for x in next_standards])).ratio()
+                        print(f"Similarity: {similarity:.4f}, Threshold: {similarity_threshold:.4f}")
+
+                        if similarity < similarity_threshold:
+                            for line in current_lines:
+                                print(line, end='', file=outfile)
+                        else:
+                            print(f"Skipping duplicate lines: { ''.join([line.strip() for line in current_lines])}")
+                    else:
+                        for line in current_lines:
+                            print(line, end='', file=outfile)
+                else:
+                    for line in current_lines:
+                        print(line, end='', file=outfile)
+            i += lines_to_compare  # Move to the next set of lines
         else:
-            print(f"Non-standard line: {line.strip()}")
-            print(line, end='', file=outfile) # added end=''
-            previous_standard = None
+            # Handle the remaining lines (less than 'lines_to_compare')
+            for line in current_lines:
+                parts = line.split(" | ", 3)
+                if len(parts) == 4:
+                    print(line, end='', file=outfile)
+                else:
+                    print(f"Non-standard line: {line.strip()}")
+                    print(line, end='', file=outfile)
+            i += len(current_lines)
 
     if output_path or input_path:
         outfile.close()
@@ -90,6 +134,8 @@ if __name__ == "__main__":
     parser.add_argument("input_path", nargs="?", type=str, help="Path to the input log file (optional, defaults to stdin)")
     parser.add_argument("-o", "--output_path", type=str, help="Path to the output log file (optional, defaults to overwriting input file)")
     parser.add_argument("-s", "--similarity", type=is_valid_similarity_threshold, default=1.0, help="Similarity threshold (0.0-1.0) to consider lines as duplicates (default: 1.0)")
+    parser.add_argument("-l", "--lines", type=int, default=1, help="Number of consecutive lines to compare (default: 1)")
+
     args = parser.parse_args()
 
-    clean_log(args.input_path, args.output_path, args.similarity)
+    clean_log(args.input_path, args.output_path, args.similarity, args.lines)
