@@ -62,3 +62,5 @@ translated: true
 - Pour une sortie verbale avec Kubernetes `kubectl`, utilisez le drapeau `--v` suivi d'un nombre indiquant le niveau de verbosité (par exemple, `--v=6` ou `--v=9`) : `kubectl get pods --v=6`.
 
 - Pour obtenir une sortie verbale de systemd, utilisez `journalctl -b -x` pour afficher les journaux avec des explications ou `systemctl --full --all status <service>`.
+
+- Pour activer la sortie verbale avec `bundle install`, utilisez `bundle install --verbose`.
