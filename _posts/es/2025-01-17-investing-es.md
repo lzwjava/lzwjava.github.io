@@ -15,7 +15,7 @@ translated: true
 
 - A menudo es preferible mantener la moneda nativa de una red; por ejemplo, SOL en la red Solana o ETH en la red Ethereum. Estas monedas nativas se utilizan típicamente para pagar las tarifas de transacción y son ampliamente aceptadas en las principales bolsas de criptomonedas y plataformas de intercambio descentralizado (DEX).
 
-- Evita usar puentes entre cadenas debido a sus altos costos. Por ejemplo, una vez pagué una tarifa de red de \\$100 USD para convertir \\$1200 USD en SOL a ETH. En su lugar, transfiere tu criptomoneda a un intercambio que soporte la misma cadena y luego usa el mercado spot para convertir.
+- Evita usar puentes entre cadenas debido a sus altos costos. Por ejemplo, una vez pagué una tarifa de red de $100 USD para convertir $1200 USD en SOL a ETH. En su lugar, transfiere tu criptomoneda a un intercambio que soporte la misma cadena y luego usa el mercado spot para convertir.
 
 - No mantengas USDT. En su lugar, mantén ETH, SOL y BTC. Cambia la mentalidad tradicional. Mide todo desde la perspectiva de la criptomoneda, en lugar de medir las monedas criptográficas desde la perspectiva de la moneda legal.
 

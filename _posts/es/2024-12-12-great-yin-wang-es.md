@@ -36,7 +36,7 @@ De hecho, el 11 de febrero de 2022, fui expulsado del grupo de discusión en Tel
 
 Yin Wang escribió un artículo sobre su historia con Daniel P. Friedman, permitiendo que más personas lo conozcan. Ahora tiene 140k seguidores en Weibo. El título de su artículo es "GTF - Great Teacher Friedman". Así que hoy, estoy escribiendo "GTY - Great Teacher Yin" para compartir un poco de nuestra historia. En la era actual de internet, probablemente sea el mejor maestro para 50k personas. Supongo que un tercio de ellos le prestará mucha atención.
 
-Me he suscrito a su Substack por \\$5 al mes durante los últimos dos años. Me siento profundamente agradecido con él, y la mejor manera en que puedo corresponderle es compartiendo todo lo que aprendo a través de este blog para ayudar a otros.
+Me he suscrito a su Substack por $5 al mes durante los últimos dos años. Me siento profundamente agradecido con él, y la mejor manera en que puedo corresponderle es compartiendo todo lo que aprendo a través de este blog para ayudar a otros.
 
 Lamento no haberlo escuchado con más atención. No fue hasta 2024, cuando me di cuenta de que la casa que mi esposa y yo compramos en Guangzhou en 2022 había perdido alrededor de 1 millón en valor, que realmente comprendí el impacto. Durante mi momento más bajo, un día me encontré con su Weibo y vi algo como: "Una burbuja es un cáncer para la socioeconomía; una vez que estalla, se extenderá y empeorará en todas partes, perjudicando a todos". Me golpeó como un rayo y explicó por qué había sido afectado recientemente.
 
