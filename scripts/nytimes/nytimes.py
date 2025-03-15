@@ -37,8 +37,7 @@ def translate_title(title):
     if translated_title:
         return translated_title.strip()
     else:
-        print(f"Failed to translate title: {title}")
-        return title  # Return original title if translation fails
+        raise Exception(f"Failed to translate title: {title}")
 
 def extract_nytimes_links(html):
     """Extracts NYTimes links from a given HTML page."""
