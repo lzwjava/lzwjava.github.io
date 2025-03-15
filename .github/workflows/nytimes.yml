@@ -41,17 +41,11 @@ jobs:
 
       - name: Run NYTimes Script
         id: nytimes_update
-        run: |
-          OUTPUT=$(python -m scripts.nytimes.nytimes)
-          echo "$OUTPUT"
-          if [[ "$OUTPUT" == *"The Markdown file was updated with new links."* ]]; then
-            echo "nytimes_updated=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "nytimes_updated=false" >> "$GITHUB_OUTPUT"
-          fi
+        run: python -m scripts.nytimes.nytimes
+        continue-on-error: true
 
       - name: Commit NYTimes Changes
-        if: steps.nytimes_update.outputs.nytimes_updated == 'true'
+        if: steps.nytimes_update.outcome == 'success'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -66,7 +60,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Trigger Workflow gh-pages
-        if: steps.nytimes_update.outputs.nytimes_updated == 'true'
+        if: steps.nytimes_update.outcome == 'success'
         run: |
           curl -L \
             -X POST \
@@ -77,5 +71,3 @@ jobs:
             -d '{"ref": "main"}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      

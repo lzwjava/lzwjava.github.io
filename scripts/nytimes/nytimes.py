@@ -4,6 +4,7 @@ import os
 import ssl
 from dotenv import load_dotenv
 import os
+import sys
 
 load_dotenv()
 
@@ -186,8 +187,10 @@ def main():
 
     if markdown_changed:
         print("The Markdown file was updated with new links.")
+        sys.exit(0)
     else:
         print("The Markdown file was not updated (no changes).")
+        sys.exit(1)
 
 
 if __name__ == "__main__":
