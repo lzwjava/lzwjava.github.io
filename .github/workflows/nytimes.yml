@@ -43,6 +43,8 @@ jobs:
         id: nytimes_update
         run: python -m scripts.nytimes.nytimes
         continue-on-error: true
+        env:
+          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
 
       - name: Commit NYTimes Changes
         if: steps.nytimes_update.outcome == 'success'
