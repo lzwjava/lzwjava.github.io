@@ -9,8 +9,10 @@ def fetch_html_content(url):
     try:
         # Create an unverified SSL context
         context = ssl._create_unverified_context()
+        print(f"Fetching HTML content from: {url}")
         response = requests.get(url, verify=False)
         response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
+        print(f"Successfully fetched HTML content from: {url}")
         return response.text
     except requests.exceptions.RequestException as e:
         print(f"Could not fetch URL: {url} - {e}")
@@ -27,15 +29,19 @@ def extract_links(html):
                 'url': url,
                 'text': a.text.strip()
             })
+    print(f"Extracted {len(links)} links from main page.")
     return links
 
 def translate_title(title):
     """Translates the title from Chinese to English using Mistral """
     base_prompt = "Translate the following title to {target_language}. Provide only the translated title, without any additional notes or explanations. Do not repeat or mention the input text.\n"
     prompt = base_prompt.format(target_language="English") + f"{title}"
+    print(f"Translating title: {title}")
     translated_title = call_mistral_api(prompt)
     if translated_title:
-        return translated_title.strip()
+        translated_title = translated_title.strip()
+        print(f"Translated title: {translated_title}")
+        return translated_title
     else:
         raise Exception(f"Failed to translate title: {title}")
 
@@ -45,6 +51,7 @@ def extract_nytimes_links(html):
     links = []
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else ''
+    print(f"Extracted title: {title}")
 
     for a in soup.find_all('a', href=True):
         url = a['href']
@@ -54,6 +61,7 @@ def extract_nytimes_links(html):
                 'title': title,
                 'text': a.text.strip()
             })
+    print(f"Extracted {len(links)} NYTimes links.")
     return links
 
 def generate_markdown_list(links):
@@ -65,12 +73,14 @@ def generate_markdown_list(links):
     for link in links:
         translated_title = translate_title(link["title"])
         markdown_list += f'* [{translated_title}]({link["url"]})\n'
+    print("Generated Markdown list.")
     return markdown_list
 
 def update_markdown_file(filename, markdown_content):
     """Updates a Markdown file with the given content."""
     try:
         # Read the existing content of the file
+        print(f"Reading existing content from {filename}")
         with open(filename, 'r', encoding='utf-8') as f:
             existing_content = f.read()
 
@@ -86,7 +96,9 @@ def update_markdown_file(filename, markdown_content):
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(updated_content)
         print(f"Successfully updated {filename}")
-        return existing_content != updated_content
+        markdown_changed = existing_content != updated_content
+        print(f"Markdown changed: {markdown_changed}")
+        return markdown_changed
     except Exception as e:
         print(f"Error updating {filename}: {e}")
         return False
