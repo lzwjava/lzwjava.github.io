@@ -34,7 +34,7 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
 
     try:
         print(f"Calling Mistral API with model: {model}")
-        print(f"Prompt being sent: {prompt[:100]}...")  # Print the first 100 characters of the prompt
+        print(f"Prompt being sent: {prompt[:1000]}...")  # Print the first 100 characters of the prompt
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
@@ -95,34 +95,49 @@ def translate_title(title):
     else:
         raise Exception(f"Failed to translate title: {title}")
 
-def extract_nytimes_links(html):
-    """Extracts NYTimes links from a given HTML page."""
+def summarize_article(html):
+    """Summarizes the article content using Mistral API in English."""
     soup = BeautifulSoup(html, 'html.parser')
-    links = []
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else ''
     print(f"Extracted title: {title}")
 
-    for a in soup.find_all('a', href=True):
-        url = a['href']
-        if url.startswith('https://www.nytimes.com/'):
-            links.append({
-                'url': url,
-                'title': title,
-                'text': a.text.strip()
-            })
-    print(f"Extracted {len(links)} NYTimes links.")
-    return links
+    # Extract the main article text
+    article_area = soup.find('div', class_='article-area')
+    if article_area:
+        article_text = article_area.get_text(separator='\n', strip=True)
+    else:
+        article_text = None
 
-def generate_markdown_list(links):
-    """Generates a Markdown list from a list of links."""
-    if not links:
-        return '* No links found.\n'
+    if not article_text:
+        print("Could not extract article text.")
+        return None, None
+
+    # Create a prompt for Mistral to summarize
+    prompt = f"Summarize the following article in English, focusing on the main points and avoiding introductory phrases like 'Summary:' or 'This article is about:'.\n\n{article_text[:30000]}\n\n"  # Limit article text to 30000 characters
+    print(f"Creating summary for title: {title}")
+    summary = call_mistral_api(prompt)
+
+    if summary:
+        # Clean the summary by removing leading "Summary:" or similar phrases
+        summary = summary.replace("Summary:", "").strip()
+        print(f"Generated summary: {summary}")
+        return title, summary
+    else:
+        print(f"Failed to generate summary for title: {title}")
+        return None, None
+
+
+def generate_markdown_list(articles):
+    """Generates a Markdown list from a list of article summaries."""
+    if not articles:
+        return '* No articles found.\n'
 
     markdown_list = ''
-    for link in links:
-        translated_title = translate_title(link["title"])
-        markdown_list += f'* [{translated_title}]({link["url"]})\n'
+    for article in articles:
+        title, summary = article
+        translated_title = translate_title(title)
+        markdown_list += f'## {translated_title}\n\n{summary}\n\n'
     print("Generated Markdown list.")
     return markdown_list
 
@@ -166,21 +181,25 @@ def main():
     links = extract_links(html_content)
     print(f'Found {len(links)} links on main page. Extracting links...')
 
-    all_nytimes_links = []
+    all_articles = []
     for i, link in enumerate(links):
-        print(f'Processing link {i + 1} of {len(links)}: {link["url"]}')
-        article_html = fetch_html_content(link["url"])
+        url = link["url"]
+        if not url.endswith('/dual/'):
+            if not url.endswith('/'):
+                url = url + '/dual/'
+            else:
+                url = url + 'dual/'
+
+        print(f'Processing link {i + 1} of {len(links)}: {url}')
+        article_html = fetch_html_content(url)
         if article_html:
-            nytimes_links = extract_nytimes_links(article_html)
-            print(f'Found {len(nytimes_links)} NYTimes links in {link["url"]}.')
-            all_nytimes_links.extend(nytimes_links)
+            title, summary = summarize_article(article_html)
+            if title and summary:
+                all_articles.append((title, summary))
         else:
             print(f'Failed to fetch content from {link["url"]}')
 
-    filtered_links = [link for link in all_nytimes_links if '本文英文版' in link['text']]
-    print(f"Found {len(filtered_links)} links containing '本文英文版'. Generating list...")
-
-    markdown_list = generate_markdown_list(filtered_links)
+    markdown_list = generate_markdown_list(all_articles)
 
     filename = 'original/2025-03-14-nytimes-en.md'
     markdown_changed = update_markdown_file(filename, markdown_list)
