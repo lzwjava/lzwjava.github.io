@@ -77,3 +77,69 @@ Nginx handles range requests by default, which is what enables streaming. To con
 - **Connection Refused**: Revisit firewall settings on the server (`sudo ufw allow 80` or equivalent).
 
 With VLC or IINA, you’ll be streaming your `.mkv` files from your Mac in no time without downloading them fully. Let me know if you hit any snags!
+
+---
+
+Installing VLC on a Mac is straightforward. Here’s a quick guide to get it set up so you can stream your `.mkv` files from your Nginx server:
+
+### Method 1: Download from the Official Website
+1. **Visit the VLC Website**:
+   - Open your browser (e.g., Safari or Chrome).
+   - Go to [https://www.videolan.org/vlc/](https://www.videolan.org/vlc/).
+
+2. **Download VLC**:
+   - Click the **Download VLC** button. It should automatically detect your macOS and offer the correct version (e.g., VLC 3.0.20 as of now).
+   - You’ll get a `.dmg` file (e.g., `vlc-3.0.20.dmg`).
+
+3. **Install VLC**:
+   - Open the downloaded `.dmg` file (usually in your `Downloads` folder).
+   - Drag the VLC icon to the **Applications** folder as prompted in the window.
+   - Close the `.dmg` window and eject it (right-click the disk icon on your desktop or in Finder and select "Eject").
+
+4. **Run VLC**:
+   - Go to your **Applications** folder (e.g., via Finder or Spotlight with `Cmd + Space`, then type "Applications").
+   - Double-click **VLC**.
+   - If macOS blocks it ("unidentified developer"), right-click VLC, select **Open**, then click **Open** in the dialog.
+
+5. **Stream Your File**:
+   - Open VLC.
+   - Press `Cmd + N` (or `File > Open Network`).
+   - Enter `http://192.168.1.27/movies/yourfile.mkv`.
+   - Click **Open**.
+
+### Method 2: Install via Homebrew (Terminal)
+If you prefer the command line and have Homebrew installed:
+1. **Install Homebrew** (if not already):
+   - Open Terminal.
+   - Run:
+     ```bash
+     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+     ```
+   - Follow the prompts.
+
+2. **Install VLC**:
+   - In Terminal:
+     ```bash
+     brew install vlc
+     ```
+
+3. **Run VLC**:
+   - Launch it from Terminal with:
+     ```bash
+     open -a VLC
+     ```
+   - Or find it in **Applications** as `VLC.app`.
+
+4. **Stream**:
+   - Same as above: `Cmd + N`, enter your URL, and play.
+
+### Verify Installation
+- Once installed, VLC should appear in your **Applications** folder.
+- Test it with a local file first (drag an `.mkv` into VLC) to ensure it works, then try streaming `http://192.168.1.27/movies/yourfile.mkv`.
+
+### Troubleshooting
+- **Download Fails**: Use a mirror link from the VLC site if the main download is slow.
+- **Security Prompt**: If macOS blocks it, go to `System Settings > Security & Privacy > General` and click **Open Anyway**.
+- **Not Playing**: Ensure the URL is correct and your server is reachable (`ping 192.168.1.27` from Terminal).
+
+That’s it! VLC should now be ready on your Mac to stream your `.mkv` files. Let me know if you need help with the next step!
