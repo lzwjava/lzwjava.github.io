@@ -2,7 +2,56 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import ssl
-from ..llm.test_mistral import call_mistral_api
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+def call_mistral_api(prompt, model="mistral-small-2501"):
+    """Calls the Mistral API to translate text."""
+    api_key = os.environ.get("MISTRAL_API_KEY")
+    if not api_key:
+        print("Error: MISTRAL_API_KEY environment variable not set.")
+        return None
+
+    url = "https://api.mistral.ai/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    data = {
+        "model": model,
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    }
+
+    try:
+        print(f"Calling Mistral API with model: {model}")
+        print(f"Prompt being sent: {prompt[:100]}...")  # Print the first 100 characters of the prompt
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        response_json = response.json()
+        print(f"Mistral API Response: {response_json}")
+        if response_json and response_json['choices']:
+            content = response_json['choices'][0]['message']['content']
+            print(f"Mistral API Content: {content}")
+            return content
+        else:
+            print(f"Mistral API Error: Invalid response format: {response_json}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Mistral API Error: {e}")
+        if e.response:
+            print(f"Response status code: {e.response.status_code}")
+            print(f"Response content: {e.response.text}")
+        return None
+
 
 def fetch_html_content(url):
     """Fetches the HTML content of a given URL."""
