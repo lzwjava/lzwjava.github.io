@@ -1,6 +1,6 @@
 ---
-title: 
-lang: Console App
+title: Console App
+lang: en
 layout: post
 audio: false
 translated: false
