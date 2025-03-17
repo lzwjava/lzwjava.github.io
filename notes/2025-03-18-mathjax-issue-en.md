@@ -227,3 +227,152 @@ With this configuration, the inline math in your content—such as \( T_p \) and
 
 This setup ensures MathJax renders the mathematical expressions in your CSMA/CD explanation clearly and professionally, enhancing readability for users.
 
+---
+
+To fix the MathJax rendering issues with parentheses `\(...\)` and other LaTeX delimiters, adjust your configuration to properly escape the backslashes in JavaScript strings. Here's the corrected setup:
+
+```html
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['\\(','\\)'] ],  // Correctly escaped for JavaScript
+      displayMath: [ ['$$','$$'], ['\\[','\\]'] ],  // Fixed escaping for \[ and \]
+      processEscapes: true
+    },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    "CommonHTML": {
+      linebreaks: { automatic: true },
+      scale: 85
+    },
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+```
+
+### Key Fixes:
+1. **Escaped Backslashes**:
+   - Changed `["\\(","\\)"]` to `['\\(','\\)']` (single quotes avoid extra escaping).
+   - Fixed `["\[","\]"]` to `['\\[','\\]']` to ensure `\[...\]` works for displayed equations.
+
+2. **Recommendations**:
+   - Use `'$$...$$'` or `\\[...\\]` for displayed equations.
+   - Use `\\(...\\)` for inline equations.
+   - Ensure there are no conflicting Markdown processors altering your LaTeX.
+
+### Example Usage:
+```html
+<p>Inline math: \( E = mc^2 \).</p>
+
+<p>Display math:</p>
+\[
+  \int_{-\infty}^\infty e^{-x^2} dx = \sqrt{\pi}
+\]
+```
+
+This configuration ensures MathJax correctly parses all LaTeX delimiters.
+
+---
+
+I understand that you're using Jekyll with Kramdown to render Markdown posts and want to configure MathJax to properly display mathematical expressions. You’ve provided a MathJax configuration and noted that you’re rendering math within Markdown posts, not HTML tags. Let’s ensure MathJax works seamlessly with your setup.
+
+### Your Current Setup
+You’re using:
+- **Jekyll with Kramdown**: Kramdown is the default Markdown parser for Jekyll and supports LaTeX-style math expressions.
+- **MathJax**: Your configuration specifies delimiters for inline and display math:
+  - Inline: `\( ... \)`
+  - Display: `$$ ... $$` and `\[ ... \]`
+
+You’ve also included a `marked.min.js` script, though it’s likely not relevant since Jekyll renders Markdown server-side with Kramdown, not client-side.
+
+### Why Rendering Might Not Work
+Kramdown and MathJax need to align on how math delimiters are handled. Your MathJax setup recognizes `\( ... \)` for inline math and both `$$ ... $$` and `\[ ... \]` for display math. However, Kramdown’s default behavior might not pass all these delimiters to MathJax correctly unless configured properly, especially if escaping issues arise in Markdown.
+
+### Solution: Configuring MathJax with Kramdown
+Here’s how to make it work:
+
+#### 1. Configure Kramdown in Jekyll
+Ensure your Jekyll `_config.yml` file enables MathJax as the math engine for Kramdown. Add or verify the following:
+
+```yaml
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+```
+
+This tells Kramdown to process math expressions and pass them to MathJax. By default, Kramdown recognizes:
+- `\( ... \)` for inline math.
+- `$$ ... $$` for display math.
+
+While your MathJax config also supports `\[ ... \]` for display math, Kramdown doesn’t natively use this delimiter, which could cause issues unless handled correctly.
+
+#### 2. Use Consistent Math Delimiters in Markdown
+To avoid confusion or escaping problems, stick to Kramdown’s default delimiters in your Markdown posts:
+- **Inline Math**: Use `\( ... \)`.
+  Example: `This is inline: \( E = mc^2 \)` renders as "This is inline: \( E = mc^2 \)".
+- **Display Math**: Use `$$ ... $$`.
+  Example:
+  ```markdown
+  $$
+  \int_0^1 x^2 \, dx = \frac{1}{3}
+  $$
+  ```
+  This renders as a centered equation: \( \int_0^1 x^2 \, dx = \frac{1}{3} \).
+
+If you prefer `\[ ... \]`, you can use it, but Markdown’s backslash escaping might require extra care (e.g., `\\[ ... \\]`). However, `$$ ... $$` is simpler and aligns with Kramdown’s defaults, reducing potential errors.
+
+#### 3. Simplify Your MathJax Configuration
+Since Kramdown preprocesses the math, your MathJax config can focus on rendering. Here’s a streamlined version based on your setup:
+
+```html
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['\\(','\\)'] ],
+      displayMath: [ ['$$','$$'] ], // Stick to $$ for simplicity
+      processEscapes: true
+    },
+    "CommonHTML": {
+      linebreaks: { automatic: true },
+      scale: 85
+    },
+    TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+```
+
+- I’ve removed `['\\[','\\]']` from `displayMath` to match Kramdown’s preference for `$$ ... $$`. If you still want `\[ ... \]`, keep it, but test thoroughly.
+- Removed `"HTML-CSS"` since `"CommonHTML"` is sufficient for modern MathJax rendering.
+
+Place this in your Jekyll layout’s `<head>` section.
+
+#### 4. Remove Unnecessary Scripts
+You’ve included `<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>`, but Jekyll uses Kramdown server-side, so Marked.js (a client-side parser) isn’t needed unless you’re doing something specific with it. If not, remove it to avoid potential conflicts or confusion.
+
+#### 5. Test Your Setup
+Add these examples to a Markdown post to confirm rendering works:
+- Inline: `The energy is \( E = mc^2 \).`
+- Display:
+  ```markdown
+  $$
+  \text{Bit rate} = 2400 \, \text{baud} \times 3 \, \text{bits/symbol} = 7200 \, \text{bps}
+  $$
+  ```
+
+Run `jekyll serve`, open the site in your browser, and check if the math renders correctly. If not, inspect the browser console for MathJax errors.
+
+### Final Notes
+- **Consistency**: Using `\( ... \)` and `$$ ... $$` ensures compatibility between Kramdown and MathJax without extra escaping hassles.
+- **Troubleshooting**: If math still doesn’t render, verify:
+  - MathJax scripts load without errors (check the browser console).
+  - Your Jekyll build completes successfully.
+  - No typos in delimiters or config.
+
+This setup should render your math expressions beautifully in Jekyll Markdown posts! Let me know if you run into specific issues with examples you’re trying to render.

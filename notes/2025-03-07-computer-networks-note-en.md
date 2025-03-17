@@ -178,8 +178,8 @@ One of the key features of **IPv6 (Internet Protocol version 6)** is that it has
 - **IPv6 addresses are 128 bits long.**
 
 #### Why a Larger Address Space?
-- **IPv4**, the previous version of the Internet Protocol, uses 32-bit addresses. This provides a total of \( 2^{32} \) (approximately 4.3 billion) unique addresses. With the rapid growth of the internet, devices, and IoT (Internet of Things), this number became insufficient, leading to address exhaustion.
-- **IPv6**, with its 128-bit address length, offers \( 2^{128} \) possible addresses. This is an astronomically large number—approximately 340 undecillion (or \( 3.4 \times 10^{38} \)) unique addresses. This vast address space ensures that there are enough IP addresses for the foreseeable future, accommodating billions of devices worldwide.
+- **IPv4**, the previous version of the Internet Protocol, uses 32-bit addresses. This provides a total of \\( 2^{32} \\) (approximately 4.3 billion) unique addresses. With the rapid growth of the internet, devices, and IoT (Internet of Things), this number became insufficient, leading to address exhaustion.
+- **IPv6**, with its 128-bit address length, offers \\( 2^{128} \\) possible addresses. This is an astronomically large number—approximately 340 undecillion (or \\( 3.4 \times 10^{38} \\)) unique addresses. This vast address space ensures that there are enough IP addresses for the foreseeable future, accommodating billions of devices worldwide.
 
 #### Additional Context:
 - IPv6 addresses are typically written in hexadecimal format, divided into eight groups of 16 bits each, separated by colons (e.g., `2001:0db8:85a3:0000:0000:8a2e:0370:7334`).
@@ -207,13 +207,13 @@ In **CSMA/CD (Carrier Sense Multiple Access with Collision Detection)**, a key r
 - In CSMA/CD, a collision happens when two stations transmit at the same time, and their signals overlap on the medium.
 - For the sender to detect a collision, it must still be transmitting when the colliding signal (from another station) travels back to it.
 - The worst-case scenario occurs when the colliding station is at the farthest end of the network:
-  - The sender’s signal takes the propagation delay (let’s call it \( T_p \)) to reach the farthest station.
-  - If the farthest station starts transmitting just before the sender’s signal arrives, its signal takes another \( T_p \) to travel back to the sender.
-  - Thus, the total round-trip time is \( 2 \times T_p \).
-- If the sender finishes transmitting before this round-trip time (\( 2 \times T_p \)), it won’t detect the collision because it’s no longer listening to the medium. Therefore, the transmission time (\( T_t \)) must be **at least \( 2 \times T_p \)** to ensure the sender is still active and can detect the collision.
+  - The sender’s signal takes the propagation delay (let’s call it \\( T_p \\)) to reach the farthest station.
+  - If the farthest station starts transmitting just before the sender’s signal arrives, its signal takes another \\( T_p \\) to travel back to the sender.
+  - Thus, the total round-trip time is \\( 2 \times T_p \\).
+- If the sender finishes transmitting before this round-trip time (\\( 2 \times T_p \\)), it won’t detect the collision because it’s no longer listening to the medium. Therefore, the transmission time (\\( T_t \\)) must be **at least \\( 2 \times T_p \\)** to ensure the sender is still active and can detect the collision.
 
 #### Practical Implication:
-- This requirement sets a **minimum frame size** in CSMA/CD networks (e.g., Ethernet). If the frame is too small, the transmission time might be shorter than \( 2 \times T_p \), making collision detection impossible.
+- This requirement sets a **minimum frame size** in CSMA/CD networks (e.g., Ethernet). If the frame is too small, the transmission time might be shorter than \\( 2 \times T_p \\), making collision detection impossible.
 - For example, in classic Ethernet (10 Mbps), the minimum frame size is 64 bytes, ensuring that the transmission time exceeds the round-trip propagation delay in a network with a maximum length of 2500 meters.
 
 ### Summary:
