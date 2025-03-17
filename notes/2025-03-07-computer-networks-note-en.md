@@ -89,6 +89,7 @@ IP addresses are divided into different classes (A, B, C, D, and E) based on the
    - Class E is reserved for experimental use: `240.0.0.0` to `255.255.255.255` (with `255.255.255.255` often used as a broadcast address).
 
 ### Summary Table
+
 | Class | First Octet Bits | First Octet Range (Decimal) | Full IP Range                |
 |-------|------------------|-----------------------------|------------------------------|
 | A     | 0xxx xxxx        | 0–126                       | 0.0.0.0 – 126.255.255.255   |
