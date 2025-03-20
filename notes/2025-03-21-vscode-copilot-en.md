@@ -1,5 +1,5 @@
 ---
-title: GitHub Copilot in VS Code
+title: Getting Started with GitHub Copilot in VS Code
 lang: en
 layout: post
 audio: false
