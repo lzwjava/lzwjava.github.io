@@ -49,3 +49,71 @@ To know how many tables are in your IBM DB2 database using DBeaver and SQL, exec
 SELECT COUNT(*) FROM SYSCAT.TABLES WHERE TYPE = 'T';
 ```
 This will return the total number of tables in the database.
+
+---
+
+In DB2, a database management system, **tabname** and **tabschema** are terms commonly associated with identifying tables within the database, particularly in the context of system catalog tables like `SYSCAT.TABLES`.
+
+- **tabschema**: This refers to the schema name of a table. A schema in DB2 is a namespace or collection of database objects (such as tables, views, and indexes) that helps organize and manage them. The `TABSCHEMA` column in the system catalog specifies the schema to which a particular table belongs.
+
+- **tabname**: This refers to the name of the table itself within its schema. The `TABNAME` column in the system catalog stores the individual name of the table, unique within its schema.
+
+### Key Difference
+The primary difference between **tabname** and **tabschema** is that **tabschema** identifies the schema (the organizational group or namespace) that contains the table, while **tabname** identifies the specific table within that schema. Together, they form a fully qualified table name (e.g., `schema_name.table_name`), which uniquely identifies a table in the database, especially when multiple schemas might contain tables with the same name.
+
+### Example
+In the `SYSCAT.TABLES` system catalog table:
+- If a table is listed with `TABSCHEMA = 'EMPLOYEE'` and `TABNAME = 'DETAILS'`, the schema name is `EMPLOYEE`, and the table name within that schema is `DETAILS`. The fully qualified name would be `EMPLOYEE.DETAILS`.
+
+Thus, in DB2, **tabschema** refers to the schema name of a table, while **tabname** refers to the name of the table within that schema.
+
+---
+
+To address the query "how it differs to MySQL?" in the context of `tabname` and `tabschema` from DB2, let's explore how these concepts compare and contrast with their equivalents in MySQL.
+
+### DB2: `tabschema` and `tabname`
+In IBM DB2, tables are organized within a database using a two-part naming convention:
+- **`tabschema`**: This represents the schema name, which acts as a namespace within a single database. A schema groups related database objects (like tables, views, etc.) and allows for multiple schemas to coexist within the same database.
+- **`tabname`**: This is the name of the table within a specific schema. Together, `tabschema.tabname` uniquely identifies a table in the database.
+
+For example, within a DB2 database, you might have `schema1.table1` and `schema2.table1`, where `schema1` and `schema2` are distinct schemas within the same database, each containing a table named `table1`. This structure is reflected in DB2's system catalog table `SYSCAT.TABLES`, where:
+- `TABSCHEMA` is the column for the schema name.
+- `TABNAME` is the column for the table name.
+
+### MySQL: `TABLE_SCHEMA` and `TABLE_NAME`
+In MySQL, the organization of tables differs due to its architectural approach:
+- **`TABLE_SCHEMA`**: In MySQL, this refers to the database name. MySQL treats the terms "database" and "schema" as synonymous, meaning each database is effectively a schema. There is no additional schema layer within a database as in DB2.
+- **`TABLE_NAME`**: This is the name of the table within a specific database. Tables are identified using the format `database_name.table_name`.
+
+For instance, in MySQL, you might have `db1.table1` and `db2.table1`, where `db1` and `db2` are separate databases, each containing a table named `table1`. This structure is visible in MySQL's `information_schema.tables` view, where:
+- `TABLE_SCHEMA` corresponds to the database name.
+- `TABLE_NAME` corresponds to the table name within that database.
+
+### Key Differences
+Here’s how `tabname` and `tabschema` in DB2 differ from their MySQL counterparts:
+
+1. **Terminology**:
+   - **DB2**: Uses `tabschema` for the schema name and `tabname` for the table name.
+   - **MySQL**: Uses `TABLE_SCHEMA` for the database (schema) name and `TABLE_NAME` for the table name. MySQL does not have direct equivalents named `tabschema` or `tabname`, but the concepts align with `TABLE_SCHEMA` and `TABLE_NAME` in its metadata.
+
+2. **Architectural Structure**:
+   - **DB2**: A database can contain multiple schemas, each acting as a namespace for tables. This allows for greater flexibility within a single database, such as having multiple `schema.table` combinations (e.g., `schema1.table1` and `schema2.table1`) sharing the same database resources.
+   - **MySQL**: Each database is an independent entity equivalent to a schema, and tables reside directly within it. There is no nesting of schemas within a database. To achieve a similar separation as in DB2, you would need multiple databases (e.g., `db1.table1` and `db2.table1`), each isolated from the others.
+
+3. **Table Identification**:
+   - Both systems use a two-part naming convention:
+     - DB2: `schema_name.table_name`
+     - MySQL: `database_name.table_name`
+   - However, in DB2, the schema is a subset of the database, while in MySQL, the database itself serves as the schema.
+
+4. **System Catalog Scope**:
+   - **DB2**: The `SYSCAT.TABLES` catalog is specific to the current database you’re connected to, so `TABSCHEMA` lists schemas within that database only.
+   - **MySQL**: The `information_schema.tables` view provides metadata across all databases on the server, allowing you to query table information from multiple databases in a single query.
+
+### Practical Implications
+- In DB2, you can organize tables into multiple schemas within a single database, which is useful for access control, organization, or modular design within one database environment.
+- In MySQL, achieving similar separation requires creating separate databases, as there’s no schema layer within a database. Each database operates independently, and switching between them requires changing the active database context (e.g., using `USE db_name`).
+
+### Summary
+In DB2, `tabschema` refers to the schema name within a database, and `tabname` is the table name within that schema. In MySQL, the equivalent concepts are `TABLE_SCHEMA` (the database name) and `TABLE_NAME` (the table name within that database). While both systems use a two-part identifier for tables—`schema.table` in DB2 and `database.table` in MySQL—the key difference lies in their organizational structures: DB2 supports multiple schemas within a database, whereas MySQL equates databases with schemas, with no further nesting within a database.
+
