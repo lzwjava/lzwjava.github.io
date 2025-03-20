@@ -44,3 +44,5 @@ translated: true
 - [darioamodei.com](https://darioamodei.com)
 
 - [https://people.eecs.berkeley.edu/~pabbeel/](https://people.eecs.berkeley.edu/~pabbeel/)
+
+- [https://legacy.cs.indiana.edu/~dfried/](https://legacy.cs.indiana.edu/~dfried/)
