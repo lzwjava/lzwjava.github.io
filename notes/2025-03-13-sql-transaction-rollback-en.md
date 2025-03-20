@@ -1,5 +1,5 @@
 ---
-title: SqlTransactionRollbackException in Spring
+title: SQLTransactionRollbackException in Spring
 lang: en
 layout: post
 audio: false
@@ -402,3 +402,109 @@ Here’s a practical solution combining the above strategies:
 ### Conclusion
 To handle `SqlTransactionRollbackException` in Spring when another transaction holds a lock, causing connection fetch failures and repeated attempts, focus on minimizing lock contention through short transactions and optimized queries, adjust transaction settings as needed, implement cautious retry logic at a higher level, and handle the exception by logging and notifying appropriately. This ensures system stability and data integrity while addressing the root cause over time through monitoring and tuning.
 
+---
+
+When working with the IBM DB2 Java driver (specifically the JDBC driver), handling transaction rollback scenarios is essential for robust database interaction. The query refers to `SqlTransactionRollbackException`, which seems to be a slight misspelling. In standard JDBC, particularly from version 4.0 onward (supported by modern IBM DB2 drivers like `db2jcc4.jar`), the correct exception is **`SQLTransactionRollbackException`**. This exception is a subclass of `SQLException` and is thrown when a database transaction is automatically rolled back, such as in cases of deadlocks or timeouts.
+
+Here’s how to handle `SQLTransactionRollbackException` effectively in your Java code when using the IBM DB2 JDBC driver:
+
+### Approach to Handling the Exception
+
+1. **Use a Try-Catch Block**: Wrap your transactional database operations in a `try` block and catch `SQLTransactionRollbackException` to handle cases where the transaction is rolled back by the database.
+2. **Take Appropriate Action**: Depending on your application’s requirements, you might log the error, retry the transaction (if the issue is transient, like a deadlock), or notify the user of the failure.
+3. **Ensure Resource Cleanup**: Properly manage database resources (e.g., closing the connection) in a `finally` block to avoid resource leaks.
+4. **Fallback for Older Drivers**: If you’re using an older DB2 driver that doesn’t support JDBC 4.0, you may need to catch `SQLException` and check the error code (e.g., `-911` for a deadlock-induced rollback in DB2).
+
+### Example Code
+
+Here’s a practical example demonstrating how to handle `SQLTransactionRollbackException`:
+
+```java
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.SQLTransactionRollbackException;
+import javax.sql.DataSource;
+
+public class DB2TransactionExample {
+    public void performTransaction(DataSource dataSource) {
+        Connection conn = null;
+        try {
+            // Obtain a connection and disable auto-commit to start a transaction
+            conn = dataSource.getConnection();
+            conn.setAutoCommit(false);
+
+            // Perform your database operations here
+            // e.g., execute statements like INSERT, UPDATE, etc.
+
+            // If all operations succeed, commit the transaction
+            conn.commit();
+        } catch (SQLTransactionRollbackException e) {
+            // Handle the case where the transaction was rolled back by DB2
+            System.err.println("Transaction rolled back by the database: " + e.getMessage());
+            System.err.println("SQL State: " + e.getSQLState() + ", Error Code: " + e.getErrorCode());
+            // Example: SQLState '40001' and ErrorCode -911 indicate a deadlock or timeout in DB2
+            // Optionally retry the transaction or notify the user
+        } catch (SQLException e) {
+            // Handle other SQL exceptions
+            System.err.println("SQL Error: " + e.getMessage());
+            // Attempt to rollback manually if the transaction is still active
+            if (conn != null) {
+                try {
+                    conn.rollback();
+                    System.out.println("Transaction rolled back manually.");
+                } catch (SQLException rollbackEx) {
+                    System.err.println("Rollback failed: " + rollbackEx.getMessage());
+                }
+            }
+        } finally {
+            // Clean up resources
+            if (conn != null) {
+                try {
+                    conn.setAutoCommit(true); // Restore default behavior
+                    conn.close();
+                } catch (SQLException closeEx) {
+                    System.err.println("Failed to close connection: " + closeEx.getMessage());
+                }
+            }
+        }
+    }
+}
+```
+
+### Key Points in the Code
+
+- **Catching `SQLTransactionRollbackException`**: This specifically catches cases where DB2 rolls back the transaction (e.g., due to a deadlock, indicated by error code `-911` or SQL state `40001`).
+- **General `SQLException` Catch**: This serves as a fallback for other database errors, ensuring broader error handling.
+- **Manual Rollback**: If an `SQLException` occurs and the transaction hasn’t been rolled back automatically, you can attempt a manual rollback.
+- **Resource Management**: The `finally` block ensures the connection is closed, preventing resource leaks.
+
+### Additional Considerations
+
+- **Driver Version**: Ensure you’re using a JDBC 4.0-compliant IBM DB2 driver (e.g., `db2jcc4.jar`). Older drivers (e.g., `db2jcc.jar`) may only throw `SQLException`, requiring you to check the error code manually. For example:
+  ```java
+  catch (SQLException e) {
+      if (e.getErrorCode() == -911) {
+          // Handle transaction rollback due to deadlock or timeout
+      }
+  }
+  ```
+- **SQL State and Error Codes**: DB2 uses SQL state `40001` for serialization failures (like deadlocks) and error code `-911` when the transaction is rolled back automatically. Error code `-913` indicates a statement failure due to deadlock, but the transaction remains active unless rolled back explicitly.
+- **Retry Logic**: For transient issues like deadlocks, you might implement a retry mechanism:
+  ```java
+  int maxRetries = 3;
+  for (int attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+          performTransaction(dataSource);
+          break; // Success, exit the loop
+      } catch (SQLTransactionRollbackException e) {
+          if (attempt == maxRetries) {
+              throw e; // Re-throw after max retries
+          }
+          Thread.sleep(1000 * attempt); // Back off before retrying
+      }
+  }
+  ```
+
+### Conclusion
+
+To handle `SQLTransactionRollbackException` (correctly `SQLTransactionRollbackException`) in the IBM DB2 Java driver, use a `try-catch` block to catch this specific exception for transaction rollback scenarios. Combine it with proper resource management and, if necessary, fallback logic for older drivers by checking error codes like `-911`. This approach ensures your application gracefully handles transaction rollbacks while maintaining database integrity and user experience.
