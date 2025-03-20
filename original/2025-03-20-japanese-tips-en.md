@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Japanese Learning Tips
+title: Tips for Learning Japanese
 translated: false
 generated: false
 ---
