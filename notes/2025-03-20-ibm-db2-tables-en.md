@@ -117,3 +117,45 @@ Here’s how `tabname` and `tabschema` in DB2 differ from their MySQL counterpar
 ### Summary
 In DB2, `tabschema` refers to the schema name within a database, and `tabname` is the table name within that schema. In MySQL, the equivalent concepts are `TABLE_SCHEMA` (the database name) and `TABLE_NAME` (the table name within that database). While both systems use a two-part identifier for tables—`schema.table` in DB2 and `database.table` in MySQL—the key difference lies in their organizational structures: DB2 supports multiple schemas within a database, whereas MySQL equates databases with schemas, with no further nesting within a database.
 
+---
+
+To modify the given SQL query to select only tables whose names start with 'F', let’s break it down step by step.
+
+The original query is:
+
+```sql
+SELECT *
+FROM SYSCAT.TABLES 
+WHERE TYPE = 'T';
+```
+
+This query retrieves all columns from the `SYSCAT.TABLES` system catalog table in a DB2 database, filtering for rows where `TYPE = 'T'`. In DB2, the `TYPE` column in `SYSCAT.TABLES` indicates the object type, and 'T' represents tables. So, this query lists all tables in the database.
+
+Now, we need to add a condition to filter for table names that start with 'F'. In `SYSCAT.TABLES`, the column that stores the table name is `TABNAME`. To match table names beginning with 'F', we can use the `LIKE` operator, which allows pattern matching in SQL. The pattern `'F%'` means any string that starts with 'F' followed by zero or more characters (the `%` is a wildcard).
+
+Since the original query already has a `WHERE` clause (`TYPE = 'T'`), we need to combine the existing condition with the new one using `AND`. This ensures that both conditions—selecting only tables (`TYPE = 'T'`) and table names starting with 'F' (`TABNAME LIKE 'F%'`)—are satisfied.
+
+Thus, the modified query becomes:
+
+```sql
+SELECT *
+FROM SYSCAT.TABLES 
+WHERE TYPE = 'T' AND TABNAME LIKE 'F%';
+```
+
+### Additional Considerations
+- **Case Sensitivity**: In DB2, table names are typically stored in uppercase unless they were created with delimiters (e.g., `"MyTable"`). The `LIKE` operator in DB2 is case-sensitive by default, so `'F%'` will match names starting with an uppercase 'F'. If table names might be in mixed case, you could use `UPPER(TABNAME) LIKE 'F%'` to make the comparison case-insensitive. However, since the question doesn’t specify this requirement and uppercase is the common convention, we’ll stick with `'F%'`.
+- **Schema**: The query searches across all schemas because no `TABSCHEMA` condition is specified. If you needed tables from a specific schema, you’d add something like `AND TABSCHEMA = 'MY_SCHEMA'`, but the question doesn’t indicate this.
+- **Correctness**: The `SYSCAT.TABLES` view and columns `TYPE` and `TABNAME` are standard in DB2, and the syntax using `LIKE` with `%` is appropriate for this task.
+
+### Final Query
+The modified SQL query to select all tables whose names start with 'F' is:
+
+```sql
+SELECT *
+FROM SYSCAT.TABLES 
+WHERE TYPE = 'T' AND TABNAME LIKE 'F%';
+```
+
+This query will return all columns for rows in `SYSCAT.TABLES` where the object is a table (`TYPE = 'T'`) and the table name begins with 'F' (`TABNAME LIKE 'F%'`).
+
