@@ -1,6 +1,6 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: hant
 layout: post
 title: 部落格
@@ -46,3 +46,33 @@ translated: true
 - [https://people.eecs.berkeley.edu/~pabbeel/](https://people.eecs.berkeley.edu/~pabbeel/)
 
 - [https://legacy.cs.indiana.edu/~dfried/](https://legacy.cs.indiana.edu/~dfried/)
+
+- [hankcs.com](https://www.hankcs.com)
+
+- [terrytao.wordpress.com](https://terrytao.wordpress.com)
+
+- [michaelnielsen.org](https://michaelnielsen.org)
+
+- [udlbook.github.io](https://udlbook.github.io/)
+
+- [www.joelonsoftware.com](https://www.joelonsoftware.com)
+
+- [vitalik.eth.limo](https://vitalik.eth.limo)
+
+- [timdettmers.com](https://timdettmers.com)
+
+- [www.matrix67.com](https://www.matrix67.com)
+
+- [steve-yegge.blogspot.com](https://steve-yegge.blogspot.com)
+
+- [raphlinus.github.io](https://raphlinus.github.io)
+
+- [martinrgb.github.io](https://martinrgb.github.io)
+
+- [carmack.com](https://carmack.com)
+
+- [canonical.org/~kragen/](http://canonical.org/~kragen/)
+
+- [pmarchive.com](https://pmarchive.com)
+
+- [eli.thegreenplace.net](https://eli.thegreenplace.net)
