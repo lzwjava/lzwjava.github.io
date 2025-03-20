@@ -27,7 +27,7 @@ translated: true
 
 - [colah.github.io](https://colah.github.io)
 
-- [lixiaolai.com/](https://lixiaolai.com/)
+- [lixiaolai.com](https://lixiaolai.com)
 
 - [fnil.net](http://fnil.net)
 
@@ -37,15 +37,15 @@ translated: true
 
 - [3blue1brown.com](https://www.3blue1brown.com)
 
-- [lexfridman.com/podcast/](https://lexfridman.com/podcast/)
+- [lexfridman.com/podcast](https://lexfridman.com/podcast)
 
 - [yinwang1.substack.com](https://yinwang1.substack.com)
 
 - [darioamodei.com](https://darioamodei.com)
 
-- [https://people.eecs.berkeley.edu/~pabbeel/](https://people.eecs.berkeley.edu/~pabbeel/)
+- [https://people.eecs.berkeley.edu/~pabbeel](https://people.eecs.berkeley.edu/~pabbeel)
 
-- [https://legacy.cs.indiana.edu/~dfried/](https://legacy.cs.indiana.edu/~dfried/)
+- [https://legacy.cs.indiana.edu/~dfried](https://legacy.cs.indiana.edu/~dfried)
 
 - [hankcs.com](https://www.hankcs.com)
 
@@ -53,7 +53,7 @@ translated: true
 
 - [michaelnielsen.org](https://michaelnielsen.org)
 
-- [udlbook.github.io](https://udlbook.github.io/)
+- [udlbook.github.io](https://udlbook.github.io)
 
 - [www.joelonsoftware.com](https://www.joelonsoftware.com)
 
@@ -71,7 +71,7 @@ translated: true
 
 - [carmack.com](https://carmack.com)
 
-- [canonical.org/~kragen/](http://canonical.org/~kragen/)
+- [canonical.org/~kragen](http://canonical.org/~kragen)
 
 - [pmarchive.com](https://pmarchive.com)
 
