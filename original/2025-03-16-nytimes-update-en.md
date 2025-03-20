@@ -4,7 +4,7 @@ lang: en
 layout: post
 title: NYTimes News (CN) Articles Update Trigger
 translated: false
-generated: true
+generated: false
 ---
 
 Click the button below to update the [NYTimes CN articles](./nytimes-en).
