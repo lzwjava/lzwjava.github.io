@@ -1,5 +1,5 @@
 ---
-title: mathjax-issue
+title: "MathJax Issue Troubleshooting"
 lang: en
 layout: post
 audio: false
