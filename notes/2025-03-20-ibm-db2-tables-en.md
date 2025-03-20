@@ -159,3 +159,58 @@ WHERE TYPE = 'T' AND TABNAME LIKE 'F%';
 
 This query will return all columns for rows in `SYSCAT.TABLES` where the object is a table (`TYPE = 'T'`) and the table name begins with 'F' (`TABNAME LIKE 'F%'`).
 
+---
+
+To determine what table names (TABNAME) are associated with a specific schema (TABSCHEMA) in an IBM DB2 database, you need to query the `SYSCAT.TABLES` system catalog view. This view contains metadata about all tables, views, and other objects in the database, with columns such as `TABSCHEMA` (the schema name) and `TABNAME` (the table name), among others.
+
+The provided query:
+
+```sql
+SELECT * 
+FROM SYSCAT.TABLES 
+WHERE TYPE = 'T' AND TABNAME LIKE 'F%';
+```
+
+selects all columns from `SYSCAT.TABLES` where the object type is a table (`TYPE = 'T'`) and the table name starts with 'F' (`TABNAME LIKE 'F%'`). While this query retrieves information about tables across all schemas that match these conditions, it doesn’t directly address the question of finding table names for a specific schema.
+
+To find the table names within a given schema, you should filter the results by the `TABSCHEMA` column instead of `TABNAME`. Here’s how you can do it:
+
+### Solution
+Use the following SQL query to list all table names for a specific schema:
+
+```sql
+SELECT TABNAME 
+FROM SYSCAT.TABLES 
+WHERE TABSCHEMA = 'your_schema_name' AND TYPE = 'T';
+```
+
+- **Explanation of the query components:**
+  - `SELECT TABNAME`: Retrieves only the table names. You can modify this to `SELECT *` if you want additional details like creation time or other metadata.
+  - `FROM SYSCAT.TABLES`: Queries the system catalog view that stores table information.
+  - `WHERE TABSCHEMA = 'your_schema_name'`: Filters the results to include only tables in the specified schema. Replace `'your_schema_name'` with the actual schema name you’re interested in (e.g., `'MYSCHEMA'`).
+  - `AND TYPE = 'T'`: Ensures that only tables are returned, excluding views, aliases, or other object types.
+
+### Important Notes
+- **Case Sensitivity**: In DB2, schema and table names are typically stored in uppercase unless they were created with double quotes (e.g., `"MySchema"`). For example, if you created a schema with `CREATE SCHEMA MYSCHEMA`, you would use `'MYSCHEMA'` in the query. If unsure, check the exact schema name by querying `SYSCAT.SCHEMATA` or `SYSCAT.TABLES`.
+- **Multiple Tables**: A schema can contain multiple tables, so this query may return several rows, each representing a table name in the specified schema.
+
+### Example
+If you want to find all table names in a schema called `HR`, you would run:
+
+```sql
+SELECT TABNAME 
+FROM SYSCAT.TABLES 
+WHERE TABSCHEMA = 'HR' AND TYPE = 'T';
+```
+
+This might return a result like:
+```
+TABNAME
+--------
+EMPLOYEES
+DEPARTMENTS
+JOBS
+```
+
+Thus, to know what table names a specific schema has in an IBM DB2 database, use the query above with the appropriate schema name substituted.
+
