@@ -1,9 +1,9 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: en
 layout: post
-title: Japanese Learning Tips
+title: Tips for Learning Japanese
 translated: false
 ---
 

@@ -1,12 +1,12 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: de
 layout: post
-title: Japanisch-Lern-Tipps
+title: Tipps zum Japanischlernen
 translated: true
 ---
 
 - Entdecken Sie japanische Lieder, die bei Ihnen ansprechen und die Sprachaneignung unterstützen.
 
-- Nutzen Sie KI-Tools, um Erklärungen zu den Liedtexten zu generieren und hören Sie die Musik, während Sie diese durchgehen.
+- Nutzen Sie KI-Tools, um Erklärungen zu den Liedtexten zu generieren und hören Sie die Musik, während Sie diese überprüfen.
