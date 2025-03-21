@@ -87,3 +87,89 @@ As a software engineer working as a contractor in a bank, effective communicatio
 - **Build Relationships**: Being friendly and respectful in your communication will make colleagues more willing to help over time.
 
 You’ve got this—contracting in a bank can be demanding, but clear communication will set you up for success! Let me know if you’d like examples or help refining your approach further.
+
+---
+
+### Key Points
+- It seems likely that as a contractor, you should first try to find answers in documents or code before asking colleagues, especially for non-urgent issues, to show initiative.
+- Research suggests asking colleagues immediately for urgent problems, like production issues, and batching non-urgent questions to avoid frequent interruptions.
+- The evidence leans toward using direct messages in Microsoft Teams for quick, one-off questions, group chats for team-relevant queries, emails for formal communication, and Zoom for complex discussions.
+- It appears reasonable to write documents in Confluence regularly, such as once or twice a week, to share useful information and meet banking’s documentation needs.
+
+---
+
+### When to Find Information Yourself vs. Asking Colleagues
+Start by checking documentation, codebases, or internal wikis for answers. Spend about 15-30 minutes researching before asking, unless the issue is urgent. This shows initiative, which is important as a contractor. If you can’t find the answer or the problem is critical, like affecting production, ask a colleague for help.
+
+### Frequency and Channels for Asking Questions
+For non-urgent questions, batch them to ask a few at once, reducing interruptions. For urgent issues, ask right away using the most direct channel. Use **direct messages in Microsoft Teams** for quick, specific questions to one person, and **group chats** for queries that benefit the team. Use **email** for formal communications needing a record, like status updates, and **Zoom** for complex discussions requiring real-time interaction, scheduling calls in advance with an agenda.
+
+### When to Write Documents in Confluence
+Write in Confluence when your work or findings could help others, like documenting solutions to common problems or updating outdated info. Aim for once or twice a week, aligning with banking’s need for clear documentation for compliance and audits. This also shows your value as a contractor.
+
+---
+
+---
+
+### Survey Note: Comprehensive Communication Strategies for IT Contractors in Banking
+
+As a software engineer working as a contractor in a bank, navigating communication effectively is crucial, especially given the structured, regulated nature of the financial sector. This note provides a detailed exploration of how to handle queries, choose communication channels, and document work, drawing on best practices for software engineers and adapting them to the banking context.
+
+#### Understanding the Contractor Role in Banking
+Contractors in banking often work on specific projects, such as system integrations or upgrades, and may have less familiarity with internal processes compared to permanent staff. This necessitates a balance between independence and collaboration. Research suggests that effective communication in software engineering, as highlighted by [Sunscrapers: How Communication Skills Help Software Engineers Succeed](https://sunscrapers.com/blog/how-do-communication-skills-help-software-engineers-succeed/), is as important as technical skills, aiding teamwork and problem-solving. In banking, where systems are critical and errors can have significant financial implications, clear communication is even more vital.
+
+#### When to Find Documents or Code Yourself vs. Asking Colleagues
+The evidence leans toward starting with self-research before escalating to colleagues, particularly for non-urgent issues. A practical approach, as suggested by communication tips for software engineers ([CodinGame: 10 Tips to Improve Your Communication Skills as a Software Developer](https://www.codingame.com/blog/10-tips-to-improve-your-communication-skills-as-a-software-developer/)), is to spend 15-30 minutes checking documentation (e.g., Confluence, internal wikis), codebases, or past tickets (e.g., Jira). This demonstrates initiative, which is especially important for contractors to build credibility. For example, if you’re troubleshooting an authentication issue, first search for relevant docs or code before asking.
+
+However, if you hit a dead end or the issue is urgent—such as a production problem affecting regulatory reporting—ask a colleague immediately. This aligns with the need for timely resolution in banking, where deadlines are often strict. The article from [Interview Kickstart: How to Communicate Effectively as Software Engineer](https://interviewkickstart.com/blogs/articles/how-to-communicate-effectively-as-software-engineer) emphasizes active listening and clarity, which can help in deciding when to escalate, ensuring you’ve exhausted self-help options first.
+
+#### Frequency of Asking Questions
+Frequency depends on the urgency and nature of the query. For non-urgent questions, batch them to ask a few at once, avoiding frequent interruptions. This respects colleagues’ time and aligns with the tip from [CodinGame](https://www.codingame.com/blog/10-tips-to-improve-your-communication-skills-as-a-software-developer/) to focus on clarity and efficiency. For instance, instead of pinging someone every 10 minutes, wait and ask 2-3 related questions together.
+
+For urgent issues, such as those impacting production or deadlines, ask immediately to prevent delays. This is particularly relevant in banking, where time-sensitive tasks like regulatory reporting are common. The balance is to be proactive but not overbearing, ensuring you’ve done your due diligence before asking, as contractors are expected to be self-sufficient to some extent.
+
+#### Choosing Communication Channels
+The choice of channel depends on the context, and it’s important to adapt to team norms. Early on, observe how your team communicates—do they prefer Microsoft Teams, email, or Zoom?—and ask your manager if unsure, as suggested by [Interview Kickstart](https://interviewkickstart.com/blogs/articles/how-to-communicate-effectively-as-software-engineer). Here’s a breakdown:
+
+| **Channel**              | **When to Use**                                                                 | **Example**                                      |
+|--------------------------|--------------------------------------------------------------------------------|-------------------------------------------------|
+| **Direct Message (DM) in Teams** | Quick, one-off questions to a specific person                                  | “Hey, where’s the config file for X?”           |
+| **Group Chat in Teams**  | Questions that benefit the team or require multiple inputs                     | “Does anyone know how the Y service authenticates?” |
+| **Email**                | Formal communication, needing a record (e.g., status updates, approvals)       | Summarizing a discussion or requesting approval |
+| **Zoom/Video Call**      | Complex discussions or when real-time interaction is needed (e.g., debugging)  | Schedule a call to walk through a tricky integration |
+
+Direct messages are ideal for concise, informal queries, while group chats suit broader team discussions, avoiding spamming with personal queries. Emails are crucial for formal communications, especially in banking where audit trails are needed, and Zoom is best for in-depth, real-time discussions, scheduled with an agenda for efficiency.
+
+#### When to Write Documents in Confluence
+Writing in Confluence is a key part of communication, especially in banking, where documentation supports compliance and audit requirements. The evidence suggests documenting when your work or findings could benefit others, such as creating guides (e.g., “How to deploy to the test environment”) or updating outdated info, as per [CodinGame](https://www.codingame.com/blog/10-tips-to-improve-your-communication-skills-as-a-software-developer/). Aim for once or twice a week, depending on your workload, to share reusable knowledge.
+
+This practice not only helps the team but also demonstrates your value as a contractor, aligning with the tip from [Interview Kickstart](https://interviewkickstart.com/blogs/articles/how-to-communicate-effectively-as-software-engineer) to communicate with purpose. In banking, where regulatory oversight is high, documenting decisions (e.g., following up verbal clarifications with an email or Confluence update) is essential for maintaining records.
+
+#### Additional Considerations for Banking
+In a banking environment, communication must be professional and clear, given the critical nature of financial systems. Be mindful of hierarchies—start with peers or your point of contact (e.g., team lead) before escalating to senior managers. Time sensitivity is key; for time-critical issues, use direct channels like DMs or calls, as delays can impact regulatory compliance.
+
+Adapt as you go—if colleagues respond better to group chats than DMs, adjust accordingly. Building relationships through friendly, respectful communication will make colleagues more willing to help, enhancing collaboration. Also, consider the need for secure channels for sensitive data, which may be a specific protocol in your bank.
+
+#### Practical Workflow Example
+Imagine you’re stuck on an authentication issue:
+1. Search Confluence and the codebase for 20 minutes—no luck.
+2. DM a colleague: “Hi, I’m looking into the auth flow for X. Could you point me to the right docs or person?”
+3. If they suggest a call, schedule a quick Zoom.
+4. After resolving, update Confluence with a note (e.g., “Authentication uses Y protocol, see Z repo”) and email your manager if it impacts a deliverable.
+
+This workflow balances research, collaboration, and documentation, aligning with best practices for software engineers in banking.
+
+#### Final Recommendations
+Ask your manager early on to clarify expectations: “How should I handle questions—search first, then ask? Preferred channels?” This shows proactivity and aligns you with their style. Be diligent in documenting work, especially changes, to meet banking’s audit needs, and leverage tools like Teams for real-time collaboration, email for formal records, and Zoom for complex discussions.
+
+By following these strategies, you’ll navigate communication effectively as a contractor, balancing independence with collaboration while adhering to banking’s professional standards.
+
+---
+
+### Key Citations
+- [Sunscrapers: How Communication Skills Help Software Engineers Succeed](https://sunscrapers.com/blog/how-do-communication-skills-help-software-engineers-succeed/)
+- [CodinGame: 10 Tips to Improve Your Communication Skills as a Software Developer](https://www.codingame.com/blog/10-tips-to-improve-your-communication-skills-as-a-software-developer/)
+- [Interview Kickstart: How to Communicate Effectively as Software Engineer](https://interviewkickstart.com/blogs/articles/how-to-communicate-effectively-as-software-engineer)
+
+---
+
