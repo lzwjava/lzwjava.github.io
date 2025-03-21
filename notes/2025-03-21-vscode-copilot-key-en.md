@@ -1,5 +1,5 @@
 ---
-title: vscode-copilot-key
+title: Visual Studio Code (VSCode) Copilot plugin 
 lang: en
 layout: post
 audio: false
