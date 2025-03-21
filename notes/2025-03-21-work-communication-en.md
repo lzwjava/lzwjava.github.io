@@ -171,3 +171,76 @@ By following these strategies, you’ll navigate communication effectively as a 
 - [CodinGame: 10 Tips to Improve Your Communication Skills as a Software Developer](https://www.codingame.com/blog/10-tips-to-improve-your-communication-skills-as-a-software-developer/)
 - [Interview Kickstart: How to Communicate Effectively as Software Engineer](https://interviewkickstart.com/blogs/articles/how-to-communicate-effectively-as-software-engineer)
 
+---
+
+As a software engineer working as a contractor in a bank, effective communication is essential for your success and to maintain a good working relationship with your team. Below is a guide to help you navigate communication, addressing when and how to handle queries, the frequency of asking for help, the best communication tools to use, and when to document your work in Confluence.
+
+---
+
+### **1. Handling Queries: Self-Research vs. Asking Colleagues**
+- **Start with self-research**: Before reaching out to colleagues, try to find answers independently. Banks often have detailed documentation due to regulatory requirements, so check:
+  - **Internal documentation**: Confluence pages, wikis, or project-specific materials.
+  - **Code repositories**: Look at the code, comments, or commit history.
+  - **Other resources**: Emails, design specs, or requirement documents.
+- **When to ask colleagues**: If you’ve spent a reasonable amount of time (e.g., 30-60 minutes, depending on complexity) and still can’t resolve the issue, it’s appropriate to ask for help. This demonstrates initiative while ensuring you don’t waste too much time stuck.
+- **Frequency of asking**: Strike a balance. Don’t bombard colleagues with questions constantly, but don’t hesitate to ask when genuinely needed. Batch related questions if possible to minimize interruptions.
+
+---
+
+### **2. How to Ask: Choosing the Right Communication Tool**
+- **Direct Message (DM)**:
+  - **When to use**: For quick, specific questions directed to a colleague who you think can help.
+  - **Why**: It’s less intrusive than a group chat and allows for a focused, one-on-one response.
+  - **Example**: "Hi [Name], could you clarify how the authentication module integrates with the payment system?"
+- **Group Chat (Microsoft Teams)**:
+  - **When to use**: For questions relevant to the whole team or when you’re unsure who to ask.
+  - **How**: Provide enough context so anyone can respond (e.g., "Team, I’m working on X and can’t find Y in the docs—any pointers?").
+  - **Tip**: Avoid overusing group chats for minor or individual issues to reduce noise.
+- **Email**:
+  - **When to use**: For formal communication, such as:
+    - Requesting approvals (e.g., from a manager).
+    - Summarizing discussions or decisions for documentation.
+    - Communicating with external stakeholders or senior management.
+  - **Why**: Emails are better for official records but slower for quick queries.
+  - **Example**: "Subject: Approval Needed for API Changes – Details Inside."
+- **Zoom/Video Calls**:
+  - **When to use**: For complex discussions requiring interaction, such as:
+    - Brainstorming or problem-solving sessions.
+    - Detailed explanations (e.g., walking through code).
+    - Screen sharing for demos or troubleshooting.
+  - **Tip**: If a chat thread becomes lengthy, suggest a quick call (e.g., "Can we hop on a 10-minute call to resolve this faster?").
+
+---
+
+### **3. Documenting in Confluence: When and Why**
+- **When to document**: Write in Confluence to:
+  - Record solutions to problems you’ve solved (e.g., "How I fixed the payment gateway timeout issue").
+  - Document new processes or workflows you’ve established.
+  - Capture key decisions or meeting outcomes for future reference.
+- **Why it helps**: As a contractor, documenting ensures knowledge continuity for the team after your contract ends. It also builds your credibility and helps others with similar issues.
+- **How often**: Focus on high-impact content with lasting value. Don’t document every small task—prioritize information that:
+  - Others might reuse.
+  - Clarifies complex systems.
+  - Aids onboarding for future team members.
+- **Example**: Create a Confluence page titled "Troubleshooting Guide for X Module" if you solve a tricky issue.
+
+---
+
+### **4. Additional Tips for Contractors in a Bank**
+- **Respect security and compliance**: Banks have strict rules. Ensure your communication (e.g., emails, Confluence pages) follows data privacy and security policies.
+- **Adapt to the team**: Early in your contract, ask your manager or team lead about preferred communication channels and documentation practices.
+- **Build trust**: Be proactive, respectful of others’ time, and clear in your communication to establish a positive reputation.
+
+---
+
+### **Summary**
+- **Queries**: Try to solve them yourself first (30-60 minutes), then ask colleagues if needed.
+- **Communication tools**:
+  - **DM**: Quick, specific questions.
+  - **Group chat**: Team-relevant queries.
+  - **Email**: Formal or documented communication.
+  - **Zoom**: Complex discussions or screen sharing.
+- **Documentation**: Write in Confluence for impactful, reusable knowledge, but don’t overdo it.
+
+By following these steps, you’ll communicate efficiently, respect your team’s workflow, and contribute effectively as a contractor in the bank.
+
