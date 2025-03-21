@@ -1,5 +1,5 @@
 ---
-title: VSCode Plugins that Supporting DeepSeek API Keys
+title: Comprehensive Analysis of VSCode Plugins Supporting DeepSeek API Keys
 lang: en
 layout: post
 audio: false
