@@ -128,3 +128,166 @@ Using the Control-M client on Windows involves interacting with the Control-M/En
 
 This should give you a solid start with the Control-M client on Windows! Let me know if you need help with a specific task, like troubleshooting a job.
 
+---
+
+To use Control-M to deploy a Spring Boot Java Maven project on a Windows system, you’ll need to create a `.bat` (batch) file to handle the Maven build and deployment steps, then configure Control-M to execute that script as a job. Below, I’ll provide example `.bat` scripts and explain how to set them up in Control-M.
+
+---
+
+### Example Scenario
+You have a Spring Boot project that uses Maven to build and run a JAR file. The goal is to:
+1. Build the project (`mvn clean package`).
+2. Deploy/run the resulting JAR file (`java -jar`).
+
+---
+
+### Example Batch Files
+
+#### 1. Simple Build and Run Batch File
+This script builds the project and runs the JAR in one go.
+
+```bat
+@echo off
+echo Starting Spring Boot deployment...
+
+ REM Set your project directory (adjust this path)
+cd C:\Projects\MySpringBootApp
+
+ REM Run Maven to clean and build the project
+call mvn clean package
+
+ REM Check if build was successful
+if %ERRORLEVEL% NEQ 0 (
+    echo Maven build failed!
+    exit /b %ERRORLEVEL%
+)
+
+ REM Run the Spring Boot JAR (assumes it's in target folder)
+java -jar target\MySpringBootApp-1.0-SNAPSHOT.jar
+
+echo Deployment complete!
+```
+
+- **Explanation**:
+  - `cd`: Navigates to your project folder.
+  - `mvn clean package`: Builds the project, creating a JAR in the `target` folder.
+  - `if %ERRORLEVEL% NEQ 0`: Checks for Maven errors and exits if the build fails.
+  - `java -jar`: Runs the Spring Boot application.
+
+#### 2. Build-Only Batch File (Separate Deployment)
+This script only builds the project, useful if deployment is handled separately.
+
+```bat
+@echo off
+echo Building Spring Boot project...
+
+ REM Set your project directory
+cd C:\Projects\MySpringBootApp
+
+ REM Run Maven build
+call mvn clean package
+
+ REM Check build status
+if %ERRORLEVEL% NEQ 0 (
+    echo Build failed!
+    exit /b %ERRORLEVEL%
+)
+
+echo Build successful! JAR is ready in target folder.
+```
+
+#### 3. Deploy-Only Batch File
+This runs an already-built JAR, useful for redeployment without rebuilding.
+
+```bat
+@echo off
+echo Deploying Spring Boot JAR...
+
+ REM Navigate to the folder with the JAR
+cd C:\Projects\MySpringBootApp\target
+
+ REM Run the JAR
+java -jar MySpringBootApp-1.0-SNAPSHOT.jar
+
+echo Application started!
+```
+
+---
+
+### Prerequisites
+- **Maven Installed**: Ensure Maven is installed on the Windows machine where the Control-M agent runs (`mvn -version` should work in Command Prompt).
+- **Java Installed**: Confirm Java is available (`java -version`).
+- **Control-M Agent**: The agent must be installed and running on the Windows machine.
+- **Project Ready**: Your Spring Boot project should be in a folder (e.g., `C:\Projects\MySpringBootApp`) with a valid `pom.xml`.
+
+---
+
+### Configuring Control-M to Deploy the Spring Boot Project
+Here’s how to set up Control-M to execute these scripts:
+
+#### Using Control-M/EM GUI
+1. **Launch Control-M Client**  
+   Open the Control-M/Enterprise Manager GUI on your Windows machine and log in.
+
+2. **Create a New Job**  
+   - Go to the **Planning** tab.
+   - Click “New Job” and select “OS” (Operating System) job type.
+
+3. **Define the Job**  
+   - **General Tab**:
+     - Name: `DeploySpringBootApp`
+     - Host: The name of the Windows machine with the Control-M agent.
+   - **Actions Tab**:
+     - Command: `C:\Scripts\build_and_run.bat` (adjust path to where you saved the `.bat` file).
+     - Alternatively, use `cmd /c C:\Scripts\build_and_run.bat` to explicitly run via Command Prompt.
+   - **Scheduling Tab**:
+     - Set it to run daily at a specific time (e.g., 2 AM) or on-demand.
+   - **Conditions Tab** (Optional):
+     - Add dependencies if this job relies on another (e.g., a backup job finishing first).
+
+4. **Save and Load**  
+   - Save the job and load it into the active environment.
+
+5. **Monitor Execution**  
+   - Go to the **Monitoring** tab.
+   - Watch the job run. Check the output/log for success (`Deployment complete!`) or errors (`Build failed!`).
+
+#### Example: Separate Build and Deploy Jobs
+If you split build and deploy into two scripts:
+- **Build Job**:
+  - Command: `C:\Scripts\build_only.bat`
+  - Name: `BuildSpringBoot`
+- **Deploy Job**:
+  - Command: `C:\Scripts\deploy_only.bat`
+  - Name: `RunSpringBoot`
+  - Condition: Add a dependency so `RunSpringBoot` runs only after `BuildSpringBoot` succeeds.
+
+---
+
+### Tips for Success
+- **Path Configuration**: Ensure `JAVA_HOME` and Maven’s `bin` directory are in the system PATH, or specify full paths in the `.bat` (e.g., `C:\Maven\bin\mvn`).
+- **Permissions**: The Control-M agent’s user must have access to the project folder and execution rights.
+- **Logging**: Add `>> C:\Logs\controlm.log 2>&1` to the `.bat` commands to capture output for troubleshooting.
+- **Testing**: Run the `.bat` manually first in Command Prompt to verify it works before scheduling in Control-M.
+
+---
+
+### Sample Workflow Output
+When Control-M runs `build_and_run.bat`, you might see in the job log:
+```
+Starting Spring Boot deployment...
+[INFO] Scanning for projects...
+[INFO] BUILD SUCCESS
+Deploying Spring Boot JAR...
+[Spring Boot startup logs]
+Deployment complete!
+```
+
+If it fails (e.g., Maven error), the log will show:
+```
+Build failed!
+```
+
+---
+
+This setup automates your Spring Boot deployment via Control-M! Let me know if you need help tweaking the scripts or job configuration further.
