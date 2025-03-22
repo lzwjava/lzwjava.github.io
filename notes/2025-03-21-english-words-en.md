@@ -96,3 +96,13 @@ The word "interdisciplinary" refers to an approach or process that involves the 
 For example, solving a complex issue like climate change might require an interdisciplinary approach: scientists provide data on environmental changes, economists analyze the financial impacts, sociologists explore human behavior, and engineers develop sustainable technologies. By crossing the boundaries of individual disciplines, interdisciplinary work fosters collaboration and innovation.
 
 The term comes from the prefix "inter-" (meaning "between" or "among") and "disciplinary" (relating to a specific field of study), emphasizing the "betweenness" of the approach. It’s often contrasted with "multidisciplinary," where multiple fields are involved but don’t necessarily integrate as deeply, or "unidisciplinary," which sticks to one field alone.
+
+---
+
+The word **"itinerary"** refers to a planned route or schedule of a journey, trip, or travel plan. It usually includes details like destinations, transportation, accommodations, and activities.
+
+### **Pronunciation:**  
+**/aɪˈtɪn.ə.rer.i/** (eye-TIN-uh-rer-ee) – American English  
+**/ɪˈtɪn.ər.əri/** (ih-TIN-uh-rer-ee) – British English  
+
+Would you like an example of an itinerary? 😊
