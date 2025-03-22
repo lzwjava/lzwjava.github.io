@@ -89,3 +89,10 @@ The stress is on the third syllable: "SOO." In British English, it’s similar b
 
 If you’re asking about a different word, just let me know!
 
+---
+
+The word "interdisciplinary" refers to an approach or process that involves the integration or combination of multiple distinct academic disciplines or fields of study to address a particular topic, problem, or question. It’s about bringing together insights, methods, or perspectives from different areas—such as science, art, history, or technology—to create a more comprehensive understanding or solution than any single discipline could achieve on its own.
+
+For example, solving a complex issue like climate change might require an interdisciplinary approach: scientists provide data on environmental changes, economists analyze the financial impacts, sociologists explore human behavior, and engineers develop sustainable technologies. By crossing the boundaries of individual disciplines, interdisciplinary work fosters collaboration and innovation.
+
+The term comes from the prefix "inter-" (meaning "between" or "among") and "disciplinary" (relating to a specific field of study), emphasizing the "betweenness" of the approach. It’s often contrasted with "multidisciplinary," where multiple fields are involved but don’t necessarily integrate as deeply, or "unidisciplinary," which sticks to one field alone.
