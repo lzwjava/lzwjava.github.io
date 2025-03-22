@@ -11,6 +11,13 @@ if not api_token:
 # Create a client instance
 client = Client(token=api_token)
 
+def create_snapshot(server):
+    try:
+        snapshot = server.create_snapshot(name=f"{server.name}-snapshot")
+        print(f"Snapshot created for server {server.name} with ID: {snapshot.id}")
+    except Exception as e:
+        print(f"Error creating snapshot for server {server.name}: {e}")
+
 # List all servers
 servers = client.servers.get_all()
 
@@ -24,4 +31,4 @@ for server in servers:
     print(f"Server Type: {server.server_type.name}")
     print(f"Server Location: {server.datacenter.location.name}")
     print("----------------------------------")
-
+    create_snapshot(server)

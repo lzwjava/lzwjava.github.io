@@ -1,5 +1,5 @@
 ---
-title: Wi-Fi Adoption Worldwide: Recent Decades
+title: "Wi-Fi Adoption Worldwide: Recent Decades"
 lang: en
 layout: post
 audio: false
