@@ -13,8 +13,8 @@ client = Client(token=api_token)
 
 def create_snapshot(server):
     try:
-        snapshot = server.create_snapshot(name=f"{server.name}-snapshot")
-        print(f"Snapshot created for server {server.name} with ID: {snapshot.id}")
+        response = client.servers.create_image(server, description=f"{server.name}-snapshot", type="snapshot")
+        print(f"Snapshot created for server {server.name} with ID: {response.image.id}")
     except Exception as e:
         print(f"Error creating snapshot for server {server.name}: {e}")
 
