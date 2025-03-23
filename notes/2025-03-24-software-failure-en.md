@@ -36,3 +36,60 @@ Here are some famous examples of large software projects that suffered from majo
 - **Robust Testing and Adaptation:** Adequate testing under real-world conditions and the flexibility to adapt to changing requirements are essential to avoid costly overruns.
 
 Each of these cases has provided valuable lessons for future large-scale IT projects, underlining the importance of realistic planning, continuous testing, and responsive project management.
+
+---
+
+Below are several notable cases from the past decade where large-scale software projects experienced significant delivery delays, performance issues, or cost overruns:
+
+---
+
+### 1. Healthcare.gov Launch (2013)
+- **Overview:** The online portal for the U.S. Affordable Care Act was designed to streamline health insurance enrollment.
+- **Issues:** On launch day, the site suffered from severe performance problems—including crashes and long response times—due to integration mishaps between multiple contractors, insufficient load testing, and scalability shortcomings.
+- **Outcome:** The problematic rollout led to widespread public and political scrutiny. A major overhaul was subsequently undertaken, prompting reforms in government IT project management and testing practices.
+
+---
+
+### 2. Boeing 737 MAX MCAS Software (2018–2019)
+- **Overview:** The Boeing 737 MAX featured the MCAS (Maneuvering Characteristics Augmentation System) intended to improve aircraft handling.
+- **Issues:** Faulty software logic and sensor data interpretation in MCAS contributed to two fatal crashes. The system did not behave as expected under certain conditions, exposing gaps in testing and certification for safety-critical systems.
+- **Outcome:** The entire 737 MAX fleet was grounded worldwide, leading to billions of dollars in losses, a major re-examination of aircraft software development practices, and regulatory changes in aviation safety.
+
+---
+
+### 3. Universal Credit System (UK)
+- **Overview:** Aimed at overhauling the UK welfare system, Universal Credit was intended to consolidate multiple benefits into a single, streamlined monthly payment.
+- **Issues:** Since its inception, the system has been beset by persistent technical glitches, integration challenges, and usability issues. Changing requirements and scalability problems have further complicated its delivery.
+- **Outcome:** Ongoing delays and criticism have affected millions of claimants, sparking debates on the feasibility of large-scale digital government projects and prompting reviews of project management and stakeholder engagement practices.
+
+---
+
+### 4. Berlin Brandenburg Airport (BER) (Germany)
+- **Overview:** Intended to be a state-of-the-art international airport, BER was originally scheduled to open in 2011.
+- **Issues:** A combination of poor project management, design flaws, and problematic software systems for critical functions (like fire safety and baggage handling) led to repeated delays.
+- **Outcome:** After nearly a decade of postponements and escalating costs, the airport finally opened in 2020 amid ongoing criticisms, serving as a cautionary tale about the complexities of integrating advanced software systems into large infrastructure projects.
+
+---
+
+### 5. F-35 Lightning II’s Autonomic Logistics Information System (ALIS)
+- **Overview:** ALIS was developed to support the F-35 fighter jets by managing maintenance, diagnostics, and logistics.
+- **Issues:** The system suffered from reliability problems, slow performance, and security vulnerabilities. These issues disrupted maintenance cycles and reduced operational readiness.
+- **Outcome:** Due to persistent difficulties, ALIS has largely been phased out in favor of a new system (ODIN), underscoring the challenges of deploying sophisticated software in defense environments where safety and performance are paramount.
+
+---
+
+### 6. TSB Bank IT Migration (UK, 2018)
+- **Overview:** TSB attempted a major migration of its core banking IT systems to modernize customer services.
+- **Issues:** The rollout was marred by widespread disruptions to online and branch banking services. Customers experienced significant outages, transaction errors, and data issues.
+- **Outcome:** The botched migration led to financial losses, damaged customer trust, and a protracted recovery process, reinforcing the importance of rigorous testing, staged rollouts, and fallback plans during critical IT transitions.
+
+---
+
+### Key Lessons from These Cases
+
+- **Rigorous Testing & Validation:** Comprehensive, real-world testing—especially for safety-critical or high-traffic systems—is essential to avoid unexpected failures.
+- **Incremental Development & Phased Rollouts:** Breaking projects into smaller, manageable phases allows teams to identify and resolve issues before they impact the entire system.
+- **Clear Integration & Communication:** Projects involving multiple contractors or legacy systems require robust coordination and consistent standards to ensure all parts work together seamlessly.
+- **Adaptability & Contingency Planning:** Having effective fallback strategies and the flexibility to adjust plans based on testing and early feedback is vital for mitigating risks.
+
+Each of these failures has provided valuable insights, prompting reforms in project management, quality assurance, and regulatory oversight to help prevent similar issues in the future.
