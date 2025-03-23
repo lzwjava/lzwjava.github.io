@@ -106,3 +106,20 @@ The word **"itinerary"** refers to a planned route or schedule of a journey, tri
 **/ɪˈtɪn.ər.əri/** (ih-TIN-uh-rer-ee) – British English  
 
 Would you like an example of an itinerary? 😊
+
+---
+
+"Authoritative" means having recognized or official power, expertise, or credibility in a particular area. It can describe a person, a source of information, or a statement that is reliable and commands respect.  
+
+### Different Contexts:  
+1. **People** – An authoritative leader is confident, knowledgeable, and commands obedience or respect.  
+   *Example:* "The professor is an authoritative figure in the field of neuroscience."  
+
+2. **Information** – An authoritative source is trustworthy, well-researched, and widely accepted.  
+   *Example:* "The Oxford English Dictionary is an authoritative reference for English words."  
+
+3. **Tone or Manner** – An authoritative voice or statement is firm, confident, and leaves little room for doubt.  
+   *Example:* "Her authoritative tone made it clear that the discussion was over."  
+
+Would you like a specific example or further clarification?
+
