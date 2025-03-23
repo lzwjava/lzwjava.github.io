@@ -1,24 +1,43 @@
-import subprocess
+import os
+import re
 from generate_notes_link import generate_notes_links
 
 
-def get_changed_files():
+def count_notes_files():
+    # Count the number of markdown files in the notes directory
+    notes_dir = 'notes'
     try:
-        # Get the list of files changed in the last commit
-        result = subprocess.run(['git', 'diff', '--name-only', 'HEAD~1', 'HEAD'], capture_output=True, text=True, check=True)
-        changed_files = result.stdout.strip().split('\n')
-        return [f for f in changed_files if f.startswith('notes/') and f.endswith('.md')]
-    except subprocess.CalledProcessError as e:
-        print(f"Error getting changed files: {e}")
-        return []
+        note_files = [f for f in os.listdir(notes_dir) if f.endswith('.md')]
+        return len(note_files)
+    except Exception as e:
+        print(f"Error counting notes files: {e}")
+        return 0
+
+def count_links_in_notes_md():
+    # Count the number of links in the notes markdown file
+    file_path = os.path.join('original', '2025-01-11-notes-en.md')
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            content = f.read()
+            # Count the number of markdown links in the file
+            links = re.findall(r'\* \[.*?\]\(/notes/.*?\)', content)
+            return len(links)
+    except Exception as e:
+        print(f"Error counting links in notes markdown file: {e}")
+        return 0
 
 def main():
-    changed_files = get_changed_files()
-    if changed_files:
-        print("Notes files changed, regenerating notes links.")
+    notes_count = count_notes_files()
+    links_count = count_links_in_notes_md()
+    
+    print(f"Notes files count: {notes_count}")
+    print(f"Links count in markdown: {links_count}")
+    
+    if notes_count != links_count:
+        print("Notes files count and links count don't match, regenerating notes links.")
         generate_notes_links()
     else:
-        print("No notes files changed, skipping notes link regeneration.")
+        print("Notes files count and links count match, skipping notes link regeneration.")
 
 if __name__ == "__main__":
     main()
