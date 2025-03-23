@@ -93,3 +93,19 @@ Below are several notable cases from the past decade where large-scale software 
 - **Adaptability & Contingency Planning:** Having effective fallback strategies and the flexibility to adjust plans based on testing and early feedback is vital for mitigating risks.
 
 Each of these failures has provided valuable insights, prompting reforms in project management, quality assurance, and regulatory oversight to help prevent similar issues in the future.
+
+---
+
+There have been many significant software failures throughout history, some with massive financial, reputational, or even human costs. Here are a few large and famous examples:
+
+* **Therac-25 Accidents (Mid-1980s):** This is a particularly tragic example. The Therac-25 was a radiation therapy machine whose software contained a race condition. This flaw led to several instances where patients received massive radiation overdoses, resulting in deaths and severe injuries. This case highlights the critical importance of rigorous testing and safety considerations in medical software.
+
+* **Ariane 5 Flight 501 (1996):** The maiden flight of the European Space Agency's Ariane 5 rocket failed just 37 seconds after launch. The failure was caused by a software error: an attempt to convert a 64-bit floating-point number representing the rocket's horizontal velocity into a 16-bit signed integer resulted in an overflow. This overflow triggered a cascade of errors that led to the destruction of the rocket and its payload, costing hundreds of millions of dollars. This demonstrates how seemingly small software bugs can have catastrophic consequences in complex systems.
+
+* **Denver International Airport Baggage Handling System (1994-2005):** The automated baggage handling system at Denver International Airport was a notorious and costly failure. Intended to revolutionize baggage handling, the system suffered from numerous software glitches, sensor malfunctions, and integration issues. It contributed to a 16-month delay in the airport's opening and cost billions of dollars in overruns and modifications. The system was eventually scaled back significantly and partially replaced with a more conventional approach. This illustrates the challenges of integrating complex software with physical infrastructure on a large scale.
+
+* **Healthcare.gov Launch (2013):** The initial launch of the HealthCare.gov website in the United States, designed to allow millions of Americans to sign up for health insurance under the Affordable Care Act, was plagued with severe technical issues. The website was often slow, unresponsive, or completely unavailable due to a combination of software bugs, architectural flaws, and inadequate testing under load. The disastrous launch led to significant political fallout and required extensive efforts to fix the underlying software problems. This highlights the impact of software failures on large-scale public services and the importance of thorough testing and scalability planning.
+
+* **Volkswagen Emissions Scandal ("Dieselgate") (2015):** While not a traditional software "failure" in the sense of a system crashing, this scandal involved Volkswagen using sophisticated software to cheat on emissions tests. The software could detect when a car was being tested and would activate full emissions controls, which were then deactivated during normal driving conditions. This deliberate misuse of software had massive legal, financial, and reputational consequences for Volkswagen and raised serious ethical questions about the role of software in society.
+
+These are just a few examples, and there have been many other significant software failures throughout history. Studying these cases can provide valuable insights into the importance of careful planning, thorough testing, robust architecture, effective communication, and ethical considerations in software development.
