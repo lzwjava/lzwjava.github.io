@@ -11,37 +11,37 @@ Okay, let's dive into a detailed tutorial on the Network Layer, specifically tai
 
 ## Network Layer Tutorial
 
-The Network Layer (网络层) is the third layer in the OSI model and the TCP/IP model. Its primary responsibility is to facilitate the movement of data packets from a source host to a destination host across one or more networks. Think of it as the postal service for the internet – it figures out the best route and ensures your "package" (data packet) gets to the correct address.
+The Network Layer is the third layer in the OSI model and the TCP/IP model. Its primary responsibility is to facilitate the movement of data packets from a source host to a destination host across one or more networks. Think of it as the postal service for the internet – it figures out the best route and ensures your "package" (data packet) gets to the correct address.
 
 Here's a breakdown of the key topics within this chapter:
 
-### 1. Functions of the Network Layer (网络层的功能)
+### 1. Functions of the Network Layer
 
 The Network Layer performs three main functions:
 
-#### a) Logical Addressing (逻辑寻址)
+#### a) Logical Addressing
 
 * **Purpose:** To uniquely identify each host on a network. This is different from the physical address (MAC address) which identifies a device within a local network. Logical addresses are hierarchical and allow for efficient routing.
 * **Key Concept:** IP addresses (Internet Protocol addresses) are the primary form of logical addressing used in the Network Layer.
 * **Analogy:** Think of your home address. It's a logical address that helps the postal service find your specific house within a city and country, regardless of the physical location of the post office.
 
-#### b) Routing (路由选择)
+#### b) Routing
 
 * **Purpose:** To determine the best path for a data packet to travel from the source to the destination. This involves selecting a sequence of network devices (routers) that the packet will traverse.
 * **Key Concept:** Routing algorithms are used by routers to build and maintain routing tables, which contain information about the best paths to different networks.
 * **Analogy:** Imagine planning a road trip. You look at a map or use a GPS to figure out the best route to your destination, considering factors like distance and traffic. Routers do something similar for data packets.
 
-#### c) Forwarding (转发)
+#### c) Forwarding
 
 * **Purpose:** The actual process of moving a data packet from an input port of a router to the appropriate output port based on the routing decision.
 * **Key Concept:** When a router receives a packet, it examines the destination IP address and consults its routing table to determine the next hop (another router or the destination host).
 * **Analogy:** Once you've planned your route, forwarding is like actually driving your car along that route, moving from one point to the next.
 
-### 2. IP Addressing (IP地址)
+### 2. IP Addressing
 
 IP addresses are fundamental to the Network Layer. There are two main versions: IPv4 and IPv6.
 
-#### a) IPv4 Structure (IPv4结构)
+#### a) IPv4 Structure
 
 * **Format:** A 32-bit numerical address written in dotted decimal notation (e.g., 192.168.1.10). It's divided into four 8-bit octets.
 * **Address Classes (Historically):** While largely obsolete now due to Classless Inter-Domain Routing (CIDR), understanding the historical classes (A, B, C, D, E) can be helpful for foundational knowledge.
@@ -57,7 +57,7 @@ IP addresses are fundamental to the Network Layer. There are two main versions: 
     * **Private IP Addresses:** Ranges reserved for use within private networks (e.g., 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16). These addresses are not routable on the public internet.
     * **Public IP Addresses:** Addresses that are routable on the public internet.
 
-#### b) IPv6 Structure (IPv6结构)
+#### b) IPv6 Structure
 
 * **Format:** A 128-bit numerical address written in hexadecimal format, grouped into eight 16-bit segments separated by colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334).
 * **Advantages over IPv4:** Larger address space (solves IPv4 address exhaustion), improved security (IPsec is often integrated), simplified header format, better support for mobile devices.
@@ -71,7 +71,7 @@ IP addresses are fundamental to the Network Layer. There are two main versions: 
 * **Link-Local Addresses (fe80::/10):** Used for communication within a single network link.
 * **Global Unicast Addresses:** Globally routable addresses on the internet.
 
-#### c) Subnetting (子网划分)
+#### c) Subnetting
 
 * **Purpose:** To divide a larger network into smaller, more manageable subnetworks (subnets). This helps in organizing networks, improving security, and optimizing network performance.
 * **Mechanism:** Subnetting is achieved by borrowing bits from the host portion of an IP address and using them to create subnet IDs. This is done using a **subnet mask**.
@@ -85,11 +85,11 @@ IP addresses are fundamental to the Network Layer. There are two main versions: 
     5.  Identify the valid subnet addresses, broadcast addresses, and usable host ranges for each subnet.
 * **Subnetting in IPv6:** While the concept of subnetting exists in IPv6, the vast address space makes it less about conserving addresses and more about network organization. IPv6 subnets are typically a fixed size (/64).
 
-### 3. Routing Algorithms (路由算法)
+### 3. Routing Algorithms
 
 Routing algorithms are used by routers to determine the best path for data packets. They can be broadly classified into:
 
-#### a) Static vs. Dynamic Routing (静态路由 vs. 动态路由)
+#### a) Static vs. Dynamic Routing
 
 * **Static Routing:**
     * Routing tables are manually configured by the network administrator.
@@ -101,7 +101,7 @@ Routing algorithms are used by routers to determine the best path for data packe
     * More complex to configure initially but highly adaptable to network changes and failures.
     * Scalable for larger and more complex networks.
 
-#### b) Distance Vector Routing (距离向量路由)
+#### b) Distance Vector Routing
 
 * **Principle:** Each router maintains a routing table that lists the best known distance (e.g., number of hops) and the direction (next hop router) to each destination network.
 * **Information Exchange:** Routers periodically exchange their entire routing tables with their directly connected neighbors.
@@ -109,7 +109,7 @@ Routing algorithms are used by routers to determine the best path for data packe
 * **Protocols:** RIP (Routing Information Protocol) is a well-known example of a distance vector routing protocol.
 * **Limitations:** Can suffer from slow convergence (takes time for the network to adapt to changes) and the "count-to-infinity" problem (routing loops can occur).
 
-#### c) Link State Routing (链路状态路由)
+#### c) Link State Routing
 
 * **Principle:** Each router maintains a complete map of the network topology. It knows about all the routers and the links between them, along with the cost of each link.
 * **Information Exchange:** Routers exchange information about the state of their directly connected links with all other routers in the network. This information is called a Link State Advertisement (LSA).
@@ -117,7 +117,7 @@ Routing algorithms are used by routers to determine the best path for data packe
 * **Protocols:** OSPF (Open Shortest Path First) and IS-IS (Intermediate System to Intermediate System) are popular link state routing protocols.
 * **Advantages:** Faster convergence, less prone to routing loops compared to distance vector routing.
 
-### 4. Protocols (协议)
+### 4. Protocols
 
 Several key protocols operate at the Network Layer:
 
@@ -139,11 +139,11 @@ Several key protocols operate at the Network Layer:
 * **Process:** When a host needs to send a packet to another host on the same network, it knows the destination IP address but needs the destination MAC address to frame the packet at the Data Link Layer. The sending host broadcasts an ARP request containing the destination IP address. The host with that IP address responds with an ARP reply containing its MAC address.
 * **ARP Cache:** Hosts maintain an ARP cache to store recently resolved IP-to-MAC address mappings to avoid sending ARP requests for every communication.
 
-### 5. Network Devices (网络设备)
+### 5. Network Devices
 
 The Network Layer primarily involves two key types of network devices:
 
-#### a) Routers (路由器)
+#### a) Routers
 
 * **Primary Function:** To forward data packets between different networks based on their destination IP addresses.
 * **Key Features:**
@@ -152,7 +152,7 @@ The Network Layer primarily involves two key types of network devices:
     * Perform packet forwarding based on routing decisions.
     * Can implement security features like firewalls and access control lists (ACLs).
 
-#### b) Gateways (网关)
+#### b) Gateways
 
 * **Broader Term:** A gateway is a device that acts as an entry point to another network. It can be a router, firewall, or another type of device.
 * **Default Gateway:** In the context of IP networking, the default gateway is a router on the local network that a host uses to send traffic to destinations outside its own network.
