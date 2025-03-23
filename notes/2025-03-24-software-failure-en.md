@@ -1,5 +1,5 @@
 ---
-title: Large Software Projects that Suffered From Delays
+title: Large Software Projects that Suffered from Delays
 lang: en
 layout: post
 audio: false
