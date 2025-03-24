@@ -1,5 +1,5 @@
 ---
-title:  Steps to Use DBeaver to Check Oracle DB Tables for Data
+title: Steps to Use DBeaver to Check Oracle DB Tables for Data
 lang: en
 layout: post
 audio: false
