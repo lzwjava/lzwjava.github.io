@@ -1,5 +1,5 @@
 ---
-title: Bank Software Solutions
+title: Software Solutions Used in Banking
 lang: en
 layout: post
 audio: false
