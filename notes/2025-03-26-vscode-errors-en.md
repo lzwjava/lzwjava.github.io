@@ -114,3 +114,132 @@ For a more drastic but guaranteed way to remove all Java-related error indicator
 - **Reverting Changes**: To undo, remove the added lines from `settings.json` or re-enable the extension.
 
 Please try Solution 1 first and let me know if the red lines persist. I’m here to refine the answer further if needed!
+
+---
+
+It sounds like you’re still seeing red line errors in VSCode, specifically "Nullable cannot resolve to a type," even after applying some configurations. Let’s resolve this step by step in a clear and practical way.
+
+---
+
+### Why This Error Happens
+The "Nullable cannot resolve to a type" error means that VSCode’s Java language server can’t find the `Nullable` annotation or class in your project. This could be due to:
+- A missing dependency in your project (e.g., the library that provides `Nullable` isn’t included).
+- An incorrect or missing import statement in your code.
+- A Gradle or VSCode configuration issue that’s preventing the classpath from being set up correctly.
+
+Since you’ve already tried some fixes, we’ll focus on verifying the essentials and then tweaking VSCode to eliminate those red lines.
+
+---
+
+### Step 1: Fix the Code and Dependencies
+Let’s make sure your code and project setup are correct.
+
+#### **Check Your Import Statement**
+In your Java file, ensure you’re importing `Nullable` from the right package. Here are the two most common options:
+- **For Spring projects**:
+  ```java
+  import org.springframework.lang.Nullable;
+  ```
+- **For general use** (e.g., JSR-305 annotations):
+  ```java
+  import javax.annotation.Nullable;
+  ```
+
+If you’re not sure which one you need, check your project’s framework or ask your team. If there’s no import statement at all, add the appropriate one.
+
+#### **Add the Dependency in Gradle**
+If the import is correct but the error persists, the library might not be in your project. Open your `build.gradle` file and add the necessary dependency:
+- **For Spring** (if you’re using Spring Boot or Spring Framework):
+  ```groovy
+  implementation 'org.springframework:spring-context:5.3.10'  // Adjust version to match your project
+  ```
+- **For JSR-305** (a common source of `javax.annotation.Nullable`):
+  ```groovy
+  implementation 'com.google.code.findbugs:jsr305:3.0.2'
+  ```
+
+After adding the dependency:
+1. Open a terminal in VSCode.
+2. Run:
+   ```
+   gradle clean build
+   ```
+   This ensures Gradle downloads the dependency and updates your project’s classpath.
+3. Reload VSCode:
+   - Press `Ctrl + Shift + P` (or `Cmd + Shift + P` on Mac).
+   - Type "Developer: Reload Window" and select it.
+
+---
+
+### Step 2: Reduce Error Indicators in VSCode
+If the red lines still appear after fixing the code and dependencies, it might be a VSCode configuration issue. Let’s adjust some settings.
+
+#### **Ignore Classpath Errors**
+Sometimes, VSCode flags errors even when the build works fine due to incomplete classpath detection. Add this to your `.vscode/settings.json` file:
+1. Open the file (create it in the `.vscode` folder if it doesn’t exist).
+2. Add:
+   ```json
+   {
+       "java.errors.incompleteClasspath.severity": "ignore"
+   }
+   ```
+3. Save the file and wait for VSCode to refresh (or reload the window again).
+
+This tells VSCode to stop showing red lines for classpath-related issues like missing types.
+
+#### **Disable Overly Strict Validation**
+If the error still shows up, we can reduce how strictly VSCode checks references. Add this to `.vscode/settings.json`:
+```json
+{
+    "java.validate.references": false
+}
+```
+**Note**: This setting is experimental and might not work in all versions of the Java extension. If it doesn’t help, skip to the next step.
+
+---
+
+### Step 3: Hide Red Lines Without Breaking Functionality
+If the above steps don’t fully remove the red lines, you can tweak VSCode’s editor to hide them while keeping Java features intact.
+
+#### **Turn Off Inline Diagnostics**
+Add this to `.vscode/settings.json`:
+```json
+{
+    "editor.inlayHints.enabled": false,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": false
+    }
+}
+```
+This reduces visual error indicators without disabling the Java language server entirely.
+
+#### **Java-Specific Editor Adjustments**
+For Java files only, you can minimize distractions:
+```json
+{
+    "[java]": {
+        "editor.codeLens": false,
+        "editor.renderWhitespace": "none"
+    }
+}
+```
+
+---
+
+### Step 4: Last Resort – Disable Java Language Server
+If nothing else works and you just want the red lines gone (even if it means losing Java features like autocompletion), you can disable the Java extension for this workspace:
+1. Open the Extensions view (`Ctrl + Shift + X` or `Cmd + Shift + X`).
+2. Find "Language Support for Java(TM) by Red Hat".
+3. Click the gear icon and choose "Disable (Workspace)".
+4. Reload VSCode.
+
+**Warning**: This removes all Java support, so only do this if you don’t need those features.
+
+---
+
+### Final Recommendation
+- **Try This First**: Add the correct import and dependency (Step 1), then run `gradle clean build` and reload VSCode. This should fix the root cause.
+- **If Red Lines Persist**: Use the `.vscode/settings.json` tweaks from Step 2 to ignore classpath errors.
+- **Still Stuck?**: Let me know what your `build.gradle` looks like or what framework you’re using, and I’ll tailor the solution further!
+
+Hopefully, this gets rid of those pesky red lines for "Nullable cannot resolve to a type"!
