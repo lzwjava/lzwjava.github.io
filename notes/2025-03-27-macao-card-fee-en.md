@@ -142,3 +142,32 @@ Let's calculate the cost for **25GB per month**, considering that extra data now
 
 ### **Conclusion:**  
 For **25GB per month**, **Plan B (3 MOP/day, 10GB Free)** is the cheapest at **150 MOP**. 🎉
+
+---
+
+### **Conclusions on the Best Plan for Different Data Usages**  
+
+1. **For 5GB per month → Plan A (2 MOP/day, 4GB Free) is the cheapest at 80 MOP**  
+   - Since you only need 1GB extra, Plan A is more cost-effective than other options.  
+
+2. **For 10GB per month → Plan B (3 MOP/day, 10GB Free) is the cheapest at 90 MOP**  
+   - The entire 10GB is covered in the daily fee, so no extra charges apply.  
+
+3. **For 20GB per month → Plan B (3 MOP/day, 10GB Free) is the cheapest at 130 MOP**  
+   - Even though you need 10GB extra, Plan B still beats the others in price.  
+
+4. **For 25GB per month → Plan B (3 MOP/day, 10GB Free) is the cheapest at 150 MOP**  
+   - The balance of daily cost and extra data cost keeps it the best choice.  
+
+5. **For 30GB per month → Plan B (3 MOP/day, 10GB Free) is the cheapest at 170 MOP**  
+   - Again, Plan B is optimal, as the extra 20GB is charged in reasonable blocks.  
+
+### **General Insights**  
+- **Plan A (2 MOP/day)** is only best for very low usage (under 10GB).  
+- **Plan B (3 MOP/day)** is consistently the best for most moderate users (10GB to 30GB).  
+- **Plan C (5 MOP/day)** is never the cheapest option. It only makes sense if you use exactly **20GB** and want simple pricing.  
+- **The No Daily Fee Plan (98/188/288 MOP options)** is always **more expensive** than daily-paid plans.  
+
+**Final Recommendation:**  
+- If you **use 10GB or more per month**, **Plan B (3 MOP/day, 10GB Free)** is almost always the best value. 🎯  
+- If you **use less than 10GB**, **Plan A (2 MOP/day, 4GB Free)** saves you money. 💰  
