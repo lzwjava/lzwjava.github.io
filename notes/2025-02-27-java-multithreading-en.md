@@ -14,6 +14,7 @@ Let’s dive into Java multithreading and how to use the `Executor` framework ef
 ### 1. Basics of Multithreading in Java
 Java provides two primary ways to create threads:
 - **Extend `Thread` class**:
+
 ```java
 class MyThread extends Thread {
     public void run() {
@@ -28,7 +29,9 @@ public class Main {
     }
 }
 ```
+
 - **Implement `Runnable` interface**:
+
 ```java
 class MyRunnable implements Runnable {
     public void run() {
@@ -43,6 +46,7 @@ public class Main {
     }
 }
 ```
+
 - Call `start()` (not `run()`) to launch the thread—`run()` just executes the code in the current thread.
 
 ---
