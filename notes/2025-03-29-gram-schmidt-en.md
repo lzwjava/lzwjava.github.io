@@ -23,7 +23,7 @@ The **Gram-Schmidt process** is a method in linear algebra used to convert a set
 
 ### **The Process Explained**
 
-Given a set of linearly independent vectors \( \{ \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \} \) in an inner product space (like \( \mathbb{R}^n \)), the Gram-Schmidt process constructs an orthonormal set \( \{ \mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n \} \) following these steps:
+Given a set of linearly independent vectors \\( \{ \mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n \} \\) in an inner product space (like \\( \mathbb{R}^n \\)), the Gram-Schmidt process constructs an orthonormal set \\( \{ \mathbf{q}_1, \mathbf{q}_2, \ldots, \mathbf{q}_n \} \\) following these steps:
 
 1. **Initialize the First Vector**:
    \[
@@ -34,12 +34,12 @@ Given a set of linearly independent vectors \( \{ \mathbf{v}_1, \mathbf{v}_2, \l
    \mathbf{q}_1 = \frac{\mathbf{u}_1}{\| \mathbf{u}_1 \|}
    \]
 
-2. **Iterative Orthogonalization and Normalization** for \( k = 2 \) to \( n \):
+2. **Iterative Orthogonalization and Normalization** for \\( k = 2 \\) to \\( n \\):
    - **Orthogonalize**:
      \[
      \mathbf{u}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} \text{proj}_{\mathbf{q}_j} \mathbf{v}_k
      \]
-     where the projection \( \text{proj}_{\mathbf{q}_j} \mathbf{v}_k \) is calculated as:
+     where the projection \\( \text{proj}_{\mathbf{q}_j} \mathbf{v}_k \\) is calculated as:
      \[
      \text{proj}_{\mathbf{q}_j} \mathbf{v}_k = (\mathbf{v}_k \cdot \mathbf{q}_j) \mathbf{q}_j
      \]
@@ -50,26 +50,26 @@ Given a set of linearly independent vectors \( \{ \mathbf{v}_1, \mathbf{v}_2, \l
 
 ### **Detailed Steps**
 
-1. **Compute \( \mathbf{u}_1 \) and \( \mathbf{q}_1 \)**:
-   - \( \mathbf{u}_1 = \mathbf{v}_1 \)
-   - \( \mathbf{q}_1 = \frac{\mathbf{u}_1}{\| \mathbf{u}_1 \|} \)
+1. **Compute \\( \mathbf{u}_1 \\) and \\( \mathbf{q}_1 \\)**:
+   - \\( \mathbf{u}_1 = \mathbf{v}_1 \\)
+   - \\( \mathbf{q}_1 = \frac{\mathbf{u}_1}{\| \mathbf{u}_1 \|} \\)
 
-2. **For each subsequent vector \( \mathbf{v}_k \)**:
-   - **Subtract the projections onto all previous \( \mathbf{q}_j \)**:
+2. **For each subsequent vector \\( \mathbf{v}_k \\)**:
+   - **Subtract the projections onto all previous \\( \mathbf{q}_j \\)**:
      \[
      \mathbf{u}_k = \mathbf{v}_k - \sum_{j=1}^{k-1} (\mathbf{v}_k \cdot \mathbf{q}_j) \mathbf{q}_j
      \]
-   - **Normalize \( \mathbf{u}_k \) to get \( \mathbf{q}_k \)**:
+   - **Normalize \\( \mathbf{u}_k \\) to get \\( \mathbf{q}_k \\)**:
      \[
      \mathbf{q}_k = \frac{\mathbf{u}_k}{\| \mathbf{u}_k \|}
      \]
 
 ### **Example**
 
-Let's apply the Gram-Schmidt process to vectors \( \mathbf{v}_1 = [1, 1] \) and \( \mathbf{v}_2 = [1, 0] \) in \( \mathbb{R}^2 \).
+Let's apply the Gram-Schmidt process to vectors \\( \mathbf{v}_1 = [1, 1] \\) and \\( \mathbf{v}_2 = [1, 0] \\) in \\( \mathbb{R}^2 \\).
 
 1. **First Vector**:
-   - \( \mathbf{u}_1 = \mathbf{v}_1 = [1, 1] \)
+   - \\( \mathbf{u}_1 = \mathbf{v}_1 = [1, 1] \\)
    - Normalize:
      \[
      \| \mathbf{u}_1 \| = \sqrt{1^2 + 1^2} = \sqrt{2}
@@ -79,7 +79,7 @@ Let's apply the Gram-Schmidt process to vectors \( \mathbf{v}_1 = [1, 1] \) and 
      \]
 
 2. **Second Vector**:
-   - Compute the projection of \( \mathbf{v}_2 \) onto \( \mathbf{q}_1 \):
+   - Compute the projection of \\( \mathbf{v}_2 \\) onto \\( \mathbf{q}_1 \\):
      \[
      \text{proj}_{\mathbf{q}_1} \mathbf{v}_2 = (\mathbf{v}_2 \cdot \mathbf{q}_1) \mathbf{q}_1
      \]
@@ -93,7 +93,7 @@ Let's apply the Gram-Schmidt process to vectors \( \mathbf{v}_1 = [1, 1] \) and 
      \[
      \mathbf{u}_2 = \mathbf{v}_2 - \text{proj}_{\mathbf{q}_1} \mathbf{v}_2 = [1, 0] - \left[ \frac{1}{2}, \frac{1}{2} \right] = \left[ \frac{1}{2}, -\frac{1}{2} \right]
      \]
-   - Normalize \( \mathbf{u}_2 \):
+   - Normalize \\( \mathbf{u}_2 \\):
      \[
      \| \mathbf{u}_2 \| = \sqrt{\left( \frac{1}{2} \right)^2 + \left( -\frac{1}{2} \right)^2} = \frac{1}{\sqrt{2}}
      \]
@@ -108,11 +108,11 @@ The orthonormal set is:
 \mathbf{q}_1 = \left[ \frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}} \right], \quad \mathbf{q}_2 = \left[ \frac{\sqrt{2}}{2}, -\frac{\sqrt{2}}{2} \right]
 \]
 
-These vectors are orthogonal (\( \mathbf{q}_1 \cdot \mathbf{q}_2 = 0 \)) and of unit length (\( \| \mathbf{q}_1 \| = \| \mathbf{q}_2 \| = 1 \)).
+These vectors are orthogonal (\\( \mathbf{q}_1 \cdot \mathbf{q}_2 = 0 \\)) and of unit length (\\( \| \mathbf{q}_1 \| = \| \mathbf{q}_2 \| = 1 \\)).
 
 ### **Applications**
 
-- **QR Decomposition**: Decomposing a matrix into an orthogonal matrix \( Q \) and an upper triangular matrix \( R \).
+- **QR Decomposition**: Decomposing a matrix into an orthogonal matrix \\( Q \\) and an upper triangular matrix \\( R \\).
 - **Least Squares Problems**: Finding the best approximation solution to overdetermined systems.
 - **Numerical Methods**: Enhancing stability and efficiency in computational algorithms.
 
