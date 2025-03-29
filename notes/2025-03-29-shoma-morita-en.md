@@ -30,3 +30,31 @@ Here are a few key aspects of his wisdom:
    Morita integrated a lot of wisdom from Zen Buddhism, where one seeks harmony with nature, both the natural world and the internal nature of the self. By understanding ourselves and the world around us, we can live more fully and authentically.
 
 His approach was counter to the modern Western ideas of therapy that emphasize the need to understand or eliminate mental distress. Instead, he suggested that by accepting our emotional states and focusing on meaningful actions, we can lead a fuller, more grounded life.
+
+---
+
+Shoma Morita (1874–1938) was a Japanese psychiatrist who developed Morita therapy, a unique approach to psychotherapy influenced by Zen Buddhism. His wisdom centers on accepting life as it is and understanding the natural flow of emotions. Here are some key aspects of his wisdom:
+
+**Core Principles of Morita Therapy:**
+
+* **Acceptance (Arugamama):** This is a central concept, often translated as "accepting things as they are." It involves recognizing and allowing feelings to exist without trying to control or eliminate them. Morita believed that resisting natural emotions leads to suffering.
+* **Action:** Morita therapy emphasizes taking action despite one's emotional state. The idea is that engaging in constructive tasks and pursuing one's purpose can lead to changes in thoughts and feelings. "Do what needs to be done" is a key principle.
+* **Naturalism:** This principle highlights the natural flow of life and emotions. Unpleasant feelings are seen as natural and unavoidable human reactions, similar to weather patterns or the changing seasons. We should not judge these feelings as inherently "good" or "bad."
+* **The Will to Live (Sei no Yokubou):** Morita considered the desire to live fully as a fundamental human motivation, driving our endeavors and goals.
+
+**Key Insights from Morita's Wisdom:**
+
+* **Feelings are uncontrollable:** Morita believed that we don't create our feelings; they happen to us and cannot be directly controlled by willpower. Trying to suppress or manipulate emotions often intensifies them.
+* **Behavior is controllable:** While feelings are not directly controllable, we have dominion over our behavior. We are responsible for taking action regardless of how we feel.
+* **Purpose-driven life:** Morita's wisdom suggests that life should be guided by our purpose and what needs to be done, rather than being dictated by our fleeting emotions.
+* **Self-centeredness as a source of suffering:** Over-preoccupation with one's own thoughts and feelings can lead to being trapped (Toraware). Liberation comes from focusing on the outside world and engaging in reality.
+* **Learning through experience (Taiken):** Morita's therapy emphasizes learning firsthand through doing rather than intellectual understanding alone.
+
+**Practical Applications of Morita's Wisdom:**
+
+* **Accepting unpleasant emotions:** Instead of fighting feelings like anxiety or sadness, acknowledge them without judgment and allow them to be present.
+* **Taking action despite discomfort:** Don't wait until you "feel like it" to pursue your goals or responsibilities. Engage in activities that are important to you, even with uncomfortable feelings.
+* **Focusing on the present moment:** Pay attention to what needs to be done now rather than getting caught up in worries about the past or future.
+* **Shifting focus outward:** Direct your attention to the external world, your tasks, and your responsibilities, rather than being consumed by internal thoughts and feelings.
+
+In essence, Shoma Morita's wisdom encourages a shift from trying to control inner feelings to accepting them and focusing on purposeful action in the present moment, aligning oneself with the natural flow of life.
