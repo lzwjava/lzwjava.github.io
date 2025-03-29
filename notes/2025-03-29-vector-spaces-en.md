@@ -89,6 +89,7 @@ The **dimension** of a vector space \\( V \\), denoted \\( \dim(V) \\), is the n
 ---
 
 ### **Summary of Key Points**
+
 | Concept | Definition |
 |---------|-----------|
 | **Vector Space** | A set of vectors closed under addition and scalar multiplication. |
