@@ -1,5 +1,5 @@
 ---
-title: R. Kent Dybvig
+title: R. Kent Dybvig's Work
 lang: en
 layout: post
 audio: false
