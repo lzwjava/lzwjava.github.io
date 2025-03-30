@@ -222,3 +222,49 @@ Okay, here's the information on the cost of living in Indonesia, with approximat
 * A single person could live comfortably in Jakarta on an income of **$1000 USD per month**. Living like a local could even be possible with around **$600 USD per month**.
 
 Remember that these are estimates, and the actual cost of living will depend on your individual needs and preferences, as well as the specific location you choose to live in. It's always a good idea to do further research based on your specific circumstances.
+
+---
+
+The income of average people and IT workers in Indonesia varies significantly based on factors like experience, education, location (city vs. rural), industry, and the size and type of the company. Here's a breakdown:
+
+**1. Average Income:**
+
+* **Average Monthly Salary:** The average salary in Indonesia is around **IDR 6,000,000 per month**, which is approximately **$367 USD** (using an exchange rate of 1 USD ≈ 16,000 IDR). However, different sources provide slightly varying figures, ranging from IDR 5,000,000 to IDR 7,000,000 ($312 to $437.5 USD).
+* **Median Monthly Income:** The median monthly income is lower, around **IDR 4,000,000**, or approximately **$244 USD**. This indicates a significant income inequality, where a smaller portion of the population earns much higher salaries, pulling the average up.
+* **Annual Average Salary:** Some sources estimate the average annual salary to be around **IDR 89,903,190** (approximately **$5,619 USD**) or **IDR 146,000,000** (approximately **$9,125 USD**). These figures can vary depending on the inclusion of benefits and the data sources used.
+* **Low Earners:** Individuals in lower-paying jobs might earn around **IDR 1,500,000 per month** (about **$91 USD**).
+* **High Earners:** Wealthier individuals can earn upwards of **IDR 15,000,000 per month** (about **$917 USD**).
+* **Monthly Earnings Data (Overall):** According to CEIC Data, the monthly earnings in Indonesia stood at **$187 USD** in December 2024, compared to **$190 USD** in December 2023. This data is updated yearly.
+
+**2. Minimum Wage:**
+
+* Minimum wages in Indonesia are set regionally at the provincial and sometimes even city/district level.
+* For **2024**, provincial minimum wages varied significantly. For example:
+    * **Jakarta (highest):** IDR 5,067,381 per month (around **$317 USD**).
+    * **West Java (lowest):** IDR 2,057,495 per month (around **$129 USD**).
+* For **2025**, there has been an average increase of 6.5%. Some of the announced minimum wages for 2025 include:
+    * **Jakarta (highest estimated):** IDR 5,396,760 per month (around **$337 USD**).
+    * **West Java (lowest estimated):** IDR 2,191,232 per month (around **$137 USD**).
+* The minimum wage is often lower than the average income, reflecting the large informal work sector and job demand exceeding supply.
+
+**3. Income of IT Workers:**
+
+* IT workers generally earn significantly more than the average income in Indonesia due to the demand for their skills.
+* **Average Monthly Salary for IT Workers:** In large cities like Jakarta, the average monthly salary for an IT worker ranges from **IDR 12,000,000 to IDR 15,000,000** (approximately **$750 to $938 USD**).
+* **Software Engineer Salaries:**
+    * Mid-level software engineers might earn around **IDR 15,000,000** (approximately **$938 USD**) per month.
+    * Senior software engineers can earn considerably more.
+* **IT Manager Salaries:** Average around **IDR 11,166,200** (approximately **$698 USD**) per month.
+* **IT Director Salaries:** Average around **IDR 12,543,200** (approximately **$784 USD**) per month.
+* **Factors Affecting IT Salaries:** Experience, specific skills (e.g., cybersecurity, AI), the size and type of the company (multinational corporations often pay higher), and location all play a role in determining the salary of IT professionals.
+
+**Comparison to Other Countries:**
+
+* Average salaries in Indonesia are considerably lower than in developed countries like the United States or Germany.
+* Compared to some other developing countries in the region, Indonesia's average salary can be lower (e.g., Thailand) or similar (e.g., Vietnam).
+
+**Income Inequality:**
+
+* There is a notable income gap in Indonesia, as indicated by the difference between the average and median income. A significant portion of the workforce earns closer to the minimum wage, while a smaller segment earns substantially higher incomes, particularly in skilled professions and managerial roles in major cities.
+
+In conclusion, while the average income in Indonesia is relatively modest, IT professionals tend to earn significantly more However, it's crucial to consider the wide range of incomes across different sectors, locations, and skill levels.
