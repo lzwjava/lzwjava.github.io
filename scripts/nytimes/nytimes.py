@@ -201,7 +201,7 @@ def main():
 
     markdown_list = generate_markdown_list(all_articles)
 
-    filename = 'original/2025-03-14-nytimes-en.md'
+    filename = 'notes/2025-03-14-nytimes-en.md'
     markdown_changed = update_markdown_file(filename, markdown_list)
 
     if markdown_changed:
