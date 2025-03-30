@@ -68,3 +68,49 @@ Based on the search results, here's an overview of the average earnings for peop
 
 In summary, while the average income in the Philippines is relatively modest, IT professionals, particularly those with specialized skills and experience in major cities, generally earn significantly more. However, there's a considerable range depending on the specific role, company, and location.
 
+---
+
+The cost of living in the Philippines can vary significantly depending on the location and lifestyle. Here's a breakdown with a focus on Manila, the capital:
+
+**Overall Cost of Living in the Philippines:**
+
+* **Single Person (excluding rent):** Approximately **₱31,395 per month** (around **$571 USD**). However, some estimates suggest a lower range of **₱25,000 to ₱35,000 per month** (around **$455 to $636 USD**).
+* **Family of Four (excluding rent):** Estimated around **₱109,192 per month** (around **$1,985 USD**).
+* The Philippines is generally more affordable than many Western countries and some other Southeast Asian nations like Singapore and Malaysia. However, it can be slightly more expensive than other Southeast Asian countries depending on the location and lifestyle.
+
+**Cost of Living in Manila (Capital):**
+
+* Manila generally has a higher cost of living compared to other cities and provinces in the Philippines.
+* **Single Person (excluding rent):** Around **₱36,256 per month** (approximately **$659 USD**). Other estimates suggest a range of **₱28,200 (around $513 USD) to ₱61,000 (around $1,110 USD)** per month depending on the lifestyle.
+* **Family:** Estimated around **₱669 to $2,341 USD per month**, depending on whether you are a local or an expat and the desired lifestyle.
+
+**Major Expense Categories in Manila (Approximate Monthly Costs):**
+
+* **Rent:**
+    * **1-bedroom apartment in City Centre:** **₱17,200 to ₱50,000** (around **$313 to $909 USD**). Average around **₱27,810 ($506 USD)**.
+    * **1-bedroom apartment Outside City Centre:** Starting around **₱9,933** (around **$181 USD**). Average around **₱14,692 ($267 USD)**.
+    * **3-bedroom apartment in City Centre:** **₱37,023 to ₱100,000+** (around **$673 to $1,818+ USD**). Average around **₱94,615 ($1,720 USD)**.
+    * **3-bedroom apartment Outside City Centre:** Around **₱20,946 to ₱50,000** (around **$381 to $909 USD**). Average around **₱44,667 ($812 USD)**.
+* **Utilities (for 85m2 apartment):** Around **₱6,105 to ₱8,155** (around **$111 to $148 USD**) for basic utilities (electricity, water, cooling, heating, garbage).
+* **Internet (60 Mbps or more):** Around **₱1,661 to ₱1,732** (around **$30 to $32 USD**).
+* **Mobile Phone Plan (with calls and 10GB+ data):** Around **₱1,599 to ₱1,728** (around **$29 to $31 USD**).
+* **Food & Groceries:**
+    * **Meal at an inexpensive restaurant:** Around **₱234 to ₱300** (around **$4.25 to $5.45 USD**).
+    * **Meal for 2 at a mid-range restaurant:** Around **₱1,200 to ₱1,750** (around **$21.82 to $31.82 USD**).
+    * Monthly groceries for a single person can range from **₱8,000 to ₱12,000** (around **$145 to $218 USD**).
+* **Transportation:**
+    * **One-way local transport ticket:** Around **₱15 to ₱45** (around **$0.27 to $0.82 USD**).
+    * **Monthly public transport pass:** Around **₱582 to ₱670** (around **$10.58 to $12.18 USD**).
+    * **Taxi start fare:** Around **₱40 to ₱44.50** (around **$0.73 to $0.81 USD**).
+* **Entertainment & Leisure:**
+    * **Fitness club monthly fee:** Around **₱1,778 to ₱2,433** (around **$32 to $44 USD**).
+    * **Cinema ticket:** Around **₱300 to ₱435** (around **$5.45 to $7.91 USD**).
+
+**Factors Influencing Cost of Living:**
+
+* **Location within the Philippines:** Major cities like Manila and Cebu tend to be more expensive than provincial areas.
+* **Lifestyle:** Personal spending habits, choice of accommodation, dining preferences, and entertainment choices significantly impact the cost of living.
+* **Accommodation Type:** Renting an apartment or house is a major expense, and prices vary greatly by location and size.
+* **Local vs. Imported Goods:** Imported goods tend to be more expensive than locally produced items.
+
+In summary, while the Philippines offers a relatively affordable cost of living compared to many other countries, Manila can be more expensive than other regions within the country. Your individual lifestyle and location within Manila will ultimately determine your monthly expenses.
