@@ -141,3 +141,84 @@ Here's a breakdown of the cost of living in Indonesia:
 * **Fluctuations:** Exchange rates and inflation can affect the cost of living.
 
 In summary, Indonesia offers a generally affordable cost of living, especially when embracing local food and transportation options and considering living outside the most expensive urban centers. However, it's crucial to research the specific city or region you plan to live in to get a more accurate estimate.
+
+---
+
+Okay, here's the information on the cost of living in Indonesia, with approximate conversions to USD (using an exchange rate of **1 USD ≈ 16,000 IDR** - please note that this rate can fluctuate):
+
+**Overall Cost of Living (USD):**
+
+* Average cost of living for a **single person** (excluding rent): around **$455 USD per month**.
+* For **international students**, estimated monthly costs (excluding tuition): around **$375 to $625 USD**.
+* A **single individual** for a comfortable lifestyle: **$625 to $1,250 USD per month**.
+* A **family of four** for comfortable living: **$1,875 to $2,500 USD per month**.
+* Living in Indonesia could cost you from **$600 USD per month** up to **$4,000 USD**, varying based on lifestyle and family size.
+* Indonesia is significantly more affordable than the USA; for one person, the average monthly cost is around **$559 USD** in Indonesia vs. **$2,213 USD** in the USA.
+
+**Cost of Living in Major Cities (USD):**
+
+* **Jakarta:** Generally the most expensive city.
+    * A single person's monthly expenses (excluding rent): around **$508 USD**.
+    * Expats might spend around **$1,250 to $1,560 USD per month** depending on lifestyle.
+    * **Rent:**
+        * 1-bedroom apartment in the city center: **$250 to $750 USD per month**.
+        * 1-bedroom apartment outside the center: **$188 to $438 USD per month**.
+        * 3-bedroom apartment in the city center: **$625 to $2,813 USD per month**.
+    * **Food:** A simple meal at an inexpensive restaurant costs around **$1.88 USD**.
+* **Bali:** Can be relatively expensive, especially in tourist areas.
+    * A single person might need around **$652 USD per month** (excluding rent) for a comfortable life.
+    * **Rent:**
+        * 1-bedroom apartment: **$219 to $406 USD per month**.
+* **Surabaya:** Lower cost of living compared to Jakarta and Bali.
+    * **Rent for a 1-bedroom apartment:** **$156 to $313 USD**.
+* **Bandung:** Lower cost of living compared to Jakarta and Bali.
+    * **Rent for a 1-bedroom apartment:** **$156 to $375 USD**.
+* **Medan:** Lower cost of living compared to Jakarta and Bali.
+    * **Rent for a 1-bedroom apartment:** **$125 to $250 USD**.
+
+**Food Costs (USD):**
+
+* **Street food:** A meal can cost as little as **$0.94 to $2.50 USD**.
+* **Inexpensive restaurants:** A simple meal might range from **$0.94 to $3.75 USD**.
+* **Mid-range restaurants:** A meal for two could cost between **$9.38 to $37.50 USD**.
+* **Groceries (average prices):**
+    * Milk (1 liter): around **$1.25 USD**.
+    * Rice (1 kg): around **$0.88 USD**.
+    * Eggs (12): around **$1.56 to $1.94 USD**.
+    * Bread: around **$1 to $1.13 USD** per loaf.
+    * Chicken (1 kg): around **$1.44 to $1.56 USD**.
+    * Local food (warungs): **$2-$4 USD per meal**.
+    * Western-style cafes: **$5-$10 USD per meal**.
+    * Groceries (local produce): **$150-$300 USD/month**.
+
+**Transportation Costs (USD):**
+
+* **One-way bus ticket:** **$0.22 to $0.63 USD**.
+* **Monthly public transport pass:** **$7.50 to $18.75 USD** (can be higher in Jakarta).
+* **Taxi:** Starting fare around **$0.44 to $0.56 USD**, with per kilometer charges.
+* **Gasoline:** around **$0.81 to $0.88 USD per liter** (approximately $3.07 to $3.33 per gallon).
+* Monthly local transport ticket: around **$14.50 USD**.
+
+**Utility Costs (monthly average for an 85m2 apartment - USD):**
+
+* Basic utilities: **$63 to $94 USD**.
+* Internet: **$18.75 to $43.75 USD**.
+* Mobile phone plan: **$2 to $9.38 USD**.
+
+**Entertainment and Leisure (USD):**
+
+* Movie ticket: **$2.50 to $4.69 USD**.
+* Gym membership: **$9.38 to $62.50 USD per month**.
+* Yoga classes: **$8-$15 USD per session**.
+* Beach clubs or bars: **$15-$70 USD per visit**.
+* Co-working spaces: **$100-$300 USD/month**.
+
+**Important Considerations (USD):**
+
+* **Rent in city centers:** Can range from **$400 to $1000 USD per month** for a one-bedroom apartment in Jakarta or Bali.
+* **Utilities for an average apartment:** Can add another **$100 to $200 USD** to your monthly expenses.
+* To live comfortably in Indonesia, a family of four might need a budget of **$625 to $938 USD per month** (this seems low compared to other estimates and might not include all expenses, especially in major cities).
+* A more comprehensive comfortable budget for a family of four in a major city could be closer to **$1,875 to $2,500 USD per month**.
+* A single person could live comfortably in Jakarta on an income of **$1000 USD per month**. Living like a local could even be possible with around **$600 USD per month**.
+
+Remember that these are estimates, and the actual cost of living will depend on your individual needs and preferences, as well as the specific location you choose to live in. It's always a good idea to do further research based on your specific circumstances.
