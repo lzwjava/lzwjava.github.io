@@ -1,5 +1,5 @@
 ---
-title: lIntroduction to Law - Chapters 2
+title: Introduction to Law - Chapters 2
 lang: en
 layout: post
 audio: false
