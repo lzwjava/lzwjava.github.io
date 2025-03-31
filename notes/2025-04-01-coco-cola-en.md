@@ -1,5 +1,5 @@
 ---
-title: Sugar in Coco Cola
+title: Sugar in Coco-Cola
 lang: en
 layout: post
 audio: false
