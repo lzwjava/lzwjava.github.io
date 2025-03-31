@@ -7,8 +7,6 @@ translated: false
 generated: true
 ---
 
-**赤藓糖醇 (chì xiǎn táng chún)** is the Chinese name for **erythritol**.
-
 Here's a breakdown of what erythritol is:
 
 * **What it is:** Erythritol is a sugar alcohol (or polyol), a naturally occurring compound found in some fruits (like melons and grapes) and fermented foods. It is also commercially produced by fermenting glucose, often derived from corn starch.
@@ -20,4 +18,4 @@ Here's a breakdown of what erythritol is:
 * **Uses:** Erythritol is used as a sweetener in a wide range of sugar-free and low-sugar products, including beverages, baked goods, candies, and tabletop sweeteners. It can also be used as a bulking agent in combination with high-intensity sweeteners.
 * **Safety:** Erythritol has generally been considered safe for consumption. However, recent research has suggested a potential association between high blood levels of erythritol and an increased risk of heart attack and stroke. More research is needed to fully understand this connection. In the past, high doses (around 50 grams) have been reported to cause nausea and stomach rumbling in some individuals. The European Food Safety Authority (EFSA) has set a recommended daily intake limit of 0.5 grams per kg of body weight.
 
-In summary, 赤藓糖醇 (erythritol) is a low-calorie sugar substitute with a good sweetness profile and minimal impact on blood sugar, making it a popular alternative to sugar. While generally safe in moderate amounts, some recent studies suggest potential cardiovascular risks that warrant further investigation.
+In summary, erythritol is a low-calorie sugar substitute with a good sweetness profile and minimal impact on blood sugar, making it a popular alternative to sugar. While generally safe in moderate amounts, some recent studies suggest potential cardiovascular risks that warrant further investigation.
