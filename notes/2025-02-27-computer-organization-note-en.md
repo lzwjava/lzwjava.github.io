@@ -239,11 +239,11 @@ The term emphasizes the simplicity and foundational nature of the method, as it 
 
 ---
 
-To perform the multiplication of \(4 \times 5\) using the one-digit multiplication method with four-digit signed binary numbers (original code), we need to follow these steps:
+To perform the multiplication of \\(4 \times 5\\) using the one-digit multiplication method with four-digit signed binary numbers (original code), we need to follow these steps:
 
 1. **Convert the numbers to four-digit signed binary (original code)**:
-   - \(4\) in four-digit signed binary is \(0100\).
-   - \(5\) in four-digit signed binary is \(0101\).
+   - \\(4\\) in four-digit signed binary is \\(0100\\).
+   - \\(5\\) in four-digit signed binary is \\(0101\\).
 
 2. **Perform the multiplication**:
    - Multiply each bit of the second number by the entire first number, shifting left each time you move to the next bit.
@@ -262,12 +262,12 @@ Here's the step-by-step multiplication process:
 ```
 
 3. **Sum the partial products**:
-   - Adding the partial products together, we get \(0010100\).
+   - Adding the partial products together, we get \\(0010100\\).
 
 4. **Convert the result back to decimal**:
-   - The binary number \(0010100\) is equivalent to \(20\) in decimal.
+   - The binary number \\(0010100\\) is equivalent to \\(20\\) in decimal.
 
-Thus, the result of \(4 \times 5\) using four-digit signed binary multiplication is \(20\).
+Thus, the result of \\(4 \times 5\\) using four-digit signed binary multiplication is \\(20\\).
 
 ---
 
@@ -600,3 +600,135 @@ In a computer system, the **controller** (or control unit) is a component of the
 In the context of a processor like MIPS, while MIPS is typically a hardwired or RISC (Reduced Instruction Set Computer) architecture, the concept of microprogramming applies to more complex CISC (Complex Instruction Set Computer) designs (e.g., x86). However, the principle remains: the controller relies on stored microcode (in control memory) to execute instructions efficiently.
 
 This statement highlights the structural design where the controller houses the control memory, enabling the microprogrammed control of the CPU's operations. Let me know if you'd like further details or examples!
+
+---
+
+In the MIPS instruction set architecture (ISA), memory access instructions are primarily categorized as "Load" (L-type) instructions. These instructions are used to load data from memory into registers. Here's a detailed explanation of L-type instructions in MIPS:
+
+### L-Type Instructions
+
+L-type instructions are designed to transfer data from memory to the CPU's registers. This is crucial for operations that require data stored in memory to be processed by the CPU.
+
+#### Key L-Type Instructions
+
+1. **LW (Load Word)**:
+   - **Purpose**: Loads a word (4 bytes) from memory into a register.
+   - **Syntax**: `LW rt, offset(base)`
+   - **Operation**: The address is calculated as `base + offset`, and the 4 bytes of data at this address are loaded into the register `rt`.
+   - **Usage**: Used when you need to load a 32-bit value from memory.
+
+2. **LB (Load Byte)**:
+   - **Purpose**: Loads a byte (1 byte) from memory into a register.
+   - **Syntax**: `LB rt, offset(base)`
+   - **Operation**: The address is calculated as `base + offset`, and the byte of data at this address is loaded into the register `rt`. The byte is sign-extended to fit the 32-bit register.
+   - **Usage**: Used when you need to load an 8-bit value from memory.
+
+#### Other Load Instructions
+
+- **LH (Load Halfword)**: Loads a halfword (2 bytes) from memory into a register, with sign extension.
+- **LBU (Load Byte Unsigned)**: Loads a byte from memory into a register, with zero extension (no sign extension).
+- **LHU (Load Halfword Unsigned)**: Loads a halfword from memory into a register, with zero extension.
+
+### How L-Type Instructions Work
+
+- **Address Calculation**: The effective address is computed by adding the `offset` to the value in the `base` register.
+- **Memory Access**: The data at the calculated address is fetched from memory.
+- **Data Loading**: The fetched data is loaded into the specified destination register (`rt`).
+
+### Importance of L-Type Instructions
+
+- **Data Transfer**: L-type instructions facilitate the transfer of data from memory to the CPU, enabling the CPU to process data that is too large to fit in its registers.
+- **Efficiency**: By using different load instructions (e.g., LW, LB), the MIPS architecture can efficiently handle data of varying sizes, optimizing memory access and reducing unnecessary data transfer.
+
+Understanding L-type instructions is fundamental to programming and designing systems using the MIPS architecture, as they form the basis for memory-to-register data transfers.
+
+---
+
+In a single-cycle CPU architecture, such as the MIPS architecture, the CPU executes a complete instruction within one clock cycle. This includes all stages of instruction processing: fetch, decode, execute, memory access, and write-back. The register file, which stores the CPU's registers, plays a crucial role in this process. Here are the rules governing the operations on the register file in such an architecture:
+
+1. **Read Operations**:
+   - The register file can support reading from two different registers in the same clock cycle. This is essential for instructions that require two operands, such as arithmetic or logical operations, where both source operands need to be read simultaneously.
+
+2. **Write Operation**:
+   - The register file can support writing to one register in the same clock cycle. This is typically done in the write-back stage, where the result of an operation is stored back into a register.
+
+3. **Restriction on Write Operations**:
+   - The register file cannot support writing to two different registers in the same clock cycle. This restriction ensures that there are no conflicts in the write-back stage and simplifies the control logic of the CPU.
+
+### Implications
+
+- **Efficiency**: By allowing two reads and one write per cycle, the CPU can efficiently execute instructions that require multiple operands and produce a single result.
+- **Simplicity**: The restriction on writing to only one register per cycle simplifies the design of the register file and the control logic, reducing the potential for hazards and conflicts.
+- **Performance**: This design balances performance and complexity, enabling the CPU to execute instructions quickly while maintaining a manageable level of hardware complexity.
+
+These rules are fundamental to the operation of a single-cycle CPU and ensure that the register file can support the necessary read and write operations without introducing conflicts or delays.
+
+---
+
+In digital systems, particularly when dealing with binary numbers, the concept of complements is used to perform subtraction operations. The two common types of complements are:
+
+1. **One's Complement ([X]补)**:
+   - The one's complement of a binary number is found by inverting each bit (changing 0s to 1s and 1s to 0s).
+
+2. **Two's Complement ([Y]补)**:
+   - The two's complement of a binary number is found by inverting each bit (like one's complement) and then adding 1 to the least significant bit.
+
+### Calculating [X - Y] Using Complements
+
+To compute \\( [X - Y] \\) using complements, you can use the following method:
+
+1. **Using Two's Complement**:
+   - Convert \\( Y \\) to its two's complement form.
+   - Add the two's complement of \\( Y \\) to \\( X \\).
+   - The result is \\( X - Y \\).
+
+   **Example**:
+   - Let \\( X = 6 \\) (binary: \\( 0110 \\)) and \\( Y = 2 \\) (binary: \\( 0010 \\)).
+   - Two's complement of \\( Y \\) (2): \\( 1110 \\) (invert bits and add 1).
+   - Add \\( X \\) and the two's complement of \\( Y \\): \\( 0110 + 1110 = 10100 \\).
+   - The result \\( 10100 \\) in 5-bit binary is \\( 4 \\), which is \\( 6 - 2 \\).
+
+2. **Using One's Complement**:
+   - Convert \\( Y \\) to its one's complement form.
+   - Add the one's complement of \\( Y \\) to \\( X \\).
+   - Add the carry-out bit (if any) to the least significant bit of the result.
+
+   **Example**:
+   - Let \\( X = 6 \\) (binary: \\( 0110 \\)) and \\( Y = 2 \\) (binary: \\( 0010 \\)).
+   - One's complement of \\( Y \\) (2): \\( 1101 \\) (invert bits).
+   - Add \\( X \\) and the one's complement of \\( Y \\): \\( 0110 + 1101 = 10001 \\).
+   - Add the carry-out bit (1) to the least significant bit: \\( 10001 + 1 = 10010 \\).
+   - The result \\( 10010 \\) in 5-bit binary is \\( 4 \\), which is \\( 6 - 2 \\).
+
+Both methods effectively perform the subtraction \\( X - Y \\) using binary complements. The choice of method depends on the system's architecture and the specific requirements of the operation.
+
+---
+
+In the context of floating-point representation, such as IEEE 754, the term "mantissa" is often used interchangeably with "fraction" or "significand." However, it's important to note that "mantissa" is not the preferred term in the IEEE 754 standard, which uses "significand" instead.
+
+### Significand (Fraction or Mantissa)
+
+- **Definition**: The significand represents the significant digits of a floating-point number. It is the part of the number that contains the precision bits.
+- **Purpose**: It determines the precision of the floating-point number.
+- **Normalization**: In normalized form, the significand is adjusted so that the first digit is non-zero. For binary floating-point numbers, this means the leading bit is always 1 (implicitly), which allows for an extra bit of precision.
+
+### Example in IEEE 754 Single Precision (32-bit)
+
+- **Sign Bit**: 1 bit
+- **Exponent**: 8 bits
+- **Significand (Fraction)**: 23 bits
+
+In a normalized number, the significand is assumed to have a leading 1 before the binary point, which is not stored explicitly. This leading 1 is implied, making the significand effectively 24 bits long (1 implicit bit + 23 explicit bits).
+
+### Example
+
+For the number \\( 6.5 \\) in binary:
+
+- Binary representation: \\( 110.1 \\)
+- Normalized form: \\( 1.101 \times 2^2 \\)
+- Sign bit: \\( 0 \\) (positive)
+- Exponent: \\( 2 + 127 \\) (bias for single precision) = \\( 129 \\)
+- Significand: \\( 101 \\) (implicit leading 1, followed by the fractional part)
+
+Thus, the significand (or fraction) is crucial for representing the precision of floating-point numbers in the IEEE 754 format
+
