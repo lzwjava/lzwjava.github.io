@@ -160,64 +160,64 @@ Embarking on a weight loss journey is a significant step towards improving your 
 
 #### **Works cited**
 
-[^1]. Interested in Losing Weight? | Nutrition.gov, accessed March 22, 2025, [https://www.nutrition.gov/topics/healthy-living-and-weight/strategies-success/interested-losing-weight](https://www.nutrition.gov/topics/healthy-living-and-weight/strategies-success/interested-losing-weight) 
+[^1]: Interested in Losing Weight?, Nutrition.gov, accessed March 22, 2025, [https://www.nutrition.gov/topics/healthy-living-and-weight/strategies-success/interested-losing-weight](https://www.nutrition.gov/topics/healthy-living-and-weight/strategies-success/interested-losing-weight) 
  
-[^2]. Exercise and activity for weight loss \- UF Health, accessed March 22, 2025, [https://ufhealth.org/care-sheets/exercise-and-activity-for-weight-loss](https://ufhealth.org/care-sheets/exercise-and-activity-for-weight-loss) 
+[^2]: Exercise and activity for weight loss, UF Health, accessed March 22, 2025, [https://ufhealth.org/care-sheets/exercise-and-activity-for-weight-loss](https://ufhealth.org/care-sheets/exercise-and-activity-for-weight-loss) 
  
-[^3]. Healthy Weight \- The Nutrition Source, accessed March 22, 2025, [https://nutritionsource.hsph.harvard.edu/healthy-weight/](https://nutritionsource.hsph.harvard.edu/healthy-weight/) 
+[^3]: Healthy Weight, The Nutrition Source, accessed March 22, 2025, [https://nutritionsource.hsph.harvard.edu/healthy-weight/](https://nutritionsource.hsph.harvard.edu/healthy-weight/) 
  
-[^4]. Key Recommendations \- NHLBI, accessed March 22, 2025, [https://www.nhlbi.nih.gov/health/educational/lose\_wt/recommen.htm](https://www.nhlbi.nih.gov/health/educational/lose\_wt/recommen.htm) 
+[^4]: Key Recommendations, NHLBI, accessed March 22, 2025, [https://www.nhlbi.nih.gov/health/educational/lose\_wt/recommen.htm](https://www.nhlbi.nih.gov/health/educational/lose\_wt/recommen.htm) 
  
-[^5]. Healthy Weight, Weight Management Tips & BMI \- WebMD, accessed March 22, 2025, [https://www.webmd.com/obesity/healthy-weight](https://www.webmd.com/obesity/healthy-weight) 
+[^5]: Healthy Weight, Weight Management Tips & BMI, WebMD, accessed March 22, 2025, [https://www.webmd.com/obesity/healthy-weight](https://www.webmd.com/obesity/healthy-weight) 
  
-[^6]. Weight loss: 6 strategies for success \- Mayo Clinic, accessed March 22, 2025, [https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/weight-loss/art-20047752](https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/weight-loss/art-20047752) 
+[^6]: Weight loss: 6 strategies for success, Mayo Clinic, accessed March 22, 2025, [https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/weight-loss/art-20047752](https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/weight-loss/art-20047752) 
  
-[^7]. Men's Weight Loss: 12 Steps for Fitness Success | Good Health by Hims, accessed March 22, 2025, [https://www.hims.com/blog/mens-weight-loss](https://www.hims.com/blog/mens-weight-loss) 
+[^7]: Men's Weight Loss: 12 Steps for Fitness Success, Good Health by Hims, accessed March 22, 2025, [https://www.hims.com/blog/mens-weight-loss](https://www.hims.com/blog/mens-weight-loss) 
  
-[^8]. The 40 Best Ways to Lose Weight—and Keep It Off \- Men's Health, accessed March 22, 2025, [https://www.menshealth.com/weight-loss/a19536817/weight-loss-tips-1/](https://www.menshealth.com/weight-loss/a19536817/weight-loss-tips-1/) 
+[^8]: The 40 Best Ways to Lose Weight—and Keep It Off, Men's Health, accessed March 22, 2025, [https://www.menshealth.com/weight-loss/a19536817/weight-loss-tips-1/](https://www.menshealth.com/weight-loss/a19536817/weight-loss-tips-1/) 
  
-[^9]. Practical Ways to Lose Weight Working from Home | Obesity Medicine Association, accessed March 22, 2025, [https://obesitymedicine.org/blog/practical-ways-to-lose-weight-working-from-home/](https://obesitymedicine.org/blog/practical-ways-to-lose-weight-working-from-home/) 
+[^9]: Practical Ways to Lose Weight Working from Home, Obesity Medicine Association, accessed March 22, 2025, [https://obesitymedicine.org/blog/practical-ways-to-lose-weight-working-from-home/](https://obesitymedicine.org/blog/practical-ways-to-lose-weight-working-from-home/) 
  
-[^10]. How to lose weight fast: 9 scientific ways to drop fat \- Medical News Today, accessed March 22, 2025, [https://www.medicalnewstoday.com/articles/322345](https://www.medicalnewstoday.com/articles/322345) 
+[^10]: How to lose weight fast: 9 scientific ways to drop fat, Medical News Today, accessed March 22, 2025, [https://www.medicalnewstoday.com/articles/322345](https://www.medicalnewstoday.com/articles/322345) 
  
-[^11]. Science-Backed Tips to Lose Weight Fast and Sustainably \- Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible](https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible) 
+[^11]: Science-Backed Tips to Lose Weight Fast and Sustainably, Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible](https://www.healthline.com/nutrition/how-to-lose-weight-as-fast-as-possible) 
  
-[^12]. How Many Calories Should You Eat per Day to Lose Weight? \- Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/how-many-calories-per-day](https://www.healthline.com/nutrition/how-many-calories-per-day) 
+[^12]: How Many Calories Should You Eat per Day to Lose Weight?, Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/how-many-calories-per-day](https://www.healthline.com/nutrition/how-many-calories-per-day) 
  
-[^13]. 8 Ways to Lose Belly Fat and Live a Healthier Life | Johns Hopkins Medicine, accessed March 22, 2025, [https://www.hopkinsmedicine.org/health/wellness-and-prevention/8-ways-to-lose-belly-fat-and-live-a-healthier-life](https://www.hopkinsmedicine.org/health/wellness-and-prevention/8-ways-to-lose-belly-fat-and-live-a-healthier-life) 
+[^13]: 8 Ways to Lose Belly Fat and Live a Healthier Life, Johns Hopkins Medicine, accessed March 22, 2025, [https://www.hopkinsmedicine.org/health/wellness-and-prevention/8-ways-to-lose-belly-fat-and-live-a-healthier-life](https://www.hopkinsmedicine.org/health/wellness-and-prevention/8-ways-to-lose-belly-fat-and-live-a-healthier-life) 
  
-[^14]. Tips to Set and Achieve Long-Term Weight Loss Goals \- WebMD, accessed March 22, 2025, [https://www.webmd.com/obesity/losing-weight-long-term](https://www.webmd.com/obesity/losing-weight-long-term) 
+[^14]: Tips to Set and Achieve Long-Term Weight Loss Goals, WebMD, accessed March 22, 2025, [https://www.webmd.com/obesity/losing-weight-long-term](https://www.webmd.com/obesity/losing-weight-long-term) 
  
-[^15]. Rice and Weight Loss: What You Need to Know | Juniper, accessed March 22, 2025, [https://www.myjuniper.co.uk/articles/is-rice-good-for-weight-loss](https://www.myjuniper.co.uk/articles/is-rice-good-for-weight-loss) 
+[^15]: Rice and Weight Loss: What You Need to Know, Juniper, accessed March 22, 2025, [https://www.myjuniper.co.uk/articles/is-rice-good-for-weight-loss](https://www.myjuniper.co.uk/articles/is-rice-good-for-weight-loss) 
  
-[^16]. Eat Rice To Prevent Obesity, Says Study. Choose From These 4 Varieties To Lose Weight, accessed March 22, 2025, [https://www.netmeds.com/health-library/post/eat-rice-to-prevent-obesity-says-study-choose-from-these-4-varieties-to-lose-weight](https://www.netmeds.com/health-library/post/eat-rice-to-prevent-obesity-says-study-choose-from-these-4-varieties-to-lose-weight) 
+[^16]: Eat Rice To Prevent Obesity, Says Study. Choose From These 4 Varieties To Lose Weight, accessed March 22, 2025, [https://www.netmeds.com/health-library/post/eat-rice-to-prevent-obesity-says-study-choose-from-these-4-varieties-to-lose-weight](https://www.netmeds.com/health-library/post/eat-rice-to-prevent-obesity-says-study-choose-from-these-4-varieties-to-lose-weight) 
  
-[^17]. Is rice good for weight loss? \- January AI, accessed March 22, 2025, [https://www.january.ai/blog/is-rice-good-for-weight-loss](https://www.january.ai/blog/is-rice-good-for-weight-loss) 
+[^17]: Is rice good for weight loss?, January AI, accessed March 22, 2025, [https://www.january.ai/blog/is-rice-good-for-weight-loss](https://www.january.ai/blog/is-rice-good-for-weight-loss) 
  
-[^18]. Is Rice High in Calories or Weight-Loss-Friendly? \- Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/rice-and-weight](https://www.healthline.com/nutrition/rice-and-weight) 
+[^18]: Is Rice High in Calories or Weight-Loss-Friendly?, Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/rice-and-weight](https://www.healthline.com/nutrition/rice-and-weight) 
  
-[^19]. morning tea, lunch, afternoon tea, dinner, night tea, and a midnight snack. In here you can learn about the Guangzhou citizens' dietary habits., accessed March 22, 2025, [https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/dietaryhabits/](https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/dietaryhabits/) 
+[^19]: morning tea, lunch, afternoon tea, dinner, night tea, and a midnight snack. In here you can learn about the Guangzhou citizens' dietary habits., accessed March 22, 2025, [https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/dietaryhabits/](https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/dietaryhabits/) 
  
-[^20]. Guangzhou (Canton) Cuisine | Encyclopedia.com, accessed March 22, 2025, [https://www.encyclopedia.com/food/encyclopedias-almanacs-transcripts-and-maps/guangzhou-canton-cuisine](https://www.encyclopedia.com/food/encyclopedias-almanacs-transcripts-and-maps/guangzhou-canton-cuisine) 
+[^20]: Guangzhou (Canton) Cuisine, Encyclopedia.com, accessed March 22, 2025, [https://www.encyclopedia.com/food/encyclopedias-almanacs-transcripts-and-maps/guangzhou-canton-cuisine](https://www.encyclopedia.com/food/encyclopedias-almanacs-transcripts-and-maps/guangzhou-canton-cuisine) 
  
-[^21]. 8 Best Cantonese Food (Yue Cuisine), What to Eat in Guangzhou \- China Discovery, accessed March 22, 2025, [https://www.chinadiscovery.com/guangdong/guangzhou/cantonese-cuisine.html](https://www.chinadiscovery.com/guangdong/guangzhou/cantonese-cuisine.html) 
+[^21]: 8 Best Cantonese Food (Yue Cuisine), What to Eat in Guangzhou, China Discovery, accessed March 22, 2025, [https://www.chinadiscovery.com/guangdong/guangzhou/cantonese-cuisine.html](https://www.chinadiscovery.com/guangdong/guangzhou/cantonese-cuisine.html) 
  
-[^22]. Guangzhou Cuisine, accessed March 22, 2025, [https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/](https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/) 
+[^22]: Guangzhou Cuisine, accessed March 22, 2025, [https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/](https://www.gz.gov.cn/guangzhouinternational/visitors/whattodine/) 
  
-[^23]. The 6 tips you need to help you master portion control \- LCMC Health, accessed March 22, 2025, [https://www.lcmchealth.org/university-medical-center-new-orleans/blog/2024/november/the-6-tips-you-need-to-help-you-master-portion-c/](https://www.lcmchealth.org/university-medical-center-new-orleans/blog/2024/november/the-6-tips-you-need-to-help-you-master-portion-c/) 
+[^23]: The 6 tips you need to help you master portion control, LCMC Health, accessed March 22, 2025, [https://www.lcmchealth.org/university-medical-center-new-orleans/blog/2024/november/the-6-tips-you-need-to-help-you-master-portion-c/](https://www.lcmchealth.org/university-medical-center-new-orleans/blog/2024/november/the-6-tips-you-need-to-help-you-master-portion-c/) 
  
-[^24]. Portion control for weight loss: 12 tips and more \- Medical News Today, accessed March 22, 2025, [https://www.medicalnewstoday.com/articles/portion-control-for-weight-loss](https://www.medicalnewstoday.com/articles/portion-control-for-weight-loss) 
+[^24]: Portion control for weight loss: 12 tips and more, Medical News Today, accessed March 22, 2025, [https://www.medicalnewstoday.com/articles/portion-control-for-weight-loss](https://www.medicalnewstoday.com/articles/portion-control-for-weight-loss) 
  
-[^25]. 3 Tricks for Better Portion Control \- St. Vincent's Medical Center, accessed March 22, 2025, [https://stvincents.org/about-us/news-press/news-detail?articleId=53004\&publicid=745](https://stvincents.org/about-us/news-press/news-detail?articleId=53004&publicid=745) 
+[^25]: 3 Tricks for Better Portion Control, St. Vincent's Medical Center, accessed March 22, 2025, [https://stvincents.org/about-us/news-press/news-detail?articleId=53004\&publicid=745](https://stvincents.org/about-us/news-press/news-detail?articleId=53004&publicid=745) 
  
-[^26]. 9 Tips to Measure and Control Portion Sizes \- Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/portion-control](https://www.healthline.com/nutrition/portion-control) 
+[^26]: 9 Tips to Measure and Control Portion Sizes, Healthline, accessed March 22, 2025, [https://www.healthline.com/nutrition/portion-control](https://www.healthline.com/nutrition/portion-control) 
  
-[^27]. Portion Size and Weight Loss \- WebMD, accessed March 22, 2025, [https://www.webmd.com/diet/ss/slideshow-serving-sizes?ecd=wnl\_faf\_110420\_CTRLTEST\&ctr=wnl-faf-110420-CTRLTEST\_nsl-LeadModule\_cta\&mb=0ofS930YxguwpYqcPH6hYhXFE73IOX1c3Q4CqYO3v8k%3D](https://www.webmd.com/diet/ss/slideshow-serving-sizes?ecd=wnl_faf_110420_CTRLTEST&ctr=wnl-faf-110420-CTRLTEST_nsl-LeadModule_cta&mb=0ofS930YxguwpYqcPH6hYhXFE73IOX1c3Q4CqYO3v8k%3D) 
+[^27]: Portion Size and Weight Loss, WebMD, accessed March 22, 2025, [https://www.webmd.com/diet/ss/slideshow-serving-sizes?ecd=wnl\_faf\_110420\_CTRLTEST\&ctr=wnl-faf-110420-CTRLTEST\_nsl-LeadModule\_cta\&mb=0ofS930YxguwpYqcPH6hYhXFE73IOX1c3Q4CqYO3v8k%3D](https://www.webmd.com/diet/ss/slideshow-serving-sizes?ecd=wnl_faf_110420_CTRLTEST&ctr=wnl-faf-110420-CTRLTEST_nsl-LeadModule_cta&mb=0ofS930YxguwpYqcPH6hYhXFE73IOX1c3Q4CqYO3v8k%3D) 
  
-[^28]. Mindfulness: A Lasting Approach to Healthy Eating | Kaiser Permanente, accessed March 22, 2025, [https://about.kaiserpermanente.org/health-and-wellness/health-tips/mindfulness-a-lasting-approach-to-healthy-eating](https://about.kaiserpermanente.org/health-and-wellness/health-tips/mindfulness-a-lasting-approach-to-healthy-eating) 
+[^28]: Mindfulness: A Lasting Approach to Healthy Eating, Kaiser Permanente, accessed March 22, 2025, [https://about.kaiserpermanente.org/health-and-wellness/health-tips/mindfulness-a-lasting-approach-to-healthy-eating](https://about.kaiserpermanente.org/health-and-wellness/health-tips/mindfulness-a-lasting-approach-to-healthy-eating) 
  
-[^29]. Mindful Eating \- The Nutrition Source, accessed March 22, 2025, [https://nutritionsource.hsph.harvard.edu/mindful-eating/](https://nutritionsource.hsph.harvard.edu/mindful-eating/) 
+[^29]: Mindful Eating, The Nutrition Source, accessed March 22, 2025, [https://nutritionsource.hsph.harvard.edu/mindful-eating/](https://nutritionsource.hsph.harvard.edu/mindful-eating/) 
  
-[^30]. How To Start a Mindful Eating Practice \- Massachusetts General Hospital, accessed March 22, 2025, [https://www.massgeneral.org/news/start-mindful-eating-practice](https://www.massgeneral.org/news/start-mindful-eating-practice) 
+[^30]: How To Start a Mindful Eating Practice, Massachusetts General Hospital, accessed March 22, 2025, [https://www.massgeneral.org/news/start-mindful-eating-practice](https://www.massgeneral.org/news/start-mindful-eating-practice) 
  
-[^31]. Does Mindful Eating Help with Weight Loss? \- UNH Extension, accessed March 22, 2025, [https://extension.unh.edu/blog/2022/09/does-mindful-eating-help-weight-loss](https://extension.unh.edu/
+[^31]: Does Mindful Eating Help with Weight Loss?, UNH Extension, accessed March 22, 2025, [https://extension.unh.edu/blog/2022/09/does-mindful-eating-help-weight-loss](https://extension.unh.edu/
