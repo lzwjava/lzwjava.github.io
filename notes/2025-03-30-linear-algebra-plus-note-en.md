@@ -146,3 +146,22 @@ The statement describes the behavior of the matrix as a linear transformation. L
 
 This behavior is a fundamental aspect of linear transformations and highlights how matrices can reduce the dimensionality of the space they act upon.
 
+---
+
+To determine which option is necessary for a matrix to be diagonalizable, I'll examine each statement.
+
+A square matrix A is diagonalizable if and only if there exists an invertible matrix P such that P⁻¹AP is a diagonal matrix. This happens precisely when A has a complete set of linearly independent eigenvectors.
+
+Let's analyze each option:
+
+a) The matrix must have at least one eigenvalue.
+While all n×n matrices have at least one eigenvalue (in the complex field), this alone doesn't guarantee diagonalizability. A matrix could have eigenvalues but still not be diagonalizable if it doesn't have enough linearly independent eigenvectors.
+
+b) The matrix must have distinct eigenvalues.
+Having distinct eigenvalues is sufficient but not necessary for diagonalizability. A matrix with repeated eigenvalues can still be diagonalizable if it has enough linearly independent eigenvectors associated with those repeated eigenvalues.
+
+c) The matrix must have enough linearly independent eigenvectors.
+This is exactly the necessary and sufficient condition for diagonalizability. Specifically, an n×n matrix is diagonalizable if and only if it has n linearly independent eigenvectors, forming a basis for the vector space.
+
+Therefore, option c) is the correct answer: a matrix is diagonalizable if and only if it has enough linearly independent eigenvectors.
+
