@@ -44,3 +44,5 @@ translated: false
 - Don't borrow money to invest; save money instead. Regular investing takes years to generate profit, and anything can happen in the market. Money that is due soon won't help you invest for the long term. If a bad situation arises and you have to liquidate your investments to repay the money, you will probably incur a significant loss.
 
 - The key to regular investing is accumulating a significant volume of investments and identifying the right trends. It is better to invest more capital during the later phases. Avoid increasing investments during bull markets, as a downturn may follow in the subsequent months, which would undermine the principle of regular investing. If you continue to invest during downturns, whether they last months or years, you will achieve a more favorable average entry price.
+
+- Borrowing money to invest has another problem: it generates interest. For example, a 10% yearly interest rate means you need to gain at least 5% on your investment just to cover the expense. This makes investing harder, especially during downturns.
