@@ -1,5 +1,6 @@
 import os
 import re
+import time
 from generate_notes_link import generate_notes_links
 
 
@@ -26,6 +27,20 @@ def count_links_in_notes_md():
         print(f"Error counting links in notes markdown file: {e}")
         return 0
 
+def check_last_modified_time():
+    # Check when the notes markdown file was last modified
+    file_path = os.path.join('original', '2025-01-11-notes-en.md')
+    try:
+        mod_time = os.path.getmtime(file_path)
+        current_time = time.time()
+        hours_since_modified = (current_time - mod_time) / 3600  # Convert seconds to hours
+        
+        print(f"Hours since last modification: {hours_since_modified:.2f}")
+        return hours_since_modified > 2  # Return True if more than 2 hours have passed
+    except Exception as e:
+        print(f"Error checking modification time: {e}")
+        return True  # Default to True if there's an error
+
 def main():
     notes_count = count_notes_files()
     links_count = count_links_in_notes_md()
@@ -33,11 +48,11 @@ def main():
     print(f"Notes files count: {notes_count}")
     print(f"Links count in markdown: {links_count}")
     
-    if notes_count != links_count:
-        print("Notes files count and links count don't match, regenerating notes links.")
+    if notes_count != links_count and check_last_modified_time():
+        print("Notes files count and links count don't match and last modification was more than 2 hours ago, regenerating notes links.")
         generate_notes_links()
     else:
-        print("Notes files count and links count match, skipping notes link regeneration.")
+        print("Skipping notes link regeneration.")
 
 if __name__ == "__main__":
     main()
