@@ -1,19 +1,19 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: zh
 layout: post
-title: 纽约时报新闻（CN）文章更新触发
+title: NYTimes新闻（CN）文章更新触发器
 translated: true
 ---
 
-点击下面的按钮更新 [NYTimes CN 文章](./nytimes-en)。
+点击下方按钮以更新 [NYTimes CN 文章](./notes/2025-03-14-nytimes-en)。
 
 <script async src="../assets/js/nytimes.js"></script>
 
-<div class="nytimes"></div>
+<div class="nytimes" ></div>
 
-此页面允许您触发更新 NYTimes CN 文章。点击按钮将启动一个工作流程，获取最新文章，翻译它们，并更新此站点的内容。请注意，更新触发后可能需要几分钟才能看到更改。
+此页面允许您触发更新 NYTimes CN 文章。点击按钮将启动一个工作流，获取最新文章，翻译它们，并更新本站内容。请注意，更新触发后可能需要几分钟才能看到变更。
 
 Python 代码：
 
@@ -54,7 +54,7 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
 
     try:
         print(f"使用模型调用 Mistral API: {model}")
-        print(f"发送的提示: {prompt[:1000]}...")  # 打印提示的前 100 个字符
+        print(f"发送的提示: {prompt[:1000]}...")  # 打印提示的前 1000 个字符
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
@@ -76,7 +76,7 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
 def fetch_html_content(url):
     """获取给定 URL 的 HTML 内容。"""
     try:
-        # 创建一个未验证的 SSL 上下文
+        # 创建未验证的 SSL 上下文
         context = ssl._create_unverified_context()
         print(f"从 {url} 获取 HTML 内容")
         response = requests.get(url, verify=False)
@@ -88,7 +88,7 @@ def fetch_html_content(url):
         return None
 
 def extract_links(html):
-    """从 cn.nytimes.com 的主页中提取链接。"""
+    """从 cn.nytimes.com 主页提取链接。"""
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     for a in soup.find_all('a', href=True):
@@ -98,7 +98,7 @@ def extract_links(html):
                 'url': url,
                 'text': a.text.strip()
             })
-    print(f"从主页中提取了 {len(links)} 个链接。")
+    print(f"从主页提取了 {len(links)} 个链接。")
     return links
 
 def translate_title(title):
@@ -115,7 +115,7 @@ def translate_title(title):
         raise Exception(f"翻译标题失败: {title}")
 
 def summarize_article(html):
-    """使用 Mistral API 总结文章内容（英文）。"""
+    """使用 Mistral API 总结文章内容，以英文输出。"""
     soup = BeautifulSoup(html, 'html.parser')
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else ''
@@ -138,12 +138,12 @@ def summarize_article(html):
     summary = call_mistral_api(prompt)
 
     if summary:
-        # 通过删除类似 "Summary:" 的前导短语来清理总结
+        # 清理总结，移除前导的 "Summary:" 或类似短语
         summary = summary.replace("Summary:", "").strip()
         print(f"生成的总结: {summary}")
         return title, summary
     else:
-        print(f"生成标题总结失败: {title}")
+        print(f"为标题生成总结失败: {title}")
         return None, None
 
 def generate_markdown_list(articles):
@@ -168,36 +168,36 @@ def update_markdown_file(filename, markdown_content):
             existing_content = f.read()
 
         # 查找初始元数据后内容的起始和结束位置
-        start_index = existing_content.find('---', 3) + 4  # 查找第二个 '---' 并移动过去
+        start_index = existing_content.find('---', 3) + 4  # 查找第二个 '---' 并移动到其后面
         end_index = len(existing_content)
 
-        # 构造更新后的内容
+        # 构建更新后的内容
         updated_content = existing_content[:start_index].strip() + '\n\n'  # 保留元数据并添加换行符
         updated_content += markdown_content.strip() + '\n'  # 添加新的 Markdown 列表
-        # updated_content += existing_content[end_index:].strip() # 如果存在，则追加列表后的任何内容
+        # updated_content += existing_content[end_index:].strip() # 如果存在，追加列表后的任何内容
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(updated_content)
         print(f"成功更新 {filename}")
         markdown_changed = existing_content != updated_content
-        print(f"Markdown 更改: {markdown_changed}")
+        print(f"Markdown 已更改: {markdown_changed}")
         return markdown_changed
     except Exception as e:
         print(f"更新 {filename} 时出错: {e}")
         return False
 
 def main():
-    """主函数以获取、处理和更新 Markdown 文件。"""
+    """主函数，用于获取、处理和更新 Markdown 文件。"""
     nytimes_url = 'https://m.cn.nytimes.com'
     print(f'从 {nytimes_url} 获取 NYTimes 链接')
 
     html_content = fetch_html_content(nytimes_url)
     if not html_content:
-        print("无法获取主页内容。")
+        print("获取主页内容失败。")
         return
 
     links = extract_links(html_content)
-    print(f'在主页上找到 {len(links)} 个链接。提取链接...')
+    print(f'在主页上找到 {len(links)} 个链接。正在提取链接...')
 
     all_articles = []
     for i, link in enumerate(links):
@@ -208,7 +208,7 @@ def main():
             else:
                 url = url + 'dual/'
 
-        print(f'处理链接 {i + 1} 共 {len(links)}: {url}')
+        print(f'处理链接 {i + 1} 共 {len(links)} 个: {url}')
         article_html = fetch_html_content(url)
         if article_html:
             title, summary = summarize_article(article_html)
@@ -226,7 +226,7 @@ def main():
         print("Markdown 文件已更新为新链接。")
         sys.exit(0)
     else:
-        print("Markdown 文件未更新（无更改）。")
+        print("Markdown 文件未更新（无变更）。")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -256,14 +256,14 @@ if (nytimesDiv) {
         })
         .then(response => {
             if (response.status === 204) {
-                alert('更新触发成功！请等待几分钟查看结果。');
+                alert('更新已成功触发！请等待几分钟查看结果。');
             } else {
                 alert(`更新失败。状态码: ${response.status}`);
                 console.error('更新失败:', response);
             }
         })
         .catch(error => {
-            alert('更新失败。请检查控制台错误。');
+            alert('更新失败。请检查控制台以获取错误。');
             console.error('触发更新时出错:', error);
         });
     });

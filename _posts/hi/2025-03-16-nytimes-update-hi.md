@@ -1,19 +1,19 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: hi
 layout: post
-title: न्यूयॉर्क टाइम्स समाचार (सीएन) लेख अपडेट ट्रिगर
+title: न्यूज़ आर्टिकल्स अपडेट ट्रिगर
 translated: true
 ---
 
-नीचे दिए गए बटन पर क्लिक करें [NYTimes CN लेखों](./nytimes-en) को अपडेट करने के लिए।
+नीचे दिए गए बटन पर क्लिक करके [NYTimes CN लेखों](./notes/2025-03-14-nytimes-en) को अपडेट करें।
 
 <script async src="../assets/js/nytimes.js"></script>
 
 <div class="nytimes" ></div>
 
-इस पेज पर आप NYTimes CN लेखों को अपडेट करने के लिए एक कार्यक्रम शुरू कर सकते हैं। बटन पर क्लिक करने से एक कार्यक्रम शुरू होगा जो नवीनतम लेखों को फेटच करता है, उन्हें अनुवाद करता है, और इस साइट पर सामग्री को अपडेट करता है। कृपया ध्यान दें कि अपडेट ट्रिगर होने के बाद कुछ मिनट लग सकते हैं ताकि परिवर्तन दिखाई दें।
+यह पृष्ठ आपको NYTimes CN लेखों को अपडेट करने की अनुमति देता है। बटन पर क्लिक करने से एक वर्कफ़्लो शुरू होगा जो नवीनतम लेखों को प्राप्त करता है, उन्हें अनुवादित करता है, और इस साइट पर सामग्री को अपडेट करता है। कृपया ध्यान दें कि अपडेट ट्रिगर करने के बाद परिवर्तनों को दिखाई देने में कुछ मिनट लग सकते हैं।
 
 Python कोड:
 
@@ -29,7 +29,7 @@ import sys
 load_dotenv()
 
 def call_mistral_api(prompt, model="mistral-small-2501"):
-    """Mistral API को कॉल करता है ताकि पाठ अनुवाद किया जा सके।"""
+    """Mistral API को टेक्स्ट अनुवादित करने के लिए कॉल करता है।"""
     api_key = os.environ.get("MISTRAL_API_KEY")
     if not api_key:
         print("Error: MISTRAL_API_KEY पर्यावरण चर नहीं सेट है।")
@@ -53,42 +53,42 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
     }
 
     try:
-        print(f"Calling Mistral API with model: {model}")
-        print(f"Prompt being sent: {prompt[:1000]}...")  # Print the first 100 characters of the prompt
+        print(f"Mistral API को मॉडल के साथ कॉल किया जा रहा है: {model}")
+        print(f"प्रोम्प्ट भेजा जा रहा है: {prompt[:1000]}...")  # प्रोम्प्ट के पहले 1000 अक्षरों को प्रिंट करें
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
-        print(f"Mistral API Response: {response_json}")
+        print(f"Mistral API प्रतिक्रिया: {response_json}")
         if response_json and response_json['choices']:
             content = response_json['choices'][0]['message']['content']
-            print(f"Mistral API Content: {content}")
+            print(f"Mistral API सामग्री: {content}")
             return content
         else:
-            print(f"Mistral API Error: Invalid response format: {response_json}")
+            print(f"Mistral API त्रुटि: अमान्य प्रतिक्रिया प्रारूप: {response_json}")
             return None
     except requests.exceptions.RequestException as e:
-        print(f"Mistral API Error: {e}")
+        print(f"Mistral API त्रुटि: {e}")
         if e.response:
-            print(f"Response status code: {e.response.status_code}")
-            print(f"Response content: {e.response.text}")
+            print(f"प्रतिक्रिया स्थिति कोड: {e.response.status_code}")
+            print(f"प्रतिक्रिया सामग्री: {e.response.text}")
         return None
 
 def fetch_html_content(url):
-    """एक दिए गए URL से HTML सामग्री फेटच करता है।"""
+    """एक दिए गए URL से HTML सामग्री प्राप्त करता है।"""
     try:
-        # एक अनवेरिफाइड SSL सांकेत बनाएं
+        # एक अनवेरिफाइड SSL कॉन्टेक्स्ट बनाएं
         context = ssl._create_unverified_context()
-        print(f"Fetching HTML content from: {url}")
+        print(f"HTML सामग्री प्राप्त की जा रही है: {url}")
         response = requests.get(url, verify=False)
-        response.raise_for_status()  # Raise HTTPError for bad responses (4xx or 5xx)
-        print(f"Successfully fetched HTML content from: {url}")
+        response.raise_for_status()  # बुरे प्रतिक्रियाओं (4xx या 5xx) के लिए HTTPError उठाएं
+        print(f"HTML सामग्री सफलतापूर्वक प्राप्त की गई: {url}")
         return response.text
     except requests.exceptions.RequestException as e:
-        print(f"Could not fetch URL: {url} - {e}")
+        print(f"URL प्राप्त नहीं किया जा सका: {url} - {e}")
         return None
 
 def extract_links(html):
-    """cn.nytimes.com के मुख्य पेज से लिंक्स निकालता है।"""
+    """cn.nytimes.com के मुख्य पृष्ठ से लिंक निकालता है।"""
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     for a in soup.find_all('a', href=True):
@@ -98,30 +98,30 @@ def extract_links(html):
                 'url': url,
                 'text': a.text.strip()
             })
-    print(f"Extracted {len(links)} links from main page.")
+    print(f"मुख्य पृष्ठ से {len(links)} लिंक निकाले गए।")
     return links
 
 def translate_title(title):
-    """Mistral का उपयोग करके चीनी से अंग्रेजी में शीर्षक अनुवाद करता है"""
-    base_prompt = "Translate the following title to {target_language}. Provide only the translated title, without any additional notes or explanations. Do not repeat or mention the input text.\n"
+    """Mistral का उपयोग करके चीनी से अंग्रेजी में शीर्षक अनुवादित करता है"""
+    base_prompt = "निम्नलिखित शीर्षक को {target_language} में अनुवादित करें। केवल अनुवादित शीर्षक प्रदान करें, बिना किसी अतिरिक्त नोट्स या व्याख्याओं के। इनपुट टेक्स्ट को दोहराएं या उल्लेख न करें।\n"
     prompt = base_prompt.format(target_language="English") + f"{title}"
-    print(f"Translating title: {title}")
+    print(f"शीर्षक अनुवादित किया जा रहा है: {title}")
     translated_title = call_mistral_api(prompt)
     if translated_title:
         translated_title = translated_title.strip()
-        print(f"Translated title: {translated_title}")
+        print(f"अनुवादित शीर्षक: {translated_title}")
         return translated_title
     else:
-        raise Exception(f"Failed to translate title: {title}")
+        raise Exception(f"शीर्षक अनुवादित नहीं किया जा सका: {title}")
 
 def summarize_article(html):
-    """Mistral API का उपयोग करके अंग्रेजी में लेख सामग्री सारांश करता है।"""
+    """Mistral API का उपयोग करके अंग्रेजी में लेख सामग्री का सारांश बनाता है।"""
     soup = BeautifulSoup(html, 'html.parser')
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else ''
-    print(f"Extracted title: {title}")
+    print(f"शीर्षक निकाला गया: {title}")
 
-    # मुख्य लेख पाठ निकालें
+    # मुख्य लेख टेक्स्ट निकालें
     article_area = soup.find('div', class_='article-area')
     if article_area:
         article_text = article_area.get_text(separator='\n', strip=True)
@@ -129,75 +129,75 @@ def summarize_article(html):
         article_text = None
 
     if not article_text:
-        print("Could not extract article text.")
+        print("लेख टेक्स्ट निकाल नहीं सका।")
         return None, None
 
-    # Mistral के लिए सारांश बनाने के लिए एक प्रॉम्प बनाएं
-    prompt = f"Summarize the following article in English, focusing on the main points and avoiding introductory phrases like 'Summary:' or 'This article is about:'.\n\n{article_text[:30000]}\n\n"  # Limit article text to 30000 characters
-    print(f"Creating summary for title: {title}")
+    # Mistral के लिए सारांश बनाने के लिए एक प्रोम्प्ट बनाएं
+    prompt = f"निम्नलिखित लेख का अंग्रेजी में सारांश बनाएं, मुख्य बिंदुओं पर ध्यान केंद्रित करते हुए और 'Summary:' या 'This article is about:' जैसे परिचयात्मक वाक्यों से बचें।\n\n{article_text[:30000]}\n\n"  # लेख टेक्स्ट को 30000 अक्षरों तक सीमित करें
+    print(f"शीर्षक के लिए सारांश बनाया जा रहा है: {title}")
     summary = call_mistral_api(prompt)
 
     if summary:
-        # सारांश को "Summary:" या समान वाक्यों को हटाकर साफ करें
+        # सारांश को 'Summary:' या समान वाक्यों को हटाकर साफ करें
         summary = summary.replace("Summary:", "").strip()
-        print(f"Generated summary: {summary}")
+        print(f"सारांश बनाया गया: {summary}")
         return title, summary
     else:
-        print(f"Failed to generate summary for title: {title}")
+        print(f"शीर्षक के लिए सारांश बनाना विफल रहा: {title}")
         return None, None
 
 def generate_markdown_list(articles):
     """एक लेख सारांशों की सूची से एक Markdown सूची बनाता है।"""
     if not articles:
-        return '* No articles found.\n'
+        return '* कोई लेख नहीं मिला।\n'
 
     markdown_list = ''
     for article in articles:
         title, summary = article
         translated_title = translate_title(title)
         markdown_list += f'## {translated_title}\n\n{summary}\n\n'
-    print("Generated Markdown list.")
+    print("Markdown सूची बनाई गई।")
     return markdown_list
 
 def update_markdown_file(filename, markdown_content):
-    """एक दिए गए सामग्री के साथ एक Markdown फ़ाइल अपडेट करता है।"""
+    """दिए गए सामग्री के साथ एक Markdown फ़ाइल को अपडेट करता है।"""
     try:
-        # फ़ाइल की मौजूदा सामग्री पढ़ें
-        print(f"Reading existing content from {filename}")
+        # फ़ाइल के मौजूदा सामग्री को पढ़ें
+        print(f"{filename} से मौजूदा सामग्री पढ़ी जा रही है")
         with open(filename, 'r', encoding='utf-8') as f:
             existing_content = f.read()
 
-        # प्रारंभिक मेटाडेटा के बाद सामग्री की शुरुआत और अंत की स्थिति पाएं
-        start_index = existing_content.find('---', 3) + 4  # दूसरा '---' पाएं और उससे आगे बढ़ें
+        # प्रारंभिक मेटाडेटा के बाद सामग्री के शुरू और अंत के स्थानों को ढूँढें
+        start_index = existing_content.find('---', 3) + 4  # दूसरे '---' को ढूँढें और उसके आगे बढ़ें
         end_index = len(existing_content)
 
-        # अपडेट सामग्री बनाएं
-        updated_content = existing_content[:start_index].strip() + '\n\n'  # मेटाडेटा रखें और एक नया लाइन जोड़ें
-        updated_content += markdown_content.strip() + '\n'  # नया Markdown सूची जोड़ें
-        # updated_content += existing_content[end_index:].strip() # सूची के बाद कुछ भी जोड़ें, अगर मौजूद है
+        # अपडेटेड सामग्री का निर्माण करें
+        updated_content = existing_content[:start_index].strip() + '\n\n'  # मेटाडेटा को रखें और एक नया लाइन जोड़ें
+        updated_content += markdown_content.strip() + '\n'  # नई मार्कडाउन सूची जोड़ें
+        # updated_content += existing_content[end_index:].strip() # अगर सूची के बाद कुछ भी मौजूद है, तो उसे जोड़ें
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(updated_content)
-        print(f"Successfully updated {filename}")
+        print(f"{filename} सफलतापूर्वक अपडेट किया गया")
         markdown_changed = existing_content != updated_content
-        print(f"Markdown changed: {markdown_changed}")
+        print(f"Markdown बदल गया: {markdown_changed}")
         return markdown_changed
     except Exception as e:
-        print(f"Error updating {filename}: {e}")
+        print(f"{filename} अपडेट करने में त्रुटि: {e}")
         return False
 
 def main():
-    """Markdown फ़ाइल को फेटच, प्रोसेस, और अपडेट करने के लिए मुख्य फ़ंक्शन।"""
+    """Markdown फ़ाइल को प्राप्त, प्रोसेस और अपडेट करने के लिए मुख्य फ़ंक्शन।"""
     nytimes_url = 'https://m.cn.nytimes.com'
-    print(f'Fetching NYTimes links from: {nytimes_url}')
+    print(f'NYTimes लिंक प्राप्त किए जा रहे हैं: {nytimes_url}')
 
     html_content = fetch_html_content(nytimes_url)
     if not html_content:
-        print("Failed to fetch main page content.")
+        print("मुख्य पृष्ठ सामग्री प्राप्त नहीं की जा सकी।")
         return
 
     links = extract_links(html_content)
-    print(f'Found {len(links)} links on main page. Extracting links...')
+    print(f'मुख्य पृष्ठ पर {len(links)} लिंक मिले। लिंक निकाल रहे हैं...')
 
     all_articles = []
     for i, link in enumerate(links):
@@ -208,14 +208,14 @@ def main():
             else:
                 url = url + 'dual/'
 
-        print(f'Processing link {i + 1} of {len(links)}: {url}')
+        print(f'लिंक {i + 1} को प्रोसेस किया जा रहा है {len(links)}: {url}')
         article_html = fetch_html_content(url)
         if article_html:
             title, summary = summarize_article(article_html)
             if title and summary:
                 all_articles.append((title, summary))
         else:
-            print(f'Failed to fetch content from {link["url"]}')
+            print(f'{link["url"]} से सामग्री प्राप्त नहीं की जा सकी')
 
     markdown_list = generate_markdown_list(all_articles)
 
@@ -223,24 +223,24 @@ def main():
     markdown_changed = update_markdown_file(filename, markdown_list)
 
     if markdown_changed:
-        print("The Markdown file was updated with new links.")
+        print("Markdown फ़ाइल नई लिंक के साथ अपडेट की गई।")
         sys.exit(0)
     else:
-        print("The Markdown file was not updated (no changes).")
+        print("Markdown फ़ाइल अपडेट नहीं की गई (कोई परिवर्तन नहीं)।")
         sys.exit(1)
 
 if __name__ == "__main__":
     main()
 ```
 
-Frontend कोड:
+फ्रंटएंड कोड:
 
 ```javascript
 const nytimesDiv = document.querySelector('.nytimes');
 
 if (nytimesDiv) {
     const updateButton = document.createElement('button');
-    updateButton.textContent = 'Update NYTimes Articles';
+    updateButton.textContent = 'NYTimes लेख अपडेट करें';
     nytimesDiv.appendChild(updateButton);
 
     updateButton.addEventListener('click', () => {
@@ -256,18 +256,18 @@ if (nytimesDiv) {
         })
         .then(response => {
             if (response.status === 204) {
-                alert('Update triggered successfully! Please wait a few minutes to see the result.');
+                alert('अपडेट सफलतापूर्वक ट्रिगर किया गया! परिणाम देखने के लिए कुछ मिनट प्रतीक्षा करें।');
             } else {
-                alert(`Update failed. Status code: ${response.status}`);
-                console.error('Update failed:', response);
+                alert(`अपडेट विफल रहा। स्थिति कोड: ${response.status}`);
+                console.error('अपडेट विफल रहा:', response);
             }
         })
         .catch(error => {
-            alert('Update failed. Check the console for errors.');
-            console.error('Error triggering update:', error);
+            alert('अपडेट विफल रहा। त्रुटियों के लिए कंसोल देखें।');
+            console.error('अपडेट ट्रिगर करने में त्रुटि:', error);
         });
     });
 } else {
-    console.error("nytimes div not found!");
+    console.error("nytimes div नहीं मिला!");
 }
 ```

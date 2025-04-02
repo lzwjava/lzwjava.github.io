@@ -1,19 +1,19 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: hant
 layout: post
-title: NYTimes新聞（CN）文章更新觸發
+title: 《紐約時報新聞（中文）文章更新觸發》
 translated: true
 ---
 
-點擊下面的按鈕以更新 [NYTimes CN 文章](./nytimes-en)。
+點擊下方按鈕以更新 [NYTimes CN 文章](./notes/2025-03-14-nytimes-en)。
 
 <script async src="../assets/js/nytimes.js"></script>
 
 <div class="nytimes" ></div>
 
-本頁面允許您觸發更新 NYTimes CN 文章。點擊按鈕將啟動一個工作流程，該工作流程會獲取最新的文章，將其翻譯並更新本網站的內容。請注意，更新觸發後可能需要幾分鐘的時間才能看到變更。
+此頁面允許您觸發更新 NYTimes CN 文章。點擊按鈕將啟動一個工作流程，該流程會獲取最新文章、翻譯它們並更新本網站的內容。請注意，更新觸發後可能需要幾分鐘才能看到變更。
 
 Python 程式碼：
 
@@ -32,7 +32,7 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
     """呼叫 Mistral API 以翻譯文字。"""
     api_key = os.environ.get("MISTRAL_API_KEY")
     if not api_key:
-        print("錯誤：MISTRAL_API_KEY 環境變數未設定。")
+        print("錯誤：MISTRAL_API_KEY 環境變量未設定。")
         return None
 
     url = "https://api.mistral.ai/v1/chat/completions"
@@ -53,38 +53,38 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
     }
 
     try:
-        print(f"呼叫 Mistral API 使用模型：{model}")
-        print(f"發送的提示：{prompt[:1000]}...")  # 打印提示的前 100 个字符
+        print(f"使用模型呼叫 Mistral API: {model}")
+        print(f"發送的提示: {prompt[:1000]}...")  # 打印提示的前 1000 個字符
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
-        print(f"Mistral API 回應：{response_json}")
+        print(f"Mistral API 回應: {response_json}")
         if response_json and response_json['choices']:
             content = response_json['choices'][0]['message']['content']
-            print(f"Mistral API 內容：{content}")
+            print(f"Mistral API 內容: {content}")
             return content
         else:
-            print(f"Mistral API 錯誤：無效的回應格式：{response_json}")
+            print(f"Mistral API 錯誤: 無效的回應格式: {response_json}")
             return None
     except requests.exceptions.RequestException as e:
-        print(f"Mistral API 錯誤：{e}")
+        print(f"Mistral API 錯誤: {e}")
         if e.response:
-            print(f"回應狀態碼：{e.response.status_code}")
-            print(f"回應內容：{e.response.text}")
+            print(f"回應狀態碼: {e.response.status_code}")
+            print(f"回應內容: {e.response.text}")
         return None
 
 def fetch_html_content(url):
     """獲取給定 URL 的 HTML 內容。"""
     try:
-        # 創建一個未驗證的 SSL 上下文
+        # 創建未驗證的 SSL 上下文
         context = ssl._create_unverified_context()
-        print(f"從 {url} 获取 HTML 內容")
+        print(f"從 {url} 获取 HTML 内容")
         response = requests.get(url, verify=False)
-        response.raise_for_status()  # 為壞回應（4xx 或 5xx）引發 HTTPError
-        print(f"成功從 {url} 获取 HTML 內容")
+        response.raise_for_status()  # 為錯誤回應 (4xx 或 5xx) 提升 HTTPError
+        print(f"成功從 {url} 获取 HTML 内容")
         return response.text
     except requests.exceptions.RequestException as e:
-        print(f"無法獲取 URL：{url} - {e}")
+        print(f"無法獲取 URL: {url} - {e}")
         return None
 
 def extract_links(html):
@@ -102,26 +102,26 @@ def extract_links(html):
     return links
 
 def translate_title(title):
-    """使用 Mistral 將標題從中文翻譯成英文"""
-    base_prompt = "將以下標題翻譯成 {target_language}。僅提供翻譯後的標題，不附加任何說明或解釋。不重複或提及輸入文本。\n"
+    """使用 Mistral 將標題從中文翻譯成英文。"""
+    base_prompt = "將以下標題翻譯成 {target_language}。僅提供翻譯後的標題，不附加任何說明或解釋。不要重複或提及輸入文字。\n"
     prompt = base_prompt.format(target_language="English") + f"{title}"
-    print(f"翻譯標題：{title}")
+    print(f"正在翻譯標題: {title}")
     translated_title = call_mistral_api(prompt)
     if translated_title:
         translated_title = translated_title.strip()
-        print(f"翻譯後的標題：{translated_title}")
+        print(f"翻譯後的標題: {translated_title}")
         return translated_title
     else:
-        raise Exception(f"翻譯標題失敗：{title}")
+        raise Exception(f"無法翻譯標題: {title}")
 
 def summarize_article(html):
     """使用 Mistral API 以英文總結文章內容。"""
     soup = BeautifulSoup(html, 'html.parser')
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else ''
-    print(f"提取標題：{title}")
+    print(f"提取的標題: {title}")
 
-    # 提取主文章文本
+    # 提取主要文章文字
     article_area = soup.find('div', class_='article-area')
     if article_area:
         article_text = article_area.get_text(separator='\n', strip=True)
@@ -129,21 +129,21 @@ def summarize_article(html):
         article_text = None
 
     if not article_text:
-        print("無法提取文章文本。")
+        print("無法提取文章文字。")
         return None, None
 
-    # 創建一個提示，讓 Mistral 進行總結
-    prompt = f"以英文總結以下文章，專注於主要觀點，避免使用類似 'Summary:' 或 'This article is about:' 的引言。\n\n{article_text[:30000]}\n\n"  # 將文章文本限制為 30000 字符
-    print(f"為標題創建總結：{title}")
+    # 為 Mistral 創建總結提示
+    prompt = f"總結以下文章，重點放在主要觀點，避免使用類似 'Summary:' 或 'This article is about:' 的引言。\n\n{article_text[:30000]}\n\n"  # 將文章文字限制為 30000 個字符
+    print(f"為標題創建總結: {title}")
     summary = call_mistral_api(prompt)
 
     if summary:
         # 通過移除前導的 "Summary:" 或類似短語來清理總結
         summary = summary.replace("Summary:", "").strip()
-        print(f"生成的總結：{summary}")
+        print(f"生成的總結: {summary}")
         return title, summary
     else:
-        print(f"生成標題的總結失敗：{title}")
+        print(f"無法為標題生成總結: {title}")
         return None, None
 
 def generate_markdown_list(articles):
@@ -156,7 +156,7 @@ def generate_markdown_list(articles):
         title, summary = article
         translated_title = translate_title(title)
         markdown_list += f'## {translated_title}\n\n{summary}\n\n'
-    print("生成 Markdown 列表。")
+    print("生成了 Markdown 列表。")
     return markdown_list
 
 def update_markdown_file(filename, markdown_content):
@@ -172,7 +172,7 @@ def update_markdown_file(filename, markdown_content):
         end_index = len(existing_content)
 
         # 构建更新的內容
-        updated_content = existing_content[:start_index].strip() + '\n\n'  # 保留元數據並添加一個新行
+        updated_content = existing_content[:start_index].strip() + '\n\n'  # 保留元數據並添加一個換行符
         updated_content += markdown_content.strip() + '\n'  # 添加新的 Markdown 列表
         # updated_content += existing_content[end_index:].strip() # 如果存在，則附加列表後的任何內容
 
@@ -180,10 +180,10 @@ def update_markdown_file(filename, markdown_content):
             f.write(updated_content)
         print(f"成功更新 {filename}")
         markdown_changed = existing_content != updated_content
-        print(f"Markdown 變更：{markdown_changed}")
+        print(f"Markdown 已更改: {markdown_changed}")
         return markdown_changed
     except Exception as e:
-        print(f"更新 {filename} 錯誤：{e}")
+        print(f"更新 {filename} 錯誤: {e}")
         return False
 
 def main():
@@ -193,11 +193,11 @@ def main():
 
     html_content = fetch_html_content(nytimes_url)
     if not html_content:
-        print("獲取主頁內容失敗。")
+        print("無法獲取主頁內容。")
         return
 
     links = extract_links(html_content)
-    print(f'在主頁上找到 {len(links)} 個鏈接。提取鏈接...')
+    print(f'在主頁上找到 {len(links)} 個鏈接。正在提取鏈接...')
 
     all_articles = []
     for i, link in enumerate(links):
@@ -208,14 +208,14 @@ def main():
             else:
                 url = url + 'dual/'
 
-        print(f'處理鏈接 {i + 1} of {len(links)}: {url}')
+        print(f'處理鏈接 {i + 1} 共 {len(links)} 個: {url}')
         article_html = fetch_html_content(url)
         if article_html:
             title, summary = summarize_article(article_html)
             if title and summary:
                 all_articles.append((title, summary))
         else:
-            print(f'從 {link["url"]} 获取內容失敗')
+            print(f'無法從 {link["url"]} 获取內容')
 
     markdown_list = generate_markdown_list(all_articles)
 
@@ -226,12 +226,11 @@ def main():
         print("Markdown 文件已更新新鏈接。")
         sys.exit(0)
     else:
-        print("Markdown 文件未更新（無變更）。")
+        print("Markdown 文件未更新 (無變更)。")
         sys.exit(1)
 
 if __name__ == "__main__":
     main()
-
 ```
 
 前端程式碼：
@@ -257,18 +256,18 @@ if (nytimesDiv) {
         })
         .then(response => {
             if (response.status === 204) {
-                alert('更新觸發成功！請等待幾分鐘以查看結果。');
+                alert('更新已成功觸發！請等待幾分鐘以查看結果。');
             } else {
-                alert(`更新失敗。狀態碼：${response.status}`);
-                console.error('更新失敗：', response);
+                alert(`更新失敗。狀態碼: ${response.status}`);
+                console.error('更新失敗:', response);
             }
         })
         .catch(error => {
             alert('更新失敗。請檢查控制台錯誤。');
-            console.error('觸發更新錯誤：', error);
+            console.error('觸發更新錯誤:', error);
         });
     });
 } else {
-    console.error("nytimes div 未找到！");
+    console.error("未找到 nytimes div!");
 }
 ```

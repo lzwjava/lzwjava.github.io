@@ -1,13 +1,13 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: en
 layout: post
 title: NYTimes News (CN) Articles Update Trigger
 translated: false
 ---
 
-Click the button below to update the [NYTimes CN articles](./nytimes-en).
+Click the button below to update the [NYTimes CN articles](./notes/2025-03-14-nytimes-en).
 
 <script async src="../assets/js/nytimes.js"></script>
 

@@ -1,13 +1,13 @@
 ---
 audio: true
-generated: true
+generated: false
 lang: fr
 layout: post
-title: Mises à jour des articles de NYTimes News (CN)
+title: Mises à jour des articles NYTimes News (CN) déclencheurs
 translated: true
 ---
 
-Cliquez sur le bouton ci-dessous pour mettre à jour les articles [NYTimes CN](./nytimes-en).
+Cliquez sur le bouton ci-dessous pour mettre à jour les articles [NYTimes CN](./notes/2025-03-14-nytimes-en).
 
 <script async src="../assets/js/nytimes.js"></script>
 
@@ -29,7 +29,7 @@ import sys
 load_dotenv()
 
 def call_mistral_api(prompt, model="mistral-small-2501"):
-    """Appelle l'API Mistral pour traduire du texte."""
+    """Appelle l'API Mistral pour traduire le texte."""
     api_key = os.environ.get("MISTRAL_API_KEY")
     if not api_key:
         print("Erreur : la variable d'environnement MISTRAL_API_KEY n'est pas définie.")
@@ -64,7 +64,7 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
             print(f"Contenu de l'API Mistral : {content}")
             return content
         else:
-            print(f"Erreur de l'API Mistral : format de réponse invalide : {response_json}")
+            print(f"Erreur de l'API Mistral : Format de réponse invalide : {response_json}")
             return None
     except requests.exceptions.RequestException as e:
         print(f"Erreur de l'API Mistral : {e}")
@@ -76,11 +76,11 @@ def call_mistral_api(prompt, model="mistral-small-2501"):
 def fetch_html_content(url):
     """Récupère le contenu HTML d'une URL donnée."""
     try:
-        # Crée un contexte SSL non vérifié
+        # Créer un contexte SSL non vérifié
         context = ssl._create_unverified_context()
         print(f"Récupération du contenu HTML depuis : {url}")
         response = requests.get(url, verify=False)
-        response.raise_for_status()  # Lance une HTTPError pour les réponses incorrectes (4xx ou 5xx)
+        response.raise_for_status()  # Lève une HTTPError pour les réponses incorrectes (4xx ou 5xx)
         print(f"Contenu HTML récupéré avec succès depuis : {url}")
         return response.text
     except requests.exceptions.RequestException as e:
@@ -103,7 +103,7 @@ def extract_links(html):
 
 def translate_title(title):
     """Traduit le titre du chinois vers l'anglais en utilisant Mistral."""
-    base_prompt = "Traduisez le titre suivant en {target_language}. Fournissez uniquement le titre traduit, sans aucune note ou explication supplémentaire. Ne répétez pas ou ne mentionnez pas le texte d'entrée.\n"
+    base_prompt = "Traduisez le titre suivant en {target_language}. Fournissez uniquement le titre traduit, sans notes ou explications supplémentaires. Ne répétez pas ou ne mentionnez pas le texte d'entrée.\n"
     prompt = base_prompt.format(target_language="English") + f"{title}"
     print(f"Traduction du titre : {title}")
     translated_title = call_mistral_api(prompt)
@@ -121,7 +121,7 @@ def summarize_article(html):
     title = title_element.text.strip() if title_element else ''
     print(f"Titre extrait : {title}")
 
-    # Extrait le texte principal de l'article
+    # Extraire le texte principal de l'article
     article_area = soup.find('div', class_='article-area')
     if article_area:
         article_text = article_area.get_text(separator='\n', strip=True)
@@ -132,13 +132,13 @@ def summarize_article(html):
         print("Impossible d'extraire le texte de l'article.")
         return None, None
 
-    # Crée un prompt pour Mistral afin de résumer
-    prompt = f"Résumé de l'article suivant en anglais, en se concentrant sur les points principaux et en évitant les phrases introductives comme 'Résumé:' ou 'Cet article parle de:'.\n\n{article_text[:30000]}\n\n"  # Limite le texte de l'article à 30000 caractères
+    # Créer un prompt pour Mistral afin de résumer
+    prompt = f"Résumé de l'article suivant en anglais, en se concentrant sur les points principaux et en évitant les phrases introductives comme 'Résumé:' ou 'Cet article traite de:'.\n\n{article_text[:30000]}\n\n"  # Limiter le texte de l'article à 30000 caractères
     print(f"Création d'un résumé pour le titre : {title}")
     summary = call_mistral_api(prompt)
 
     if summary:
-        # Nettoie le résumé en supprimant les phrases de début comme "Résumé:" ou similaires
+        # Nettoyer le résumé en supprimant les phrases de début comme "Résumé:" ou similaires
         summary = summary.replace("Résumé:", "").strip()
         print(f"Résumé généré : {summary}")
         return title, summary
@@ -162,19 +162,19 @@ def generate_markdown_list(articles):
 def update_markdown_file(filename, markdown_content):
     """Met à jour un fichier Markdown avec le contenu donné."""
     try:
-        # Lit le contenu existant du fichier
+        # Lire le contenu existant du fichier
         print(f"Lecture du contenu existant depuis {filename}")
         with open(filename, 'r', encoding='utf-8') as f:
             existing_content = f.read()
 
-        # Trouve les positions de début et de fin du contenu après les métadonnées initiales
-        start_index = existing_content.find('---', 3) + 4  # Trouve le deuxième '---' et se déplace au-delà
+        # Trouver les positions de début et de fin du contenu après les métadonnées initiales
+        start_index = existing_content.find('---', 3) + 4  # Trouver le deuxième '---' et passer au-delà
         end_index = len(existing_content)
 
-        # Construit le contenu mis à jour
-        updated_content = existing_content[:start_index].strip() + '\n\n'  # Conserve les métadonnées et ajoute une nouvelle ligne
-        updated_content += markdown_content.strip() + '\n'  # Ajoute la nouvelle liste Markdown
-        # updated_content += existing_content[end_index:].strip() # Ajoute tout ce qui suit la liste, s'il existe
+        # Construire le contenu mis à jour
+        updated_content = existing_content[:start_index].strip() + '\n\n'  # Garder les métadonnées et ajouter une nouvelle ligne
+        updated_content += markdown_content.strip() + '\n'  # Ajouter la nouvelle liste Markdown
+        # updated_content += existing_content[end_index:].strip() # Ajouter tout ce qui suit la liste, s'il existe
 
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(updated_content)
@@ -215,7 +215,7 @@ def main():
             if title and summary:
                 all_articles.append((title, summary))
         else:
-            print(f"Échec de la récupération du contenu depuis {link['url']}")
+            print(f'Échec de la récupération du contenu depuis {link["url"]}')
 
     markdown_list = generate_markdown_list(all_articles)
 
@@ -233,7 +233,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Code Frontend :
+Code frontend :
 
 ```javascript
 const nytimesDiv = document.querySelector('.nytimes');
@@ -258,13 +258,13 @@ if (nytimesDiv) {
             if (response.status === 204) {
                 alert('Mise à jour déclenchée avec succès ! Veuillez attendre quelques minutes pour voir le résultat.');
             } else {
-                alert(`Échec de la mise à jour. Code de statut : ${response.status}`);
-                console.error('Échec de la mise à jour:', response);
+                alert(`La mise à jour a échoué. Code de statut : ${response.status}`);
+                console.error('La mise à jour a échoué :', response);
             }
         })
         .catch(error => {
-            alert('Échec de la mise à jour. Vérifiez la console pour les erreurs.');
-            console.error('Erreur lors du déclenchement de la mise à jour:', error);
+            alert('La mise à jour a échoué. Vérifiez la console pour les erreurs.');
+            console.error('Erreur lors du déclenchement de la mise à jour :', error);
         });
     });
 } else {
