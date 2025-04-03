@@ -76,3 +76,39 @@ Okay, here is a list of things you should bring for your road trip to Shantou du
 * **Water Sports Gear:** If you plan on specific water activities (though rentals are usually available).
 
 By packing these items, you should be well-prepared for your Qingming Festival road trip from Guangzhou to Shantou. Enjoy your holiday!
+
+---
+
+Okay, here's a short version of what to bring for your Guangzhou to Shantou road trip in April:
+
+**Essentials:**
+
+* ID/Passport, Driver's License
+* Cash & Cards, Mobile Payment
+* Phone & Charger, Laptop & Charger
+* Medications & Basic First-Aid
+* Comfortable Walking Shoes
+* Lightweight Clothing Layers
+* Light Jacket/Windbreaker
+* Sunscreen, Sunglasses, Hat
+* Toiletries
+* Reusable Water Bottle
+* Small Backpack
+
+**Beach Specific:**
+
+* Swimsuit
+* Sandals/Flip-flops
+* Towel
+
+**Road Trip Specific:**
+
+* Car Phone Mount
+* Downloaded Entertainment
+* Offline Maps
+
+**Consider:**
+
+* Umbrella/Light Rain Jacket
+
+Enjoy your trip!
