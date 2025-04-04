@@ -1,5 +1,5 @@
 ---
-title: road-trip-svgs
+title: Road Trip Svgs
 lang: en
 layout: post
 audio: false
