@@ -179,3 +179,56 @@ Alright, let's refine the itinerary based on your updated wake-up time on April 
 * **Flexibility is still important.**
 
 This revised plan should allow you to enjoy your trip while accommodating your updated schedule.
+
+---
+
+Okay, you've arrived in Shantou much earlier than planned! That's great news, as it gives you more flexibility. Let's adjust the plan based on your current location and EV range.
+
+**Updated Itinerary (Shantou - Chaozhou - Guangzhou):**
+
+**Saturday, April 5th:**
+
+* **2:30 AM:** You are now at your hotel in Shantou with 130km of EV range remaining.
+* **Rest:** Get some sleep! You had a long drive.
+
+* **10:00 AM (or later):** Wake up and have a relaxed breakfast at your hotel or a local eatery. No need to rush.
+* **Morning/Early Afternoon (Flexible):** Explore Shantou at your own pace. Here are some options:
+    * **Old Town (Xiaogongyuan):** Wander through the historic streets, admire the architecture, and soak in the local atmosphere.
+    * **Shantou Museum:** Learn about the city's history and culture.
+    * **Hai Bin Road:** Enjoy a stroll along the waterfront.
+* **1:00 PM - 2:30 PM:** Lunch in Shantou. Try some local Shantou cuisine.
+
+* **Afternoon:** Continue exploring Shantou or relax. You could:
+    * **Visit Queshi Scenic Area:** Enjoy the coastal views and perhaps a short hike.
+    * **Explore a local market:** Experience the vibrant local life.
+    * **Relax at a cafe.**
+
+* **Late Afternoon (around 5:00 PM - 6:00 PM):** **Charge your EV.** Find a convenient charging station in Shantou. Given your early arrival, you have ample time to fully charge.
+
+* **Evening (7:00 PM - 8:30 PM):** Dinner in Shantou.
+
+* **8:30 PM onwards:** Relax and enjoy your evening in Shantou.
+
+**Sunday, April 6th:**
+
+* **9:00 AM:** Wake up and have breakfast. Check out of your hotel.
+* **9:30 AM - 10:30 AM:** Drive from Shantou to Chaozhou. This is approximately 50km, well within your EV's current range (and will be even more so after a full charge tonight).
+* **10:30 AM - 1:00 PM:** Explore Chaozhou's ancient city. Visit the Kaiyuan Temple, Guangji Bridge, and the ancient city walls.
+* **1:00 PM - 2:30 PM:** Lunch in Chaozhou, enjoying local cuisine.
+* **2:30 PM - 4:30 PM:** Explore more of Chaozhou. Visit the Chaozhou West Lake or enjoy tea at a local tea house.
+* **4:30 PM - 5:30 PM:** **Charge your EV in Chaozhou.** Top up your battery before the longer drive back to Guangzhou.
+* **5:30 PM:** Begin your drive back to Guangzhou.
+* **5:30 PM - 9:30 PM (Approx.):** Drive towards Guangzhou.
+* **9:30 PM - 10:30 PM:** Dinner and Charge EV along the way if needed (depending on your EV's range and remaining charge).
+* **10:30 PM - 2:30 AM (Approx. Monday, April 7th):** Continue driving back to Guangzhou.
+* **Before 2:30 AM (Monday, April 7th):** Arrive back home in Guangzhou.
+
+**Key Adjustments and Considerations:**
+
+* **Eliminated Shanwei:** Since you bypassed Shanwei to reach Shantou directly, it's removed from the itinerary.
+* **More Relaxed Saturday in Shantou:** You have a full day to explore Shantou without rushing.
+* **Focus on Full Charge in Shantou:** Take advantage of your early arrival to ensure your EV is fully charged for the next leg of the journey.
+* **Charging in Chaozhou:** Still planned to top up before the drive back to Guangzhou.
+* **Flexibility Remains:** Feel free to adjust the timings and activities based on your interests.
+
+Enjoy your time exploring Shantou! You've gained a significant amount of time with your early arrival.
