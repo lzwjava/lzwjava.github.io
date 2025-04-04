@@ -1,6 +1,7 @@
 import os
 import re
 import time
+import shutil
 from generate_notes_link import generate_notes_links
 
 
@@ -27,19 +28,18 @@ def count_links_in_notes_md():
         print(f"Error counting links in notes markdown file: {e}")
         return 0
 
-def check_last_modified_time():
-    # Check when the notes markdown file was last modified
-    file_path = os.path.join('original', '2025-01-11-notes-en.md')
-    try:
-        mod_time = os.path.getmtime(file_path)
-        current_time = time.time()
-        hours_since_modified = (current_time - mod_time) / 3600  # Convert seconds to hours
-        
-        print(f"Hours since last modification: {hours_since_modified:.2f}")
-        return hours_since_modified > 2  # Return True if more than 2 hours have passed
-    except Exception as e:
-        print(f"Error checking modification time: {e}")
-        return True  # Default to True if there's an error
+def copy_original_to_posts():
+    """Copy specific original file to _posts/en/ directory"""
+    src = os.path.join('original', '2025-01-11-notes-en.md')
+    posts_dir = '_posts/en'
+    
+    # Ensure _posts/en directory exists
+    os.makedirs(posts_dir, exist_ok=True)
+    
+    # Copy the specific file to _posts/en
+    dst = os.path.join(posts_dir, os.path.basename(src))
+    shutil.copy2(src, dst)
+    print(f"Copied {src} to {dst}")
 
 def main():
     notes_count = count_notes_files()
@@ -48,9 +48,10 @@ def main():
     print(f"Notes files count: {notes_count}")
     print(f"Links count in markdown: {links_count}")
     
-    if notes_count != links_count and check_last_modified_time():
+    if notes_count != links_count:
         print("Notes files count and links count don't match and last modification was more than 2 hours ago, regenerating notes links.")
         generate_notes_links()
+        copy_original_to_posts()
     else:
         print("Skipping notes link regeneration.")
 

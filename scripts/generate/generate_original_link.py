@@ -37,10 +37,11 @@ sorted_links = [link for _, _, link in links_with_date]
 
 file_path = os.path.join('original', '2025-01-11-original-en.md')
 content = f"""---
-audio: true
+audio: false
 lang: en
 layout: post
 title: Original Posts
+translated: false
 ---
 
 These are my original blog posts.
