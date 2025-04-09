@@ -65,6 +65,7 @@ Flow control prevents the sender from overwhelming the receiver.
 **Ethernet** is a widely used LAN technology based on the **IEEE 802.3 standard**.
 
 #### **Ethernet Frame Structure:**
+
 | Field | Description |
 |--------|------------|
 | Preamble | Synchronization |
@@ -89,6 +90,7 @@ PPP is used in **dial-up and broadband connections**.
 - **Error detection** via CRC.
 
 #### **PPP Frame Structure:**
+
 | Field | Description |
 |--------|------------|
 | Flag | Marks the start and end of the frame |
