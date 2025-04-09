@@ -103,3 +103,127 @@ ORDER BY
 ```
 
 Let me know if you need help interpreting the results or refining the query!
+
+---
+
+In IBM Db2, you can create an index on a table using the `CREATE INDEX` statement. Indexes improve query performance by allowing faster data retrieval, especially for columns frequently used in `WHERE`, `JOIN`, or `ORDER BY` clauses. Below is the syntax and explanation for creating an index, along with examples.
+
+---
+
+### Basic Syntax
+```sql
+CREATE [UNIQUE] INDEX index_name
+ON table_name (column_name [ASC | DESC], ...)
+[options];
+```
+
+#### Key Components
+- **`[UNIQUE]`**: Optional. Ensures no duplicate values are allowed in the indexed column(s). Omit this if duplicates are allowed.
+- **`index_name`**: The name you give to the index (must be unique within the schema).
+- **`table_name`**: The name of the table where the index will be created.
+- **`column_name`**: The column(s) to index. You can specify multiple columns for a composite index.
+- **`[ASC | DESC]`**: Optional. Specifies the sort order (ascending or descending). Default is `ASC`.
+- **`[options]`**: Additional options like `CLUSTER`, `INCLUDE`, or storage specifications (optional, depending on needs).
+
+---
+
+### Examples
+
+#### 1. Create a Simple Index
+To create an index on the `employee_id` column of the `employees` table:
+```sql
+CREATE INDEX idx_employee_id
+ON employees (employee_id);
+```
+- This creates a non-unique index, allowing duplicate `employee_id` values.
+
+#### 2. Create a Unique Index
+To create a unique index on the `email` column (no duplicate emails allowed):
+```sql
+CREATE UNIQUE INDEX idx_email
+ON employees (email);
+```
+- If duplicate values exist in `email`, this will fail with an error.
+
+#### 3. Create a Composite Index
+To create an index on multiple columns, such as `last_name` and `first_name`:
+```sql
+CREATE INDEX idx_name
+ON employees (last_name, first_name);
+```
+- This is useful for queries filtering or sorting by both columns.
+
+#### 4. Create an Index with Descending Order
+To create an index on `hire_date` in descending order:
+```sql
+CREATE INDEX idx_hire_date
+ON employees (hire_date DESC);
+```
+- Helpful for queries like `ORDER BY hire_date DESC`.
+
+#### 5. Create a Clustered Index (Optional)
+A clustered index determines the physical order of data in the table (only one per table):
+```sql
+CREATE INDEX idx_employee_id_clust
+ON employees (employee_id)
+CLUSTER;
+```
+- Note: Use this sparingly, as it reorganizes the table physically.
+
+---
+
+### Additional Options
+- **`INCLUDE (column_name)`**: Adds non-key columns to the index for faster retrieval (Db2 LUW feature):
+  ```sql
+  CREATE INDEX idx_salary
+  ON employees (department_id)
+  INCLUDE (salary);
+  ```
+- **`SPECIFICATION ONLY`**: Creates the index definition without building it (for deferred population):
+  ```sql
+  CREATE INDEX idx_temp
+  ON employees (employee_id)
+  SPECIFICATION ONLY;
+  ```
+
+---
+
+### Key Notes
+1. **Permissions**: You need the `INDEX` privilege on the table or appropriate authority (e.g., `DBADM`).
+2. **Existing Data**: If creating a `UNIQUE` index, the table must not already contain duplicate values in the indexed column(s), or the command will fail.
+3. **Naming**: Index names must be unique within the schema.
+4. **Performance**: Indexes speed up reads but can slow down writes (`INSERT`, `UPDATE`, `DELETE`) due to maintenance overhead.
+5. **Verification**: After creating, check the index with:
+   ```sql
+   SELECT INDNAME, COLNAMES 
+   FROM SYSCAT.INDEXES 
+   WHERE TABNAME = 'YOUR_TABLE_NAME' 
+   AND TABSCHEMA = 'YOUR_SCHEMA_NAME';
+   ```
+
+---
+
+### Example Workflow
+Suppose you have an `employees` table and want to index `department_id` for faster queries:
+```sql
+CREATE INDEX idx_department_id
+ON employees (department_id);
+```
+Then verify:
+```sql
+SELECT INDNAME, COLNAMES 
+FROM SYSCAT.INDEXES 
+WHERE TABNAME = 'EMPLOYEES' 
+AND TABSCHEMA = 'MY_SCHEMA';
+```
+
+#### Output
+```
+INDNAME           COLNAMES
+----------------  -----------
+IDX_DEPARTMENT_ID +DEPARTMENT_ID
+```
+
+---
+
+Let me know if you need help with a specific index or additional options!
