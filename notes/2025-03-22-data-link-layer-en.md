@@ -11,8 +11,6 @@ Here's a detailed tutorial to help you learn the **Data Link Layer** chapter in 
 
 ---
 
-# **Data Link Layer: A Comprehensive Guide**  
-
 ## **1. Overview of the Data Link Layer**  
 The Data Link Layer is the **second layer** in the **OSI model**, responsible for providing **reliable data transfer** between directly connected nodes. It ensures that frames (data packets at this layer) are correctly formatted, transmitted, and received.
 
