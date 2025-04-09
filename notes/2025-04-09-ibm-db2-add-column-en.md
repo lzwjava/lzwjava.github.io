@@ -94,3 +94,64 @@ DESCRIBE TABLE table_name;
 ```
 
 Let me know if you still encounter issues or need further clarification!
+
+---
+
+The error you're encountering (`SQLCODE=-193`) in IBM Db2 occurs because you're trying to add a `NOT NULL` column to an existing table without specifying a `DEFAULT` value, and the table likely already contains rows. In Db2, when you add a new column with a `NOT NULL` constraint to a table that has existing data, you **must** provide a `DEFAULT` value. This is because Db2 needs to populate the new column with a value for all existing rows, and `NOT NULL` prohibits null values. Without a `DEFAULT`, Db2 doesn't know what to put in those rows, resulting in the error.
+
+### Why This Happens
+- The `NOT NULL` constraint means the column cannot contain null values.
+- If the table is empty (no rows), adding a `NOT NULL` column without a `DEFAULT` is fine because there’s nothing to populate.
+- If the table has rows, Db2 requires a `DEFAULT` value to fill the new column for those existing rows.
+
+### How to Fix It
+Add a `DEFAULT` clause to your `ALTER TABLE` statement to specify a value for existing rows. For a `BIGINT` column, a common default might be `0`, but you can choose any value that makes sense for your use case.
+
+#### Corrected Syntax
+```sql
+ALTER TABLE table_name
+ADD COLUMN column_name BIGINT NOT NULL DEFAULT 0;
+```
+
+### Example
+If your table is `employees` and you’re adding a column `employee_id`:
+```sql
+ALTER TABLE employees
+ADD COLUMN employee_id BIGINT NOT NULL DEFAULT 0;
+```
+This will:
+- Add the `employee_id` column as a `BIGINT`.
+- Set it to `NOT NULL`.
+- Populate it with `0` for all existing rows.
+
+### Alternative Solutions
+1. **If You Don’t Want a Default Value**:
+   - Add the column without `NOT NULL`, then update it manually and add the constraint later:
+     ```sql
+     ALTER TABLE table_name
+     ADD COLUMN column_name BIGINT;
+     
+     UPDATE table_name
+     SET column_name = 0;  -- Or another value
+
+     ALTER TABLE table_name
+     ALTER COLUMN column_name SET NOT NULL;
+     ```
+
+2. **If the Table Should Be Empty**:
+   - If you believe the table should have no rows and this error is unexpected, check the row count:
+     ```sql
+     SELECT COUNT(*) FROM table_name;
+     ```
+   - If it’s empty, the original command (`ADD COLUMN column_name BIGINT NOT NULL`) should work without a `DEFAULT`.
+
+### Key Notes
+- Choose a `DEFAULT` value that aligns with your data model (e.g., `-1`, `0`, or another meaningful number).
+- After adding the column, you can update the values as needed:
+  ```sql
+  UPDATE table_name
+  SET column_name = <new_value>
+  WHERE <condition>;
+  ```
+
+Let me know if you need help picking a default value or troubleshooting further!
