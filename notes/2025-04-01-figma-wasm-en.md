@@ -1,5 +1,5 @@
 ---
-title: fFigma Leverages WebAssembly 
+title: FFigma Leverages WebAssembly 
 lang: en
 layout: post
 audio: false
