@@ -1,5 +1,5 @@
 ---
-title: IBM DB2 Table SQL
+title: IBM Db2 Table SQL
 lang: en
 layout: post
 audio: false

@@ -1,5 +1,5 @@
 ---
-title: IBM DB2 SQL Syntax Exception
+title: IBM Db2 SQL Syntax Exception
 lang: en
 layout: post
 audio: false

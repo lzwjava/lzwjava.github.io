@@ -1,5 +1,5 @@
 ---
-title: Using the DESCRIBE Command in IBM DB2
+title: Using the DESCRIBE Command in IBM Db2
 lang: en
 layout: post
 audio: false
