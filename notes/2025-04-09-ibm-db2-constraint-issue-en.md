@@ -1,5 +1,5 @@
 ---
-title: An Issue about IBM DB2 Constraint
+title: An Constraint Issue in IBM DB2 
 lang: en
 layout: post
 audio: false
