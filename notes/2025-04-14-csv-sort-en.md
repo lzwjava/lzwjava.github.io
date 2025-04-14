@@ -13,6 +13,7 @@ I'll create a Python script that uses argparse to parse a CSV file path, sorts a
 #!/usr/bin/env python3
 import argparse
 import csv
+import os
 
 def main():
     # Set up argument parser
@@ -23,6 +24,14 @@ def main():
     args = parser.parse_args()
     
     try:
+        # Get the directory and filename
+        file_dir = os.path.dirname(args.file_path)
+        file_name = os.path.basename(args.file_path)
+        
+        # Create output filename
+        base_name, ext = os.path.splitext(file_name)
+        output_file = os.path.join(file_dir, f"{base_name}_sorted{ext}")
+        
         # Read the input CSV file
         with open(args.file_path, 'r') as file:
             reader = csv.reader(file)
@@ -35,11 +44,11 @@ def main():
         sorted_values = sorted(values)
         
         # Write to output file
-        with open('name_sorted.csv', 'w', newline='') as file:
+        with open(output_file, 'w', newline='') as file:
             writer = csv.writer(file)
             writer.writerow(sorted_values)
         
-        print(f"Successfully sorted values and saved to name_sorted.csv")
+        print(f"Successfully sorted values and saved to {output_file}")
         
     except FileNotFoundError:
         print(f"Error: File '{args.file_path}' not found")
@@ -48,7 +57,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
 ```
 
 This script:
