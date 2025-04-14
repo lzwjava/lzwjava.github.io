@@ -74,3 +74,7 @@ Create a Youtube title
 
 give its lyrics in Japanese, and explain them, for every word and prounciation 
 
+---
+
+Give a comprehensive tutuorial about this chapter.
+
