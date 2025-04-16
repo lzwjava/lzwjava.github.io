@@ -6,7 +6,6 @@ audio: false
 translated: false
 generated: true
 ---
-
 Elon Musk is known for several core values and perspectives that guide his work across his various companies. Here are some of his primary values, notable quotes, and what he tends to support:
 
 ## Core Values
