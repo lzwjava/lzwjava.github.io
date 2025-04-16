@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import date
 
 CONVERSATION_DIR = "scripts/conversation"
 NOTES_DIR = "notes"
@@ -20,10 +21,20 @@ def convert_conversation_to_notes():
                     print(f"Error decoding JSON in {filename}. Skipping.")
                     continue
 
-            notes_filename = os.path.splitext(filename)[0] + "-conv-en.md"
+            # Generate filename with today's date
+            today = date.today()
+            date_str = today.strftime("%Y-%m-%d")
+            base_filename = os.path.splitext(filename)[0]
+            notes_filename = f"{date_str}-{base_filename}-conv-en.md"
             notes_filepath = os.path.join(NOTES_DIR, notes_filename)
-            title = os.path.splitext(filename)[0].replace("-", " ").title() + " - Conversation"
+            title = base_filename.replace("-", " ").title() + " - Conversation"
             print(f"Creating notes file: {notes_filepath} with title: {title}")
+
+            # Check if a file with the same base filename already exists
+            existing_files = [f for f in os.listdir(NOTES_DIR) if f.endswith("-conv-en.md") and base_filename in f]
+            if existing_files:
+                print(f"Notes file with base filename {base_filename} already exists. Skipping.")
+                continue
 
             with open(notes_filepath, 'w') as outfile:
                 outfile.write(f"---\nlayout: post\ntitle: \"{title}\"\naudio: true\n---\n\n")
