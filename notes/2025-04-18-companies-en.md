@@ -7,7 +7,7 @@ translated: false
 generated: true
 ---
 
-| Icon | Category | Value |
+| Icon | Category | Value(T) |
 | --- | --- | --- |
 | 👩‍💻 | Tech | $29.642 |
 | 🇺🇸 | Dow Jones | $16.801 |
