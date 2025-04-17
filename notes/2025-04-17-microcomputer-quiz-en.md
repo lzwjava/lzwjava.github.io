@@ -11,8 +11,6 @@ Here is a quiz based on the "Microcomputer and Interface Technology" course outl
 
 ---
 
-### Microcomputer and Interface Technology Quiz
-
 **1. What is the main architectural model used in most microcomputer systems?**
 * Harvard Architecture
 * Von Neumann Architecture
