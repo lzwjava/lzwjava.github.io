@@ -14,64 +14,64 @@ Here is a quiz based on the "Microcomputer and Interface Technology" course outl
 ### Microcomputer and Interface Technology Quiz
 
 **1. What is the main architectural model used in most microcomputer systems?**
-a) Harvard Architecture
-b) Von Neumann Architecture
-c) RISC Architecture
-d) CISC Architecture
+* Harvard Architecture
+* Von Neumann Architecture
+* RISC Architecture
+* CISC Architecture
 
 **2. Which internal registers are part of the 8086 microprocessor?**
-a) Accumulator, Base, Count, Data
-b) AX, BX, CX, DX
-c) PC, SP, LR, FP
-d) MAR, MDR, IR, PC
+* Accumulator, Base, Count, Data
+* AX, BX, CX, DX
+* PC, SP, LR, FP
+* MAR, MDR, IR, PC
 
 **3. What is the difference between memory-mapped I/O and isolated I/O?**
-a) Memory-mapped I/O uses the same address space as memory, isolated I/O uses a separate address space
-b) Memory-mapped I/O is slower than isolated I/O
-c) Isolated I/O can only be used with DMA
-d) Memory-mapped I/O requires interrupts, isolated I/O does not
+* Memory-mapped I/O uses the same address space as memory, isolated I/O uses a separate address space
+* Memory-mapped I/O is slower than isolated I/O
+* Isolated I/O can only be used with DMA
+* Memory-mapped I/O requires interrupts, isolated I/O does not
 
 **4. Which of the following is NOT a data transfer mode?**
-a) Program-controlled
-b) Interrupt-driven
-c) Direct Memory Access (DMA)
-d) Multithreading
+* Program-controlled
+* Interrupt-driven
+* Direct Memory Access (DM*
+* Multithreading
 
 **5. What is the primary function of the 8259A chip?**
-a) Timer/Counter
-b) Parallel Interface
-c) Interrupt Controller
-d) Serial Communication
+* Timer/Counter
+* Parallel Interface
+* Interrupt Controller
+* Serial Communication
 
 **6. The 8255A parallel interface chip supports how many modes of operation?**
-a) 1
-b) 2
-c) 3
-d) 4
+* 1
+* 2
+* 3
+* 4
 
 **7. Which instruction type in the 8086 assembly language is used for loops and conditional jumps?**
-a) Data transfer instructions
-b) Arithmetic instructions
-c) Control flow instructions
-d) Logical instructions
+* Data transfer instructions
+* Arithmetic instructions
+* Control flow instructions
+* Logical instructions
 
 **8. What is the purpose of address decoding in memory systems?**
-a) To increase memory speed
-b) To select specific memory locations or devices based on address lines
-c) To encrypt data in memory
-d) To convert data formats
+* To increase memory speed
+* To select specific memory locations or devices based on address lines
+* To encrypt data in memory
+* To convert data formats
 
 **9. Which bus standard is older and was commonly used in early PC architectures?**
-a) PCI
-b) USB
-c) ISA
-d) SPI
+* PCI
+* USB
+* ISA
+* SPI
 
 **10. Which of the following protocols is used for serial communication in microcomputer interfaces?**
-a) SPI
-b) I²C
-c) Both SPI and I²C
-d) None of the above
+* SPI
+* I²C
+* Both SPI and I²C
+* None of the above
 
 ---
 
@@ -83,65 +83,65 @@ Here are additional quiz questions covering more advanced and practical aspects 
 
 ### Advanced Microcomputer and Interface Technology Quiz
 
-**11. Which of the following best describes Direct Memory Access (DMA)?**
-a) The CPU directly reads from and writes to memory without peripherals
-b) Peripherals transfer data to/from memory without CPU intervention
-c) Only the CPU can access memory during DMA
-d) DMA is used only for serial communication
+**11. Which of the following best describes Direct Memory Access (DM*?**
+* The CPU directly reads from and writes to memory without peripherals
+* Peripherals transfer data to/from memory without CPU intervention
+* Only the CPU can access memory during DMA
+* DMA is used only for serial communication
 
 **12. What is the main function of the NVIC (Nested Vectored Interrupt Controller) in ARM Cortex-M microcontrollers?**
-a) Manages bus arbitration
-b) Controls GPIO pin directions
-c) Handles and prioritizes interrupts
-d) Performs analog-to-digital conversion
+* Manages bus arbitration
+* Controls GPIO pin directions
+* Handles and prioritizes interrupts
+* Performs analog-to-digital conversion
 
 **13. Which signal is typically used to synchronize data transfer between a microcontroller and an external device?**
-a) RESET
-b) CLOCK
-c) VCC
-d) GND
+* RESET
+* CLOCK
+* VCC
+* GND
 
 **14. In microcontroller interfacing, what is the primary purpose of using operational amplifiers?**
-a) Memory expansion
-b) Signal conditioning
-c) Bus arbitration
-d) Interrupt handling
+* Memory expansion
+* Signal conditioning
+* Bus arbitration
+* Interrupt handling
 
 **15. What is a key difference between synchronous and asynchronous serial communication?**
-a) Synchronous uses a shared clock; asynchronous does not
-b) Asynchronous is always faster
-c) Synchronous requires fewer wires
-d) Asynchronous cannot use UARTs
+* Synchronous uses a shared clock; asynchronous does not
+* Asynchronous is always faster
+* Synchronous requires fewer wires
+* Asynchronous cannot use UARTs
 
 **16. Which interface is most appropriate for connecting a microcontroller to a high-speed external sensor requiring real-time data acquisition?**
-a) UART
-b) SPI
-c) I²C
-d) GPIO
+* UART
+* SPI
+* I²C
+* GPIO
 
 **17. What is the function of the stack in assembly language programming?**
-a) Stores program code
-b) Holds temporary data and return addresses for subroutines
-c) Controls the clock speed
-d) Decodes memory addresses
+* Stores program code
+* Holds temporary data and return addresses for subroutines
+* Controls the clock speed
+* Decodes memory addresses
 
 **18. Which of the following is an example of a human-machine interface (HMI) device?**
-a) 8255A
-b) LCD touchscreen
-c) 8253 timer
-d) SPI bus
+* 8255A
+* LCD touchscreen
+* 8253 timer
+* SPI bus
 
 **19. When designing a microcontroller interface for a keypad, which type of I/O is typically used?**
-a) Serial I/O
-b) Parallel I/O
-c) Analog I/O
-d) PWM output
+* Serial I/O
+* Parallel I/O
+* Analog I/O
+* PWM output
 
 **20. What is the primary advantage of using polling over interrupts in simple microcontroller applications?**
-a) Lower CPU overhead
-b) Simpler implementation
-c) Faster response time
-d) Reduced power consumption
+* Lower CPU overhead
+* Simpler implementation
+* Faster response time
+* Reduced power consumption
 
 ---
 
