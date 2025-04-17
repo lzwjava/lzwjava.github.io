@@ -81,7 +81,7 @@ Here are additional quiz questions covering more advanced and practical aspects 
 
 ### Advanced Microcomputer and Interface Technology Quiz
 
-**11. Which of the following best describes Direct Memory Access (DM*?**
+**11. Which of the following best describes Direct Memory Access?**
 * The CPU directly reads from and writes to memory without peripherals
 * Peripherals transfer data to/from memory without CPU intervention
 * Only the CPU can access memory during DMA
