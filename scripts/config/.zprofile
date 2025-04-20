@@ -1,4 +1,4 @@
-export PATH=/opt/homebrew/Cellar/openjdk@17/17.0.13/libexec/openjdk.jdk/Contents/Home/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lzwjava/Library/Python/3.9/bin:/Library/TeX/texbin:/Users/lzwjava/bin:/Users/lzwjava/platform-tools:/Users/lzwjava/Downloads/google-cloud-sdk/bin:/Users/lzwjava/bin/flutter/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/opt/homebrew/Cellar/llama.cpp/4539/bin:/Users/lzwjava/bin/google-cloud-sdk/bin
+export PATH=/opt/homebrew/Cellar/openjdk@17/17.0.14/libexec/openjdk.jdk/Contents/Home/bin:/opt/homebrew/opt/ruby/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/lzwjava/Library/Python/3.9/bin:/Library/TeX/texbin:/Users/lzwjava/bin:/Users/lzwjava/platform-tools:/Users/lzwjava/Downloads/google-cloud-sdk/bin:/Users/lzwjava/bin/flutter/bin:/opt/homebrew/lib/ruby/gems/3.3.0/bin:/opt/homebrew/Cellar/llama.cpp/4539/bin:/Users/lzwjava/bin/google-cloud-sdk/bin
 
 
 export GLOBAL_PROXY='127.0.0.1:7890'
@@ -60,7 +60,7 @@ alias python=python3
 alias pip=pip3
 
 function gpa {
-  python ~/bin/gitmessageai.py --api mistral --allow-pull-push
+  python ~/bin/gitmessageai.py --allow-pull-push
 }
 
 function gca {
@@ -186,38 +186,26 @@ function checkproxy {
 
 export GOOGLE_APPLICATION_CREDENTIALS="/Users/lzwjava/bin/graphite-ally-445108-k3-035f0952219d.json"
 
-export DEEPSEEK_API_KEY="xxx"
 
-export MISTRAL_API_KEY="xxx"
 
-export CODESTRAL_API_KEY="xxx"
 
 export DYLD_LIBRARY_PATH=$(brew --prefix curl)/lib
 
-export SPEECH_ENDPOINT="https://ai-lzwjava-5596.cognitiveservices.azure.com/"
 
-export DO_API_KEY="xxx"
 
-export GEMINI_API_KEY="xxx"
 
-export HERTZNER_API_KEY="xxx"
 
-export GROK_API_KEY="xxx"
 
-export ALIBABA_CLOUD_ACCESS_ID_API_KEY="xxx"
 
-export ALIBABA_CLOUD_ACCESS_API_KEY="xxx"
 
-export OPENAI_API_KEY="xxx"
 
-export TAVILY_API_KEY="xxx"
 
-export TELEGRAM_BOT_API_KEY="xxx"
 
-export TIGER_TIGER_ID="xxx"
 
-export TIGER_ACCOUNT="xxx"
 
-export TIGER_PEM="xxx"
+
+
+
+
 
 
