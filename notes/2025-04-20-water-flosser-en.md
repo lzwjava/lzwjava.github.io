@@ -1,5 +1,5 @@
 ---
-title: Water Flosser
+title: Water Flossers
 lang: en
 layout: post
 audio: false
