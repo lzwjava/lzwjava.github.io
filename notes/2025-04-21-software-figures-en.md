@@ -120,6 +120,7 @@ Here are key individuals who have exerted significant influence in the software 
   - His creation of web standards is foundational, akin to Keller’s hardware standards, though his impact is more infrastructural than architectural.
 
 ### Comparison to Jim Keller
+
 | **Aspect** | **Jim Keller (Hardware)** | **Software Equivalent** |
 |------------|--------------------------|-------------------------|
 | **Foundational Work** | K7, K8, Zen, A4/A5, Autopilot | Linux (Torvalds), Python (van Rossum), TensorFlow (Dean), JavaScript (Eich), Agile/Microservices (Fowler) |
