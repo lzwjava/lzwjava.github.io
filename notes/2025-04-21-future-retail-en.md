@@ -1,5 +1,5 @@
 ---
-title: future-retail
+title: Future Shopping
 lang: en
 layout: post
 audio: false
