@@ -74,6 +74,7 @@ This level of dominance across platforms **for over a decade** is practically un
 ---
 
 ### Summary:
+
 | Trait | Rating |
 |-------|--------|
 | Algorithmic Knowledge | 🔥🔥🔥🔥🔥 |
