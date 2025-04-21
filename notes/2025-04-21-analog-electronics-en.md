@@ -21,7 +21,7 @@ Awesome! Here's a comprehensive tutorial on **Part I: Analog Electronics** from 
 - **Voltage (V)**: Electrical potential difference between two points.
 - **Current (I)**: Flow of electric charge; measured in amperes (A).
 - **Resistance (R)**: Opposition to current; measured in ohms (Ω).
-- **Power (P)**: Energy used per unit time: \( P = VI \)
+- **Power (P)**: Energy used per unit time: \\( P = VI \\)
 
 #### ⚡ **Ohm’s Law**
 \[
@@ -49,8 +49,8 @@ Simple and crucial. It relates voltage, current, and resistance in a linear resi
 
 #### c. **Dynamic Circuits and Transient Analysis**
 - **RC and RL Circuits**: Transient behavior when switched on/off.
-  - Capacitor voltage: \( V(t) = V_0 (1 - e^{-t/RC}) \)
-  - Inductor current: \( I(t) = I_0 (1 - e^{-t/LR}) \)
+  - Capacitor voltage: \\( V(t) = V_0 (1 - e^{-t/RC}) \\)
+  - Inductor current: \\( I(t) = I_0 (1 - e^{-t/LR}) \\)
 - **Time Constants**: RC or L/R; indicates how quickly circuits react to changes.
 
 ---
@@ -87,7 +87,7 @@ Simple and crucial. It relates voltage, current, and resistance in a linear resi
   - Infinite gain
   - Infinite input impedance
   - Zero output impedance
-- **Virtual Short**: \( V_+ = V_- \) when negative feedback is present.
+- **Virtual Short**: \\( V_+ = V_- \\) when negative feedback is present.
 - **Virtual Open**: Input current ≈ 0
 
 #### b. **Typical Op-Amp Circuits**
