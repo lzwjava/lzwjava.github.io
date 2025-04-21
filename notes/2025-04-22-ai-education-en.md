@@ -1,5 +1,5 @@
 ---
-title: Education in AI Era
+title: Learing and Education in AI Era
 lang: en
 layout: post
 audio: false
