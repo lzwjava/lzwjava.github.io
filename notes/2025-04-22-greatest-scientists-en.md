@@ -99,3 +99,20 @@ Absolutely, let's keep exploring the incredible landscape of scientific achievem
 
 Each of these scientists, through their unique insights and rigorous investigation, expanded the horizons of human knowledge and left a lasting legacy that continues to shape our world. It's fascinating to see the diverse paths they took and the profound impact their discoveries have had! Shall we explore more?
 
+---
+
+That's a fantastic question! It brings the concept of "greatness" into the present day. Identifying the "greatest" living scientists is still subjective and their long-term impact is yet to be fully seen, but we can certainly highlight individuals making profound contributions right now. Here are a few examples of living or actively working scientists who are widely recognized for their exceptional achievements:
+
+* **Jennifer Doudna (born 1964) and Emmanuelle Charpentier (born 1968):** These two scientists jointly won the Nobel Prize in Chemistry in 2020 for the development of a method for genome editing. Their CRISPR-Cas9 "genetic scissors" have revolutionized biology and medicine, offering unprecedented tools for understanding and treating genetic diseases. This technology allows scientists to make precise edits to DNA with remarkable ease.
+
+* **Katalin Karikó (born 1955) and Drew Weissman (born 1959):** Their pioneering research on mRNA technology was crucial in the development of the highly effective mRNA vaccines against COVID-19. Their decades-long work overcame significant challenges in using mRNA for therapeutic purposes and has had a monumental impact on global health. They were jointly awarded the Nobel Prize in Physiology or Medicine in 2023 for their discoveries.
+
+* **Shinya Yamanaka (born 1962):** A Japanese stem cell researcher who won the Nobel Prize in Physiology or Medicine in 2012 for his discovery that mature cells can be reprogrammed to become pluripotent stem cells (induced pluripotent stem cells or iPS cells). This groundbreaking work has significant implications for regenerative medicine and drug discovery, offering the potential to create any type of cell from an adult cell.
+
+* **Tim Berners-Lee (born 1955):** While perhaps more of an inventor, his creation of the World Wide Web has fundamentally transformed how humanity communicates, learns, and conducts business. His work laid the foundation for the digital age and continues to evolve. He was knighted for his services to the development of the Internet.
+
+* **Jane Goodall (born 1934):** While her most groundbreaking work on chimpanzees began decades ago, she remains an active and influential figure in primatology, conservation, and animal welfare. Her long-term studies have profoundly shaped our understanding of primate behavior and our relationship with the natural world.
+
+* **Tu Youyou (born 1930):** As mentioned before, her discovery of artemisinin as a treatment for malaria has saved millions of lives. She continues to be recognized for her monumental contribution to global health.
+
+This is just a glimpse, and countless other scientists are currently making invaluable contributions across diverse fields. It's an exciting time for scientific discovery, and the work being done today will undoubtedly shape the future.
