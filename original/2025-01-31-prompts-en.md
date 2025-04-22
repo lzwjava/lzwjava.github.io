@@ -11,8 +11,16 @@ Translate the following posts or words into Chinese, ensuring that names (e.g., 
 
 ---
 
-Create a natural and extended conversation between two experts, A and B. The experts should discuss a specific topic in depth, with the conversation flowing back and forth. Both participants should ask questions, share insights, and explore the nuances of the subject matter. Use skills such as diving deeper into subsections, comparing technologies, exploring use cases, digging the detail, and use some quizes to test knowledge, focus on how things work. And less use formula as it is dialogue. 
+Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
 
+- Delve into specific subtopics and explore their intricacies.
+- Compare and contrast different technologies or methodologies related to the subject.
+- Discuss real-world use cases and their implications.
+- Ask probing questions to uncover deeper insights.
+- Include occasional quizzes to test each other's knowledge.
+- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
+
+Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
 
 The format should be as follows:
 
