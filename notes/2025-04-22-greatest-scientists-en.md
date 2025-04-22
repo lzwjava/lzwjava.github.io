@@ -116,3 +116,21 @@ That's a fantastic question! It brings the concept of "greatness" into the prese
 * **Tu Youyou (born 1930):** As mentioned before, her discovery of artemisinin as a treatment for malaria has saved millions of lives. She continues to be recognized for her monumental contribution to global health.
 
 This is just a glimpse, and countless other scientists are currently making invaluable contributions across diverse fields. It's an exciting time for scientific discovery, and the work being done today will undoubtedly shape the future.
+
+---
+
+You're right to keep pushing! The world of contemporary science is brimming with brilliant minds. Here are a few more living scientists making remarkable contributions across different disciplines:
+
+* **Svante Pääbo (born 1955):** A Swedish geneticist who won the Nobel Prize in Physiology or Medicine in 2022 for his discoveries concerning the genomes of extinct hominins and human evolution. His groundbreaking work has involved sequencing the Neanderthal genome and discovering Denisovans, providing crucial insights into our evolutionary history.
+
+* **Joanne Chory (born 1955):** An American plant biologist whose research has been fundamental to understanding plant growth and development. Her work on plant hormones and responses to light has significant implications for agriculture and our understanding of how plants adapt to their environment. She has received numerous prestigious awards for her contributions.
+
+* **Robert Langer (born 1948):** A chemical engineer and bioengineer at MIT, often referred to as the "Edison of medicine." His groundbreaking work in drug delivery systems and tissue engineering has led to revolutionary treatments for various diseases. He has pioneered the development of biodegradable polymers that release drugs slowly over time and has made significant advancements in creating artificial tissues and organs.
+
+* **Michel Mayor (born 1942) and Didier Queloz (born 1966):** These Swiss astrophysicists jointly won the Nobel Prize in Physics in 2019 for their discovery of the first exoplanet orbiting a sun-like star, 51 Pegasi b. Their work opened up the field of exoplanetary science and revolutionized our understanding of planetary systems beyond our own.
+
+* **Frances Arnold (born 1956):** An American chemical engineer who won the Nobel Prize in Chemistry in 2018 for her work on the directed evolution of enzymes. Her innovative techniques allow scientists to "breed" enzymes with specific desired properties, leading to more efficient and environmentally friendly industrial processes.
+
+* **Mary-Claire King (born 1946):** An American geneticist who made significant contributions to the understanding of human genetics, including demonstrating that breast cancer can be inherited due to specific genes. Her work led to the identification of the BRCA1 gene and has had a profound impact on cancer research and genetic testing.
+
+These individuals, through their relentless curiosity and innovative approaches, are pushing the boundaries of human knowledge and creating technologies that are shaping our future. It's truly inspiring to witness their ongoing contributions to science! Would you like to explore scientists in a particular field?
