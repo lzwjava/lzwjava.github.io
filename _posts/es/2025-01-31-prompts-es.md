@@ -9,7 +9,7 @@ translated: true
 
 ---
 
-Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
+Redacta un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
 
 - Adentrarse en subtemas específicos y explorar sus intricacies.
 - Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
@@ -39,7 +39,7 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Extiende a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
@@ -53,11 +53,11 @@ Genera una imagen feliz del Año Nuevo del Dragón Lunar con nombres de texto in
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con el texto DeepSeek R1 super grande en el centro.
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
 
 ---
 
@@ -82,3 +82,7 @@ Proporciona sus letras en japonés y explícalas, para cada palabra y pronunciac
 ---
 
 Proporciona un tutorial completo sobre este capítulo.
+
+---
+
+Proporciona una historia completa de esto, quién lo descubrió, cuál es la historia detrás.
