@@ -86,3 +86,6 @@ give its lyrics in Japanese, and explain them, for every word and prounciation
 
 Give a comprehensive tutuorial about this chapter.
 
+---
+
+give a comprehensive history of this, who discover this, what's the story behind
