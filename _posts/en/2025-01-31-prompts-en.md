@@ -11,7 +11,7 @@ Translate the following posts or words into Chinese, ensuring that names (e.g., 
 
 ---
 
-Create a natural and extended conversation between two experts, A and B, with at least 50 turns. The experts should discuss a specific topic in depth, with the conversation flowing back and forth. Both participants should ask questions, share insights, and explore the nuances of the subject matter. Use skills such as diving deeper into subsections, comparing technologies, exploring use cases, debating trade-offs, and discussing emerging trends. Expand to 50+ turns.
+Create a natural and extended conversation between two experts, A and B. The experts should discuss a specific topic in depth, with the conversation flowing back and forth. Both participants should ask questions, share insights, and explore the nuances of the subject matter. Use skills such as diving deeper into subsections, comparing technologies, exploring use cases, digging the detail, and use some quizes to test knowledge, focus on how things work. And less use formula as it is dialogue. 
 
 
 The format should be as follows:
