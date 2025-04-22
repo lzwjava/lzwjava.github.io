@@ -7,7 +7,18 @@ title: Pistas Útiles
 translated: true
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de un lado a otro. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, indagar en los detalles y usar algunos cuestionarios para probar conocimientos, enfócate en cómo funcionan las cosas. Y menos uso de fórmulas ya que es un diálogo.
+---
+
+Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
+
+- Adentrarse en subtemas específicos y explorar sus intricacies.
+- Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
+- Discutir casos de uso del mundo real y sus implicaciones.
+- Hacer preguntas profundas para descubrir ideas más profundas.
+- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
+- Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
+
+Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
 
 El formato debe ser el siguiente:
 
@@ -19,34 +30,34 @@ El formato debe ser el siguiente:
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. ..."
+      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
     }
 ]
 ```
 
-Sobre el examen 04730, el examen de autoestudio de China y la tecnología electrónica básica 3.
+Sobre el examen 04730, el examen de autoestudio de China y la tecnología básica de electrónica 3.
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de un lado a otro. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
 A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Comencemos con los conceptos básicos.
+B: ¡Claro! Empecemos con los conceptos básicos.
 
 ---
 
-Genera una imagen feliz del Año Nuevo de la Serpiente Lunar con nombres de texto incluidos.
+Genera una imagen feliz del Año Nuevo del Dragón Lunar con nombres de texto incluidos.
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
 
 ---
 
@@ -60,7 +71,7 @@ Archivos cambiados:
 
 ---
 
-Crea un título para YouTube.
+Crea un título de YouTube.
 
 ---
 
