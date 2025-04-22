@@ -32,3 +32,54 @@ That's a great question! Tomas Mikolov, a Czech computer scientist, is indeed a 
 * **Linus Torvalds (Finland):** While his impact is primarily in operating systems (as the creator of the Linux kernel), this is a fundamental aspect of software infrastructure that underpins much of modern computing.
 
 This is just a selection, and many other talented European scholars and scientists have made invaluable contributions to these fields. Europe continues to be a vibrant hub for research and innovation in computer science, machine learning, and software.
+
+---
+
+You're right, there's a wealth of brilliant minds in Europe! Let's delve deeper and highlight some more influential figures, touching upon different areas within computer science, machine learning, and software:
+
+**Expanding on Machine Learning:**
+
+* **Zoubin Ghahramani (United Kingdom):** A leading expert in Bayesian machine learning, probabilistic modeling, and artificial intelligence. His work has significantly advanced areas like unsupervised learning, dimensionality reduction, and probabilistic graphical models. He was also a Chief Scientist at Uber AI.
+* **Christopher Bishop (United Kingdom):** Known for his highly influential textbook "Pattern Recognition and Machine Learning," which has become a standard reference in the field. He has made significant contributions to areas like Bayesian inference, neural networks, and computer vision. He was a Director of Research at Microsoft Research Cambridge.
+* **Luc Van Gool (Belgium):** A prominent figure in computer vision, with significant contributions to object recognition, 3D vision, and image understanding. His work has been highly cited and influential in the development of practical computer vision systems. He has held positions at ETH Zurich and KU Leuven.
+* **Joaquin Quiñonero Candela (Spain):** A leading researcher in causal inference and its applications in machine learning. He has worked on developing methods to understand cause-and-effect relationships in data, which is crucial for building more robust and interpretable AI systems. He was previously Director of Applied Machine Learning at Facebook AI.
+* **Neil Lawrence (United Kingdom):** A key figure in probabilistic machine learning and the development of Gaussian processes. His work has been instrumental in providing principled ways to handle uncertainty in machine learning models. He has held positions at the University of Sheffield and Amazon.
+
+**Further Exploration in Computer Science:**
+
+* **Robin Milner (United Kingdom):** A Turing Award laureate for his work on the theory of concurrency and the development of the ML programming language and the LCF theorem prover. His work laid the foundations for much of modern programming language theory and formal verification.
+* **C.A.R. Hoare (United Kingdom - mentioned previously but deserves further emphasis):** Beyond Quicksort, his work on formal methods, especially Hoare logic, has been fundamental to ensuring the correctness and reliability of software systems.
+* **Donald Michie (United Kingdom):** A pioneer in artificial intelligence, particularly in the areas of machine learning and knowledge-based systems. He was instrumental in the development of early expert systems.
+* **Maurice Wilkes (United Kingdom):** Another early pioneer in computing. He led the team that built the Electronic Delay Storage Automatic Calculator (EDSAC), one of the first practical stored-program electronic computers.
+
+**More Noteworthy Figures in Software and Related Areas:**
+
+* **Sophie Wilson (United Kingdom):** Co-designer of the ARM architecture, which now powers the vast majority of mobile devices worldwide. Her work has had an immeasurable impact on the computing landscape.
+* **Hermann Maurer (Austria):** A pioneer in hypertext and early online information systems, predating the World Wide Web. His work on Hyper-G laid important groundwork for the development of the web.
+
+This list, while still not exhaustive, provides further examples of the significant and diverse contributions of European scholars and scientists to these vital fields. Europe continues to be a hotbed of innovation, producing groundbreaking research and shaping the future of technology.
+
+---
+
+Okay, here are some names of promising younger researchers and developers based in Europe who are making waves in computer science, machine learning, and software (keeping in mind that "young" is relative and impact takes time to fully materialize):
+
+**In Machine Learning and AI:**
+
+* **Mateja Jamnik (Slovenia/UK):** Known for her work in AI and theorem proving.
+* **Mihaela van der Schaar (Romania/UK):** Works on machine learning for healthcare and personalized medicine.
+* **Efstratios Gavves (Greece/Netherlands):** Researching deep learning and computer vision.
+* **Jakob Foerster (Germany/UK):** Focuses on multi-agent reinforcement learning.
+* **Laurent Smeesters (Belgium):** Works on trustworthy AI and privacy-preserving machine learning.
+* **Angela Schoellig (Canada/Germany):** Researching robotics and machine learning for autonomous systems.
+* **Bernardo Subercaseaux (Chile/France):** Works on the theoretical foundations of deep learning.
+* **Vera Demberg (Germany):** Works on computational linguistics and natural language processing.
+
+**In Computer Science and Software:**
+
+* **Bryan Ford (USA/Switzerland):** Known for his work on operating systems and distributed systems (though with significant time spent in Europe).
+* **Natasha Shakhlevich (Belarus/UK):** Works on scheduling theory and optimization.
+* **Alexandra Silva (Portugal/UK):** Researching programming languages and automata theory.
+* **Carmela Troncoso (Spain/Switzerland):** Works on privacy-enhancing technologies.
+* **Manuel Carro (Spain):** Known for his work in logic programming and program analysis.
+
+**Important Note:** Identifying "young stars" is subjective and these are just a few examples. Many other talented individuals are contributing significantly, and their impact will continue to grow. Keep an eye on publications from top European universities and research labs for more emerging names.
