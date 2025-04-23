@@ -70,5 +70,4 @@ title: Learning Tips
 
 * Write blogs, make videos, or create other content to share. People are narcissistic. By reviewing what you create, you will notice imperfections. That will give you the urge to improve.
 
-* Learn the history of things, like some specific math, electricity, or programming. It shows how things develop and the strong reasons for the order in which they appear.
-
+* Learn the history of things, like some specific math, electricity, or programming. It shows how things develop and the strong reasons for the order in which they appear. These parts are what textbooks miss.
