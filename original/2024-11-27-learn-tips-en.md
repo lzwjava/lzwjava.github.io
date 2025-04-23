@@ -69,3 +69,6 @@ title: Learning Tips
 * Teach or share what you learn to others, one piece at a time. No matter how technical or sophisticated it is, share it with your companion, friends, or even street buddies. 
 
 * Write blogs, make videos, or create other content to share. People are narcissistic. By reviewing what you create, you will notice imperfections. That will give you the urge to improve.
+
+* Learn the history of things, like some specific math, electricity, or programming. It shows how things develop and the strong reasons for the order in which they appear.
+
