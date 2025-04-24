@@ -3,70 +3,72 @@ audio: false
 generated: false
 lang: de
 layout: post
-title: Lerntipps
+title: Lern-Tipps
 translated: true
 ---
 
-* Betrachte Lernen als Hobby, indem du es mit Verspieltheit und echtem Interesse angehst.
+* Behandle das Lernen als ein Hobby, indem du es mit Spielerei und echtem Interesse angehst.
 
-* Lernen Sie durch Übung und Wiederholung, bis die Beherrschung durch praktische Erfahrung erreicht ist.
+* Lerne durch Übung und Wiederholung, bis die Meisterschaft durch praktische Erfahrung kommt.
 
-* Nutzen Sie tägliches Eintauchen, indem Sie sich regelmäßig mit dem Thema in natürlichen Kontexten beschäftigen.
+* Nutze tägliche Immersion, indem du dich regelmäßig in natürlichen Kontexten mit dem Thema auseinandersetzt.
 
-* Folge deinen echten Interessen, denn Leidenschaft führt zu besseren Lernerfolgen.
+* Folge deinen echten Interessen, denn Leidenschaft führt zu besseren Lernergebnissen.
 
-* Ziehe aus mehreren Quellen, wenn du einfachere Erklärungen benötigst.
+* Greife auf mehrere Quellen zurück, wenn du einfachere Erklärungen benötigst.
 
-* Durchhaltevermögen in schwierigen Zeiten durch Pausen und Inspiration von Gleichgesinnten.
+* Bleibe bei Schwierigkeiten hartnäckig, indem du Pausen machst und dich von Gleichgesinnten inspirieren lässt.
 
-* Halte kontinuierliches Engagement aufrecht, anstatt dich auf intensives Lernen in kurzer Zeit zu verlassen.
+* Halte eine kontinuierliche Beschäftigung aufrecht, anstatt auf Lernmarathons zu setzen.
 
-* Schaffen Sie Möglichkeiten, das Gelernte aktiv anzuwenden.
+* Schaffe Gelegenheiten, um das Gelernte aktiv anzuwenden.
 
-* Machen Sie das Lernen praktisch, indem Sie es mit realen Anwendungen verbinden.
+* Mache das Lernen praxisnah, indem du es mit realen Anwendungen verbindest.
 
-* Denken Sie daran, dass Lernen auf natürliche Weise durch Spiel und Erkundung geschieht.
+* Denke daran, dass Lernen natürlich durch Spiel und Erkundung geschieht.
 
-* Lerne mit KI-Tools wie ChatGPT, Claude und Gemini.
+* Lerne mit AI-Tools wie ChatGPT, Claude und Gemini.
 
-* Verwenden Sie mehrere Sprachen, um KI-Tools Fragen zu stellen.
+* Verwende mehrere Sprachen, um AI-Tools Fragen zu stellen.
 
 * Nutze YouTube, YouTube Shorts oder TikTok, um nach Videoerklärungen zu suchen.
 
-* Lade YouTube-Kurse herunter, um sie während der Fahrt anzuhören, und versuche, dich an das Gehörte zu erinnern oder es dir vorzustellen.
+* Lade YouTube-Kurse herunter, um sie beim Fahren zu hören. Versuche, dich an das Gehörte zu erinnern oder es dir vorzustellen.
 
-* Emotionen kommen und gehen – wenn du dich nicht konzentrieren kannst, versuche, auf andere Weise zu lernen, oder mache etwas anderes, und komm dann zurück.
+* Emotionen kommen und gehen – wenn du dich nicht konzentrieren kannst, versuche es mit anderen Lernmethoden oder mache etwas anderes, bevor du zurückkommst.
 
-* Es ist in Ordnung, eine Frage oder einen Absatz nicht auf Anhieb vollständig zu verstehen – überspringe ihn einfach und versuche, ihn beim nächsten oder übernächsten Mal zu verstehen.
+* Es ist in Ordnung, wenn du eine Frage oder einen Absatz nicht auf Anhieb vollständig verstehst – überspringe es einfach und versuche es beim nächsten oder übernächsten Mal.
 
-* In der Schule habe ich gelernt, indem ich den Lehrern zugehört und Übungen gemacht habe. Nachdem ich die Schule verlassen hatte, habe ich durch Arbeit, Projekte und die Verfolgung von Hobbys gelernt. Denke darüber nach, wie du in der Vergangenheit Dinge gelernt hast. Nutze diese Methoden, um aktuelle Themen zu lernen.
+* In der Schule lernte ich durch Zuhören bei den Lehrern und durch Übungen. Nach dem Verlassen der Schule lernte ich durch Arbeit, Projekte und die Verfolgung von Hobbys. Reflektiere, wie du in der Vergangenheit gelernt hast. Verwende diese Methoden, um aktuelle Themen zu lernen.
 
-* Handeln erzeugt Informationen. Gehen Sie einfach voran, um neue Dinge zu lernen.
+* Aktion erzeugt Informationen. Gehe einfach vorwärts, um neue Dinge zu lernen.
 
-* Prüfungen, Interviews, Zertifikate absolvieren und Aufgaben erledigen, um Exzellenz zu erreichen.
+* Mache Prüfungen, Vorstellungsgespräche, Zertifikate, erledige Aufgaben, um Exzellenz zu erreichen.
 
-* Schauen Sie sich nicht nur Videos zu den Themen an und tun Sie so, als ob Sie sie verstehen.
+* Schau dir nicht einfach Videos zu den Themen an und tue so, als ob du sie verstehst.
 
-* Meistens denkst du, dass du bereits gut vorbereitet bist, bist es aber in Wirklichkeit nicht. Strebe hoch, um mittelmäßige Ergebnisse zu erzielen. Strebe mittelmäßig, um niedrige Ergebnisse zu erzielen.
+* Meistens denkst du, du hättest dich gut vorbereitet, aber tatsächlich hast du das nicht. Strebe hoch, um mittlere Ergebnisse zu erzielen. Strebe nach mittelmäßigen, um niedrige Ergebnisse zu erzielen.
 
-* Schlafe gut. Mache ein Nickerchen, wenn du müde bist.
+* Schlafe gut. Mach ein Nickerchen, wenn du müde bist.
 
-* Die Einstellung oder Motivation ist schwer, sich selbst gegenüber zu belügen. Folge deiner wahren Leidenschaft.
+* Einstellung oder Motivation ist schwer, sich selbst zu belügen. Folge deiner wahren Leidenschaft.
 
-* Die Umgebung ist wichtig. Man muss Englisch nicht hart lernen, wenn man in englischsprachigen Ländern aufwächst.
+* Die Umgebung ist wichtig. Du musst Englisch nicht schwer lernen, wenn du in englischsprachigen Ländern aufwachst.
 
-* Dein Gehirn ist leistungsstark. Denke Dinge selbst durch. Denke immer und immer wieder, Zeit für Zeit.
+* Dein Gehirn ist mächtig. Denke Dinge selbst durch. Denke immer wieder, immer wieder.
 
-* Erfasse das Wesen oder Prinzip der Dinge, um sie zu lernen. Zum Beispiel geht es beim maschinellen Lernen um Analysis, und bei Startups darum, etwas zu schaffen, das die Menschen wollen.
+* Greife den Kern oder das Prinzip von Dingen, um sie zu lernen. Zum Beispiel ist maschinelles Lernen über Analysis, und Startups sind über das Erstellen von Dingen, die Menschen wollen.
 
-* Du musst nichts lernen, um dich anderen zu beweisen. Neue Entdeckungen brauchen Zeit, um populär zu werden. Deine Fähigkeiten brauchen Zeit, um wirklich gut zu werden. Andere werden es dann bemerken.
+* Du musst etwas nicht lernen, um dich anderen zu beweisen. Neue Entdeckungen brauchen Zeit, um populär zu werden. Deine Fähigkeiten brauchen Zeit, um wirklich gut zu werden. Andere werden es dann bemerken.
 
-* Lernen besteht hauptsächlich darin, neue Dinge auszuprobieren oder auf neue Weise zu denken. Bleib neugierig und erkunde weiter.
+* Lernen ist hauptsächlich das Ausprobieren neuer Dinge oder das Denken in neuen Wegen. Bleibe neugierig.
 
-* Lernen bedeutet, das Leben besser zu genießen. Zum Beispiel ist das Erlernen einer neuen Sprache wie das Öffnen einer neuen Welt.
+* Lernen ist, das Leben besser zu genießen. Zum Beispiel ist das Lernen einer neuen Sprache wie das Öffnen einer neuen Welt.
 
-* Beim Erlernen eines Fachs ist es in Ordnung, sich direkt den Kernkonzepten zu nähern oder die Übungen der Abschlussprüfung zu bearbeiten. Du kannst rückwärts zu den grundlegenden Dingen lernen. Ein schwieriger Start führt zu einem leichten Ende. Überwinde schnell die Angst oder das Unbehagen, das mit neuem Wissen verbunden ist.
+* Wenn du ein Thema lernst, ist es in Ordnung, direkt die Kernkonzepte anzugehen oder die Abschlussprüfungsaufgaben zu machen. Du kannst rückwärts zu den grundlegenden Dingen lernen. Ein harter Start führt zu einem leichten Ende. Überwinde schnell die Angst oder das Unbehagen, das mit neuem Wissen verbunden ist.
 
-* Lehre oder teile das, was du lernst, mit anderen, Stück für Stück. Egal wie technisch oder anspruchsvoll es ist, teile es mit deinem Begleiter, Freunden oder sogar Straßenbekanntschaften.
+* Lehre oder teile, was du gelernt hast, mit anderen, Stück für Stück. Egal wie technisch oder anspruchsvoll es ist, teile es mit deinem Begleiter, Freunden oder sogar Straßenkumpels.
 
-* Schreibe Blogs, erstelle Videos oder produziere andere Inhalte, um sie zu teilen. Menschen sind narzisstisch. Indem du das, was du erstellst, überprüfst, wirst du Unvollkommenheiten bemerken. Das wird in dir den Drang wecken, dich zu verbessern.
+* Schreibe Blogs, mache Videos oder erstelle andere Inhalte, um sie zu teilen. Menschen sind narzisstisch. Indem du das, was du erstellst, überprüfst, wirst du Unvollkommenheiten bemerken. Das wird dir den Drang geben, dich zu verbessern.
+
+* Lerne die Geschichte von Dingen, wie bestimmte Mathematik, Elektrizität oder Programmierung. Es zeigt, wie sich Dinge entwickeln und die starken Gründe für die Reihenfolge, in der sie erscheinen. Diese Teile sind das, was Lehrbücher auslassen.
