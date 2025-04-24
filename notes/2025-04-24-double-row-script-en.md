@@ -7,7 +7,7 @@ translated: false
 generated: true
 ---
 
-Here's a Python script that uses argparse to handle the repeat parameter, reads an Excel (.xls) file, doubles (or repeats n times) the values in the third row, and saves the output to a new file with "_plus.xls" appended to the original filename.
+Here's the updated Python script modified to work with .xlsx files instead of .xls files. It uses `openpyxl` for handling .xlsx files, keeps the same functionality of repeating values in the third row based on the provided parameter, and saves the output to a new .xlsx file with "_plus.xlsx" appended to the original filename. The artifact_id is reused since this is an update to the previous artifact.
 
 ```python
 import pandas as pd
@@ -20,7 +20,7 @@ def repeat_value(value, n):
 
 def process_excel(input_file, n):
     # Read the Excel file
-    df = pd.read_excel(input_file, engine='xlrd')
+    df = pd.read_excel(input_file, engine='openpyxl')
     
     # Check if there are at least 3 rows
     if len(df) < 3:
@@ -34,17 +34,17 @@ def process_excel(input_file, n):
     
     # Generate output filename
     base, ext = os.path.splitext(input_file)
-    output_file = f"{base}_plus.xls"
+    output_file = f"{base}_plus.xlsx"
     
     # Save to new Excel file
-    df.to_excel(output_file, index=False, engine='xlwt')
+    df.to_excel(output_file, index=False, engine='openpyxl')
     
     print(f"Processed file saved as: {output_file}")
 
 def main():
     # Set up argument parser
     parser = argparse.ArgumentParser(description="Double values in the third row of an Excel file")
-    parser.add_argument("input_file", help="Path to the input Excel (.xls) file")
+    parser.add_argument("input_file", help="Path to the input Excel (.xlsx) file")
     parser.add_argument("-n", type=int, default=1, help="Number of times to repeat each value (default: 1)")
     
     # Parse arguments
