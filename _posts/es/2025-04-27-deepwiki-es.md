@@ -1,0 +1,16 @@
+---
+audio: false
+generated: false
+lang: es
+layout: post
+title: Prueba de DeepWiki
+translated: true
+---
+
+Prueba DeepWiki: [https://deepwiki.com/lzwjava/lzwjava.github.io](https://deepwiki.com/lzwjava/lzwjava.github.io).
+
+Los diagramas de arquitectura son bastante buenos.
+
+Cuando mi artículo es una publicación sobre invertir en GitHub Actions, es un artículo en Markdown con algo de código. La IA no sabe que esto es solo una publicación. Así que cuando pregunto cuál es el trabajo cron de este repositorio, lo incluirá.
+
+Es realmente fácil para la IA cometer este error. Se les alimenta con toneladas de información y no siempre la categorizan correctamente, especialmente en casos profundamente anidados.
