@@ -7,13 +7,13 @@ title: Conseils d'apprentissage
 translated: true
 ---
 
-* Traitez l'apprentissage comme un passe-temps en l'abordant avec une attitude ludique et un intérêt sincère.
+* Traitez l'apprentissage comme un hobby en l'abordant avec légèreté et un intérêt sincère.
 
 * Apprenez par la pratique et la répétition jusqu'à ce que la maîtrise vienne par l'expérience pratique.
 
 * Utilisez l'immersion quotidienne en vous engageant régulièrement avec le sujet dans des contextes naturels.
 
-* Suivez vos véritables intérêts car la passion mène à de meilleurs résultats d'apprentissage.
+* Suivez vos intérêts sincères car la passion mène à de meilleurs résultats d'apprentissage.
 
 * Puisez dans plusieurs sources lorsque vous avez besoin d'explications plus simples.
 
@@ -33,13 +33,13 @@ translated: true
 
 * Utilisez YouTube, YouTube Shorts ou TikTok pour rechercher des explications vidéo.
 
-* Téléchargez des cours YouTube pour les écouter en conduisant, essayez de vous rappeler ou d'imaginer ce que vous écoutez.
+* Téléchargez des cours YouTube pour écouter en conduisant, essayez de vous rappeler ou d'imaginer ce que vous écoutez.
 
-* Les émotions passent - lorsque vous ne pouvez pas vous concentrer, essayez d'autres moyens d'apprendre ou faites autre chose, puis revenez.
+* Les émotions viennent et vont - lorsque vous ne pouvez pas vous concentrer, essayez d'autres moyens d'apprendre, ou faites autre chose, puis revenez.
 
-* Il est normal de ne pas comprendre complètement une question ou un paragraphe du premier coup - sautez-le et essayez de le comprendre la fois suivante, ou celle d'après.
+* Il est normal de ne pas comprendre complètement une question ou un paragraphe du premier coup - sautez-le et essayez de le comprendre la prochaine fois, ou la fois suivante.
 
-* À l'école, j'apprenais en écoutant les enseignants et en faisant des exercices. Après avoir quitté l'école, j'ai appris en faisant des travaux, des projets et en poursuivant des passe-temps. Réfléchissez à la manière dont vous avez appris des choses dans le passé. Utilisez ces méthodes pour apprendre les sujets actuels.
+* À l'école, j'ai appris en écoutant les enseignants et en faisant des exercices. Après avoir quitté l'école, j'ai appris en faisant des travaux, des projets et en poursuivant des hobbies. Réfléchissez à la manière dont vous avez appris des choses dans le passé. Utilisez ces méthodes pour apprendre les sujets actuels.
 
 * L'action produit de l'information. Avancez simplement pour apprendre de nouvelles choses.
 
@@ -47,7 +47,7 @@ translated: true
 
 * Ne regardez pas simplement des vidéos sur les sujets en prétendant comprendre.
 
-* La plupart du temps, vous pensez avoir bien préparé, mais en réalité, ce n'est pas le cas. Visez haut pour obtenir des résultats moyens. Visez le milieu pour obtenir des résultats bas.
+* La plupart du temps, vous pensez avoir bien préparé, mais en réalité, ce n'est pas le cas. Visez haut pour obtenir des résultats moyens. Visez moyen pour obtenir des résultats bas.
 
 * Dormez bien. Faites des siestes si vous êtes fatigué.
 
@@ -65,10 +65,12 @@ translated: true
 
 * Apprendre, c'est mieux profiter de la vie. Par exemple, apprendre une nouvelle langue, c'est comme ouvrir un nouveau monde.
 
-* Lorsque vous apprenez un sujet, aborder directement les concepts de base ou faire les exercices de l'examen final est acceptable. Vous pouvez apprendre à rebours les choses fondamentales. Un début difficile mène à une fin facile. Surmontez rapidement la peur ou le malaise associé à de nouvelles connaissances.
+* Lorsque vous apprenez un sujet, aborder directement les concepts de base ou faire les exercices de l'examen final est correct. Vous pouvez apprendre à rebours les choses fondamentales. Un début difficile mène à une fin facile. Surmontez rapidement la peur ou le malaise associé à de nouvelles connaissances.
 
-* Enseignez ou partagez ce que vous apprenez aux autres, une partie à la fois. Peu importe que ce soit technique ou sophistiqué, partagez-le avec votre compagnon, vos amis ou même vos connaissances de rue.
+* Enseignez ou partagez ce que vous apprenez aux autres, une partie à la fois. Peu importe que ce soit technique ou sophistiqué, partagez-le avec votre compagnon, vos amis, ou même vos amis de rue.
 
-* Écrivez des blogs, faites des vidéos ou créez d'autres contenus pour partager. Les gens sont narcissiques. En révisant ce que vous créez, vous remarquerez des imperfections. Cela vous donnera l'envie de vous améliorer.
+* Écrivez des blogs, faites des vidéos, ou créez d'autres contenus à partager. Les gens sont narcissiques. En révisant ce que vous créez, vous remarquerez des imperfections. Cela vous donnera l'envie de vous améliorer.
 
-* Apprenez l'histoire des choses, comme certaines mathématiques spécifiques, l'électricité ou la programmation. Cela montre comment les choses se développent et les raisons solides de l'ordre dans lequel elles apparaissent. Ces parties sont ce que les manuels scolaires manquent.
+* Apprenez l'histoire des choses, comme certaines mathématiques spécifiques, l'électricité ou la programmation. Cela montre comment les choses se développent et les raisons solides pour lesquelles elles apparaissent dans un certain ordre. Ces parties sont ce que les manuels scolaires manquent.
+
+* Souvent, si vous apprenez un sujet et rencontrez une difficulté, répétez simplement la visualisation d'une vidéo, l'écoute ou la lecture de matériaux à son sujet environ 20 fois - cela peut avoir un effet magique. Comme l'a dit June Huh, la répétition a une certaine beauté.
