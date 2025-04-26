@@ -9,11 +9,11 @@ translated: true
 
 ---
 
-Redacta un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
+Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
 
-- Adentrarse en subtemas específicos y explorar sus intricacies.
+- Adentrarse en subtemas específicos y explorar sus intrincaciones.
 - Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
-- Discutir casos de uso del mundo real y sus implicaciones.
+- Discutir casos de uso en el mundo real y sus implicaciones.
 - Hacer preguntas profundas para descubrir ideas más profundas.
 - Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
 - Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
@@ -30,7 +30,7 @@ El formato debe ser el siguiente:
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
+      "line": "¡Claro! Empecemos con lo básico. ..."
     }
 ]
 ```
@@ -39,21 +39,21 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Extiende a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Extiende a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
 A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Empecemos con los conceptos básicos.
+B: ¡Claro! Empecemos con lo básico.
 
 ---
 
-Genera una imagen feliz del Año Nuevo del Dragón Lunar con nombres de texto incluidos.
+Genera una imagen feliz del Año Nuevo de la Serpiente Lunar con nombres incluidos en el texto.
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con el texto DeepSeek R1 super grande en el centro.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con el texto "DeepSeek R1" en el centro, en un tamaño super grande.
 
 ---
 
@@ -64,20 +64,20 @@ Crea una imagen de portada para un video de YouTube de 480p con los siguientes e
 Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
 Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert.
 Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada.
-El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas o posteriores.
+El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas adicionales.
 
 Archivos cambiados:
-{', '.join(file_changes)}
+{', '.join(cambios_de_archivo)}
 
 ---
 
-Crea un título de YouTube.
+Crea un título para YouTube.
 
 ---
 
 蕾(つぼみ) - Tsubomi
 
-Proporciona sus letras en japonés y explícalas, para cada palabra y pronunciación.
+Proporciona la letra en japonés y explícala, para cada palabra y pronunciación.
 
 ---
 
@@ -86,3 +86,7 @@ Proporciona un tutorial completo sobre este capítulo.
 ---
 
 Proporciona una historia completa de esto, quién lo descubrió, cuál es la historia detrás.
+
+---
+
+Recomienda videos de YouTube sobre ...
