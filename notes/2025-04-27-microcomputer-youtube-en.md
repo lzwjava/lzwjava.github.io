@@ -1,5 +1,5 @@
 ---
-title: YouTube Video Recommendations about Microcomputer and Interface Technology
+title: Video Recommendations about Microcomputer
 lang: en
 layout: post
 audio: false
