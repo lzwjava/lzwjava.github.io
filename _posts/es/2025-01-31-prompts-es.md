@@ -9,24 +9,24 @@ translated: true
 
 ---
 
-Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
+Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
 
-- Profundizar en subtemas específicos y explorar sus intricacies.
-- Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
-- Discutir casos de uso del mundo real y sus implicaciones.
-- Hacer preguntas profundas para descubrir ideas más profundas.
-- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
-- Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
+- Delve into specific subtopics and explore their intricacies.
+- Compare and contrast different technologies or methodologies related to the subject.
+- Discuss real-world use cases and their implications.
+- Ask probing questions to uncover deeper insights.
+- Include occasional quizzes to test each other's knowledge.
+- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
 
-Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
+Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
 
-El formato debe ser el siguiente:
+The format should be as follows:
 
 ```json
 [
     {
       "speaker": "A",
-      "line": "Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?"
+      "line": "¡Hola! He estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?"
     },
     {
       "speaker": "B",
@@ -43,13 +43,13 @@ Crea una conversación natural y extendida entre dos expertos, A y B, con al men
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
-A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
+A: ¡Hola! He estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
 B: ¡Claro! Empecemos con los conceptos básicos.
 
 ---
 
-Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres de texto incluidos.
+Genera una imagen feliz del Año Nuevo de la Serpiente Lunar con nombres incluidos en el texto.
 
 ---
 
@@ -85,7 +85,7 @@ Proporciona un tutorial completo sobre este capítulo.
 
 ---
 
-Proporciona una historia completa de esto, quién lo descubrió, cuál es la historia detrás.
+Proporciona una historia completa de esto, quién lo descubrió, ¿cuál es la historia detrás?
 
 ---
 
@@ -101,4 +101,12 @@ Proporciona un análisis completo de cómo funcionan los inductores.
 
 ---
 
-¿Qué hay de especial en Filipinas? ¿Qué es su unicidad? ¿Cómo contribuyen las personas de Filipinas a la tecnología? ¿Cómo inventan y tienen impacto sus personas?
+¿Qué es especial de Filipinas? ¿Cuál es su singularidad? ¿Cómo contribuyen las personas de Filipinas a la tecnología? ¿Cómo inventan y afectan sus personas?
+
+---
+
+Proporciona una discusión sobre xx.
+
+---
+
+Proporciona una reseña sobre xx.
