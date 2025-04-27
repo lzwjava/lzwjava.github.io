@@ -15,7 +15,7 @@ When my article is a post about investing in GitHub Actions, it's a Markdown art
 
 It's really easy for AI to make this mistake. They are fed tons of information and don't always categorize it correctly, especially in deeply nested cases.
 
-DeepWiki works as a tool to analyze one's Twitter posts and determine the character traits they reveal.
+DeepWiki reminds me of a tool to analyze one's Twitter posts and determine the character traits they reveal.
 
 Naturally, it encourages developers to share. It helps to index their repositories.
 
