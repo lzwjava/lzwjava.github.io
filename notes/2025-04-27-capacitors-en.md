@@ -1,5 +1,5 @@
 ---
-title: Capacitor
+title: Capacitors
 lang: en
 layout: post
 audio: false
