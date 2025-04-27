@@ -10,8 +10,8 @@ generated: true
 Here are some recommended YouTube videos and playlists covering the topics in the "Microcomputer and Interface Technology" course outline:
 
 ### Fundamentals of Microcomputers
-* **What is Microcomputer | Computer Fundamentals |** by Student Notes ([http://www.youtube.com/watch?v=glj3QrTN0T4](http://www.youtube.com/watch?v=glj3QrTN0T4))
-* **Microcomputer | Computer Fundamentals | #L3** by Techcus ([http://www.youtube.com/watch?v=R-kSF3Ca4dA](http://www.youtube.com/watch?v=R-kSF3Ca4dA))
+* **What is Microcomputer , Computer Fundamentals ,** by Student Notes ([http://www.youtube.com/watch?v=glj3QrTN0T4](http://www.youtube.com/watch?v=glj3QrTN0T4))
+* **Microcomputer , Computer Fundamentals , #L3** by Techcus ([http://www.youtube.com/watch?v=R-kSF3Ca4dA](http://www.youtube.com/watch?v=R-kSF3Ca4dA))
 * **How do computers work? CPU, ROM, RAM, address bus, data bus, control bus, address decoding.** by Ron Mattino ([http://www.youtube.com/watch?v=4knBXkN1GEU](http://www.youtube.com/watch?v=4knBXkN1GEU))
 
 ### Assembly Language Programming
@@ -45,7 +45,7 @@ Here are some recommended YouTube videos and playlists covering the topics in th
 
 ### Buses and Expansion
 * **Types of Buses (Address, Data and Control) in Computer Organization and Architecture** by Gate Smashers ([http://www.youtube.com/watch?v=xBYhHC8_A6o](http://www.youtube.com/watch?v=xBYhHC8_A6o))
-* **The PCI Bus || Microcomputer System** by Viral Huntings ([http://www.youtube.com/watch?v=g27tvADwZW8](http://www.youtube.com/watch?v=g27tvADwZW8))
+* **The PCI Bus ,, Microcomputer System** by Viral Huntings ([http://www.youtube.com/watch?v=g27tvADwZW8](http://www.youtube.com/watch?v=g27tvADwZW8))
 
 ### Modern Interface Technologies
 * **PROTOCOLS: UART - I2C - SPI - Serial communications #001** by Electronoobs ([http://www.youtube.com/watch?v=IyGwvGzrqp8](http://www.youtube.com/watch?v=IyGwvGzrqp8))
