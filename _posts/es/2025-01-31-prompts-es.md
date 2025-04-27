@@ -15,7 +15,7 @@ Escribe un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tem
 - Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
 - Discutir casos de uso del mundo real y sus implicaciones.
 - Hacer preguntas profundas para descubrir ideas más profundas.
-- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
+- Incluir ocasionalmente cuestionarios para poner a prueba los conocimientos del otro.
 - Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
 
 Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
@@ -39,7 +39,7 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Extiende a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
@@ -49,15 +49,15 @@ B: ¡Claro! Empecemos con los conceptos básicos.
 
 ---
 
-Genera una imagen feliz del Año Nuevo del Dragón Lunar con nombres de texto incluidos.
+Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres de texto incluidos.
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
 
 ---
 
@@ -77,7 +77,7 @@ Crea un título de YouTube.
 
 蕾(つぼみ) - Tsubomi
 
-Proporciona las letras en japonés y explícalas, para cada palabra y pronunciación.
+Proporciona sus letras en japonés y explícalas, para cada palabra y pronunciación.
 
 ---
 
@@ -101,4 +101,4 @@ Proporciona un análisis completo de cómo funcionan los inductores.
 
 ---
 
-¿Qué hay de especial en Filipinas? ¿Qué es su unicidad? ¿Cómo contribuyen las personas de Filipinas a la tecnología? ¿Cómo inventan y tienen impacto sus personas?
+¿Qué hay de especial en Filipinas? ¿Cuál es su unicidad? ¿Cómo contribuyen las personas filipinas a la tecnología? ¿Cómo inventan y tienen impacto sus personas?
