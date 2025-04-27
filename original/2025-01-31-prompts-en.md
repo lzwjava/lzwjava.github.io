@@ -98,3 +98,7 @@ recommend youtube videos about ...
 
 give some introductions about davo city in mindanao , philipines
 
+---
+
+give a comprehensive analysis of how Inductors work
+
