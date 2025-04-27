@@ -106,3 +106,11 @@ give a comprehensive analysis of how Inductors work
 
 what are special about Philippines? what's uniqueness? how Philippines people contribue to technology? how does its people invent and impact?
 
+---
+
+give a dicussion about xx
+
+---
+
+give a review about xx
+
