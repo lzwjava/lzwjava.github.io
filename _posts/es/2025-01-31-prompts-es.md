@@ -9,13 +9,13 @@ translated: true
 
 ---
 
-Escribe un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
+Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
 
-- Adentrarse en subtemas específicos y explorar sus intricacies.
+- Profundizar en subtemas específicos y explorar sus intricacies.
 - Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
 - Discutir casos de uso del mundo real y sus implicaciones.
 - Hacer preguntas profundas para descubrir ideas más profundas.
-- Incluir ocasionalmente cuestionarios para poner a prueba los conocimientos del otro.
+- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
 - Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
 
 Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
@@ -64,20 +64,20 @@ Crea una imagen de portada para un video de YouTube de 480p con los siguientes e
 Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
 Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert.
 Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada.
-El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas o posteriores.
+El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas ni posteriores.
 
 Archivos cambiados:
 {', '.join(file_changes)}
 
 ---
 
-Crea un título de YouTube.
+Crea un título para YouTube.
 
 ---
 
 蕾(つぼみ) - Tsubomi
 
-Proporciona sus letras en japonés y explícalas, para cada palabra y pronunciación.
+Proporciona las letras en japonés y explícalas, para cada palabra y pronunciación.
 
 ---
 
@@ -101,4 +101,4 @@ Proporciona un análisis completo de cómo funcionan los inductores.
 
 ---
 
-¿Qué hay de especial en Filipinas? ¿Cuál es su unicidad? ¿Cómo contribuyen las personas filipinas a la tecnología? ¿Cómo inventan y tienen impacto sus personas?
+¿Qué hay de especial en Filipinas? ¿Qué es su unicidad? ¿Cómo contribuyen las personas de Filipinas a la tecnología? ¿Cómo inventan y tienen impacto sus personas?

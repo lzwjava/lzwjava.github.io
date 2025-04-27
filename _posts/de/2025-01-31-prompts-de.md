@@ -35,7 +35,7 @@ Das Format sollte wie folgt aussehen:
 ]
 ```
 
-Über die 04730-Prüfung, die China-Selbststudienprüfung und die Grundlagen der Elektroniktechnik 3.
+Über die 04730 Prüfung, Selbststudium China Prüfung und Grundlagen der Elektroniktechnik 3.
 
 ---
 
@@ -53,7 +53,7 @@ Erstelle ein fröhliches Bild zum Lunar Snake New Year mit Textnamen.
 
 ---
 
-Erstelle ein YouTube-Video-Cover-Bild im Format 480p mit den folgenden Elementen: KI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit riesigem Text DeepSeek R1 in der Mitte.
+Erstelle ein YouTube-Video-Cover-Bild im Format 480p mit den folgenden Elementen: AI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit riesigem Text DeepSeek R1 in der Mitte.
 
 ---
 
@@ -61,17 +61,14 @@ Erstelle ein YouTube-Video-Cover-Bild im Format 480p mit den folgenden Elementen
 
 ---
 
-Erstelle eine prägnante Commit-Nachricht im Conventional Commits-Format für die folgenden Code-Änderungen.
-Verwende einen der folgenden Typen: feat, fix, docs, style, refactor, test, chore, perf, ci, build oder revert.
-Wenn zutreffend, füge einen Umfang in Klammern hinzu, um den betroffenen Teil der Codebasis zu beschreiben.
-Die Commit-Nachricht sollte 70 Zeichen nicht überschreiten. Gib nur die Commit-Nachricht ohne führende oder abschließende Hinweise.
+Erstelle eine prägnante Commit-Nachricht im Conventional Commits-Format für die folgenden Code-Änderungen. Verwende einen der folgenden Typen: feat, fix, docs, style, refactor, test, chore, perf, ci, build oder revert. Wenn zutreffend, füge einen Umfang in Klammern hinzu, um den betroffenen Teil des Codebasis zu beschreiben. Die Commit-Nachricht sollte 70 Zeichen nicht überschreiten. Gib nur die Commit-Nachricht ohne führende oder abschließende Hinweise.
 
 Geänderte Dateien:
 {', '.join(dateiänderungen)}
 
 ---
 
-Erstelle einen YouTube-Titel.
+Erstelle einen YouTube-Titel
 
 ---
 
@@ -101,4 +98,4 @@ Gib eine umfassende Analyse darüber, wie Induktoren funktionieren.
 
 ---
 
-Was ist besonders an den Philippinen? Was ist einzigartig? Wie tragen die Philippinen zur Technologie bei? Wie erfinden und beeinflussen ihre Menschen?
+Was ist besonders an den Philippinen? Was ist einzigartig? Wie tragen die Philippinen zur Technologie bei? Wie erfinden und beeinflussen die Menschen dort?
