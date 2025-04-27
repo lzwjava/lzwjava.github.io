@@ -3,20 +3,22 @@ audio: true
 generated: false
 lang: es
 layout: post
-title: Pistas Útiles
+title: Indicaciones Útiles
 translated: true
 ---
 
-Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
+---
 
-- Delve into specific subtopics and explore their intricacies.
-- Compare and contrast different technologies or methodologies related to the subject.
-- Discuss real-world use cases and their implications.
-- Ask probing questions to uncover deeper insights.
-- Include occasional quizzes to test each other's knowledge.
-- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
+Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
 
-Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
+- Profundizar en subtemas específicos y explorar sus intricacies.
+- Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
+- Discutir casos de uso en el mundo real y sus implicaciones.
+- Hacer preguntas profundas para descubrir ideas más profundas.
+- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
+- Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
+
+Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
 
 El formato debe ser el siguiente:
 
@@ -28,7 +30,7 @@ El formato debe ser el siguiente:
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. ..."
+      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
     }
 ]
 ```
@@ -43,7 +45,7 @@ Sobre el contenido del PDF. El formato debe ser el siguiente:
 
 A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Comencemos con los conceptos básicos.
+B: ¡Claro! Empecemos con los conceptos básicos.
 
 ---
 
@@ -51,7 +53,7 @@ Genera una imagen feliz del Año Nuevo del Dragón Lunar con nombres de texto in
 
 ---
 
-Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorida, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crea una imagen de portada de video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
 
 ---
 
@@ -83,7 +85,7 @@ Proporciona un tutorial completo sobre este capítulo.
 
 ---
 
-Proporciona una historia completa de esto, ¿quién lo descubrió?, ¿cuál es la historia detrás?
+Proporciona una historia completa de esto, quién lo descubrió, cuál es la historia detrás.
 
 ---
 
@@ -92,3 +94,7 @@ Recomienda videos de YouTube sobre ...
 ---
 
 Proporciona algunas introducciones sobre la ciudad de Davao en Mindanao, Filipinas.
+
+---
+
+Proporciona un análisis completo de cómo funcionan los inductores.
