@@ -3,7 +3,7 @@ audio: true
 generated: false
 lang: fr
 layout: post
-title: Invitations Utiles
+title: Invites Utiles
 translated: true
 ---
 
@@ -13,7 +13,7 @@ Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un 
 - Comparer et opposer différentes technologies ou méthodologies liées au sujet.
 - Discuter des cas d'utilisation réels et de leurs implications.
 - Poser des questions approfondies pour découvrir des insights plus profonds.
-- Inclure des quiz occasionnels pour tester leurs connaissances.
+- Inclure des quiz occasionnels pour tester les connaissances de chacun.
 - Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que de s'appuyer sur des formules.
 
 Assurez-vous que le dialogue s'écoule naturellement, avec un échange équilibré d'idées et de perspectives.
@@ -37,7 +37,7 @@ Le format doit être le suivant :
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez-vous à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
@@ -55,21 +55,21 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitante.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
 
 ---
 
 Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
 Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert.
 Si applicable, incluez un scope entre parenthèses pour décrire la partie de la base de code affectée.
-Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note de tête ou de fin.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note de préfixe ou de suffixe.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
 
 ---
 
-Créez un titre YouTube.
+Créez un titre YouTube
 
 ---
 
@@ -96,3 +96,7 @@ Donnez quelques introductions sur la ville de Davao à Mindanao, Philippines.
 ---
 
 Donnez une analyse complète du fonctionnement des inducteurs.
+
+---
+
+Qu'est-ce qui est spécial aux Philippines ? Quelle est son unicité ? Comment les Philippins contribuent-ils à la technologie ? Comment son peuple invente-t-il et a-t-il un impact ?
