@@ -13,7 +13,7 @@ Based on your interest in the *Microcomputer and Interface Technology* course, p
 
 #### Part 1: Fundamentals of Microcomputers
 1. **Neso Academy: Introduction to Microprocessors and Microcomputers**  
-   - **Link**: [Introduction to Microprocessors | Microprocessor vs Microcontroller](https://www.youtube.com/watch?v=6N9T86GHjeM)  
+   - **Link**: [Introduction to Microprocessors, Microprocessor vs Microcontroller](https://www.youtube.com/watch?v=6N9T86GHjeM)  
    - **Why**: Explains the evolution of microcomputers, Von Neumann architecture, and key metrics like word length and clock speed. Ideal for understanding the basics of microcomputer systems.  
    - **Duration**: ~15 minutes  
    - **Relevance**: Covers course topics like microcomputer overview and CPU structure.
@@ -32,33 +32,33 @@ Based on your interest in the *Microcomputer and Interface Technology* course, p
    - **Relevance**: Directly supports the course’s assembly programming section.
 
 4. **Neso Academy: Interrupts in 8086 Microprocessor**  
-   - **Link**: [Interrupts in 8086 | Microprocessor](https://www.youtube.com/watch?v=5yQ1bK9p5Y0)  
+   - **Link**: [Interrupts in 8086, Microprocessor](https://www.youtube.com/watch?v=5yQ1bK9p5Y0)  
    - **Why**: Explains interrupt mechanisms, the interrupt vector table, and how to write interrupt service routines (ISR) for 8086, with clear examples.  
    - **Duration**: ~20 minutes  
    - **Relevance**: Matches the course’s focus on interrupt-driven programming.
 
 #### Part 3: Memory Systems
 5. **GATE Wallah: Memory Organization in Microprocessors**  
-   - **Link**: [Memory Organization | Microprocessor](https://www.youtube.com/watch?v=8z3o2gq6r7Q)  
+   - **Link**: [Memory Organization, Microprocessor](https://www.youtube.com/watch?v=8z3o2gq6r7Q)  
    - **Why**: Discusses RAM/ROM principles, memory classification, and address decoding techniques (linear and decoder-based), which are key to the course’s memory systems section.  
    - **Duration**: ~25 minutes  
    - **Relevance**: Covers memory expansion and address decoding.
 
 #### Part 4: I/O and Interface Technology
 6. **Education 4u: 8255 Programmable Peripheral Interface**  
-   - **Link**: [8255 PPI | Microprocessor](https://www.youtube.com/watch?v=6Y2z2t3q5zY)  
+   - **Link**: [8255 PPI , Microprocessor](https://www.youtube.com/watch?v=6Y2z2t3q5zY)  
    - **Why**: Details the 8255A’s modes (0/1/2) and applications like LED control and keyboard interfacing. Includes practical lab setups.  
    - **Duration**: ~20 minutes  
    - **Relevance**: Directly addresses the course’s focus on the 8255A chip.
 
 7. **NPTEL-NOC IITM: 8253 Programmable Interval Timer**  
-   - **Link**: [8253/8254 Timer | Microprocessor](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
+   - **Link**: [8253/8254 Timer , Microprocessor](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
    - **Why**: Explains the 8253/8254 timer’s counting and timing configurations, with examples for real-world applications like traffic light control.  
    - **Duration**: ~30 minutes  
    - **Relevance**: Supports the course’s timer chip section.
 
 8. **Education 4u: 8251 USART (Serial Communication)**  
-   - **Link**: [8251 USART | Microprocessor]( Ethnic://www.youtube.com/watch?v=9kX3z3q5zY0)  
+   - **Link**: [8251 USART , Microprocessor]( Ethnic://www.youtube.com/watch?v=9kX3z3q5zY0)  
    - **Why**: Covers the 8251A’s synchronous and asynchronous protocols for serial communication, with lab examples for data transmission.  
    - **Duration**: ~25 minutes  
    - **Relevance**: Aligns with the course’s serial interface topic.
@@ -71,7 +71,7 @@ Based on your interest in the *Microcomputer and Interface Technology* course, p
    - **Relevance**: Matches the course’s bus standards section.
 
 10. **Ben Eater: SPI and I²C Protocols**  
-    - **Link**: [SPI vs I²C | Serial Communication](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
+    - **Link**: [SPI vs I²C , Serial Communication](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
     - **Why**: Introduces modern interface technologies (SPI, I²C) and compares them to legacy systems, bridging old and new concepts in the course.  
     - **Duration**: ~20 minutes  
     - **Relevance**: Supports the course’s modern interface technologies section.
@@ -84,7 +84,7 @@ Based on your interest in the *Microcomputer and Interface Technology* course, p
     - **Relevance**: Aligns with the course’s lab sessions.
 
 12. **Education 4u: Traffic Light Control with 8086 and 8255**  
-    - **Link**: [Traffic Light Simulation | 8086 Microprocessor](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
+    - **Link**: [Traffic Light Simulation , 8086 Microprocessor](https://www.youtube.com/watch?v=zvq9rP3zqA0)  
     - **Why**: Demonstrates an interrupt-based traffic light control system using 8086 and 8255, mirroring the course’s comprehensive lab.  
     - **Duration**: ~25 minutes  
     - **Relevance**: Directly supports lab experiments.
