@@ -9,28 +9,28 @@ translated: true
 
 ---
 
-Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
+Redacta un diálogo dinámico y profundo entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y detallada, con ambos participantes contribuyendo activamente. Deben:
 
-- Delve into specific subtopics and explore their intricacies.
-- Compare and contrast different technologies or methodologies related to the subject.
-- Discuss real-world use cases and their implications.
-- Ask probing questions to uncover deeper insights.
-- Include occasional quizzes to test each other's knowledge.
-- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
+- Profundizar en subtemas específicos y explorar sus intricacies.
+- Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
+- Discutir casos de uso en el mundo real y sus implicaciones.
+- Hacer preguntas profundas para descubrir insights más profundos.
+- Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
+- Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
 
-Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
+Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
 
-The format should be as follows:
+El formato debe ser el siguiente:
 
 ```json
 [
     {
       "speaker": "A",
-      "line": "¡Hola! He estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?"
+      "line": "Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
+      "line": "¡Claro! Empecemos con lo básico. ..."
     }
 ]
 ```
@@ -39,17 +39,17 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir insights y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
-A: ¡Hola! He estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
+A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Empecemos con los conceptos básicos.
+B: ¡Claro! Empecemos con lo básico.
 
 ---
 
-Genera una imagen feliz del Año Nuevo de la Serpiente Lunar con nombres incluidos en el texto.
+Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres incluidos en el texto.
 
 ---
 
@@ -57,14 +57,14 @@ Crea una imagen de portada para un video de YouTube de 480p con los siguientes e
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica básica, futurista, emocionante.
 
 ---
 
 Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
 Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert.
 Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada.
-El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas ni posteriores.
+El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas o posteriores.
 
 Archivos cambiados:
 {', '.join(file_changes)}
@@ -77,7 +77,7 @@ Crea un título para YouTube.
 
 蕾(つぼみ) - Tsubomi
 
-Proporciona las letras en japonés y explícalas, para cada palabra y pronunciación.
+Proporciona la letra en japonés y explícalas, para cada palabra y pronunciación.
 
 ---
 
@@ -85,7 +85,7 @@ Proporciona un tutorial completo sobre este capítulo.
 
 ---
 
-Proporciona una historia completa de esto, quién lo descubrió, ¿cuál es la historia detrás?
+Proporciona una historia completa de esto, quién lo descubrió, cuál es la historia detrás.
 
 ---
 
@@ -101,7 +101,9 @@ Proporciona un análisis completo de cómo funcionan los inductores.
 
 ---
 
-¿Qué es especial de Filipinas? ¿Cuál es su singularidad? ¿Cómo contribuyen las personas de Filipinas a la tecnología? ¿Cómo inventan y afectan sus personas?
+Filipinas
+
+¿Qué es especial? ¿Cuál es su unicidad? ¿Cómo contribuyen sus personas a la tecnología? ¿Cómo inventan y impactan sus personas?
 
 ---
 

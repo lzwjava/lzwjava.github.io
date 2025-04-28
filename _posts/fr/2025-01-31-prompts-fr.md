@@ -7,8 +7,6 @@ title: Invitations Utiles
 translated: true
 ---
 
----
-
 Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
 
 - Explorer des sous-thèmes spécifiques et leurs subtilités.
@@ -35,40 +33,40 @@ Le format doit être le suivant :
 ]
 ```
 
-À propos de l'examen 04730, de l'examen de Chine en auto-apprentissage et de la technologie électronique de base 3.
+À propos de l'examen 04730, de l'examen de l'auto-apprentissage en Chine et de la technologie électronique de base 3.
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec la conversation allant et venant. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec la conversation allant et venant. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, la discussion des compromis et des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
-A: Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?
+A : Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?
 
-B: Bien sûr ! Commençons par les bases.
-
----
-
-Générez une image joyeuse du Nouvel An du Serpent Lunaire avec des noms de texte inclus.
+B : Bien sûr ! Commençons par les bases.
 
 ---
 
-Créez une image de couverture de vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever du soleil, ville avec un texte super grand DeepSeek R1 au centre.
+Générez une image joyeuse pour le Nouvel An du Serpent Lunaire avec les noms inclus dans le texte.
 
 ---
 
-Créez une image de couverture de vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever du soleil, ville avec un texte super grand DeepSeek R1 au centre.
 
 ---
 
-Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes. Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert. Si applicable, incluez un scope entre parenthèses pour décrire la partie de la base de code affectée. Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note de préambule ou de fin.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
+
+---
+
+Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes. Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert. Si applicable, incluez un périmètre entre parenthèses pour décrire la partie de la base de code affectée. Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note de tête ou de fin.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
 
 ---
 
-Créez un titre YouTube
+Créez un titre YouTube.
 
 ---
 
@@ -98,12 +96,14 @@ Donnez une analyse complète du fonctionnement des inducteurs.
 
 ---
 
-Qu'y a-t-il de spécial aux Philippines ? Quelle est son unicité ? Comment les Philippins contribuent-ils à la technologie ? Comment son peuple invente-t-il et a-t-il un impact ?
+Philippines
+
+Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et ont-ils un impact ?
 
 ---
 
-Donnez une discussion sur xx
+Donnez une discussion sur xx.
 
 ---
 
-Donnez un avis sur xx
+Donnez un avis sur xx.
