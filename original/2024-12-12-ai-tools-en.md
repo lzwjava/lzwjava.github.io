@@ -21,6 +21,7 @@ Here are some AI tools I've used, categorized for clarity:
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **China:**
 
