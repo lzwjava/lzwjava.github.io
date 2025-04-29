@@ -3,15 +3,15 @@ audio: false
 generated: false
 lang: hi
 layout: post
-title: AI उपकरण
+title: एआई उपकरण
 translated: true
 ---
 
-यह यहां कुछ AI उपकरण हैं, स्पष्टता के लिए वर्गीकृत:
+यहाँ कुछ AI उपकरण हैं जिन्हें मैंने उपयोग किया है, स्पष्टता के लिए वर्गीकृत:
 
-### चैटबॉट
+### चैटबॉट्स
 
-**ग्लोबल:**
+**वैश्विक:**
 
 - [chatgpt.com](http://chatgpt.com)
 - [claude.ai](https://claude.ai)
@@ -22,6 +22,7 @@ translated: true
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **चीन:**
 
@@ -41,7 +42,7 @@ translated: true
 - [github.com/features/copilot](https://github.com/features/copilot)
 - [codeium.com/windsurf](https://codeium.com/windsurf)
 
-### इमेज/वीडियो जनरेशन
+### छवि/वीडियो जनरेशन
 
 - [midjourney.com](https://www.midjourney.com)
 - [runwayml.com](https://runwayml.com)
@@ -67,7 +68,7 @@ translated: true
 - [databricks.com](https://www.databricks.com)
 - [ai.google.dev](https://ai.google.dev)
 
-### हांगकांग में AI उपकरण उपलब्ध हैं
+### हांगकांग में उपलब्ध AI उपकरण
 
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [grok.x.com](https://grok.x.com)

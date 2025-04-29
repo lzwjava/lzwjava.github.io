@@ -7,11 +7,11 @@ title: Outils d'IA
 translated: true
 ---
 
-Voici quelques outils d'IA que j'ai utilisés, catégorisés pour plus de clarté :
+Voici quelques outils d'IA que j'ai utilisés, catégorisés pour plus de clarté :
 
 ### Chatbots
 
-**Global :**
+**Mondiaux :**
 
 - [chatgpt.com](http://chatgpt.com)
 - [claude.ai](https://claude.ai)
@@ -22,8 +22,9 @@ Voici quelques outils d'IA que j'ai utilisés, catégorisés pour plus de clart�
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
-**Chine :**
+**Chine :**
 
 - [kimi.moonshot.cn](https://kimi.moonshot.cn)
 - [tongyi.aliyun.com](https://tongyi.aliyun.com)
@@ -52,7 +53,7 @@ Voici quelques outils d'IA que j'ai utilisés, catégorisés pour plus de clart�
 - [suno.com](https://suno.com)
 - [elevenlabs.io](https://elevenlabs.io)
 
-### Plateformes Cloud IA
+### Plateformes Cloud d'IA
 
 - [aws.amazon.com/bedrock](https://aws.amazon.com/bedrock)
 - [aistudio.google.com](https://aistudio.google.com)

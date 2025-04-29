@@ -7,11 +7,11 @@ title: أدوات الذكاء الاصطناعي
 translated: true
 ---
 
-هذه بعض الأدوات الذكائية التي استخدمتها، مرتبة للوضوح:
+هنا بعض الأدوات الذكاء الاصطناعي التي استخدمتها، مصنفة للوضوح:
 
 ### روبوتات الدردشة
 
-**العالمية:**
+**عالمية:**
 
 - [chatgpt.com](http://chatgpt.com)
 - [claude.ai](https://claude.ai)
@@ -22,6 +22,7 @@ translated: true
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **الصين:**
 
@@ -29,7 +30,7 @@ translated: true
 - [tongyi.aliyun.com](https://tongyi.aliyun.com)
 - [doubao.com](https://www.doubao.com/chat/)
 
-### قوائم تصنيف نماذج الذكاء الاصطناعي
+### تصنيفات نماذج الذكاء الاصطناعي
 
 - [lmarena.ai](https://lmarena.ai/?leaderboard)
 - [scale.com](https://scale.com/leaderboard)
@@ -67,7 +68,7 @@ translated: true
 - [databricks.com](https://www.databricks.com)
 - [ai.google.dev](https://ai.google.dev)
 
-### أدوات الذكاء الاصطناعي المتاحة في منغوليا
+### أدوات الذكاء الاصطناعي المتاحة في هونغ كونغ
 
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [grok.x.com](https://grok.x.com)

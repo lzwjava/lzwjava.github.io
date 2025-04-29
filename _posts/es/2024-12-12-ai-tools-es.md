@@ -7,7 +7,7 @@ title: Herramientas de IA
 translated: true
 ---
 
-Aquí tienes algunas herramientas de IA que he usado, categorizadas para mayor claridad:
+Aquí hay algunas herramientas de IA que he utilizado, categorizadas para mayor claridad:
 
 ### Chatbots
 
@@ -22,6 +22,7 @@ Aquí tienes algunas herramientas de IA que he usado, categorizadas para mayor c
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **China:**
 
@@ -29,7 +30,7 @@ Aquí tienes algunas herramientas de IA que he usado, categorizadas para mayor c
 - [tongyi.aliyun.com](https://tongyi.aliyun.com)
 - [doubao.com](https://www.doubao.com/chat/)
 
-### Clasificaciones de Modelos de IA
+### Listas de Clasificación de Modelos de IA
 
 - [lmarena.ai](https://lmarena.ai/?leaderboard)
 - [scale.com](https://scale.com/leaderboard)
@@ -67,7 +68,7 @@ Aquí tienes algunas herramientas de IA que he usado, categorizadas para mayor c
 - [databricks.com](https://www.databricks.com)
 - [ai.google.dev](https://ai.google.dev)
 
-### Herramientas de AI Disponibles en Hong Kong
+### Herramientas de IA Disponibles en Hong Kong
 
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [grok.x.com](https://grok.x.com)

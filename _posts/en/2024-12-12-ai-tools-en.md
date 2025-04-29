@@ -7,8 +7,6 @@ title: AI Tools
 translated: false
 ---
 
-
-
 Here are some AI tools I've used, categorized for clarity:
 
 ### Chatbots
@@ -24,6 +22,7 @@ Here are some AI tools I've used, categorized for clarity:
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **China:**
 
@@ -74,4 +73,3 @@ Here are some AI tools I've used, categorized for clarity:
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [grok.x.com](https://grok.x.com)
 - [chat.mistral.ai](https://chat.mistral.ai)
-

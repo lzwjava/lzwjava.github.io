@@ -7,7 +7,7 @@ title: AIツール
 translated: true
 ---
 
-以下に、明確に分類した私は使ったAIツールの一覧を示します：
+以下は、私が使用したAIツールの一覧です。分類していますので、ご覧ください。
 
 ### チャットボット
 
@@ -22,6 +22,7 @@ translated: true
 - [grok.com](https://grok.com/)
 - [chat.deepseek.com](https://chat.deepseek.com)
 - [perplexity.ai](https://perplexity.ai)
+- [qwen.ai](https://chat.qwen.ai)
 
 **中国:**
 
@@ -41,7 +42,7 @@ translated: true
 - [github.com/features/copilot](https://github.com/features/copilot)
 - [codeium.com/windsurf](https://codeium.com/windsurf)
 
-### 画像/ビデオ生成
+### 画像/動画生成
 
 - [midjourney.com](https://www.midjourney.com)
 - [runwayml.com](https://runwayml.com)
