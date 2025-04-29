@@ -110,3 +110,87 @@ These minerals are present in **very small quantities**, so while they contribut
 ---
 
 Let me know if you'd like facts on specific aspects like halotherapy, salt blocks, or how it compares nutritionally to other salts!
+
+---
+
+Great question — and a popular one!
+
+### ❓**Can Himalayan Pink Salt Clean the Air?**
+
+The idea that **Himalayan pink salt can clean the air** comes from **salt lamps**, which are made from large chunks of this salt and have a light bulb inside. These lamps are often marketed with claims like:
+
+- They release **negative ions** into the air
+- They **remove toxins, allergens, and electromagnetic radiation**
+- They **improve mood, sleep, and respiratory health**
+
+Let’s take a closer look at whether these claims hold up to scientific scrutiny.
+
+---
+
+## 🔬 Do Himalayan Salt Lamps Actually Clean the Air?
+
+### ✅ What Supporters Claim:
+- The salt attracts moisture from the air (since it is hygroscopic).
+- When the lamp is warm, it supposedly pulls in water vapor along with **pollutants, allergens, or bacteria**.
+- Once absorbed, the water evaporates, leaving the pollutants "trapped" in the salt.
+
+### 🧪 Scientific Evidence:
+- There is **very limited scientific evidence** supporting the effectiveness of salt lamps for air purification.
+- Any air-purifying effect would be **extremely minimal** compared to dedicated air purifiers.
+- Studies show that **even if negative ions are released**, the amount from a salt lamp is far too low to make a measurable difference in air quality.
+
+> In short: While Himalayan salt **can absorb moisture** from the air, there's **no strong evidence** it effectively removes harmful particles or improves indoor air quality in any significant way.
+
+---
+
+## 🌫️ About Negative Ions
+
+Some proponents say the lamps emit **negative ions**, which are believed to neutralize pollutants and boost mood.
+
+- **Negative ions** do exist in nature — near waterfalls, oceans, and after thunderstorms — and may improve mood and alertness.
+- However, **no reliable studies** confirm that salt lamps produce enough negative ions to have any meaningful benefit.
+
+---
+
+## 🚫 Myths vs Facts
+
+| Myth | Fact |
+|------|------|
+| Salt lamps remove dust, pollen, and toxins from the air | No proven ability to remove contaminants in meaningful amounts |
+| Salt lamps kill bacteria or viruses | No scientific evidence supports this claim |
+| Salt lamps reduce electromagnetic radiation | No studies verify this effect |
+| Salt lamps improve sleep and reduce stress | May create a calming ambiance, but effects are likely psychological |
+
+---
+
+## ✅ Real Benefits of Salt Lamps (Non-Air Purification)
+
+While not effective air purifiers, Himalayan salt lamps do offer some **non-medical benefits**:
+
+- **Ambient lighting**: Soft, warm glow creates a relaxing atmosphere.
+- **Decorative appeal**: Adds a natural, aesthetic touch to rooms.
+- **Mood enhancer**: Some people find the glow soothing and meditative.
+
+---
+
+## 🧽 So, How Can You Actually Improve Indoor Air Quality?
+
+If you're looking to improve air quality in your home, consider:
+
+1. **Using an air purifier with HEPA filters**
+2. **Opening windows regularly for ventilation**
+3. **Keeping indoor plants** (some help absorb toxins)
+4. **Reducing use of aerosols and synthetic cleaners**
+5. **Using beeswax candles** (they may produce small amounts of negative ions when burned)
+
+---
+
+## 🧾 Final Verdict:
+
+> **No, Himalayan pink salt itself does not clean the air**, and salt lamps are not scientifically proven to purify or significantly improve air quality. Any benefits they provide are likely **aesthetic or psychological**, not medical or environmental.
+
+If you enjoy them for their looks or ambiance — go ahead! Just don’t rely on them as a substitute for real air purification methods.
+
+---
+
+Would you like to know more about **halotherapy (salt therapy)** or how salt caves work?
