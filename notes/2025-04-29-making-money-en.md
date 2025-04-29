@@ -1,5 +1,5 @@
 ---
-title: Making Money is often Hard
+title: Making Money is Often Hard
 lang: en
 layout: post
 audio: false
