@@ -116,3 +116,8 @@ give a dicussion about xx
 
 give a review about xx
 
+---
+
+help organize this talk, get out of captions as much, and help give a note
+
+
