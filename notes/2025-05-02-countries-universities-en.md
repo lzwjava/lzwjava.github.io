@@ -50,13 +50,6 @@ Based on international assessments and global rankings, several countries are re
 * Korea University
 * Sungkyunkwan University
 
-**Estonia:**
-* University of Tartu
-* Tallinn University of Technology (TalTech)
-* Tallinn University
-* Estonian University of Life Sciences
-* Estonian Academy of Arts
-
 **United Kingdom:**
 * University of Oxford
 * University of Cambridge
