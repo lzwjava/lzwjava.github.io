@@ -30,7 +30,7 @@ El formato debe ser el siguiente:
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. ..."
+      "line": "¡Claro! Empecemos con lo básico. ..."
     }
 ]
 ```
@@ -39,39 +39,39 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
+Crear una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de un lado a otro. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
 A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Comencemos con los conceptos básicos.
+B: ¡Claro! Empecemos con lo básico.
 
 ---
 
-Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres incluidos en el texto.
+Generar una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres incluidos.
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crear una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
 
 ---
 
-Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crear una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
 
 ---
 
-Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
+Generar un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
 Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert.
 Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada.
-El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas ni posteriores.
+El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas o posteriores.
 
 Archivos cambiados:
 {', '.join(file_changes)}
 
 ---
 
-Crea un título para YouTube.
+Crear un título de YouTube.
 
 ---
 
@@ -103,7 +103,7 @@ Proporciona un análisis completo de cómo funcionan los inductores.
 
 Filipinas
 
-¿Qué es especial? ¿Cuál es su singularidad? ¿Cómo contribuyen sus habitantes a la tecnología? ¿Cómo inventan y afectan sus habitantes?
+¿Qué es especial? ¿Cuál es su unicidad? ¿Cómo contribuyen sus habitantes a la tecnología? ¿Cómo inventan y afectan sus habitantes?
 
 ---
 
@@ -115,8 +115,12 @@ Proporciona una reseña sobre xx.
 
 ---
 
-Ayuda a organizar esta charla, saca lo más posible del transcript y ayuda a dar una nota.
+Ayuda a organizar esta charla, saca el máximo provecho del guion y ayuda a dar una nota.
 
 ---
 
 Yitang Zhang, matemáticas, ¿cuál es su historia, qué podemos aprender de él?
+
+---
+
+Basado en este video de YouTube, crea un tutorial, no incluyas la marca de tiempo.
