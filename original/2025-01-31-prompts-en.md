@@ -124,3 +124,9 @@ help organize this talk, get out of transcript as much, and help give a note
 
 yitang zhang, math , what's his story, what we can learn from 
 
+---
+
+based on this youtube video, create a tutorial, do not include timestamp
+
+
+
