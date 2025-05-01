@@ -14,7 +14,7 @@ Componer un diálogo dinámico y profundo entre dos expertos, A y B, sobre un te
 - Adentrarse en subtemas específicos y explorar sus intricacies.
 - Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
 - Discutir casos de uso en el mundo real y sus implicaciones.
-- Hacer preguntas profundas para descubrir ideas más profundas.
+- Hacer preguntas profundas para descubrir insights más profundos.
 - Incluir ocasionalmente cuestionarios para poner a prueba el conocimiento del otro.
 - Enfocarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
 
@@ -30,7 +30,7 @@ El formato debe ser el siguiente:
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con lo básico. ..."
+      "line": "¡Claro! Empecemos con los conceptos básicos. ..."
     }
 ]
 ```
@@ -39,39 +39,39 @@ Sobre el examen 04730, el examen de autoestudio de China y la tecnología básic
 
 ---
 
-Crear una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de un lado a otro. Ambos participantes deben hacer preguntas, compartir ideas y explorar las sutilezas del tema. Utiliza habilidades como adentrarse más en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
+Crea una conversación natural y extendida entre dos expertos, A y B, con al menos 50 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de ida y vuelta. Ambos participantes deben hacer preguntas, compartir insights y explorar las sutilezas del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Expande a 50+ turnos.
 
 Sobre el contenido del PDF. El formato debe ser el siguiente:
 
 A: Oye, he estado escuchando mucho sobre algún tema. ¿Puedes desglosarlo para mí?
 
-B: ¡Claro! Empecemos con lo básico.
+B: ¡Claro! Empecemos con los conceptos básicos.
 
 ---
 
-Generar una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres incluidos.
+Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres de texto incluidos.
 
 ---
 
-Crear una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: IA, tiburón, futurista, vibrante, colorido, amanecer, ciudad con texto super grande DeepSeek R1 en el centro.
 
 ---
 
-Crear una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
+Crea una imagen de portada para un video de YouTube de 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
 
 ---
 
-Generar un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
+Genera un mensaje de confirmación conciso en formato Conventional Commits para los siguientes cambios de código.
 Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build, o revert.
 Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada.
-El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas o posteriores.
+El mensaje de confirmación no debe exceder los 70 caracteres. Solo proporciona el mensaje de confirmación, sin notas previas ni posteriores.
 
 Archivos cambiados:
 {', '.join(file_changes)}
 
 ---
 
-Crear un título de YouTube.
+Crea un título para YouTube.
 
 ---
 
@@ -115,7 +115,7 @@ Proporciona una reseña sobre xx.
 
 ---
 
-Ayuda a organizar esta charla, saca el máximo provecho del guion y ayuda a dar una nota.
+Ayuda a organizar esta charla, saca lo más posible del transcript y ayuda a dar una nota.
 
 ---
 
@@ -123,4 +123,8 @@ Yitang Zhang, matemáticas, ¿cuál es su historia, qué podemos aprender de él
 
 ---
 
-Basado en este video de YouTube, crea un tutorial, no incluyas la marca de tiempo.
+Basado en este video de YouTube, crea un tutorial, no incluyas marcas de tiempo.
+
+---
+
+¿Cuándo será la próxima vez que Google publique un informe de ganancias?

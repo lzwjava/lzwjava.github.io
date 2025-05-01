@@ -127,3 +127,7 @@ yitang zhang, math , what's his story, what we can learn from
 ---
 
 based on this youtube video, create a tutorial, do not include timestamp
+
+---
+
+what's next time google will release earning report?
