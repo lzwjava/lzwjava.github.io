@@ -39,7 +39,7 @@ Le format doit être le suivant :
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec la conversation allant et venant. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, la discussion des compromis et des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
@@ -61,7 +61,7 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 
 ---
 
-Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes. Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert. Si applicable, incluez un scope entre parenthèses pour décrire la partie de la base de code affectée. Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note de début ou de fin.
+Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes. Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert. Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée. Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note en tête ou en fin.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
@@ -82,7 +82,7 @@ Donnez un tutoriel complet sur ce chapitre.
 
 ---
 
-Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière.
+Donnez une histoire complète de ceci, qui a découvert ceci, quelle est l'histoire derrière.
 
 ---
 
@@ -94,13 +94,13 @@ Donnez quelques introductions sur la ville de Davao à Mindanao, Philippines.
 
 ---
 
-Donnez une analyse complète de la manière dont les inducteurs fonctionnent.
+Donnez une analyse complète du fonctionnement des inducteurs.
 
 ---
 
 Philippines
 
-Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et ont-ils un impact ?
+Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et impactent-ils ?
 
 ---
 
@@ -112,7 +112,7 @@ Donnez un avis sur xx
 
 ---
 
-Aidez à organiser cette conférence, sortez des sous-titres autant que possible, et aidez à donner une note.
+Aidez à organiser cette conférence, sortez le plus possible du transcript, et aidez à donner une note.
 
 ---
 
