@@ -118,7 +118,7 @@ give a review about xx
 
 ---
 
-help organize this talk, get out of captions as much, and help give a note
+help organize this talk, get out of transcript as much, and help give a note
 
 ---
 
