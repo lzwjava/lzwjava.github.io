@@ -1,5 +1,5 @@
 ---
-title: The National Inventors Hall of Fame
+title: National Inventors Hall of Fame
 lang: en
 layout: post
 audio: false
