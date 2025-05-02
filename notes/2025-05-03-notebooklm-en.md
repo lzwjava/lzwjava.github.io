@@ -1,5 +1,5 @@
 ---
-title: "NotebookLM: Your AI-Powered Research and Note-Taking Assistant"
+title: "NotebookLM"
 lang: en
 layout: post
 audio: false
