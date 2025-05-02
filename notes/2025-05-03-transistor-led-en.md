@@ -1,5 +1,5 @@
 ---
-title: How to Control an LED Circuit with a Transistor
+title: LED Circuit with a Transistor
 lang: en
 layout: post
 audio: false
