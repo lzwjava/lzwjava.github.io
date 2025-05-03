@@ -49,4 +49,3 @@ Franklin’s legacy is vast. As a Founding Father, he helped shape the United St
 
 Franklin’s image as a self-made man, inventor, and patriot endures in American culture, symbolized by his face on the $100 bill. However, his complexities—his initial acceptance of slavery, his pragmatic politics, and his personal contradictions—add depth to his story. He remains a quintessential figure of the Enlightenment and a cornerstone of American identity.
 
-If you’d like a deeper dive into any aspect of Franklin’s life (e.g., his scientific experiments, diplomacy, or writings), let me know!
