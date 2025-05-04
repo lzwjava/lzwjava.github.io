@@ -1,5 +1,5 @@
 ---
-title: Erdal Arikan
+title: Erdal Arıkan
 lang: en
 layout: post
 audio: false
