@@ -1,5 +1,5 @@
 ---
-title: Singapore Medical Council
+title: Recognized Medical Schools in China
 lang: en
 layout: post
 audio: false
