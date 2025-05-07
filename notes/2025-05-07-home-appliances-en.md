@@ -24,3 +24,26 @@ generated: true
 - **Ceiling Fan**: Circulates air to cool or distribute heat in a room, with adjustable speeds and sometimes lighting.
 - **Air Purifier**: Removes contaminants like dust, pollen, pet dander, and smoke from indoor air using filters (often HEPA) or other technologies like UV or ionizers, improving air quality for health and comfort.
 - **Dehumidifier**: Extracts excess moisture from the air using a cooling coil or desiccant, preventing mold, mildew, and dampness, especially in humid climates or basements.
+
+---
+
+1. **Dryer**: Removes moisture from clothes after washing using heat and tumbling action, often with settings for different fabrics.
+2. **Freezer**: Stores food at sub-zero temperatures to preserve it for long periods, available as standalone or part of a refrigerator.
+3. **Range Hood**: Extracts smoke, odors, and grease from cooking by ventilating air, typically installed above a stove.
+4. **Slow Cooker**: Cooks food at low temperatures over several hours, ideal for stews, soups, and tenderizing meats.
+5. **Food Processor**: Chops, slices, grinds, or purees food with interchangeable blades, streamlining meal preparation.
+6. **Electric Grill**: Cooks food on a heated surface, often with non-stick plates, for indoor grilling of meats, vegetables, or sandwiches.
+7. **Water Heater**: Heats water for household use, such as bathing or dishwashing, available in tank or tankless models.
+8. **Space Heater**: Provides localized warmth in a room using electric, ceramic, or oil-based heating elements.
+9. **Humidifier**: Adds moisture to dry indoor air, improving comfort and preventing issues like dry skin or respiratory irritation.
+10. **Bread Maker**: Automatically mixes, kneads, and bakes bread, allowing customizable recipes and loaf sizes.
+11. **Juicer**: Extracts juice from fruits and vegetables, either by centrifugal force or slow masticating for nutrient-rich drinks.
+12. **Electric Pressure Cooker**: Cooks food under high pressure, significantly reducing cooking time for meals like rice, beans, or roasts.
+13. **Garbage Disposal**: Grinds food waste in the kitchen sink for easy disposal through plumbing, reducing household waste.
+14. **Stand Mixer**: Mixes, kneads, or whips ingredients for baking, with attachments for tasks like dough-making or pasta-rolling.
+15. **Rice Cooker**: Automatically cooks rice and keeps it warm, often with settings for different grains or steaming functions.
+16. **Electric Can Opener**: Opens canned goods with a motorized blade, reducing manual effort and improving safety.
+17. **Sewing Machine**: Stitches fabric for clothing or repairs, with features like adjustable stitches or automatic threading.
+18. **Electric Toothbrush**: Cleans teeth with rotating or vibrating bristles, often with timers for effective brushing.
+19. **Smart Speaker**: Plays music, answers questions, or controls smart home devices via voice commands, often with AI assistants.
+20. **Portable Fan**: Circulates air for cooling or ventilation, typically lightweight with adjustable speeds and oscillation.
