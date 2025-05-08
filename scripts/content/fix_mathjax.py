@@ -40,7 +40,9 @@ def fix_mathjax_in_file(filepath, gemini=False):
 
             temp_text = re.sub(r'\\\(', r'\\\\(', temp_text)
             temp_text = re.sub(r'\\\)', r'\\\\)', temp_text)
-            
+            temp_text = re.sub(r'\\\[', r'\\\\[', temp_text)
+            temp_text = re.sub(r'\\\]', r'\\\\]', temp_text)
+                        
             if gemini:
                 # Replace $ $ with \\( and \\)
                 # This regex looks for $ followed by content (not greedily) and then $

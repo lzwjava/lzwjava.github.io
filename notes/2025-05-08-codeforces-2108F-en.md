@@ -56,9 +56,9 @@ The check function simulates whether it’s possible to achieve the required hei
 
 1. **Required Heights**:
    - For MEX \\( m \\), position \\( i \\) needs a final height \\( b_i \geq \text{need}_i \\), where:
-     \[
+     \\[
      \text{need}_i = \max(0, m - n + i)
-     \]
+     \\]
    - This ensures that positions \\( n-m+1 \\) to \\( n \\) have heights at least 0, 1, ..., \\( m-1 \\), respectively.
 
 2. **Difference Array**:
@@ -68,9 +68,9 @@ The check function simulates whether it’s possible to achieve the required hei
      - Compute the cumulative sum: \\( d[i] += d[i-1] \\) (if \\( i > 0 \\)), representing the current number of extra blocks at position \\( i \\).
      - Check if \\( d[i] \geq \text{need}_i \\). If not, it’s impossible to achieve the required height, so return \\( false \\).
      - Compute the length of the range affected by knocking down tower \\( i \\):
-       \[
+       \\[
        \text{len} = d[i] - \text{need}_i + a_i
-       \]
+       \\]
        - \\( d[i] - \text{need}_i \\): Extra blocks available after meeting the minimum requirement.
        - \\( a_i \\): The number of blocks contributed by tower \\( i \\)’s height.
        - This \\( \text{len} \\) represents how many positions to the right of \\( i \\) can be incremented when tower \\( i \\) is knocked down.
