@@ -49,7 +49,7 @@ Instead of trying all permutations, we can use a greedy or mathematical approach
 1. **Model the Final Array**:
    - Let \\( b_i \\) be the final height of tower \\( i \\) (0-based indexing for simplicity).
    - \\( b_i \\) equals the number of towers \\( j < i \\) that were knocked down *after* tower \\( i \\) and whose \\( a_j \\) is large enough to increment position \\( i \\).
-   - Formally, for a permutation \\( p \\) (knocking order), if tower \\( p_k \\) is knocked at step \\( k \\), it increments positions \\( p_k + 1 \\) to \\( p_k + a_{p_k} \\). Thus, \\( b_i = |\{ k : p_k < i \leq p_k + a_{p_k} \}| \\).
+   - Formally, for a permutation \\( p \\) (knocking order), if tower \\( p_k \\) is knocked at step \\( k \\), it increments positions \\( p_k + 1 \\) to \\( p_k + a_{p_k} \\). Thus, \\( b_i = \{ k : p_k < i \leq p_k + a_{p_k} \} \\).
 2. **Non-Decreasing Requirement**:
    - We need \\( b_i \leq b_{i+1} \\), i.e., position \\( i+1 \\) should receive at least as many increments as position \\( i \\).
 3. **Maximize MEX**:
