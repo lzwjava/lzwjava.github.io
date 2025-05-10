@@ -2,12 +2,12 @@
 
 CC = xelatex
 EXAMPLES_DIR = latex
-RESUME_DIR = latex/en
-RESUME_ZH_DIR = latex/zh
+RESUME_EN_DIR = latex/en/resume-en
+RESUME_ZH_DIR = latex/zh/resume-zh
 COVER_LETTER_DIR = latex/coverletter
 INTRODUCTION_DIR = latex/en
 INTRODUCTION_ZH_DIR = latex/zh
-RESUME_SRCS = $(shell find $(RESUME_DIR) -name '*.tex')
+RESUME_SRCS = $(shell find $(RESUME_EN_DIR) -name '*.tex')
 RESUME_ZH_SRCS = $(shell find $(RESUME_ZH_DIR) -name '*.tex')
 INTRODUCTION_SRCS = $(shell find $(INTRODUCTION_DIR) -name '*.tex')
 INTRODUCTION_ZH_SRCS = $(shell find $(INTRODUCTION_ZH_DIR) -name '*.tex')
@@ -16,11 +16,11 @@ INTRODUCTION_ZH_SRCS = $(shell find $(INTRODUCTION_ZH_DIR) -name '*.tex')
 # Existing latex target
 latex: $(foreach x, coverletter coverletter-zh resume-zh resume, $x.pdf)
 
-resume.pdf: $(RESUME_DIR)/resume.tex $(RESUME_SRCS)
-	$(CC) -output-directory=$(EXAMPLES_DIR) $<
+resume-en.pdf: $(RESUME_EN_DIR)/resume-en.tex $(RESUME_SRCS)
+	$(CC) -output-directory=$(RESUME_EN_DIR) $<
 
 resume-zh.pdf: $(RESUME_ZH_DIR)/resume-zh.tex $(RESUME_ZH_SRCS)
-	$(CC) -output-directory=$(EXAMPLES_DIR) $<
+	$(CC) -output-directory=$(RESUME_ZH_DIR) $<
 
 coverletter.pdf: $(COVER_LETTER_DIR)/coverletter.tex
 	$(CC) -output-directory=$(COVER_LETTER_DIR) $<
@@ -53,8 +53,8 @@ clean:
 copy:
 	mkdir -p assets/resume
 
-	cp latex/resume.pdf assets/resume/Zhiwei.Li.Resume.pdf
-	cp latex/resume-zh.pdf assets/resume/Zhiwei.Li.Resume.ZH.pdf
+	cp $(RESUME_EN_DIR)/resume-en.pdf assets/resume/Zhiwei.Li.Resume.pdf
+	cp $(RESUME_ZH_DIR)/resume-zh.pdf assets/resume/Zhiwei.Li.Resume.ZH.pdf
 
 copy-introduction:
 	cp latex/en/introduction-en.pdf assets/resume/Zhiwei.Li.Introduction.EN.pdf
