@@ -11,11 +11,11 @@ translated: true
 
 * Programmieren ist wie Schreiben. Programmieren ist eine kreative Tätigkeit.
 
-* Mach dein eigenes Projekt. Schreibe deinen technischen Blog. Programme für ein Projekt, das du über Jahre hinweg pflegen wirst, genau wie ein 10 Jahre lang geführtes Blog.
+* Mach dein eigenes Projekt. Schreibe deinen technischen Blog. Programmiere für ein Projekt, das du über Jahre hinweg pflegen wirst, genau wie ein 10 Jahre lang geführtes Blog.
 
-* Meistens musst du nicht das verfolgen, was gerade in der Technologie angesagt ist, da viele Trends nach ein paar Jahren verschwinden werden.
+* Normalerweise musst du nicht das verfolgen, was gerade in der Technologie angesagt ist, da viele Trends nach ein paar Jahren verschwinden werden.
 
-* Verfolge deine Neugier und programme für dich selbst.
+* Verfolge deine Neugier und programmiere für dich selbst.
 
 * Versuche, Programme für dich selbst zu erstellen. Es sind keine Arbeitsaufträge.
 
@@ -23,11 +23,11 @@ translated: true
 
 * iOS, Android, Backend, Frontend, KI sind alles gut. Man kann zumindest versuchen, ein kleines Projekt damit zu machen oder sich ein paar Monate damit zu beschäftigen.
 
-* Debugging ist eine Frage des Misstrauens. Vertraue nicht jeder Zeile deines Codes; du kannst eine bessere Methode finden, es zu tun.
+* Debugging ist eine Frage des Misstrauens. Vertraue nicht jeder Zeile deines Codes; du kannst dir eine bessere Methode überlegen.
 
 * Im Programmieren ist selbst ein Zeichen oder eine Zeile eines Logs wichtig. Sie sagen dir etwas.
 
-* Durch Programmieren werden Produkte für andere geschaffen. Es ist interessant, Nutzer zu haben.
+* Durch Programmieren entstehen Produkte, die von anderen genutzt werden. Es ist interessant, Nutzer zu haben.
 
 * Du musst nicht hart sein. Ein paar hundert Nutzer, die dein Produkt wirklich lieben, sind besser als zehntausende Nutzer, die es nur freundlich mögen.
 
@@ -37,7 +37,7 @@ translated: true
 
 * Die Abstraktion und das logische Denken. Das detailorientierte Denken. Das Denken über jede Lösung.
 
-* Wahrheit ist Wahrheit. Normalerweise wird der Computer nicht falsch liegen. Die elektrische Schaltung wird nicht falsch liegen. Der Compiler wird nicht falsch liegen. Sei nicht enttäuscht, wenn es einen Fehler gibt.
+* Wahrheit ist Wahrheit. Normalerweise wird der Computer nicht falsch liegen. Die elektrische Schaltung wird nicht falsch liegen. Der Compiler wird nicht falsch liegen. Sei nicht frustriert, wenn es einen Fehler gibt.
 
 * Strebe nach eleganten und einfachen Lösungen. Einfachheit ist die höchste Raffinesse. Du musst hart nachdenken, um das Wesentliche zu behalten und das Überflüssige zu entfernen.
 
@@ -45,7 +45,7 @@ translated: true
 
 * Folge Yin Wang unter [https://www.yinwang.org](https://www.yinwang.org). Er ist einer der wenigen Genies in der Programmierung, obwohl er sagt, dass Genies nie existieren.
 
-* Das Wissen und die Prinzipien der Programmierung können leicht auf das Sprachenlernen, die Hardware-Reparatur, das Life Hacking und die wissenschaftliche Forschung angewendet werden.
+* Das Wissen und die Prinzipien der Programmierung können leicht auf das Sprachenlernen, die Hardware-Reparatur, das Life-Hacking und die wissenschaftliche Forschung angewendet werden.
 
 * Für die meisten Programmieraufgaben benötigst du keine ausgefallene Mathematik außer der Schulmathematik.
 
@@ -61,22 +61,26 @@ translated: true
 
 * Wenn du etwas wie die Netzwerkgeschwindigkeit oder die Programmlaufzeit verbessern möchtest, muss es ein quantitatives Maß geben. Andernfalls wirst du nicht genau wissen, ob es eine triviale Verbesserung oder Verschlechterung gab.
 
-* Bei persönlichen Projekten ist es in Ordnung, keinen Testcode zu schreiben, aber es ist besser, nach einer signifikanten Änderung des Codes lokale Tests durchzuführen. Berücksichtige den betroffenen Code, wie lange er in der Cloud-Pipeline läuft und wie häufig er zu Fehlern führen könnte, und schreibe dann entsprechend Testcode. Verwende Methoden, die einfaches Testen ermöglichen, ohne die Benutzererfahrung negativ zu beeinflussen.
+* Bei persönlichen Projekten ist es in Ordnung, keinen Testcode zu schreiben, aber es ist besser, nach dem Ändern einer erheblichen Menge an Code lokale Tests durchzuführen. Berücksichtige den betroffenen Code, wie lange er in der Cloud-Pipeline läuft und wie häufig er zu Fehlern führen könnte, und schreibe dann entsprechend Testcode. Verwende Methoden, die einfaches Testen ermöglichen, ohne die Benutzererfahrung negativ zu beeinflussen.
 
 * Schreibe einfachen und eleganten Code. Minimiere Duplikate, obwohl manchmal Duplikate zu einer einfacheren Lösung führen. Minimiere Sonderfälle. Mach es einfach zu testen. Refaktoriere, um gemeinsame Funktionen oder Prozesse zu verwenden, nutze Rekursion oder Schleifen und suche nach Mustern.
 
-* Behandle Fehler ordnungsgemäß. Denke über die Ursache, die Verantwortung und darüber nach, ob wir sie ändern können oder ob es sich um einen externen Fehler handelt. Berücksichtige die Rettungsmethode, den Auswirkungensumfang, wo er behandelt werden soll, ob wir Fehler kategorisieren sollten, wie wahrscheinlich es ist, dass es passiert, und die schlimmsten Szenarien.
+* Behandle Fehler ordnungsgemäß. Denke über die Ursache, die Verantwortung und darüber nach, ob wir sie ändern können oder ob es sich um einen externen Fehler handelt. Berücksichtige die Rettungsmethode, den Einflussbereich, wo es gehandhabt werden soll, ob wir Fehler kategorisieren sollten, wie wahrscheinlich es ist, dass es passiert, und die schlimmsten Szenarien.
 
-* Der Unterschied zwischen der Verwendung von replace oder der Verwendung von startWith gefolgt von slice besteht darin, dass das erste die Position der Zeichenkette ignoriert. Wende ähnliches Denken auf jedes Detail der Programmierung an.
+* Der Unterschied zwischen der Verwendung von replace oder der Verwendung von startWith gefolgt von slice besteht darin, dass das erste die Position der Zeichenkette ignoriert. Wende ähnliche Überlegungen auf jedes Detail des Programmierens an.
 
-* Minimiere die möglichen Werte für ein Element; verwende nur einen Wert für einen Fall. Verwende nicht null, wenn wir bereits false haben. Wenn wir eine übersetzte true- oder false-Flag haben, müssen wir sicherstellen, dass wir jedes Mal, wenn wir eine übersetzte Flagge haben, die Nicht-Existenz einer übersetzten Flagge nicht als false behandeln.
+* Minimiere die möglichen Werte für ein Element; verwende nur einen Wert für einen Fall. Verwende nicht null, wenn wir bereits false haben. Wenn wir eine übersetzte true- oder false-Flag haben, müssen wir sicherstellen, dass wir jedes Mal, wenn wir eine übersetzte Flag haben, die Nichtexistenz einer übersetzten Flag nicht als false behandeln.
 
 * Verwende GitHub oder Sourcetree, um geänderte Code-Blöcke häufig zu überprüfen. Sie sind bequemer zum Lesen von Code.
 
-* In der Programmierung gibt es oft keine trivialen Dinge. Jedes Zeichen, die Reihenfolge der Listenelemente, jeder String, jede Zahl und jeder Variablenname zählen. Jede Ausführungsreihenfolge und jedes Log zählen.
+* Im Programmieren gibt es oft keine trivialen Dinge. Jedes Zeichen, die Reihenfolge der Listenelemente, jeder String, jede Zahl und jeder Variablenname sind wichtig. Jede Ausführungsreihenfolge und jedes Log sind wichtig.
 
 * Mach die Dinge, die dich am meisten begeistern. Es gibt keinen Grund, sich darüber Gedanken zu machen, dem Mainstream zu folgen.
 
-* Verwende Befehle häufig, da sie dir helfen können, Aufgaben zu automatisieren oder LLMs zu unterstützen. UI-Interface-Operationen sind schwerer zu automatisieren.
+* Verwende Befehle häufig, da sie dir helfen können, Aufgaben zu automatisieren oder LLMs zu unterstützen. UI-Schnittstellenoperationen sind schwerer zu automatisieren.
 
-* Speichere die Protokolle eines Programms, einschließlich lokaler, UAT-, Microservices- und Pipeline-Protokolle, in einem Verzeichnis. In der Programmierung enthalten diese Protokolle zahlreiche Verbindungen. Durchsuche sie, um Beziehungen zu identifizieren, relevante Daten oder Kontext zu sammeln.
+* Speichere die Protokolle eines Programms, einschließlich lokaler, UAT-, Mikrodienst- und Pipeline-Protokolle, in einem Verzeichnis. In der Programmierung enthalten diese Protokolle zahlreiche Verbindungen. Durchsuche sie, um Beziehungen zu identifizieren, relevante Daten oder Kontext zu sammeln.
+
+* Mit gesammelten Protokollen ist es einfacher, bei einem Problem zu bestimmen, ob du es schon einmal hattest. Aus früheren Protokollen könntest du wissen, wie du es beheben kannst. Protokolle bieten ein besseres Verständnis darüber, wie alles funktioniert und wie Computer Programme ausführen. Im Gegensatz zu Code sind Protokolle zeitbezogen und bieten mehr Informationen über den Laufstatus. Sie sind auch leichter für das Debugging.
+
+* Debugging zeigt viele Informationen, einschließlich der Werte der umgebenden Variablen, Thread-Namen und Funktionsstapel.

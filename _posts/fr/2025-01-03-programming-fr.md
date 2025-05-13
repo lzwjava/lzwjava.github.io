@@ -19,9 +19,9 @@ translated: true
 
 * Essayez de créer des programmes pour vous-même. Ce ne sont pas des tâches de travail.
 
-* Si vous vous sentez souvent malheureux en programmant, alors vous le faites de la mauvaise manière.
+* Si vous vous sentez souvent malheureux en programmant, alors vous faites cela de la mauvaise manière.
 
-* iOS, Android, Backend, Frontend, IA sont tous bons. On peut au moins essayer de faire un petit projet en utilisant ceux-ci ou d'apprendre à leur sujet pendant quelques mois.
+* iOS, Android, Backend, Frontend, IA sont tous bons. On peut au moins essayer de faire un petit projet en utilisant ceux-ci ou apprendre à leur sujet pendant quelques mois.
 
 * Le débogage consiste à être suspicieux. Ne faites pas confiance à chaque ligne de votre code ; vous pouvez penser à une meilleure façon de le faire.
 
@@ -31,23 +31,23 @@ translated: true
 
 * Vous n'avez pas besoin d'être dur. Quelques centaines d'utilisateurs qui adorent vraiment votre produit valent mieux que des dizaines de milliers d'utilisateurs qui aiment simplement votre produit.
 
-* Souvenez-vous pourquoi vous avez commencé la programmation et ne l'oubliez jamais.
+* Souvenez-vous pourquoi vous vous êtes lancé dans la programmation et ne l'oubliez jamais.
 
-* Appliquez les connaissances en programmation à tous les aspects de la vie. Ils sont les mêmes. Faire les choses par lots ou une par une. Comment séparer les tâches en unités. La technologie sous-jacente derrière chaque application. Les détails nuancés derrière les requêtes réseau.
+* Appliquez les connaissances en programmation à tous les aspects de la vie. Ils sont les mêmes. Faire des choses par lots ou une par une. Comment séparer les tâches en unités. La technologie sous-jacente derrière chaque application. Les détails nuancés derrière les requêtes réseau.
 
 * L'abstraction et la pensée logique. La pensée orientée vers les détails. La réflexion sur chaque solution.
 
 * La vérité est la vérité. Habituellement, l'ordinateur ne se trompera pas. Le circuit électrique ne se trompera pas. Le compilateur ne se trompera pas. Ne vous sentez pas contrarié lorsqu'il y a un bug.
 
-* Poursuivez des solutions élégantes et simples. La simplicité est la sophistication ultime. Vous devez réfléchir dur pour laisser ce qui est essentiel et enlever ce qui est superflu.
+* Poursuivez des solutions élégantes et simples. La simplicité est la sophistication ultime. Vous devez réfléchir dur pour laisser ce qui est essentiel et supprimer ce qui est superflu.
 
-* Pour les langages de programmation, les langages qui font le travail sont corrects. Personnellement, je recommande Java et Python.
+* Pour les langages de programmation, les langages qui font le travail sont corrects. Je recommande personnellement Java et Python.
 
 * Suivez Yin Wang sur [https://www.yinwang.org](https://www.yinwang.org). Il est l'un des rares génies en programmation, bien qu'il dise que les génies n'existent jamais.
 
-* Les connaissances et les principes de la programmation peuvent être facilement appliqués à l'apprentissage des langues, à la réparation de matériel, aux astuces de vie et à la recherche scientifique.
+* Les connaissances et principes de la programmation peuvent être facilement appliqués à l'apprentissage des langues, à la réparation de matériel, aux astuces de vie et à la recherche scientifique.
 
-* Pour la plupart des tâches de programmation, vous n'avez pas besoin de mathématiques sophistiquées en dehors des mathématiques du lycée.
+* Pour la plupart des tâches de programmation, vous n'avez pas besoin de mathématiques sophistiquées au-delà des mathématiques du lycée.
 
 * Réfléchissez à votre ancien code après des années ou maintenez un projet de code pendant longtemps. Cela vous apprendra beaucoup.
 
@@ -61,22 +61,26 @@ translated: true
 
 * Lors de l'amélioration de quelque chose comme la vitesse du réseau ou le temps d'exécution du programme, il doit y avoir une mesure quantitative. Sinon, vous ne saurez pas exactement s'il y a eu une amélioration ou une dégradation triviale.
 
-* Pour les projets personnels, il est acceptable de ne pas écrire de code de test, mais il est préférable de faire des tests locaux après avoir modifié une quantité significative de code. Pensez au code affecté, au temps qu'il mettra à s'exécuter dans le pipeline cloud et à la fréquence à laquelle il pourrait entraîner des erreurs, puis écrivez du code de test en conséquence. Utilisez des méthodes qui permettent des tests faciles sans nuire à l'expérience utilisateur.
+* Pour les projets personnels, il est acceptable de ne pas écrire de code de test, mais il est préférable de faire des tests locaux après avoir modifié une quantité significative de code. Pensez au code affecté, au temps qu'il mettra à s'exécuter dans le pipeline cloud, et à la fréquence à laquelle il pourrait entraîner des erreurs, puis écrivez du code de test en conséquence. Utilisez des méthodes qui permettent des tests faciles sans nuire à l'expérience utilisateur.
 
-* Écrivez un code simple et élégant. Minimisez la duplication, bien que parfois la duplication conduise à une solution plus simple. Minimisez les cas spéciaux. Rendez-le facile à tester. Refactorisez pour utiliser des fonctions ou des processus communs, utilisez la récursion ou les boucles, et recherchez des motifs.
+* Écrivez un code simple et élégant. Minimisez la duplication, bien que parfois la duplication mène à une solution plus simple. Minimisez les cas spéciaux. Rendez-le facile à tester. Refactorisez pour utiliser des fonctions ou des processus communs, utilisez la récursion ou les boucles, et recherchez des motifs.
 
-* Gérez les erreurs correctement. Pensez à la cause profonde, à la responsabilité et à savoir si nous pouvons la changer ou si c'est une erreur externe. Pensez à la méthode de sauvetage, à la portée de l'impact, à l'endroit où la gérer, à savoir si nous devons catégoriser les erreurs, à la probabilité qu'elles se produisent et aux pires scénarios.
+* Gérez correctement les erreurs. Pensez à la cause profonde, à la responsabilité et à savoir si nous pouvons la changer ou s'il s'agit d'une erreur externe. Considérez la méthode de sauvetage, la portée de l'impact, où la gérer, si nous devons catégoriser les erreurs, la probabilité qu'elle se produise et les pires scénarios.
 
-* La différence entre l'utilisation de replace ou l'utilisation de startWith suivie de slice est que le premier ignore la position de la chaîne. Appliquez une pensée similaire à chaque détail de la programmation.
+* La différence entre l'utilisation de replace ou l'utilisation de startWith suivie de slice est que la première ignore la position de la chaîne. Appliquez une pensée similaire à chaque détail de la programmation.
 
 * Minimisez les valeurs possibles pour un élément ; utilisez une seule valeur pour un cas. N'utilisez pas null si nous avons déjà false. Si nous avons un drapeau true ou false traduit, nous devons nous assurer que chaque fois que nous avons un drapeau traduit, nous ne traitons pas l'absence d'un drapeau traduit comme false.
 
 * Utilisez GitHub ou Sourcetree pour examiner fréquemment les blocs de code modifiés. Ils sont plus pratiques pour lire le code.
 
-* En programmation, il n'y a souvent rien de trivial. Chaque caractère, l'ordre des éléments de liste, chaque chaîne, chaque nombre et chaque nom de variable comptent. Chaque ordre d'exécution et chaque journal comptent.
+* En programmation, il n'y a souvent rien de trivial. Chaque caractère, l'ordre des éléments de la liste, chaque chaîne, chaque nombre et chaque nom de variable comptent. Chaque ordre d'exécution et chaque journal comptent.
 
-* Faites les choses qui vous passionnent le plus. Il n'est pas nécessaire de s'inquiéter de ne pas suivre la tendance.
+* Faites les choses qui vous passionnent le plus. Il n'y a pas besoin de s'inquiéter de ne pas suivre la tendance dominante.
 
-* Utilisez fréquemment les commandes, car elles peuvent aider à automatiser les tâches ou à assister avec les LLM. Les opérations d'interface utilisateur sont plus difficiles à automatiser.
+* Utilisez fréquemment les commandes, car elles peuvent aider à automatiser les tâches ou à assister les LLM. Les opérations d'interface utilisateur sont plus difficiles à automatiser.
 
-* Sauvegardez les journaux d'un programme, y compris les journaux locaux, UAT, microservices et pipeline, dans un répertoire. En programmation, ces journaux contiennent de nombreuses connexions. Recherchez-les pour identifier les relations, en collectant les données ou le contexte pertinents.
+* Enregistrez les journaux d'un programme, y compris les journaux locaux, UAT, microservices et pipeline, dans un répertoire. En programmation, ces journaux contiennent de nombreuses connexions. Parcourez-les pour identifier des relations, en collectant des données ou un contexte pertinent.
+
+* Avec les journaux collectés, lorsque vous rencontrez un problème, il est plus facile de déterminer si vous l'avez déjà rencontré. À partir des journaux précédents, vous pourriez savoir comment le résoudre. Les journaux offrent une meilleure compréhension de la manière dont tout fonctionne et de la manière dont les ordinateurs exécutent les programmes. Contrairement au code, les journaux sont liés au temps et offrent plus d'informations sur l'état d'exécution. Ils sont également plus légers pour le débogage.
+
+* Le débogage montre beaucoup d'informations, y compris les valeurs des variables environnantes, les noms de threads et les piles de fonctions.

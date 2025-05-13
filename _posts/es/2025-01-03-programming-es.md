@@ -33,37 +33,37 @@ translated: true
 
 * Recuerda por qué te metiste en la programación y nunca lo olvides.
 
-* Aplica el conocimiento en programación a todos los aspectos de la vida. Son lo mismo. Hacer cosas por lotes o una por una. Cómo separar trabajos en unidades. La tecnología subyacente detrás de cada aplicación. Los detalles sutiles detrás de las solicitudes de red.
+* Aplica el conocimiento de programación a todos los aspectos de la vida. Son lo mismo. Hacer cosas por lotes o una por una. Cómo separar trabajos en unidades. La tecnología subyacente detrás de cada aplicación. Los detalles sutiles detrás de las solicitudes de red.
 
-* La abstracción y el pensamiento lógico. El pensamiento orientado al detalle. Pensar en cada solución.
+* La abstracción y el pensamiento lógico. El pensamiento orientado a los detalles. El pensamiento de cada solución.
 
-* La verdad es la verdad. Generalmente, la computadora no se equivocará. El circuito eléctrico no se equivocará. El compilador no se equivocará. No te sientas molesto cuando haya un error.
+* La verdad es la verdad. Generalmente, la computadora no estará equivocada. El circuito eléctrico no estará equivocado. El compilador no estará equivocado. No te sientas molesto cuando haya un error.
 
-* Persigue soluciones elegantes y simples. La simplicidad es la máxima sofisticación. Necesitas pensar duro para dejar lo esencial y eliminar lo extra.
+* Persigue soluciones elegantes y simples. La simplicidad es la sofisticación definitiva. Necesitas pensar mucho para dejar lo esencial y eliminar lo extra.
 
 * Para los lenguajes de programación, los lenguajes que hacen el trabajo están bien. Personalmente, recomiendo Java y Python.
 
-* Sigue a Yin Wang en [https://www.yinwang.org](https://www.yinwang.org). Es uno de los pocos genios en programación, aunque él dice que los genios nunca existen.
+* Sigue a Yin Wang en [https://www.yinwang.org](https://www.yinwang.org). Es uno de los pocos genios en programación, aunque dice que los genios nunca existen.
 
 * El conocimiento y los principios de la programación se pueden aplicar fácilmente al aprendizaje de idiomas, la reparación de hardware, los trucos de vida y la investigación científica.
 
-* Para la mayoría de las tareas de programación, no necesitas matemáticas avanzadas más allá de las de secundaria.
+* Para la mayoría de las tareas de programación, no necesitas matemáticas avanzadas más allá de las matemáticas de secundaria.
 
 * Reflexiona sobre tu código antiguo después de años o mantén un proyecto de código durante mucho tiempo. Te enseñará mucho.
 
 * Si pierdes tu pasión por la programación, simplemente haz otras cosas por un tiempo.
 
-* La oportunidad de probar es importante. Simplemente hazlo de manera natural. A menudo no necesitas escribir pruebas para tu proyecto. Intenta no escribir pruebas, pruebas unitarias, pruebas de integración, pruebas de API. Compáralas sabiamente.
+* El momento de la prueba es importante. Simplemente hazlo de manera natural. A menudo no necesitas escribir pruebas para tu proyecto. Intenta no escribir pruebas, pruebas unitarias, pruebas de integración, pruebas de API. Compáralas sabiamente.
 
-* Prueba los editores de código de IA. Usa ChatGPT u otros chatbots con frecuencia. Como las herramientas de IA son fáciles de usar ahora, puedes enfocarte en partes más creativas o importantes.
+* Prueba los editores de código de IA. Usa ChatGPT u otros chatbots con frecuencia. Como las herramientas de IA son fáciles de usar ahora, puedes concentrarte en partes más creativas o importantes.
 
-* Al depurar, verifica si estás usando la última versión de las bibliotecas. Si una biblioteca no está mantenida, busca clones o bifurcaciones activamente mantenidos.
+* Al depurar, verifica si estás usando la última versión de las bibliotecas. Si una biblioteca no está mantenida, busca clones o bifurcaciones activamente mantenidas.
 
 * Al mejorar algo como la velocidad de la red o el tiempo de ejecución del programa, debe haber una métrica cuantitativa. De lo contrario, no sabrás exactamente si hubo una mejora o degradación trivial.
 
 * Para proyectos personales, está bien no escribir código de prueba, pero es mejor hacer pruebas locales después de cambiar una cantidad significativa de código. Considera el código afectado, cuánto tiempo correrá en el pipeline en la nube y con qué frecuencia podría llevar a errores, y luego escribe el código de prueba en consecuencia. Usa métodos que permitan pruebas fáciles sin afectar negativamente la experiencia del usuario.
 
-* Escribe código simple y elegante. Minimiza la duplicación, aunque a veces la duplicación lleva a una solución más simple. Minimiza los casos especiales. Hazlo fácil de probar. Refactoriza para usar funciones o procesos comunes, usa recursión o bucles, y busca patrones.
+* Escribe código simple y elegante. Minimiza la duplicación, aunque a veces la duplicación lleva a una solución más simple. Minimiza los casos especiales. Haz que sea fácil de probar. Refactoriza para usar funciones o procesos comunes, usa recursión o bucles, y busca patrones.
 
 * Maneja los errores adecuadamente. Piensa en la causa raíz, la responsabilidad y si podemos cambiarlo o si es un error externo. Considera el método de rescate, el alcance del impacto, dónde manejarlo, si debemos categorizar los errores, cuán probable es que ocurra y los peores escenarios.
 
@@ -79,4 +79,8 @@ translated: true
 
 * Usa comandos con frecuencia, ya que pueden ayudar a automatizar tareas o asistir con LLMs. Las operaciones de interfaz de usuario son más difíciles de automatizar.
 
-* Guarda los registros de un programa, incluidos los registros locales, UAT, microservicios y pipeline, en un directorio. En programación, estos registros contienen numerosas conexiones. Busca en ellos para identificar relaciones, recopilando datos o contexto relevantes.
+* Guarda los registros de un programa, incluidos los registros locales, UAT, microservicios y pipeline, en un directorio. En programación, estos registros contienen numerosas conexiones. Busca en ellos para identificar relaciones, recopilando datos o contexto relevante.
+
+* Con los registros recopilados, cuando encuentres un problema, es más fácil determinar si lo has encontrado antes. De los registros anteriores, podrías saber cómo solucionarlo. Los registros proporcionan una mejor comprensión de cómo funciona todo y cómo las computadoras ejecutan programas. A diferencia del código, los registros están relacionados con el tiempo y ofrecen más información sobre el estado de ejecución. También son más ligeros para depurar.
+
+* Depurar muestra mucha información, incluyendo los valores de las variables circundantes, los nombres de los hilos y las pilas de funciones.
