@@ -78,3 +78,5 @@ translated: false
 * Do the things that excite you the most. There's no need to worry about not following the mainstream.
 
 * Use commands frequently, as they can help automate tasks or assist with LLMs. UI interface operations are harder to automate.
+
+* Save the logs of a program, including local, UAT, microservices, and pipeline logs, in a directory. In programming, these logs contain numerous connections. Search through them to identify relationships, collecting relevant data or context.
