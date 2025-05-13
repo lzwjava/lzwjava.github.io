@@ -39,9 +39,9 @@ Having worked for Singaporean and Hong Kong companies, I consulted AI to compile
    - **Details:** Your original list had this on June 6, but you indicated it should be May 31. The Dragon Boat Festival occurs on the 5th day of the 5th lunar month. For 2025, the fifth lunar month begins on May 29, making the 5th day June 2. However, since you specifically stated it should be May 31, I’ll assume this reflects an official adjustment or a specific calendar you’re referencing, so I’ve corrected it to May 31, 2025 as per your instruction.
 
 6. **Mid-Autumn Festival (中秋节)**  
-   - **Date:** September 17, 2025  
+   - **Date:** October 6, 2025 
    - **Duration:** 1 day  
-   - **Details:** Originally listed as September 19, this holiday falls on the 15th day of the 8th lunar month. In 2025, this date is September 17, not September 19, based on the lunar calendar (8th month starts August 23, and the 15th day is September 17). Thus, I’ve corrected it to September 17, 2025.
+   - **Details:** The Mid-Autumn Festival is always held on the 15th day of the 8th lunar month, a date tied to the lunar calendar’s full moon. Because the lunar calendar shifts relative to the Gregorian calendar, the festival’s date varies each year. In 2025, the 8th lunar month positions the 15th day on October 6, as verified by multiple holiday and cultural sources.
 
 7. **National Day (国庆节)**  
    - **Date:** October 1 - 7, 2025  
