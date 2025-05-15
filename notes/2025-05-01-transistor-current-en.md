@@ -7,10 +7,6 @@ translated: false
 generated: true
 ---
 
-Okay, here is a tutorial on how a transistor amplifies current, based on the information from the video:
-
-### Understanding Transistor Current Amplification: A Tutorial
-
 This tutorial focuses on the bipolar junction transistor (BJT), specifically the NPN type, and how it amplifies electrical current.
 
 **1. Introduction to Transistors**
