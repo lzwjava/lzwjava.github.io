@@ -46,3 +46,7 @@ translated: false
 - The key to regular investing is accumulating a significant volume of investments and identifying the right trends. It is better to invest more capital during the later phases. Avoid increasing investments during bull markets, as a downturn may follow in the subsequent months, which would undermine the principle of regular investing. If you continue to invest during downturns, whether they last months or years, you will achieve a more favorable average entry price.
 
 - Borrowing money to invest has another problem: it generates interest. For example, a 10% yearly interest rate means you need to gain at least 5% on your investment just to cover the expense. This makes investing harder, especially during downturns.
+
+- The amount of money you put into regular investments should be such that you can neglect it without looking at it for days or weeks. Even if it loses more than 50 percent, you can accept it. With this kind of mindset, you can invest for the long term and make profits.
+
+- If you care too much about the performance of your regular investing portfolio and frequently open your stocks or crypto app, it means you have invested too much money, borrowed money, or are not confident in your long-term strategy.
