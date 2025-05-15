@@ -1,5 +1,5 @@
 ---
-title: Things You Can't Buy with Money
+title: Things You Can't Buy With Money
 lang: en
 layout: post
 audio: false
