@@ -123,3 +123,18 @@ Would you like an example of an itinerary? 😊
 
 Would you like a specific example or further clarification?
 
+---
+
+"Miniaturize" means to make something smaller in size or scale, often while retaining its functionality or proportions. It’s commonly used in contexts like technology, design, or manufacturing to describe reducing the size of devices, models, or components.
+
+"Miniaturize" is pronounced as **/ˈmɪn.i.ə.tʃəˌraɪz/** in American English. 
+
+- Breakdown: 
+  - **MIN** (like "min" in "minute")
+  - **ee** (short "e" sound)
+  - **uh** (schwa sound, like the "a" in "about")
+  - **chur** (like "cher" in "cherry")
+  - **ize** (like "eyes")
+
+You can hear it on dictionaries like Merriam-Webster or Cambridge for audio examples.
+
