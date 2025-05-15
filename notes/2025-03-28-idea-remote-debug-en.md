@@ -79,3 +79,70 @@ With the server running in debug mode and the configuration set up:
 
 ### Summary
 By starting your WebSphere Liberty Server with `server debug default` (which enables debugging on port 7777 by default) and configuring a remote debug setup in IntelliJ IDEA, you can connect to the server’s debug port without the WebSphere Liberty plugin. This gives you full debugging capabilities—breakpoints, variable inspection, and step-through execution—directly within IntelliJ IDEA.
+
+---
+
+Running and debugging WebSphere Liberty applications in IntelliJ IDEA without the dedicated Liberty Tools plugin is achievable by manually setting up the Liberty runtime and configuring IntelliJ IDEA for remote debugging and external tool execution. This approach requires a few manual steps compared to using the integrated plugin, but it provides the necessary functionality to develop and troubleshoot your Liberty applications.
+
+Here's a breakdown of the process:
+
+**1. Obtain and Install WebSphere Liberty Runtime:**
+
+Since you don't have the plugin to manage the runtime for you, you'll need to download and install the WebSphere Liberty runtime manually. You can obtain the runtime from the official IBM website or through other distribution methods like Maven or Gradle if you're managing your project with those tools.
+
+Typically, the manual installation involves downloading a ZIP or JAR file and extracting it to a directory on your system. This directory will be your Liberty installation home (`<LIBERTY_HOME>`).
+
+**2. Configure Liberty Server for Debugging:**
+
+To debug your application, you need to start the Liberty server with debugging enabled. This is done by adding specific JVM options when the server starts. These options tell the Java Virtual Machine (JVM) to listen for a debugger connection on a specific port.
+
+Locate the `jvm.options` file in your Liberty server configuration directory (`<LIBERTY_HOME>/usr/servers/<your_server_name>/`). If this file doesn't exist, you can create it. Add the following line to the `jvm.options` file:
+
+```
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
+```
+
+  * `-agentlib:jdwp`: Loads the Java Debug Wire Protocol (JDWP) library.
+  * `transport=dt_socket`: Specifies that the debugger will connect using a socket.
+  * `server=y`: Indicates that the JVM will act as the server, listening for a debugger connection.
+  * `suspend=n`: Specifies that the JVM should not wait for the debugger to connect before starting. You can change this to `suspend=y` if you need to debug code that runs during server startup.
+  * `address=5005`: Sets the port number the debugger will connect to. You can change this to any available port.
+
+**3. Configure IntelliJ IDEA to Run Liberty:**
+
+You can use IntelliJ IDEA's "External Tools" configuration to start your Liberty server from within the IDE.
+
+  * Go to `File` \> `Settings` (or `IntelliJ IDEA` \> `Preferences` on macOS).
+  * Navigate to `Tools` \> `External Tools`.
+  * Click the `+` icon to add a new external tool.
+  * Configure the tool with the following details:
+      * **Name:** Give it a descriptive name, e.g., "Start Liberty Server".
+      * **Program:** Browse to the Liberty server script. This will typically be `<LIBERTY_HOME>/bin/server` for Linux/macOS or `<LIBERTY_HOME>\bin\server.bat` for Windows.
+      * **Arguments:** Add the arguments to start your specific server instance. This is usually `start <your_server_name>`, where `<your_server_name>` is the name of your server directory in `<LIBERTY_HOME>/usr/servers/`.
+      * **Working directory:** Set this to `<LIBERTY_HOME>/bin`.
+
+Now you can start your Liberty server by going to `Tools` \> `External Tools` and selecting the tool you just configured.
+
+**4. Configure IntelliJ IDEA for Remote Debugging:**
+
+To debug your application running on the manually started Liberty server, you'll use IntelliJ IDEA's "Remote JVM Debug" configuration.
+
+  * Go to `Run` \> `Edit Configurations`.
+  * Click the `+` icon and select `Remote JVM Debug`.
+  * Configure the settings:
+      * **Name:** Give it a descriptive name, e.g., "Debug Liberty Server".
+      * **Debugger mode:** Select `Attach to remote JVM`.
+      * **Host:** Enter `localhost` (or the IP address of the machine running Liberty if it's not on your local machine).
+      * **Port:** Enter the port number you configured in the `jvm.options` file (e.g., `5005`).
+      * **Use module classpath of:** Select the module in your IntelliJ IDEA project that contains your Liberty application code. This helps IntelliJ IDEA map the running code to your source files for debugging.
+
+**5. Run and Debug:**
+
+1.  Start the Liberty server using the "External Tools" configuration you created in IntelliJ IDEA.
+2.  Wait for the server to start and indicate that it's listening for the debugger on the configured port (you should see a message in the server console output).
+3.  Set breakpoints in your application code within IntelliJ IDEA.
+4.  Go to `Run` \> `Debug` and select the "Debug Liberty Server" configuration you created.
+
+IntelliJ IDEA will attempt to connect to the running Liberty server on the specified port. Once connected, you can use all of IntelliJ IDEA's debugging features, such as stepping through code, inspecting variables, and evaluating expressions.
+
+By following these steps, you can effectively run and debug your WebSphere Liberty applications in IntelliJ IDEA without relying on the dedicated Liberty Tools plugin, giving you direct control over the server lifecycle and debugging process.
