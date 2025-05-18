@@ -4,6 +4,10 @@ generated: false
 lang: en
 layout: post
 title: Zhiwei's Introduction
+prompt: 'Translate Zhiwei Li to 李智维. Translate Chongding
+  Conference to 冲顶大会. Translate Fun Live to 趣直播. Translate Farben to 法本. MianbaoLive to 面包Live.
+  Translate Beijing Dami Entertainment Co. to 北京大米互娱有限公司. Translate Guangzhou Yuyan
+  Middle School to 广州玉岩中学. Translate  Meitai Technology Service (Shanghai) Co., Ltd. Guangzhou Branch to 美钛技术服务（上海）有限公司广州分公司'
 ---
 
 You can download the PDF version of my introduction, created with LaTeX, [here](/assets/resume/Zhiwei.Li.Introduction.EN.pdf) for the English version and [here](/assets/resume/Zhiwei.Li.Introduction.ZH.pdf) for the Chinese version.
