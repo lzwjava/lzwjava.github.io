@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Weekly Stock Investments with TigerOpen API and GitHub Actions
+title: Weekly Stock Investments with TigerOpen API
 translated: false
 generated: false
 ---
