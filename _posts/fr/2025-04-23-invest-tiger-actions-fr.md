@@ -3,7 +3,7 @@ audio: true
 generated: false
 lang: fr
 layout: post
-title: Investissements hebdomadaires en actions avec TigerOpen API et GitHub Actions
+title: Investissements hebdomadaires en actions avec l'API TigerOpen
 translated: true
 ---
 
@@ -58,7 +58,7 @@ def place_order():
             print(f"ID de la commande correspondante! Vérification du statut de la commande: {order.status}")
             # Vérifier le statut de la commande en utilisant les valeurs de l'énumération OrderStatus
             if order.status == OrderStatus.FILLED:
-                print("Commande terminée avec succès.")
+                print("Commande complétée avec succès.")
                 return
             elif order.status == OrderStatus.REJECTED:
                 print(f"Commande rejetée: {order_id}")
@@ -76,8 +76,8 @@ def place_order():
         # Pause avant de vérifier à nouveau
         time.sleep(5)  # Vérifier toutes les 5 secondes
 
-    # Si la commande n'est pas terminée en 1 minute, l'annuler
-    print("La commande n'a pas été terminée en 1 minute. Annulation de la commande.")
+    # Si la commande n'est pas complétée en 1 minute, l'annuler
+    print("La commande n'a pas été complétée en 1 minute. Annulation de la commande.")
     trade_client.cancel_order(id=order_id)
     print(f"Commande annulée: {order_id}")
 
@@ -87,14 +87,14 @@ if __name__ == '__main__':
 
 ## Workflow GitHub Actions
 
-Le workflow s'exécute tous les mercredis à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances et exécute le script.
+Le workflow s'exécute chaque mercredi à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances et exécute le script.
 
 ```yaml
 name: Investissement Régulier
 
 on:
   schedule:
-    - cron: '35 14 * * 3'  # S'exécute tous les mercredis à 14:35 UTC
+    - cron: '35 14 * * 3'  # Exécuter chaque mercredi à 14:35 UTC
   workflow_dispatch:
 
 concurrency:

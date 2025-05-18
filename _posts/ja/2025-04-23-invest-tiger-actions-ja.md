@@ -3,19 +3,19 @@ audio: true
 generated: false
 lang: ja
 layout: post
-title: 週次株式投資とTigerOpen API、GitHub Actions
+title: 週次株式投資 TigerOpen API
 translated: true
 ---
 
-PythonスクリプトとGitHub Actionsのワークフローを作成し、毎週水曜日の22:35 UTCに1株のNVIDIA株を購入する投資計画を自動化しました。2025年には水曜日に休日がないため、一貫した実行を保証するために水曜日に設定しました。
+私は、毎週水曜日の22:35 UTCに1株のNVIDIA株を購入する週次投資計画を自動化するためのPythonスクリプトとGitHub Actionsワークフローを作成しました。2025年には水曜日に祝日がないため、一貫した実行が保証されます。
 
 ## 概要
 
-このスクリプトは、TigerOpen APIを使用してNVIDIA株の市場注文を出し、その状態を監視します。GitHub Actionsのワークフローは、スクリプトをスケジュールに従って実行し、セットアップと認証を安全に処理します。以下に、両方のコンポーネントの詳細を示します。
+このスクリプトは、TigerOpen APIを使用してNVIDIA株の市場注文を出し、その状態を監視します。GitHub Actionsワークフローは、スクリプトをスケジュールに従って実行し、セットアップと認証を安全に処理します。以下に、両方のコンポーネントの詳細を示します。
 
 ## Pythonスクリプト
 
-このスクリプトは、1株のNVIDIA株を購入する注文を出し、60秒間その状態を確認し、埋まらなかった場合はキャンセルします。
+このスクリプトは、1株のNVIDIA株の購入注文を出し、最大60秒間その状態を確認し、埋まらなかった場合はキャンセルします。
 
 ```python
 import time
@@ -47,7 +47,7 @@ def place_order():
     )
     # 注文を出す
     order_id = trade_client.place_order(stock_order)
-    print(f"注文ID: {order_id} で注文が出されました")
+    print(f"注文がID: {order_id}で出されました")
 
     # 時間を追跡
     start_time = time.time()
@@ -76,7 +76,7 @@ def place_order():
         # 再度確認する前に待機
         time.sleep(5)  # 5秒ごとに確認
 
-    # 1分以内に注文が完了しない場合はキャンセル
+    # 注文が1分以内に完了しない場合はキャンセル
     print("1分以内に注文が完了しませんでした。注文をキャンセルします。")
     trade_client.cancel_order(id=order_id)
     print(f"注文がキャンセルされました: {order_id}")
@@ -90,7 +90,7 @@ if __name__ == '__main__':
 このワークフローは、毎週水曜日の14:35 UTC（22:35 UTC）に実行され、環境をセットアップし、依存関係をインストールし、スクリプトを実行します。
 
 ```yaml
-name: Regular Invest
+name: 定期投資
 
 on:
   schedule:
@@ -115,22 +115,22 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Python 3.13.2をセットアップ
+      - name: Python 3.13.2のセットアップ
         uses: actions/setup-python@v4
         with:
           python-version: "3.13.2"
 
-      - name: 依存関係をインストール
+      - name: 依存関係のインストール
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Tiger PEMファイルをセットアップ
+      - name: Tiger PEMファイルのセットアップ
         run: |
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: Tigerスクリプトを実行
+      - name: Tigerスクリプトの実行
         id: tiger_update
         run: python invest.py
         env:

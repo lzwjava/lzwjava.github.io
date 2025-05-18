@@ -3,7 +3,7 @@ audio: true
 generated: false
 lang: es
 layout: post
-title: Inversiones Semanales en Acciones con TigerOpen API y GitHub Actions
+title: Inversiones Semanales en Acciones con la API de TigerOpen
 translated: true
 ---
 
@@ -11,7 +11,7 @@ Creé un script de Python y un flujo de trabajo de GitHub Actions para automatiz
 
 ## Descripción General
 
-El script utiliza la API de TigerOpen para colocar una orden de mercado para la acción de NVIDIA y monitorea su estado. El flujo de trabajo de GitHub Actions ejecuta el script en un horario, manejando la configuración y la autenticación de manera segura. A continuación, se detallan ambos componentes.
+El script utiliza la API de TigerOpen para colocar una orden de mercado para acciones de NVIDIA y monitorea su estado. El flujo de trabajo de GitHub Actions ejecuta el script en un horario, manejando la configuración y la autenticación de manera segura. A continuación se presentan los detalles de ambos componentes.
 
 ## Script de Python
 
@@ -56,9 +56,9 @@ def place_order():
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
             print(f"ID de orden coincidente! Verificando el estado de la orden: {order.status}")
-            # Verificar el estado de la orden utilizando los valores de la enumeración OrderStatus
+            # Verificar el estado de la orden utilizando los valores del enumerador OrderStatus
             if order.status == OrderStatus.FILLED:
-                print("Orden completada exitosamente.")
+                print("Orden completada con éxito.")
                 return
             elif order.status == OrderStatus.REJECTED:
                 print(f"Orden rechazada: {order_id}")
@@ -130,7 +130,7 @@ jobs:
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: Ejecutar Script de Tiger
+      - name: Ejecutar Script Tiger
         id: tiger_update
         run: python invest.py
         env:

@@ -3,19 +3,19 @@ audio: true
 generated: false
 lang: ar
 layout: post
-title: استثمارات الأسهم الأسبوعية مع واجهة برمجة التطبيقات TigerOpen و GitHub Actions
+title: استثمارات الأسهم الأسبوعية مع واجهة برمجة التطبيقات TigerOpen
 translated: true
 ---
 
-قمت بإنشاء برنامج Python و سير عمل GitHub Actions لتتمية خطة الاستثمار الأسبوعية الخاصة بي، التي تشتري سهمًا واحدًا من أسهم NVIDIA كل يوم الأربعاء في الساعة 10:35 مساءً بتوقيت UTC. اخترت يوم الأربعاء لأن هناك لا يوجد أي عطلات في عام 2025، مما يضمن التنفيذ المستمر.
+قمت بإنشاء سكربت Python و سير عمل GitHub Actions لتتمة خطة الاستثمار الأسبوعية الخاصة بي، والتي تشتري سهمًا واحدًا من أسهم NVIDIA كل يوم الأربعاء في الساعة 10:35 مساءً بتوقيت UTC. اخترت يوم الأربعاء لأن هناك لا يوجد أي عطلات في عام 2025، مما يضمن التنفيذ المستمر.
 
 ## نظرة عامة
 
-يستخدم البرنامج واجهة برمجة التطبيقات TigerOpen لتقديم طلب سوقي لشراء أسهم NVIDIA ومراقبة حالته. سير عمل GitHub Actions ينفذ البرنامج على جدول زمني، ويدير الإعداد والتحقق من الهوية بشكل آمن. أدناه تفاصيل كلا المكونين.
+يستخدم السكريبت واجهة برمجة التطبيقات TigerOpen لتقديم طلب سوقي لشراء أسهم NVIDIA ومراقبة حالة الطلب. سير عمل GitHub Actions ينفذ السكريبت على جدول زمني، مع معالجة الإعداد والتحقق من الأمان. أدناه تفاصيل المكونين.
 
-## برنامج Python
+## سكربت Python
 
-يقدم هذا البرنامج طلب شراء لشراء سهم واحد من أسهم NVIDIA، ويحقق من حالته لمدة تصل إلى 60 ثانية، ويُلغي الطلب إذا لم يتم تنفيذه.
+يقدم هذا السكريبت طلب شراء لشراء سهم واحد من أسهم NVIDIA، ويحقق حالة الطلب لمدة تصل إلى 60 ثانية، ويُلغي الطلب إذا لم يتم تنفيذه.
 
 ```python
 import time
@@ -35,7 +35,7 @@ def get_client_config(sandbox=False):
     client_config.language = Language.zh_CN
     return client_config
 
-# دالة لتقديم الطلب
+# دالة لتقديم طلب
 def place_order():
     client_config = get_client_config()
     trade_client = TradeClient(client_config)
@@ -47,7 +47,7 @@ def place_order():
     )
     # تقديم الطلب
     order_id = trade_client.place_order(stock_order)
-    print(f"تم تقديم الطلب مع ID: {order_id}")
+    print(f"تم تقديم الطلب مع رقم: {order_id}")
 
     # تتبع الوقت
     start_time = time.time()
@@ -55,7 +55,7 @@ def place_order():
         # الحصول على الطلب والبحث عن الذي قدمناه
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
-            print(f"تم مطابقة ID الطلب! التحقق من حالة الطلب: {order.status}")
+            print(f"تم مطابقة رقم الطلب! التحقق من حالة الطلب: {order.status}")
             # التحقق من حالة الطلب باستخدام قيم Enum OrderStatus
             if order.status == OrderStatus.FILLED:
                 print("تم إكمال الطلب بنجاح.")
@@ -76,7 +76,7 @@ def place_order():
         # النوم قبل التحقق مرة أخرى
         time.sleep(5)  # التحقق كل 5 ثوانٍ
 
-    # إذا لم يتم إكمال الطلب في دقيقة واحدة، إلغاءه
+    # إذا لم يتم إكمال الطلب في دقيقة واحدة، إلغاء الطلب
     print("لم يتم إكمال الطلب في دقيقة واحدة. إلغاء الطلب.")
     trade_client.cancel_order(id=order_id)
     print(f"تم إلغاء الطلب: {order_id}")
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 ## سير عمل GitHub Actions
 
-ينفذ السير العمل كل يوم الأربعاء في الساعة 14:35 بتوقيت UTC (10:35 مساءً بتوقيت UTC) ويعدل البيئة، ويثبت التبعيات، وينفذ البرنامج.
+ينفذ السير العمل كل يوم الأربعاء في الساعة 14:35 بتوقيت UTC (10:35 مساءً بتوقيت UTC) ويعدل البيئة، ويثبت الاعتماديات، وينفذ السكريبت.
 
 ```yaml
 name: Regular Invest
@@ -120,7 +120,7 @@ jobs:
         with:
           python-version: "3.13.2"
 
-      - name: تثبيت التبعيات
+      - name: تثبيت الاعتماديات
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -130,7 +130,7 @@ jobs:
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: تشغيل برنامج Tiger
+      - name: تشغيل سكربت Tiger
         id: tiger_update
         run: python invest.py
         env:
