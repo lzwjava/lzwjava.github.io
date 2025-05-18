@@ -2,6 +2,7 @@ import os
 import re
 import time
 import shutil
+import random
 from generate_notes_link import generate_notes_links
 
 
@@ -51,7 +52,10 @@ def main():
     if notes_count != links_count:
         print("Notes files count and links count don't match and last modification was more than 2 hours ago, regenerating notes links.")
         generate_notes_links()
-        copy_original_to_posts()
+        if random.random() < 0.1:
+            copy_original_to_posts()
+        else:
+            print("Skipped copy_original_to_posts due to rate limiting.")
     else:
         print("Skipping notes link regeneration.")
 
