@@ -23,6 +23,3 @@ My X account is here: [https://mobile.twitter.com/lzwjava](https://mobile.twitte
 #### Email
 
 lzwjava@gmail.com
-
-
-
