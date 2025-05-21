@@ -4,10 +4,7 @@ generated: false
 lang: en
 layout: post
 title: Zhiwei's Introduction
-prompt: 'Translate Zhiwei Li to 李智维. Translate Chongding
-  Conference to 冲顶大会. Translate Fun Live to 趣直播. Translate Farben to 法本. MianbaoLive to 面包Live.
-  Translate Beijing Dami Entertainment Co. to 北京大米互娱有限公司. Translate Guangzhou Yuyan
-  Middle School to 广州玉岩中学. Translate  Meitai Technology Service (Shanghai) Co., Ltd. Guangzhou Branch to 美钛技术服务（上海）有限公司广州分公司'
+prompt: 'Do not translate specific items such as project names, company names, or school names if you are not sure.'
 ---
 
 You can download the PDF version of my introduction, created with LaTeX, [here](/assets/resume/Zhiwei.Li.Introduction.EN.pdf) for the English version and [here](/assets/resume/Zhiwei.Li.Introduction.ZH.pdf) for the Chinese version.
@@ -24,10 +21,10 @@ You can download the PDF version of my introduction, created with LaTeX, [here](
   - [Beijing Square Root](https://lzwjava.github.io/profit-en): Founded *Fun Live*, a live streaming knowledge platform that attracted 30,000 users within a year. Transitioned to software consulting, managing over 50 projects for clients such as Yuanfudao, Jiangsu TV, Fenbi Education, and Beijing International Studies University. Held dual roles as project manager and software engineer, generating 3 million CNY in revenue and 600,000 CNY in profit.  
   - [LeanCloud](https://www.leancloud.cn): Contributed to iOS and Android development for cloud services, including object storage, file storage, web hosting, containerization, instant messaging, push notifications, and SMS.
 - Experience summary:  
-  - 10 years of professional experience, including 8 years in corporate roles and 2 years as a freelancer.  
+  - 11 years of professional experience, including 8 years in corporate roles and 3 years as a freelancer.  
   - Specialized in:  
     - Mobile engineering: 2 years (Android, iOS).  
-    - Full-stack engineering: 7 years (6 years backend, 1 year frontend).  
+    - Full-stack engineering: 8 years (7 years backend, 1 year frontend).  
     - Machine learning and big data: 1 year.  
   - Proficient in both domestic and international cloud platforms, including Alibaba Cloud, Google Cloud, Azure, AWS, and Tencent Cloud.  
 - Language proficiency: Native in Chinese, proficient in English (IELTS 6).  
