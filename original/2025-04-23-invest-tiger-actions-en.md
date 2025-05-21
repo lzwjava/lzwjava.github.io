@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-I created a Python script and a GitHub Actions workflow to automate my weekly investment plan, which buys one NVIDIA stock every Wednesday at 10:35 PM UTC. I chose Wednesdays because, in 2025, there are no holidays on that day, ensuring consistent execution.
+I developed a Python script and a GitHub Actions workflow to automate my weekly investment strategy, purchasing one NVIDIA stock every Wednesday at 10:35 PM China Standard Time (CST). I chose Wednesdays because, in 2025, there are no holidays on that day, ensuring consistent execution.
 
 ## Overview
 
