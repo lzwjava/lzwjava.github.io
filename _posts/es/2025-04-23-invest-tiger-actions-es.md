@@ -7,13 +7,13 @@ title: Inversiones Semanales en Acciones con la API de TigerOpen
 translated: true
 ---
 
-Creé un script de Python y un flujo de trabajo de GitHub Actions para automatizar mi plan de inversión semanal, que compra una acción de NVIDIA todos los miércoles a las 10:35 PM UTC. Elegí los miércoles porque, en 2025, no hay días festivos en ese día, asegurando una ejecución consistente.
+Desarrollé un script en Python y un flujo de trabajo de GitHub Actions para automatizar mi estrategia de inversión semanal, comprando una acción de NVIDIA todos los miércoles a las 10:35 PM Hora Estándar de China (CST). Elegí los miércoles porque, en 2025, no hay días festivos en ese día, asegurando una ejecución consistente.
 
 ## Descripción General
 
 El script utiliza la API de TigerOpen para colocar una orden de mercado para acciones de NVIDIA y monitorea su estado. El flujo de trabajo de GitHub Actions ejecuta el script en un horario, manejando la configuración y la autenticación de manera segura. A continuación se presentan los detalles de ambos componentes.
 
-## Script de Python
+## Script en Python
 
 Este script coloca una orden de compra para una acción de NVIDIA, verifica su estado durante hasta 60 segundos y la cancela si no se llena.
 
@@ -39,7 +39,7 @@ def get_client_config(sandbox=False):
 def place_order():
     client_config = get_client_config()
     trade_client = TradeClient(client_config)
-    account = client_config.account  # Guardar cuenta para uso posterior
+    account = client_config.account  # Almacenar cuenta para uso posterior
 
     contract = stock_contract(symbol='NVDA', currency='USD')
     stock_order = market_order(
@@ -56,7 +56,7 @@ def place_order():
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
             print(f"ID de orden coincidente! Verificando el estado de la orden: {order.status}")
-            # Verificar el estado de la orden utilizando los valores del enumerador OrderStatus
+            # Verificar el estado de la orden utilizando los valores de la enumeración OrderStatus
             if order.status == OrderStatus.FILLED:
                 print("Orden completada con éxito.")
                 return
@@ -110,7 +110,7 @@ jobs:
   invest:
     runs-on: ubuntu-latest
     steps:
-      - name: Clonar Repositorio
+      - name: Verificar Repositorio
         uses: actions/checkout@v4
         with:
           fetch-depth: 5
@@ -130,7 +130,7 @@ jobs:
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: Ejecutar Script Tiger
+      - name: Ejecutar Script de Tiger
         id: tiger_update
         run: python invest.py
         env:

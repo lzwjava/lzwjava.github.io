@@ -3,15 +3,15 @@ audio: true
 generated: false
 lang: zh
 layout: post
-title: 每周股票投资与TigerOpen API和GitHub Actions
+title: 每周股票投资与TigerOpen API
 translated: true
 ---
 
-我创建了一个 Python 脚本和一个 GitHub Actions 工作流程，以自动化我的每周投资计划，每周三晚上 10:35 UTC 购买一只 NVIDIA 股票。我选择周三是因为 2025 年没有假期，确保一致执行。
+我开发了一段 Python 脚本和一个 GitHub Actions 工作流，用于自动化我的每周投资策略，每周三晚上 10:35 中国标准时间（CST）购买一只 NVIDIA 股票。我选择周三是因为 2025 年没有任何假期，确保一致执行。
 
 ## 概述
 
-该脚本使用 TigerOpen API 下市场订单购买 NVIDIA 股票，并监控其状态。GitHub Actions 工作流程按计划运行脚本，安全处理设置和认证。以下是两个组件的详细信息。
+该脚本使用 TigerOpen API 下单 NVIDIA 股票并监控其状态。GitHub Actions 工作流按计划运行脚本，安全地处理设置和认证。以下是两个组件的详细信息。
 
 ## Python 脚本
 
@@ -52,7 +52,7 @@ def place_order():
     # 记录时间
     start_time = time.time()
     while time.time() - start_time < 60:  # 1 分钟超时
-        # 获取订单并找到刚下的订单
+        # 获取订单并找到刚刚下的订单
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
             print(f"订单 ID 匹配！检查订单状态: {order.status}")
@@ -73,7 +73,7 @@ def place_order():
             else:
                 print(f"订单状态是: {order.status}")
 
-        # 等待后再检查
+        # 等待后再次检查
         time.sleep(5)  # 每 5 秒检查一次
 
     # 如果订单在 1 分钟内未完成，取消订单
@@ -85,9 +85,9 @@ if __name__ == '__main__':
     place_order()
 ```
 
-## GitHub Actions 工作流程
+## GitHub Actions 工作流
 
-该工作流程每周三 14:35 UTC（10:35 PM UTC）运行一次，设置环境，安装依赖项，并执行脚本。
+该工作流每周三 14:35 UTC（10:35 PM UTC）运行一次，设置环境，安装依赖项，并执行脚本。
 
 ```yaml
 name: Regular Invest

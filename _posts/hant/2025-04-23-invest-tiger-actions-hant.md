@@ -7,11 +7,11 @@ title: 每週股票投資與TigerOpen API
 translated: true
 ---
 
-我創建了一個 Python 腳本和一個 GitHub Actions 工作流程來自動化我的每週投資計劃，每週三晚上 10:35 UTC 購買一隻 NVIDIA 股票。我選擇週三是因為在 2025 年，這一天沒有假期，確保一致執行。
+我開發了一個 Python 腳本和一個 GitHub Actions 工作流程來自動化我的每週投資策略，每週三晚上十時三十五分中國標準時間 (CST) 購買一隻 NVIDIA 股票。我選擇週三是因為在 2025 年，該日沒有假期，確保一致執行。
 
 ## 概述
 
-這個腳本使用 TigerOpen API 下單 NVIDIA 股票的市場訂單，並監控其狀態。GitHub Actions 工作流程按計劃運行腳本，安全地處理設置和驗證。以下是兩個組件的詳細信息。
+這個腳本使用 TigerOpen API 來下單 NVIDIA 股票市場訂單，並監控其狀態。GitHub Actions 工作流程按計劃運行腳本，安全地處理設置和驗證。以下是兩個組件的詳細資料。
 
 ## Python 腳本
 
@@ -47,7 +47,7 @@ def place_order():
     )
     # 下單
     order_id = trade_client.place_order(stock_order)
-    print(f"訂單已下單，訂單號碼: {order_id}")
+    print(f"已下單，訂單編號: {order_id}")
 
     # 追蹤時間
     start_time = time.time()
@@ -55,7 +55,7 @@ def place_order():
         # 获取訂單並找到我們剛剛下的訂單
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
-            print(f"訂單號碼匹配！檢查訂單狀態: {order.status}")
+            print(f"訂單編號匹配！檢查訂單狀態: {order.status}")
             # 使用 OrderStatus 枚舉值檢查訂單狀態
             if order.status == OrderStatus.FILLED:
                 print("訂單成功完成。")
@@ -69,11 +69,11 @@ def place_order():
                 OrderStatus.HELD,
                 OrderStatus.PENDING_CANCEL
             ]:
-                print(f"訂單正在等待，狀態: {order.status}")
+                print(f"訂單正在處理中，狀態: {order.status}")
             else:
                 print(f"訂單狀態是: {order.status}")
 
-        # 等待再檢查
+        # 等待後再檢查
         time.sleep(5)  # 每 5 秒檢查一次
 
     # 如果訂單在 1 分鐘內未完成，則取消訂單
@@ -130,7 +130,7 @@ jobs:
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: 執行 Tiger 腳本
+      - name: 運行 Tiger 腳本
         id: tiger_update
         run: python invest.py
         env:

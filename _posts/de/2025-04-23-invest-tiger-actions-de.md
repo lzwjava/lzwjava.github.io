@@ -3,11 +3,11 @@ audio: true
 generated: false
 lang: de
 layout: post
-title: Wöchentliche Aktieninvestitionen mit TigerOpen API und GitHub Actions
+title: Wöchentliche Aktieninvestitionen mit TigerOpen API
 translated: true
 ---
 
-Ich habe ein Python-Skript und einen GitHub Actions Workflow erstellt, um meinen wöchentlichen Investitionsplan zu automatisieren, der jeden Mittwoch um 22:35 Uhr UTC eine NVIDIA-Aktie kauft. Ich habe Mittwoch gewählt, weil es im Jahr 2025 an diesem Tag keine Feiertage gibt, was eine konsistente Ausführung gewährleistet.
+Ich habe ein Python-Skript und einen GitHub Actions Workflow entwickelt, um meine wöchentliche Investitionsstrategie zu automatisieren, indem ich jeden Mittwoch um 22:35 Uhr China Standard Time (CST) eine NVIDIA-Aktie kaufe. Ich habe Mittwoch gewählt, weil es im Jahr 2025 an diesem Tag keine Feiertage gibt, was eine konsistente Ausführung gewährleistet.
 
 ## Übersicht
 
@@ -55,7 +55,7 @@ def place_order():
         # Order abrufen und diejenige finden, die wir gerade platziert haben
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
-            print(f"Order-ID übereinstimmt! Überprüfung des Order-Status: {order.status}")
+            print(f"Order-ID übereinstimmend! Überprüfung des Order-Status: {order.status}")
             # Überprüfung des Order-Status mit den Enum-Werten von OrderStatus
             if order.status == OrderStatus.FILLED:
                 print("Order erfolgreich abgeschlossen.")
@@ -73,7 +73,7 @@ def place_order():
             else:
                 print(f"Order-Status ist: {order.status}")
 
-        # Warten, bevor erneut überprüft wird
+        # Vor dem erneuten Überprüfen schlafen
         time.sleep(5)  # Jede 5 Sekunden überprüfen
 
     # Wenn die Order nicht innerhalb von 1 Minute abgeschlossen wird, stornieren

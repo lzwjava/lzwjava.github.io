@@ -7,7 +7,7 @@ title: 週次株式投資 TigerOpen API
 translated: true
 ---
 
-私は、毎週水曜日の22:35 UTCに1株のNVIDIA株を購入する週次投資計画を自動化するためのPythonスクリプトとGitHub Actionsワークフローを作成しました。2025年には水曜日に祝日がないため、一貫した実行が保証されます。
+私は、毎週水曜日の22時35分（中国標準時、CST）にNVIDIA株を1株購入する投資戦略を自動化するためのPythonスクリプトとGitHub Actionsワークフローを開発しました。2025年には水曜日に祝日がないため、一貫した実行を確保するために水曜日に設定しました。
 
 ## 概要
 
@@ -15,7 +15,7 @@ translated: true
 
 ## Pythonスクリプト
 
-このスクリプトは、1株のNVIDIA株の購入注文を出し、最大60秒間その状態を確認し、埋まらなかった場合はキャンセルします。
+このスクリプトは、NVIDIA株を1株購入する注文を出し、60秒間その状態を確認し、埋まらなかった場合はキャンセルします。
 
 ```python
 import time
@@ -47,12 +47,12 @@ def place_order():
     )
     # 注文を出す
     order_id = trade_client.place_order(stock_order)
-    print(f"注文がID: {order_id}で出されました")
+    print(f"注文ID: {order_id} で注文が出されました")
 
     # 時間を追跡
     start_time = time.time()
     while time.time() - start_time < 60:  # 1分タイムアウト
-        # 注文を取得し、今出したものを見つける
+        # 注文を取得し、先ほど出したものを見つける
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
             print(f"注文IDが一致しました！注文状態を確認中: {order.status}")
@@ -77,7 +77,7 @@ def place_order():
         time.sleep(5)  # 5秒ごとに確認
 
     # 注文が1分以内に完了しない場合はキャンセル
-    print("1分以内に注文が完了しませんでした。注文をキャンセルします。")
+    print("注文が1分以内に完了しませんでした。注文をキャンセルします。")
     trade_client.cancel_order(id=order_id)
     print(f"注文がキャンセルされました: {order_id}")
 
@@ -115,22 +115,22 @@ jobs:
         with:
           fetch-depth: 5
 
-      - name: Python 3.13.2のセットアップ
+      - name: Python 3.13.2をセットアップ
         uses: actions/setup-python@v4
         with:
           python-version: "3.13.2"
 
-      - name: 依存関係のインストール
+      - name: 依存関係をインストール
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Tiger PEMファイルのセットアップ
+      - name: Tiger PEMファイルをセットアップ
         run: |
           echo "${{ secrets.TIGER_PEM_CONTENT }}" > tiger.pem
           chmod 600 tiger.pem
 
-      - name: Tigerスクリプトの実行
+      - name: Tigerスクリプトを実行
         id: tiger_update
         run: python invest.py
         env:
