@@ -7,15 +7,15 @@ title: Investissements hebdomadaires en actions avec l'API TigerOpen
 translated: true
 ---
 
-J'ai créé un script Python et un workflow GitHub Actions pour automatiser mon plan d'investissement hebdomadaire, qui achète une action NVIDIA chaque mercredi à 22h35 UTC. J'ai choisi les mercredis car, en 2025, il n'y a pas de jours fériés ce jour-là, garantissant une exécution cohérente.
+J'ai développé un script Python et un workflow GitHub Actions pour automatiser ma stratégie d'investissement hebdomadaire, achetant une action NVIDIA chaque mercredi à 22h35 en heure normale de Chine (CST). J'ai choisi les mercredis car, en 2025, il n'y a pas de jours fériés ce jour-là, garantissant une exécution cohérente.
 
-## Aperçu
+## Vue d'ensemble
 
-Le script utilise l'API TigerOpen pour passer une commande de marché pour les actions NVIDIA et surveille son statut. Le workflow GitHub Actions exécute le script selon un planning, gérant la configuration et l'authentification de manière sécurisée. Voici les détails des deux composants.
+Le script utilise l'API TigerOpen pour passer une commande de marché pour l'action NVIDIA et surveille son statut. Le workflow GitHub Actions exécute le script selon un planning, gérant la configuration et l'authentification de manière sécurisée. Voici les détails des deux composants.
 
 ## Script Python
 
-Ce script passe une commande d'achat pour une action NVIDIA, vérifie son statut pendant jusqu'à 60 secondes et l'annule si elle n'est pas exécutée.
+Ce script passe une commande d'achat pour une action NVIDIA, vérifie son statut pendant jusqu'à 60 secondes, et l'annule si elle n'est pas exécutée.
 
 ```python
 import time
@@ -73,7 +73,7 @@ def place_order():
             else:
                 print(f"Statut de la commande: {order.status}")
 
-        # Pause avant de vérifier à nouveau
+        # Attendre avant de vérifier à nouveau
         time.sleep(5)  # Vérifier toutes les 5 secondes
 
     # Si la commande n'est pas complétée en 1 minute, l'annuler
@@ -87,14 +87,14 @@ if __name__ == '__main__':
 
 ## Workflow GitHub Actions
 
-Le workflow s'exécute chaque mercredi à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances et exécute le script.
+Le workflow s'exécute chaque mercredi à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances, et exécute le script.
 
 ```yaml
-name: Investissement Régulier
+name: Investissement régulier
 
 on:
   schedule:
-    - cron: '35 14 * * 3'  # Exécuter chaque mercredi à 14:35 UTC
+    - cron: '35 14 * * 3'  # S'exécute chaque mercredi à 14h35 UTC
   workflow_dispatch:
 
 concurrency:
