@@ -11,11 +11,11 @@ J'ai développé un script Python et un workflow GitHub Actions pour automatiser
 
 ## Vue d'ensemble
 
-Le script utilise l'API TigerOpen pour passer une commande de marché pour l'action NVIDIA et surveille son statut. Le workflow GitHub Actions exécute le script selon un planning, gérant la configuration et l'authentification de manière sécurisée. Voici les détails des deux composants.
+Le script utilise l'API TigerOpen pour passer un ordre de marché pour l'action NVIDIA et surveille son statut. Le workflow GitHub Actions exécute le script selon un planning, gérant la configuration et l'authentification de manière sécurisée. Voici les détails des deux composants.
 
 ## Script Python
 
-Ce script passe une commande d'achat pour une action NVIDIA, vérifie son statut pendant jusqu'à 60 secondes, et l'annule si elle n'est pas exécutée.
+Ce script passe un ordre d'achat pour une action NVIDIA, vérifie son statut pendant jusqu'à 60 secondes et l'annule s'il n'est pas exécuté.
 
 ```python
 import time
@@ -35,7 +35,7 @@ def get_client_config(sandbox=False):
     client_config.language = Language.zh_CN
     return client_config
 
-# Fonction pour passer une commande
+# Fonction pour passer un ordre
 def place_order():
     client_config = get_client_config()
     trade_client = TradeClient(client_config)
@@ -45,41 +45,41 @@ def place_order():
     stock_order = market_order(
         account=account, contract=contract, action='BUY', quantity=1
     )
-    # Passer la commande
+    # Passer l'ordre
     order_id = trade_client.place_order(stock_order)
-    print(f"Commande passée avec l'ID: {order_id}")
+    print(f"Order placed with ID: {order_id}")
 
     # Suivre le temps
     start_time = time.time()
     while time.time() - start_time < 60:  # Délai d'attente de 1 minute
-        # Obtenir la commande et trouver celle que nous venons de passer
+        # Obtenir l'ordre et trouver celui que nous venons de passer
         order = trade_client.get_order(id=order_id)
         if str(order.id) == str(order_id):
-            print(f"ID de la commande correspondante! Vérification du statut de la commande: {order.status}")
-            # Vérifier le statut de la commande en utilisant les valeurs de l'énumération OrderStatus
+            print(f"Order ID matched! Checking order status: {order.status}")
+            # Vérifier le statut de l'ordre en utilisant les valeurs de l'énumération OrderStatus
             if order.status == OrderStatus.FILLED:
-                print("Commande complétée avec succès.")
+                print("Order completed successfully.")
                 return
             elif order.status == OrderStatus.REJECTED:
-                print(f"Commande rejetée: {order_id}")
-                raise Exception(f"La commande {order_id} a été rejetée")
+                print(f"Order rejected: {order_id}")
+                raise Exception(f"Order {order_id} was rejected")
             elif order.status in [
                 OrderStatus.PENDING_NEW,
                 OrderStatus.NEW,
                 OrderStatus.HELD,
                 OrderStatus.PENDING_CANCEL
             ]:
-                print(f"La commande est en attente, statut: {order.status}")
+                print(f"Order is pending, status: {order.status}")
             else:
-                print(f"Statut de la commande: {order.status}")
+                print(f"Order status is: {order.status}")
 
         # Attendre avant de vérifier à nouveau
         time.sleep(5)  # Vérifier toutes les 5 secondes
 
-    # Si la commande n'est pas complétée en 1 minute, l'annuler
-    print("La commande n'a pas été complétée en 1 minute. Annulation de la commande.")
+    # Si l'ordre n'est pas complété en 1 minute, l'annuler
+    print("Order not completed within 1 minute. Cancelling the order.")
     trade_client.cancel_order(id=order_id)
-    print(f"Commande annulée: {order_id}")
+    print(f"Order cancelled: {order_id}")
 
 if __name__ == '__main__':
     place_order()
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
 ## Workflow GitHub Actions
 
-Le workflow s'exécute chaque mercredi à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances, et exécute le script.
+Le workflow s'exécute chaque mercredi à 14h35 UTC (22h35 UTC) et configure l'environnement, installe les dépendances et exécute le script.
 
 ```yaml
 name: Investissement régulier
