@@ -7,6 +7,39 @@ translated: false
 generated: true
 ---
 
+Okay, here are some other companies and startups that could be considered "hidden champions" in today's world, keeping in mind the broader interpretation of the term:
+
+**In Technology & Software:**
+
+* **ASML (Netherlands):** While increasingly known, ASML is the undisputed leader in photolithography systems, crucial for manufacturing advanced semiconductor chips. They have a near-monopoly in EUV (extreme ultraviolet) lithography, making them indispensable to the entire electronics industry. Their profile outside the tech manufacturing world might still be lower than their immense importance.
+* **ServiceNow (USA):** This cloud-based platform company provides workflow automation solutions for enterprises. While publicly traded and growing in recognition, their deep penetration within large organizations and critical role in IT service management and beyond might not be fully appreciated by the general public.
+* **Globant (Argentina/Global):** This IT and software development company has quietly grown into a global player, providing services to major corporations. They have a strong reputation for their technical expertise and agile methodologies but often operate behind the scenes for their clients.
+* **Qualtrics (USA):** Acquired by SAP but still operating somewhat independently, Qualtrics is a leader in experience management software, helping companies gather and analyze customer and employee feedback. Their platform is critical for many businesses but might not be a household name.
+* **Infineon Technologies (Germany):** A major player in semiconductors for automotive, industrial, and power applications. While a large company, their focus on business-to-business sales in crucial but less consumer-facing industries keeps their general profile relatively lower.
+
+**In Manufacturing & Industrials:**
+
+* **Voith (Germany):** A diversified industrial group with leading positions in hydropower, paper machine technology, and marine propulsion systems. They are a global leader in their specific sectors but might not have widespread consumer brand recognition.
+* **Krones (Germany):** A dominant player in packaging machinery for the beverage and liquid food industries. Their equipment is essential for countless consumer products, but the company itself operates behind the scenes of the brands we know.
+* **SMC Corporation (Japan):** The world's largest manufacturer of pneumatic and automation components. Their products are vital for industrial automation across various sectors but are not directly consumer-facing.
+* **Endress+Hauser (Switzerland/Global):** A global leader in process and laboratory measurement technology, providing sensors, instruments, and solutions for various industries. Their expertise is critical for efficiency and safety in complex industrial processes.
+
+**In Consumer-Facing but Less High-Profile:**
+
+* **Costco Wholesale (USA):** While a major retailer, Costco often operates with a lower advertising profile compared to traditional supermarkets. Their membership-based model and focus on value have led to immense success and customer loyalty, often through word-of-mouth.
+* **Aldi and Lidl (Germany/Global):** These discount supermarket chains have achieved massive global success through a low-price, no-frills approach. Their limited product range and focus on efficiency might give them a lower profile than traditional supermarkets with extensive marketing campaigns.
+* **Shein (China/Global):** This online fast-fashion retailer has experienced explosive growth with a unique, data-driven model and a massive selection. Despite its size and impact, its business practices and supply chain have kept it somewhat out of mainstream positive press in many Western markets.
+
+**Startups with High Potential (Currently Lower Profile):**
+
+* **Northvolt (Sweden):** A battery manufacturer focused on sustainable and high-performance lithium-ion batteries for electric vehicles and energy storage. As a key player in the energy transition, they are rapidly growing but might not yet be a household name.
+* **Impossible Foods/Beyond Meat (USA):** While gaining recognition, these companies in the plant-based meat sector are disrupting a massive industry. Their long-term success and impact on food systems could classify them as hidden champions of the future if they maintain a strong market position without excessive mainstream hype.
+* **Various "deep tech" startups:** Many startups in areas like quantum computing, advanced materials, and biotechnology are developing groundbreaking technologies with the potential for massive impact but currently operate with a very low public profile. Identifying specific names is challenging due to their early stage and focus on R&D rather than consumer marketing.
+
+It's important to remember that the "hidden" aspect is subjective and can evolve. Some of these companies might become more widely recognized over time due to their continued success and market influence. The key characteristic remains their significant impact and leadership within their specific domains, often without the громкая известность of more consumer-facing brands.
+
+---
+
 Identifying low-profile yet highly successful companies or startups, often referred to as "hidden champions," involves looking at businesses that excel in their niches, generate significant revenue or impact, but avoid the public spotlight. These companies typically focus on specialized markets, maintain strong financial performance, and prioritize innovation or operational excellence over media attention. Below, I’ll highlight some characteristics of hidden champions, provide examples of such companies (both established firms and startups), and explain why they fit the description, drawing on the concept of hidden champions as popularized by Hermann Simon, as well as insights from the current business landscape in 2025.
 
 ### Characteristics of Hidden Champions
