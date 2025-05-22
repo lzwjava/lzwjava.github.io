@@ -1,5 +1,5 @@
 ---
-title: PowerShell Commands
+title: PowerShell Commands Guide
 lang: en
 layout: post
 audio: false
