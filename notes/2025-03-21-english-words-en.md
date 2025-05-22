@@ -138,3 +138,13 @@ Would you like a specific example or further clarification?
 
 You can hear it on dictionaries like Merriam-Webster or Cambridge for audio examples.
 
+---
+
+Contamination means the presence of unwanted or harmful substances, organisms, or pollutants in an environment, material, or system, making it impure, unsafe, or unsuitable for its intended use. It can occur in various contexts, like:
+
+- **Environmental**: Pollutants (e.g., chemicals, plastics) in air, water, or soil.
+- **Biological**: Introduction of pathogens or microbes (e.g., bacteria in food or water).
+- **Industrial**: Foreign materials in products (e.g., metal shards in food processing).
+- **Scientific**: Unwanted substances affecting experiments (e.g., contaminated samples).
+
+The specific meaning depends on the context. If you have a particular scenario in mind, I can elaborate further!
