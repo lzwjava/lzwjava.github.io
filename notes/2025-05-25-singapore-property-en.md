@@ -1,5 +1,5 @@
 ---
-title: Property Purchasing in Singapore
+title: Property Purchase in Singapore
 lang: en
 layout: post
 audio: false
