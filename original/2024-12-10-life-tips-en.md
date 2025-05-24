@@ -77,4 +77,6 @@ top: 10
 
 * Try a lot of products or services. Try a lot of options, sizes, brands, and varieties. People work hard to manufacture or provide them. There are so many free or cheap valuable things.
 
+* When dealing with car insurance, ensure repairs are done as inexpensively as possible to keep next year's fees from increasing significantly. Although the insurance company currently covers the cost, it will ultimately affect your premiums. Once, my headlight was slightly damaged, but they replaced it with a new one. Next time, avoid doing this.
+
 
