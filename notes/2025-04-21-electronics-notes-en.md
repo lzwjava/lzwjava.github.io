@@ -209,3 +209,42 @@ Thus, the polar coordinate form of the current is:
 \\[
 \boxed{12 \angle -45^\circ}
 \\]
+
+---
+
+In logic circuits and digital design, a **minterm** (also called a **standard product term** or **product term**) is a logical function that outputs **1** for one specific combination of input variable values and **0** for all other combinations. 
+
+For example, consider a function with three input variables: A, B, and C. A minterm corresponds to a unique combination of these variables, such as ABC (where A=1, B=1, C=1), and is typically represented as a product (AND) of the variables or their complements. For instance, the minterm for A=1, B=0, C=1 is written as A·B'·C, where B' denotes the complement of B. 
+
+Each minterm is true (1) only for its specific input combination and false (0) for all others, making minterms fundamental in constructing truth tables and designing logic circuits, such as in **sum-of-products** expressions.
+
+---
+
+In logic circuits and digital design, a **sum-of-products** (SOP) is a standard way to express a Boolean function as a logical OR (sum) of multiple AND (product) terms, where each AND term is a **minterm** or a product of input variables (or their complements).
+
+### Explanation:
+- **Product Term**: Each product term is an AND operation involving all input variables, either in their true form (e.g., A) or complemented form (e.g., A'). For example, for inputs A, B, and C, a product term could be A·B'·C (where A=1, B=0, C=1).
+- **Sum**: The product terms are combined using OR operations to form the complete function. The result is 1 if any of the product terms is 1.
+- **Minterms in SOP**: In its canonical form, each product term is a minterm, which corresponds to a specific row in the truth table where the function outputs 1. For example, if a function F(A, B, C) is 1 for the input combinations (A=1, B=0, C=1) and (A=0, B=1, C=1), the SOP expression would be F = A·B'·C + A'·B·C.
+
+### Example:
+For a truth table with inputs A, B, and output F:
+| A | B | F |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+The SOP expression for F is derived from rows where F=1:
+- Row (A=0, B=1): A'·B
+- Row (A=1, B=0): A·B'
+
+Thus, F = A'·B + A·B'.
+
+### Use in Digital Design:
+- SOP expressions are used to implement logic circuits using AND gates (for product terms) and OR gates (to sum the products).
+- They can be simplified using techniques like Karnaugh maps or Boolean algebra to reduce the number of gates needed.
+
+In summary, a sum-of-products expression represents a Boolean function as an OR of minterms, making it a key concept for designing and analyzing logic circuits.
+
