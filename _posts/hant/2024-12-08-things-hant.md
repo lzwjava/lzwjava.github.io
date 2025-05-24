@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: hant
 layout: post
-title: 物件
+title: 物事
 translated: true
 ---
 
@@ -18,16 +18,16 @@ translated: true
 * iPhone 14 Pro Max
 * iPhone X
 * iPhone 6
-* 小米2S
+* 小米 2S
 
 電子產品
 
 * XGIMI 投影機 H6
-* 天貓小天
+* 天貓小天才
 * Google Pixel 7
 * Baseus 產品
 * TP-Link AX3000
-* 德力西探測器
+* 德力西檢測器
 * CURB 天文望遠鏡
 * Apple TV
 * Fire TV
@@ -37,16 +37,16 @@ translated: true
 
 電腦
 
-* MacBook Air 2022, M2 (13.6吋, 16GB RAM, 512GB SSD)
-* MacBook Pro (15吋Retina, 2014年中)
+* MacBook Air 2022, M2 (13.6英寸, 16GB RAM, 512GB SSD)
+* MacBook Pro (15英寸Retina, 2014年中)
 * ASUS 筆記型電腦 (2013)
-* 聯想小新14IAH8 筆記型電腦
+* 聯想小新 14IAH8 筆記型電腦
 
 家具
 
 * 天文望遠鏡
 * 數碼聲級計 (智能感測器)
-* PH探測器 PH8008 (智能感測器)
+* PH檢測器 PH8008 (智能感測器)
 * IKEA Kivik 沙發
 * IKEA Utespelare 電競桌
 * IKEA Kallax 書櫃
@@ -64,6 +64,6 @@ translated: true
 
 其他產品
 
-* Sensology 甲醛探測器
+* Sensology 甲醛檢測器
 * 奇森飲品
 * 盈能蘇打水
