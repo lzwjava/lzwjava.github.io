@@ -1,5 +1,5 @@
 ---
-title: Selenium Example
+title: Selenium Script
 lang: en
 layout: post
 audio: false
