@@ -148,3 +148,7 @@ Contamination means the presence of unwanted or harmful substances, organisms, o
 - **Scientific**: Unwanted substances affecting experiments (e.g., contaminated samples).
 
 The specific meaning depends on the context. If you have a particular scenario in mind, I can elaborate further!
+
+---
+
+Pulsating means producing a regular, rhythmic throbbing, vibrating, or beating, often in a wave-like pattern. It can describe physical sensations (e.g., a pulsating headache), movements (e.g., pulsating light), or sounds (e.g., pulsating music). The term suggests a repetitive, pulsing action or feeling.
