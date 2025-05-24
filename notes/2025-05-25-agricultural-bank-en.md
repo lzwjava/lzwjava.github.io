@@ -42,3 +42,31 @@ Despite these strengths, ABC faces challenges that could impact future profitabi
 
 ### Conclusion
 ABC’s profitability is driven by its large-scale mortgage lending and interest earnings, bolstered by a massive asset base, government support, and a strong market position. While mortgage interest earnings are a significant contributor, ABC’s diversified revenue streams, effective risk management, and alignment with national policies further enhance its financial performance. However, ongoing economic challenges and margin pressures require careful management to sustain profitability. For further details on ABC’s financial performance, you can explore its annual reports or visit https://x.ai/grok for broader insights into banking trends.
+
+---
+
+To estimate the number of mortgage customers the Agricultural Bank of China (ABC) has, assuming each customer’s mortgage loan is 1 million yuan, we need to determine ABC’s total mortgage loan amount and divide it by the assumed loan amount per customer.
+
+### Step 1: Total Mortgage Loan Amount
+The search results provide some context but lack a precise figure for ABC’s total mortgage loan amount in 2024. However, we can use available data to make an informed estimate:
+- **Web Result** states that China’s total mortgage loans across all banks were 38.6 trillion yuan ($5.29 trillion) by the end of June 2023, representing 17% of banks’ total loan books.[](https://www.reuters.com/business/finance/chinas-agbank-posts-348-rise-first-half-profit-2023-08-29/)
+- ABC is one of the "Big Four" state-owned banks, alongside Industrial and Commercial Bank of China (ICBC), China Construction Bank (CC भी), and Bank of China (BOC). These banks collectively dominate the mortgage market, but specific breakdowns for ABC’s mortgage portfolio are not provided in the results.
+- For context, **Web Result** notes that large state-owned banks (including ABC) lent out 116 trillion yuan in total loans by the end of 2023. If mortgages constitute 17% of this (as per), the mortgage loans for these banks would be approximately 19.72 trillion yuan (116 trillion × 0.17). Assuming ABC holds a proportional share (e.g., roughly one-fourth, given the four major banks), ABC’s mortgage loans could be estimated at around 4.93 trillion yuan (19.72 trillion ÷ 4). This is a rough estimate, as market shares vary.[](https://www.statista.com/statistics/1171235/china-total-loans-from-large-state-owned-banks/)[](https://www.reuters.com/business/finance/chinas-agbank-posts-348-rise-first-half-profit-2023-08-29/)
+
+Since no exact figure for ABC’s 2024 mortgage loans is available, let’s use 4.93 trillion yuan as a reasonable estimate based on the proportional share.
+
+### Step 2: Calculate Number of Mortgage Customers
+- **Assumed loan amount per customer**: 1 million yuan (1,000,000 yuan).
+- **Estimated total mortgage loans for ABC**: 4.93 trillion yuan = 4,930,000,000,000 yuan.
+- **Number of mortgage customers** = Total mortgage loans ÷ Loan amount per customer
+  \[
+  \frac{4,930,000,000,000}{1,000,000} = 4,930,000
+  \]
+
+### Step 3: Considerations and Caveats
+- **Average Loan Size**: The assumption of 1 million yuan per mortgage is a simplification. Actual mortgage sizes vary widely depending on location (e.g., urban vs. rural areas), property type, and economic conditions. For instance, mortgages in major cities like Beijing or Shanghai are often much higher, while those in rural areas may be lower.
+- **Market Share**: The estimate assumes ABC has an equal share among the Big Four banks, but ICBC, as the largest, may have a larger mortgage portfolio. If ABC’s share is smaller (e.g., 20% instead of 25%), the mortgage loan amount could be closer to 3.94 trillion yuan, reducing the number of customers to approximately 3.94 million.
+- **Data Limitations**: Without precise 2024 data for ABC’s mortgage portfolio, this is an educated estimate. Annual reports or official statements from ABC would provide a more accurate figure.
+
+### Final Answer
+Assuming each mortgage loan is 1 million yuan and estimating ABC’s mortgage portfolio at approximately 4.93 trillion yuan, ABC likely has around **4.93 million mortgage customers**. This figure is an estimate and could vary based on actual loan sizes and ABC’s market share. For precise data, refer to ABC’s official financial reports or visit https://www.abchina.com for more information.[](https://www.reuters.com/business/finance/chinas-agbank-posts-348-rise-first-half-profit-2023-08-29/)[](https://www.statista.com/statistics/1171235/china-total-loans-from-large-state-owned-banks/)
