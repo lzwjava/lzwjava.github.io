@@ -3,15 +3,15 @@ audio: false
 generated: false
 lang: hant
 layout: post
-title: 事物
+title: 物件
 translated: true
 ---
 
 車輛
 
-* 哪吒V潮400 Lite 2022
-* 大眾Polo 2011
-* 雪佛蘭Sail 2011
+* Neta V Chao 400 Lite 2022
+* 2011年福斯Polo
+* 2011年雪佛蘭Sail
 
 手機
 
@@ -22,40 +22,48 @@ translated: true
 
 電子產品
 
-* MacBook Air 2022 M2
-* 極米投影儀H6
-* 天貓精靈
-* 谷歌Pixel 7
-* 倍思產品
+* XGIMI 投影機 H6
+* 天貓小天
+* Google Pixel 7
+* Baseus 產品
 * TP-Link AX3000
-* 德力西檢測儀
-* CURB望遠鏡
-* 蘋果電視
-* 火棒電視
+* 德力西探測器
+* CURB 天文望遠鏡
+* Apple TV
+* Fire TV
 * Kindle Scribe
 * Kindle Oasis 2
-* 大疆無人機
+* DJI 飛行器
 
-傢俱
+電腦
 
-* 望遠鏡
-* 數字聲級計（智能傳感器）
-* PH檢測儀PH8008（智能傳感器）
-* 宜家Kivik沙發
-* 宜家Utespelare遊戲桌
-* 宜家Kallax櫃
+* MacBook Air 2022, M2 (13.6吋, 16GB RAM, 512GB SSD)
+* MacBook Pro (15吋Retina, 2014年中)
+* ASUS 筆記型電腦 (2013)
+* 聯想小新14IAH8 筆記型電腦
+
+家具
+
+* 天文望遠鏡
+* 數碼聲級計 (智能感測器)
+* PH探測器 PH8008 (智能感測器)
+* IKEA Kivik 沙發
+* IKEA Utespelare 電競桌
+* IKEA Kallax 書櫃
 
 家電
 
 * 海爾洗衣機
-* 海爾烘乾機
+* 海爾乾衣機
 * 美的空調
 * 美的冰箱
 * 長帝電烤箱
-* （等等）
+* 美的空氣炸鍋
+* 美靈飲水機
+* 吹風機
 
 其他產品
 
-* 森樂甲醛檢測儀
-* 元氣森林飲品
-* 怡能蘇打水
+* Sensology 甲醛探測器
+* 奇森飲品
+* 盈能蘇打水
