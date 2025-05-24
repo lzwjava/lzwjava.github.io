@@ -1,5 +1,5 @@
 ---
-title: Refrigerator Temperature for Storing Vegetables
+title: Storing Vegetables
 lang: en
 layout: post
 audio: false
