@@ -24,20 +24,20 @@ Awesome! Here's a comprehensive tutorial on **Part I: Analog Electronics** from 
 - **Power (P)**: Energy used per unit time: \\( P = VI \\)
 
 #### ⚡ **Ohm’s Law**
-\[
+\\[
 V = IR
-\]
+\\]
 Simple and crucial. It relates voltage, current, and resistance in a linear resistor.
 
 #### ⚡ **Kirchhoff’s Laws**
 - **KCL (Current Law)**: The total current entering a junction equals the total leaving it.
-  \[
+  \\[
   \sum I_{in} = \sum I_{out}
-  \]
+  \\]
 - **KVL (Voltage Law)**: The sum of voltages around a closed loop is zero.
-  \[
+  \\[
   \sum V = 0
-  \]
+  \\]
 
 #### b. **Linear Circuit Analysis Methods**
 - **Nodal Analysis**: Solve for node voltages using KCL.
@@ -92,13 +92,13 @@ Simple and crucial. It relates voltage, current, and resistance in a linear resi
 
 #### b. **Typical Op-Amp Circuits**
 - **Inverting Amplifier**:
-  \[
+  \\[
   V_{out} = -\left(\frac{R_f}{R_{in}}\right) V_{in}
-  \]
+  \\]
 - **Non-inverting Amplifier**:
-  \[
+  \\[
   V_{out} = \left(1 + \frac{R_f}{R_1}\right) V_{in}
-  \]
+  \\]
 - **Integrator/Differentiator**: Uses capacitor in feedback or input.
 
 #### c. **Nonlinear Applications**
