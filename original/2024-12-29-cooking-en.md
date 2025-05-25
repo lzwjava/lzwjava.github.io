@@ -48,6 +48,8 @@ title: Cooking
 
 * Parchment paper is better than aluminum foil because it won't stick to the cooking surface.
 
+* Be careful with ingredients that contain a lot of water, such as bell peppers. Stirring them with meat may release water, lowering the stir-fry temperature and slowing the cooking process.
+
 {: .centered }
 ![](assets/images/cooking/c1.jpg){: .responsive }
 *Source: Self-captured*{: .caption }
