@@ -7,7 +7,6 @@ title: Cooking
 translated: false
 ---
 
-
 * Cooking for yourself is simple. Use oil for stir-frying because it has a higher boiling point than water, which helps heat the food more effectively.  
 
 * It is easy to make a dish with meat, vegetables, chili, garlic, and ginger.  
@@ -50,6 +49,8 @@ translated: false
 
 * Parchment paper is better than aluminum foil because it won't stick to the cooking surface.
 
+* Be careful with ingredients that contain a lot of water, such as bell peppers. Stirring them with meat may release water, lowering the stir-fry temperature and slowing the cooking process.
+
 {: .centered }
 ![](assets/images/cooking/c1.jpg){: .responsive }
 *Source: Self-captured*{: .caption }
@@ -57,4 +58,3 @@ translated: false
 {: .centered }
 ![](assets/images/cooking/c2.jpg){: .responsive }
 *Source: Self-captured*{: .caption }
-
