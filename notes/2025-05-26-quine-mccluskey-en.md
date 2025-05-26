@@ -1,5 +1,5 @@
 ---
-title: Quine-McCluskey
+title: Quine-McCluskey Method in Electronics
 lang: en
 layout: post
 audio: false
