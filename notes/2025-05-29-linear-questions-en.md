@@ -19,7 +19,10 @@ We can rewrite this as $XA - X = A$, so $X(A - I) = A$.
 If $(A - I)$ is invertible, then $X = A(A - I)^{-1}$.
 
 First, let's calculate $A - I$:
+
+<div>
 $A - I = \begin{pmatrix} 1 & -3 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} - \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
+</div>
 
 Next, we find the inverse of $(A - I)$. Let $B = A - I$.
 The determinant of B is $\det(B) = 0(0 - 0) - (-3)(2 - 0) + 0(0 - 0) = 6$.
