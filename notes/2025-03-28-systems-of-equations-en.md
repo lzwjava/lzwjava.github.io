@@ -13,7 +13,7 @@ This tutorial provides a detailed guide on **systems of equations**, their repre
 
 ## **1. Systems of Equations: Definition and Representation**  
 
-A **system of linear equations** consists of multiple linear equations that share variables. A general system with \\( n \\) variables and \\( m \\) equations can be written as:  
+A **system of linear equations** consists of multiple linear equations that share variables. A general system with \( n \) variables and \( m \) equations can be written as:  
 
 \[
 \begin{aligned}
@@ -25,9 +25,9 @@ a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n &= b_m
 \]
 
 where:  
-- \\( x_1, x_2, \dots, x_n \\) are the unknown variables.  
-- \\( a_{ij} \\) are the coefficients.  
-- \\( b_1, b_2, \dots, b_m \\) are the constants on the right-hand side.  
+- \( x_1, x_2, \dots, x_n \) are the unknown variables.  
+- \( a_{ij} \) are the coefficients.  
+- \( b_1, b_2, \dots, b_m \) are the constants on the right-hand side.  
 
 ### **Matrix Representation**  
 
@@ -39,7 +39,7 @@ A \mathbf{x} = \mathbf{b}
 
 where:  
 
-- \\( A \\) is the **coefficient matrix**:
+- \( A \) is the **coefficient matrix**:
 
   \[
   A =
@@ -51,7 +51,7 @@ where:
   \end{bmatrix}
   \]
 
-- \\( \mathbf{x} \\) is the **variable column vector**:
+- \( \mathbf{x} \) is the **variable column vector**:
 
   \[
   \mathbf{x} =
@@ -63,7 +63,7 @@ where:
   \end{bmatrix}
   \]
 
-- \\( \mathbf{b} \\) is the **constant column vector**:
+- \( \mathbf{b} \) is the **constant column vector**:
 
   \[
   \mathbf{b} =
@@ -208,9 +208,9 @@ Replace row 3 by subtracting 8 times row 2:
 
 #### **Step 6: Back Substitution**  
 Solve from bottom to top:  
-- \\( 3z = 4 \Rightarrow z = \frac{4}{3} \\)
-- \\( y - 0.25z = 0.5 \Rightarrow y = 0.5 + 0.25(4/3) = \frac{7}{6} \\)
-- \\( x + 0.5y - 0.5z = 1.5 \Rightarrow x = 1.5 - 0.5(7/6) + 0.5(4/3) = \frac{11}{6} \\)
+- \( 3z = 4 \Rightarrow z = \frac{4}{3} \)
+- \( y - 0.25z = 0.5 \Rightarrow y = 0.5 + 0.25(4/3) = \frac{7}{6} \)
+- \( x + 0.5y - 0.5z = 1.5 \Rightarrow x = 1.5 - 0.5(7/6) + 0.5(4/3) = \frac{11}{6} \)
 
 **Solution:**
 \[
@@ -220,18 +220,18 @@ x = \frac{11}{6}, \quad y = \frac{7}{6}, \quad z = \frac{4}{3}
 ---
 
 ## **3. Solution Types**
-1. **Unique Solution**: A single solution for \\( x_1, x_2, \dots \\).
+1. **Unique Solution**: A single solution for \( x_1, x_2, \dots \).
 2. **Infinite Solutions**: Many solutions (system is dependent).
 3. **No Solution**: Inconsistent system.
 
 ---
 
 ## **4. Homogeneous vs. Non-Homogeneous Systems**
-- **Homogeneous system**: \\( A\mathbf{x} = 0 \\)  
-  - Always has at least the **trivial solution** \\( \mathbf{x} = 0 \\).
-  - May have infinitely many solutions if the determinant of \\( A \\) is zero.
+- **Homogeneous system**: \( A\mathbf{x} = 0 \)  
+  - Always has at least the **trivial solution** \( \mathbf{x} = 0 \).
+  - May have infinitely many solutions if the determinant of \( A \) is zero.
   
-- **Non-homogeneous system**: \\( A\mathbf{x} = \mathbf{b} \\)  
+- **Non-homogeneous system**: \( A\mathbf{x} = \mathbf{b} \)  
   - May have **unique, infinite, or no solutions**.
 
 ---

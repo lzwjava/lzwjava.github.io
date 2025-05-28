@@ -106,11 +106,11 @@ V(t) = V_0 \times e^{-t/RC}
 \]
 
 Where:  
-- \\( V(t) \\) = Voltage at time \\( t \\)  
-- \\( V_0 \\) = Initial voltage  
-- \\( R \\) = Resistance in ohms  
-- \\( C \\) = Capacitance in farads  
-- \\( e \\) = Euler’s number (~2.718)
+- \( V(t) \) = Voltage at time \( t \)  
+- \( V_0 \) = Initial voltage  
+- \( R \) = Resistance in ohms  
+- \( C \) = Capacitance in farads  
+- \( e \) = Euler’s number (~2.718)
 
 ---
 

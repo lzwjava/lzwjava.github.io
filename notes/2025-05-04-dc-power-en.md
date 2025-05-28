@@ -57,7 +57,7 @@ AC Source ----> Diode (D1) ----> Load (R) ----> Ground
   - **Load**: A resistor or electronic circuit.
 
 #### Characteristics
-- **Output Voltage**: Approximately \\( V_{out} = V_{in(peak)} - V_{diode} \\) (where \\( V_{diode} \approx 0.7V \\) for silicon diodes).
+- **Output Voltage**: Approximately \( V_{out} = V_{in(peak)} - V_{diode} \) (where \( V_{diode} \approx 0.7V \) for silicon diodes).
 - **Efficiency**: Low (~40.6%), as only half the AC cycle is used.
 - **Ripple**: High, since the output is intermittent.
 
@@ -101,7 +101,7 @@ The **full-wave rectifier** uses both positive and negative half-cycles of the A
   - **Transformer** (optional): Steps down AC voltage.
 
 #### Characteristics
-- **Output Voltage**: \\( V_{out} = V_{in(peak)} - 2V_{diode} \\) (two diodes conduct at a time, so ~1.4V drop for silicon diodes).
+- **Output Voltage**: \( V_{out} = V_{in(peak)} - 2V_{diode} \) (two diodes conduct at a time, so ~1.4V drop for silicon diodes).
 - **Efficiency**: Higher (~81.2%) than half-wave.
 - **Ripple**: Lower than half-wave, as pulses occur twice per cycle.
 
@@ -145,12 +145,12 @@ A **capacitor filter** is the most common method, placed in parallel with the lo
   - **Load**: Resistor or circuit.
 
 #### Ripple Calculation
-Ripple voltage (\\( V_r \\)) can be approximated as:
+Ripple voltage (\( V_r \)) can be approximated as:
 \[ V_r \approx \frac{I_{load}}{f \cdot C} \]
 Where:
-- \\( I_{load} \\): Load current (A).
-- \\( f \\): Frequency of rectified output (e.g., 120Hz for full-wave at 60Hz AC).
-- \\( C \\): Capacitance (F).
+- \( I_{load} \): Load current (A).
+- \( f \): Frequency of rectified output (e.g., 120Hz for full-wave at 60Hz AC).
+- \( C \): Capacitance (F).
 
 #### Example
 For a load current of 100mA, a 1000µF capacitor, and 120Hz frequency:
@@ -193,7 +193,7 @@ Vin ----> [7805] ----> Vout (5V)
 
 #### Characteristics
 - **Output**: Fixed (e.g., 5V for 7805) or adjustable (e.g., LM317).
-- **Efficiency**: Low, as excess voltage is dissipated as heat (\\( Efficiency \approx \frac{V_{out}}{V_{in}} \\)).
+- **Efficiency**: Low, as excess voltage is dissipated as heat (\( Efficiency \approx \frac{V_{out}}{V_{in}} \)).
 - **Noise**: Low, ideal for sensitive analog circuits.
 
 #### Advantages
