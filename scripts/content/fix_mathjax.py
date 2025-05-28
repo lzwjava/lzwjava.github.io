@@ -1,7 +1,38 @@
 import os
 import re
 import markdown
+from markdown.extensions import Extension
+from markdown.preprocessors import Preprocessor
 import argparse
+
+class CodeBlockFinder(Extension):
+    """Markdown extension to record code block positions."""
+    def __init__(self):
+        super().__init__()
+        self.code_blocks = []
+
+    def extendMarkdown(self, md):
+        md.registerExtension(self)
+        self.md = md
+        # Insert a preprocessor to find code blocks
+        md.preprocessors.register(CodeBlockPreprocessor(self), 'code_block_finder', 25)
+
+class CodeBlockPreprocessor(Preprocessor):
+    """Preprocessor to identify code blocks in markdown."""
+    def __init__(self, extension):
+        self.extension = extension
+        self.code_block_re = re.compile(r'^```[a-zA-Z0-9_]*\n.*?\n```', re.DOTALL | re.MULTILINE)
+
+    def run(self, lines):
+        text = "\n".join(lines)
+        self.extension.code_blocks = []
+        for match in self.code_block_re.finditer(text):
+            self.extension.code_blocks.append({
+                'start': match.start(),
+                'end': match.end(),
+                'content': match.group(0)
+            })
+        return lines
 
 def fix_mathjax_in_file(filepath, gemini=False, reset=False):
     r"""
@@ -18,50 +49,53 @@ def fix_mathjax_in_file(filepath, gemini=False, reset=False):
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
 
-        # Parse markdown to identify code blocks
-        md = markdown.Markdown(extensions=['fenced_code'])
-        html_content = md.convert(content)
-
-        # Identify code blocks using regex
-        code_blocks = list(re.finditer(r'<pre><code.*?>.*?</code></pre>', html_content, re.DOTALL))
-
-        # Extract code block content and their positions
-        code_block_data = []
-        for match in code_blocks:
-            code_block_data.append({
-                'start': match.start(),
-                'end': match.end(),
-                'content': match.group(0)
-            })
+        # Use markdown parser to identify code blocks
+        code_finder = CodeBlockFinder()
+        md = markdown.Markdown(extensions=[code_finder])
+        md.convert(content)  # This populates code_finder.code_blocks
 
         # Function to replace MathJax delimiters outside code blocks
         def replace_mathjax(text, gemini=False, reset=False):
-            temp_text = text
-            for cb in code_block_data:
-                temp_text = temp_text.replace(cb['content'], 'CODE_BLOCK_PLACEHOLDER')
-
-            if reset:
-                # Reverse replacements: \\( to \(, \\) to \), etc.
-                temp_text = re.sub(r'\\\\\(', r'\(', temp_text)
-                temp_text = re.sub(r'\\\\\)', r'\)', temp_text)
-                temp_text = re.sub(r'\\\\\[', r'\[', temp_text)
-                temp_text = re.sub(r'\\\\\]', r'\]', temp_text)
-                if gemini:
-                    # Reverse $...$ to \\(...\\)
-                    temp_text = re.sub(r'\\\\\((.*?)\\\\\)', r'$\1$', temp_text)
-            else:
-                # Forward replacements: \( to \\(, \) to \\), etc.
-                temp_text = re.sub(r'\\\(', r'\\\\(', temp_text)
-                temp_text = re.sub(r'\\\)', r'\\\\)', temp_text)
-                temp_text = re.sub(r'\\\[', r'\\\\[', temp_text)
-                temp_text = re.sub(r'\\\]', r'\\\\]', temp_text)
-                if gemini:
-                    # Replace $...$ with \\(...\\)
-                    temp_text = re.sub(r'\$(.*?)\$', r'\\\\(\1\\\\)', temp_text)
-
-            for cb in code_block_data:
-                temp_text = temp_text.replace('CODE_BLOCK_PLACEHOLDER', cb['content'])
-            return temp_text
+            # Create a list to hold the parts of the text
+            parts = []
+            last_pos = 0
+            
+            for cb in code_finder.code_blocks:
+                # Add the non-code part before this code block
+                non_code_part = text[last_pos:cb['start']]
+                parts.append(non_code_part)
+                # Add the code block unchanged
+                parts.append(cb['content'])
+                last_pos = cb['end']
+            
+            # Add the remaining non-code part after the last code block
+            parts.append(text[last_pos:])
+            
+            # Process only the non-code parts
+            processed_parts = []
+            for i, part in enumerate(parts):
+                if i % 2 == 0:  # Non-code part
+                    if reset:
+                        # Reverse replacements: \\( to \(, \\) to \), etc.
+                        part = re.sub(r'\\\\\(', r'\(', part)
+                        part = re.sub(r'\\\\\)', r'\)', part)
+                        part = re.sub(r'\\\\\[', r'\[', part)
+                        part = re.sub(r'\\\\\]', r'\]', part)
+                        if gemini:
+                            # Reverse $...$ to \\(...\\)
+                            part = re.sub(r'\\\\\((.*?)\\\\\)', r'$\1$', part)
+                    else:
+                        # Forward replacements: \( to \\(, \) to \\), etc.
+                        part = re.sub(r'\\\(', r'\\\\(', part)
+                        part = re.sub(r'\\\)', r'\\\\)', part)
+                        part = re.sub(r'\\\[', r'\\\\[', part)
+                        part = re.sub(r'\\\]', r'\\\\]', part)
+                        if gemini:
+                            # Replace $...$ with \\(...\\)
+                            part = re.sub(r'\$(.*?)\$', r'\\\\(\1\\\\)', part)
+                processed_parts.append(part)
+            
+            return ''.join(processed_parts)
 
         updated_content = replace_mathjax(content, gemini, reset)
 
