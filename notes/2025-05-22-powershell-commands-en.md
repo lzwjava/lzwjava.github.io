@@ -256,3 +256,49 @@ foreach ($disk in $disks) {
 - **PowerShell Gallery**: [PowerShell Gallery](https://www.powershellgallery.com/) for modules.
 - **Community**: Check posts on X or forums like Stack Overflow for real-time tips and scripts.
 - **Learning**: Books like *PowerShell in Depth* or *Learn PowerShell in a Month of Lunches*.
+
+---
+
+PowerShell is a powerful scripting language and command-line shell developed by Microsoft. It is widely used for task automation and configuration management. Here are some commonly used PowerShell commands besides `Get-NetTCPConnection`:
+
+1. **Get-Process**: Retrieves information about the processes that are running on the local computer or a remote computer.
+
+2. **Get-Service**: Gets the services on a local or remote computer.
+
+3. **Get-EventLog**: Retrieves events from event logs, including application, security, and system logs.
+
+4. **Get-ChildItem**: Gets the items and child items in one or more specified locations (similar to `dir` in Command Prompt).
+
+5. **Get-Content**: Gets the content of the item at the specified location (similar to `type` in Command Prompt).
+
+6. **Set-ExecutionPolicy**: Changes the user preference for the PowerShell execution policy.
+
+7. **Invoke-Command**: Runs commands on local and remote computers.
+
+8. **New-Item**: Creates a new item, such as a file or directory.
+
+9. **Remove-Item**: Deletes the specified items.
+
+10. **Copy-Item**: Copies an item from one location to another.
+
+11. **Move-Item**: Moves an item from one location to another.
+
+12. **Rename-Item**: Renames an item in a PowerShell provider namespace.
+
+13. **Get-Help**: Displays information about PowerShell commands and concepts.
+
+14. **Select-Object**: Selects specified properties of an object or set of objects.
+
+15. **Where-Object**: Selects objects from a collection based on their property values.
+
+16. **Sort-Object**: Sorts objects by property values.
+
+17. **Export-Csv**: Converts objects into a series of CSV strings and saves the strings to a file.
+
+18. **Import-Csv**: Imports a CSV file and converts it into objects.
+
+19. **Start-Process**: Starts one or more processes on the local computer.
+
+20. **Stop-Process**: Stops one or more running processes.
+
+These commands are just a few examples of what you can do with PowerShell. The language is highly extensible, and you can create custom cmdlets and scripts to automate complex tasks.
