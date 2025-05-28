@@ -7,7 +7,6 @@ translated: false
 generated: true
 ---
 
-# **6. Linear Transformations**  
 **Definition, Examples, Matrix Representation, Kernel, Image, Properties (Injectivity, Surjectivity)**  
 
 Linear transformations are fundamental in linear algebra, providing a bridge between vector spaces and matrices. This tutorial covers:  
@@ -150,6 +149,7 @@ If \\\( T: \mathbb{R}^3 \to \mathbb{R}^2 \\\) has \\\( \dim(\ker(T)) = 1 \\\), t
 ---
 
 ## **Summary**  
+
 | Concept | Definition | Key Property |
 |---------|------------|--------------|
 | **Linear Transformation** | \\\( T(\mathbf{u} + \mathbf{v}) = T(\mathbf{u}) + T(\mathbf{v}) \\\) and \\\( T(c\mathbf{v}) = cT(\mathbf{v}) \\\) | Preserves linear structure |
