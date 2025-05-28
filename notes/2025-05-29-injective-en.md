@@ -29,3 +29,17 @@ Now, let's connect these two concepts:
 
 Thus, if \\( \ker(T) = \{0\} \\), the transformation \\( T \\) is injective. This is because the only solution to \\( T(v) = 0 \\) is \\( v = 0 \\), ensuring that no two distinct vectors in \\( V \\) are mapped to the same vector in \\( W \\).
 
+---
+
+The equation \\( T(u) - T(v) = T(u - v) \\) is a consequence of the linearity property of a linear transformation \\( T \\). Let's break down why this holds:
+
+1. **Linearity of \\( T \\)**: A linear transformation \\( T \\) satisfies two key properties for any vectors \\( u \\) and \\( v \\) in the vector space and any scalar \\( c \\):
+   - **Additivity**: \\( T(u + v) = T(u) + T(v) \\)
+   - **Homogeneity**: \\( T(cu) = cT(u) \\)
+
+2. **Derivation of \\( T(u) - T(v) = T(u - v) \\)**:
+   - Using the additivity property, we can express \\( T(u - v) \\) as \\( T(u + (-v)) \\), which equals \\( T(u) + T(-v) \\).
+   - By the homogeneity property, \\( T(-v) = -T(v) \\).
+   - Therefore, \\( T(u - v) = T(u) + (-T(v)) = T(u) - T(v) \\).
+
+Thus, \\( T(u) - T(v) = T(u - v) \\) is a direct result of the linearity of \\( T \\). This property is fundamental in linear algebra and is used frequently in proofs and derivations involving linear transformations.
