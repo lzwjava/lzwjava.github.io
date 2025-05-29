@@ -3,22 +3,22 @@ audio: true
 generated: false
 lang: hi
 layout: post
-title: सरल बीजगणित
+title: रैखिक बीजगणित
 translated: true
 ---
 
-- Singular Value Decomposition का उपयोग image compression के लिए किया जा सकता है।
+- सिंगुलर वैल्यू डिकम्पोजिशन का उपयोग छवि संपीड़न के लिए किया जा सकता है।
 
-- एक matrix का determinant बतata hai ki agar matrix ko ek shape par apply kiya jaye to area kitna badlega.
+- एक मैट्रिक्स का डिटर्मिनेंट यह बताता है कि अगर मैट्रिक्स को एक आकार पर लागू किया जाए तो क्षेत्र कितना बदल जाएगा।
 
-- eigenvalues ko equation \[ \det(\lambda I - A) = 0 \] से define kiya gaya hai.
+- इग्नोवैल्यू को समीकरण \\[ \det(\lambda I - A) = 0 \\] द्वारा परिभाषित किया जाता है।
 
-- NumPy ka `linalg` package linear algebra mein problems ko study aur solve karne ke liye use kiya ja sakta hai.
+- NumPy का `linalg` पैकेज लीनियर एल्जेब्रा में समस्याओं का अध्ययन और समाधान करने के लिए उपयोग किया जा सकता है।
 
-- n-dimensional **space** mein linear algebra transforms ka use karke matrices ko samajhne ke liye.
+- n-आयामी **space** में लीनियर एल्जेब्रा ट्रांसफॉर्म का उपयोग मैट्रिक्स को समझने के लिए किया जाता है।
 
-- Ek matrix ek group of numbers hai jo rows aur columns mein arrange kiya gaya hai.
+- एक मैट्रिक्स पंक्तियों और कॉलमों में व्यवस्थित संख्याओं का समूह है।
 
-- Equation \[ Ax = B \] ka solution tab hai jab \[ \text{rank}(A) = \text{rank}(B) \].
+- समीकरण \\[ Ax = B \\] का समाधान तब होता है जब \\[ \text{rank}(A) = \text{rank}(B) \\].
 
-- Ek matrix ka rank uske **echelon form** mein linearly independent rows (ya columns) ka number hai.
+- एक मैट्रिक्स का रैंक उसके **echelon form** में लीनियर रूप से स्वतंत्र पंक्तियों (या कॉलमों) की संख्या है।
