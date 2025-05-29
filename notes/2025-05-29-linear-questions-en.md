@@ -11,7 +11,7 @@ Okay, I will translate and answer the questions from the image.
 
 **Translations and Answers:**
 
-**18. Let matrices X and A satisfy the relation XA = X + A. If $A = \begin{pmatrix} 1 & -3 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$, find matrix X.**
+**18. Let matrices X and A satisfy the relation XA = X + A. If $A = \begin{pmatrix} 1 & -3 & 0 \\\ 2 & 1 & 0 \\\ 0 & 0 & 2 \end{pmatrix}$, find matrix X.**
 
 **Answer:**
 We are given the equation $XA = X + A$.
@@ -20,16 +20,14 @@ If $(A - I)$ is invertible, then $X = A(A - I)^{-1}$.
 
 First, let's calculate $A - I$:
 
-<div>
-$A - I = \begin{pmatrix} 1 & -3 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} - \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
-</div>
+$A - I = \begin{pmatrix} 1 & -3 & 0 \\\ 2 & 1 & 0 \\\ 0 & 0 & 2 \end{pmatrix} - \begin{pmatrix} 1 & 0 & 0 \\\ 0 & 1 & 0 \\\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 0 \\\ 2 & 0 & 0 \\\ 0 & 0 & 1 \end{pmatrix}$.
 
 Next, we find the inverse of $(A - I)$. Let $B = A - I$.
 The determinant of B is $\det(B) = 0(0 - 0) - (-3)(2 - 0) + 0(0 - 0) = 6$.
 Since $\det(B) \neq 0$, B is invertible.
 
 The adjugate of B is:
-$adj(B) = \begin{pmatrix} C_{11} & C_{21} & C_{31} \\ C_{12} & C_{22} & C_{32} \\ C_{13} & C_{23} & C_{33} \end{pmatrix}$
+$adj(B) = \begin{pmatrix} C_{11} & C_{21} & C_{31} \\\ C_{12} & C_{22} & C_{32} \\\ C_{13} & C_{23} & C_{33} \end{pmatrix}$
 $C_{11} = (0)(1) - (0)(0) = 0$
 $C_{12} = -((2)(1) - (0)(0)) = -2$
 $C_{13} = (2)(0) - (0)(0) = 0$
@@ -40,9 +38,9 @@ $C_{31} = (-3)(0) - (0)(0) = 0$
 $C_{32} = -((0)(0) - (0)(2)) = 0$
 $C_{33} = (0)(0) - (-3)(2) = 6$
 
-So, $adj(B) = \begin{pmatrix} 0 & -(-3) & 0 \\ -(2) & 0 & -0 \\ 0 & -0 & 6 \end{pmatrix}^T = \begin{pmatrix} 0 & 3 & 0 \\ -2 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}^T = \begin{pmatrix} 0 & -2 & 0 \\ 3 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}$.
+So, $adj(B) = \begin{pmatrix} 0 & -(-3) & 0 \\\ -(2) & 0 & -0 \\\ 0 & -0 & 6 \end{pmatrix}^T = \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}^T = \begin{pmatrix} 0 & -2 & 0 \\\ 3 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
 No, the adjugate is the transpose of the cofactor matrix:
-$adj(B) = \begin{pmatrix} 0 & 3 & 0 \\ -2 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}$.
+$adj(B) = \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
 Wait, I made a mistake in the cofactor calculation.
 $C_{11} = \begin{vmatrix} 0 & 0 \\ 0 & 1 \end{vmatrix} = 0$
 $C_{12} = -\begin{vmatrix} 2 & 0 \\ 0 & 1 \end{vmatrix} = -2$
@@ -54,22 +52,22 @@ $C_{31} = \begin{vmatrix} -3 & 0 \\ 0 & 0 \end{vmatrix} = 0$
 $C_{32} = -\begin{vmatrix} 0 & 0 \\ 2 & 0 \end{vmatrix} = 0$
 $C_{33} = \begin{vmatrix} 0 & -3 \\ 2 & 0 \end{vmatrix} = 6$
 
-The cofactor matrix is $C = \begin{pmatrix} 0 & -2 & 0 \\ 3 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}$.
-The adjugate matrix is $adj(B) = C^T = \begin{pmatrix} 0 & 3 & 0 \\ -2 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix}$.
+The cofactor matrix is $C = \begin{pmatrix} 0 & -2 & 0 \\\ 3 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
+The adjugate matrix is $adj(B) = C^T = \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
 
-Then, $(A - I)^{-1} = \frac{1}{\det(B)} adj(B) = \frac{1}{6} \begin{pmatrix} 0 & 3 & 0 \\ -2 & 0 & 0 \\ 0 & 0 & 6 \end{pmatrix} = \begin{pmatrix} 0 & 1/2 & 0 \\ -1/3 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$.
+Then, $(A - I)^{-1} = \frac{1}{\det(B)} adj(B) = \frac{1}{6} \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix} = \begin{pmatrix} 0 & 1/2 & 0 \\\ -1/3 & 0 & 0 \\\ 0 & 0 & 1 \end{pmatrix}$.
 
 Now, we calculate $X = A(A - I)^{-1}$:
-$X = \begin{pmatrix} 1 & -3 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} \begin{pmatrix} 0 & 1/2 & 0 \\ -1/3 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix}$
-$X = \begin{pmatrix} (1)(0) + (-3)(-1/3) + (0)(0) & (1)(1/2) + (-3)(0) + (0)(0) & (1)(0) + (-3)(0) + (0)(1) \\ (2)(0) + (1)(-1/3) + (0)(0) & (2)(1/2) + (1)(0) + (0)(0) & (2)(0) + (1)(0) + (0)(1) \\ (0)(0) + (0)(-1/3) + (2)(0) & (0)(1/2) + (0)(0) + (2)(0) & (0)(0) + (0)(0) + (2)(1) \end{pmatrix}$
-$X = \begin{pmatrix} 0+1+0 & 1/2+0+0 & 0+0+0 \\ 0-1/3+0 & 1+0+0 & 0+0+0 \\ 0+0+0 & 0+0+0 & 0+0+2 \end{pmatrix}$
-$X = \begin{pmatrix} 1 & 1/2 & 0 \\ -1/3 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix}$.
+$X = \begin{pmatrix} 1 & -3 & 0 \\\ 2 & 1 & 0 \\\ 0 & 0 & 2 \end{pmatrix} \begin{pmatrix} 0 & 1/2 & 0 \\\ -1/3 & 0 & 0 \\\ 0 & 0 & 1 \end{pmatrix}$
+$X = \begin{pmatrix} (1)(0) + (-3)(-1/3) + (0)(0) & (1)(1/2) + (-3)(0) + (0)(0) & (1)(0) + (-3)(0) + (0)(1) \\\ (2)(0) + (1)(-1/3) + (0)(0) & (2)(1/2) + (1)(0) + (0)(0) & (2)(0) + (1)(0) + (0)(1) \\\ (0)(0) + (0)(-1/3) + (2)(0) & (0)(1/2) + (0)(0) + (2)(0) & (0)(0) + (0)(0) + (2)(1) \end{pmatrix}$
+$X = \begin{pmatrix} 0+1+0 & 1/2+0+0 & 0+0+0 \\\ 0-1/3+0 & 1+0+0 & 0+0+0 \\\ 0+0+0 & 0+0+0 & 0+0+2 \end{pmatrix}$
+$X = \begin{pmatrix} 1 & 1/2 & 0 \\\ -1/3 & 1 & 0 \\\ 0 & 0 & 2 \end{pmatrix}$.
 
 **19. Determine the value of k for which the vectors $\alpha_1 = (1, 1, k)^T$, $\alpha_2 = (1, k, 1)^T$, $\alpha_3 = (k, 1, 1)^T$ are linearly dependent. Find a maximal linearly independent set and express the remaining vector(s) as a linear combination of this set.**
 
 **Answer:**
 The vectors $\alpha_1, \alpha_2, \alpha_3$ are linearly dependent if the determinant of the matrix formed by these vectors is zero.
-Let $A = \begin{pmatrix} 1 & 1 & k \\ 1 & k & 1 \\ k & 1 & 1 \end{pmatrix}$.
+Let $A = \begin{pmatrix} 1 & 1 & k \\\ 1 & k & 1 \\\ k & 1 & 1 \end{pmatrix}$.
 $\det(A) = 1(k - 1) - 1(1 - k) + k(1 - k^2)$
 $= k - 1 - 1 + k + k - k^3$
 $= -k^3 + 3k - 2$.
@@ -108,21 +106,21 @@ So, $\alpha_3 = -1 \cdot \alpha_1 - 1 \cdot \alpha_2$.
 
 **Answer:**
 The augmented matrix is:
-$\begin{pmatrix} 1 & -1 & 0 & -3 & | & -2 \\ 1 & 0 & 2 & -2 & | & -1 \\ 2 & -2 & 1 & -6 & | & -5 \\ -1 & 2 & 3 & 4 & | & 2 \end{pmatrix}$
+$\begin{pmatrix} 1 & -1 & 0 & -3 & | & -2 \\\ 1 & 0 & 2 & -2 & | & -1 \\\ 2 & -2 & 1 & -6 & | & -5 \\\ -1 & 2 & 3 & 4 & | & 2 \end{pmatrix}$
 
 $R_2 \leftarrow R_2 - R_1$
 $R_3 \leftarrow R_3 - 2R_1$
 $R_4 \leftarrow R_4 + R_1$
-$\begin{pmatrix} 1 & -1 & 0 & -3 & | & -2 \\ 0 & 1 & 2 & 1 & | & 1 \\ 0 & 0 & 1 & 0 & | & -1 \\ 0 & 1 & 3 & 1 & | & 0 \end{pmatrix}$
+$\begin{pmatrix} 1 & -1 & 0 & -3 & | & -2 \\\ 0 & 1 & 2 & 1 & | & 1 \\\ 0 & 0 & 1 & 0 & | & -1 \\\ 0 & 1 & 3 & 1 & | & 0 \end{pmatrix}$
 
 $R_1 \leftarrow R_1 + R_2$
 $R_4 \leftarrow R_4 - R_2$
-$\begin{pmatrix} 1 & 0 & 2 & -2 & | & -1 \\ 0 & 1 & 2 & 1 & | & 1 \\ 0 & 0 & 1 & 0 & | & -1 \\ 0 & 0 & 1 & 0 & | & -1 \end{pmatrix}$
+$\begin{pmatrix} 1 & 0 & 2 & -2 & | & -1 \\\ 0 & 1 & 2 & 1 & | & 1 \\\ 0 & 0 & 1 & 0 & | & -1 \\\ 0 & 0 & 1 & 0 & | & -1 \end{pmatrix}$
 
 $R_1 \leftarrow R_1 - 2R_3$
 $R_2 \leftarrow R_2 - 2R_3$
 $R_4 \leftarrow R_4 - R_3$
-$\begin{pmatrix} 1 & 0 & 0 & -2 & | & 1 \\ 0 & 1 & 0 & 1 & | & 3 \\ 0 & 0 & 1 & 0 & | & -1 \\ 0 & 0 & 0 & 0 & | & 0 \end{pmatrix}$
+$\begin{pmatrix} 1 & 0 & 0 & -2 & | & 1 \\\ 0 & 1 & 0 & 1 & | & 3 \\\ 0 & 0 & 1 & 0 & | & -1 \\\ 0 & 0 & 0 & 0 & | & 0 \end{pmatrix}$
 
 The system is equivalent to:
 $x_1 - 2x_4 = 1 \Rightarrow x_1 = 1 + 2x_4$
@@ -134,18 +132,20 @@ $x_1 = 1 + 2t$
 $x_2 = 3 - t$
 $x_3 = -1$
 $x_4 = t$
-In vector form: $X = \begin{pmatrix} 1 \\ 3 \\ -1 \\ 0 \end{pmatrix} + t \begin{pmatrix} 2 \\ -1 \\ 0 \\ 1 \end{pmatrix}$.
+In vector form: $X = \begin{pmatrix} 1 \\\ 3 \\\ -1 \\\ 0 \end{pmatrix} + t \begin{pmatrix} 2 \\\ -1 \\\ 0 \\\ 1 \end{pmatrix}$.
 
-A particular solution is obtained by setting $t=0$: $X_p = \begin{pmatrix} 1 \\ 3 \\ -1 \\ 0 \end{pmatrix}$.
+A particular solution is obtained by setting $t=0$: $X_p = \begin{pmatrix} 1 \\\ 3 \\\ -1 \\\ 0 \end{pmatrix}$.
 
-The corresponding homogeneous system has the solution $X_h = t \begin{pmatrix} 2 \\ -1 \\ 0 \\ 1 \end{pmatrix}$.
-The fundamental basis of solutions for the homogeneous system is $\{\begin{pmatrix} 2 \\ -1 \\ 0 \\ 1 \end{pmatrix}\}$.
+The corresponding homogeneous system has the solution $X_h = t \begin{pmatrix} 2 \\\ -1 \\\ 0 \\\ 1 \end{pmatrix}$.
+The fundamental basis of solutions for the homogeneous system is $\{\begin{pmatrix} 2 \\\ -1 \\\ 0 \\\ 1 \end{pmatrix}\}$.
 
-**21. Let matrix $A = \begin{pmatrix} x & 0 & y \\ 0 & 2 & 0 \\ y & 0 & -2 \end{pmatrix}$ have an eigenvalue of -3, and $|A| = -12$. Find the values of x and y.**
+<div>
+**21. Let matrix A = \begin{pmatrix} x & 0 & y \\\ 0 & 2 & 0 \\\ y & 0 & -2 \end{pmatrix} have an eigenvalue of -3, and |A| = -12. Find the values of x and y.**
+</div>
 
 **Answer:**
 The characteristic equation is $\det(A - \lambda I) = 0$.
-$A - \lambda I = \begin{pmatrix} x-\lambda & 0 & y \\ 0 & 2-\lambda & 0 \\ y & 0 & -2-\lambda \end{pmatrix}$.
+$A - \lambda I = \begin{pmatrix} x-\lambda & 0 & y \\\ 0 & 2-\lambda & 0 \\\ y & 0 & -2-\lambda \end{pmatrix}$.
 $\det(A - \lambda I) = (x-\lambda)[(2-\lambda)(-2-\lambda) - 0] - 0 + y[0 - y(2-\lambda)]$
 $= (x-\lambda)(2-\lambda)(-2-\lambda) - y^2(2-\lambda)$
 $= (2-\lambda)[(x-\lambda)(-2-\lambda) - y^2]$
@@ -198,13 +198,13 @@ Both pairs $(x,y) = (1,2)$ and $(x,y) = (1,-2)$ satisfy the conditions.
 
 **Answer:**
 The matrix of the quadratic form A is:
-$A = \begin{pmatrix} t & 1 & 1 \\ 1 & t & -1 \\ 1 & -1 & t \end{pmatrix}$.
+$A = \begin{pmatrix} t & 1 & 1 \\\ 1 & t & -1 \\\ 1 & -1 & t \end{pmatrix}$.
 For the quadratic form to be positive definite, all leading principal minors of A must be positive.
 
 1. The first leading principal minor is $M_1 = t$.
 For positive definiteness, $t > 0$.
 
-2. The second leading principal minor is $M_2 = \det \begin{pmatrix} t & 1 \\ 1 & t \end{pmatrix} = t^2 - 1$.
+2. The second leading principal minor is $M_2 = \det \begin{pmatrix} t & 1 \\\ 1 & t \end{pmatrix} = t^2 - 1$.
 For positive definiteness, $t^2 - 1 > 0 \Rightarrow t^2 > 1$.
 Since we already have $t > 0$, this implies $t > 1$.
 

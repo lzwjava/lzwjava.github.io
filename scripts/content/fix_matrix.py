@@ -3,13 +3,14 @@ import re
 import markdown
 import argparse
 
-def wrap_pmatrix_in_file(filepath):
+def process_matrix_in_file(filepath, matrix_flag=False):
     """
-    Wraps LaTeX expressions containing pmatrix in a div tag in a markdown file,
-    skipping code blocks.
+    Processes LaTeX matrix expressions in a markdown file.
+    If matrix_flag is True, updates \\ to \\\\ in matrix environments.
 
     Args:
         filepath (str): The path to the markdown file to process.
+        matrix_flag (bool): Whether to update \\ to \\\\ in matrix environments.
     """
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
@@ -31,21 +32,20 @@ def wrap_pmatrix_in_file(filepath):
                 'content': match.group(0)
             })
 
-        # Function to wrap pmatrix expressions in divs outside code blocks
-        def wrap_pmatrix(text):
+        def process_matrix(text):
             temp_text = text
             for cb in code_block_data:
                 temp_text = temp_text.replace(cb['content'], 'CODE_BLOCK_PLACEHOLDER')
 
-            # Pattern to match both \(...\) and $...$ delimiters containing pmatrix
-            pattern = r'(\$|\\\()(.*?\\begin\{pmatrix\}.*?\\end\{pmatrix\}.*?)(\$|\\\))'
+            # Pattern to match matrix environments
+            pattern = r'(\\begin\{pmatrix\}.*?\\end\{pmatrix\})'
             
             def replacer(match):
-                # Keep the original delimiters but wrap content in div
-                opener = match.group(1)
-                content = match.group(2)
-                closer = match.group(3)
-                return f'<div>{opener}\n{content}\n{closer}</div>'
+                content = match.group(1)
+                if matrix_flag:
+                    # Only replace \\ with \\\\ when matrix_flag is True
+                    content = content.replace('\\\\', '\\\\\\')
+                return content
             
             temp_text = re.sub(pattern, replacer, temp_text, flags=re.DOTALL)
 
@@ -53,32 +53,35 @@ def wrap_pmatrix_in_file(filepath):
                 temp_text = temp_text.replace('CODE_BLOCK_PLACEHOLDER', cb['content'])
             return temp_text
 
-        updated_content = wrap_pmatrix(content)
+        updated_content = process_matrix(content)
 
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(updated_content)
 
-        print(f"Wrapped pmatrix expressions in divs in: {filepath}")
+        print(f"Processed {filepath}")
+        if matrix_flag:
+            print(f"- Updated \\\\ to \\\\\\\\ in matrix environments")
         return True
 
     except Exception as e:
         print(f"Error processing {filepath}: {e}")
         return False
 
-def wrap_pmatrix_in_markdown(directory, max_files=None):
+def process_matrix_in_markdown(directory, max_files=None, matrix_flag=False):
     """
-    Finds all markdown files in a directory and wraps pmatrix expressions in div tags.
+    Finds all markdown files in a directory and processes matrix expressions.
 
     Args:
         directory (str): The directory to search for markdown files.
         max_files (int, optional): Maximum number of files to process. Defaults to None (unlimited).
+        matrix_flag (bool): Whether to update \\ to \\\\ in matrix environments.
     """
     files_processed = 0
     for root, _, files in os.walk(directory):
         for filename in files:
             if filename.endswith(".md"):
                 filepath = os.path.join(root, filename)
-                success = wrap_pmatrix_in_file(filepath)
+                success = process_matrix_in_file(filepath, matrix_flag)
                 if success:
                     files_processed += 1
 
@@ -90,15 +93,16 @@ def main():
     """
     Main function to process either a single file or directories.
     """
-    parser = argparse.ArgumentParser(description="Wrap LaTeX pmatrix expressions in div tags in Markdown files.")
+    parser = argparse.ArgumentParser(description="Process LaTeX matrix expressions in Markdown files.")
     parser.add_argument("--maxfiles", type=int, help="Maximum number of files to process.")
     parser.add_argument("--file", type=str, help="Path to a specific markdown file to process.")
+    parser.add_argument("--matrix", action="store_true", help="Update \\\\ to \\\\\\\\ in matrix environments.")
     args = parser.parse_args()
 
     if args.file:
         # Process a single file
         if os.path.exists(args.file) and args.file.endswith(".md"):
-            wrap_pmatrix_in_file(args.file)
+            process_matrix_in_file(args.file, args.matrix)
         else:
             print(f"Invalid file path or not a markdown file: {args.file}")
     else:
@@ -106,7 +110,7 @@ def main():
         directories = ["_posts", "original", "notes"]
         for directory in directories:
             if os.path.exists(directory):
-                wrap_pmatrix_in_markdown(directory, max_files=args.maxfiles)
+                process_matrix_in_markdown(directory, max_files=args.maxfiles, matrix_flag=args.matrix)
             else:
                 print(f"Directory not found: {directory}")
 
