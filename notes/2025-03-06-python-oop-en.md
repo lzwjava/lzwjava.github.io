@@ -11,8 +11,6 @@ Here's a comprehensive guide to Object-Oriented Programming (OOP) in Python. Thi
 
 ---
 
-## Python OOP Guide: Object-Oriented Programming
-
 ### 1. Classes and Objects
 A **class** is a blueprint for creating objects, defining their attributes (data) and methods (functions). An **object** is an instance of a class, with its own specific values for the attributes.
 
