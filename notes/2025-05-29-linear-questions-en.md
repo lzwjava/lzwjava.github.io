@@ -42,15 +42,15 @@ So, $adj(B) = \begin{pmatrix} 0 & -(-3) & 0 \\\ -(2) & 0 & -0 \\\ 0 & -0 & 6 \en
 No, the adjugate is the transpose of the cofactor matrix:
 $adj(B) = \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
 Wait, I made a mistake in the cofactor calculation.
-$C_{11} = \begin{vmatrix} 0 & 0 \\ 0 & 1 \end{vmatrix} = 0$
-$C_{12} = -\begin{vmatrix} 2 & 0 \\ 0 & 1 \end{vmatrix} = -2$
-$C_{13} = \begin{vmatrix} 2 & 0 \\ 0 & 0 \end{vmatrix} = 0$
-$C_{21} = -\begin{vmatrix} -3 & 0 \\ 0 & 1 \end{vmatrix} = 3$
-$C_{22} = \begin{vmatrix} 0 & 0 \\ 0 & 1 \end{vmatrix} = 0$
-$C_{23} = -\begin{vmatrix} 0 & -3 \\ 0 & 0 \end{vmatrix} = 0$
-$C_{31} = \begin{vmatrix} -3 & 0 \\ 0 & 0 \end{vmatrix} = 0$
-$C_{32} = -\begin{vmatrix} 0 & 0 \\ 2 & 0 \end{vmatrix} = 0$
-$C_{33} = \begin{vmatrix} 0 & -3 \\ 2 & 0 \end{vmatrix} = 6$
+$C_{11} = \begin{vmatrix} 0 & 0 \\\ 0 & 1 \end{vmatrix} = 0$
+$C_{12} = -\begin{vmatrix} 2 & 0 \\\ 0 & 1 \end{vmatrix} = -2$
+$C_{13} = \begin{vmatrix} 2 & 0 \\\ 0 & 0 \end{vmatrix} = 0$
+$C_{21} = -\begin{vmatrix} -3 & 0 \\\ 0 & 1 \end{vmatrix} = 3$
+$C_{22} = \begin{vmatrix} 0 & 0 \\\ 0 & 1 \end{vmatrix} = 0$
+$C_{23} = -\begin{vmatrix} 0 & -3 \\\ 0 & 0 \end{vmatrix} = 0$
+$C_{31} = \begin{vmatrix} -3 & 0 \\\ 0 & 0 \end{vmatrix} = 0$
+$C_{32} = -\begin{vmatrix} 0 & 0 \\\ 2 & 0 \end{vmatrix} = 0$
+$C_{33} = \begin{vmatrix} 0 & -3 \\\ 2 & 0 \end{vmatrix} = 6$
 
 The cofactor matrix is $C = \begin{pmatrix} 0 & -2 & 0 \\\ 3 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
 The adjugate matrix is $adj(B) = C^T = \begin{pmatrix} 0 & 3 & 0 \\\ -2 & 0 & 0 \\\ 0 & 0 & 6 \end{pmatrix}$.
