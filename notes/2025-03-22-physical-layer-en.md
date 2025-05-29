@@ -122,8 +122,8 @@ This section covers how data moves efficiently and reliably across the physical 
 
 #### **Study Tips**
 - **Formulas**: Learn Shannon’s Capacity:  
-  \( C = B \log_2(1 + S/N) \)  
-  Where \( C \) = capacity (bps), \( B \) = bandwidth (Hz), \( S/N \) = signal-to-noise ratio.  
+  \\( C = B \log_2(1 + S/N) \\)  
+  Where \\( C \\) = capacity (bps), \\( B \\) = bandwidth (Hz), \\( S/N \\) = signal-to-noise ratio.  
 - **Scenario**: If bandwidth = 1 MHz and S/N = 31, calculate max capacity. (Answer: ~5 Mbps).  
 - **Relate**: Why does Wi-Fi slow down near a microwave? (Noise interference.)
 

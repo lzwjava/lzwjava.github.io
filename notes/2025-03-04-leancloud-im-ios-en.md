@@ -107,7 +107,7 @@ pod --version
          if succeeded {
              print("Connected to LeanCloud IM!")
          } else {
-             print("Error: \(error?.localizedDescription ?? "Unknown")")
+             print("Error: \\(error?.localizedDescription ?? "Unknown")")
          }
      }
      ```

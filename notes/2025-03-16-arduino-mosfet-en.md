@@ -138,7 +138,7 @@ If you meant a MOSFET-based amplifier (e.g., Common-Source Amplifier), here’s 
 - **Setup:** Similar to the CE amplifier but with a MOSFET (e.g., 2N7000).
 - **Schematic:** Vcc → RD (Drain resistor) → Drain; Source → GND; Gate → Input signal (via capacitor).
 - **Arduino Role:** Generate a small AC signal (as in the CE amplifier example).
-- **Gain:** \( A_v = -g_m \cdot R_D \), where \( g_m \) is the transconductance.
+- **Gain:** \\( A_v = -g_m \cdot R_D \\), where \\( g_m \\) is the transconductance.
 - **Challenge:** Requires precise biasing; less common for beginners than BJT amplifiers.
 
 Let me know if you want to pivot to this instead!

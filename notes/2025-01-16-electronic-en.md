@@ -31,7 +31,7 @@ title: Electronic Fundamentals
 
 ### Electronic Circuit Theory
 
-11. Ohm's Law: Ohm’s Law relates voltage (V), current (I), and resistance (R) in a linear circuit: \(V = I \times R\). It forms the basis for most electrical circuit analysis.
+11. Ohm's Law: Ohm’s Law relates voltage (V), current (I), and resistance (R) in a linear circuit: \\(V = I \times R\\). It forms the basis for most electrical circuit analysis.
 
 12. Kirchhoff’s Laws: Kirchhoff's Current Law (KCL) states that the sum of currents entering a junction equals the sum of currents leaving, while Kirchhoff's Voltage Law (KVL) states that the sum of voltages in a closed loop is zero.
 

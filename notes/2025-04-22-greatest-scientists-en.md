@@ -17,7 +17,7 @@ Here are a few scientists who are widely considered among the greatest, along wi
     * Made significant contributions to optics, including discovering that white light is composed of all the colors of the rainbow and building the first reflecting telescope.
 
 * **Albert Einstein (1879-1955):** Revolutionized our understanding of space, time, gravity, and the universe.
-    * Developed the theory of relativity (both special and general), which has had a profound impact on physics and cosmology. The special theory introduced the famous equation $\(E=mc^2\)$, demonstrating the equivalence of mass and energy. The general theory described gravity not as a force, but as a curvature of spacetime caused by mass and energy.
+    * Developed the theory of relativity (both special and general), which has had a profound impact on physics and cosmology. The special theory introduced the famous equation $\\(E=mc^2\\)$, demonstrating the equivalence of mass and energy. The general theory described gravity not as a force, but as a curvature of spacetime caused by mass and energy.
     * Explained the photoelectric effect, a crucial step in the development of quantum mechanics, for which he received the Nobel Prize in Physics in 1921.
     * His work laid the foundation for many technologies, including nuclear energy and the laser.
 

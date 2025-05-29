@@ -48,7 +48,7 @@ To begin using Cline in VSCode, follow these detailed steps:
 3. **Open Your Cline Folder**:
    - For a structured setup, open the "Cline" folder in your Documents directory:
      - On macOS: `/Users/[your-username]/Documents/Cline`
-     - On Windows: `C:\Users\[your-username]\Documents\Cline`
+     - On Windows: `C:\Users\\[your-username]\Documents\Cline`
    - This step is recommended for organizing projects but optional for basic usage.
 
 4. **Create a Cline Account and Sign In**:

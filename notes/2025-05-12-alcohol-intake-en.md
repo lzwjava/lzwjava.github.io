@@ -19,29 +19,29 @@ In China, the DUI threshold is a blood alcohol concentration (BAC) of 0.02% (20m
 
 ### Step 1: Calculate alcohol intake
 - Alcohol in 330ml beer:
-  \[
+  \\[
   330 \times 0.05 = 16.5 \, \text{ml (pure alcohol)}
-  \]
+  \\]
 - Alcohol weight (density ≈ 0.789 g/ml):
-  \[
+  \\[
   16.5 \times 0.789 = 13.01 \, \text{g}
-  \]
+  \\]
 
 ### Step 2: Estimate BAC
 Using the **Widmark formula**:
-\[
+\\[
 BAC (\%) = \frac{\text{Alcohol (g)}}{\text{Weight (kg)} \times r} \times 100
-\]
-Where \( r \) (distribution ratio) is ~0.68 for males:
-\[
+\\]
+Where \\( r \\) (distribution ratio) is ~0.68 for males:
+\\[
 BAC = \frac{13.01}{95 \times 0.68} \times 100 \approx 0.0201\%
-\]
+\\]
 
 ### Step 3: Account for metabolism
 Alcohol metabolizes at ~0.01%-0.015% per hour. If tested immediately, BAC ≈ 0.0201%, close to or slightly above 0.02%. After 1 hour:
-\[
+\\[
 BAC_{\text{1 hour}} \approx 0.0201\% - 0.01\% = 0.0101\%
-\]
+\\]
 This is below the DUI threshold.
 
 ### Conclusion:

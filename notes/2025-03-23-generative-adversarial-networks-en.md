@@ -8,27 +8,27 @@ generated: true
 ---
 
 **Definition**:  
-GANs are a class of machine learning frameworks where two neural networks, the **generator** (\(G\)) and the **discriminator** (\(D\)), compete adversarially. The generator creates synthetic data, while the discriminator evaluates whether the data is real (from the training set) or fake (from \(G\)). Through this competition, \(G\) improves its ability to generate realistic data, and \(D\) becomes better at distinguishing real from fake.
+GANs are a class of machine learning frameworks where two neural networks, the **generator** (\\(G\\)) and the **discriminator** (\\(D\\)), compete adversarially. The generator creates synthetic data, while the discriminator evaluates whether the data is real (from the training set) or fake (from \\(G\\)). Through this competition, \\(G\\) improves its ability to generate realistic data, and \\(D\\) becomes better at distinguishing real from fake.
 
 ---
 
 ### Mathematical Formulation
 
-The adversarial training is formalized as a **minimax game** with the value function \(V(D, G)\):
+The adversarial training is formalized as a **minimax game** with the value function \\(V(D, G)\\):
 
-\[
+\\[
 \min_G \max_D V(D, G) = \mathbb{E}_{x \sim p_{\text{data}}(x)[\log D(x)] + \mathbb{E}_{z \sim p_z(z)}[\log(1 - D(G(z)))]
-\]
+\\]
 
 - **Discriminator Loss**: Maximize the probability of correctly classifying real and fake data:
-  \[
+  \\[
   L_D = -\left[\mathbb{E}[\log D(x)] + \mathbb{E}[\log(1 - D(G(z)))]\right]
-  \]
+  \\]
 
 - **Generator Loss**: Minimize the probability of the discriminator correctly identifying fake data (non-saturating version for better gradients):
-  \[
+  \\[
   L_G = -\mathbb{E}[\log D(G(z))]
-  \]
+  \\]
 
 ---
 
@@ -146,15 +146,15 @@ generated_img = generator(z).view(28, 28).detach().numpy()
 ### Explanation of Code
 
 1. **Networks**:
-   - **Generator**: Transforms noise (\(z\)) into images (MNIST-like) using linear layers and `LeakyReLU`.
+   - **Generator**: Transforms noise (\\(z\\)) into images (MNIST-like) using linear layers and `LeakyReLU`.
    - **Discriminator**: Classifies images as real/fake using linear layers and `LeakyReLU`.
 
 2. **Training**:
-   - **Discriminator**: Maximizes \(\log D(x) + \log(1 - D(G(z)))\).
-   - **Generator**: Minimizes \(\log(1 - D(G(z)))\) (or equivalently, maximizes \(\log D(G(z))\)).
+   - **Discriminator**: Maximizes \\(\log D(x) + \log(1 - D(G(z)))\\).
+   - **Generator**: Minimizes \\(\log(1 - D(G(z)))\\) (or equivalently, maximizes \\(\log D(G(z))\\)).
 
 3. **Data**:
-   - MNIST images are normalized to \([-1, 1]\) to match the generator's `Tanh` output.
+   - MNIST images are normalized to \\([-1, 1]\\) to match the generator's `Tanh` output.
 
 4. **Optimization**:
    - Adam optimizer for both networks.

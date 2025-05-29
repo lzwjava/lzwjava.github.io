@@ -114,7 +114,7 @@ To incorporate rice into a balanced meal that supports weight loss, it is advisa
 | **Desk Plank** | Core | Stand facing your desk, place forearms on the edge, step feet back until body is in a straight line. Hold the position. |
 | **Shoulder Shrugs** | Shoulders | Sit or stand with arms at your sides. Shrug your shoulders up towards your ears, then slowly lower. |
 
-Performing these exercises in sets of 10-15 repetitions during breaks can help engage different muscle groups and increase calorie expenditure throughout the day \[^37].
+Performing these exercises in sets of 10-15 repetitions during breaks can help engage different muscle groups and increase calorie expenditure throughout the day \\[^37].
 
 **5\. The Impact of Lifestyle Factors on Weight**
 

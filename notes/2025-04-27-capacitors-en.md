@@ -95,22 +95,22 @@ Suppose you connect a 9V battery to a 100µF capacitor through a resistor:
 
 1. **Charging a Capacitor**  
 Voltage across the capacitor:
-\[
+\\[
 V(t) = V_{\text{source}} \times (1 - e^{-t/RC})
-\]
+\\]
   
 2. **Discharging a Capacitor**  
 Voltage across the capacitor:
-\[
+\\[
 V(t) = V_0 \times e^{-t/RC}
-\]
+\\]
 
 Where:  
-- \( V(t) \) = Voltage at time \( t \)  
-- \( V_0 \) = Initial voltage  
-- \( R \) = Resistance in ohms  
-- \( C \) = Capacitance in farads  
-- \( e \) = Euler’s number (~2.718)
+- \\( V(t) \\) = Voltage at time \\( t \\)  
+- \\( V_0 \\) = Initial voltage  
+- \\( R \\) = Resistance in ohms  
+- \\( C \\) = Capacitance in farads  
+- \\( e \\) = Euler’s number (~2.718)
 
 ---
 

@@ -74,20 +74,20 @@ An RC circuit consists of a resistor (R) and a capacitor (C) connected in series
 
 #### Capacitor Voltage
 
-The voltage across the capacitor \( V(t) \) as a function of time \( t \) is given by:
+The voltage across the capacitor \\( V(t) \\) as a function of time \\( t \\) is given by:
 
-\[ V(t) = V_0 (1 - e^{-\frac{t}{RC}}) \]
+\\[ V(t) = V_0 (1 - e^{-\frac{t}{RC}}) \\]
 
-- **\( V_0 \)**: The applied voltage.
-- **\( t \)**: Time in seconds.
-- **\( R \)**: Resistance in ohms.
-- **\( C \)**: Capacitance in farads.
-- **\( RC \)**: The time constant, which determines how quickly the capacitor charges or discharges.
+- **\\( V_0 \\)**: The applied voltage.
+- **\\( t \\)**: Time in seconds.
+- **\\( R \\)**: Resistance in ohms.
+- **\\( C \\)**: Capacitance in farads.
+- **\\( RC \\)**: The time constant, which determines how quickly the capacitor charges or discharges.
 
 **Understanding the Equation**:
-- When the switch is closed (at \( t = 0 \)), the capacitor begins to charge.
-- The term \( (1 - e^{-\frac{t}{RC}}) \) represents the charging curve. Initially, the voltage across the capacitor is zero, and it gradually increases to \( V_0 \) as time progresses.
-- The time constant \( RC \) indicates the time it takes for the capacitor to charge to approximately 63.2% of the applied voltage. After about 5 time constants, the capacitor is considered fully charged.
+- When the switch is closed (at \\( t = 0 \\)), the capacitor begins to charge.
+- The term \\( (1 - e^{-\frac{t}{RC}}) \\) represents the charging curve. Initially, the voltage across the capacitor is zero, and it gradually increases to \\( V_0 \\) as time progresses.
+- The time constant \\( RC \\) indicates the time it takes for the capacitor to charge to approximately 63.2% of the applied voltage. After about 5 time constants, the capacitor is considered fully charged.
 
 ### RL Circuits
 
@@ -95,33 +95,33 @@ An RL circuit consists of a resistor (R) and an inductor (L) connected in series
 
 #### Inductor Current
 
-The current through the inductor \( I(t) \) as a function of time \( t \) is given by:
+The current through the inductor \\( I(t) \\) as a function of time \\( t \\) is given by:
 
-\[ I(t) = I_0 (1 - e^{-\frac{t}{L/R}}) \]
+\\[ I(t) = I_0 (1 - e^{-\frac{t}{L/R}}) \\]
 
-- **\( I_0 \)**: The maximum current, determined by the applied voltage and the resistance.
-- **\( t \)**: Time in seconds.
-- **\( L \)**: Inductance in henrys.
-- **\( R \)**: Resistance in ohms.
-- **\( L/R \)**: The time constant, which determines how quickly the inductor's magnetic field builds up or collapses.
+- **\\( I_0 \\)**: The maximum current, determined by the applied voltage and the resistance.
+- **\\( t \\)**: Time in seconds.
+- **\\( L \\)**: Inductance in henrys.
+- **\\( R \\)**: Resistance in ohms.
+- **\\( L/R \\)**: The time constant, which determines how quickly the inductor's magnetic field builds up or collapses.
 
 **Understanding the Equation**:
-- When the switch is closed (at \( t = 0 \)), the inductor begins to allow current to flow.
-- The term \( (1 - e^{-\frac{t}{L/R}}) \) represents the current build-up curve. Initially, the current is zero, and it gradually increases to \( I_0 \) as time progresses.
-- The time constant \( L/R \) indicates the time it takes for the current to reach approximately 63.2% of its maximum value. After about 5 time constants, the current is considered to have reached its steady-state value.
+- When the switch is closed (at \\( t = 0 \\)), the inductor begins to allow current to flow.
+- The term \\( (1 - e^{-\frac{t}{L/R}}) \\) represents the current build-up curve. Initially, the current is zero, and it gradually increases to \\( I_0 \\) as time progresses.
+- The time constant \\( L/R \\) indicates the time it takes for the current to reach approximately 63.2% of its maximum value. After about 5 time constants, the current is considered to have reached its steady-state value.
 
 ### Time Constants
 
 The time constant is a crucial concept in both RC and RL circuits. It indicates how quickly the circuit reacts to changes:
 
-- **RC Circuit**: The time constant is \( RC \). A larger time constant means the capacitor charges or discharges more slowly.
-- **RL Circuit**: The time constant is \( L/R \). A larger time constant means the inductor's magnetic field builds up or collapses more slowly.
+- **RC Circuit**: The time constant is \\( RC \\). A larger time constant means the capacitor charges or discharges more slowly.
+- **RL Circuit**: The time constant is \\( L/R \\). A larger time constant means the inductor's magnetic field builds up or collapses more slowly.
 
 ### Visualizing the Transient Behavior
 
 Imagine the following:
-- For an RC circuit, think of the capacitor as a bucket being filled with water (charge). The resistor controls the flow rate (current). The time constant \( RC \) determines how quickly the bucket fills up.
-- For an RL circuit, think of the inductor as a flywheel that takes time to spin up to speed (current). The resistor provides friction, slowing down the spin-up process. The time constant \( L/R \) determines how quickly the flywheel reaches its maximum speed.
+- For an RC circuit, think of the capacitor as a bucket being filled with water (charge). The resistor controls the flow rate (current). The time constant \\( RC \\) determines how quickly the bucket fills up.
+- For an RL circuit, think of the inductor as a flywheel that takes time to spin up to speed (current). The resistor provides friction, slowing down the spin-up process. The time constant \\( L/R \\) determines how quickly the flywheel reaches its maximum speed.
 
 By understanding these concepts, you can analyze how circuits behave dynamically when they are switched on or off, which is essential for designing and troubleshooting electronic systems.
 
@@ -150,15 +150,15 @@ In active mode, a BJT acts as an amplifier. Here's how it works:
 
 2. **Reverse Bias**: The base-collector junction is reverse-biased, meaning a positive voltage is applied to the collector relative to the base for an NPN transistor (and vice versa for a PNP transistor). This allows current to flow from the collector to the base.
 
-3. **Amplification**: A small current flowing into the base controls a larger current flowing from the collector to the emitter. The ratio of the collector current to the base current is known as the current gain (\( \beta \) or \( h_{FE} \)).
+3. **Amplification**: A small current flowing into the base controls a larger current flowing from the collector to the emitter. The ratio of the collector current to the base current is known as the current gain (\\( \beta \\) or \\( h_{FE} \\)).
 
 ### Characteristic Curves
 
-The characteristic curves of a BJT show the relationship between the collector current (\( I_C \)) and the collector-emitter voltage (\( V_{CE} \)) for different base currents (\( I_B \)). These curves are essential for understanding and designing amplifier circuits.
+The characteristic curves of a BJT show the relationship between the collector current (\\( I_C \\)) and the collector-emitter voltage (\\( V_{CE} \\)) for different base currents (\\( I_B \\)). These curves are essential for understanding and designing amplifier circuits.
 
 #### Key Features of Characteristic Curves
 
-1. **Active Region**: In this region, the BJT operates as an amplifier. The collector current is proportional to the base current, and the collector-emitter voltage can vary. The curves are nearly horizontal, indicating that the collector current remains relatively constant with changes in \( V_{CE} \).
+1. **Active Region**: In this region, the BJT operates as an amplifier. The collector current is proportional to the base current, and the collector-emitter voltage can vary. The curves are nearly horizontal, indicating that the collector current remains relatively constant with changes in \\( V_{CE} \\).
 
 2. **Saturation Region**: In this region, both the base-emitter and base-collector junctions are forward-biased. The collector current is at its maximum, and the collector-emitter voltage is low. The BJT acts like a closed switch.
 
@@ -182,33 +182,33 @@ By understanding these concepts, you can analyze and design circuits that utiliz
 
 ---
 
-To express the given current \( i = 12 \sin(\omega t - 45^\circ) \) A in polar coordinate form, we interpret it as a sinusoidal signal, which can be represented as a phasor in the frequency domain.
+To express the given current \\( i = 12 \sin(\omega t - 45^\circ) \\) A in polar coordinate form, we interpret it as a sinusoidal signal, which can be represented as a phasor in the frequency domain.
 
-The general form of a sinusoidal current is \( i(t) = I_m \sin(\omega t + \phi) \), where:
-- \( I_m \) is the amplitude (maximum value),
-- \( \omega \) is the angular frequency,
-- \( \phi \) is the phase angle.
+The general form of a sinusoidal current is \\( i(t) = I_m \sin(\omega t + \phi) \\), where:
+- \\( I_m \\) is the amplitude (maximum value),
+- \\( \omega \\) is the angular frequency,
+- \\( \phi \\) is the phase angle.
 
-For the given current \( i = 12 \sin(\omega t - 45^\circ) \):
-- The amplitude \( I_m = 12 \) A,
-- The phase angle \( \phi = -45^\circ \).
+For the given current \\( i = 12 \sin(\omega t - 45^\circ) \\):
+- The amplitude \\( I_m = 12 \\) A,
+- The phase angle \\( \phi = -45^\circ \\).
 
-In polar coordinate form (phasor notation), a sinusoidal signal is represented as a complex number with magnitude and phase, typically written as \( I_m \angle \phi \). Thus, the current can be expressed as:
+In polar coordinate form (phasor notation), a sinusoidal signal is represented as a complex number with magnitude and phase, typically written as \\( I_m \angle \phi \\). Thus, the current can be expressed as:
 
-\[
+\\[
 12 \angle -45^\circ
-\]
+\\]
 
 ### Explanation:
 - **Magnitude**: The coefficient 12 is the peak value of the sine wave, so the magnitude is 12 A.
-- **Phase**: The phase angle is \(-45^\circ\), indicating the sine wave is shifted by \(-45^\circ\) (or lagging by 45° relative to the reference).
-- The polar form omits the time-dependent part (\(\omega t\)) and frequency (\(\omega\)) because phasor notation focuses on amplitude and phase for a given frequency.
+- **Phase**: The phase angle is \\(-45^\circ\\), indicating the sine wave is shifted by \\(-45^\circ\\) (or lagging by 45° relative to the reference).
+- The polar form omits the time-dependent part (\\(\omega t\\)) and frequency (\\(\omega\\)) because phasor notation focuses on amplitude and phase for a given frequency.
 
 Thus, the polar coordinate form of the current is:
 
-\[
+\\[
 \boxed{12 \angle -45^\circ}
-\]
+\\]
 
 ---
 

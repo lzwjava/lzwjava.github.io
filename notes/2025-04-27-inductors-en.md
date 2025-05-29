@@ -60,9 +60,9 @@ $Z = R + jX_L$
 
 Where $j$ is the imaginary unit. The magnitude of the impedance is 
 
-\[ 
+\\[ 
     |Z| = \sqrt{R^2 + X_L^2}$
-\]
+\\]
 
 **Key Applications of Inductors:**
 

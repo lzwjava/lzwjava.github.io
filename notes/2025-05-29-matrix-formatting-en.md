@@ -19,7 +19,7 @@ $A - I = \begin{pmatrix} 1 & -3 & 0 \\\ 2 & 1 & 0 \\\ 0 & 0 & 2 \end{pmatrix} - 
 ```
 
 ### Solution 2: Use `\\` inside math blocks
-For display math (not inline), use `$$` or `\\[ \\]`:
+For display math (not inline), use `$$` or `\\\[ \\\]`:
 
 ```latex
 $$
@@ -53,4 +53,4 @@ Then you can use:
 $$ A - I = \begin{pmatrix} 1 & -3 & 0 \\ 2 & 1 & 0 \\ 0 & 0 & 2 \end{pmatrix} - \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} = \begin{pmatrix} 0 & -3 & 0 \\ 2 & 0 & 0 \\ 0 & 0 & 1 \end{pmatrix} $$
 ```
 
-Try these solutions one by one to see which works best with your Jekyll setup. The most reliable solution is typically to use display math (`$$` or `\\[ \\]`) instead of inline math (`$`) for matrices and other complex equations.
+Try these solutions one by one to see which works best with your Jekyll setup. The most reliable solution is typically to use display math (`$$` or `\\\[ \\\]`) instead of inline math (`$`) for matrices and other complex equations.

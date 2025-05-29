@@ -13,12 +13,12 @@ Milton Friedman was a prominent economist and a leading figure in the Chicago Sc
    - Friedman is best known for his theory of **monetarism**, which focuses on the role of government in controlling the amount of money in circulation. He argued that variations in the money supply have a direct, strong influence on national output, employment, and inflation.
    - He believed that controlling inflation required controlling the money supply, rather than relying on fiscal policy (government spending and taxation).
    - **The Quantity Theory of Money**: This theory suggests that the money supply is the primary driver of economic activity and inflation. It is often expressed in the formula:  
-     \[ M \times V = P \times T \]  
+     \\[ M \times V = P \times T \\]  
      Where:
-     - \( M \) = money supply
-     - \( V \) = velocity of money
-     - \( P \) = price level
-     - \( T \) = real output
+     - \\( M \\) = money supply
+     - \\( V \\) = velocity of money
+     - \\( P \\) = price level
+     - \\( T \\) = real output
 
 ### 2. **Permanent Income Hypothesis**
    - Friedman developed the **Permanent Income Hypothesis (PIH)**, which suggests that people's consumption patterns are more influenced by their expected long-term income (permanent income) rather than their current income.

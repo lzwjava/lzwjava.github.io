@@ -52,7 +52,7 @@ def extract_paths(line, annotation_type):
         list: A list of path strings extracted from the annotation.
     """
     if annotation_type in ['GetMapping', 'PostMapping']:
-        match = re.search(rf'@{annotation_type}\((.*)\)', line)
+        match = re.search(rf'@{annotation_type}\\((.*)\\)', line)
         if match:
             content = match.group(1)
             # Extract all string literals within quotes
@@ -60,7 +60,7 @@ def extract_paths(line, annotation_type):
             return paths
         return []
     elif annotation_type == 'RequestMapping':
-        match = re.search(r'@RequestMapping\((.*)\)', line)
+        match = re.search(r'@RequestMapping\\((.*)\\)', line)
         if match:
             content = match.group(1)
             # Look for 'value' or 'path' attribute

@@ -23,9 +23,9 @@ Linear algebra is the study of linear equations, vector spaces, and linear trans
 
 ### **Scalars**  
 A **scalar** is a single numerical value, typically representing magnitude. Scalars are used in algebra and calculus, such as:  
-\[
+\\[
 a = 5, \quad b = -3, \quad c = 2.7
-\]  
+\\]  
 Scalars follow the usual arithmetic rules (addition, multiplication, etc.).
 
 ---
@@ -35,24 +35,24 @@ A **vector** is an ordered list of numbers, which can be visualized as an arrow 
 
 #### **Notation:**  
 A vector in **2D space**:  
-\[
+\\[
 \mathbf{v} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}
-\]  
+\\]  
 A vector in **3D space**:  
-\[
+\\[
 \mathbf{u} = \begin{bmatrix} 1 \\ -2 \\ 5 \end{bmatrix}
-\]  
+\\]  
 Vectors can be **added, subtracted, and multiplied by scalars**.
 
 #### **Vector Operations:**  
 1. **Addition and Subtraction**  
-   \[
+   \\[
    \mathbf{v} + \mathbf{u} = \begin{bmatrix} 3 \\ 4 \end{bmatrix} + \begin{bmatrix} 1 \\ -2 \end{bmatrix} = \begin{bmatrix} 4 \\ 2 \end{bmatrix}
-   \]  
+   \\]  
 2. **Scalar Multiplication**  
-   \[
+   \\[
    2 \mathbf{v} = 2 \begin{bmatrix} 3 \\ 4 \end{bmatrix} = \begin{bmatrix} 6 \\ 8 \end{bmatrix}
-   \]  
+   \\]  
 
 ---
 
@@ -61,19 +61,19 @@ A **matrix** is a rectangular array of numbers arranged in rows and columns. Mat
 
 #### **Example of a Matrix:**  
 A **2×3 matrix** (2 rows, 3 columns):  
-\[
+\\[
 A = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}
-\]
+\\]
 
 #### **Basic Matrix Operations:**  
 1. **Matrix Addition**  
-   \[
+   \\[
    A + B = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} + \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 6 & 8 \\ 10 & 12 \end{bmatrix}
-   \]
+   \\]
 2. **Scalar Multiplication**  
-   \[
+   \\[
    3A = 3 \times \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 3 & 6 \\ 9 & 12 \end{bmatrix}
-   \]
+   \\]
 
 ---
 

@@ -107,7 +107,7 @@ The comparative study of these seven publicly available AI chatbots reveals a di
 39. DeepSeek API Docs: Your First API Call, accessed March 22, 2025, [https://api-docs.deepseek.com/](https://api-docs.deepseek.com/)  
 40. DeepSeek V3 vs R1: A Guide With Examples \- DataCamp, accessed March 22, 2025, [https://www.datacamp.com/blog/deepseek-r1-vs-v3](https://www.datacamp.com/blog/deepseek-r1-vs-v3)  
 41. Prompt Engineering with DeepSeek Chat \- Kaggle, accessed March 22, 2025, [https://www.kaggle.com/code/lonnieqin/prompt-engineering-with-deepseek-chat](https://www.kaggle.com/code/lonnieqin/prompt-engineering-with-deepseek-chat)  
-42. 31 AI Chatbots & Playgrounds with 36 Top AI Models \[INFOGRAPHIC\], accessed March 22, 2025, [https://kristihines.com/top-ai-chatbots-playgrounds/](https://kristihines.com/top-ai-chatbots-playgrounds/)  
+42. 31 AI Chatbots & Playgrounds with 36 Top AI Models \\[INFOGRAPHIC\\], accessed March 22, 2025, [https://kristihines.com/top-ai-chatbots-playgrounds/](https://kristihines.com/top-ai-chatbots-playgrounds/)  
 43. ChatGPT, accessed March 22, 2025, [https://chat.openai.com/](https://chat.openai.com/)  
 44. Microsoft Copilot: Your AI companion, accessed March 22, 2025, [https://copilot.microsoft.com/](https://copilot.microsoft.com/)  
 45. accessed January 1, 1970, [https://gemini.google.com/](https://gemini.google.com/)  

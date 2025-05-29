@@ -239,11 +239,11 @@ The term emphasizes the simplicity and foundational nature of the method, as it 
 
 ---
 
-To perform the multiplication of \(4 \times 5\) using the one-digit multiplication method with four-digit signed binary numbers (original code), we need to follow these steps:
+To perform the multiplication of \\(4 \times 5\\) using the one-digit multiplication method with four-digit signed binary numbers (original code), we need to follow these steps:
 
 1. **Convert the numbers to four-digit signed binary (original code)**:
-   - \(4\) in four-digit signed binary is \(0100\).
-   - \(5\) in four-digit signed binary is \(0101\).
+   - \\(4\\) in four-digit signed binary is \\(0100\\).
+   - \\(5\\) in four-digit signed binary is \\(0101\\).
 
 2. **Perform the multiplication**:
    - Multiply each bit of the second number by the entire first number, shifting left each time you move to the next bit.
@@ -262,12 +262,12 @@ Here's the step-by-step multiplication process:
 ```
 
 3. **Sum the partial products**:
-   - Adding the partial products together, we get \(0010100\).
+   - Adding the partial products together, we get \\(0010100\\).
 
 4. **Convert the result back to decimal**:
-   - The binary number \(0010100\) is equivalent to \(20\) in decimal.
+   - The binary number \\(0010100\\) is equivalent to \\(20\\) in decimal.
 
-Thus, the result of \(4 \times 5\) using four-digit signed binary multiplication is \(20\).
+Thus, the result of \\(4 \times 5\\) using four-digit signed binary multiplication is \\(20\\).
 
 ---
 
@@ -675,32 +675,32 @@ In digital systems, particularly when dealing with binary numbers, the concept o
 
 ### Calculating [X - Y] Using Complements
 
-To compute \( [X - Y] \) using complements, you can use the following method:
+To compute \\( [X - Y] \\) using complements, you can use the following method:
 
 1. **Using Two's Complement**:
-   - Convert \( Y \) to its two's complement form.
-   - Add the two's complement of \( Y \) to \( X \).
-   - The result is \( X - Y \).
+   - Convert \\( Y \\) to its two's complement form.
+   - Add the two's complement of \\( Y \\) to \\( X \\).
+   - The result is \\( X - Y \\).
 
    **Example**:
-   - Let \( X = 6 \) (binary: \( 0110 \)) and \( Y = 2 \) (binary: \( 0010 \)).
-   - Two's complement of \( Y \) (2): \( 1110 \) (invert bits and add 1).
-   - Add \( X \) and the two's complement of \( Y \): \( 0110 + 1110 = 10100 \).
-   - The result \( 10100 \) in 5-bit binary is \( 4 \), which is \( 6 - 2 \).
+   - Let \\( X = 6 \\) (binary: \\( 0110 \\)) and \\( Y = 2 \\) (binary: \\( 0010 \\)).
+   - Two's complement of \\( Y \\) (2): \\( 1110 \\) (invert bits and add 1).
+   - Add \\( X \\) and the two's complement of \\( Y \\): \\( 0110 + 1110 = 10100 \\).
+   - The result \\( 10100 \\) in 5-bit binary is \\( 4 \\), which is \\( 6 - 2 \\).
 
 2. **Using One's Complement**:
-   - Convert \( Y \) to its one's complement form.
-   - Add the one's complement of \( Y \) to \( X \).
+   - Convert \\( Y \\) to its one's complement form.
+   - Add the one's complement of \\( Y \\) to \\( X \\).
    - Add the carry-out bit (if any) to the least significant bit of the result.
 
    **Example**:
-   - Let \( X = 6 \) (binary: \( 0110 \)) and \( Y = 2 \) (binary: \( 0010 \)).
-   - One's complement of \( Y \) (2): \( 1101 \) (invert bits).
-   - Add \( X \) and the one's complement of \( Y \): \( 0110 + 1101 = 10001 \).
-   - Add the carry-out bit (1) to the least significant bit: \( 10001 + 1 = 10010 \).
-   - The result \( 10010 \) in 5-bit binary is \( 4 \), which is \( 6 - 2 \).
+   - Let \\( X = 6 \\) (binary: \\( 0110 \\)) and \\( Y = 2 \\) (binary: \\( 0010 \\)).
+   - One's complement of \\( Y \\) (2): \\( 1101 \\) (invert bits).
+   - Add \\( X \\) and the one's complement of \\( Y \\): \\( 0110 + 1101 = 10001 \\).
+   - Add the carry-out bit (1) to the least significant bit: \\( 10001 + 1 = 10010 \\).
+   - The result \\( 10010 \\) in 5-bit binary is \\( 4 \\), which is \\( 6 - 2 \\).
 
-Both methods effectively perform the subtraction \( X - Y \) using binary complements. The choice of method depends on the system's architecture and the specific requirements of the operation.
+Both methods effectively perform the subtraction \\( X - Y \\) using binary complements. The choice of method depends on the system's architecture and the specific requirements of the operation.
 
 ---
 
@@ -722,13 +722,13 @@ In a normalized number, the significand is assumed to have a leading 1 before th
 
 ### Example
 
-For the number \( 6.5 \) in binary:
+For the number \\( 6.5 \\) in binary:
 
-- Binary representation: \( 110.1 \)
-- Normalized form: \( 1.101 \times 2^2 \)
-- Sign bit: \( 0 \) (positive)
-- Exponent: \( 2 + 127 \) (bias for single precision) = \( 129 \)
-- Significand: \( 101 \) (implicit leading 1, followed by the fractional part)
+- Binary representation: \\( 110.1 \\)
+- Normalized form: \\( 1.101 \times 2^2 \\)
+- Sign bit: \\( 0 \\) (positive)
+- Exponent: \\( 2 + 127 \\) (bias for single precision) = \\( 129 \\)
+- Significand: \\( 101 \\) (implicit leading 1, followed by the fractional part)
 
 Thus, the significand (or fraction) is crucial for representing the precision of floating-point numbers in the IEEE 754 format
 

@@ -9,7 +9,7 @@ generated: true
 
 Using an Arduino to verify Kirchhoff’s Laws—specifically Kirchhoff’s Current Law (KCL) and Kirchhoff’s Voltage Law (KVL)—is a great way to blend electronics theory with hands-on experimentation. KCL states that the total current entering a junction equals the total current leaving it, while KVL states that the sum of voltage drops around a closed loop equals the supplied voltage. Here’s how you can design simple circuits and use an Arduino to measure currents and voltages to confirm these laws.
 
-Since Arduino can’t directly measure current, we’ll infer it by measuring voltage across resistors (using Ohm’s Law: \( I = V/R \)), and it can measure voltage via its analog pins (0–5V range). Below, I’ll outline two experiments—one for KCL and one for KVL—with step-by-step instructions, wiring, and code.
+Since Arduino can’t directly measure current, we’ll infer it by measuring voltage across resistors (using Ohm’s Law: \\( I = V/R \\)), and it can measure voltage via its analog pins (0–5V range). Below, I’ll outline two experiments—one for KCL and one for KVL—with step-by-step instructions, wiring, and code.
 
 ---
 
@@ -36,9 +36,9 @@ Demonstrate that the current entering a node equals the current leaving it.
 - **Note:** GND is the common reference point.
 
 #### **Theory**
-- Total current from 5V to Node A (\( I_{in} \)) splits into \( I_1 \), \( I_2 \), and \( I_3 \) through R1, R2, and R3.
-- KCL: \( I_{in} = I_1 + I_2 + I_3 \).
-- Measure voltage across each resistor, then calculate current: \( I = V/R \).
+- Total current from 5V to Node A (\\( I_{in} \\)) splits into \\( I_1 \\), \\( I_2 \\), and \\( I_3 \\) through R1, R2, and R3.
+- KCL: \\( I_{in} = I_1 + I_2 + I_3 \\).
+- Measure voltage across each resistor, then calculate current: \\( I = V/R \\).
 
 #### **Arduino Code**
 ```cpp
@@ -85,7 +85,7 @@ void loop() {
 
 #### **Verification**
 - Open the Serial Monitor (Ctrl+Shift+M in Arduino IDE, set to 9600 baud).
-- Compare \( I_{in} \) (calculated from total resistance) to \( I_1 + I_2 + I_3 \). They should be approximately equal, verifying KCL.
+- Compare \\( I_{in} \\) (calculated from total resistance) to \\( I_1 + I_2 + I_3 \\). They should be approximately equal, verifying KCL.
 - Small discrepancies may arise from resistor tolerances or Arduino ADC precision.
 
 ---
@@ -112,7 +112,7 @@ Show that the sum of voltage drops around a closed loop equals the supply voltag
 - **Note:** Use a voltage divider setup; ensure voltages don’t exceed 5V (Arduino’s limit).
 
 #### **Theory**
-- KVL: \( V_{source} = V_{R1} + V_{R2} \).
+- KVL: \\( V_{source} = V_{R1} + V_{R2} \\).
 - Measure each voltage drop and check if they sum to the source voltage (5V).
 
 #### **Arduino Code**
@@ -144,8 +144,8 @@ void loop() {
 ```
 
 #### **Verification**
-- In the Serial Monitor, check that \( V_{source} \approx V_{R1} + V_{R2} \).
-- For R1 = 330Ω and R2 = 470Ω in series, expect \( V_{R1} \approx 2.1V \) and \( V_{R2} \approx 2.9V \) (based on voltage divider: \( V_{R1} = 5 \cdot \frac{R1}{R1+R2} \)), summing to ~5V.
+- In the Serial Monitor, check that \\( V_{source} \approx V_{R1} + V_{R2} \\).
+- For R1 = 330Ω and R2 = 470Ω in series, expect \\( V_{R1} \approx 2.1V \\) and \\( V_{R2} \approx 2.9V \\) (based on voltage divider: \\( V_{R1} = 5 \cdot \frac{R1}{R1+R2} \\)), summing to ~5V.
 
 ---
 

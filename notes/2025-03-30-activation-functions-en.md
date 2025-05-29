@@ -11,9 +11,9 @@ The **sigmoid**, **ReLU**, and **Leaky ReLU** are all activation functions used 
 
 ### 1. **Sigmoid**:
    - **Formula**:  
-     \[
+     \\[
      \sigma(x) = \frac{1}{1 + e^{-x}}
-     \]
+     \\]
    - **Range**: (0, 1)
    - **Pros**:
      - Smooth gradient, which helps with optimization.
@@ -25,9 +25,9 @@ The **sigmoid**, **ReLU**, and **Leaky ReLU** are all activation functions used 
 
 ### 2. **ReLU (Rectified Linear Unit)**:
    - **Formula**:  
-     \[
+     \\[
      f(x) = \max(0, x)
-     \]
+     \\]
    - **Range**: [0, ∞)
    - **Pros**:
      - **Fast and simple**: Easy to compute and efficient in practice.
@@ -39,17 +39,17 @@ The **sigmoid**, **ReLU**, and **Leaky ReLU** are all activation functions used 
 
 ### 3. **Leaky ReLU**:
    - **Formula**:  
-     \[
+     \\[
      f(x) = \max(\alpha x, x)
-     \]
-     Where \( \alpha \) is a small constant (e.g., 0.01).
+     \\]
+     Where \\( \alpha \\) is a small constant (e.g., 0.01).
    - **Range**: (-∞, ∞)
    - **Pros**:
-     - Prevents the **dying ReLU problem** by allowing a small negative slope for negative values of \( x \).
+     - Prevents the **dying ReLU problem** by allowing a small negative slope for negative values of \\( x \\).
      - Like ReLU, it helps with the vanishing gradient problem and encourages sparsity.
    - **Cons**:
      - Still has some potential for negative outputs, but much less problematic than the standard ReLU.
-     - The choice of \( \alpha \) can be tricky, and sometimes requires tuning.
+     - The choice of \\( \alpha \\) can be tricky, and sometimes requires tuning.
    - **Use case**: Used in many deep learning models to avoid issues with ReLU, especially in networks where the dying ReLU problem might occur.
 
 ---

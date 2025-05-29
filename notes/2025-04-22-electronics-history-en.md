@@ -24,9 +24,9 @@ By the 18th century, scientists began experimenting with static electricity usin
 ### Discovery and Context
 **Charles-Augustin de Coulomb**, a French physicist, published **Coulomb’s Law** in 1785, formalizing the electrostatic force between charged particles. This law states that the force between two point charges is proportional to the product of their charges and inversely proportional to the square of the distance between them:
 
-\[ F = k_e \frac{q_1 q_2}{r^2} \]
+\\[ F = k_e \frac{q_1 q_2}{r^2} \\]
 
-where \( F \) is the force, \( q_1 \) and \( q_2 \) are the charges, \( r \) is the distance, and \( k_e \) is the Coulomb constant.[](https://en.wikipedia.org/wiki/Coulomb%27s_law)
+where \\( F \\) is the force, \\( q_1 \\) and \\( q_2 \\) are the charges, \\( r \\) is the distance, and \\( k_e \\) is the Coulomb constant.[](https://en.wikipedia.org/wiki/Coulomb%27s_law)
 
 ### Story Behind the Discovery
 Coulomb’s work built on earlier observations by **Henry Cavendish** in the 1770s, who had noted the inverse-square relationship but did not publish his findings. Using a **torsion balance**, Coulomb measured the repulsive and attractive forces between charged spheres with precision. His experiments confirmed the inverse-square law, similar to Newton’s law of gravitation, but for electric charges. Coulomb’s publication was pivotal, as it provided a mathematical framework for electromagnetism, enabling discussions of charge quantities and laying the foundation for later theories like Maxwell’s equations.[](https://en.wikipedia.org/wiki/Coulomb%27s_law)
@@ -49,9 +49,9 @@ Volta’s invention directly influenced the study of electric current, resistanc
 ### Discovery and Context
 **Georg Simon Ohm**, a German physicist and schoolteacher, published **Ohm’s Law** in 1827 in his book *Die galvanische Kette, mathematisch bearbeitet* (*The Galvanic Circuit Investigated Mathematically*). Ohm’s Law states:
 
-\[ V = IR \]
+\\[ V = IR \\]
 
-where \( V \) is voltage, \( I \) is current, and \( R \) is resistance. This relationship describes how current through a conductor is proportional to the voltage applied and inversely proportional to its resistance.[](https://en.wikipedia.org/wiki/Ohm%27s_law)[](https://en.wikipedia.org/wiki/Georg_Ohm)
+where \\( V \\) is voltage, \\( I \\) is current, and \\( R \\) is resistance. This relationship describes how current through a conductor is proportional to the voltage applied and inversely proportional to its resistance.[](https://en.wikipedia.org/wiki/Ohm%27s_law)[](https://en.wikipedia.org/wiki/Georg_Ohm)
 
 ### Story Behind the Discovery
 Ohm’s work was inspired by Volta’s battery, which allowed him to experiment with steady currents. Using homemade equipment, including wires of varying lengths and materials, Ohm observed that the current decreased as wire length increased. Drawing on **Joseph Fourier**’s work on heat conduction, Ohm modeled electrical conduction as a flow of “contiguous particles,” challenging the prevailing “action at a distance” theories. His experiments showed that resistance was a constant property of a conductor, independent of current, over a wide range.[](https://en.wikipedia.org/wiki/Georg_Ohm)
@@ -59,7 +59,7 @@ Ohm’s work was inspired by Volta’s battery, which allowed him to experiment 
 Initially, Ohm’s work was poorly received, partly because it contradicted established ideas and because he was a relatively unknown teacher. However, his law gained acceptance by the 1840s, becoming a cornerstone of circuit theory. Notably, **Henry Cavendish** had discovered a similar relationship in 1781 but did not publish, leaving Ohm to receive credit.[](https://en.wikipedia.org/wiki/Ohm%27s_law)
 
 ### Impact
-Ohm’s Law is fundamental to high school physics and the *Fundamentals of Electronic Technology (III)* curriculum, underpinning circuit analysis, power calculations (\( P = VI \)), and the design of amplifiers and digital circuits. The unit of resistance, the **ohm (Ω)**, honors his contribution.[](https://connectorsupplier.com/200-years-of-scientific-laws-that-govern-electronics/)
+Ohm’s Law is fundamental to high school physics and the *Fundamentals of Electronic Technology (III)* curriculum, underpinning circuit analysis, power calculations (\\( P = VI \\)), and the design of amplifiers and digital circuits. The unit of resistance, the **ohm (Ω)**, honors his contribution.[](https://connectorsupplier.com/200-years-of-scientific-laws-that-govern-electronics/)
 
 ---
 
@@ -94,7 +94,7 @@ Maxwell’s equations (1867) predicted electromagnetic waves, later confirmed by
 ## Development of Analog Electronics
 
 ### Early Components: Capacitors and Resistors
-The **Leyden jar** (1745) was an early capacitor, storing charge for static electricity experiments. By the 19th century, capacitors were refined for use in circuits, with capacitance defined as \( C = \frac{\epsilon_0 A}{d} \). **Resistors**, based on Ohm’s Law, became standard components, with materials engineered for specific resistances.[](https://en.wikipedia.org/wiki/Electricity)
+The **Leyden jar** (1745) was an early capacitor, storing charge for static electricity experiments. By the 19th century, capacitors were refined for use in circuits, with capacitance defined as \\( C = \frac{\epsilon_0 A}{d} \\). **Resistors**, based on Ohm’s Law, became standard components, with materials engineered for specific resistances.[](https://en.wikipedia.org/wiki/Electricity)
 
 ### Semiconductors and Diodes
 In 1874, **Ferdinand Braun** discovered the **rectifier effect** in metal sulfides, an early observation of semiconductor behavior. The **electron** was identified in 1897 by **J.J. Thomson**, and **Paul Drude**’s 1900 model explained conduction in metals, refining Ohm’s Law at the microscopic level. By the 1930s, **Walter Schottky** and others developed **diodes**, which allowed current in one direction, essential for rectifiers in DC power supplies.[](https://en.wikipedia.org/wiki/Ohm%27s_law)[](https://www.blinkist.com/en/books/the-art-of-electronics-paul-horowitz-en)

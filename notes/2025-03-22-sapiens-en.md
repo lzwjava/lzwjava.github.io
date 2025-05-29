@@ -91,7 +91,7 @@ The book's broad scope and interdisciplinary approach have garnered significant 
 
 3. Sapiens, by Yuval Noah Harari \- Eric Nehrlich, accessed March 22, 2025, [https://www.nehrlich.com/blog/2016/06/15/sapiens-by-yuval-noah-harari/](https://www.nehrlich.com/blog/2016/06/15/sapiens-by-yuval-noah-harari/)  
 
-4. Survival Contingencies: A Review of Sapiens: A Brief History of Humankind by Yuval Noah Harari: New York, NY: HarperCollins, 2015, (ISBN 9780062316110\) 464pp. $22.99, accessed March 22, 2025, [https://pmc.ncbi.nlm.nih.gov/articles/PMC7198686/](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198686/)  
+4. Survival Contingencies: A Review of Sapiens: A Brief History of Humankind by Yuval Noah Harari: New York, NY: HarperCollins, 2015, (ISBN 9780062316110\\) 464pp. $22.99, accessed March 22, 2025, [https://pmc.ncbi.nlm.nih.gov/articles/PMC7198686/](https://pmc.ncbi.nlm.nih.gov/articles/PMC7198686/)  
 
 5. Book Summary \- Sapiens: A Brief History of Humankind, accessed March 22, 2025, [https://readingraphics.com/book-summary-sapiens/](https://readingraphics.com/book-summary-sapiens/)  
 

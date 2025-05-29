@@ -37,13 +37,13 @@ BJTs operate in three primary modes, determined by the biasing (voltage applied)
    - **Base-Collector Junction**: Reverse-biased (blocks current, but allows controlled flow of carriers).
    - In NPN BJTs, a small base current (I_B) injects electrons from the emitter into the base. Most of these electrons diffuse across the thin base and are swept into the collector, producing a larger collector current (I_C).
    - **Current Amplification**: The collector current is proportional to the base current, with a current gain (β) typically ranging from 20 to 1000. Mathematically:  
-     \[
+     \\[
      I_C = \beta \cdot I_B
-     \]
+     \\]
    - The emitter current is the sum of base and collector currents:  
-     \[
+     \\[
      I_E = I_B + I_C
-     \]
+     \\]
    - This mode is used in amplifiers because a small input signal (base current or voltage) controls a large output signal (collector current or voltage).
 
 2. **Saturation Mode** (used for switching, "on" state):
@@ -112,33 +112,33 @@ The behavior of a BJT in active mode is best understood through its **characteri
 
 ### **5. Key Parameters and Equations**
 - **Current Gain (β)**:
-  \[
+  \\[
   \beta = \frac{I_C}{I_B}
-  \]
+  \\]
   Typically 20–1000, depending on the transistor type and operating conditions.
 - **Alpha (α)**: Common-base current gain, the ratio of collector current to emitter current:
-  \[
+  \\[
   \alpha = \frac{I_C}{I_E}
-  \]
+  \\]
   Since I_E = I_B + I_C, α is related to β:
-  \[
+  \\[
   \alpha = \frac{\beta}{\beta + 1}
-  \]
+  \\]
   α is typically 0.95–0.999, close to 1.
 - **Base-Emitter Voltage (V_BE)**:
   - ~0.7V for silicon BJTs in active mode.
   - Follows the diode equation:  
-    \[
+    \\[
     I_B \propto e^{V_{BE}/V_T}
-    \]
+    \\]
     where V_T is the thermal voltage (~26 mV at room temperature).
 - **Collector-Emitter Voltage (V_CE)**:
   - In active mode, V_CE > V_CE(sat) (~0.2V) to avoid saturation.
   - In saturation, V_CE ≈ 0.2V.
 - **Power Dissipation**:
-  \[
+  \\[
   P = V_{CE} \cdot I_C
-  \]
+  \\]
   Must stay within the transistor’s maximum rating to avoid damage.
 
 ---

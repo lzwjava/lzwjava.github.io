@@ -18,20 +18,20 @@ Below is a comprehensive tutorial that breaks down the key topics in the “Data
 **Concepts:**
 
 - **Base-2 System:** Uses only two digits: 0 and 1.
-- **Place Value:** Each digit represents a power of 2. For a binary number \( b_n b_{n-1} \dots b_1 b_0 \), the value is  
-  \[
+- **Place Value:** Each digit represents a power of 2. For a binary number \\( b_n b_{n-1} \dots b_1 b_0 \\), the value is  
+  \\[
   \sum_{i=0}^{n} b_i \times 2^i
-  \]
-  where \( b_i \) is either 0 or 1.
+  \\]
+  where \\( b_i \\) is either 0 or 1.
 
 **Example:**
 
-Convert binary \( 1011_2 \) to decimal:
-- \( 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10} \)
+Convert binary \\( 1011_2 \\) to decimal:
+- \\( 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 8 + 0 + 2 + 1 = 11_{10} \\)
 
 **Practice Exercise:**
 
-- Convert the binary number \( 110010_2 \) to decimal.
+- Convert the binary number \\( 110010_2 \\) to decimal.
 
 ---
 
@@ -40,10 +40,10 @@ Convert binary \( 1011_2 \) to decimal:
 **Concepts:**
 
 - **Base-16 System:** Uses sixteen symbols: 0–9 and A–F (where A=10, B=11, …, F=15).
-- **Place Value:** Each digit represents a power of 16. For a hexadecimal number \( h_n h_{n-1} \dots h_1 h_0 \), the value is  
-  \[
+- **Place Value:** Each digit represents a power of 16. For a hexadecimal number \\( h_n h_{n-1} \dots h_1 h_0 \\), the value is  
+  \\[
   \sum_{i=0}^{n} h_i \times 16^i
-  \]
+  \\]
 
 **Conversion from Binary to Hexadecimal:**
 
@@ -52,16 +52,16 @@ Convert binary \( 1011_2 \) to decimal:
 
 **Example:**
 
-Convert binary \( 1011011101_2 \) to hexadecimal:
-- Group into 4-bit groups: \( 10 \, 1101 \, 1101 \) (pad left with zeros if needed → \( 0010 \, 1101 \, 1101 \))
-- \( 0010_2 = 2_{16} \)
-- \( 1101_2 = D_{16} \)
-- \( 1101_2 = D_{16} \)
-- Final hexadecimal: \( 2DD_{16} \)
+Convert binary \\( 1011011101_2 \\) to hexadecimal:
+- Group into 4-bit groups: \\( 10 \, 1101 \, 1101 \\) (pad left with zeros if needed → \\( 0010 \, 1101 \, 1101 \\))
+- \\( 0010_2 = 2_{16} \\)
+- \\( 1101_2 = D_{16} \\)
+- \\( 1101_2 = D_{16} \\)
+- Final hexadecimal: \\( 2DD_{16} \\)
 
 **Practice Exercise:**
 
-- Convert the binary number \( 11101010_2 \) into hexadecimal.
+- Convert the binary number \\( 11101010_2 \\) into hexadecimal.
 
 ---
 
@@ -84,27 +84,27 @@ For single precision (32-bit):
 - 23 bits for mantissa.
 
 For example, the value is represented as:
-\[
+\\[
 (-1)^{\text{sign}} \times 1.\text{mantissa} \times 2^{(\text{exponent} - \text{bias})}
-\]
+\\]
 where the bias for single precision is 127.
 
 **Example Walk-Through:**
 
 Suppose you have a 32-bit binary string representing a floating-point number:
 - **Sign Bit:** 0 (positive)
-- **Exponent Bits:** e.g., \( 10000010_2 \) → Decimal 130. Subtract bias: \( 130 - 127 = 3 \).
-- **Mantissa Bits:** Suppose they represent a fractional part like \( .101000... \).
+- **Exponent Bits:** e.g., \\( 10000010_2 \\) → Decimal 130. Subtract bias: \\( 130 - 127 = 3 \\).
+- **Mantissa Bits:** Suppose they represent a fractional part like \\( .101000... \\).
 
 Then the number would be:
-\[
+\\[
 +1.101000 \times 2^3
-\]
-Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to get the final value.
+\\]
+Convert \\( 1.101000 \\) from binary to decimal and then multiply by \\( 2^3 \\) to get the final value.
 
 **Practice Exercise:**
 
-- Given the following breakdown for a 32-bit floating-point number: sign = 0, exponent = \( 10000001_2 \) (decimal 129), and mantissa = \( 01000000000000000000000 \), compute the decimal value.
+- Given the following breakdown for a 32-bit floating-point number: sign = 0, exponent = \\( 10000001_2 \\) (decimal 129), and mantissa = \\( 01000000000000000000000 \\), compute the decimal value.
 
 ---
 
@@ -113,9 +113,9 @@ Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to 
 ### 2.1 Basic Boolean Operations
 
 **Key Operations:**
-- **AND (·):** \( A \land B \) is true only if both \( A \) and \( B \) are true.
-- **OR (+):** \( A \lor B \) is true if at least one of \( A \) or \( B \) is true.
-- **NOT (’ or \(\neg\)):** \( \neg A \) inverts the truth value of \( A \).
+- **AND (·):** \\( A \land B \\) is true only if both \\( A \\) and \\( B \\) are true.
+- **OR (+):** \\( A \lor B \\) is true if at least one of \\( A \\) or \\( B \\) is true.
+- **NOT (’ or \\(\neg\\)):** \\( \neg A \\) inverts the truth value of \\( A \\).
 
 **Truth Tables:**
 
@@ -146,7 +146,7 @@ Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to 
 
 **Practice Exercise:**
 
-- Given the Boolean expression \( \neg(A \land B) \), use a truth table to show it is equivalent to \( \neg A \lor \neg B \) (De Morgan’s Law).
+- Given the Boolean expression \\( \neg(A \land B) \\), use a truth table to show it is equivalent to \\( \neg A \lor \neg B \\) (De Morgan’s Law).
 
 ---
 
@@ -155,24 +155,24 @@ Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to 
 **Important Laws:**
 
 - **Commutative Law:**
-  - \( A \lor B = B \lor A \)
-  - \( A \land B = B \land A \)
+  - \\( A \lor B = B \lor A \\)
+  - \\( A \land B = B \land A \\)
 
 - **Associative Law:**
-  - \( (A \lor B) \lor C = A \lor (B \lor C) \)
-  - \( (A \land B) \land C = A \land (B \land C) \)
+  - \\( (A \lor B) \lor C = A \lor (B \lor C) \\)
+  - \\( (A \land B) \land C = A \land (B \land C) \\)
 
 - **Distributive Law:**
-  - \( A \land (B \lor C) = (A \land B) \lor (A \land C) \)
-  - \( A \lor (B \land C) = (A \lor B) \land (A \lor C) \)
+  - \\( A \land (B \lor C) = (A \land B) \lor (A \land C) \\)
+  - \\( A \lor (B \land C) = (A \lor B) \land (A \lor C) \\)
 
 - **De Morgan’s Laws:**
-  - \( \neg (A \land B) = \neg A \lor \neg B \)
-  - \( \neg (A \lor B) = \neg A \land \neg B \)
+  - \\( \neg (A \land B) = \neg A \lor \neg B \\)
+  - \\( \neg (A \lor B) = \neg A \land \neg B \\)
 
 **Practice Exercise:**
 
-- Simplify the expression \( A \lor (\neg A \land B) \) using Boolean algebra laws.
+- Simplify the expression \\( A \lor (\neg A \land B) \\) using Boolean algebra laws.
 
 ---
 
@@ -184,17 +184,17 @@ Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to 
 
 - **Addition:**
   - Follows similar rules to decimal addition but with base 2.
-  - **Example:** \( 1011_2 + 1101_2 \)
+  - **Example:** \\( 1011_2 + 1101_2 \\)
     - Align and add bit by bit, carrying over when the sum exceeds 1.
 
 - **Subtraction:**
   - Can be performed by borrowing, or by using the two's complement method.
   - **Two's Complement:** To represent negative numbers, invert the bits and add 1.
-  - **Example:** To subtract \( 1101_2 \) from \( 1011_2 \), first find the two's complement of \( 1101_2 \) then add.
+  - **Example:** To subtract \\( 1101_2 \\) from \\( 1011_2 \\), first find the two's complement of \\( 1101_2 \\) then add.
 
 **Practice Exercise:**
 
-- Perform the binary subtraction \( 10100_2 - 01101_2 \) using two’s complement.
+- Perform the binary subtraction \\( 10100_2 - 01101_2 \\) using two’s complement.
 
 ---
 
@@ -207,7 +207,7 @@ Convert \( 1.101000 \) from binary to decimal and then multiply by \( 2^3 \) to 
 
 **Practice Exercise:**
 
-- Add \( 2A3_{16} \) and \( 1F7_{16} \).
+- Add \\( 2A3_{16} \\) and \\( 1F7_{16} \\).
 
 ---
 

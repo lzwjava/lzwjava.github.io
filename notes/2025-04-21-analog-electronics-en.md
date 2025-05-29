@@ -21,23 +21,23 @@ Awesome! Here's a comprehensive tutorial on **Part I: Analog Electronics** from 
 - **Voltage (V)**: Electrical potential difference between two points.
 - **Current (I)**: Flow of electric charge; measured in amperes (A).
 - **Resistance (R)**: Opposition to current; measured in ohms (Ω).
-- **Power (P)**: Energy used per unit time: \( P = VI \)
+- **Power (P)**: Energy used per unit time: \\( P = VI \\)
 
 #### ⚡ **Ohm’s Law**
-\[
+\\[
 V = IR
-\]
+\\]
 Simple and crucial. It relates voltage, current, and resistance in a linear resistor.
 
 #### ⚡ **Kirchhoff’s Laws**
 - **KCL (Current Law)**: The total current entering a junction equals the total leaving it.
-  \[
+  \\[
   \sum I_{in} = \sum I_{out}
-  \]
+  \\]
 - **KVL (Voltage Law)**: The sum of voltages around a closed loop is zero.
-  \[
+  \\[
   \sum V = 0
-  \]
+  \\]
 
 #### b. **Linear Circuit Analysis Methods**
 - **Nodal Analysis**: Solve for node voltages using KCL.
@@ -49,8 +49,8 @@ Simple and crucial. It relates voltage, current, and resistance in a linear resi
 
 #### c. **Dynamic Circuits and Transient Analysis**
 - **RC and RL Circuits**: Transient behavior when switched on/off.
-  - Capacitor voltage: \( V(t) = V_0 (1 - e^{-t/RC}) \)
-  - Inductor current: \( I(t) = I_0 (1 - e^{-t/LR}) \)
+  - Capacitor voltage: \\( V(t) = V_0 (1 - e^{-t/RC}) \\)
+  - Inductor current: \\( I(t) = I_0 (1 - e^{-t/LR}) \\)
 - **Time Constants**: RC or L/R; indicates how quickly circuits react to changes.
 
 ---
@@ -87,18 +87,18 @@ Simple and crucial. It relates voltage, current, and resistance in a linear resi
   - Infinite gain
   - Infinite input impedance
   - Zero output impedance
-- **Virtual Short**: \( V_+ = V_- \) when negative feedback is present.
+- **Virtual Short**: \\( V_+ = V_- \\) when negative feedback is present.
 - **Virtual Open**: Input current ≈ 0
 
 #### b. **Typical Op-Amp Circuits**
 - **Inverting Amplifier**:
-  \[
+  \\[
   V_{out} = -\left(\frac{R_f}{R_{in}}\right) V_{in}
-  \]
+  \\]
 - **Non-inverting Amplifier**:
-  \[
+  \\[
   V_{out} = \left(1 + \frac{R_f}{R_1}\right) V_{in}
-  \]
+  \\]
 - **Integrator/Differentiator**: Uses capacitor in feedback or input.
 
 #### c. **Nonlinear Applications**

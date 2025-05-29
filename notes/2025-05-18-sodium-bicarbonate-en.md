@@ -18,9 +18,9 @@ generated: true
 - **Solubility**: Soluble in water (approximately 9 g/100 mL at 20°C), insoluble in ethanol
 - **pH**: Aqueous solutions are mildly alkaline (pH ~8.3) due to the bicarbonate ion acting as a weak base.
 - **Decomposition**: When heated above 50°C (122°F), sodium bicarbonate decomposes into **sodium carbonate (Na₂CO₃)**, **water (H₂O)**, and **carbon dioxide (CO₂)**:
-  \[
+  \\[
   2NaHCO₃ \rightarrow Na₂CO₃ + H₂O + CO₂
-  \]
+  \\]
   This reaction is responsible for its leavening action in baking.
 - **Stability**: Stable under normal conditions but reacts with acids to produce carbon dioxide gas, making it a key component in effervescent reactions.
 
@@ -30,9 +30,9 @@ generated: true
 Sodium bicarbonate is primarily produced through the **Solvay process**, a method used to manufacture sodium carbonate and bicarbonate. In this process:
 1. **Ammonia (NH₃)**, **carbon dioxide (CO₂)**, and **sodium chloride (NaCl)** react in water to form sodium bicarbonate and ammonium chloride (NH₄Cl).
 2. The sodium bicarbonate precipitates out due to its lower solubility and is filtered, dried, and purified.
-   \[
+   \\[
    NaCl + NH₃ + CO₂ + H₂O \rightarrow NaHCO₃ + NH₄Cl
-   \]
+   \\]
 Natural deposits of sodium bicarbonate, such as those found in **Green River, Wyoming**, are also mined as nahcolite or extracted from **trona ore**.
 
 ---

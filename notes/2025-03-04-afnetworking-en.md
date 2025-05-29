@@ -103,10 +103,10 @@ It looks like you're referring to integrating the AFNetworking library version 2
            manager.get("https://api.example.com/data", 
                        parameters: nil, 
                        success: { (operation, response) in
-                           print("Success: \(response)")
+                           print("Success: \\(response)")
                        }, 
                        failure: { (operation, error) in
-                           print("Error: \(error)")
+                           print("Error: \\(error)")
                        })
        }
        ```

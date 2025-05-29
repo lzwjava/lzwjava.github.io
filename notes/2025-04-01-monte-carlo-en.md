@@ -38,14 +38,14 @@ MCTS iterates through four distinct steps in each simulation cycle:
 #### 1. **Selection**
 - Start at the root and traverse the tree to a leaf node (a node not fully expanded or a terminal state).
 - Use a **selection policy** to choose child nodes. The most common is the **Upper Confidence Bound applied to Trees (UCT)** formula:
-  \[
+  \\[
   UCT = \bar{X}_i + C \sqrt{\frac{\ln(N)}{n_i}}
-  \]
-  - \(\bar{X}_i\): Average reward (win rate) of the node.
-  - \(n_i\): Number of visits to the node.
-  - \(N\): Number of visits to the parent node.
-  - \(C\): Exploration constant (typically \(\sqrt{2}\) or tuned per problem).
-- UCT balances exploitation (\(\bar{X}_i\)) and exploration (the \(\sqrt{\frac{\ln(N)}{n_i}}\) term).
+  \\]
+  - \\(\bar{X}_i\\): Average reward (win rate) of the node.
+  - \\(n_i\\): Number of visits to the node.
+  - \\(N\\): Number of visits to the parent node.
+  - \\(C\\): Exploration constant (typically \\(\sqrt{2}\\) or tuned per problem).
+- UCT balances exploitation (\\(\bar{X}_i\\)) and exploration (the \\(\sqrt{\frac{\ln(N)}{n_i}}\\) term).
 
 #### 2. **Expansion**
 - If the selected leaf node isn’t terminal and has unvisited children, expand it by adding one or more child nodes (representing untried moves).
@@ -58,7 +58,7 @@ MCTS iterates through four distinct steps in each simulation cycle:
 
 #### 4. **Backpropagation**
 - Propagate the simulation result back up the tree, updating statistics for each visited node:
-  - Increment the visit count (\(n_i\)).
+  - Increment the visit count (\\(n_i\\)).
   - Update the total reward (e.g., sum of wins or average win rate).
 - This refines the tree’s knowledge about which paths are promising.
 
@@ -144,7 +144,7 @@ def best_child(node):
 
 1. **Anytime Algorithm**: Stop it anytime and get a reasonable move based on current stats.
 2. **No Evaluation Function Needed**: Relies on simulations, not domain-specific heuristics.
-3. **Scalable**: Works in huge state spaces (e.g., Go with \(10^{170}\) possible positions).
+3. **Scalable**: Works in huge state spaces (e.g., Go with \\(10^{170}\\) possible positions).
 4. **Adaptive**: Naturally focuses on promising branches as iterations increase.
 
 ---
@@ -182,7 +182,7 @@ To address weaknesses, MCTS is often enhanced:
 
 ### Practical Tips for Implementation
 
-- **Tune \(C\)**: Adjust the UCT exploration constant based on your problem (\(C = \sqrt{2}\) is a starting point).
+- **Tune \\(C\\)**: Adjust the UCT exploration constant based on your problem (\\(C = \sqrt{2}\\) is a starting point).
 - **Limit Tree Growth**: Prune nodes or cap expansion to manage memory.
 - **Optimize Rollouts**: Use lightweight simulations or heuristics to save time.
 - **Test Iterations**: Experiment with 100, 1,000, or 10,000 iterations to balance speed and quality.

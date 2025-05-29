@@ -23,12 +23,12 @@ Here's a comprehensive review of high school physics concepts related to electro
 
 ### Capacitance and Capacitors
 - **Capacitance**: The ability of a system to store an electric charge. Measured in farads (F).
-- **Capacitors**: Devices that store electric charge. The capacitance of a parallel-plate capacitor is given by \( C = \frac{\epsilon_0 A}{d} \), where \( \epsilon_0 \) is the permittivity of free space, \( A \) is the area of the plates, and \( d \) is the distance between them.
+- **Capacitors**: Devices that store electric charge. The capacitance of a parallel-plate capacitor is given by \\( C = \frac{\epsilon_0 A}{d} \\), where \\( \epsilon_0 \\) is the permittivity of free space, \\( A \\) is the area of the plates, and \\( d \\) is the distance between them.
 
 ### Electric Current and Resistance
 - **Electric Current**: The rate of flow of electric charge, measured in amperes (A).
 - **Resistance**: The opposition to the flow of electric current, measured in ohms (Ω).
-- **Ohm's Law**: States that the current through a conductor between two points is directly proportional to the voltage across the two points. Mathematically, \( V = IR \).
+- **Ohm's Law**: States that the current through a conductor between two points is directly proportional to the voltage across the two points. Mathematically, \\( V = IR \\).
 
 ### Circuits
 - **Series Circuits**: Components are connected end-to-end, sharing the same current.
@@ -39,7 +39,7 @@ Here's a comprehensive review of high school physics concepts related to electro
 
 ### Power and Energy
 - **Electric Power**: The rate at which electrical energy is transferred by an electric circuit. Measured in watts (W).
-- **Power Formula**: \( P = VI = I^2R = \frac{V^2}{R} \).
+- **Power Formula**: \\( P = VI = I^2R = \frac{V^2}{R} \\).
 - **Energy**: The capacity to do work. Electrical energy is often measured in kilowatt-hours (kWh).
 
 ### Magnetism and Electromagnetism

@@ -121,7 +121,7 @@ def main():
             print(f"Invalid file path or not a markdown file: {args.file}")
     else:
         # Process directories
-        directories = ["_posts", "original", "notes"]
+        directories = ["notes"]
         for directory in directories:
             if os.path.exists(directory):
                 fix_mathjax_in_markdown(directory, max_files=args.maxfiles, gemini=args.gemini, reset=args.reset)

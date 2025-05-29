@@ -59,9 +59,9 @@ Since no exact figure for ABC’s 2024 mortgage loans is available, let’s use 
 - **Assumed loan amount per customer**: 1 million yuan (1,000,000 yuan).
 - **Estimated total mortgage loans for ABC**: 4.93 trillion yuan = 4,930,000,000,000 yuan.
 - **Number of mortgage customers** = Total mortgage loans ÷ Loan amount per customer
-  \[
+  \\[
   \frac{4,930,000,000,000}{1,000,000} = 4,930,000
-  \]
+  \\]
 
 ### Step 3: Considerations and Caveats
 - **Average Loan Size**: The assumption of 1 million yuan per mortgage is a simplification. Actual mortgage sizes vary widely depending on location (e.g., urban vs. rural areas), property type, and economic conditions. For instance, mortgages in major cities like Beijing or Shanghai are often much higher, while those in rural areas may be lower.

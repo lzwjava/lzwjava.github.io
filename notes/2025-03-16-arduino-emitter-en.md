@@ -61,11 +61,11 @@ Arduino PWM (Pin 9)  R2                 |
 
 #### **Operating Point**
 - Goal: Bias the transistor in the active region (e.g., VCE ≈ 2.5V for 5V supply).
-- Voltage divider (R1, R2): \( V_B = V_{CC} \cdot \frac{R2}{R1 + R2} = 5 \cdot \frac{10k}{47k + 10k} \approx 0.88V \).
-- \( V_E = V_B - V_{BE} \approx 0.88 - 0.7 = 0.18V \).
-- \( I_E = \frac{V_E}{RE} = \frac{0.18}{220} \approx 0.82 \, \text{mA} \).
-- \( V_C = V_{CC} - I_C \cdot RC \approx 5 - 0.82 \cdot 1k \approx 4.18V \).
-- \( V_{CE} = V_C - V_E \approx 4.18 - 0.18 = 4V \) (good for 5V supply).
+- Voltage divider (R1, R2): \\( V_B = V_{CC} \cdot \frac{R2}{R1 + R2} = 5 \cdot \frac{10k}{47k + 10k} \approx 0.88V \\).
+- \\( V_E = V_B - V_{BE} \approx 0.88 - 0.7 = 0.18V \\).
+- \\( I_E = \frac{V_E}{RE} = \frac{0.18}{220} \approx 0.82 \, \text{mA} \\).
+- \\( V_C = V_{CC} - I_C \cdot RC \approx 5 - 0.82 \cdot 1k \approx 4.18V \\).
+- \\( V_{CE} = V_C - V_E \approx 4.18 - 0.18 = 4V \\) (good for 5V supply).
 
 ---
 
@@ -126,7 +126,7 @@ void loop() {
 ```
 
 #### **Expected Gain**
-- Voltage gain \( A_v = -\frac{RC}{RE} = -\frac{1k}{220} \approx -4.5 \) (negative due to phase inversion).
+- Voltage gain \\( A_v = -\frac{RC}{RE} = -\frac{1k}{220} \approx -4.5 \\) (negative due to phase inversion).
 - Input: ~1.25V peak (after coupling).
 - Output: ~4.5 × 1.25 = 5.625V peak (but clipped at 5V due to supply limit).
 
