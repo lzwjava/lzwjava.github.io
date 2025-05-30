@@ -11,7 +11,7 @@ translated: true
 
 En particular, me gustaría llamar tu atención sobre mis tres [artículos](/papers-es) sobre la reversión de la miopía. Puedes encontrar fácilmente estos ensayos destacados utilizando el botón "seleccionar" en la página de inicio.
 
-No dudes en ponerte en contacto si estás interesado. Puedes saludarme en X, WhatsApp o Telegram, dejar un comentario, enviarme un mensaje directo o enviarme un correo electrónico.
+No dudes en ponerte en contacto si estás interesado. Puedes saludarme en X, o Telegram, dejar un comentario, enviarme un mensaje directo o enviarme un correo electrónico.
 
 #### X(Twitter)
 
@@ -21,6 +21,8 @@ Mi cuenta de X está aquí: [https://mobile.twitter.com/lzwjava](https://mobile.
 
 <div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
 
-#### Correo Electrónico
+O envía un mensaje a [@lzwjava](https://t.me/lzwjava).
+
+#### Correo electrónico
 
 lzwjava@gmail.com

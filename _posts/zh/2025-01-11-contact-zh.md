@@ -11,7 +11,7 @@ translated: true
 
 特别是，我想引起你对我的三篇关于逆转近视的论文的注意 [论文](/papers-en)。你可以使用主页上的“选择”按钮轻松找到这些特色文章。
 
-如果你有兴趣，请随时联系我！你可以在 X、WhatsApp 或 Telegram 上向我打招呼，留下评论，发送直接消息，或者给我发送电子邮件。
+如果你有兴趣，请随时联系我！你可以在 X 或 Telegram 上向我打招呼，留下评论，发送直接消息，或者给我发送电子邮件。
 
 #### X(Twitter)
 
@@ -20,6 +20,8 @@ translated: true
 #### Telegram
 
 <div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+
+或者联系 [@lzwjava](https://t.me/lzwjava)。
 
 #### 电子邮件
 
