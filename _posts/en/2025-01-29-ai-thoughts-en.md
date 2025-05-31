@@ -47,6 +47,8 @@ translated: false
 
 - Other important types of data include numerical, geospatial, biometric, sensor, transactional, metadata, time-series, structured, unstructured, semi-structured, health, environmental, log, network, and behavioral data.
 
+- Google is still better for website indexing, especially if you want to download software or a document from a specific site. It works like a domain search. You're not using it to find information, but rather to navigate to other sites to perform tasks. An LLM may not have the latest download links.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
