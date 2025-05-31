@@ -49,6 +49,8 @@ translated: false
 
 - Google is still better for website indexing, especially if you want to download software or a document from a specific site. It works like a domain search. You're not using it to find information, but rather to navigate to other sites to perform tasks. An LLM may not have the latest download links.
 
+- Google remains useful for image search, whereas LLMs excel at text generation. Still, people often prefer real images to verify hardware details, dimensions, object shapes, or a person's appearance.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
