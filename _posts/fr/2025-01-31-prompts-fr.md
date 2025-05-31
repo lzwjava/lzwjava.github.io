@@ -7,13 +7,9 @@ title: Invitations Utiles
 translated: true
 ---
 
-Réduisez les posts ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
-
----
-
 Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
 
-- Aborder des sous-thèmes spécifiques et explorer leurs complexités.
+- Explorer des sous-thèmes spécifiques et leurs subtilités.
 - Comparer et opposer différentes technologies ou méthodologies liées au sujet.
 - Discuter des cas d'utilisation réels et de leurs implications.
 - Poser des questions approfondies pour découvrir des insights plus profonds.
@@ -28,7 +24,7 @@ Le format doit être le suivant :
 [
     {
       "speaker": "A",
-      "line": "Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?"
+      "line": "Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?"
     },
     {
       "speaker": "B",
@@ -37,7 +33,7 @@ Le format doit être le suivant :
 ]
 ```
 
-À propos de l'examen 04730, de l'examen de self-study China et de la technologie électronique de base 3.
+À propos de l'examen 04730, de l'examen de self-study en Chine et de la technologie électronique de base 3.
 
 ---
 
@@ -45,7 +41,7 @@ Créez une conversation naturelle et prolongée entre deux experts, A et B, avec
 
 À propos du contenu PDF. Le format doit être le suivant :
 
-A : Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?
+A : Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?
 
 B : Bien sûr ! Commençons par les bases.
 
@@ -64,7 +60,7 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 ---
 
 Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
-Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
+Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert.
 Si applicable, incluez un périmètre entre parenthèses pour décrire la partie de la base de code affectée.
 Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note en tête ou en fin.
 
@@ -105,7 +101,7 @@ Donnez une analyse complète du fonctionnement des inducteurs.
 
 Philippines
 
-Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et ont-ils un impact ?
+Quelles sont les particularités ? Quelle est leur unicité ? Comment les gens contribuent-ils à la technologie ? Comment les gens inventent-ils et ont-ils un impact ?
 
 ---
 
@@ -130,3 +126,7 @@ Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure de times
 ---
 
 Quand Google publiera-t-il son prochain rapport de gains ?
+
+---
+
+Dessinez quelques graphiques pour comprendre.
