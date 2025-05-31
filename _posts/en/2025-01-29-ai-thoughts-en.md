@@ -51,6 +51,10 @@ translated: false
 
 - Google remains useful for image search, whereas LLMs excel at text generation. Still, people often prefer real images to verify hardware details, dimensions, object shapes, or a person's appearance.
 
+- AI Chat bots is popular because of the nature of text. It is harder to read and find out information you need in text. However, in image, people often prefer to real ones instead of genereated ones. And image is easy to process and find out what you need. Maybe it will be funny to ask AI to show this people from back side, scale it to see her big face, or directly ask AI to scale up a small detail in a curcuit board. So for image ai generation, there will be pretty much space to explore. And people are just dealing with text more instead of images.
+
+
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
