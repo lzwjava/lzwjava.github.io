@@ -418,3 +418,43 @@ To avoid similar issues, consider:
 
 Let me know if you need further assistance!
 
+---
+
+If you just want to proceed with `apt upgrade` and **skip the problematic packages**, you can temporarily exclude them from the upgrade process. Here’s how:
+
+### **Option 1: Skip Broken Packages and Continue Upgrade**
+Run:
+```bash
+sudo apt --fix-broken install
+sudo apt upgrade -y --ignore-missing --allow-downgrades
+```
+- `--ignore-missing` skips unavailable packages.
+- `--allow-downgrades` lets APT downgrade packages if needed.
+
+### **Option 2: Hold (Block) Problematic Packages**
+If the issue persists, **hold** (block) the problematic packages to prevent them from being upgraded:
+```bash
+sudo apt-mark hold linux-generic-hwe-22.04 linux-headers-generic-hwe-22.04 linux-image-6.8.0-60-generic
+```
+Then retry:
+```bash
+sudo apt upgrade -y
+```
+
+### **Option 3: Force Upgrade (Not Recommended)**
+If you're okay with possibly breaking things further, force the upgrade:
+```bash
+sudo apt -o Dpkg::Options::="--force-overwrite" --fix-broken install
+sudo apt upgrade -y
+```
+⚠️ **Warning:** This may cause instability if dependencies are mismatched.
+
+### **After Skipping:**
+- The system will still work, but the **NVIDIA driver might not function** on kernel `6.8.0-60`.
+- You can **boot into an older kernel** (select it in GRUB) if needed.
+- Once NVIDIA releases a compatible update, you can **unhold** the packages:
+  ```bash
+  sudo apt-mark unhold linux-generic-hwe-22.04 linux-headers-generic-hwe-22.04
+  ```
+
+Would you like help checking which kernel is currently active after the upgrade?
