@@ -132,5 +132,7 @@ based on this youtube video, create a tutorial, do not include timestamp
 
 what's next time google will release earning report?
 
+---
 
+draw some graphs to understand
 
