@@ -3,56 +3,57 @@ audio: false
 generated: false
 lang: de
 layout: post
-title: Künstliche Intelligenz Gedanken
+title: KI Gedanken
 translated: true
 ---
 
-- Satya Nadella erwähnte das Jevons-Paradoxon. Es lohnt sich, es zu lernen.
 
-- Yin Wang: Es gibt keine "Intelligenz" in der künstlichen Intelligenz, kein "neuronal" in neuronalen Netzwerken, kein "Lernen" im maschinellen Lernen und keine "Tiefe" im Deep Learning. Es gibt keine "Tiefe" im Deep Learning. Was wirklich in diesem Bereich funktioniert, wird "Kalkül" genannt. Daher bevorzuge ich es, diesen Bereich "differentielles Rechnen" zu nennen, und der Prozess des Modellbaus wird "differentielles Programmieren" genannt.
+- Satya Nadella erwähnte das Jevons-Paradoxon. Es lohnt sich, darüber zu lernen.
 
-- Yin Wang: Maschinelles Lernen ist wirklich nützlich, man könnte sogar sagen, eine schöne Theorie, weil es einfach Kalkül nach einer Überarbeitung ist! Es ist die alte und große Theorie von Newton, Leibniz, in einer einfacheren, eleganten und mächtigen Form. Maschinelles Lernen ist im Wesentlichen die Verwendung von Kalkül, um einige Funktionen abzuleiten und anzupassen, und Deep Learning ist die Anpassung komplexerer Funktionen.
+- Yin Wang: In der künstlichen Intelligenz gibt es keine „Intelligenz“, in neuronalen Netzwerken nichts „Neuronales“, im maschinellen Lernen kein „Lernen“ und im Deep Learning keine „Tiefe“. Was in diesem Bereich wirklich funktioniert, nennt sich „Analysis“. Daher bevorzuge ich die Bezeichnung „differenzierbare Berechnung“ für dieses Feld, und der Prozess des Modellbaus wird als „differenzierbare Programmierung“ bezeichnet.
 
-- Derzeit können große Sprachmodelle keine Dateien nach Sprache wie YAML oder Python filtern. Allerdings ist ein erheblicher Teil der Informationen in der realen Welt auf diese Weise organisiert. Das bedeutet, dass wir große Sprachmodelle mit Dateien trainieren könnten.
+- Yin Wang: Maschinelles Lernen ist wirklich nützlich, man könnte sogar sagen, eine schöne Theorie, weil sie im Grunde nur Analysis in neuem Gewand ist! Es ist die alte und großartige Theorie von Newton und Leibniz, aber in einer einfacheren, eleganteren und mächtigeren Form. Maschinelles Lernen besteht im Wesentlichen darin, Analysis zu nutzen, um Funktionen abzuleiten und anzupassen, und Deep Learning ist die Anpassung komplexerer Funktionen.
 
-- Zum Training großer Sprachmodelle könnten wir ein System entwickeln, das exakte Übereinstimmungen findet. Vielleicht können wir den KMP-Suchalgorithmus (Knuth-Morris-Pratt) mit der Transformer-Architektur kombinieren, um die Suchfähigkeiten zu verbessern.
+- Derzeit können große Sprachmodelle nicht nach Dateisprachen wie YAML oder Python filtern. Ein erheblicher Teil der Informationen in der realen Welt ist jedoch auf diese Weise organisiert. Das bedeutet, dass wir große Sprachmodelle mit Dateien trainieren könnten.
 
-- Es gibt keine technologischen Geheimnisse. Open Source wird alle streng gehüteten Geheimnisse enthüllen.
+- Für das Training großer Sprachmodelle könnten wir ein System entwickeln, das exakte Übereinstimmungen findet. Vielleicht können wir den KMP-Algorithmus (Knuth-Morris-Pratt) mit der Transformer-Architektur kombinieren, um die Suchfähigkeiten zu verbessern.
 
-- KI wird viele Werkzeuge beeinflussen, einschließlich indirekter. Manche sagen, sie bräuchten Figma nicht mehr, um Prototypen zu zeichnen, sie würden direkt zum Code gehen. Ich denke, dass Postman ähnlich sein wird; die Menschen werden direkt Python oder andere Skripte verwenden, um APIs aufzurufen oder zu testen.
+- Es gibt keine technologischen Geheimnisse. Open Source wird alle streng gehüteten Geheimnisse aufdecken.
 
-- Ein Grund, warum wir Postman oder Figma in der KI-Ära nicht verwenden, ist, dass deren Funktionen nicht durch Text generiert werden können. Sie verfügen auch nicht über eine Befehl + K-Tastenkombination, um Komponenten auszulösen.
+- KI wird viele Tools beeinflussen, auch indirekt. Die Leute sagen, sie bräuchten Figma nicht mehr, um Prototypen zu zeichnen, sondern würden direkt zum Code übergehen. Ich denke, Postman wird ähnlich sein; die Leute werden direkt Python oder andere Skripte verwenden, um APIs aufzurufen oder zu testen.
 
-- Benutzeroberflächen werden in der KI-Ära zu einer Barriere. Warum Postman für das Testen von Anwendungen mit KI ausstatten, wenn wir direkt die Python-Bibliothek requests oder andere Programmiersprachen verwenden können, um Code zu testen, da Letzteres durch KI unterstützt wird?
+- Ein Grund, warum wir Postman oder Figma im KI-Zeitalter nicht verwenden, ist, dass ihre Funktionen nicht durch Text generiert werden können. Ihnen fehlt auch eine Befehlstaste wie „Command + K“, um Komponenten auszutauschen.
 
-- Warum Postman für die UI-Erstellung mit KI ausstatten, wenn die codebasierte UI-Generierung, verbessert durch KI, einen direkteren und möglicherweise leistungsfähigeren Ansatz bietet?
+- Benutzeroberflächen werden im KI-Zeitalter zu einer Barriere. Warum sollte man Postman für das Testen von Anwendungen KI-fähig machen, wenn wir direkt die „requests“-Bibliothek von Python oder andere Programmiersprachen nutzen können, die ohnehin von KI unterstützt werden?
 
-- LLMs werden Text-bezogene Anwendungen zuerst verändern, wie Google, Suchmaschinen, Texteditoren und Schreibwerkzeuge, Quizlet, Zendesk, DeepL, Medium, WordPress, Trello, Asana, Gmail, GitHub, Goodreads, Duolingo und Feedly.
+- Warum sollte man Figma für die UI-Erstellung KI-fähig machen, wenn die codebasierte UI-Generierung, unterstützt durch KI, einen direkteren und potenziell mächtigeren Ansatz bietet?
 
-- Umgekehrt ist es unwahrscheinlich, dass LLMs Technologien wie Git, Linux, ffmpeg, Mobiltelefone, Hardware, Browser, Betriebssysteme oder Sprach- und Videoanrufe revolutionieren. Diese Technologien sind codezentriert, und ihr Code wird nicht so leicht von KI generiert wie API-Testwerkzeuge wie Postman.
+- Große Sprachmodelle (LLMs) werden zuerst textbezogene Anwendungen verändern, wie Google, Suchmaschinen, Texteditoren und Schreibtools, Quizlet, Zendesk, DeepL, Medium, WordPress, Trello, Asana, Gmail, GitHub, Goodreads, Duolingo und Feedly.
 
-- Technologien mit mehr Code sind schwer durch KI zu revolutionieren, wie OpenOffice, MySQL, Mozilla Firefox, Chromium, VLC Media Player, Qt Framework, LLVM/Clang und GNOME. Wenn KI helfen könnte, diese Technologien zu verbessern, würden sie nicht ersetzt. KI sollte helfen, bessere Technologien zu schaffen, und dazu wird KI mehr Rechenleistung benötigen, um die gleiche Menge an Code zu generieren.
+- Andererseits werden LLMs Technologien wie Git, Linux, ffmpeg, Mobiltelefone, Hardware, Browser, Betriebssysteme oder Sprach- und Videoanrufe kaum revolutionieren. Diese Technologien sind codezentriert, und ihr Code wird nicht so einfach von KI generiert wie bei API-Testtools wie Postman.
 
-- Es gibt zwei Möglichkeiten, wie LLMs Veränderungen bringen können: Erstens, indem sie den Inhalt oder die Daten innerhalb einer Plattform oder Software verändern, wie z.B. die Inhaltsübersetzung in Apps wie TikTok; zweitens, indem sie bestimmte Software oder Plattformen direkt ersetzen, wie Postman oder Google Search, einschließlich Google Translate.
+- Technologien mit mehr Code sind schwer durch KI zu revolutionieren, wie OpenOffice, MySQL, Mozilla Firefox, Chromium, VLC Media Player, Qt Framework, LLVM/Clang und GNOME. Wenn KI helfen könnte, diese Technologien zu verbessern, würden sie nicht ersetzt werden. KI sollte dabei helfen, bessere Technologien zu entwickeln, und dafür wird sie mehr Rechenleistung benötigen, um denselben Umfang an Code zu generieren.
 
-- Es gibt zwei Möglichkeiten, wie KI-Audio-Tools Veränderungen bringen können: Erstens, indem sie den Inhalt oder die Daten innerhalb einer Plattform oder Software verändern, wie z.B. das Generieren von Hörbüchern für Audible; zweitens, indem sie bestimmte Software oder Plattformen direkt ersetzen, wie z.B. die Sing-Songs-App, da KI nun die gleichen Aufgaben wie Menschen ausführen kann, was es einfacher für Menschen macht, Lieder als Hobby zu singen.
+- Es gibt zwei Wege, wie LLMs Veränderungen bringen können: Erstens durch die Veränderung von Inhalten oder Daten innerhalb einer Plattform oder Software, wie z.B. die Übersetzung von Inhalten in Apps wie TikTok; zweitens durch den direkten Ersatz bestimmter Software oder Plattformen, wie Postman oder Google Search, einschließlich Google Translate.
 
-- Es gibt mehrere Möglichkeiten, wie KI die aktuelle Software oder Plattformen beeinflusst. Eine Möglichkeit ist, zu messen, wie viel Daten oder Inhalt von KI teilweise oder vollständig generiert oder verbessert werden kann. Eine weitere Möglichkeit ist, zu messen, wie viel Code von KI teilweise oder vollständig geschrieben oder verbessert werden kann. Dies bedeutet, dass wir das, was KI generiert, verwenden, um aktuelle Plattformen zu verbessern. Zusätzlich kann KI helfen, neue Software und Plattformen zu erfinden.
+- KI-Audio-Tools können auf zwei Arten Veränderungen bewirken: Erstens durch die Veränderung von Inhalten oder Daten innerhalb einer Plattform oder Software, wie z.B. die Generierung von Hörbüchern für Audible; zweitens durch den direkten Ersatz bestimmter Software oder Plattformen, z.B. Sing-Songs-Apps, da KI nun dieselben Aufgaben wie Menschen erfüllen kann, was es einfacher macht, das Singen als Hobby zu betreiben.
 
-- Es gibt drei Arten von Produkten: Generative KI-Produkte, Produkte, die APIs von Generative KI-Produkten verwenden, und andere Produkte.
+- Es gibt mehrere Möglichkeiten zu messen, wie KI aktuelle Software oder Plattformen beeinflusst. Eine Möglichkeit ist zu messen, wie viele Daten oder Inhalte teilweise oder vollständig von KI generiert oder verbessert werden können. Eine andere Möglichkeit ist zu messen, wie viel Code teilweise oder vollständig von KI geschrieben oder verbessert werden kann. Das bedeutet, wir nutzen das, was KI generiert, um bestehende Plattformen zu verbessern. Zusätzlich kann KI helfen, neue Software und Plattformen zu erfinden.
 
-- Eine Produktidee ist die Verwendung von KI, um Echtzeitinformationen, Nachrichten oder Updates von sozialen Plattformen wie Reddit, GitHub Trending, Twitter Trending, Quora Trending und Zhihu Trending zu sammeln. Benutzer können Prompts verwenden, um den Feed anzupassen oder sogar spezifische soziale Konten hinzuzufügen.
+- Es gibt drei Arten von Produkten: Generative-KI-Produkte, Produkte, die APIs generativer KI-Produkte nutzen, und andere Produkte.
+
+- Eine Produktidee ist, KI zu nutzen, um Echtzeitinformationen, Nachrichten oder Updates von sozialen Plattformen wie Reddit, GitHub Trending, Twitter Trending, Quora Trending und Zhihu Trending zu sammeln. Benutzer können mit Prompts ihren Feed anpassen oder sogar bestimmte Social-Media-Accounts hinzufügen.
 
 - Es gibt fünf wichtige Arten von Daten: Text, Bild, Audio, Video und Code.
 
-- Andere wichtige Arten von Daten umfassen numerische, geographische, biometrische, Sensor-, Transaktions-, Metadaten, Zeitreihen-, strukturierte, unstrukturierte, halbstrukturierte, Gesundheits-, Umwelt-, Log-, Netzwerk- und Verhaltensdaten.
+- Andere wichtige Arten von Daten sind numerische, georäumliche, biometrische, Sensordaten, Transaktionsdaten, Metadaten, Zeitreihen, strukturierte, unstrukturierte, halbstrukturierte Daten, Gesundheitsdaten, Umweltdaten, Protokolldaten, Netzwerkdaten und Verhaltensdaten.
 
-- Google ist immer noch besser für die Indexierung von Websites, insbesondere wenn Sie Software oder ein Dokument von einer bestimmten Website herunterladen möchten. Es funktioniert wie eine Domain-Suche. Sie verwenden es nicht, um Informationen zu finden, sondern um zu anderen Websites zu navigieren, um Aufgaben auszuführen. Ein LLM könnte die neuesten Download-Links nicht haben.
+- Google ist immer noch besser für die Indexierung von Websites, besonders wenn man Software oder ein Dokument von einer bestimmten Seite herunterladen möchte. Es funktioniert wie eine Domänensuche. Man nutzt es nicht, um Informationen zu finden, sondern um auf andere Seiten zu navigieren und Aufgaben auszuführen. Ein LLM hat möglicherweise nicht die neuesten Download-Links.
 
-- Google bleibt für die Bildersuche nützlich, während LLMs bei der Texterzeugung hervorragend sind. Dennoch bevorzugen Menschen oft echte Bilder, um Hardware-Details, Abmessungen, Objektformen oder das Aussehen einer Person zu überprüfen.
+- Google bleibt nützlich für die Bildersuche, während LLMs in der Texterstellung glänzen. Dennoch bevorzugen Menschen oft echte Bilder, um Hardware-Details, Abmessungen, Objektformen oder das Aussehen einer Person zu überprüfen.
 
-- KI-Chatbots sind beliebt, weil es schwierig ist, Informationen in Texten zu lesen und zu finden. Bei Bildern bevorzugen Menschen jedoch oft echte Bilder anstelle von generierten. Und Bilder sind einfach zu verarbeiten und zu finden, was Sie benötigen. Vielleicht wäre es lustig, KI zu bitten, diese Person von hinten zu zeigen, sie zu vergrößern, um ihr großes Gesicht zu sehen, oder KI direkt zu bitten, ein kleines Detail auf einer Leiterplatte zu vergrößern. Daher gibt es bei der KI-Bildgenerierung viel Raum zum Erforschen. Und die Menschen beschäftigen sich mehr mit Texten als mit Bildern.
+- KI-Chatbots sind beliebt, weil Text schwerer zu verarbeiten ist als Bilder. Menschen bevorzugen echte Bilder gegenüber KI-generierten, da Bilder auf einen Blick leichter zu verstehen sind. Dennoch hat die KI-Bildgenerierung ungenutztes Potenzial – Benutzer könnten die KI bitten, verschiedene Blickwinkel zu zeigen, Gesichter zu vergrößern oder Details auf Leiterplatten zu vergrößern. Da Menschen hauptsächlich mit Text und nicht mit Bildern arbeiten, gibt es viel Raum für Wachstum bei KI-Bildtools.
 
-- [Neue Plattformen, die durch KI-Workflows angetrieben werden](./ai-workflow-de)
-- [Die nächste Richtung von KI-Code-Editoren](./ai-code-de)
-- [Wie ich gut im Zeitalter von KI und Blockchain lebe](./ai-blockchain-de)
+- [Neue Plattformen mit KI-Workflows](./ai-workflow-de)  
+- [Die nächste Richtung von KI-Code-Editoren](./ai-code-de)  
+- [Wie ich im KI- und Blockchain-Zeitalter gut lebe](./ai-blockchain-de)
