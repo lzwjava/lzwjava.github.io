@@ -55,6 +55,8 @@ translated: false
 
 - AI excels at explaining concepts and facilitating understanding. Furthermore, users can pose questions regarding any specific detail. This is likely the most significant utility of AI tools.
 
+- I used AI to learn about Large Language Models. The moment it helped me understand K, Q, and V was wonderful.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
