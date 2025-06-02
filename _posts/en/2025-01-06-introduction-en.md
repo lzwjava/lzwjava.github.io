@@ -15,7 +15,7 @@ You can download the PDF version of my introduction, created with LaTeX, [here](
 
 - Basic Information: Male, born in 1995, Chinese citizen, residing in Guangzhou.
 - Competitive programming experience: Achieved top 300 in Guangdong NOIP 2011 and solved approximately 1000 algorithm problems online, available on [UVa Online Judge](https://uhunt.onlinejudge.org/id/113519).  
-- Education: Completed one year of study at [Beijing Forestry University](https://www.bjfu.edu.cn) before pursuing an associate degree at [Guangdong University of Foreign Studies](https://www.gdufs.edu.cn) through self-directed learning, successfully completing seven courses and preparing thoroughly for the nine remaining courses.
+- Education: Completed one year of study at [Beijing Forestry University](https://www.bjfu.edu.cn) before pursuing an associate degree at [Guangdong University of Foreign Studies](https://www.gdufs.edu.cn) through self-directed learning, successfully completing nine courses and preparing for the seven remaining courses.
 - Professional Experience:  
   - [TEKsystems](https://www.teksystems.com) (outsourced to [HSBC Bank](https://www.hsbc.com)): Worked as a backend engineer, focusing on developing and optimizing backend systems within HSBC's Enterprise Technology Department. 
   - [Farben Information](https://www.farben.com.cn) (outsourced to HSBC Bank): Worked on [PayMe from HSBC](https://payme.hsbc.com.hk), a mobile payment service that allows users to pay businesses, transfer money to peers, and link the app to their credit card or any local bank account.  
