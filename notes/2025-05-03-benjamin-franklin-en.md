@@ -49,3 +49,19 @@ Franklin’s legacy is vast. As a Founding Father, he helped shape the United St
 
 Franklin’s image as a self-made man, inventor, and patriot endures in American culture, symbolized by his face on the $100 bill. However, his complexities—his initial acceptance of slavery, his pragmatic politics, and his personal contradictions—add depth to his story. He remains a quintessential figure of the Enlightenment and a cornerstone of American identity.
 
+---
+
+Here are some notable quotes by Benjamin Franklin:
+
+1. "An investment in knowledge pays the best interest."
+2. "By failing to prepare, you are preparing to fail."
+3. "Well done is better than well said."
+4. "He that is good for making excuses is seldom good for anything else."
+5. "A penny saved is a penny earned."
+6. "In this world, nothing can be said to be certain, except death and taxes."
+7. "Early to bed and early to rise makes a man healthy, wealthy, and wise."
+8. "We must all hang together, or assuredly we shall all hang separately."
+9. "Lost time is never found again."
+10. "If you would be loved, love, and be loveable."
+
+These quotes reflect Franklin’s wit, wisdom, and practical philosophy on life, work, and society. If you’d like more quotes or context about any specific one, let me know!

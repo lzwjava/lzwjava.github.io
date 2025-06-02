@@ -48,3 +48,29 @@ Here are some notable quotes by Friedrich Hayek:
    — *Law, Legislation and Liberty* (1973)
 
 These quotes reflect Hayek’s core ideas on individual liberty, the limits of centralized planning, and the importance of spontaneous order in society. Let me know if you’d like more quotes or context about his work!
+
+---
+
+Here are additional quotes by Friedrich Hayek that highlight his views on economics, liberty, and society:
+
+1. **On Individualism**:  
+   "The individual is the ultimate source of human progress, and only through his freedom to experiment, to choose, and to act can society advance."  
+   — *Individualism and Economic Order* (1948)
+
+2. **On Central Planning**:  
+   "To act on the belief that we possess the knowledge and the power which enable us to shape the processes of society entirely to our liking, knowledge which in fact we do not possess, is likely to make us do much harm."  
+   — *The Pretence of Knowledge* (1974, Nobel Prize Lecture)
+
+3. **On Competition**:  
+   "Competition is a procedure of discovery, a procedure involved in all evolution, that led man unwittingly to respond to novel situations."  
+   — *Law, Legislation and Liberty* (1976)
+
+4. **On Power and Government**:  
+   "The more the state 'plans,' the more difficult planning becomes for the individual."  
+   — *The Road to Serfdom* (1944)
+
+5. **On Tradition and Progress**:  
+   "We must not confuse the rational with the reasonable. The traditions and institutions which have been evolved in the past may not be rational, but they may still be reasonable."  
+   — *The Constitution of Liberty* (1960)
+
+These quotes further illustrate Hayek’s emphasis on decentralized knowledge, the dangers of overreaching government control, and the value of individual freedom. If you want more quotes or specific themes (e.g., economics, law, or philosophy), let me know!
