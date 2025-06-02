@@ -53,7 +53,7 @@ translated: false
 
 - AI chatbots are popular because text is harder to process than images. People prefer real images over AI-generated ones since images are easier to understand at a glance. However, AI image generation has untapped potential - users could ask AI to show different angles, zoom in on faces, or magnify circuit board details. Since people primarily work with text rather than images, there's significant room for growth in AI image tools.
 
-
+- AI excels at explaining concepts and facilitating understanding. Furthermore, users can pose questions regarding any specific detail. This is likely the most significant utility of AI tools.
 
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
