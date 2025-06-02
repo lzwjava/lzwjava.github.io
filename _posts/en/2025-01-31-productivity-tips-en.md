@@ -28,3 +28,5 @@ translated: false
 * Use urges to do things. Don't force yourself. Always do what you want at the moment. This is fulfilling.
 
 * Use code or other tools to automate tasks, allowing you to focus on the most interesting aspects.
+
+* When you truly enjoy working or learning, you don't worry about progress, and you don't have a goal to rush towards. You simply want to do or learn things for their own sake. You don't worry about how much time has passed or the difficulty of the materials. You enter a flow state.
