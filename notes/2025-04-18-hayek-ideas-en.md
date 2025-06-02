@@ -22,3 +22,29 @@ Friedrich Hayek was an influential 20th-century economist and philosopher whose 
 6. **Critique of Socialism**: In "The Road to Serfdom," he warned that the pursuit of socialist economic planning could lead to totalitarianism by concentrating power in the state.
 
 These ideas greatly influenced classical liberal thought, free-market economics, and public policy in many countries.
+
+---
+
+Here are some notable quotes by Friedrich Hayek:
+
+1. **On Liberty**:  
+   "The principle that the end justifies the means is in individualist ethics regarded as the denial of all morals. In collectivist ethics it becomes necessarily the supreme rule."  
+   — *The Road to Serfdom* (1944)
+
+2. **On Knowledge and Planning**:  
+   "The curious task of economics is to demonstrate to men how little they really know about what they imagine they can design."  
+   — *The Fatal Conceit* (1988)
+
+3. **On Freedom and Coercion**:  
+   "Liberty not only means that the individual has both the opportunity and the burden of choice; it also means that he must bear the consequences of his actions."  
+   — *The Constitution of Liberty* (1960)
+
+4. **On Socialism**:  
+   "Socialism has never and nowhere been at first a working-class movement. It is a construction of theorists, deriving from certain tendencies of abstract thought."  
+   — *The Road to Serfdom* (1944)
+
+5. **On Spontaneous Order**:  
+   "We are led – for example, by the pricing system – to do things by circumstances of which we are not aware and which produce results that we do not intend."  
+   — *Law, Legislation and Liberty* (1973)
+
+These quotes reflect Hayek’s core ideas on individual liberty, the limits of centralized planning, and the importance of spontaneous order in society. Let me know if you’d like more quotes or context about his work!
