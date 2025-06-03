@@ -6,7 +6,7 @@ import argparse
 
 load_dotenv()
 
-TELEGRAM_BOT_API_KEY = os.environ.get("TELEGRAM_BOT2_API_KEY")
+TELEGRAM_BOT2_API_KEY = os.environ.get("TELEGRAM_BOT2_API_KEY")
 TELEGRAM_CHAT_ID = "610574272"
 
 def send_telegram_message(bot_token, chat_id, message):
@@ -34,10 +34,10 @@ def get_chat_id(bot_token):
 
 def send_reminder(message):
     """Sends a reminder message to Telegram."""
-    if TELEGRAM_BOT_API_KEY and TELEGRAM_CHAT_ID:
-        send_telegram_message(TELEGRAM_BOT_API_KEY, TELEGRAM_CHAT_ID, f"Reminder: {message}")
+    if TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID:
+        send_telegram_message(TELEGRAM_BOT2_API_KEY, TELEGRAM_CHAT_ID, f"Reminder: {message}")
     else:
-        print("TELEGRAM_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+        print("TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID are not set.")
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Bot Script")
@@ -46,7 +46,7 @@ def main():
     args = parser.parse_args()
 
     if args.job == 'get_chat_id':
-        bot_token = TELEGRAM_BOT_API_KEY
+        bot_token = TELEGRAM_BOT2_API_KEY
         chat_id = get_chat_id(bot_token)
         if chat_id:
             print(f"Chat ID: {chat_id}")
