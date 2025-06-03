@@ -11,7 +11,11 @@ on:
     - cron: '0 4 27 * *'
     # Runs on the 30th of every month at 2 PM (Beijing time, UTC+8).
     # Converted to UTC, 2 PM Beijing time is 6 AM UTC.
-    - cron: '0 6 30 * *' # <--- ADDED THIS LINE
+    - cron: '0 6 30 * *'
+    # Runs every day at 1 AM Beijing time (5 PM UTC the previous day).
+    - cron: '0 17 * * *'
+    # Runs every day at 11 AM Beijing time (3 AM UTC).
+    - cron: '0 3 * * *'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -39,7 +43,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.simple.txt
 
-    - name: Run Telegram script for daily reminders
+    - name: Run Telegram script for daily punch card reminders
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Punch card in WeCom"
@@ -55,7 +59,19 @@ jobs:
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Check salary"
-      if: github.event.schedule == '0 6 30 * *' # <--- ADDED THIS STEP
+      if: github.event.schedule == '0 6 30 * *'
+
+    - name: Run Telegram script for sleep reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Time to sleep!"
+      if: github.event.schedule == '0 17 * * *'
+
+    - name: Run Telegram script for wake up reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Time to wake up!"
+      if: github.event.schedule == '0 3 * * *'
 
     - name: Run Telegram script for test message
       env:
