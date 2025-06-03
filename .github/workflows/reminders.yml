@@ -2,10 +2,10 @@ name: Reminders
 
 on:
   schedule:
-    # Runs every 2 hours from 12 PM to 8 PM (Beijing time, UTC+8) from Monday to Friday.
-    # Converted to UTC, 12 PM to 8 PM UTC.
-    # Minute 0, Hours 4, 6, 8, 10, 12 (UTC), Any day of month, Any month, Days of week 1-5 (Monday to Friday)
-    - cron: '0 4,6,8,10,12 * * 1-5'
+    # Runs every 2 hours from 12 PM to 8 PM (Beijing time, UTC+8) from Wednesday to Friday.
+    # Converted to UTC, 12 PM to 8 PM UTC is 4 AM to 12 PM UTC.
+    # Minute 0, Hours 4, 6, 8, 10, 12 (UTC), Any day of month, Any month, Days of week 3-5 (Wednesday to Friday)
+    - cron: '0 4,6,8,10,12 * * 3-5'
     # Runs on the 27th of every month at 12 PM (Beijing time, UTC+8).
     # Converted to UTC, 12 PM Beijing time is 4 AM UTC.
     - cron: '0 4 27 * *'
@@ -16,6 +16,10 @@ on:
     - cron: '0 17 * * *'
     # Runs every day at 11 AM Beijing time (3 AM UTC).
     - cron: '0 3 * * *'
+    # Reminds to go to parents' house next day: 9 PM Beijing Time (1 PM UTC) on Tue, Wed, Thu.
+    - cron: '0 13 * * 2-4'
+    # Reminds to go to own house next day: 9 PM Beijing Time (1 PM UTC) on Sun, Mon, Fri, Sat.
+    - cron: '0 13 * * 0,1,5,6'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -47,7 +51,7 @@ jobs:
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Punch card in WeCom"
-      if: github.event.schedule == '0 4,6,8,10,12 * * 1-5'
+      if: github.event.schedule == '0 4,6,8,10,12 * * 3-5'
 
     - name: Run Telegram script for monthly mortgage reminder
       env:
@@ -72,6 +76,18 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Time to wake up!"
       if: github.event.schedule == '0 3 * * *'
+
+    - name: Run Telegram script for parents' house reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Reminder, Go to house of parents tomorrow!"
+      if: github.event.schedule == '0 13 * * 2-4'
+
+    - name: Run Telegram script for own house reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Reminder, Go to your house tomorrow!"
+      if: github.event.schedule == '0 13 * * 0,1,5,6'
 
     - name: Run Telegram script for test message
       env:
