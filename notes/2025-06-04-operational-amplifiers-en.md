@@ -74,13 +74,13 @@ Op-amps are typically used in closed-loop configurations with negative feedback 
   - The non-inverting input (+) is grounded (0 V).
   - A feedback resistor (R_f) connects the output (V_out) to the inverting input.
 - **Key Equations**:
-  - Voltage gain: \( A_v = -\frac{R_f}{R_1} \)
-  - Output voltage: \( V_{out} = -\frac{R_f}{R_1} \cdot V_{in} \)
-  - Input impedance: Approximately \( R_1 \).
+  - Voltage gain: \\( A_v = -\frac{R_f}{R_1} \\)
+  - Output voltage: \\( V_{out} = -\frac{R_f}{R_1} \cdot V_{in} \\)
+  - Input impedance: Approximately \\( R_1 \\).
 - **Virtual Short**: The inverting input is at 0 V (same as the grounded non-inverting input).
-- **Example**: For \( R_1 = 10 \, \text{k}\Omega \), \( R_f = 20 \, \text{k}\Omega \), and \( V_{in} = 1 \, \text{V} \):
-  - Gain: \( A_v = -\frac{20k}{10k} = -2 \)
-  - Output: \( V_{out} = -2 \cdot 1 = -2 \, \text{V} \).
+- **Example**: For \\( R_1 = 10 \, \text{k}\Omega \\), \\( R_f = 20 \, \text{k}\Omega \\), and \\( V_{in} = 1 \, \text{V} \\):
+  - Gain: \\( A_v = -\frac{20k}{10k} = -2 \\)
+  - Output: \\( V_{out} = -2 \cdot 1 = -2 \, \text{V} \\).
 - **Applications**: Audio amplifiers, signal inversion, summing amplifiers.
 
 #### **Non-Inverting Amplifier**
@@ -89,13 +89,13 @@ Op-amps are typically used in closed-loop configurations with negative feedback 
   - Input signal (V_in) is applied to the non-inverting input (+).
   - Feedback resistor (R_f) connects the output to the inverting input (-), with resistor R_1 from the inverting input to ground.
 - **Key Equations**:
-  - Voltage gain: \( A_v = 1 + \frac{R_f}{R_1} \)
-  - Output voltage: \( V_{out} = \left(1 + \frac{R_f}{R_1}\right) \cdot V_{in} \)
+  - Voltage gain: \\( A_v = 1 + \frac{R_f}{R_1} \\)
+  - Output voltage: \\( V_{out} = \left(1 + \frac{R_f}{R_1}\right) \cdot V_{in} \\)
   - Input impedance: Very high (due to the non-inverting input).
 - **Virtual Short**: The inverting input voltage equals V_in (due to feedback).
-- **Example**: For \( R_1 = 10 \, \text{k}\Omega \), \( R_f = 30 \, \text{k}\Omega \), and \( V_{in} = 1 \, \text{V} \):
-  - Gain: \( A_v = 1 + \frac{30k}{10k} = 4 \)
-  - Output: \( V_{out} = 4 \cdot 1 = 4 \, \text{V} \).
+- **Example**: For \\( R_1 = 10 \, \text{k}\Omega \\), \\( R_f = 30 \, \text{k}\Omega \\), and \\( V_{in} = 1 \, \text{V} \\):
+  - Gain: \\( A_v = 1 + \frac{30k}{10k} = 4 \\)
+  - Output: \\( V_{out} = 4 \cdot 1 = 4 \, \text{V} \\).
 - **Applications**: Signal buffering, voltage scaling.
 
 #### **Integrator**
@@ -105,15 +105,15 @@ Op-amps are typically used in closed-loop configurations with negative feedback 
   - A capacitor (C) is placed in the feedback path (from output to inverting input).
   - Non-inverting input is grounded.
 - **Key Equations**:
-  - Output voltage: \( V_{out} = -\frac{1}{R \cdot C} \int V_{in}(t) \, dt \)
+  - Output voltage: \\( V_{out} = -\frac{1}{R \cdot C} \int V_{in}(t) \, dt \\)
   - The output is the negative integral of the input.
 - **Virtual Short**: Inverting input is at 0 V.
 - **Practical Considerations**:
   - A resistor in parallel with the capacitor may be added to limit low-frequency gain and prevent saturation.
   - Limited by op-amp’s slew rate and capacitor leakage.
-- **Example**: For \( R = 10 \, \text{k}\Omega \), \( C = 1 \, \mu\text{F} \), and constant \( V_{in} = 1 \, \text{V} \):
-  - Output: \( V_{out} = -\frac{1}{10k \cdot 1\mu} \int 1 \, dt = -100 \cdot t \, \text{V/s} \).
-  - After 1 ms: \( V_{out} = -0.1 \, \text{V} \).
+- **Example**: For \\( R = 10 \, \text{k}\Omega \\), \\( C = 1 \, \mu\text{F} \\), and constant \\( V_{in} = 1 \, \text{V} \\):
+  - Output: \\( V_{out} = -\frac{1}{10k \cdot 1\mu} \int 1 \, dt = -100 \cdot t \, \text{V/s} \\).
+  - After 1 ms: \\( V_{out} = -0.1 \, \text{V} \\).
 - **Applications**: Analog computers, signal processing, low-pass filters.
 
 #### **Differentiator**
@@ -123,13 +123,13 @@ Op-amps are typically used in closed-loop configurations with negative feedback 
   - A resistor (R) is placed in the feedback path.
   - Non-inverting input is grounded.
 - **Key Equations**:
-  - Output voltage: \( V_{out} = -R \cdot C \cdot \frac{dV_{in}}{dt} \)
+  - Output voltage: \\( V_{out} = -R \cdot C \cdot \frac{dV_{in}}{dt} \\)
   - The output is the negative derivative of the input.
 - **Virtual Short**: Inverting input is at 0 V.
 - **Practical Considerations**:
   - Susceptible to high-frequency noise amplification; a small resistor in series with the input capacitor can stabilize the circuit.
-- **Example**: For \( R = 10 \, \text{k}\Omega \), \( C = 1 \, \mu\text{F} \), and \( V_{in} = t \, \text{V} \) (linear ramp):
-  - Output: \( V_{out} = -10k \cdot 1\mu \cdot \frac{d(t)}{dt} = -0.01 \, \text{V} \).
+- **Example**: For \\( R = 10 \, \text{k}\Omega \\), \\( C = 1 \, \mu\text{F} \\), and \\( V_{in} = t \, \text{V} \\) (linear ramp):
+  - Output: \\( V_{out} = -10k \cdot 1\mu \cdot \frac{d(t)}{dt} = -0.01 \, \text{V} \\).
 - **Applications**: Edge detection, high-pass filters.
 
 ---
@@ -164,20 +164,20 @@ Op-amps can operate in nonlinear modes (without negative feedback or with specif
   1. **Square Wave Generator (Astable Multivibrator)**:
      - **Circuit**: Uses an op-amp with positive feedback through resistors and a capacitor in the negative feedback path.
      - **Operation**: The capacitor charges and discharges between threshold voltages set by the resistors, causing the output to switch between supply rails.
-     - **Frequency**: Determined by the RC time constant, e.g., \( f = \frac{1}{2 \cdot R \cdot C \cdot \ln(3)} \) (approximate for some configurations).
-     - **Example**: For \( R = 10 \, \text{k}\Omega \), \( C = 0.1 \, \mu\text{F} \), the frequency is roughly 1 kHz.
+     - **Frequency**: Determined by the RC time constant, e.g., \\( f = \frac{1}{2 \cdot R \cdot C \cdot \ln(3)} \\) (approximate for some configurations).
+     - **Example**: For \\( R = 10 \, \text{k}\Omega \\), \\( C = 0.1 \, \mu\text{F} \\), the frequency is roughly 1 kHz.
      - **Applications**: Clock signals, pulse generation.
 
   2. **Triangle Wave Generator**:
      - **Circuit**: Typically combines a square wave generator (comparator with positive feedback) with an integrator.
      - **Operation**: The square wave drives the integrator, producing a linear ramp (triangle wave).
-     - **Example**: A 1 kHz square wave fed into an integrator with \( R = 10 \, \text{k}\Omega \), \( C = 0.1 \, \mu\text{F} \) produces a 1 kHz triangle wave.
+     - **Example**: A 1 kHz square wave fed into an integrator with \\( R = 10 \, \text{k}\Omega \\), \\( C = 0.1 \, \mu\text{F} \\) produces a 1 kHz triangle wave.
      - **Applications**: Test signals, pulse-width modulation (PWM).
 
   3. **Sine Wave Generator (Wien Bridge Oscillator)**:
      - **Circuit**: Uses positive feedback through a frequency-selective network (resistors and capacitors) and negative feedback for amplitude stabilization.
-     - **Operation**: Oscillates at a frequency where the phase shift is zero, e.g., \( f = \frac{1}{2 \pi R C} \).
-     - **Example**: For \( R = 1.59 \, \text{k}\Omega \), \( C = 0.01 \, \mu\text{F} \), the frequency is ~10 kHz.
+     - **Operation**: Oscillates at a frequency where the phase shift is zero, e.g., \\( f = \frac{1}{2 \pi R C} \\).
+     - **Example**: For \\( R = 1.59 \, \text{k}\Omega \\), \\( C = 0.01 \, \mu\text{F} \\), the frequency is ~10 kHz.
      - **Applications**: Audio signal generation, testing.
 
 ---
@@ -193,8 +193,8 @@ Op-amps can operate in nonlinear modes (without negative feedback or with specif
 ### **Example Application: Audio Preamplifier**
 Let’s design a simple inverting audio preamplifier:
 - **Requirements**: Amplify a 50 mV audio signal to 500 mV (gain = 10).
-- **Circuit**: Inverting amplifier with \( R_1 = 10 \, \text{k}\Omega \), \( R_f = 100 \, \text{k}\Omega \).
-- **Calculation**: \( A_v = -\frac{100k}{10k} = -10 \), \( V_{out} = -10 \cdot 0.05 = -0.5 \, \text{V} \).
+- **Circuit**: Inverting amplifier with \\( R_1 = 10 \, \text{k}\Omega \\), \\( R_f = 100 \, \text{k}\Omega \\).
+- **Calculation**: \\( A_v = -\frac{100k}{10k} = -10 \\), \\( V_{out} = -10 \cdot 0.05 = -0.5 \, \text{V} \\).
 - **Considerations**: Use a low-noise op-amp (e.g., OPA2134), add a coupling capacitor to block DC, and ensure the power supply supports the signal range (e.g., ±5 V).
 
 ---
