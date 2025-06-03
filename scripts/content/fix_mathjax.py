@@ -17,7 +17,11 @@ def fix_mathjax_in_file(filepath, gemini=False, reset=False):
     try:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
-
+            
+        if not reset and (re.search(r'\\\\\(', content) or re.search(r'\\\\\[', content)):
+            print(f"Skipping {filepath}: Already contains \\( or \\[")
+            return False
+        
         # Parse markdown to identify code blocks
         md = markdown.Markdown(extensions=['fenced_code'])
         html_content = md.convert(content)
@@ -65,12 +69,19 @@ def fix_mathjax_in_file(filepath, gemini=False, reset=False):
 
         updated_content = replace_mathjax(content, gemini, reset)
 
-        with open(filepath, 'w', encoding='utf-8') as f:
-            f.write(updated_content)
+        # Check if any replacements were made
+        replacements_made = content != updated_content
 
-        action = "Reversed" if reset else "Fixed"
-        print(f"{action} MathJax delimiters in: {filepath}")
-        return True
+        # Write updated content only if replacements were made
+        if replacements_made:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                f.write(updated_content)
+            action = "Reversed" if reset else "Fixed"
+            print(f"{action} MathJax delimiters in {filepath}: Replacements made")
+        else:
+            print(f"Processed {filepath}: No replacements needed")
+
+        return replacements_made
 
     except Exception as e:
         print(f"Error processing {filepath}: {e}")
