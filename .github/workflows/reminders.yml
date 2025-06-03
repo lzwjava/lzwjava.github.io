@@ -42,27 +42,23 @@ jobs:
     - name: Run Telegram script for daily reminders
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Punch card in WeCom"
       if: github.event.schedule == '0 4,6,8,10,12 * * 1-5'
 
     - name: Run Telegram script for monthly mortgage reminder
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Prepare house mortgage deduction"
       if: github.event.schedule == '0 4 27 * *'
 
     - name: Run Telegram script for monthly salary check reminder
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Check salary"
       if: github.event.schedule == '0 6 30 * *' # <--- ADDED THIS STEP
 
     - name: Run Telegram script for test message
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
-        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
       if: github.event_name == 'workflow_dispatch'
