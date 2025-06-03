@@ -3,8 +3,6 @@ import requests
 from dotenv import load_dotenv
 import json
 import argparse
-import schedule
-import time
 
 load_dotenv()
 
