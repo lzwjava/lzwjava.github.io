@@ -20,6 +20,8 @@ on:
     - cron: '0 13 * * 2-4'
     # Reminds to go to own house next day: 9 PM Beijing Time (1 PM UTC) on Sun, Mon, Fri, Sat.
     - cron: '0 13 * * 0,1,5,6'
+    # New: Reminds to buy fresh produce direct from the source in JD.com: 9 PM Beijing Time (1 PM UTC) on Wednesday.
+    - cron: '0 13 * * 3'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -88,6 +90,12 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Reminder, Go to your house tomorrow!"
       if: github.event.schedule == '0 13 * * 0,1,5,6'
+
+    - name: Run Telegram script for JD.com fresh produce reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Reminder, Buy fresh produce direct from the source in JD.com!"
+      if: github.event.schedule == '0 13 * * 3'
 
     - name: Run Telegram script for test message
       env:
