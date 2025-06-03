@@ -57,18 +57,18 @@ start_proxy
 start_git_proxy
 
 alias python=python3
-alias pip=pip3
+alias pip=pip3.13
 
 function gpa {
-  python ~/bin/gitmessageai.py --allow-pull-push
+  python ~/bin/gitmessageai.py --api deepseek --allow-pull-push
 }
 
 function gca {
-  python ~/bin/gitmessageai.py --no-push
+  python ~/bin/gitmessageai.py --api deepseek --no-push
 }
 
 function gm {
-  python ~/bin/gitmessageai.py --only-message
+  python ~/bin/gitmessageai.py --api deepseek --only-message
 }
 
 function gpp {
@@ -190,6 +190,7 @@ export GOOGLE_APPLICATION_CREDENTIALS="/Users/lzwjava/bin/graphite-ally-445108-k
 
 
 export DYLD_LIBRARY_PATH=$(brew --prefix curl)/lib
+
 
 
 
