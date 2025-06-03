@@ -4,9 +4,11 @@ on:
   schedule:
     # Runs every 2 hours from 12 PM to 8 PM (Beijing time, UTC+8) from Monday to Friday.
     # Converted to UTC, 12 PM to 8 PM Beijing time is 4 AM to 12 PM UTC.
-    # 0 4,6,8,10,12 * * 1-5
     # Minute 0, Hours 4, 6, 8, 10, 12 (UTC), Any day of month, Any month, Days of week 1-5 (Monday to Friday)
     - cron: '0 4,6,8,10,12 * * 1-5'
+    # Runs on the 27th of every month at 12 PM (Beijing time, UTC+8).
+    # Converted to UTC, 12 PM Beijing time is 4 AM UTC.
+    - cron: '0 4 27 * *'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -31,8 +33,18 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.simple.txt
 
-    - name: Run Telegram script
+    - name: Run Telegram script for daily reminders
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Punch card in WeCom"
+      # This step will run only when the cron for daily reminders matches
+      if: github.event.schedule == '0 4,6,8,10,12 * * 1-5'
+
+    - name: Run Telegram script for monthly mortgage reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Prepare house mortgage deduction"
+      # This step will run only when the cron for monthly reminders matches
+      if: github.event.schedule == '0 4 27 * *'
