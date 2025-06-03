@@ -24,6 +24,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 5 # <--- ADDED THIS LINE
 
     - name: Set up Python 3.10.x
       uses: actions/setup-python@v4
@@ -54,5 +56,4 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
-      # This step will run if triggered by the 5-minute cron or manually
       if: github.event.schedule == '*/5 * * * *' || github.event_name == 'workflow_dispatch'
