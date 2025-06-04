@@ -24,6 +24,9 @@ on:
     - cron: '0 13 * * 3'
     # New: Reminds to buy food that is quick delivered from JD.com: 9 PM Beijing Time (1 PM UTC) on Friday.
     - cron: '0 13 * * 5'
+    # New: Reminds about associate degree exam in March, April, September, and October.
+    # Runs every Monday at 1 PM Beijing Time (5 AM UTC) during these months.
+    - cron: '0 5 * 3,4,9,10 1'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -104,6 +107,12 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Buy quick delivery food from JD.com!"
       if: github.event.schedule == '0 13 * * 5'
+
+    - name: Run Telegram script for associate degree exam reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Register associate degree exam"
+      if: github.event.schedule == '0 5 * 3,4,9,10 1'
 
     - name: Run Telegram script for test message
       env:
