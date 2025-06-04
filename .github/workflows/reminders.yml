@@ -29,6 +29,8 @@ on:
     - cron: '0 5 * 3,4,9,10 1'
     #New: Reminds to submit clarity timesheet every Friday at 5pm Taipei time (9am UTC)
     - cron: '0 9 * * 5'
+    #New: Reminds to submit vendor timesheet on the 25th day of every month at 12 AM Taipei time (4 PM UTC previous day).
+    - cron: '0 16 25 * *'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -121,6 +123,12 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Submit clarity timesheet"
       if: github.event.schedule == '0 9 * * 5'
+    
+    - name: Run Telegram script for vendor timesheet reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Submit vendor timesheet"
+      if: github.event.schedule == '0 16 25 * *'
 
     - name: Run Telegram script for test message
       env:
