@@ -31,6 +31,8 @@ on:
     - cron: '0 9 * * 5'
     #New: Reminds to submit vendor timesheet on the 25th day of every month at 12 AM Taipei time (4 PM UTC previous day).
     - cron: '0 16 25 * *'
+    # New: Reminds to ask family to support mortgage payment on the 16th of every month at 9 PM Taipei time (1 PM UTC).
+    - cron: '0 13 16 * *'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -129,6 +131,12 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Submit vendor timesheet"
       if: github.event.schedule == '0 16 25 * *'
+    
+    - name: Run Telegram script for family mortgage support reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Ask family to support mortgage payment"
+      if: github.event.schedule == '0 13 16 * *'
 
     - name: Run Telegram script for test message
       env:
