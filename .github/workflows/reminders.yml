@@ -27,6 +27,8 @@ on:
     # New: Reminds about associate degree exam in March, April, September, and October.
     # Runs every Monday at 1 PM Beijing Time (5 AM UTC) during these months.
     - cron: '0 5 * 3,4,9,10 1'
+    #New: Reminds to submit clarity timesheet every Friday at 5pm Taipei time (9am UTC)
+    - cron: '0 9 * * 5'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -113,6 +115,12 @@ jobs:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "Register associate degree exam"
       if: github.event.schedule == '0 5 * 3,4,9,10 1'
+    
+    - name: Run Telegram script for clarity timesheet reminder
+      env:
+        TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Submit clarity timesheet"
+      if: github.event.schedule == '0 9 * * 5'
 
     - name: Run Telegram script for test message
       env:
