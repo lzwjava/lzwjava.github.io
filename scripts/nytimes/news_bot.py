@@ -148,7 +148,7 @@ def fetch_and_summarize(url, fallback_title=None):
     text_content = text_content.strip()
     if len(text_content) > 3000:
         text_content = text_content[:3000]
-    summary = ai_summarize(text_content, url)
+    summary = ai_summarize(text_content, url, title)
     return {"url": url, "summary": summary, "title": title}
 
 def limit_to_n_words(text, n):
@@ -157,16 +157,17 @@ def limit_to_n_words(text, n):
         return text.strip()
     return ' '.join(words[:n]) + "..."
 
-def ai_summarize(text, url=None):
+def ai_summarize(text, url=None, title=None):
     if not MISTRAL_API_KEY:
         print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
         return limit_to_n_words(text, 15)
     prompt = (
-        "If the original text is in Chinese, first translate it to English, then summarize. "
+        "If the original text is in Chinese, summarize it in English. "
         "Summarize the following web page content in clear, concise English. "
         "Focus on the single most important point or insight. "
         "Your summary should be around 300 characters. "
         "Output only the summary sentence:\n"
+        f"Title: {title if title else ''}\n"
         f"{text}\n"
         f"{'Original link: ' + url if url else ''}"
     )
@@ -223,7 +224,7 @@ def summarize_nytimes_article(url):
     title_element = soup.select_one('.article-area .article-content .article-header header h1')
     title = title_element.text.strip() if title_element else (soup.title.text.strip() if soup.title else url)
     # Extract the main article text
-    article_area = soup.find('div', class_='article-area')
+    article_area = soup.find('section', class_='article-body')
     if article_area:
         article_text = article_area.get_text(separator='\n', strip=True)
     else:
@@ -232,7 +233,7 @@ def summarize_nytimes_article(url):
         article_text = soup.get_text(separator='\n', strip=True)
     if len(article_text) > 3000:
         article_text = article_text[:3000]
-    summary = ai_summarize(article_text, url)
+    summary = ai_summarize(article_text, url, title)
     return {"url": url, "summary": summary, "title": title}
 
 def main():
