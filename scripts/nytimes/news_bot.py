@@ -5,31 +5,54 @@ from dotenv import load_dotenv
 import datetime
 import sys
 import re
+import time
 
 load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_API_KEY")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "610574272")
+MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")  # Use Mistral for summarization
+
+TELEGRAM_MAX_LENGTH = 4096
 
 def send_telegram_message(message):
-    """Sends a message to a Telegram chat using the Telegram Bot API."""
+    """Sends a message to a Telegram chat using the Telegram Bot API. Splits into multiple messages if too long.
+    Removes all URLs from the message before sending.
+    """
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
         print("Error: TELEGRAM_BOT_API_KEY or TELEGRAM_CHAT_ID not set.")
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    params = {
-        "chat_id": TELEGRAM_CHAT_ID,
-        "text": message,
-        "parse_mode": "Markdown"
-    }
-    try:
-        response = requests.post(url, params=params)
-        response.raise_for_status()
-        print(f"Successfully sent Telegram message.")
-        return True
-    except requests.exceptions.RequestException as e:
-        print(f"Error sending Telegram message: {e}")
-        return False
+    # Remove all URLs from the message
+    url_pattern = re.compile(
+        r'(https?://[^\s]+)'
+    )
+    message_no_links = url_pattern.sub('', message)
+    # Split message into chunks of <= TELEGRAM_MAX_LENGTH
+    messages = []
+    msg = message_no_links
+    while len(msg) > TELEGRAM_MAX_LENGTH:
+        # Try to split at last newline before limit
+        split_idx = msg.rfind('\n', 0, TELEGRAM_MAX_LENGTH)
+        if split_idx == -1 or split_idx < TELEGRAM_MAX_LENGTH // 2:
+            split_idx = TELEGRAM_MAX_LENGTH
+        messages.append(msg[:split_idx])
+        msg = msg[split_idx:]
+    messages.append(msg)
+    success = True
+    for part in messages:
+        params = {
+            "chat_id": TELEGRAM_CHAT_ID,
+            "text": part,
+        }
+        try:
+            response = requests.post(url, params=params)
+            response.raise_for_status()
+            print(f"Successfully sent Telegram message part ({len(part)} chars).")
+        except requests.exceptions.RequestException as e:
+            print(f"Error sending Telegram message: {e}")
+            success = False
+    return success
 
 def fetch_html_content(url):
     """Fetches the HTML content of a given URL."""
@@ -44,16 +67,15 @@ def fetch_html_content(url):
         return None
 
 def extract_hacker_news_links(html):
-    """Extracts links from Hacker News."""
+    """Extracts top 5 links from Hacker News."""
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     seen = set()
     for item in soup.select('.titleline > a'):
         url = item['href']
         title = item.text.strip()
-        if url.startswith('item?id='):  # Handle internal HN links
+        if url.startswith('item?id='):
             url = f"https://news.ycombinator.com/{url}"
-        # Avoid duplicates and empty titles
         if url not in seen and title:
             links.append({'url': url, 'text': title})
             seen.add(url)
@@ -63,12 +85,11 @@ def extract_hacker_news_links(html):
     return links
 
 def extract_github_trending(html):
-    """Extracts trending repositories from GitHub."""
+    """Extracts top 5 trending repositories from GitHub."""
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     for repo in soup.select('article.Box-row h2 a'):
         url = f"https://github.com{repo['href']}"
-        # Clean up repo name: remove extra whitespace and newlines
         title = re.sub(r'\s+', ' ', repo.text).strip()
         if title and url:
             links.append({'url': url, 'text': title})
@@ -77,65 +98,153 @@ def extract_github_trending(html):
     print(f"Extracted {len(links)} trending repositories from GitHub.")
     return links
 
-def extract_nytimes_links(html):
-    """Extracts links from the main page of cn.nytimes.com."""
-    soup = BeautifulSoup(html, 'html.parser')
-    links = []
-    seen = set()
-    # NYTimes mobile Chinese site: look for news article links in <section> or <article>
-    for a in soup.find_all('a', href=True):
-        url = a['href']
-        text = a.get_text(strip=True)
-        # Only keep links that look like news articles and have non-empty text
-        if url.startswith('https://m.cn.nytimes.com/') and text and url not in seen:
-            links.append({'url': url, 'text': text})
-            seen.add(url)
-        if len(links) >= 5:
-            break
-    print(f"Extracted {len(links)} links from NYTimes.")
-    return links
+def call_mistral_api(prompt, model="mistral-small-latest"):
+    """Calls the Mistral API to summarize text."""
+    api_key = MISTRAL_API_KEY
+    if not api_key:
+        print("Error: MISTRAL_API_KEY environment variable not set.")
+        return None
 
-def generate_markdown_report(articles, source_name):
-    """Generates a Markdown report for the given articles."""
-    markdown = f"### {source_name}\n\n"
-    if not articles:
-        markdown += "_No items found._\n\n"
-        return markdown
-    for article in articles:
-        # Escape parentheses in text to avoid Markdown link issues
-        safe_text = article['text'].replace('(', '\\(').replace(')', '\\)')
-        markdown += f"- [{safe_text}]({article['url']})\n"
-    return markdown + "\n"
+    url = "https://api.mistral.ai/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+
+    data = {
+        "model": model,
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    }
+
+    try:
+        print(f"Calling Mistral API with model: {model}")
+        print(f"Prompt being sent: {prompt[:1000]}...")  # Print the first 1000 characters of the prompt
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        response_json = response.json()
+        print(f"Mistral API Response: {response_json}")
+        if response_json and response_json.get('choices'):
+            content = response_json['choices'][0]['message']['content']
+            print(f"Mistral API Content: {content}")
+            return content
+        else:
+            print(f"Mistral API Error: Invalid response format: {response_json}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Mistral API Error: {e}")
+        if hasattr(e, "response") and e.response is not None:
+            print(f"Response status code: {e.response.status_code}")
+            print(f"Response content: {e.response.text}")
+        return None
+
+def fetch_and_summarize(url, fallback_title=None):
+    """Fetches the content of a URL and summarizes it using the Mistral API."""
+    print(f"Summarizing: {url}")
+    html = fetch_html_content(url)
+    if not html:
+        return {"url": url, "summary": "Could not fetch content.", "title": fallback_title or url}
+    # Try to extract main text
+    soup = BeautifulSoup(html, 'html.parser')
+    # Try to get title
+    title = soup.title.text.strip() if soup.title else (fallback_title or url)
+    # Try to get main content
+    paragraphs = soup.find_all('p')
+    text_content = "\n".join(p.get_text() for p in paragraphs)
+    if not text_content or len(text_content) < 100:
+        # Fallback: use all text
+        text_content = soup.get_text(separator="\n")
+    # Truncate to avoid overloading the API
+    text_content = text_content.strip()
+    if len(text_content) > 3000:
+        text_content = text_content[:3000]
+    summary = ai_summarize(text_content, url)
+    return {"url": url, "summary": summary, "title": title}
+
+def limit_to_n_words(text, n):
+    """Limit the text to n words, appending '...' if truncated."""
+    words = text.strip().split()
+    if len(words) <= n:
+        return text.strip()
+    return ' '.join(words[:n]) + "..."
+
+def ai_summarize(text, url=None):
+    """Summarizes the given text using the Mistral API."""
+    if not MISTRAL_API_KEY:
+        print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
+        return limit_to_n_words(text, 15)
+    prompt = (
+        "Summarize the following web page content in concise English, focusing on the key information:\n"
+        f"{text}\n"
+        f"{'Original link: ' + url if url else ''}"
+    )
+    summary = call_mistral_api(prompt)
+    if summary is None:
+        return limit_to_n_words(text, 15)
+    return summary.strip()
+
+def generate_summarized_report(summaries, source_name):
+    """Generates a plain text report for the given summarized articles.
+    Removes all URLs from the report text.
+    """
+    text = f"{source_name}\n"
+    text += "-" * len(source_name) + "\n"
+    if not summaries:
+        text += "No items found.\n\n"
+        return text
+    url_pattern = re.compile(
+        r'(https?://[^\s]+)'
+    )
+    for idx, item in enumerate(summaries, 1):
+        safe_title = item.get('title', '').replace('\n', ' ').replace('\r', ' ').strip()
+        summary = item.get('summary', '').replace('\n', ' ').replace('\r', ' ').strip()
+        url = item.get('url', '')
+        # Remove URLs from title and summary fields
+        safe_title = url_pattern.sub('', safe_title)
+        summary = url_pattern.sub('', summary)
+        text += f"{idx}. {safe_title}: {summary} {url}\n"
+    text += "\n"
+    return text
 
 def main():
-    """Main function to scrape news and send to Telegram."""
     today = datetime.datetime.now().strftime("%Y-%m-%d")
-    markdown_report = f"# Daily News Summary - {today}\n\n"
+    report = f"Daily News Summary - {today}\n\n"
 
     # Hacker News
     hn_html = fetch_html_content('https://news.ycombinator.com')
     hn_links = []
+    hn_summaries = []
     if hn_html:
         hn_links = extract_hacker_news_links(hn_html)
-    markdown_report += generate_markdown_report(hn_links, "Hacker News")
+        for link in hn_links:
+            summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
+            hn_summaries.append(summary)
+            time.sleep(2)  # Be polite to servers and avoid rate limits
+    report += generate_summarized_report(hn_summaries, "Hacker News")
 
     # GitHub Trending
     gh_html = fetch_html_content('https://github.com/trending')
     gh_links = []
+    gh_summaries = []
     if gh_html:
         gh_links = extract_github_trending(gh_html)
-    markdown_report += generate_markdown_report(gh_links, "GitHub Trending")
-
-    # NYTimes
-    nytimes_html = fetch_html_content('https://m.cn.nytimes.com')
-    nytimes_links = []
-    if nytimes_html:
-        nytimes_links = extract_nytimes_links(nytimes_html)
-    markdown_report += generate_markdown_report(nytimes_links, "NYTimes (Chinese)")
+        for link in gh_links:
+            summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
+            gh_summaries.append(summary)
+            time.sleep(2)
+    report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
     # Only send if at least one section has news
-    if any([hn_links, gh_links, nytimes_links]):
-        if send_telegram_message(markdown_report):
+    if any([hn_summaries, gh_summaries]):
+        # Truncate report to TELEGRAM_MAX_LENGTH if needed
+        if len(report) > TELEGRAM_MAX_LENGTH:
+            print(f"Report exceeds {TELEGRAM_MAX_LENGTH} chars, will be split into multiple messages.")
+        if send_telegram_message(report):
             print("Daily news report sent to Telegram successfully.")
             sys.exit(0)
         else:
