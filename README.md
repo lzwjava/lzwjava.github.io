@@ -43,6 +43,8 @@ bundle exec jekyll serve --incremental
 
 bundle exec jekyll serve --draft
 
+bundle exec jekyll serve
+
 bundle add webrick
 
 jekyll serve
