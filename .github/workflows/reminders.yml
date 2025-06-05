@@ -35,6 +35,8 @@ on:
     - cron: '0 13 16 * *'
     # New: Reminds to watch TV with partner every Friday, Saturday, and Sunday at 10 PM Taipei time (2 PM UTC).
     - cron: '0 14 * * 5,6,0'
+    # New: 2 AM Beijing time (6 PM UTC) on Wed, Thu, Fri
+    - cron: '0 18 * * 3,4,5'
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -146,8 +148,15 @@ jobs:
       run: python scripts/release/reminders_bot.py --job send_message --message "Time to watch TV with your partner!"
       if: github.event.schedule == '0 14 * * 5,6,0'
 
+    - name: Run Telegram script for car window paper stick reminder
+      env:
+          TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
+      run: python scripts/release/reminders_bot.py --job send_message --message "Remove parking permit sticker from car window"
+      if: github.event.schedule == '0 18 * * 3,4,5'      
+
     - name: Run Telegram script for test message
       env:
         TELEGRAM_BOT2_API_KEY: ${{ secrets.TELEGRAM_BOT2_API_KEY }}
       run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
       if: github.event_name == 'workflow_dispatch'
+
