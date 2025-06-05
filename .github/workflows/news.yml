@@ -5,6 +5,12 @@ on:
     # Runs every day at 9 AM Beijing time (1 AM UTC).
     - cron: '0 1 * * *'
   workflow_dispatch:  # Allows manual triggering
+  push:
+    # Only trigger if BOTH files change in the same commit/push
+    # This requires a filter job below to check for both files
+    paths:
+      - scripts/nytimes/news_bot.py
+      - .github/workflows/news.yml
 
 concurrency:
   group: 'news-bot'
