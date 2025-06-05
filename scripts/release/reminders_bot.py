@@ -35,7 +35,7 @@ def get_chat_id(bot_token):
 def send_reminder(message):
     """Sends a reminder message to Telegram."""
     if TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID:
-        send_telegram_message(TELEGRAM_BOT2_API_KEY, TELEGRAM_CHAT_ID, f"Reminder: {message}")
+        send_telegram_message(TELEGRAM_BOT2_API_KEY, TELEGRAM_CHAT_ID, f"{message}")
     else:
         print("TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID are not set.")
 
