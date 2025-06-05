@@ -3,11 +3,11 @@ audio: true
 generated: false
 lang: de
 layout: post
-title: Automatisierung von Erinnerungen mit GitHub Actions und Telegram
+title: Streamline-Erinnerungen via Telegram
 translated: true
 ---
 
-In diesem Projekt habe ich ein automatisiertes Erinnerungssystem mit GitHub Actions und einem Telegram-Bot eingerichtet, um meine täglichen und monatlichen Aufgaben im Blick zu behalten. Mithilfe von Cron-Zeitplänen habe ich Erinnerungen für arbeitsbezogene Aufgaben wie das Einchecken in WeCom, das Einreichen von Stundenzetteln und das Überprüfen von Gehältern konfiguriert, sowie für persönliche Aufgaben wie den Besuch bei der Familie, Einkäufe auf JD.com und sogar das Fernsehen mit meinem Partner. Das System verwendet ein Python-Skript, um Nachrichten über die Telegram-Bot-API zu senden, wobei Umgebungsvariablen sicher in GitHub Secrets gespeichert sind. Dieser Aufbau stellt sicher, dass ich keine kritischen Fristen oder persönlichen Verpflichtungen verpasse und verbindet Technologie mit dem Alltag für maximale Effizienz.
+In diesem Projekt habe ich ein automatisiertes Erinnerungssystem mit GitHub Actions und einem Telegram-Bot eingerichtet, um meine täglichen und monatlichen Aufgaben im Blick zu behalten. Durch die Nutzung von Cron-Zeitplänen habe ich Erinnerungen für arbeitsbezogene Aufgaben wie das Einchecken in WeCom, das Einreichen von Stundenzetteln und die Gehaltsprüfung konfiguriert, sowie für persönliche Aufgaben wie den Besuch bei der Familie, Einkäufe auf JD.com und sogar das gemeinsame Fernsehen mit meinem Partner. Das System verwendet ein Python-Skript, um Nachrichten über die Telegram Bot API zu senden, wobei Umgebungsvariablen sicher in GitHub Secrets gespeichert sind. Dieser Aufbau stellt sicher, dass ich keine wichtigen Fristen oder persönlichen Verpflichtungen verpasse und verbindet Technologie mit dem Alltag für maximale Effizienz.
 
 ```yaml
 name: Erinnerungen
@@ -24,25 +24,25 @@ on:
     - cron: '0 17 * * *'
     # Läuft täglich um 11 Uhr Peking-Zeit (3 Uhr UTC).
     - cron: '0 3 * * *'
-    # Erinnert daran, am nächsten Tag zu den Eltern zu gehen: 21 Uhr Peking-Zeit (13 Uhr UTC) an Di, Mi, Do.
+    # Erinnert am nächsten Tag die Eltern zu besuchen: 21 Uhr Peking-Zeit (13 Uhr UTC) an Di, Mi, Do.
     - cron: '0 13 * * 2-4'
-    # Erinnert daran, am nächsten Tag nach Hause zu gehen: 21 Uhr Peking-Zeit (13 Uhr UTC) an So, Mo, Fr, Sa.
+    # Erinnert am nächsten Tag nach Hause zu gehen: 21 Uhr Peking-Zeit (13 Uhr UTC) an So, Mo, Fr, Sa.
     - cron: '0 13 * * 0,1,5,6'
-    # Erinnert daran, frische Produkte direkt bei JD.com zu kaufen: 21 Uhr Peking-Zeit (13 Uhr UTC) am Mittwoch.
+    # Erinnert an den Einkauf von Frischwaren direkt bei JD.com: 21 Uhr Peking-Zeit (13 Uhr UTC) am Mittwoch.
     - cron: '0 13 * * 3'
-    # Erinnert daran, Schnelllieferessen von JD.com zu kaufen: 21 Uhr Peking-Zeit (13 Uhr UTC) am Freitag.
+    # Erinnert an den Einkauf von Schnelllieferessen bei JD.com: 21 Uhr Peking-Zeit (13 Uhr UTC) am Freitag.
     - cron: '0 13 * * 5'
     # Erinnert an die Associate-Degree-Prüfung im März, April, September und Oktober jeden Montag um 13 Uhr Peking-Zeit (5 Uhr UTC).
     - cron: '0 5 * 3,4,9,10 1'
-    # Erinnert daran, den Clarity-Stundenzettel jeden Freitag um 17 Uhr Taipeh-Zeit (9 Uhr UTC) einzureichen.
+    # Erinnert an das Einreichen des Clarity-Stundenzettels jeden Freitag um 17 Uhr Taipeh-Zeit (9 Uhr UTC).
     - cron: '0 9 * * 5'
-    # Erinnert daran, den Lieferanten-Stundenzettel am 25. jedes Monats um 0 Uhr Taipeh-Zeit (16 Uhr UTC am Vortag) einzureichen.
+    # Erinnert an das Einreichen des Lieferanten-Stundenzettels am 25. jedes Monats um 0 Uhr Taipeh-Zeit (16 Uhr UTC am Vortag).
     - cron: '0 16 25 * *'
-    # Erinnert daran, die Familie um Unterstützung bei der Hypothekenzahlung am 16. jedes Monats um 21 Uhr Taipeh-Zeit (13 Uhr UTC) zu bitten.
+    # Erinnert daran, die Familie um Unterstützung bei der Hypothekenzahlung zu bitten am 16. jedes Monats um 21 Uhr Taipeh-Zeit (13 Uhr UTC).
     - cron: '0 13 16 * *'
-    # Erinnert daran, jeden Freitag, Samstag und Sonntag um 22 Uhr Taipeh-Zeit (14 Uhr UTC) mit dem Partner fernzusehen.
+    # Erinnert daran, mit dem Partner fernzusehen jeden Freitag, Samstag und Sonntag um 22 Uhr Taipeh-Zeit (14 Uhr UTC).
     - cron: '0 14 * * 5,6,0'
-    # Erinnert daran, den Parkausweis-Aufkleber um 2 Uhr Peking-Zeit (18 Uhr UTC) an Mi, Do, Fr zu entfernen.
+    # Erinnert daran, den Parkausweis-Aufkleber zu entfernen um 2 Uhr Peking-Zeit (18 Uhr UTC) an Mi, Do, Fr.
     - cron: '0 18 * * 3,4,5'
   workflow_dispatch:  # Ermöglicht manuelle Auslösung
 
@@ -81,56 +81,56 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "Hypothekenabzug vorbereiten"
         if: github.event.schedule == '0 4 27 * *'
 
-      - name: Telegram-Skript für monatliche Gehaltsüberprüfung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Gehalt überprüfen"
+      - name: Telegram-Skript für monatliche Gehaltsprüfung ausführen
+        run: python scripts/release/reminders_bot.py --job send_message --message "Gehalt prüfen"
         if: github.event.schedule == '0 6 30 * *'
 
       - name: Telegram-Skript für Schlaf-Erinnerung ausführen
         run: python scripts/release/reminders_bot.py --job send_message --message "Zeit zum Schlafen!"
         if: github.event.schedule == '0 17 * * *'
 
-      - name: Telegram-Skript für Aufsteh-Erinnerung ausführen
+      - name: Telegram-Skript für Aufwach-Erinnerung ausführen
         run: python scripts/release/reminders_bot.py --job send_message --message "Zeit zum Aufstehen!"
         if: github.event.schedule == '0 3 * * *'
 
       - name: Telegram-Skript für Elternhaus-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Gehe morgen zu den Eltern!"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Morgen zu den Eltern gehen!"
         if: github.event.schedule == '0 13 * * 2-4'
 
       - name: Telegram-Skript für eigenes Haus-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Gehe morgen nach Hause!"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Morgen nach Hause gehen!"
         if: github.event.schedule == '0 13 * * 0,1,5,6'
 
-      - name: Telegram-Skript für JD.com-Frischprodukte-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Kaufe frische Produkte direkt bei JD.com!"
+      - name: Telegram-Skript für JD.com-Frischwaren-Erinnerung ausführen
+        run: python scripts/release/reminders_bot.py --job send_message --message "Frischwaren direkt bei JD.com kaufen!"
         if: github.event.schedule == '0 13 * * 3'
 
       - name: Telegram-Skript für JD.com-Schnelllieferessen-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Kaufe Schnelllieferessen von JD.com!"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Schnelllieferessen bei JD.com kaufen!"
         if: github.event.schedule == '0 13 * * 5'
 
       - name: Telegram-Skript für Associate-Degree-Prüfungs-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Melde dich für die Associate-Degree-Prüfung an"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Für Associate-Degree-Prüfung anmelden"
         if: github.event.schedule == '0 5 * 3,4,9,10 1'
 
       - name: Telegram-Skript für Clarity-Stundenzettel-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Reiche den Clarity-Stundenzettel ein"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Clarity-Stundenzettel einreichen"
         if: github.event.schedule == '0 9 * * 5'
 
       - name: Telegram-Skript für Lieferanten-Stundenzettel-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Reiche den Lieferanten-Stundenzettel ein"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Lieferanten-Stundenzettel einreichen"
         if: github.event.schedule == '0 16 25 * *'
 
       - name: Telegram-Skript für Hypotheken-Unterstützungs-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Bitte die Familie um Unterstützung bei der Hypothekenzahlung"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Familie um Hypothekenunterstützung bitten"
         if: github.event.schedule == '0 13 16 * *'
 
       - name: Telegram-Skript für TV-Erinnerung mit Partner ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Zeit, mit deinem Partner fernzusehen!"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Zeit, mit dem Partner fernzusehen!"
         if: github.event.schedule == '0 14 * * 5,6,0'
 
       - name: Telegram-Skript für Parkausweis-Aufkleber-Erinnerung ausführen
-        run: python scripts/release/reminders_bot.py --job send_message --message "Entferne den Parkausweis-Aufkleber vom Autofenster"
+        run: python scripts/release/reminders_bot.py --job send_message --message "Parkausweis-Aufkleber vom Autofenster entfernen"
         if: github.event.schedule == '0 18 * * 3,4,5'
 
       - name: Telegram-Skript für Testnachricht ausführen
@@ -151,7 +151,7 @@ TELEGRAM_BOT2_API_KEY = os.environ.get("TELEGRAM_BOT2_API_KEY")
 TELEGRAM_CHAT_ID = "610574272"
 
 def send_telegram_message(bot_token, chat_id, message):
-    """Sendet eine Nachricht an einen Telegram-Chat über die Telegram-Bot-API."""
+    """Sendet eine Nachricht an einen Telegram-Chat über die Telegram Bot API."""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     params = {
         "chat_id": chat_id,
@@ -181,8 +181,8 @@ def send_reminder(message):
         print("TELEGRAM_BOT2_API_KEY und TELEGRAM_CHAT_ID sind nicht gesetzt.")
 
 def main():
-    parser = argparse.ArgumentParser(description="Telegram-Bot-Skript")
-    parser.add_argument('--job', choices=['get_chat_id', 'send_message'], required=True, help="Ausführender Job")
+    parser = argparse.ArgumentParser(description="Telegram Bot Skript")
+    parser.add_argument('--job', choices=['get_chat_id', 'send_message'], required=True, help="Auszuführende Aufgabe")
     parser.add_argument('--message', help="Benutzerdefinierte Nachricht zum Senden", default=None)
     args = parser.parse_args()
 
@@ -198,7 +198,7 @@ def main():
         if args.message:
             send_reminder(args.message)
         else:
-            print("Keine Nachricht für den send_message-Job angegeben.")
+            print("Keine Nachricht für die Aufgabe 'send_message' angegeben.")
             
 if __name__ == '__main__':
     main()

@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Streamlining Reminders with GitHub Actions and Telegram
+title: Streamline Reminders via Telegram
 translated: false
 ---
 
