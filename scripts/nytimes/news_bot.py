@@ -162,6 +162,7 @@ def ai_summarize(text, url=None):
         print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
         return limit_to_n_words(text, 15)
     prompt = (
+        "If the original text is in Chinese, first translate it to English, then summarize. "
         "Summarize the following web page content in clear, concise English. "
         "Focus on the single most important point or insight. "
         "Your summary should be around 300 characters. "
@@ -188,7 +189,7 @@ def generate_summarized_report(summaries, source_name):
         summary = url_pattern.sub('', summary)
         # Truncate each summary to 300 chars as a last resort
         summary = summary[:300]
-        text += f"{idx}. {summary}\n"
+        text += f"{idx}. {summary}\n\n"  # Add an extra newline between summaries
     text += "\n"
     return text
 
