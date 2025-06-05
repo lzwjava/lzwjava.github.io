@@ -86,7 +86,7 @@ def generate_markdown_report(articles, source_name):
     """Generates a Markdown report for the given articles."""
     markdown = f"### {source_name}\n\n"
     for article in articles:
-        markdown += f"- [{article['text']}]({article['url']})\n"
+        markdown += f"- {article['text']} ({article['url']})\n"
     return markdown + "\n"
 
 def main():
