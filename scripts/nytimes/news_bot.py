@@ -52,7 +52,7 @@ def send_telegram_message(message):
 def fetch_html_content(url):
     try:
         print(f"Fetching HTML content from: {url}")
-        response = requests.get(url, timeout=15)
+        response = requests.get(url, timeout=15, verify=False)
         response.raise_for_status()
         print(f"Successfully fetched HTML content from: {url}")
         return response.text
@@ -162,15 +162,18 @@ def ai_summarize(text, url=None):
         print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
         return limit_to_n_words(text, 15)
     prompt = (
-        "Summarize the following web page content in concise English, focusing on the key information. "
-        "Limit your summary to 200 characters or less. Use plain language:\n"
+        "Summarize the following web page content in clear, concise English. "
+        "Focus on the single most important point or insight. "
+        "Your summary should be around 300 characters. "
+        "Output only the summary sentence:\n"
         f"{text}\n"
         f"{'Original link: ' + url if url else ''}"
     )
     summary = call_mistral_api(prompt)
     if summary is None:
         return limit_to_n_words(text, 15)
-    return summary.strip()
+    # Truncate to 300 chars as a last resort
+    return summary.strip()[:300]
 
 def generate_summarized_report(summaries, source_name):
     text = f"{source_name}\n"
@@ -180,36 +183,34 @@ def generate_summarized_report(summaries, source_name):
         return text
     url_pattern = re.compile(r'(https?://[^\s]+)')
     for idx, item in enumerate(summaries, 1):
-        safe_title = item.get('title', '').replace('\n', ' ').replace('\r', ' ').strip()
         summary = item.get('summary', '').replace('\n', ' ').replace('\r', ' ').strip()
-        url = item.get('url', '')
-        # Remove asterisks from title and summary (no bold/italic in Telegram)
-        safe_title = safe_title.replace('*', '')
         summary = summary.replace('*', '')
-        safe_title = url_pattern.sub('', safe_title)
         summary = url_pattern.sub('', summary)
-        text += f"{idx}. {safe_title}:\n{summary}\n{url}\n"
+        # Truncate each summary to 300 chars as a last resort
+        summary = summary[:300]
+        text += f"{idx}. {summary}\n"
     text += "\n"
     return text
 
 # --- NYTimes (m.cn.nytimes.com) integration ---
 
 def extract_nytimes_links(html, max_links=5):
+    """
+    Extracts links from the main page of cn.nytimes.com.
+    Only includes links that start with 'https://cn.nytimes.com/'.
+    """
     soup = BeautifulSoup(html, 'html.parser')
     links = []
-    seen = set()
     for a in soup.find_all('a', href=True):
         url = a['href']
-        if url.startswith('https://m.cn.nytimes.com/') and url not in seen:
-            # Only add article links (not section/category)
-            if re.match(r'https://m\.cn\.nytimes\.com/[\w\-]+/\d{4}/\d{2}/\d{2}/[\w\-]+/?$', url):
-                text = a.text.strip()
-                if text:
-                    links.append({'url': url, 'text': text})
-                    seen.add(url)
+        if url.startswith('https://cn.nytimes.com/'):
+            links.append({
+                'url': url,
+                'text': a.text.strip()
+            })
         if len(links) >= max_links:
             break
-    print(f"Extracted {len(links)} links from m.cn.nytimes.com.")
+    print(f"Extracted {len(links)} links from main page.")
     return links
 
 def summarize_nytimes_article(url):
@@ -230,15 +231,7 @@ def summarize_nytimes_article(url):
         article_text = soup.get_text(separator='\n', strip=True)
     if len(article_text) > 3000:
         article_text = article_text[:3000]
-    prompt = (
-        "Summarize the following article in English, focusing on the main points and avoiding introductory phrases like 'Summary:' or 'This article is about:'.\n\n"
-        f"{article_text}\n"
-    )
-    summary = call_mistral_api(prompt)
-    if summary is None:
-        summary = limit_to_n_words(article_text, 15)
-    else:
-        summary = summary.replace("Summary:", "").strip()
+    summary = ai_summarize(article_text, url)
     return {"url": url, "summary": summary, "title": title}
 
 def main():
@@ -249,18 +242,18 @@ def main():
     report = f"Daily News Summary - {today}\n\n"
 
     if is_test:
-        # Only scrape one link and send one summary (Hacker News)
-        hn_html = fetch_html_content('https://news.ycombinator.com')
-        hn_links = []
-        hn_summaries = []
-        if hn_html:
-            hn_links = extract_hacker_news_links(hn_html, max_links=1)
-            if hn_links:
-                link = hn_links[0]
-                summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
-                hn_summaries.append(summary)
-        report = generate_summarized_report(hn_summaries, "Hacker News")
-        if hn_summaries:
+        # Only scrape one link and send one summary (NYTimes Chinese)
+        ny_html = fetch_html_content('https://m.cn.nytimes.com')
+        ny_links = []
+        ny_summaries = []
+        if ny_html:
+            ny_links = extract_nytimes_links(ny_html, max_links=1)
+            if ny_links:
+                link = ny_links[0]
+                summary = summarize_nytimes_article(link['url'])
+                ny_summaries.append(summary)
+        report = generate_summarized_report(ny_summaries, "NYTimes (Chinese)")
+        if ny_summaries:
             if send_telegram_message(report):
                 print("Test summary sent to Telegram successfully.")
                 sys.exit(0)
@@ -295,7 +288,7 @@ def main():
                 time.sleep(2)
         report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
-        # --- NYTimes (m.cn.nytimes.com) ---
+        # --- NYTimes (cn.nytimes.com) ---
         ny_html = fetch_html_content('https://m.cn.nytimes.com')
         ny_links = []
         ny_summaries = []
@@ -305,7 +298,7 @@ def main():
                 summary = summarize_nytimes_article(link['url'])
                 ny_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(ny_summaries, "NYTimes (Chinese Mobile)")
+        report += generate_summarized_report(ny_summaries, "NYTimes (Chinese)")
 
         if any([hn_summaries, gh_summaries, ny_summaries]):
             if len(report) > TELEGRAM_MAX_LENGTH:
