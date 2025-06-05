@@ -21,7 +21,10 @@ def send_telegram_message(message):
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     url_pattern = re.compile(r'(https?://[^\s]+)')
-    message_no_links = url_pattern.sub('', message)
+    # Remove all asterisks (for bold/italic) from the message
+    message_no_stars = message.replace('*', '')
+    # Remove links from the message
+    message_no_links = url_pattern.sub('', message_no_stars)
     messages = []
     msg = message_no_links
     while len(msg) > TELEGRAM_MAX_LENGTH:
@@ -57,7 +60,7 @@ def fetch_html_content(url):
         print(f"Could not fetch URL: {url} - {e}")
         return None
 
-def extract_hacker_news_links(html):
+def extract_hacker_news_links(html, max_links=5):
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     seen = set()
@@ -69,12 +72,12 @@ def extract_hacker_news_links(html):
         if url not in seen and title:
             links.append({'url': url, 'text': title})
             seen.add(url)
-        if len(links) >= 5:
+        if len(links) >= max_links:
             break
     print(f"Extracted {len(links)} links from Hacker News.")
     return links
 
-def extract_github_trending(html):
+def extract_github_trending(html, max_links=5):
     soup = BeautifulSoup(html, 'html.parser')
     links = []
     for repo in soup.select('article.Box-row h2 a'):
@@ -82,7 +85,7 @@ def extract_github_trending(html):
         title = re.sub(r'\s+', ' ', repo.text).strip()
         if title and url:
             links.append({'url': url, 'text': title})
-        if len(links) >= 5:
+        if len(links) >= max_links:
             break
     print(f"Extracted {len(links)} trending repositories from GitHub.")
     return links
@@ -159,7 +162,8 @@ def ai_summarize(text, url=None):
         print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
         return limit_to_n_words(text, 15)
     prompt = (
-        "Summarize the following web page content in concise English, focusing on the key information:\n"
+        "Summarize the following web page content in concise English, focusing on the key information. "
+        "Limit your summary to 200 characters or less. Use plain language:\n"
         f"{text}\n"
         f"{'Original link: ' + url if url else ''}"
     )
@@ -179,6 +183,9 @@ def generate_summarized_report(summaries, source_name):
         safe_title = item.get('title', '').replace('\n', ' ').replace('\r', ' ').strip()
         summary = item.get('summary', '').replace('\n', ' ').replace('\r', ' ').strip()
         url = item.get('url', '')
+        # Remove asterisks from title and summary (no bold/italic in Telegram)
+        safe_title = safe_title.replace('*', '')
+        summary = summary.replace('*', '')
         safe_title = url_pattern.sub('', safe_title)
         summary = url_pattern.sub('', summary)
         text += f"{idx}. {safe_title}:\n{summary}\n{url}\n"
@@ -186,43 +193,69 @@ def generate_summarized_report(summaries, source_name):
     return text
 
 def main():
+    # Check for --test argument
+    is_test = "--test" in sys.argv
+
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     report = f"Daily News Summary - {today}\n\n"
 
-    hn_html = fetch_html_content('https://news.ycombinator.com')
-    hn_links = []
-    hn_summaries = []
-    if hn_html:
-        hn_links = extract_hacker_news_links(hn_html)
-        for link in hn_links:
-            summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
-            hn_summaries.append(summary)
-            time.sleep(2)
-    report += generate_summarized_report(hn_summaries, "Hacker News")
-
-    gh_html = fetch_html_content('https://github.com/trending')
-    gh_links = []
-    gh_summaries = []
-    if gh_html:
-        gh_links = extract_github_trending(gh_html)
-        for link in gh_links:
-            summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
-            gh_summaries.append(summary)
-            time.sleep(2)
-    report += generate_summarized_report(gh_summaries, "GitHub Trending")
-
-    if any([hn_summaries, gh_summaries]):
-        if len(report) > TELEGRAM_MAX_LENGTH:
-            print(f"Report exceeds {TELEGRAM_MAX_LENGTH} chars, will be split into multiple messages.")
-        if send_telegram_message(report):
-            print("Daily news report sent to Telegram successfully.")
-            sys.exit(0)
+    if is_test:
+        # Only scrape one link and send one summary
+        hn_html = fetch_html_content('https://news.ycombinator.com')
+        hn_links = []
+        hn_summaries = []
+        if hn_html:
+            hn_links = extract_hacker_news_links(hn_html, max_links=1)
+            if hn_links:
+                link = hn_links[0]
+                summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
+                hn_summaries.append(summary)
+        report = generate_summarized_report(hn_summaries, "Hacker News")
+        if hn_summaries:
+            if send_telegram_message(report):
+                print("Test summary sent to Telegram successfully.")
+                sys.exit(0)
+            else:
+                print("Failed to send test summary to Telegram.")
+                sys.exit(1)
         else:
-            print("Failed to send daily news report to Telegram.")
+            print("No news collected, nothing sent to Telegram.")
             sys.exit(1)
     else:
-        print("No news collected, nothing sent to Telegram.")
-        sys.exit(1)
+        hn_html = fetch_html_content('https://news.ycombinator.com')
+        hn_links = []
+        hn_summaries = []
+        if hn_html:
+            hn_links = extract_hacker_news_links(hn_html)
+            for link in hn_links:
+                summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
+                hn_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(hn_summaries, "Hacker News")
+
+        gh_html = fetch_html_content('https://github.com/trending')
+        gh_links = []
+        gh_summaries = []
+        if gh_html:
+            gh_links = extract_github_trending(gh_html)
+            for link in gh_links:
+                summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
+                gh_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(gh_summaries, "GitHub Trending")
+
+        if any([hn_summaries, gh_summaries]):
+            if len(report) > TELEGRAM_MAX_LENGTH:
+                print(f"Report exceeds {TELEGRAM_MAX_LENGTH} chars, will be split into multiple messages.")
+            if send_telegram_message(report):
+                print("Daily news report sent to Telegram successfully.")
+                sys.exit(0)
+            else:
+                print("Failed to send daily news report to Telegram.")
+                sys.exit(1)
+        else:
+            print("No news collected, nothing sent to Telegram.")
+            sys.exit(1)
 
 if __name__ == "__main__":
     main()
