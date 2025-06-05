@@ -192,6 +192,55 @@ def generate_summarized_report(summaries, source_name):
     text += "\n"
     return text
 
+# --- NYTimes (m.cn.nytimes.com) integration ---
+
+def extract_nytimes_links(html, max_links=5):
+    soup = BeautifulSoup(html, 'html.parser')
+    links = []
+    seen = set()
+    for a in soup.find_all('a', href=True):
+        url = a['href']
+        if url.startswith('https://m.cn.nytimes.com/') and url not in seen:
+            # Only add article links (not section/category)
+            if re.match(r'https://m\.cn\.nytimes\.com/[\w\-]+/\d{4}/\d{2}/\d{2}/[\w\-]+/?$', url):
+                text = a.text.strip()
+                if text:
+                    links.append({'url': url, 'text': text})
+                    seen.add(url)
+        if len(links) >= max_links:
+            break
+    print(f"Extracted {len(links)} links from m.cn.nytimes.com.")
+    return links
+
+def summarize_nytimes_article(url):
+    html = fetch_html_content(url)
+    if not html:
+        return {"url": url, "summary": "Could not fetch content.", "title": url}
+    soup = BeautifulSoup(html, 'html.parser')
+    # Try to extract the main article title
+    title_element = soup.select_one('.article-area .article-content .article-header header h1')
+    title = title_element.text.strip() if title_element else (soup.title.text.strip() if soup.title else url)
+    # Extract the main article text
+    article_area = soup.find('div', class_='article-area')
+    if article_area:
+        article_text = article_area.get_text(separator='\n', strip=True)
+    else:
+        article_text = soup.get_text(separator='\n', strip=True)
+    if not article_text or len(article_text) < 100:
+        article_text = soup.get_text(separator='\n', strip=True)
+    if len(article_text) > 3000:
+        article_text = article_text[:3000]
+    prompt = (
+        "Summarize the following article in English, focusing on the main points and avoiding introductory phrases like 'Summary:' or 'This article is about:'.\n\n"
+        f"{article_text}\n"
+    )
+    summary = call_mistral_api(prompt)
+    if summary is None:
+        summary = limit_to_n_words(article_text, 15)
+    else:
+        summary = summary.replace("Summary:", "").strip()
+    return {"url": url, "summary": summary, "title": title}
+
 def main():
     # Check for --test argument
     is_test = "--test" in sys.argv
@@ -200,7 +249,7 @@ def main():
     report = f"Daily News Summary - {today}\n\n"
 
     if is_test:
-        # Only scrape one link and send one summary
+        # Only scrape one link and send one summary (Hacker News)
         hn_html = fetch_html_content('https://news.ycombinator.com')
         hn_links = []
         hn_summaries = []
@@ -222,6 +271,7 @@ def main():
             print("No news collected, nothing sent to Telegram.")
             sys.exit(1)
     else:
+        # --- Hacker News ---
         hn_html = fetch_html_content('https://news.ycombinator.com')
         hn_links = []
         hn_summaries = []
@@ -233,6 +283,7 @@ def main():
                 time.sleep(2)
         report += generate_summarized_report(hn_summaries, "Hacker News")
 
+        # --- GitHub Trending ---
         gh_html = fetch_html_content('https://github.com/trending')
         gh_links = []
         gh_summaries = []
@@ -244,7 +295,19 @@ def main():
                 time.sleep(2)
         report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
-        if any([hn_summaries, gh_summaries]):
+        # --- NYTimes (m.cn.nytimes.com) ---
+        ny_html = fetch_html_content('https://m.cn.nytimes.com')
+        ny_links = []
+        ny_summaries = []
+        if ny_html:
+            ny_links = extract_nytimes_links(ny_html, max_links=5)
+            for link in ny_links:
+                summary = summarize_nytimes_article(link['url'])
+                ny_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(ny_summaries, "NYTimes (Chinese Mobile)")
+
+        if any([hn_summaries, gh_summaries, ny_summaries]):
             if len(report) > TELEGRAM_MAX_LENGTH:
                 print(f"Report exceeds {TELEGRAM_MAX_LENGTH} chars, will be split into multiple messages.")
             if send_telegram_message(report):
