@@ -22,7 +22,10 @@ permissions:
 jobs:
   update_nytimes:
     runs-on: ubuntu-latest
-    environment: github-pages    
+    environment: github-pages
+    env:
+      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -43,8 +46,6 @@ jobs:
         id: nytimes_update
         run: python -m scripts.nytimes.nytimes
         continue-on-error: true
-        env:
-          MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
 
       - name: Commit NYTimes Changes
         if: steps.nytimes_update.outcome == 'success'
@@ -58,8 +59,6 @@ jobs:
             git pull --rebase
             git push
           }
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Trigger Workflow gh-pages
         if: steps.nytimes_update.outcome == 'success'
