@@ -32,6 +32,8 @@ on:
     - cron: '0 14 * * 5,6,0'
     # Reminds to remove parking permit sticker at 2 AM Beijing time (6 PM UTC) on Wed, Thu, Fri.
     - cron: '0 18 * * 3,4,5'
+    # Reminds to play basketball: 7 PM Beijing Time (11 AM UTC) on Fri, Sat, Sun.
+    - cron: '0 11 * * 5,6,0'      
   workflow_dispatch:  # Allows manual triggering
 
 concurrency:
@@ -121,6 +123,11 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "Remove parking permit sticker from car window"
         if: github.event.schedule == '0 18 * * 3,4,5'
 
+      - name: Run Telegram script for play basketball reminder
+        run: python scripts/release/reminders_bot.py --job send_message --message "Time to play basketball!"
+        if: github.event.schedule == '0 11 * * 5,6,0'
+
       - name: Run Telegram script for test message
         run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
         if: github.event_name == 'workflow_dispatch'
+
