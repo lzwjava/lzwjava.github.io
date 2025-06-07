@@ -7,7 +7,51 @@ translated: false
 generated: false
 ---
 
-This post showcases a Python-based news bot that scrapes and summarizes top stories from Hacker News, GitHub Trending, and NYTimes (Chinese) using the Mistral API. It sends concise daily reports via Telegram, with a GitHub Actions workflow for automated execution. Ideal for staying updated on tech and global news effortlessly.
+This post showcases a Python-based news bot that scrapes and summarizes top stories from Hacker News, GitHub Trending, and NYTimes (Chinese) using the Mistral API. It sends concise daily reports via Telegram, with a GitHub Actions workflow for automated execution. Ideal for staying updated on tech and global news effortlessly. Below is an example of a daily news summary.
+
+---
+
+Daily News Summary - 2025-06-07
+
+Hacker News
+-----------
+1. The webpage indicates that Facebook is incompatible with the current browser and suggests updating to a supported browser to continue using the service.
+
+2. Hate radio in Rwanda incited genocide by using coded language to urge listeners to kill Tutsis.
+
+3. Railway is introducing Railpack to replace Nixpacks, aiming to address scalability and dependency management issues that hindered 200k users, enabling a smoother transition to support 100M users.
+
+4. The article delves into the legacy of Radiant AI, a controversial and ambitious AI system promised for "The Elder Scrolls IV: Oblivion" that was largely cut from the final game.
+
+5. The Washington Post advises users to enhance privacy by stopping the use of Chrome and deleting Meta's apps.
+
+
+GitHub Trending
+---------------
+1. Cognee enables the creation of dynamic memory for AI agents using scalable, modular ECL pipelines in just five lines of code.
+
+2. NetBird simplifies secure, private networking by combining a peer-to-peer WireGuard-based overlay network with centralized, granular access controls.
+
+3. NoteGen is an AI-powered, cross-platform Markdown note-taking app that integrates recording and writing to organize fragmented knowledge into coherent notes.
+
+4. Scrapy is a fast, high-level web crawling and scraping framework for Python, designed to extract structured data from websites.
+
+5. React Bits offers a free, open-source collection of animated, interactive, and customizable React components to enhance web interfaces.
+
+
+NYTimes (Chinese)
+-----------------
+1. After a phone call between Chinese President Xi Jinping and U.S. President Trump, both countries agreed to further trade negotiations to ease tensions over tariffs and rare earth supply.
+
+2. The recent controversies in China highlight widespread public frustration over perceived social inequality and the belief that connections, rather than merit, often determine success.
+
+3. China's intensified crackdown on rare earth metal smuggling is causing severe supply disruptions for global industries, as Beijing tightens controls to leverage these critical resources as a strategic tool.
+
+4. The escalating conflict between Trump and Musk could have significant repercussions, with both figures leveraging their influence and resources to counter each other.
+
+5. China's temporary halt on exporting seven rare earth metals and their magnets has caused severe shortages, potentially leading to factory closures in the U.S. and Europe.
+
+---
 
 ```python
 import requests
