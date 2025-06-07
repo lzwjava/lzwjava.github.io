@@ -22,6 +22,8 @@ on:
     - cron: '0 13 * * 5'
     # Reminds about associate degree exam in March, April, September, and October every Monday at 1 PM Beijing Time (5 AM UTC).
     - cron: '0 5 * 3,4,9,10 1'
+    # Reminds about associate degree exam preparation 1pm Monday UTC
+    - cron: '0 13 * * 1'      
     # Reminds to submit clarity timesheet every Friday at 5 PM Taipei time (9 AM UTC).
     - cron: '0 9 * * 5'
     # Reminds to submit vendor timesheet on the 25th of every month at 12 AM Taipei time (4 PM UTC previous day).
@@ -126,6 +128,10 @@ jobs:
       - name: Run Telegram script for play basketball reminder
         run: python scripts/release/reminders_bot.py --job send_message --message "Time to play basketball!"
         if: github.event.schedule == '0 11 * * 5,6,0'
+
+      - name: Run Telegram script for associate exam preparation
+        run: python scripts/release/reminders_bot.py --job send_message --message "Time to prepare associate degree exam!"
+        if: github.event.schedule == '0 13 * * 1'
 
       - name: Run Telegram script for test message
         run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
