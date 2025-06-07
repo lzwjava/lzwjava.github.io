@@ -37,6 +37,11 @@ on:
     # Reminds to play basketball: 7 PM Beijing Time (11 AM UTC) on Fri, Sat, Sun.
     - cron: '0 11 * * 5,6,0'      
   workflow_dispatch:  # Allows manual triggering
+  push:
+    branches: ["main"]
+    paths:
+      - 'scripts/release/reminders_bot.py'
+      - '.github/workflows/reminders.yml'
 
 concurrency:
   group: 'reminders'
@@ -137,3 +142,6 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
         if: github.event_name == 'workflow_dispatch'
 
+      - name: Run Telegram script for push to main branch
+        run: python scripts/release/reminders_bot.py --job send_message --message "Code pushed to main branch."
+        if: github.event_name == 'push'
