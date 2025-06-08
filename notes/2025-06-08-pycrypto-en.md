@@ -91,3 +91,46 @@ pipdeptree | grep -i pycrypto
 
 ### Key Takeaway:
 Your listed packages don’t directly depend on `pycrypto`, but another hidden dependency might. Isolating it with `pipdeptree` will clarify the culprit. If no critical package requires it, **remove `pycrypto` outright**—it’s deprecated and potentially insecure.
+
+---
+
+Based on your logs, none of your **explicitly listed packages** directly depends on `pycrypto`. However, one of your dependencies has an **indirect dependency** on it. Here's how to identify and resolve it:
+
+### 1. Identify the Culprit Package
+Run this command to find which top-level package requires `pycrypto`:
+```bash
+pipdeptree --warn silence | grep -i pycrypto
+```
+
+### 2. Common Suspects in Your Stack
+Based on your packages, these are the most likely candidates:
+- **`paramiko`** (used by `hcloud`, `tigeropen`, or cloud SDKs)
+- **`google-auth`** (used by Google Cloud packages)
+- **`boto`** (older AWS libraries)
+- **`ansible`** (if used indirectly)
+
+### 3. Immediate Solution: Replace `pycrypto`
+Since `pycrypto` is deprecated and broken on Python 3.13, replace it with the maintained fork:
+```bash
+pip uninstall pycrypto
+pip install pycryptodome
+```
+
+### 4. If Dependency Persists
+Force reinstall all packages with dependency checks:
+```bash
+pip install --upgrade --force-reinstall -r requirements.txt
+```
+
+### 5. Verify Installation
+Check if `pycryptodome` satisfies the dependency:
+```bash
+python -c "from Crypto import Random; print('Success')"
+```
+
+### Why This Happens
+- `pycrypto` was a common crypto dependency for older packages (last update: 2014)
+- Python 3.13 removed internal headers like `longintrepr.h` that `pycrypto` relied on
+- Modern alternatives like `cryptography` (which you're installing) don't use `pycrypto`
+
+The fastest solution is **step 3** – replacing `pycrypto` with the API-compatible `pycryptodome`. This resolves the compilation issue while maintaining compatibility.
