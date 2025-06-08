@@ -1,0 +1,54 @@
+name: Hourly Location Check
+
+on:
+  schedule:
+    # Run every hour, on the hour, between 11 AM and 11 PM, on weekdays (Monday-Friday)
+    # The time is in UTC. Singapore time (SGT) is UTC+8.
+    # So, 11 AM SGT is 03:00 UTC, and 11 PM SGT is 15:00 UTC.
+    # Therefore, we need to schedule from 03:00 to 15:00 UTC.
+    - cron: '0 3-15 * * 1-5'
+  workflow_dispatch:  # Allows manual triggering of the workflow
+  push:
+    branches: ["main"]
+    paths:
+      - 'scripts/release/location_bot.py' # Corrected path to your script
+      - '.github/workflows/location.yml' # Path to this workflow file
+
+concurrency:
+  group: 'location'
+  cancel-in-progress: false
+
+jobs:
+  check_and_notify:
+    runs-on: ubuntu-latest
+    env:
+      TELEGRAM_LOCATION_BOT_API_KEY: ${{ secrets.TELEGRAM_LOCATION_BOT_API_KEY }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 5 # Fetch only the last 5 commits for efficiency
+
+    - name: Set up Python 3.13.2
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.13.2" # Specify the exact Python version
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.simple.txt 
+
+    - name: Run location check script (Scheduled)
+      run: python scripts/release/location_bot.py --job check_location
+      # This step will run on scheduled triggers
+      if: github.event_name == 'schedule'
+
+    - name: Run Telegram script for test message (Manual Trigger)
+      run: python scripts/release/location_bot.py --job send_message --message "This is a manual trigger test message from GitHub Actions."
+      if: github.event_name == 'workflow_dispatch'
+
+    - name: Run Telegram script for push to main branch
+      run: python scripts/release/location_bot.py --job send_message --message "Code changes for location bot pushed to main branch."
+      if: github.event_name == 'push'

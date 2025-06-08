@@ -161,7 +161,7 @@ def ai_summarize(text, url=None, title=None):
     if not MISTRAL_API_KEY:
         print("No MISTRAL_API_KEY set. Returning first 15 words as summary.")
         return limit_to_n_words(text, 15)
-    prompt = (
+    prompt = (610574272
         "If the original text is in Chinese, summarize it in English. "
         "Summarize the following web page content in clear, concise English. "
         "Focus on the single most important point or insight. "
