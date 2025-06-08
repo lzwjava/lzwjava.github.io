@@ -34,7 +34,7 @@ CONFIG = {
 @task
 def clean(c):
     """Remove generated files"""
-    if os.path.isdir(CONFIG["deploy_path"]):
+    if os.path.isdir(CONFIG["depoy_path"]):
         shutil.rmtree(CONFIG["deploy_path"])
         os.makedirs(CONFIG["deploy_path"])
 
