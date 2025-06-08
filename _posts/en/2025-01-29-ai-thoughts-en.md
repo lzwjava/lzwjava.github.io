@@ -57,6 +57,8 @@ translated: false
 
 - I used AI to learn about Large Language Models. The moment it helped me understand K, Q, and V was wonderful.
 
+- The reason I prefer to use Ubuntu since the release of LLM is that the rich and colorful apps in macOS are less appealing to me. I prefer writing my programs and doing everything through the terminal and text.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
