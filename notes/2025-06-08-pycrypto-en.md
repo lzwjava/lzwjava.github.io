@@ -52,3 +52,42 @@ pip install -r requirements.txt
 1. **Avoid `pycrypto`**: Use `pycryptodome` for cryptography needs.
 2. **Pin Python Versions**: For legacy projects, use Python ≤3.9 in environments like Docker/Venv.
 3. **Check Dependencies**: Use `pip check` to identify incompatible packages.
+
+---
+
+None of the packages you listed (`aliyunsdkcore`, `aliyun-python-sdk-ecs`, `alibabacloud_vpc20160428`, etc.) directly depend on **`pycrypto`**.  
+
+However, if you're seeing `pycrypto` being installed, it might be an **indirect dependency** of one of these packages. To check which package requires `pycrypto`, run:  
+
+```bash
+pip show pycrypto
+```  
+or  
+```bash
+pipdeptree | grep -i pycrypto
+```  
+
+### Likely Suspects:
+1. **Old or deprecated security-related packages** (though none in your list explicitly require `pycrypto`).  
+2. **A legacy dependency** from a package like `paramiko` (SSH) or `google-auth`, but these usually switched to `pycryptodome`.  
+
+### Recommended Action:
+1. **Replace `pycrypto` with `pycryptodome`** (modern, maintained fork):  
+   ```bash
+   pip uninstall pycrypto
+   pip install pycryptodome
+   ```  
+   Some packages accept `pycryptodome` as a drop-in replacement.  
+
+2. **Force-reinstall dependencies** to ensure no hidden links:  
+   ```bash
+   pip install --upgrade --force-reinstall -r requirements.txt
+   ```  
+
+3. **If `pycrypto` persists**, audit your environment:  
+   ```bash
+   pipdeptree --warn silence | grep -i crypto
+   ```  
+
+### Key Takeaway:
+Your listed packages don’t directly depend on `pycrypto`, but another hidden dependency might. Isolating it with `pipdeptree` will clarify the culprit. If no critical package requires it, **remove `pycrypto` outright**—it’s deprecated and potentially insecure.
