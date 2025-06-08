@@ -15,7 +15,7 @@ translated: true
 
 * Por lo general, no necesitas perseguir lo que está de moda en tecnología ahora, ya que muchas tendencias desaparecerán después de unos años.
 
-* Sigue tu curiosidad y programa por tu propio bien.
+* Persigue tu curiosidad y programa por tu propio bien.
 
 * Intenta crear programas para ti mismo. No son tareas de trabajo.
 
@@ -31,9 +31,9 @@ translated: true
 
 * No necesitas ser severo. Unos cientos de usuarios que realmente aman tu producto es mejor que decenas de miles que solo lo aprecian amablemente.
 
-* Recuerda por qué comenzaste a programar y nunca lo olvides.
+* Recuerda por qué empezaste a programar y nunca lo olvides.
 
-* Aplica el conocimiento de programación a cada aspecto de la vida. Son lo mismo. Hacer cosas en lotes o una por una. Cómo separar trabajos en unidades. La tecnología subyacente detrás de cada aplicación. Los detalles sutiles detrás de las solicitudes de red.
+* Aplica el conocimiento de programación a cada aspecto de la vida. Son lo mismo. Hacer cosas en lotes o una por una. Cómo dividir trabajos en unidades. La tecnología subyacente detrás de cada aplicación. Los detalles sutiles detrás de las solicitudes de red.
 
 * La abstracción y el pensamiento lógico. El pensamiento orientado a los detalles. El pensamiento de cada solución posible.
 
@@ -41,7 +41,7 @@ translated: true
 
 * Busca soluciones elegantes y simples. La simplicidad es la máxima sofisticación. Debes pensar mucho para dejar lo esencial y eliminar lo extra.
 
-* Para los lenguajes de programación, los que cumplen el trabajo están bien. Personalmente recomiendo Java y Python.
+* Para lenguajes de programación, los que cumplen el trabajo están bien. Personalmente recomiendo Java y Python.
 
 * Sigue a Yin Wang en [https://www.yinwang.org](https://www.yinwang.org). Es uno de los pocos genios en programación, aunque él dice que los genios nunca existen.
 
@@ -49,7 +49,7 @@ translated: true
 
 * Para la mayoría de las tareas de programación, no necesitas matemáticas sofisticadas más allá de las matemáticas de secundaria.
 
-* Reflexiona sobre tu código antiguo después de años o mantén un proyecto de código por mucho tiempo. Te enseñará mucho.
+* Reflexiona sobre tu código antiguo después de años o mantén un proyecto de código durante mucho tiempo. Te enseñará mucho.
 
 * Si pierdes la pasión por programar, simplemente haz otras cosas por un tiempo.
 
@@ -57,7 +57,7 @@ translated: true
 
 * Prueba editores de código con IA. Usa ChatGPT u otros chatbots con frecuencia. Como las herramientas de IA son fáciles de usar ahora, puedes enfocarte en partes más creativas o importantes.
 
-* Al depurar, verifica si estás usando la última versión de las bibliotecas. Si una biblioteca no tiene mantenimiento, busca clones o forks con mantenimiento activo.
+* Al depurar, verifica si estás usando la última versión de las bibliotecas. Si una biblioteca no tiene mantenimiento, busca clones o forks activamente mantenidos.
 
 * Al mejorar algo como la velocidad de red o el tiempo de ejecución de un programa, debe haber una métrica cuantitativa. De lo contrario, no sabrás exactamente si hubo una mejora trivial o un empeoramiento.
 
@@ -73,7 +73,7 @@ translated: true
 
 * Usa GitHub o Sourcetree para revisar bloques de código cambiados con frecuencia. Son más convenientes para leer código.
 
-* En programación, a menudo no hay cosas triviales. Cada carácter, el orden de los elementos de una lista, cada cadena, cada número y cada nombre de variable importan. Cada orden de ejecución y cada registro importan.
+* En programación, a menudo no hay cosas triviales. Cada carácter, el orden de los elementos de la lista, cada cadena, cada número y cada nombre de variable importan. Cada orden de ejecución y cada registro importan.
 
 * Haz las cosas que más te emocionen. No hay necesidad de preocuparse por no seguir la corriente principal.
 
@@ -81,8 +81,8 @@ translated: true
 
 * Guarda los registros de un programa, incluyendo registros locales, UAT, microservicios y registros de pipeline, en un directorio. En programación, estos registros contienen numerosas conexiones. Búscalos para identificar relaciones, recopilando datos o contexto relevantes.
 
-* Con los registros recopilados, cuando encuentres un problema, es más fácil determinar si lo has encontrado antes. A partir de registros anteriores, podrías saber cómo solucionarlo. Los registros proporcionan una mejor comprensión de cómo funciona todo y cómo las computadoras ejecutan programas. A diferencia del código, los registros están relacionados con el tiempo y ofrecen más información sobre el estado de ejecución. También son más ligeros para depurar.
+* Con los registros recopilados, cuando encuentres un problema, es más fácil determinar si lo has encontrado antes. A partir de registros anteriores, podrías saber cómo solucionarlo. Los registros dan una mejor comprensión de cómo funciona todo y cómo las computadoras ejecutan programas. A diferencia del código, los registros están relacionados con el tiempo y ofrecen más información sobre el estado de ejecución. También son más ligeros para depurar.
 
-* La depuración muestra mucha información, incluidos los valores de las variables circundantes, nombres de hilos y pilas de funciones.
+* La depuración muestra mucha información, incluyendo los valores de las variables circundantes, nombres de hilos y pilas de funciones.
 
 * Automatiza todo, como actualizaciones de proxy y selección del mejor servidor proxy. Usa Python para escribir scripts extensivamente.
