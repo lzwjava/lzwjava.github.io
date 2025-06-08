@@ -3,53 +3,53 @@ audio: true
 generated: false
 lang: zh
 layout: post
-title: 自动化新闻摘要机器人
+title: 自动新闻摘要机器人
 translated: true
 ---
 
-这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API从Hacker News、GitHub Trending和《纽约时报》中文版抓取并摘要热门新闻。该机器人通过Telegram发送简洁的每日报告，并通过GitHub Actions工作流实现自动化执行，是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。
+这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API抓取并汇总来自Hacker News、GitHub Trending和《纽约时报》（中文版）的热门新闻，通过Telegram发送简洁的每日简报，并通过GitHub Actions工作流实现自动化执行。是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。
 
 ---
 
-每日新闻摘要 - 2025-06-07
+每日新闻摘要 - 2025年6月7日
 
 Hacker News
 -----------
-1. 网页提示当前浏览器与Facebook不兼容，建议更新至受支持浏览器以继续使用服务。
+1. 网页显示Facebook与当前浏览器不兼容，建议更新至支持的浏览器以继续使用服务。
 
-2. 卢旺达仇恨电台通过暗语煽动听众杀害图西族人，从而引发种族灭绝。
+2. 卢旺达的仇恨电台通过使用暗语煽动听众杀害图西族人，引发了种族灭绝。
 
-3. Railway推出Railpack替代Nixpacks，旨在解决阻碍20万用户的扩展性和依赖管理问题，为支持1亿用户实现更平稳过渡。
+3. Railway推出Railpack取代Nixpacks，旨在解决困扰20万用户的可扩展性和依赖管理问题，以更顺畅地过渡至支持1亿用户。
 
-4. 文章探讨了Radiant AI的遗产，这个曾承诺用于《上古卷轴4：湮没》但最终被大幅删减的争议性AI系统。
+4. 文章深入探讨了Radiant AI的遗产，这是一个曾承诺用于《上古卷轴IV：湮没》但最终大部分被删减的有争议且雄心勃勃的AI系统。
 
-5. 《华盛顿邮报》建议用户停用Chrome并删除Meta应用以增强隐私保护。
+5. 《华盛顿邮报》建议用户通过停用Chrome和删除Meta应用来增强隐私保护。
 
 
 GitHub Trending
 ---------------
-1. Cognee通过五行代码即可利用可扩展的模块化ECL管道为AI代理创建动态记忆。
+1. Cognee通过可扩展、模块化的ECL管道，仅用五行代码即可为AI代理创建动态记忆。
 
-2. NetBird结合点对点WireGuard覆盖网络与集中式精细访问控制，简化安全私密网络搭建。
+2. NetBird结合了基于WireGuard的点对点覆盖网络与集中化、精细的访问控制，简化了安全私密网络的建设。
 
-3. NoteGen是一款AI驱动的跨平台Markdown笔记应用，整合录音与书写功能，将零散知识组织成连贯笔记。
+3. NoteGen是一款AI驱动的跨平台Markdown笔记应用，整合录音与书写功能，将碎片化知识组织成连贯的笔记。
 
-4. Scrapy是Python快速高效的网络爬虫框架，专为从网站提取结构化数据设计。
+4. Scrapy是一个快速、高级的Python网页爬取和抓取框架，专为从网站提取结构化数据而设计。
 
-5. React Bits提供免费开源的动画交互式React组件库，可自定义以增强网页界面。
+5. React Bits提供了一系列免费、开源的动画化、交互式且可定制的React组件，用于增强网页界面。
 
 
-纽约时报（中文版）
+《纽约时报》（中文版）
 -----------------
-1. 中美两国元首通话后同意进一步贸易谈判，以缓解关税和稀土供应引发的紧张局势。
+1. 中国国家主席习近平与美国总统特朗普通话后，双方同意进一步开展贸易谈判，以缓解关税和稀土供应方面的紧张局势。
 
-2. 中国近期争议事件凸显公众对普遍社会不平等现象的沮丧，认为人脉而非能力常决定成功。
+2. 中国近期的争议凸显了公众对社会不平等的普遍不满，认为成功往往取决于关系而非能力。
 
-3. 中国加强打击稀土金属走私导致全球产业严重供应中断，北京正收紧管控以将这些关键资源作为战略工具。
+3. 中国加强对稀土金属走私的打击，导致全球行业供应严重中断，北京正收紧控制以将这些关键资源作为战略工具。
 
-4. 特朗普与马斯克不断升级的冲突可能产生重大影响，双方都在利用自身影响力和资源对抗对方。
+4. 特朗普与马斯克之间不断升级的冲突可能产生重大影响，双方都在利用自身的影响力和资源对抗对方。
 
-5. 中国暂停出口七种稀土金属及其磁体造成严重短缺，可能导致欧美工厂停产。
+5. 中国暂停出口七种稀土金属及其磁铁，导致美国和欧洲工厂可能因严重短缺而关闭。
 
 ---
 
@@ -77,7 +77,7 @@ def send_telegram_message(message):
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     url_pattern = re.compile(r'(https?://[^\s]+)')
-    # 移除消息中所有星号（用于加粗/斜体）
+    # 移除消息中的所有星号（用于加粗/斜体）
     message_no_stars = message.replace('*', '')
     # 移除消息中的链接
     message_no_links = url_pattern.sub('', message_no_stars)
@@ -107,10 +107,10 @@ def send_telegram_message(message):
 
 def fetch_html_content(url):
     try:
-        print(f"正在从以下网址获取HTML内容：{url}")
+        print(f"从以下URL获取HTML内容：{url}")
         response = requests.get(url, timeout=15, verify=False)
         response.raise_for_status()
-        print(f"成功从以下网址获取HTML内容：{url}")
+        print(f"成功从以下URL获取HTML内容：{url}")
         return response.text
     except requests.exceptions.RequestException as e:
         print(f"无法获取URL：{url} - {e}")
@@ -130,7 +130,7 @@ def extract_hacker_news_links(html, max_links=5):
             seen.add(url)
         if len(links) >= max_links:
             break
-    print(f"从Hacker News提取了{len(links)}条链接。")
+    print(f"从Hacker News提取了{len(links)}个链接。")
     return links
 
 def extract_github_trending(html, max_links=5):
@@ -181,7 +181,7 @@ def call_mistral_api(prompt, model="mistral-small-latest"):
             print(f"Mistral API内容：{content}")
             return content
         else:
-            print(f"Mistral API错误：无效响应格式：{response_json}")
+            print(f"Mistral API错误：无效的响应格式：{response_json}")
             return None
     except requests.exceptions.RequestException as e:
         print(f"Mistral API错误：{e}")
@@ -218,9 +218,9 @@ def ai_summarize(text, url=None, title=None):
         print("未设置MISTRAL_API_KEY。返回前15个词作为摘要。")
         return limit_to_n_words(text, 15)
     prompt = (
-        "如果原文是中文，请用英文总结。"
-        "用清晰简洁的英文总结以下网页内容。"
-        "聚焦于最重要的一点或见解。"
+        "如果原文是中文，请用英文摘要。"
+        "用清晰简洁的英文摘要以下网页内容。"
+        "聚焦于最重要的一个观点或见解。"
         "摘要应约300字符。"
         "仅输出摘要句子：\n"
         f"标题：{title if title else ''}\n"
@@ -246,11 +246,11 @@ def generate_summarized_report(summaries, source_name):
         summary = url_pattern.sub('', summary)
         # 最后将每个摘要截断至300字符
         summary = summary[:300]
-        text += f"{idx}. {summary}\n\n"  # 在摘要间添加额外空行
+        text += f"{idx}. {summary}\n\n"  # 在摘要之间添加额外空行
     text += "\n"
     return text
 
-# --- 纽约时报中文版(m.cn.nytimes.com)集成 ---
+# --- 《纽约时报》（中文版）集成 ---
 
 def extract_nytimes_links(html, max_links=5):
     """
@@ -268,7 +268,7 @@ def extract_nytimes_links(html, max_links=5):
             })
         if len(links) >= max_links:
             break
-    print(f"从主页提取了{len(links)}条链接。")
+    print(f"从主页提取了{len(links)}个链接。")
     return links
 
 def summarize_nytimes_article(url):
@@ -300,7 +300,7 @@ def main():
     report = f"每日新闻摘要 - {today}\n\n"
 
     if is_test:
-        # 仅抓取一条链接并发送一条摘要（纽约时报中文版）
+        # 仅抓取一个链接并发送一个摘要（《纽约时报》中文版）
         ny_html = fetch_html_content('https://m.cn.nytimes.com')
         ny_links = []
         ny_summaries = []
@@ -310,16 +310,16 @@ def main():
                 link = ny_links[0]
                 summary = summarize_nytimes_article(link['url'])
                 ny_summaries.append(summary)
-        report = generate_summarized_report(ny_summaries, "纽约时报（中文版）")
+        report = generate_summarized_report(ny_summaries, "《纽约时报》（中文版）")
         if ny_summaries:
             if send_telegram_message(report):
                 print("测试摘要成功发送至Telegram。")
                 sys.exit(0)
             else:
-                print("向Telegram发送测试摘要失败。")
+                print("发送测试摘要至Telegram失败。")
                 sys.exit(1)
         else:
-            print("未收集到新闻，未向Telegram发送内容。")
+            print("未收集到新闻，未发送至Telegram。")
             sys.exit(1)
     else:
         # --- Hacker News ---
@@ -346,7 +346,7 @@ def main():
                 time.sleep(2)
         report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
-        # --- 纽约时报中文版(m.cn.nytimes.com) ---
+        # --- 《纽约时报》（中文版） ---
         ny_html = fetch_html_content('https://m.cn.nytimes.com')
         ny_links = []
         ny_summaries = []
@@ -356,19 +356,19 @@ def main():
                 summary = summarize_nytimes_article(link['url'])
                 ny_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(ny_summaries, "纽约时报（中文版）")
+        report += generate_summarized_report(ny_summaries, "《纽约时报》（中文版）")
 
         if any([hn_summaries, gh_summaries, ny_summaries]):
             if len(report) > TELEGRAM_MAX_LENGTH:
-                print(f"报告超过{TELEGRAM_MAX_LENGTH}字符，将被分割成多条消息。")
+                print(f"报告超过{TELEGRAM_MAX_LENGTH}字符，将被分割为多条消息。")
             if send_telegram_message(report):
                 print("每日新闻报告成功发送至Telegram。")
                 sys.exit(0)
             else:
-                print("向Telegram发送每日新闻报告失败。")
+                print("发送每日新闻报告至Telegram失败。")
                 sys.exit(1)
         else:
-            print("未收集到新闻，未向Telegram发送内容。")
+            print("未收集到新闻，未发送至Telegram。")
             sys.exit(1)
 
 if __name__ == "__main__":
@@ -380,12 +380,12 @@ name: 新闻机器人
 
 on:
   schedule:
-    # 每天北京时间上午9点（UTC凌晨1点）运行
+    # 每天北京时间上午9点（UTC凌晨1点）运行。
     - cron: '0 1 * * *'
   workflow_dispatch:  # 允许手动触发
   push:
     # 仅当两个文件在同一提交/推送中更改时触发
-    # 这需要下面的过滤作业检查两个文件
+    # 这需要下面的过滤作业来检查两个文件
     paths:
       - scripts/nytimes/news_bot.py
       - .github/workflows/news.yml
