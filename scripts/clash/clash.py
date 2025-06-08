@@ -83,7 +83,7 @@ def main():
     setup_logging()
     
     parser = argparse.ArgumentParser(description="Clash configuration and management script.")
-    parser.add_argument("--minutes", type=int, default=10, help="Minutes between updates (default: 10)")
+    parser.add_argument("--minutes", type=int, default=30, help="Minutes between updates (default: 10)")
     parser.add_argument("--iterations", type=int, default=1000, help="Number of iterations (default: 1000)")
     parser.add_argument(
         "--config-url", 
