@@ -30,8 +30,15 @@ def get_chat_id(bot_token):
         updates = response.json()
         print(json.dumps(updates, indent=4))
         if updates['result']:
-            chat_id = updates['result'][-1]['message']['chat']['id']
-            return chat_id
+            last_update = updates['result'][-1]
+            if 'message' in last_update and 'chat' in last_update['message']:
+                return last_update['message']['chat']['id']
+            elif 'edited_message' in last_update and 'chat' in last_update['edited_message']:
+                return last_update['edited_message']['chat']['id']
+            elif 'channel_post' in last_update and 'chat' in last_update['channel_post']:
+                return last_update['channel_post']['chat']['id']
+            elif 'edited_channel_post' in last_update and 'chat' in last_update['edited_channel_post']:
+                return last_update['edited_channel_post']['chat']['id']
     return None
 
 def get_latest_commit_messages(n=1):
