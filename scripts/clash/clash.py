@@ -154,10 +154,19 @@ def main():
         best_proxy_name = None
         try:
             logging.info("Testing proxy speeds to find the best one...")
-            top_proxies = get_top_proxies(num_results=1) # Get only the single best proxy
+            top_proxies = get_top_proxies(num_results=5) # Get top 5 proxies
             if top_proxies:
-                best_proxy_name = top_proxies[0]['name']
-                logging.info(f"Identified best proxy: '{best_proxy_name}' with latency {top_proxies[0]['latency']}ms")
+                # Check for SG or TW in proxy names
+                for proxy in top_proxies:
+                    proxy_name = proxy['name']
+                    if 'SG' in proxy_name or 'TW' in proxy_name:
+                        best_proxy_name = proxy_name
+                        logging.info(f"Selected proxy '{best_proxy_name}' (contains SG or TW) with latency {proxy['latency']}ms")
+                        break
+                # If no SG or TW proxy is found, use the first one
+                if not best_proxy_name:
+                    best_proxy_name = top_proxies[0]['name']
+                    logging.info(f"No SG or TW proxy found. Selected first proxy '{best_proxy_name}' with latency {top_proxies[0]['latency']}ms")
             else:
                 logging.warning("No successful proxy tests. Cannot select a best proxy for this iteration.")
         except Exception as e:
