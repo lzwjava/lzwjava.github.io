@@ -76,7 +76,8 @@ def haversine_distance(lat1, lon1, lat2, lon2):
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Bot Script")
-    parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location'], required=True, help="Job to perform")
+    parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location', 'start_sharing_message', 'stop_sharing_message'], required=True, help="Job to perform")
+    parser.add_argument('--message', type=str, help="Message to send for 'send_message' job") # Add this for send_message job
     args = parser.parse_args()
 
     if args.job == 'get_chat_id':
@@ -111,9 +112,26 @@ def main():
 
     elif args.job == 'send_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = "This is a test message from your Telegram bot script!"
+            # Use the message from the command line argument, or a default test message
+            message = args.message if args.message else "This is a default test message from your Telegram bot script!"
             send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print("Test message sent successfully.")
+            print(f"Message sent successfully: {message}")
+        else:
+            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+
+    elif args.job == 'start_sharing_message':
+        if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
+            message = "⚠️ *Reminder:* Please start sharing your live location to the bot!"
+            send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+            print("Start sharing reminder sent.")
+        else:
+            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+
+    elif args.job == 'stop_sharing_message':
+        if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
+            message = "✅ *Reminder:* You can stop sharing your live location now."
+            send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+            print("Stop sharing reminder sent.")
         else:
             print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
 
@@ -138,9 +156,6 @@ def main():
 
             if distance <= PROXIMITY_RADIUS_METERS:
                 print(f"You are within {PROXIMITY_RADIUS_METERS}m of the office!")
-                # The message should be sent to the specific chat ID you want to be notified in
-                # This could be TELEGRAM_CHAT_ID (for blog updates) or location_chat_id (the one sending live location)
-                # For "Punch card", it's likely a personal notification, so TELEGRAM_CHAT_ID or the specific location_chat_id is good.
                 notification_message = (
                     f"🎉 *Arrived Office!* 🎉\n"
                     f"Time to Punch card in WeCom.\n"
