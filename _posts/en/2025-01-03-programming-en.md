@@ -84,3 +84,5 @@ translated: false
 * With collected logs, when you encounter a problem, it is easier to determine whether you have encountered it before. From previous logs, you might know how to fix it. Logs provide a better understanding of how everything works and how computers execute programs. Unlike code, logs are time-related and offer more information about the running status. They are also more lightweight for debugging.
 
 * Debugging shows a lot of information, including the values of surrounding variables, thread names, and function stacks.
+
+* Automate everything, such as proxy updates and selection of the best proxy server. Use Python to write scripts extensively.
