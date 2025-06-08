@@ -76,13 +76,16 @@ def haversine_distance(lat1, lon1, lat2, lon2):
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Bot Script")
+    # Updated choices for --job argument
     parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location', 'start_sharing_message', 'stop_sharing_message'], required=True, help="Job to perform")
-    parser.add_argument('--message', type=str, help="Message to send for 'send_message' job") # Add this for send_message job
+    # Added --message argument for 'send_message' job
+    parser.add_argument('--message', type=str, help="Message to send for 'send_message' job")
+    # Added --test argument for 'check_location' job
+    parser.add_argument('--test', action='store_true', help="For 'check_location' job, force sending a message regardless of proximity.")
     args = parser.parse_args()
 
     if args.job == 'get_chat_id':
-        # This part is largely for debugging or initial setup
-        bot_token = TELEGRAM_LOCATION_BOT_API_KEY # Or TELEGRAM_LOCATION_BOT_API_KEY, depending on which bot you want to get updates for
+        bot_token = TELEGRAM_LOCATION_BOT_API_KEY
         url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
         response = requests.get(url)
         if response.status_code == 200:
@@ -109,10 +112,8 @@ def main():
         else:
             print(f"Error fetching updates: {response.status_code} - {response.text}")
 
-
     elif args.job == 'send_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            # Use the message from the command line argument, or a default test message
             message = args.message if args.message else "This is a default test message from your Telegram bot script!"
             send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
             print(f"Message sent successfully: {message}")
@@ -154,16 +155,30 @@ def main():
             print(f"Current location: ({current_latitude}, {current_longitude})")
             print(f"Distance to office: {distance:.2f} meters")
 
-            if distance <= PROXIMITY_RADIUS_METERS:
+            needs_punch_card = distance <= PROXIMITY_RADIUS_METERS
+
+            if needs_punch_card:
                 print(f"You are within {PROXIMITY_RADIUS_METERS}m of the office!")
                 notification_message = (
                     f"🎉 *Arrived Office!* 🎉\n"
                     f"Time to Punch card in WeCom.\n"
                     f"Your current distance from office: {distance:.2f}m."
                 )
-                send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, notification_message)
             else:
                 print(f"You are outside the {PROXIMITY_RADIUS_METERS}m office circle.")
+                # Message for when outside the radius
+                notification_message = (
+                    f"📍 You are *outside* the office proximity ({PROXIMITY_RADIUS_METERS}m).\n"
+                    f"No punch card needed at this time.\n"
+                    f"Your current distance from office: {distance:.2f}m."
+                )
+
+            # Send message if within proximity OR if --test flag is used
+            if needs_punch_card or args.test:
+                send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, notification_message)
+            else:
+                # If not within proximity AND not in test mode, just print to console (no Telegram message)
+                print("Not within proximity and not in test mode, no message sent to Telegram.")
         else:
             print("Could not retrieve your latest location. Make sure you are sharing live location with the bot.")
 
