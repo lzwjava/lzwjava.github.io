@@ -7,7 +7,51 @@ title: 自動化新聞摘要機器人
 translated: true
 ---
 
-這篇貼文展示了一個基於Python的新聞機器人，它利用Mistral API從Hacker News、GitHub Trending和紐約時報（中文版）抓取並摘要頂尖新聞。透過Telegram發送簡潔的每日報告，並使用GitHub Actions工作流程實現自動化執行。對於想輕鬆掌握科技與全球新聞動態的人來說，這是一個理想的工具。
+這篇貼文展示了一個基於Python的新聞機器人，它利用Mistral API從Hacker News、GitHub Trending和紐約時報（中文版）抓取並摘要頂尖新聞。該機器人透過Telegram發送簡潔的每日報告，並使用GitHub Actions工作流程實現自動化執行，是輕鬆掌握科技與全球新聞的理想工具。以下是每日新聞摘要的範例。
+
+---
+
+每日新聞摘要 - 2025-06-07
+
+Hacker News
+-----------
+1. 網頁顯示Facebook與當前瀏覽器不相容，建議更新至支援的瀏覽器以繼續使用服務。
+
+2. 盧旺達的仇恨廣播使用暗語煽動聽眾殺害圖西族人，從而引發種族滅絕。
+
+3. Railway推出Railpack取代Nixpacks，旨在解決阻礙20萬用戶的擴展性和依賴管理問題，以更平順地過渡至支援1億用戶。
+
+4. 文章深入探討Radiant AI的遺產，這是一個曾承諾用於《上古卷軸IV：湮沒》但最終被大幅刪減的爭議性且雄心勃勃的AI系統。
+
+5. 《華盛頓郵報》建議用戶停止使用Chrome並刪除Meta的應用程式，以提升隱私保護。
+
+
+GitHub Trending
+---------------
+1. Cognee透過可擴展的模組化ECL管道，僅用五行代碼即可為AI代理創建動態記憶體。
+
+2. NetBird結合基於WireGuard的點對點覆蓋網絡與集中式細粒度訪問控制，簡化安全私密網絡的建立。
+
+3. NoteGen是一款AI驅動的跨平台Markdown筆記應用，整合錄音與書寫功能，將零散知識組織成連貫筆記。
+
+4. Scrapy是一個快速、高階的Python網頁爬取框架，專為從網站提取結構化數據而設計。
+
+5. React Bits提供免費開源的動畫、互動且可自訂的React組件集合，以增強網頁界面。
+
+
+紐約時報（中文版）
+-----------------
+1. 中國國家主席習近平與美國總統特朗普通話後，雙方同意進一步貿易談判，以緩解關稅和稀土供應的緊張局勢。
+
+2. 中國近期的爭議凸顯公眾對社會不平等現象的普遍不滿，認為成功往往取決於關係而非能力。
+
+3. 中國加強打擊稀土金屬走私，導致全球產業供應嚴重中斷，北京正收緊管制以將這些關鍵資源作為戰略工具。
+
+4. 特朗普與馬斯克之間的衝突升級可能帶來重大影響，雙方均利用自身影響力和資源對抗對方。
+
+5. 中國暫停出口七種稀土金屬及其磁鐵，導致美國和歐洲可能出現工廠關閉的嚴重短缺情況。
+
+---
 
 ```python
 import requests
@@ -29,13 +73,13 @@ TELEGRAM_MAX_LENGTH = 4096
 
 def send_telegram_message(message):
     if not TELEGRAM_BOT_TOKEN or not TELEGRAM_CHAT_ID:
-        print("錯誤：未設定TELEGRAM_BOT_API_KEY或TELEGRAM_CHAT_ID。")
+        print("錯誤：未設置TELEGRAM_BOT_API_KEY或TELEGRAM_CHAT_ID。")
         return False
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     url_pattern = re.compile(r'(https?://[^\s]+)')
     # 移除所有星號（用於粗體/斜體）
     message_no_stars = message.replace('*', '')
-    # 移除訊息中的連結
+    # 移除訊息中的鏈接
     message_no_links = url_pattern.sub('', message_no_stars)
     messages = []
     msg = message_no_links
@@ -86,7 +130,7 @@ def extract_hacker_news_links(html, max_links=5):
             seen.add(url)
         if len(links) >= max_links:
             break
-    print(f"從Hacker News提取了{len(links)}個連結。")
+    print(f"從Hacker News提取了{len(links)}個鏈接。")
     return links
 
 def extract_github_trending(html, max_links=5):
@@ -99,13 +143,13 @@ def extract_github_trending(html, max_links=5):
             links.append({'url': url, 'text': title})
         if len(links) >= max_links:
             break
-    print(f"從GitHub提取了{len(links)}個熱門儲存庫。")
+    print(f"從GitHub提取了{len(links)}個熱門倉庫。")
     return links
 
 def call_mistral_api(prompt, model="mistral-small-latest"):
     api_key = MISTRAL_API_KEY
     if not api_key:
-        print("錯誤：未設定MISTRAL_API_KEY環境變數。")
+        print("錯誤：未設置MISTRAL_API_KEY環境變量。")
         return None
 
     url = "https://api.mistral.ai/v1/chat/completions"
@@ -126,7 +170,7 @@ def call_mistral_api(prompt, model="mistral-small-latest"):
     }
 
     try:
-        print(f"使用模型呼叫Mistral API：{model}")
+        print(f"使用模型調用Mistral API：{model}")
         print(f"發送的提示：{prompt[:1000]}...")
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
@@ -171,7 +215,7 @@ def limit_to_n_words(text, n):
 
 def ai_summarize(text, url=None, title=None):
     if not MISTRAL_API_KEY:
-        print("未設定MISTRAL_API_KEY。返回前15個字作為摘要。")
+        print("未設置MISTRAL_API_KEY。返回前15個字作為摘要。")
         return limit_to_n_words(text, 15)
     prompt = (
         "如果原文是中文，請用英文摘要。"
@@ -181,12 +225,12 @@ def ai_summarize(text, url=None, title=None):
         "僅輸出摘要句子：\n"
         f"標題：{title if title else ''}\n"
         f"{text}\n"
-        f"{'原始連結：' + url if url else ''}"
+        f"{'原始鏈接：' + url if url else ''}"
     )
     summary = call_mistral_api(prompt)
     if summary is None:
         return limit_to_n_words(text, 15)
-    # 最後手段：截斷至300字元
+    # 最後手段，截斷至300字元
     return summary.strip()[:300]
 
 def generate_summarized_report(summaries, source_name):
@@ -200,18 +244,18 @@ def generate_summarized_report(summaries, source_name):
         summary = item.get('summary', '').replace('\n', ' ').replace('\r', ' ').strip()
         summary = summary.replace('*', '')
         summary = url_pattern.sub('', summary)
-        # 最後手段：將每個摘要截斷至300字元
+        # 最後手段，將每個摘要截斷至300字元
         summary = summary[:300]
         text += f"{idx}. {summary}\n\n"  # 在摘要之間添加額外換行
     text += "\n"
     return text
 
-# --- 紐約時報（m.cn.nytimes.com）整合 ---
+# --- 紐約時報（m.cn.nytimes.com）集成 ---
 
 def extract_nytimes_links(html, max_links=5):
     """
-    從cn.nytimes.com的主頁提取連結。
-    僅包含以'https://cn.nytimes.com/'開頭的連結。
+    從cn.nytimes.com主頁提取鏈接。
+    僅包含以'https://cn.nytimes.com/'開頭的鏈接。
     """
     soup = BeautifulSoup(html, 'html.parser')
     links = []
@@ -224,7 +268,7 @@ def extract_nytimes_links(html, max_links=5):
             })
         if len(links) >= max_links:
             break
-    print(f"從主頁提取了{len(links)}個連結。")
+    print(f"從主頁提取了{len(links)}個鏈接。")
     return links
 
 def summarize_nytimes_article(url):
@@ -249,14 +293,14 @@ def summarize_nytimes_article(url):
     return {"url": url, "summary": summary, "title": title}
 
 def main():
-    # 檢查--test參數
+    # 檢查是否有--test參數
     is_test = "--test" in sys.argv
 
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     report = f"每日新聞摘要 - {today}\n\n"
 
     if is_test:
-        # 僅抓取一個連結並發送一個摘要（紐約時報中文版）
+        # 僅抓取一個鏈接並發送一個摘要（紐約時報中文版）
         ny_html = fetch_html_content('https://m.cn.nytimes.com')
         ny_links = []
         ny_summaries = []
@@ -300,7 +344,7 @@ def main():
                 summary = fetch_and_summarize(link['url'], fallback_title=link['text'])
                 gh_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(gh_summaries, "GitHub熱門")
+        report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
         # --- 紐約時報（cn.nytimes.com） ---
         ny_html = fetch_html_content('https://m.cn.nytimes.com')
@@ -316,7 +360,7 @@ def main():
 
         if any([hn_summaries, gh_summaries, ny_summaries]):
             if len(report) > TELEGRAM_MAX_LENGTH:
-                print(f"報告超過{TELEGRAM_MAX_LENGTH}字元，將分割成多條訊息。")
+                print(f"報告超過{TELEGRAM_MAX_LENGTH}字元，將分割為多條訊息。")
             if send_telegram_message(report):
                 print("每日新聞報告成功發送至Telegram。")
                 sys.exit(0)
@@ -336,12 +380,12 @@ name: 新聞機器人
 
 on:
   schedule:
-    # 每天北京時間上午9點（UTC凌晨1點）執行。
+    # 每天北京時間上午9點（UTC時間凌晨1點）運行。
     - cron: '0 1 * * *'
   workflow_dispatch:  # 允許手動觸發
   push:
     # 僅當兩個文件在同一提交/推送中更改時觸發
-    # 這需要下面的過濾工作來檢查兩個文件
+    # 這需要在下方過濾工作中檢查兩個文件
     paths:
       - scripts/nytimes/news_bot.py
       - .github/workflows/news.yml
@@ -351,7 +395,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  發送新聞:
+  send-news:
     runs-on: ubuntu-latest
     environment: github-pages
     env:
@@ -359,12 +403,12 @@ jobs:
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}    
 
     steps:
-      - name: 檢出儲存庫
+      - name: 檢出存儲庫
         uses: actions/checkout@v4
         with:
           fetch-depth: 5
 
-      - name: 設定Python 3.10.x
+      - name: 設置Python 3.10.x
         uses: actions/setup-python@v4
         with:
           python-version: "3.10.x"
@@ -374,7 +418,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.simple.txt
 
-      - name: 執行新聞機器人腳本
+      - name: 運行新聞機器人腳本
         run: python scripts/nytimes/news_bot.py
               
 ```
