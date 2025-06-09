@@ -6,7 +6,7 @@ on:
     # The time is in UTC. Singapore time (SGT) is UTC+8.
     # So, 11 AM SGT is 03:00 UTC, and 11 PM SGT is 15:00 UTC.
     # Therefore, we need to schedule from 03:00 to 15:00 UTC.
-    - cron: '0 3-15 * * 1-5'
+    - cron: '0 3-15 * * 3,4,5'
 
     # Reminder to START sharing live location: Wednesday 11 AM SGT (3 AM UTC)
     # Current time: Sunday, June 8, 2025 at 5:10:58 PM +08 (SGT)
@@ -54,7 +54,7 @@ jobs:
     - name: Run location check script (Scheduled)
       run: python scripts/release/location_bot.py --job check_location
       # This step will run on scheduled triggers for the hourly check
-      if: github.event.schedule == '0 3-15 * * 1-5' # Match the hourly cron schedule
+      if: github.event.schedule == '0 3-15 * * 3,4,5' # Match the hourly cron schedule
 
     - name: Reminder to START sharing live location
       run: python scripts/release/location_bot.py --job start_sharing_message
