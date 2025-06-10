@@ -309,3 +309,44 @@ audio
 ## 10. Conclusion
 
 Spring AOP provides a powerful yet simple way to implement cross-cutting concerns in your application. While it has some limitations compared to full AspectJ, it integrates seamlessly with Spring and covers most common use cases. By following the patterns and best practices outlined in this guide, you can effectively modularize cross-cutting concerns and keep your business logic clean and focused.
+
+---
+
+Even though Spring AOP doesn't use AspectJ's weaving capabilities (it uses proxy-based AOP instead), you still need the `aspectjweaver` dependency for several important reasons:
+
+### 1. **AspectJ Annotation Support**
+Spring AOP uses AspectJ's **annotations** (like `@Aspect`, `@Pointcut`, `@Before`, `@After`, etc.) to define aspects and advices. These annotations come from the `aspectjweaver` library.
+
+- Without it, you would get compilation errors when using `@Aspect` or other AOP annotations.
+
+### 2. **Pointcut Expression Language**
+Spring AOP borrows AspectJ's **pointcut expression language** for defining where advice should be applied (e.g., `execution(* com.example.service.*.*(..))`).
+
+- The `aspectjweaver` provides the parser and matching logic for these expressions.
+
+### 3. **Support for Additional Join Points (Limited)**
+While Spring AOP only supports **method execution** join points (unlike AspectJ, which supports constructors, field access, etc.), it still relies on AspectJ's underlying pointcut matching mechanism.
+
+### 4. **Load-Time Weaving (Optional)**
+If you decide to use **Load-Time Weaving (LTW)** with Spring AOP (which is rare but possible), `aspectjweaver` is required. LTW allows weaving aspects at class-loading time instead of using proxies.
+
+```java
+@EnableLoadTimeWeaving
+public class AppConfig { ... }
+```
+
+### 5. **Compatibility with @EnableAspectJAutoProxy**
+When you use `@EnableAspectJAutoProxy`, Spring internally uses AspectJ's infrastructure to process the AOP annotations, even though it doesn't do full AspectJ weaving.
+
+---
+
+### **Do You Always Need It?**
+- **If using Spring Boot (`spring-boot-starter-aop`)**: No, because it transitively includes `aspectjweaver`.
+- **If using plain Spring AOP**: Yes, you must include it explicitly.
+
+### **Alternatives?**
+- If you were using **full AspectJ** (compile-time or load-time weaving), you'd need `aspectjrt` and `aspectjtools` as well.
+- But for **Spring AOP**, `aspectjweaver` alone is sufficient.
+
+### **Conclusion**
+Spring AOP is **proxy-based**, but it **reuses AspectJ's annotations and pointcut syntax**, which is why `aspectjweaver` is required. It bridges the gap between Spring's proxy approach and AspectJ's more powerful AOP model.
