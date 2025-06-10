@@ -34,7 +34,7 @@ on:
     - cron: '0 13 * * 5'
     # Reminds about associate degree exam in March, April, September, and October every Monday at 1 PM Beijing Time (5 AM UTC).
     - cron: '0 5 * 3,4,9,10 1'
-    # Reminds to submit clarity timesheet every Friday at 5 PM Taipei time (9 AM UTC).
+    # Reminds to submit weekly timesheet every Friday at 5 PM Taipei time (9 AM UTC).
     - cron: '0 9 * * 5'
     # Reminds to submit vendor timesheet on the 25th of every month at 12 AM Taipei time (4 PM UTC previous day).
     - cron: '0 16 25 * *'
@@ -113,8 +113,8 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "Register associate degree exam"
         if: github.event.schedule == '0 5 * 3,4,9,10 1'
 
-      - name: Run Telegram script for clarity timesheet reminder
-        run: python scripts/release/reminders_bot.py --job send_message --message "Submit clarity timesheet"
+      - name: Run Telegram script for weekly timesheet reminder
+        run: python scripts/release/reminders_bot.py --job send_message --message "Submit weekly timesheet"
         if: github.event.schedule == '0 9 * * 5'
 
       - name: Run Telegram script for vendor timesheet reminder
