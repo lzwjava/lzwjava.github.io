@@ -7,7 +7,7 @@ title: Telegramで効率化するリマインダー
 translated: true
 ---
 
-このプロジェクトでは、GitHub ActionsとTelegramボットを活用して、日々のタスクや月次の業務を管理する自動リマインダーシステムを構築しました。cronスケジュールを利用して、WeComでの打刻、タイムシートの提出、給与確認といった仕事関連のタスクから、実家への訪問、JD.comでの買い物、パートナーとのテレビ鑑賞といったプライベートな予定までをリマインドするように設定しています。Pythonスクリプトを用いてTelegramのBot API経由でメッセージを送信し、環境変数はGitHub Secretsで安全に管理しています。このシステムにより、重要な締め切りや個人的な約束を見逃すことなく、テクノロジーと日常生活を融合させて最大限の効率を実現しています。
+このプロジェクトでは、GitHub ActionsとTelegramボットを活用して、日々のタスクや月次の業務を管理する自動リマインダーシステムを構築しました。cronスケジュールを利用することで、WeComでの打刻、タイムシート提出、給与確認といった仕事関連のタスクから、実家訪問、JD.comでの買い物、パートナーとのテレビ鑑賞といったプライベートな予定まで、様々なリマインダーを設定しています。PythonスクリプトでTelegramのBot APIを介してメッセージを送信し、GitHub Secretsに環境変数を安全に保管しています。このシステムにより、重要な締切や個人的な約束を見逃すことなく、テクノロジーと日常生活を融合させて最大限の効率を実現しています。
 
 ```yaml
 name: リマインダー
@@ -16,35 +16,35 @@ on:
   schedule:
     # 毎週水曜日から金曜日、北京時間午後12時から午後8時まで2時間ごとに実行（UTC+8）
     - cron: '0 4,6,8,10,12 * * 3-5'
-    # 毎月27日正午に実行（北京時間、UTC+8）
+    # 毎月27日午後12時北京時間（UTC+8）に実行
     - cron: '0 4 27 * *'
-    # 毎月30日午後2時に実行（北京時間、UTC+8）
+    # 毎月30日午後2時北京時間（UTC+8）に実行
     - cron: '0 6 30 * *'
-    # 毎日午前1時に実行（北京時間、前日UTC午後5時）
+    # 毎日午前1時北京時間（前日UTC午後5時）に実行
     - cron: '0 17 * * *'
-    # 毎日午前11時に実行（北京時間、UTC午前3時）
+    # 毎日午前11時北京時間（UTC午前3時）に実行
     - cron: '0 3 * * *'
-    # 火曜日から木曜日、午後9時に実家訪問をリマインド（北京時間、UTC午後1時）
+    # 実家訪問リマインダー：火曜～木曜 北京時間午後9時（UTC午後1時）
     - cron: '0 13 * * 2-4'
-    # 日曜日、月曜日、金曜日、土曜日、午後9時に自宅訪問をリマインド（北京時間、UTC午後1時）
+    # 自宅訪問リマインダー：日曜、月曜、金曜、土曜 北京時間午後9時（UTC午後1時）
     - cron: '0 13 * * 0,1,5,6'
-    # 水曜日午後9時にJD.comで生鮮食品を購入するようリマインド（北京時間、UTC午後1時）
+    # JD.comで新鮮食材を購入：水曜日 北京時間午後9時（UTC午後1時）
     - cron: '0 13 * * 3'
-    # 金曜日午後9時にJD.comで速達食品を購入するようリマインド（北京時間、UTC午後1時）
+    # JD.comで速達食品を購入：金曜日 北京時間午後9時（UTC午後1時）
     - cron: '0 13 * * 5'
-    # 3月、4月、9月、10月の毎週月曜日午後1時に短大試験をリマインド（北京時間、UTC午前5時）
+    # 短期大学試験リマインダー：3月、4月、9月、10月の毎週月曜日 北京時間午後1時（UTC午前5時）
     - cron: '0 5 * 3,4,9,10 1'
-    # 毎週金曜日午後5時にタイムシート提出をリマインド（台北時間、UTC午前9時）
+    # 週次タイムシート提出リマインダー：毎週金曜日 台北時間午後5時（UTC午前9時）
     - cron: '0 9 * * 5'
-    # 毎月25日午前0時にベンダータイムシート提出をリマインド（台北時間、前日UTC午後4時）
+    # ベンダータイムシート提出リマインダー：毎月25日 台北時間午前0時（前日UTC午後4時）
     - cron: '0 16 25 * *'
-    # 毎月16日午後9時に家族へ住宅ローン支援を依頼するようリマインド（台北時間、UTC午後1時）
+    # 住宅ローン支援依頼リマインダー：毎月16日 台北時間午後9時（UTC午後1時）
     - cron: '0 13 16 * *'
-    # 毎週金曜日、土曜日、日曜日午後10時にパートナーとテレビ鑑賞をリマインド（台北時間、UTC午後2時）
+    # パートナーとテレビ鑑賞リマインダー：毎週金曜、土曜、日曜 台北時間午後10時（UTC午後2時）
     - cron: '0 14 * * 5,6,0'
-    # 水曜日から金曜日、午前2時に駐車許可証ステッカーを剥がすようリマインド（北京時間、UTC午後6時）
+    # 駐車許可証剥がしリマインダー：水曜～金曜 北京時間午前2時（UTC午後6時）
     - cron: '0 18 * * 3,4,5'
-  workflow_dispatch:  # 手動実行を許可
+  workflow_dispatch:  # 手動トリガーを許可
 
 concurrency:
   group: 'reminders'
@@ -73,67 +73,67 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.simple.txt
 
-      - name: WeCom打刻リマインダーを送信
+      - name: WeCom打刻リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "WeComで打刻してください"
         if: github.event.schedule == '0 4,6,8,10,12 * * 3-5'
 
-      - name: 住宅ローンリマインダーを送信
-        run: python scripts/release/reminders_bot.py --job send_message --message "住宅ローンの引き落とし準備をしてください"
+      - name: 住宅ローン控除リマインダー用Telegramスクリプト実行
+        run: python scripts/release/reminders_bot.py --job send_message --message "住宅ローン控除の準備をしてください"
         if: github.event.schedule == '0 4 27 * *'
 
-      - name: 給与確認リマインダーを送信
+      - name: 給与確認リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "給与を確認してください"
         if: github.event.schedule == '0 6 30 * *'
 
-      - name: 就寝リマインダーを送信
+      - name: 就寝リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "寝る時間です！"
         if: github.event.schedule == '0 17 * * *'
 
-      - name: 起床リマインダーを送信
+      - name: 起床リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "起きる時間です！"
         if: github.event.schedule == '0 3 * * *'
 
-      - name: 実家訪問リマインダーを送信
+      - name: 実家訪問リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "明日は実家に行きましょう！"
         if: github.event.schedule == '0 13 * * 2-4'
 
-      - name: 自宅訪問リマインダーを送信
+      - name: 自宅訪問リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "明日は自宅に行きましょう！"
         if: github.event.schedule == '0 13 * * 0,1,5,6'
 
-      - name: JD.com生鮮食品購入リマインダーを送信
-        run: python scripts/release/reminders_bot.py --job send_message --message "JD.comで産地直送の生鮮食品を購入しましょう！"
+      - name: JD.com新鮮食材購入リマインダー用Telegramスクリプト実行
+        run: python scripts/release/reminders_bot.py --job send_message --message "JD.comで産直新鮮食材を購入しましょう！"
         if: github.event.schedule == '0 13 * * 3'
 
-      - name: JD.com速達食品購入リマインダーを送信
+      - name: JD.com速達食品購入リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "JD.comで速達食品を購入しましょう！"
         if: github.event.schedule == '0 13 * * 5'
 
-      - name: 短大試験登録リマインダーを送信
-        run: python scripts/release/reminders_bot.py --job send_message --message "短大試験に登録してください"
+      - name: 短期大学試験登録リマインダー用Telegramスクリプト実行
+        run: python scripts/release/reminders_bot.py --job send_message --message "短期大学試験に登録してください"
         if: github.event.schedule == '0 5 * 3,4,9,10 1'
 
-      - name: タイムシート提出リマインダーを送信
-        run: python scripts/release/reminders_bot.py --job send_message --message "タイムシートを提出してください"
+      - name: 週次タイムシート提出リマインダー用Telegramスクリプト実行
+        run: python scripts/release/reminders_bot.py --job send_message --message "週次タイムシートを提出してください"
         if: github.event.schedule == '0 9 * * 5'
 
-      - name: ベンダータイムシート提出リマインダーを送信
+      - name: ベンダータイムシート提出リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "ベンダータイムシートを提出してください"
         if: github.event.schedule == '0 16 25 * *'
 
-      - name: 住宅ローン支援依頼リマインダーを送信
+      - name: 住宅ローン支援依頼リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "家族に住宅ローンの支援を依頼してください"
         if: github.event.schedule == '0 13 16 * *'
 
-      - name: パートナーとテレビ鑑賞リマインダーを送信
+      - name: パートナーとテレビ鑑賞リマインダー用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "パートナーとテレビを見る時間です！"
         if: github.event.schedule == '0 14 * * 5,6,0'
 
-      - name: 駐車許可証ステッカー除去リマインダーを送信
-        run: python scripts/release/reminders_bot.py --job send_message --message "車の窓から駐車許可証ステッカーを剥がしてください"
+      - name: 駐車許可証剥がしリマインダー用Telegramスクリプト実行
+        run: python scripts/release/reminders_bot.py --job send_message --message "車窓から駐車許可証ステッカーを剥がしてください"
         if: github.event.schedule == '0 18 * * 3,4,5'
 
-      - name: テストメッセージを送信
+      - name: テストメッセージ用Telegramスクリプト実行
         run: python scripts/release/reminders_bot.py --job send_message --message "これはGitHub Actionsからのテストメッセージです"
         if: github.event_name == 'workflow_dispatch'
 ```
@@ -151,7 +151,7 @@ TELEGRAM_BOT2_API_KEY = os.environ.get("TELEGRAM_BOT2_API_KEY")
 TELEGRAM_CHAT_ID = "610574272"
 
 def send_telegram_message(bot_token, chat_id, message):
-    """Telegram Bot APIを使用してチャットにメッセージを送信"""
+    """Telegram Bot APIを使用してチャットにメッセージを送信します"""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     params = {
         "chat_id": chat_id,
@@ -162,7 +162,7 @@ def send_telegram_message(bot_token, chat_id, message):
         print(f"Telegramメッセージ送信エラー: {response.status_code} - {response.text}")
 
 def get_chat_id(bot_token):
-    """ボットに送信された最新メッセージのチャットIDを取得"""
+    """ボットに送信された最後のメッセージのチャットIDを取得します"""
     url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
     response = requests.get(url)
     if response.status_code == 200:
@@ -174,7 +174,7 @@ def get_chat_id(bot_token):
     return None
 
 def send_reminder(message):
-    """リマインダーメッセージをTelegramに送信"""
+    """リマインダーメッセージをTelegramに送信します"""
     if TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID:
         send_telegram_message(TELEGRAM_BOT2_API_KEY, TELEGRAM_CHAT_ID, f"リマインダー: {message}")
     else:
