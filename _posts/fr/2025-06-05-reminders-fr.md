@@ -7,22 +7,22 @@ title: Optimiser les rappels via Telegram
 translated: true
 ---
 
-Dans ce projet, j'ai mis en place un système de rappels automatisé utilisant GitHub Actions et un bot Telegram pour suivre mes tâches quotidiennes et mensuelles. En exploitant des plannings cron, j'ai configuré des rappels pour des tâches professionnelles comme pointer sur WeCom, soumettre des feuilles de temps et vérifier les salaires, ainsi que des tâches personnelles comme rendre visite à ma famille, faire des achats sur JD.com, et même regarder la télé avec ma partenaire. Le système utilise un script Python pour envoyer des messages via l'API Bot de Telegram, avec des variables d'environnement stockées de manière sécurisée dans GitHub Secrets. Cette configuration garantit que je ne manque jamais des échéances critiques ou des engagements personnels, combinant technologie et vie quotidienne pour une efficacité maximale.
+Dans ce projet, j'ai mis en place un système de rappels automatisé utilisant GitHub Actions et un bot Telegram pour suivre mes tâches quotidiennes et mensuelles. En exploitant des plannings cron, j'ai configuré des rappels pour des tâches professionnelles comme pointer sur WeCom, soumettre des feuilles de temps et vérifier les salaires, ainsi que des tâches personnelles comme rendre visite à ma famille, faire des achats sur JD.com, ou même regarder la télé avec ma partenaire. Le système utilise un script Python pour envoyer des messages via l'API Bot de Telegram, avec des variables d'environnement stockées de manière sécurisée dans GitHub Secrets. Cette configuration garantit que je ne rate jamais des échéances critiques ou des engagements personnels, combinant technologie et vie quotidienne pour une efficacité maximale.
 
 ```yaml
 name: Rappels
 
 on:
   schedule:
-    # Exécuté toutes les 2 heures de midi à 20h (heure de Pékin, UTC+8) du mercredi au vendredi.
+    # Exécuté toutes les 2 heures de 12h à 20h (heure de Pékin, UTC+8) du mercredi au vendredi.
     - cron: '0 4,6,8,10,12 * * 3-5'
-    # Exécuté le 27 de chaque mois à midi (heure de Pékin, UTC+8).
+    # Exécuté le 27 de chaque mois à 12h (heure de Pékin, UTC+8).
     - cron: '0 4 27 * *'
     # Exécuté le 30 de chaque mois à 14h (heure de Pékin, UTC+8).
     - cron: '0 6 30 * *'
-    # Exécuté chaque jour à 1h du matin heure de Pékin (17h UTC la veille).
+    # Exécuté tous les jours à 1h du matin (heure de Pékin, 17h UTC la veille).
     - cron: '0 17 * * *'
-    # Exécuté chaque jour à 11h heure de Pékin (3h UTC).
+    # Exécuté tous les jours à 11h (heure de Pékin, 3h UTC).
     - cron: '0 3 * * *'
     # Rappel pour aller chez les parents le lendemain : 21h heure de Pékin (13h UTC) mar, mer, jeu.
     - cron: '0 13 * * 2-4'
@@ -30,19 +30,19 @@ on:
     - cron: '0 13 * * 0,1,5,6'
     # Rappel pour acheter des produits frais directement sur JD.com : 21h heure de Pékin (13h UTC) mercredi.
     - cron: '0 13 * * 3'
-    # Rappel pour acheter des plats livrés rapidement sur JD.com : 21h heure de Pékin (13h UTC) vendredi.
+    # Rappel pour acheter de la nourriture en livraison rapide sur JD.com : 21h heure de Pékin (13h UTC) vendredi.
     - cron: '0 13 * * 5'
     # Rappel pour l'examen de licence associée en mars, avril, septembre et octobre chaque lundi à 13h heure de Pékin (5h UTC).
     - cron: '0 5 * 3,4,9,10 1'
-    # Rappel pour soumettre la feuille de temps Clarity chaque vendredi à 17h heure de Taipei (9h UTC).
+    # Rappel pour soumettre la feuille de temps hebdomadaire chaque vendredi à 17h heure de Taipei (9h UTC).
     - cron: '0 9 * * 5'
-    # Rappel pour soumettre la feuille de temps fournisseur le 25 de chaque mois à minuit heure de Taipei (16h UTC la veille).
+    # Rappel pour soumettre la feuille de temps des fournisseurs le 25 de chaque mois à minuit heure de Taipei (16h UTC la veille).
     - cron: '0 16 25 * *'
-    # Rappel pour demander à la famille de soutenir le paiement du prêt le 16 de chaque mois à 21h heure de Taipei (13h UTC).
+    # Rappel pour demander à la famille de soutenir le paiement du prêt immobilier le 16 de chaque mois à 21h heure de Taipei (13h UTC).
     - cron: '0 13 16 * *'
     # Rappel pour regarder la télé avec ma partenaire chaque vendredi, samedi et dimanche à 22h heure de Taipei (14h UTC).
     - cron: '0 14 * * 5,6,0'
-    # Rappel pour enlever l'autocollant de stationnement à 2h heure de Pékin (18h UTC) mer, jeu, ven.
+    # Rappel pour retirer l'autocollant de stationnement à 2h du matin (heure de Pékin, 18h UTC) mer, jeu, ven.
     - cron: '0 18 * * 3,4,5'
   workflow_dispatch:  # Permet un déclenchement manuel
 
@@ -105,23 +105,23 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "Acheter des produits frais directement sur JD.com !"
         if: github.event.schedule == '0 13 * * 3'
 
-      - name: Exécuter le script Telegram pour le rappel d'achat de plats livrés rapidement sur JD.com
-        run: python scripts/release/reminders_bot.py --job send_message --message "Acheter des plats livrés rapidement sur JD.com !"
+      - name: Exécuter le script Telegram pour le rappel d'achat de nourriture en livraison rapide sur JD.com
+        run: python scripts/release/reminders_bot.py --job send_message --message "Acheter de la nourriture en livraison rapide sur JD.com !"
         if: github.event.schedule == '0 13 * * 5'
 
       - name: Exécuter le script Telegram pour le rappel d'examen de licence associée
         run: python scripts/release/reminders_bot.py --job send_message --message "S'inscrire à l'examen de licence associée"
         if: github.event.schedule == '0 5 * 3,4,9,10 1'
 
-      - name: Exécuter le script Telegram pour le rappel de feuille de temps Clarity
-        run: python scripts/release/reminders_bot.py --job send_message --message "Soumettre la feuille de temps Clarity"
+      - name: Exécuter le script Telegram pour le rappel de feuille de temps hebdomadaire
+        run: python scripts/release/reminders_bot.py --job send_message --message "Soumettre la feuille de temps hebdomadaire"
         if: github.event.schedule == '0 9 * * 5'
 
-      - name: Exécuter le script Telegram pour le rappel de feuille de temps fournisseur
-        run: python scripts/release/reminders_bot.py --job send_message --message "Soumettre la feuille de temps fournisseur"
+      - name: Exécuter le script Telegram pour le rappel de feuille de temps des fournisseurs
+        run: python scripts/release/reminders_bot.py --job send_message --message "Soumettre la feuille de temps des fournisseurs"
         if: github.event.schedule == '0 16 25 * *'
 
-      - name: Exécuter le script Telegram pour le rappel de soutien familial au prêt
+      - name: Exécuter le script Telegram pour le rappel de soutien familial au prêt immobilier
         run: python scripts/release/reminders_bot.py --job send_message --message "Demander à la famille de soutenir le paiement du prêt"
         if: github.event.schedule == '0 13 16 * *'
 
@@ -129,12 +129,12 @@ jobs:
         run: python scripts/release/reminders_bot.py --job send_message --message "Il est temps de regarder la télé avec ta partenaire !"
         if: github.event.schedule == '0 14 * * 5,6,0'
 
-      - name: Exécuter le script Telegram pour le rappel d'autocollant de stationnement
-        run: python scripts/release/reminders_bot.py --job send_message --message "Enlever l'autocollant de stationnement de la voiture"
+      - name: Exécuter le script Telegram pour le rappel de retirer l'autocollant de stationnement
+        run: python scripts/release/reminders_bot.py --job send_message --message "Retirer l'autocollant de stationnement de la vitre de la voiture"
         if: github.event.schedule == '0 18 * * 3,4,5'
 
       - name: Exécuter le script Telegram pour un message de test
-        run: python scripts/release/reminders_bot.py --job send_message --message "Ceci est un message test depuis GitHub Actions."
+        run: python scripts/release/reminders_bot.py --job send_message --message "Ceci est un message de test depuis GitHub Actions."
         if: github.event_name == 'workflow_dispatch'
 ```
 
@@ -182,11 +182,11 @@ def envoyer_rappel(message):
 
 def main():
     parser = argparse.ArgumentParser(description="Script de Bot Telegram")
-    parser.add_argument('--job', choices=['get_chat_id', 'send_message'], required=True, help="Tâche à effectuer")
+    parser.add_argument('--job', choices=['obtenir_chat_id', 'envoyer_message'], required=True, help="Tâche à effectuer")
     parser.add_argument('--message', help="Message personnalisé à envoyer", default=None)
     args = parser.parse_args()
 
-    if args.job == 'get_chat_id':
+    if args.job == 'obtenir_chat_id':
         bot_token = TELEGRAM_BOT2_API_KEY
         chat_id = obtenir_chat_id(bot_token)
         if chat_id:
@@ -194,11 +194,11 @@ def main():
         else:
             print("Impossible de récupérer l'ID du chat.")
 
-    elif args.job == 'send_message':
+    elif args.job == 'envoyer_message':
         if args.message:
             envoyer_rappel(args.message)
         else:
-            print("Aucun message fourni pour la tâche send_message.")
+            print("Aucun message fourni pour la tâche envoyer_message.")
             
 if __name__ == '__main__':
     main()
