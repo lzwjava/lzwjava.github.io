@@ -48,6 +48,7 @@ To log variable values and program state, you can use a logging framework like S
 
 #### Example with SLF4J and Logback
 1. **Add Dependencies** (e.g., for Maven):
+
 ```xml
 <dependency>
     <groupId>ch.qos.logback</groupId>
@@ -62,6 +63,7 @@ To log variable values and program state, you can use a logging framework like S
 ```
 
 2. **Configure Logback** (`logback.xml`):
+
 ```xml
 <configuration>
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -76,6 +78,7 @@ To log variable values and program state, you can use a logging framework like S
 ```
 
 3. **Add Logging to Code**:
+
 ```java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,6 +115,7 @@ To automatically log every variable and state without modifying source code, you
 Byte Buddy is a library that allows you to create a Java agent to intercept method calls and log variable states dynamically.
 
 1. **Add Byte Buddy Dependency** (Maven):
+
 ```xml
 <dependency>
     <groupId>net.bytebuddy</groupId>
@@ -126,6 +130,7 @@ Byte Buddy is a library that allows you to create a Java agent to intercept meth
 ```
 
 2. **Create a Java Agent**:
+
 ```java
 import net.bytebuddy.agent.builder.AgentBuilder;
 import net.bytebuddy.description.type.TypeDescription;
@@ -147,6 +152,7 @@ public class LoggingAgent {
 ```
 
 3. **Create an Interceptor**:
+
 ```java
 import net.bytebuddy.implementation.bind.annotation.AllArguments;
 import net.bytebuddy.implementation.bind.annotation.Origin;
@@ -178,6 +184,7 @@ java -javaagent:logging-agent.jar -cp . MyApp
 AspectJ allows you to define aspects that intercept code execution and log variable states.
 
 1. **Add AspectJ Dependency** (Maven):
+
 ```xml
 <dependency>
     <groupId>org.aspectj</groupId>
@@ -192,6 +199,7 @@ AspectJ allows you to define aspects that intercept code execution and log varia
 ```
 
 2. **Define an Aspect**:
+
 ```java
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -270,6 +278,7 @@ Several tools can help trace and log program execution without modifying your co
 - **BTrace**:
   - A dynamic tracing tool for Java that allows you to inject tracing logic into a running JVM.
   - Example script:
+
     ```java
     import com.sun.btrace.annotations.*;
     import static com.sun.btrace.BTraceUtils.*;
