@@ -21,20 +21,22 @@ def generate_notes_links():
                 lang = post.get('lang', 'en') # Default to english if no lang is found
             print(f"  Extracted title: {title}, lang: {lang} from {file}")
 
-            date = file.split('-')[:3] # Extract date from filename
+            date_parts = file.split('-')[:3] # Extract date from filename
+            date_str = '-'.join(date_parts) # Create comparable date string
             
             # Generate the markdown link with the title and add an asterisk (*) in front
             link = f"* [{title}](/notes/{file.replace('.md', '')})"
-            all_links.append((date, link))
+            all_links.append((date_str, file, link))  # Now storing date_str, filename, and link
             print(f"  Generated link: {link}")
         except Exception as e:
             print(f"Error processing {file}: {e}")
 
     # Generate and update the markdown file for each language
     
-    # Sort links by date descending
-    all_links.sort(key=lambda item: item[0], reverse=True)
-    sorted_links = [link for _, link in all_links]
+    # Sort links by date descending, then by filename ascending
+    all_links.sort(key=lambda item: (-int(item[0].replace('-', '')), item[1]))
+    sorted_links = [link for _, _, link in all_links]
+    
     file_path = os.path.join('original', '2025-01-11-notes-en.md')
     content = f"""---
 audio: false
