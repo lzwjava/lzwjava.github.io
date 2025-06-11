@@ -91,17 +91,27 @@ def main():
         default=os.getenv("CLASH_DOWNLOAD_URL"),
         help="URL to download Clash configuration from. Defaults to CLASH_DOWNLOAD_URL environment variable if set, otherwise a hardcoded URL."
     )
+    parser.add_argument(
+        "--clash-executable",
+        type=str,
+        default=os.getenv("CLASH_EXECUTABLE"),
+        help="Path to the Clash executable. Defaults to CLASH_EXECUTABLE environment variable if set."
+    )
     args = parser.parse_args()
 
     ITERATIONS = args.iterations
     SLEEP_SECONDS = args.minutes * 60
     config_download_url = args.config_url
+    clash_executable_path = args.clash_executable
 
     if not config_download_url:
         logging.critical("Error: No configuration download URL provided. Please set CLASH_DOWNLOAD_URL environment variable or use --config-url argument.")
         return # Exit if no URL is available
 
-    clash_executable_path = "/home/lzw/clash-linux-386-v1.17.0/clash-linux-386"
+    if not clash_executable_path:
+        logging.critical("Error: No Clash executable path provided. Please set CLASH_EXECUTABLE environment variable or use --clash-executable argument.")
+        return # Exit if no executable path is available
+
     clash_config_dir = os.path.expanduser("~/.config/clash")
     clash_config_path = os.path.join(clash_config_dir, "config.yaml")
 
@@ -154,7 +164,7 @@ def main():
         best_proxy_name = None
         try:
             logging.info("Testing proxy speeds to find the best one...")
-            top_proxies = get_top_proxies(num_results=5) # Get top 5 proxies
+            top_proxies = get_top_proxies(num_results=20) # Get top 5 proxies
             if top_proxies:
                 # Check for SG or TW in proxy names
                 for proxy in top_proxies:
