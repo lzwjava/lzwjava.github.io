@@ -2,28 +2,34 @@ name: Location Check
 
 on:
   schedule:
-    # Run every hour, on the hour, between 11 AM and 11 PM, on weekdays (Monday-Friday)
+    # Run every hour, on the hour, between 11 AM and 11 PM, on weekdays (Wednesday-Friday)
     # The time is in UTC. Singapore time (SGT) is UTC+8.
     # So, 11 AM SGT is 03:00 UTC, and 11 PM SGT is 15:00 UTC.
     # Therefore, we need to schedule from 03:00 to 15:00 UTC.
     - cron: '0 3-15 * * 3,4,5'
 
     # Reminder to START sharing live location: Wednesday 11 AM SGT (3 AM UTC)
-    # Current time: Sunday, June 8, 2025 at 5:10:58 PM +08 (SGT)
-    # For Wednesday 11 AM SGT (UTC+8): 11 - 8 = 3 AM UTC.
     - cron: '0 3 * * 3' # 3 for Wednesday
 
     # Reminder to STOP sharing live location: Friday 11 PM SGT (3 PM UTC)
-    # Current time: Sunday, June 8, 2025 at 5:10:58 PM +08 (SGT)
-    # For Friday 11 PM SGT (UTC+8): 23 - 8 = 15 PM UTC.
     - cron: '0 15 * * 5' # 5 for Friday
 
-  workflow_dispatch:  # Allows manual triggering of the workflow
+  workflow_dispatch:
+    inputs:
+      job_name:
+        description: 'Job to run (check_location, start_sharing_message, stop_sharing_message, send_message)'
+        required: true
+        default: 'send_message'
+      message:
+        description: 'Custom message for send_message job (optional)'
+        required: false
+        default: 'This is a manual trigger test message from GitHub Actions.'
+
   push:
     branches: ["main"]
     paths:
-      - 'scripts/release/location_bot.py' # Corrected path to your script
-      - '.github/workflows/location.yml' # Path to this workflow file
+      - 'scripts/release/location_bot.py'
+      - '.github/workflows/location.yml'
 
 concurrency:
   group: 'location'
@@ -44,7 +50,7 @@ jobs:
     - name: Set up Python 3.13.2
       uses: actions/setup-python@v4
       with:
-        python-version: "3.13.2" # Specify the exact Python version
+        python-version: "3.13.2"
 
     - name: Install dependencies
       run: |
@@ -53,20 +59,31 @@ jobs:
 
     - name: Run location check script (Scheduled)
       run: python scripts/release/location_bot.py --job check_location
-      # This step will run on scheduled triggers for the hourly check
-      if: github.event.schedule == '0 3-15 * * 3,4,5' # Match the hourly cron schedule
+      if: github.event.schedule == '0 3-15 * * 3,4,5'
 
-    - name: Reminder to START sharing live location
+    - name: Reminder to START sharing live location (Scheduled)
       run: python scripts/release/location_bot.py --job start_sharing_message
-      if: github.event.schedule == '0 3 * * 3' # Matches Wednesday 11 AM SGT cron
+      if: github.event.schedule == '0 3 * * 3'
 
-    - name: Reminder to STOP sharing live location
+    - name: Reminder to STOP sharing live location (Scheduled)
       run: python scripts/release/location_bot.py --job stop_sharing_message
-      if: github.event.schedule == '0 15 * * 5' # Matches Friday 11 PM SGT cron
+      if: github.event.schedule == '0 15 * * 5'
 
-    - name: Run Telegram script for test message (Manual Trigger)
-      run: python scripts/release/location_bot.py --job send_message --message "This is a manual trigger test message from GitHub Actions."
-      if: github.event_name == 'workflow_dispatch'
+    - name: Run location check script (Manual Trigger)
+      run: python scripts/release/location_bot.py --job check_location
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'check_location'
+
+    - name: Reminder to START sharing live location (Manual Trigger)
+      run: python scripts/release/location_bot.py --job start_sharing_message
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'start_sharing_message'
+
+    - name: Reminder to STOP sharing live location (Manual Trigger)
+      run: python scripts/release/location_bot.py --job stop_sharing_message
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'stop_sharing_message'
+
+    - name: Run Telegram script for custom message (Manual Trigger)
+      run: python scripts/release/location_bot.py --job send_message --message "${{ github.event.inputs.message }}"
+      if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'send_message'
 
     - name: Run Telegram script for push to main branch
       run: python scripts/release/location_bot.py --job send_message --message "Code changes for location bot pushed to main branch."
