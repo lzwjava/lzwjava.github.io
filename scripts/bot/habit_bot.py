@@ -4,7 +4,7 @@ import argparse
 
 # Load environment variables
 TELEGRAM_HABIT_BOT_API_KEY = os.environ.get("TELEGRAM_HABIT_BOT_API_KEY")
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
+TELEGRAM_CHAT_ID = "610574272" 
 
 def send_telegram_message(bot_token, chat_id, message):
     """Sends a message to a Telegram chat using the Telegram Bot API."""
