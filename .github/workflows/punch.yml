@@ -36,7 +36,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'scripts/release/punch_bot.py'
+      - 'scripts/bot/punch_bot.py'
       - '.github/workflows/punch.yml'
 
 concurrency:
@@ -69,17 +69,17 @@ jobs:
         pip install -r requirements.simple.txt
 
     - name: Run punch reminder script (Scheduled)
-      run: python scripts/release/punch_bot.py --job punch_reminder
+      run: python scripts/bot/punch_bot.py --job punch_reminder
       if: github.event_name == 'schedule'
 
     - name: Run punch reminder script (Manual Trigger)
-      run: python scripts/release/punch_bot.py --job punch_reminder --punch_in_start "${{ github.event.inputs.punch_in_start }}" --punch_in_end "${{ github.event.inputs.punch_in_end }}" --punch_out_start "${{ github.event.inputs.punch_out_start }}" --punch_out_end "${{ github.event.inputs.punch_out_end }}"
+      run: python scripts/bot/punch_bot.py --job punch_reminder --punch_in_start "${{ github.event.inputs.punch_in_start }}" --punch_in_end "${{ github.event.inputs.punch_in_end }}" --punch_out_start "${{ github.event.inputs.punch_out_start }}" --punch_out_end "${{ github.event.inputs.punch_out_end }}"
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'punch_reminder'
 
     - name: Run Telegram script for custom message (Manual Trigger)
-      run: python scripts/release/punch_bot.py --job send_message --message "${{ github.event.inputs.message }}"
+      run: python scripts/bot/punch_bot.py --job send_message --message "${{ github.event.inputs.message }}"
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'send_message'
 
     - name: Notify on push to main branch
-      run: python scripts/release/punch_bot.py --job send_message --message "Code changes for punch bot pushed to main branch."
+      run: python scripts/bot/punch_bot.py --job send_message --message "Code changes for punch bot pushed to main branch."
       if: github.event_name == 'push'
