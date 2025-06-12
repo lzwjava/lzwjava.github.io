@@ -17,7 +17,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'scripts/release/habit_bot.py'
+      - 'scripts/bot/habit_bot.py'
       - '.github/workflows/habit.yml'
 
 concurrency:
@@ -48,13 +48,13 @@ jobs:
           pip install -r requirements.simple.txt
 
       - name: Run habit reminder script (Scheduled)
-        run: python scripts/release/habit_bot.py --job send_reminder
+        run: python scripts/bot/habit_bot.py --job send_reminder
         if: github.event_name == 'schedule'
 
       - name: Run habit reminder script (Manual Trigger)
-        run: python scripts/release/habit_bot.py --job send_message --message "${{ github.event.inputs.message }}"
+        run: python scripts/bot/habit_bot.py --job send_message --message "${{ github.event.inputs.message }}"
         if: github.event_name == 'workflow_dispatch'
 
       - name: Notify on push to main branch
-        run: python scripts/release/habit_bot.py --job send_message --message "Code changes for habit bot pushed to main branch."
+        run: python scripts/bot/habit_bot.py --job send_message --message "Code changes for habit bot pushed to main branch."
         if: github.event_name == 'push'
