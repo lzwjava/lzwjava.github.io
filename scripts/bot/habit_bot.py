@@ -94,10 +94,9 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
 
 def generate_copilot_message():
     """Generates a technical prompt sentence encouraging Copilot use via Mistral API."""
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     prompt = (
-        f"Generate a unique, specific technical prompt sentence for a user backend engineer at timestamp {timestamp}. "
-        "Randomly select one technology from: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus. "
+        f"Generate a unique, specific technical prompt sentence for a user backend engineer"
+        "Randomly select one technology from: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, AI or DevOps, Linux. Algorithms and Banking "
         "Format as 'Stuck on [specific challenge]? Ask Copilot!' or 'Struggling with [task]? Find Copilot to help!' "
         "Ensure variety in challenges (e.g., configuration, debugging, optimization). "
         "Keep it under 300 characters, avoid Markdown or URLs, and output only the sentence."
