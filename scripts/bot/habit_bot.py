@@ -2,7 +2,9 @@ import os
 import requests
 import argparse
 import re
+import datetime
 from dotenv import load_dotenv
+import random
 
 # Load environment variables from .env file
 load_dotenv()
@@ -51,6 +53,7 @@ def send_telegram_message(bot_token, chat_id, message):
             success = False
     return success
 
+
 def call_mistral_api(prompt, model="mistral-small-latest"):
     """Calls the Mistral API to generate a response."""
     if not MISTRAL_API_KEY:
@@ -69,36 +72,40 @@ def call_mistral_api(prompt, model="mistral-small-latest"):
                 "role": "user",
                 "content": prompt
             }
-        ]
+        ],
+        "temperature": 0.7,  # Adjust temperature for creativity
+        "random_seed": random.randint(0, 1000000),  # Add random seed for variability
+        "max_tokens": 300  # Limit response length
     }
     try:
-        print(f"Calling Mistral API with model: {model}")
+        print(f"Calling Mistral API with model: {model}, random_seed: {data['random_seed']}")
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
-        if response_json and response_json.get('choices'):
+        if response_json.get('choices'):
             content = response_json['choices'][0]['message']['content']
             print(f"Mistral API Content: {content}")
             return content
-        else:
-            print(f"Mistral API Error: Invalid response format: {response_json}")
-            return None
+        print(f"Mistral API Error: Invalid response format: {response_json}")
+        return None
     except requests.exceptions.RequestException as e:
         print(f"Mistral API Error: {e}")
         return None
 
 def generate_copilot_message():
-    """Generates a specific technical question via Mistral API."""
+    """Generates a technical prompt sentence encouraging Copilot use via Mistral API."""
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     prompt = (
-        "Generate a single, specific technical question for a backend engineer using technologies like "
-        "Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, or Nexus. "
-        "The question should be concise, actionable, and practical (e.g., 'How to set X?' or 'What’s the best way to Y?'). "
-        "Keep it under 300 characters, avoid Markdown or URLs, and output only the question."
+        f"Generate a unique, specific technical prompt sentence for a user backend engineer at timestamp {timestamp}. "
+        "Randomly select one technology from: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus. "
+        "Format as 'Stuck on [specific challenge]? Ask Copilot!' or 'Struggling with [task]? Find Copilot to help!' "
+        "Ensure variety in challenges (e.g., configuration, debugging, optimization). "
+        "Keep it under 300 characters, avoid Markdown or URLs, and output only the sentence."
     )
     message = call_mistral_api(prompt)
     if message:
         return message.strip()[:300]
-    return "How do you set thread pool size in Java’s ExecutorService?"
+    return "Stuck on configuring Control-M order date? Ask Copilot!"
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Habit Reminder Bot")
