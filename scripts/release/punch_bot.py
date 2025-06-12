@@ -31,22 +31,24 @@ def send_confirmation(action):
     message = f"✅ You have already punched {action.replace('_', ' ')} today. No further reminders will be sent."
     send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
 
-def parse_time(time_str):
-    """Parses HH:MM string into datetime.time object."""
+def parse_time(hour_str):
+    """Parses HH string into datetime.time object with zero minutes."""
     try:
-        hour, minute = map(int, time_str.split(':'))
-        return datetime.time(hour, minute)
+        hour = int(hour_str)
+        if not 0 <= hour <= 23:
+            raise ValueError
+        return datetime.time(hour, 0)
     except ValueError:
-        raise argparse.ArgumentTypeError(f"Time '{time_str}' must be in HH:MM format")
+        raise argparse.ArgumentTypeError(f"Hour '{hour_str}' must be an integer between 00 and 23")
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Punch Reminder Bot")
     parser.add_argument('--job', choices=['punch_reminder', 'send_message'], required=True, help="Job to perform")
     parser.add_argument('--message', type=str, help="Message to send for 'send_message' job")
-    parser.add_argument('--punch_in_start', type=parse_time, default='12:00', help="Punch in start time (HH:MM, default 12:00)")
-    parser.add_argument('--punch_in_end', type=parse_time, default='15:00', help="Punch in end time (HH:MM, default 15:00)")
-    parser.add_argument('--punch_out_start', type=parse_time, default='18:00', help="Punch out start time (HH:MM, default 18:00)")
-    parser.add_argument('--punch_out_end', type=parse_time, default='21:00', help="Punch out end time (HH:MM, default 21:00)")
+    parser.add_argument('--punch_in_start', type=parse_time, default='12', help="Punch in start hour (HH, default 12)")
+    parser.add_argument('--punch_in_end', type=parse_time, default='15', help="Punch in end hour (HH, default 15)")
+    parser.add_argument('--punch_out_start', type=parse_time, default='18', help="Punch out start hour (HH, default 18)")
+    parser.add_argument('--punch_out_end', type=parse_time, default='21', help="Punch out end hour (HH, default 21)")
     args = parser.parse_args()
 
     if args.job == 'send_message':
