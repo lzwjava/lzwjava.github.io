@@ -135,3 +135,7 @@ what's next time google will release earning report?
 ---
 
 draw some graphs to understand
+
+---
+
+Identify only the lines needing changes, and provide corrected snippets (not the full code). Preserve the original indentation so I can copy-paste them directly.
