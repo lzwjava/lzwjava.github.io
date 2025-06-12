@@ -13,6 +13,10 @@ on:
         description: 'Custom message for testing (optional)'
         required: false
         default: 'Test message from GitHub Actions.'
+      job:
+        description: 'Job to run (optional)'
+        required: false
+        default: 'send_message'
 
   push:
     branches: ["main"]
@@ -27,7 +31,7 @@ concurrency:
 jobs:
   habit_reminder_job:
     runs-on: ubuntu-latest
-    environment: github-pages    
+    environment: github-pages
     env:
       TELEGRAM_HABIT_BOT_API_KEY: ${{ secrets.TELEGRAM_HABIT_BOT_API_KEY }}
       TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
@@ -54,7 +58,7 @@ jobs:
         if: github.event_name == 'schedule'
 
       - name: Run habit reminder script (Manual Trigger)
-        run: python scripts/bot/habit_bot.py --job send_message --message "${{ github.event.inputs.message }}"
+        run: python scripts/bot/habit_bot.py --job ${{ github.event.inputs.job }} --message "${{ github.event.inputs.message }}"
         if: github.event_name == 'workflow_dispatch'
 
       - name: Notify on push to main branch
