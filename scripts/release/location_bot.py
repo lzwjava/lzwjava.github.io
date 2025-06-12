@@ -1,24 +1,13 @@
 import os
 import requests
-from dotenv import load_dotenv
-import json
-import subprocess
+import datetime
+import pytz
+from supabase import create_client
 import argparse
-import math
-import time # For potential future continuous monitoring
 
-load_dotenv()
-
-# New: Specific API key for the location bot
-TELEGRAM_LOCATION_BOT_API_KEY = os.environ.get("TELEGRAM_LOCATION_BOT_API_KEY") # Ensure this is set in your .env
-TELEGRAM_CHAT_ID = "610574272" # This chat ID is for sending the notification message
-
-# Define your office coordinates
-OFFICE_LATITUDE = 23.135368
-OFFICE_LONGITUDE = 113.32952
-
-# Proximity radius in meters
-PROXIMITY_RADIUS_METERS = 300
+# Load environment variables
+TELEGRAM_LOCATION_BOT_API_KEY = os.environ.get("TELEGRAM_LOCATION_BOT_API_KEY")
+TELEGRAM_CHAT_ID = "610574272"  # Your chat ID
 
 def send_telegram_message(bot_token, chat_id, message):
     """Sends a message to a Telegram chat using the Telegram Bot API."""
@@ -26,161 +15,128 @@ def send_telegram_message(bot_token, chat_id, message):
     params = {
         "chat_id": chat_id,
         "text": message,
-        "parse_mode": "Markdown" # Using Markdown for bold text in the message
+        "parse_mode": "Markdown"
     }
     response = requests.post(url, params=params)
     if response.status_code != 200:
         print(f"Error sending Telegram message: {response.status_code} - {response.text}")
 
-def get_latest_location(bot_token):
-    """Retrieves the latest live location update from the bot."""
-    url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
-    # Offset to get only new updates after the last processed one (for continuous polling)
-    # For a simple run-once script, we'll just get the latest, but for polling, you'd manage an offset.
-    params = {"offset": -1} # Get the very last update
-    response = requests.get(url, params=params)
-    print("GetUpdates Response:", response) # Debugging
-    if response.status_code == 200:
-        updates = response.json()
-        print("GetUpdates JSON:", json.dumps(updates, indent=4)) # Debugging
-        if updates['result']:
-            last_update = updates['result'][-1]
-            # Prioritize edited_message for live locations
-            if 'edited_message' in last_update and 'location' in last_update['edited_message']:
-                return last_update['edited_message']['location'], last_update['edited_message']['chat']['id']
-            elif 'message' in last_update and 'location' in last_update['message']:
-                # Handle initial live location messages or static location shares
-                return last_update['message']['location'], last_update['message']['chat']['id']
-    return None, None
-
-def haversine_distance(lat1, lon1, lat2, lon2):
-    """
-    Calculate the distance between two points on Earth using the Haversine formula.
-    Returns distance in meters.
-    """
-    R = 6371000  # Radius of Earth in meters
-
-    lat1_rad = math.radians(lat1)
-    lon1_rad = math.radians(lon1)
-    lat2_rad = math.radians(lat2)
-    lon2_rad = math.radians(lon2)
-
-    dlon = lon2_rad - lon1_rad
-    dlat = lat2_rad - lat1_rad
-
-    a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
-    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
-
-    distance = R * c
-    return distance
+def send_reminder(action):
+    """Sends a punch reminder message."""
+    message = f"⏰ *Reminder:* Please punch {action.replace('_', ' ')} by sending 'punch' to this bot."
+    send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
 
 def main():
-    parser = argparse.ArgumentParser(description="Telegram Bot Script")
-    # Updated choices for --job argument
-    parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location', 'start_sharing_message', 'stop_sharing_message'], required=True, help="Job to perform")
-    # Added --message argument for 'send_message' job
+    parser = argparse.ArgumentParser(description="Telegram Punch Reminder Bot")
+    parser.add_argument('--job', choices=['punch_reminder', 'send_message'], required=True, help="Job to perform")
     parser.add_argument('--message', type=str, help="Message to send for 'send_message' job")
-    # Added --test argument for 'check_location' job
-    parser.add_argument('--test', action='store_true', help="For 'check_location' job, force sending a message regardless of proximity.")
     args = parser.parse_args()
 
-    if args.job == 'get_chat_id':
-        bot_token = TELEGRAM_LOCATION_BOT_API_KEY
-        url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
-        response = requests.get(url)
-        if response.status_code == 200:
-            updates = response.json()
-            print(json.dumps(updates, indent=4))
-            if updates['result']:
-                last_update = updates['result'][-1]
-                chat_id = None
-                if 'message' in last_update and 'chat' in last_update['message']:
-                    chat_id = last_update['message']['chat']['id']
-                elif 'edited_message' in last_update and 'chat' in last_update['edited_message']:
-                    chat_id = last_update['edited_message']['chat']['id']
-                elif 'channel_post' in last_update and 'chat' in last_update['channel_post']:
-                    chat_id = last_update['channel_post']['chat']['id']
-                elif 'edited_channel_post' in last_update and 'chat' in last_update['edited_channel_post']:
-                    chat_id = last_update['edited_channel_post']['chat']['id']
-
-                if chat_id:
-                    print(f"Chat ID: {chat_id}")
-                else:
-                    print("Could not retrieve chat ID from the last update.")
-            else:
-                print("No updates found.")
-        else:
-            print(f"Error fetching updates: {response.status_code} - {response.text}")
-
-    elif args.job == 'send_message':
+    if args.job == 'send_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = args.message if args.message else "This is a default test message from your Telegram bot script!"
+            message = args.message if args.message else "Default test message from your bot!"
             send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print(f"Message sent successfully: {message}")
+            print(f"Message sent: {message}")
         else:
             print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+        return
 
-    elif args.job == 'start_sharing_message':
-        if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = "⚠️ *Reminder:* Please start sharing your live location to the bot!"
-            send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print("Start sharing reminder sent.")
+    elif args.job == 'punch_reminder':
+        # Initialize Supabase
+        supabase = create_client(os.environ['SUPABASE_URL'], os.environ['SUPABASE_KEY'])
+
+        # Get current time in SGT (UTC+8)
+        sgt = pytz.timezone('Asia/Singapore')
+        now_utc = datetime.datetime.utcnow()
+        now_sgt = now_utc.replace(tzinfo=pytz.utc).astimezone(sgt)
+        today_sgt = now_sgt.date()
+
+        # Define time windows
+        punch_in_start = datetime.time(12, 0)  # 12 PM SGT
+        punch_in_end = datetime.time(15, 0)    # 3 PM SGT
+        punch_out_start = datetime.time(18, 0) # 6 PM SGT
+        punch_out_end = datetime.time(21, 0)   # 9 PM SGT
+
+        current_time = now_sgt.time()
+
+        # Determine current window
+        if punch_in_start <= current_time <= punch_in_end:
+            window = 'punch_in'
+        elif punch_out_start <= current_time <= punch_out_end:
+            window = 'punch_out'
         else:
-            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+            window = None
 
-    elif args.job == 'stop_sharing_message':
-        if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = "✅ *Reminder:* You can stop sharing your live location now."
-            send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print("Stop sharing reminder sent.")
-        else:
-            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
-
-    elif args.job == 'check_location':
-        if not TELEGRAM_LOCATION_BOT_API_KEY or not TELEGRAM_CHAT_ID:
-            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID must be set for location checks.")
+        if not window:
+            print("Outside punch reminder windows.")
             return
 
-        user_location, location_chat_id = get_latest_location(TELEGRAM_LOCATION_BOT_API_KEY)
+        # Fetch today's punch record
+        response = supabase.table('punch_records').select('*').eq('date', str(today_sgt)).execute()
+        punch_record = response.data[0] if response.data else None
 
-        if user_location:
-            current_latitude = user_location['latitude']
-            current_longitude = user_location['longitude']
+        # Check if punch is already done
+        if window == 'punch_in' and punch_record and punch_record['punch_in_time']:
+            print("Already punched in today.")
+            return
+        if window == 'punch_out' and punch_record and punch_record['punch_out_time']:
+            print("Already punched out today.")
+            return
 
-            distance = haversine_distance(
-                OFFICE_LATITUDE, OFFICE_LONGITUDE,
-                current_latitude, current_longitude
-            )
+        # Fetch last processed Telegram update ID
+        state_response = supabase.table('telegram_state').select('last_update_id').eq('id', 1).execute()
+        last_update_id = state_response.data[0]['last_update_id'] if state_response.data else 0
 
-            print(f"Current location: ({current_latitude}, {current_longitude})")
-            print(f"Distance to office: {distance:.2f} meters")
+        # Get new Telegram updates
+        url = f"https://api.telegram.org/bot{TELEGRAM_LOCATION_BOT_API_KEY}/getUpdates"
+        params = {"offset": last_update_id + 1, "timeout": 0}
+        response = requests.get(url, params=params)
+        updates = response.json().get('result', [])
 
-            needs_punch_card = distance <= PROXIMITY_RADIUS_METERS
+        max_update_id = last_update_id
+        for update in updates:
+            if update['update_id'] > max_update_id:
+                max_update_id = update['update_id']
+            if ('message' in update and 
+                update['message'].get('text', '').lower() == 'punch' and 
+                str(update['message']['chat']['id']) == TELEGRAM_CHAT_ID):
+                # Process "punch" message
+                if window == 'punch_in':
+                    if not punch_record:
+                        supabase.table('punch_records').insert({
+                            'date': str(today_sgt),
+                            'punch_in_time': now_utc.isoformat()
+                        }).execute()
+                    else:
+                        supabase.table('punch_records').update({
+                            'punch_in_time': now_utc.isoformat()
+                        }).eq('date', str(today_sgt)).execute()
+                elif window == 'punch_out':
+                    if not punch_record:
+                        supabase.table('punch_records').insert({
+                            'date': str(today_sgt),
+                            'punch_out_time': now_utc.isoformat()
+                        }).execute()
+                    else:
+                        supabase.table('punch_records').update({
+                            'punch_out_time': now_utc.isoformat()
+                        }).eq('date', str(today_sgt)).execute()
 
-            if needs_punch_card:
-                print(f"You are within {PROXIMITY_RADIUS_METERS}m of the office!")
-                notification_message = (
-                    f"🎉 *Arrived Office!* 🎉\n"
-                    f"Time to Punch card in WeCom.\n"
-                    f"Your current distance from office: {distance:.2f}m."
-                )
-            else:
-                print(f"You are outside the {PROXIMITY_RADIUS_METERS}m office circle.")
-                # Message for when outside the radius
-                notification_message = (
-                    f"📍 You are *outside* the office proximity ({PROXIMITY_RADIUS_METERS}m).\n"
-                    f"No punch card needed at this time.\n"
-                    f"Your current distance from office: {distance:.2f}m."
-                )
+        # Update last_update_id
+        if max_update_id > last_update_id:
+            supabase.table('telegram_state').update({
+                'last_update_id': max_update_id
+            }).eq('id', 1).execute()
 
-            # Send message if within proximity OR if --test flag is used
-            if needs_punch_card or args.test:
-                send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, notification_message)
-            else:
-                # If not within proximity AND not in test mode, just print to console (no Telegram message)
-                print("Not within proximity and not in test mode, no message sent to Telegram.")
-        else:
-            print("Could not retrieve your latest location. Make sure you are sharing live location with the bot.")
+        # Refetch punch record to check latest state
+        response = supabase.table('punch_records').select('*').eq('date', str(today_sgt)).execute()
+        punch_record = response.data[0] if response.data else None
+
+        # Send reminder if punch not recorded
+        if window == 'punch_in' and (not punch_record or not punch_record['punch_in_time']):
+            send_reminder('punch_in')
+        elif window == 'punch_out' and (not punch_record or not punch_record['punch_out_time']):
+            send_reminder('punch_out')
 
 if __name__ == '__main__':
     main()
