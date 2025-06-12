@@ -20,11 +20,11 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'scripts/release/location_bot.py'
-      - '.github/workflows/location.yml'
+      - 'scripts/release/punch_bot.py'
+      - '.github/workflows/punch.yml'
 
 concurrency:
-  group: 'punch_reminder'
+  group: 'punch'
   cancel-in-progress: false
 
 jobs:
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: github-pages
     env:
-      TELEGRAM_LOCATION_BOT_API_KEY: ${{ secrets.TELEGRAM_LOCATION_BOT_API_KEY }}
+      TELEGRAM_PUNCH_BOT_API_KEY: ${{ secrets.TELEGRAM_PUNCH_BOT_API_KEY }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
 
@@ -53,17 +53,17 @@ jobs:
         pip install -r requirements.simple.txt
 
     - name: Run punch reminder script (Scheduled)
-      run: python scripts/release/location_bot.py --job punch_reminder
+      run: python scripts/release/punch_bot.py --job punch_reminder
       if: github.event_name == 'schedule'
 
     - name: Run punch reminder script (Manual Trigger)
-      run: python scripts/release/location_bot.py --job punch_reminder
+      run: python scripts/release/punch_bot.py --job punch_reminder
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'punch_reminder'
 
     - name: Run Telegram script for custom message (Manual Trigger)
-      run: python scripts/release/location_bot.py --job send_message --message "${{ github.event.inputs.message }}"
+      run: python scripts/release/punch_bot.py --job send_message --message "${{ github.event.inputs.message }}"
       if: github.event_name == 'workflow_dispatch' && github.event.inputs.job_name == 'send_message'
 
     - name: Notify on push to main branch
-      run: python scripts/release/location_bot.py --job send_message --message "Code changes for punch reminder bot pushed to main branch."
+      run: python scripts/release/punch_bot.py --job send_message --message "Code changes for punch bot pushed to main branch."
       if: github.event_name == 'push'

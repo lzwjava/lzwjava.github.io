@@ -6,7 +6,7 @@ from supabase import create_client
 import argparse
 
 # Load environment variables
-TELEGRAM_LOCATION_BOT_API_KEY = os.environ.get("TELEGRAM_LOCATION_BOT_API_KEY")
+TELEGRAM_PUNCH_BOT_API_KEY = os.environ.get("TELEGRAM_PUNCH_BOT_API_KEY")
 TELEGRAM_CHAT_ID = "610574272"  # Your chat ID
 
 def send_telegram_message(bot_token, chat_id, message):
@@ -24,21 +24,38 @@ def send_telegram_message(bot_token, chat_id, message):
 def send_reminder(action):
     """Sends a punch reminder message."""
     message = f"⏰ *Reminder:* Please punch {action.replace('_', ' ')} by sending 'punch' to this bot."
-    send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+    send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+
+def send_confirmation(action):
+    """Sends a confirmation message for completed punch."""
+    message = f"✅ You have already punched {action.replace('_', ' ')} today. No further reminders will be sent."
+    send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+
+def parse_time(time_str):
+    """Parses HH:MM string into datetime.time object."""
+    try:
+        hour, minute = map(int, time_str.split(':'))
+        return datetime.time(hour, minute)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"Time '{time_str}' must be in HH:MM format")
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Punch Reminder Bot")
     parser.add_argument('--job', choices=['punch_reminder', 'send_message'], required=True, help="Job to perform")
     parser.add_argument('--message', type=str, help="Message to send for 'send_message' job")
+    parser.add_argument('--punch_in_start', type=parse_time, default='12:00', help="Punch in start time (HH:MM, default 12:00)")
+    parser.add_argument('--punch_in_end', type=parse_time, default='15:00', help="Punch in end time (HH:MM, default 15:00)")
+    parser.add_argument('--punch_out_start', type=parse_time, default='18:00', help="Punch out start time (HH:MM, default 18:00)")
+    parser.add_argument('--punch_out_end', type=parse_time, default='21:00', help="Punch out end time (HH:MM, default 21:00)")
     args = parser.parse_args()
 
     if args.job == 'send_message':
-        if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
+        if TELEGRAM_PUNCH_BOT_API_KEY and TELEGRAM_CHAT_ID:
             message = args.message if args.message else "Default test message from your bot!"
-            send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
+            send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
             print(f"Message sent: {message}")
         else:
-            print("TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
+            print("TELEGRAM_PUNCH_BOT_API_KEY and TELEGRAM_CHAT_ID are not set.")
         return
 
     elif args.job == 'punch_reminder':
@@ -51,11 +68,11 @@ def main():
         now_sgt = now_utc.replace(tzinfo=pytz.utc).astimezone(sgt)
         today_sgt = now_sgt.date()
 
-        # Define time windows
-        punch_in_start = datetime.time(12, 0)  # 12 PM SGT
-        punch_in_end = datetime.time(15, 0)    # 3 PM SGT
-        punch_out_start = datetime.time(18, 0) # 6 PM SGT
-        punch_out_end = datetime.time(21, 0)   # 9 PM SGT
+        # Define time windows from arguments
+        punch_in_start = args.punch_in_start
+        punch_in_end = args.punch_in_end
+        punch_out_start = args.punch_out_start
+        punch_out_end = args.punch_out_end
 
         current_time = now_sgt.time()
 
@@ -78,9 +95,11 @@ def main():
         # Check if punch is already done
         if window == 'punch_in' and punch_record and punch_record['punch_in_time']:
             print("Already punched in today.")
+            send_confirmation('punch_in')
             return
         if window == 'punch_out' and punch_record and punch_record['punch_out_time']:
             print("Already punched out today.")
+            send_confirmation('punch_out')
             return
 
         # Fetch last processed Telegram update ID
@@ -88,7 +107,7 @@ def main():
         last_update_id = state_response.data[0]['last_update_id'] if state_response.data else 0
 
         # Get new Telegram updates
-        url = f"https://api.telegram.org/bot{TELEGRAM_LOCATION_BOT_API_KEY}/getUpdates"
+        url = f"https://api.telegram.org/bot{TELEGRAM_PUNCH_BOT_API_KEY}/getUpdates"
         params = {"offset": last_update_id + 1, "timeout": 0}
         response = requests.get(url, params=params)
         updates = response.json().get('result', [])
