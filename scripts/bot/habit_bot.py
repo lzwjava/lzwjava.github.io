@@ -54,7 +54,7 @@ def send_telegram_message(bot_token, chat_id, message):
     return success
 
 
-def call_mistral_api(prompt, model="mistral-small-latest"):
+def call_mistral_api(prompt, model="mistral-large-latest"):
     """Calls the Mistral API to generate a response."""
     if not MISTRAL_API_KEY:
         print("Error: MISTRAL_API_KEY environment variable not set.")
