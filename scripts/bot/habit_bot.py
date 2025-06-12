@@ -74,11 +74,10 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
             }
         ],
         "temperature": 0.7,  # Adjust temperature for creativity
-        "random_seed": random.randint(0, 1000000),  # Add random seed for variability
         "max_tokens": 300  # Limit response length
     }
     try:
-        print(f"Calling Mistral API with model: {model}, random_seed: {data['random_seed']}")
+        print(f"Calling Mistral API with model: {model}")
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
