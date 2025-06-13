@@ -208,3 +208,127 @@ void loop() {
 ```
 
 If you still face issues, share the new error message or run `ls -l /dev/ttyUSB0` in the terminal and provide the output to help diagnose further.
+
+---
+
+It seems you're encountering an issue while trying to upload a sketch to your Arduino Uno using the Arduino IDE on Ubuntu. The error message you provided is:
+
+```
+avrdude: ser_open(): can't open device "/dev/ttyUSB0": Permission denied
+Failed uploading: uploading error: exit status 1
+```
+
+This error indicates that the Arduino IDE does not have the necessary permissions to access the serial port (`/dev/ttyUSB0`) where your Arduino Uno is connected. This is a common issue on Linux systems like Ubuntu due to how serial port access is managed. Below is a step-by-step guide to fix this problem.
+
+---
+
+### Solution: Fix Serial Port Permission Issue
+
+#### 1. Add Your User to the `dialout` Group
+In Ubuntu, the `dialout` group controls access to serial ports. To resolve the permission issue, you need to add your user to this group.
+
+- Open a terminal by pressing `Ctrl + Alt + T`.
+- Run the following command:
+  ```bash
+  sudo usermod -a -G dialout $USER
+  ```
+- This command adds your current user to the `dialout` group. The `$USER` variable automatically uses your username.
+
+#### 2. Log Out and Log Back In
+For the group change to take effect, you need to log out of your current session and log back in. Alternatively, you can reboot your system.
+
+- **To log out and log back in:**
+  - Save any open work.
+  - Click on your username in the top-right corner of the Ubuntu desktop and select "Log Out."
+  - Log back in with your username and password.
+- **To reboot (optional):**
+  - Run this command in the terminal:
+    ```bash
+    sudo reboot
+    ```
+  - Wait for your system to restart.
+
+#### 3. Verify the Serial Port
+After logging back in, ensure your Arduino Uno is properly recognized by the system.
+
+- Reconnect your Arduino Uno to the USB port.
+- Open the Arduino IDE.
+- Go to **Tools > Port** in the menu and check if `/dev/ttyUSB0` (or `/dev/ttyACM0` for some Arduino boards) is listed and selected.
+- If the port doesn’t appear:
+  - Unplug and replug the Arduino Uno.
+  - Check the USB connection or try a different cable/port.
+
+#### 4. Upload the Sketch Again
+With the correct port selected, try uploading your sketch again:
+
+```cpp
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT); // Set the built-in LED pin (pin 13) as output
+}
+
+void loop() {
+  digitalWrite(LED_BUILTIN, HIGH); // Turn the LED on
+  delay(1000);                     // Wait for 1 second
+  digitalWrite(LED_BUILTIN, LOW);  // Turn the LED off
+  delay(1000);                     // Wait for 1 second
+}
+```
+
+- Click the **Upload** button (the right arrow icon) in the Arduino IDE.
+- If successful, the built-in LED on your Arduino Uno should start blinking (on for 1 second, off for 1 second).
+
+---
+
+### Additional Troubleshooting
+If the above steps don’t resolve the issue, try these additional checks:
+
+#### Check Group Membership
+Verify that your user is part of the `dialout` group:
+- Run this command in the terminal:
+  ```bash
+  groups $USER
+  ```
+- Look for `dialout` in the output. If it’s missing, repeat Step 1 and ensure you log out/in or reboot.
+
+#### Temporary Permission Fix (Not Recommended Long-Term)
+If you need a quick fix, you can manually change the permissions of the serial port:
+- Run:
+  ```bash
+  sudo chmod a+rw /dev/ttyUSB0
+  ```
+- Then try uploading again. Note: This is temporary and will reset after unplugging the Arduino or rebooting.
+
+#### Check for Conflicting Software
+Some software, like `brltty` (a braille display driver), can interfere with serial ports. To remove it:
+- Run:
+  ```bash
+  sudo apt remove brltty
+  ```
+- Reconnect your Arduino and try again.
+
+#### Verify the Arduino Connection
+Ensure Ubuntu recognizes your Arduino:
+- Run:
+  ```bash
+  ls /dev/tty*
+  ```
+- Look for `/dev/ttyUSB0` or `/dev/ttyACM0` when the Arduino is plugged in. If it’s missing, check your USB cable or port.
+
+#### Run Arduino IDE as Root (Temporary Workaround)
+As a last resort, you can run the IDE with superuser privileges:
+- Close the Arduino IDE.
+- Open a terminal and run:
+  ```bash
+  sudo arduino-ide
+  ```
+- Replace `arduino-ide` with the correct command or path if needed (e.g., `/home/lzw/arduino-ide_2.3.6_Linux_64bit/arduino-ide`).
+- Try uploading again. Avoid using this method regularly, as it’s less secure.
+
+---
+
+### Confirm the Fix
+After following these steps, your sketch should upload successfully, and the LED on your Arduino Uno should blink as expected. If you still encounter issues, please provide additional details, such as:
+- The output of `ls -l /dev/ttyUSB0` (to check permissions).
+- Any new error messages from the Arduino IDE.
+
+Let me know if you need further assistance!
