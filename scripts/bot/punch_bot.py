@@ -23,12 +23,14 @@ def send_telegram_message(bot_token, chat_id, message):
 
 def send_reminder(action):
     """Sends a punch reminder message."""
-    message = f"⏰ *Reminder:* Please punch {action.replace('_', ' ')} by sending 'punch' to this bot."
+    # Updated message to specify punch_in or punch_out command
+    command = action  # e.g., 'punch_in' or 'punch_out'
+    message = f"⏰ *Reminder:* Please {action.replace('_', ' ')} by sending '{command}' to this bot."
     send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
 
 def send_confirmation(action):
     """Sends a confirmation message for completed punch."""
-    message = f"✅ You have already punched {action.replace('_', ' ')} today. No further reminders will be sent."
+    message = f"✅ You have already {action.replace('_', ' ')} today. No further reminders will be sent."
     send_telegram_message(TELEGRAM_PUNCH_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
 
 def parse_time(hour_str):
@@ -119,10 +121,10 @@ def main():
             if update['update_id'] > max_update_id:
                 max_update_id = update['update_id']
             if ('message' in update and 
-                update['message'].get('text', '').lower() == 'punch' and 
                 str(update['message']['chat']['id']) == TELEGRAM_CHAT_ID):
-                # Process "punch" message
-                if window == 'punch_in':
+                message_text = update['message'].get('text', '').lower()
+                # Check for specific commands based on the current window
+                if window == 'punch_in' and message_text == 'punch_in':
                     if not punch_record:
                         supabase.table('punch_records').insert({
                             'date': str(today_sgt),
@@ -132,7 +134,7 @@ def main():
                         supabase.table('punch_records').update({
                             'punch_in_time': now_utc.isoformat()
                         }).eq('date', str(today_sgt)).execute()
-                elif window == 'punch_out':
+                elif window == 'punch_out' and message_text == 'punch_out':
                     if not punch_record:
                         supabase.table('punch_records').insert({
                             'date': str(today_sgt),
