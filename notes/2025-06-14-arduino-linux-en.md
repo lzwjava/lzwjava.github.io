@@ -87,3 +87,42 @@ To install the Arduino IDE on Ubuntu Linux, follow these steps:
 - For the latest version or troubleshooting, check the Arduino forums or the [official documentation](https://www.arduino.cc/en/Guide/Linux).
 
 If you encounter issues, let me know your Ubuntu version or specific error for tailored help!
+
+---
+
+Since your Arduino Uno is detected in the Arduino IDE on Ubuntu and you want a simple example without using a breadboard or external components, here's a basic sketch that blinks the built-in LED on the Arduino Uno (connected to digital pin 13). This requires no extra hardware.
+
+```cpp
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(LED_BUILTIN, OUTPUT); // Set the built-in LED pin (pin 13) as output
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  digitalWrite(LED_BUILTIN, HIGH); // Turn the LED on
+  delay(1000);                     // Wait for 1 second
+  digitalWrite(LED_BUILTIN, LOW);  // Turn the LED off
+  delay(1000);                     // Wait for 1 second
+}
+```
+
+### How to Run It:
+1. Open the Arduino IDE.
+2. Copy and paste the above code into the IDE.
+3. Ensure your Arduino Uno is connected via USB and detected:
+   - Go to **Tools > Board** and select **Arduino Uno**.
+   - Go to **Tools > Port** and select the port (e.g., `/dev/ttyACM0` or `/dev/ttyUSB0`).
+4. Click the **Upload** button (right arrow icon) to compile and upload the sketch to your Arduino Uno.
+5. Once uploaded, the built-in LED (labeled "L" on the board) should blink on for 1 second, then off for 1 second, repeatedly.
+
+### What It Does:
+- In `setup()`, the `pinMode` function configures the built-in LED pin as an output.
+- In `loop()`, the `digitalWrite` function turns the LED on (`HIGH`) and off (`LOW`), with `delay` pausing for 1 second between each state, creating a blinking effect.
+
+### Notes:
+- No external components are needed since the Arduino Uno has a built-in LED on pin 13.
+- If the LED doesn’t blink, double-check the port selection or ensure the board is properly connected. You can also open the **Serial Monitor** (Tools > Serial Monitor) to debug if you add `Serial.begin(9600);` in `setup()` and print messages like `Serial.println("Blink");` in `loop()`.
+- If you want to modify the blink speed, adjust the `delay(1000)` values (e.g., `delay(500)` for faster blinking).
+
+Let me know if you run into issues or want another simple example!
