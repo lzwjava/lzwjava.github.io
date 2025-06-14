@@ -59,6 +59,8 @@ translated: false
 
 - The reason I prefer to use Ubuntu since the release of LLM is that the rich and colorful apps in macOS are less appealing to me. I prefer writing my programs and doing everything through the terminal and text.
 
+- AI can be evaluated by how well it can update a pom.xml or requirements.txt file to the latest version, update libraries, and perform checks. This process can involve a significant amount of work and can sometimes be complex.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
