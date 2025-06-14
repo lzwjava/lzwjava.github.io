@@ -1,8 +1,10 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetch('https://www.lzwjava.xyz/bandwidth')
+    fetch('https://lzwjava.shop/bandwidth?i=eth0')
         .then(response => response.json())
         .then(data => {
-            var bandwidthData = JSON.parse(data);
+            // console.log(data);
+            //var bandwidthData = JSON.parse(data);
+            var bandwidthData = data;
 
             // Create a container for the times
             var timesContainer = document.createElement('div');

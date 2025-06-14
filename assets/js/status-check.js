@@ -26,10 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-    fetch('https://www.lzwjava.xyz/bandwidth')
+    fetch('https://lzwjava.shop/bandwidth?i=eth0')
         .then(response => response.json())
         .then(data => {
-            var bandwidthData = JSON.parse(data);
+            var bandwidthData = data;
             var fiveMinuteData = bandwidthData.interfaces[0].traffic.fiveminute.reverse();
             var firstInterval = fiveMinuteData[0];
             var averageTraffic = (firstInterval.rx + firstInterval.tx) / 2;
