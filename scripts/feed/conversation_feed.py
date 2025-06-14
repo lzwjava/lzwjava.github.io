@@ -7,7 +7,7 @@ from feedgen.feed import FeedGenerator
 # Configuration
 audio_dir = 'assets/conversations/'
 base_url = 'https://lzwjava.github.io/'
-feed_file = 'conversation-feed.xml'
+feed_file = 'feeds/conversation-feed.xml'
 
 # Initialize RSS feed
 fg = FeedGenerator()
