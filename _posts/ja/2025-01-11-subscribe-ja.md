@@ -3,32 +3,32 @@ audio: false
 generated: false
 lang: ja
 layout: post
-title: 登録する
+title: 登録
 translated: true
 ---
 
-最新のブログ記事をRSSフィード、オーディオフィード、またはX（Twitter）でフォローすることで最新情報をチェックしてください。
+私の最新のブログ記事を購読するには、RSSフィード、オーディオフィード、またはX（Twitter）でフォローしてください。  
 
-- RSSフィード:
-  このリンクを使用して購読: [https://lzwjava.github.io/feed.xml](https://lzwjava.github.io/feed.xml).
+- RSSフィード:  
+  こちらのリンクから購読できます: [https://lzwjava.github.io/feeds/feed.xml](https://lzwjava.github.io/feeds/feed.xml)  
 
-- オーディオフィード:
-  このリンクを使用して購読: [https://lzwjava.github.io/audio_feed.xml](https://lzwjava.github.io/audio_feed.xml).
+- オーディオフィード:  
+  こちらのリンクから購読できます: [https://lzwjava.github.io/feeds/audio-feed.xml](https://lzwjava.github.io/feeds/audio-feed.xml)  
 
-- コンバーセーションフィード:
-  このリンクを使用して購読: [https://lzwjava.github.io/conversation_feed.xml](https://lzwjava.github.io/conversation_feed.xml).
+- 会話フィード:  
+  こちらのリンクから購読できます: [https://lzwjava.github.io/feeds/conversation-feed.xml](https://lzwjava.github.io/feeds/conversation-feed.xml)  
 
-- X（Twitter）:
-  更新情報やその他の情報をチェックするには、[@lzwjava](https://mobile.twitter.com/lzwjava)をフォローしてください。
+- X（Twitter）:  
+  更新情報やその他の情報は [@lzwjava](https://mobile.twitter.com/lzwjava) でフォローしてください。  
 
-その他、以下に私のプラットフォームアカウントがあります：
+また、以下は私のプラットフォームアカウントです:  
 
-| プラットフォーム   | リンク                                        |
+| プラットフォーム | リンク                                        |
 |----------------|-------------------------------------------------|
 | コード       | [GitHub](https://github.com/lzwjava)            |
 |                | [Codeforces](https://codeforces.com/profile/lzwjava) |
 |                | [UVa Judge](https://uhunt.onlinejudge.org/id/113519) |
-|                | [Blog](https://lzwjava.github.io)               |
+|                | [ブログ](https://lzwjava.github.io)               |
 |                | [Kaggle](https://www.kaggle.com/lzwjava)        |
 |                | [LeetCode](https://leetcode.com/u/lzwjava/)     |
 |                | [AtCoder](https://atcoder.jp/users/lzwjava)     |
@@ -44,9 +44,9 @@ translated: true
 |                | [Xiaohongshu](https://www.xiaohongshu.com/user/profile/577ba85b6a6a6913f98f237b) |
 |                | [BlueSky](https://bsky.app/profile/lzwjava.bsky.social) |
 |                | [Threads](https://www.threads.net/@lzwjava)     |
-| ビデオ      | [Douban](https://www.douban.com/people/lzwjava/) |
+| 動画      | [Douban](https://www.douban.com/people/lzwjava/) |
 |                | [TikTok](https://www.tiktok.com/@jamesleecool)  |
-|                | [Youtube](https://www.youtube.com/channel/UC-jqwnFwWOS4ydgTsQR-9ZQ) |
+|                | [YouTube](https://www.youtube.com/channel/UC-jqwnFwWOS4ydgTsQR-9ZQ) |
 | メッセージング  | [Telegram](https://t.me/lzwjava)               |
 |                | [WhatsApp](https://wa.me/12345678900)          |
 | その他      | [Quora](https://www.quora.com/profile/Lzw-2)    |
