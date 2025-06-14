@@ -8,7 +8,7 @@ import frontmatter
 # Configuration
 audio_dir = 'assets/audios/'
 base_url = 'https://lzwjava.github.io/'
-feed_file = 'audio_feed.xml'
+feed_file = 'audio-feed.xml'
 posts_dir = '_posts'
 
 # Set up argument parser
