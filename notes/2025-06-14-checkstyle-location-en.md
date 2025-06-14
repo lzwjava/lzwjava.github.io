@@ -109,3 +109,180 @@ If you prefer a more standard Maven setup:
 ---
 
 By applying these changes, the `maven-checkstyle-plugin` should correctly locate `checks.xml` and support the `SuppressWithNearbyTextFilter`, resolving your errors.
+
+
+---
+
+The error you encountered previously indicated that the `maven-checkstyle-plugin` could not find `checks.xml` in the classpath and then failed due to an issue with the `SuppressWithNearbyTextFilter` module. From your updated project structure, it appears that `checks.xml` is located at the project root (`~/Projects/blog-server/checks.xml`), not in `src/main/resources` as previously assumed. This explains why the plugin couldn’t find it when configured with `<configLocation>classpath:checks.xml</configLocation>` or `<configLocation>checks.xml</configLocation>`, as those settings expect the file in the classpath (typically `src/main/resources`).
+
+To fix this and ensure the `maven-checkstyle-plugin` runs with `mvn compile` using your custom `checks.xml` at the project root, you need to update the `<configLocation>` to point to the file’s absolute or project-relative path. Additionally, you need to address the `SuppressWithNearbyTextFilter` issue by ensuring compatibility with the Checkstyle version. Below is the step-by-step solution.
+
+### Updated `pom.xml` Configuration
+Modify the `maven-checkstyle-plugin` in your `pom.xml` to reference `checks.xml` at the project root and use a compatible Checkstyle version to support `SuppressWithNearbyTextFilter`.
+
+```xml
+<build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+            <includes>
+                <include>**/*.xml</include>
+                <include>**/*.yaml</include>
+            </includes>
+        </resource>
+    </resources>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>3.4.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M8</version>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>3.3.1</version> <!-- Latest version for better compatibility -->
+            <configuration>
+                <configLocation>${project.basedir}/checks.xml</configLocation> <!-- Point to checks.xml at project root -->
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>com.puppycrawl.tools</groupId>
+                    <artifactId>checkstyle</artifactId>
+                    <version>10.17.0</version> <!-- Supports SuppressWithNearbyTextFilter -->
+                </dependency>
+            </dependencies>
+            <executions>
+                <execution>
+                    <id>checkstyle-check</id>
+                    <phase>compile</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
+```
+
+### Explanation of Changes
+1. **Updated `<configLocation>`**:
+   - Changed to `${project.basedir}/checks.xml` to point to `checks.xml` at the project root (`~/Projects/blog-server/checks.xml`).
+   - `${project.basedir}` resolves to the directory containing `pom.xml`, ensuring the plugin finds the file regardless of classpath.
+
+2. **Upgraded Plugin Version**:
+   - Updated `maven-checkstyle-plugin` to `3.3.1` (latest as of June 2025) for better compatibility and bug fixes.
+
+3. **Added Checkstyle Dependency**:
+   - Added `<dependency>` for Checkstyle `10.17.0`, which includes support for `SuppressWithNearbyTextFilter`. The default Checkstyle version in `maven-checkstyle-plugin:3.1.1` (`8.29`) does not support this filter, causing the previous error.
+
+4. **Kept `<phase>compile</phase>`**:
+   - Ensures `checkstyle:check` runs during `mvn compile`, as requested.
+
+5. **Resources Section**:
+   - Retained the `<resources>` section to ensure `src/main/resources` files (like `application.yaml`) are processed, though it’s not directly related to `checks.xml` since it’s now at the project root.
+
+### Verify `checks.xml` Content
+The error about `SuppressWithNearbyTextFilter` suggests your `checks.xml` references this filter. Ensure it’s correctly configured. A valid example:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<module name="Checker">
+    <module name="SuppressWithNearbyTextFilter">
+        <!-- Example properties, adjust as needed -->
+        <property name="nearbyTextPattern" value="@SuppressWarnings"/>
+    </module>
+    <module name="TreeWalker">
+        <!-- Other checks -->
+        <module name="ConstantName"/>
+    </module>
+</module>
+```
+
+- **Check**: Open `checks.xml` at `~/Projects/blog-server/checks.xml` and verify that `SuppressWithNearbyTextFilter` is correctly spelled and includes any required properties (see [Checkstyle documentation](https://checkstyle.org/filters/suppresswithnearbytextfilter.html)).
+- **Action**: If unsure, temporarily remove the `<module name="SuppressWithNearbyTextFilter"/>` section and test to isolate the issue.
+
+### Test the Configuration
+1. **Clean the Project**:
+   ```bash
+   mvn clean
+   ```
+   This removes the `target` directory, including `checkstyle-checker.xml` and `checkstyle-result.xml`, ensuring no stale artifacts interfere.
+
+2. **Run Checkstyle**:
+   ```bash
+   mvn checkstyle:check
+   ```
+   This tests the Checkstyle configuration independently.
+
+3. **Run Compile**:
+   ```bash
+   mvn compile
+   ```
+   This should run Checkstyle (due to the `compile` phase binding) and then compile if no violations fail the build.
+
+### Debug if Issues Persist
+If you encounter errors:
+1. **Check File Path**:
+   - Confirm `checks.xml` exists at `~/Projects/blog-server/checks.xml`.
+   - Verify the file name is exactly `checks.xml` (case-sensitive, no hidden extensions).
+
+2. **Run with Debug Logging**:
+   ```bash
+   mvn clean checkstyle:check -X
+   ```
+   Look for messages about `checks.xml` loading or `SuppressWithNearbyTextFilter` initialization. Share relevant output if the error persists.
+
+3. **Test with a Minimal `checks.xml`**:
+   Temporarily replace `checks.xml` with a minimal configuration to rule out issues with the file’s content:
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE module PUBLIC
+       "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+       "https://checkstyle.org/dtds/configuration_1_3.dtd">
+   <module name="Checker">
+       <module name="TreeWalker">
+           <module name="ConstantName"/>
+       </module>
+   </module>
+   ```
+   Then run `mvn checkstyle:check`. If this works, the issue is with `SuppressWithNearbyTextFilter` or other modules in your original `checks.xml`.
+
+### Additional Notes
+- **Settings.xml Warning**: Your output shows a warning about an unrecognized `<blocked>` tag in `/usr/share/maven/conf/settings.xml`. This isn’t related to the Checkstyle issue but indicates a potential problem with your Maven configuration. Check line 164 of `/usr/share/maven/conf/settings.xml` and remove or correct the `<blocked>` tag, as it’s not a standard Maven settings element.
+- **Alternative File Location**: If you prefer, you can move `checks.xml` to `src/main/resources/checks.xml` and revert `<configLocation>` to `classpath:checks.xml`. This is more conventional for Maven projects, as resources are automatically included in the classpath.
+- **Fail on Violation**: If Checkstyle violations are failing the build and you want to allow compilation to proceed, add `<failOnViolation>false</failOnViolation>` to the plugin’s `<configuration>`:
+  ```xml
+  <configuration>
+      <configLocation>${project.basedir}/checks.xml</configLocation>
+      <failOnViolation>false</failOnViolation>
+  </configuration>
+  ```
+
+### Verification
+After applying the changes:
+1. Run `mvn clean compile` and confirm that:
+   - Checkstyle runs using `checks.xml` from the project root.
+   - No errors occur related to `checks.xml` or `SuppressWithNearbyTextFilter`.
+   - Compilation proceeds if Checkstyle passes or is configured not to fail the build.
+2. Check the `target/checkstyle-result.xml` for Checkstyle results.
+
+If the error persists, please share:
+- The content (or relevant snippet) of `checks.xml`.
+- The debug output from `mvn clean checkstyle:check -X`.
+- Any specific Checkstyle rules you’re trying to enforce with `SuppressWithNearbyTextFilter`.
