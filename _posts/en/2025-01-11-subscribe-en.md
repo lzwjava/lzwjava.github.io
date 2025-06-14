@@ -10,13 +10,13 @@ translated: false
 Stay updated with my latest blog posts by subscribing via RSS feed, audio feed, or following me on X (Twitter).  
 
 - RSS Feed:  
-  Subscribe using this link: [https://lzwjava.github.io/feed.xml](https://lzwjava.github.io/feed.xml).  
+  Subscribe using this link: [https://lzwjava.github.io/feed/feed.xml](https://lzwjava.github.io/feed/feed.xml).  
 
 - Audio Feed:  
-  Subscribe using this link: [https://lzwjava.github.io/audio_feed.xml](https://lzwjava.github.io/audio_feed.xml).
+  Subscribe using this link: [https://lzwjava.github.io/feed/audio-feed.xml](https://lzwjava.github.io/feed/audio-feed.xml).
 
 - Conversation Feed:  
-  Subscribe using this link: [https://lzwjava.github.io/conversation_feed.xml](https://lzwjava.github.io/conversation_feed.xml).
+  Subscribe using this link: [https://lzwjava.github.io/feed/conversation-feed.xml](https://lzwjava.github.io/feed/conversation-feed.xml).
 
 - X (Twitter):  
   Follow me at [@lzwjava](https://mobile.twitter.com/lzwjava) for updates and more.  

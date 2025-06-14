@@ -7,25 +7,25 @@ title: 订阅
 translated: true
 ---
 
-通过订阅RSS源、音频源或在X（Twitter）上关注我，了解我的最新博客文章。
+通过订阅RSS源、音频源或在X（推特）上关注我，获取最新博客动态。  
 
-- RSS源：
-  使用此链接订阅：[https://lzwjava.github.io/feed.xml](https://lzwjava.github.io/feed.xml)。
+- RSS订阅：  
+  点击链接订阅：[https://lzwjava.github.io/feed/feed.xml](https://lzwjava.github.io/feed/feed.xml)。  
 
-- 音频源：
-  使用此链接订阅：[https://lzwjava.github.io/audio_feed.xml](https://lzwjava.github.io/audio_feed.xml)。
+- 音频订阅：  
+  点击链接订阅：[https://lzwjava.github.io/feed/audio-feed.xml](https://lzwjava.github.io/feed/audio-feed.xml)。  
 
-- 对话源：
-  使用此链接订阅：[https://lzwjava.github.io/conversation_feed.xml](https://lzwjava.github.io/conversation_feed.xml)。
+- 对话订阅：  
+  点击链接订阅：[https://lzwjava.github.io/feed/conversation-feed.xml](https://lzwjava.github.io/feed/conversation-feed.xml)。  
 
-- X（Twitter）：
-  在[@lzwjava](https://mobile.twitter.com/lzwjava)关注我获取更新和更多信息。
+- X（推特）：  
+  关注我的账号[@lzwjava](https://mobile.twitter.com/lzwjava)获取更新。  
 
-此外，这里是我的一些平台账号：
+此外，以下是我的其他平台账号：  
 
-| 平台   | 链接                                        |
+| 平台       | 链接                                        |
 |----------------|-------------------------------------------------|
-| 代码       | [GitHub](https://github.com/lzwjava)            |
+| 编程       | [GitHub](https://github.com/lzwjava)            |
 |                | [Codeforces](https://codeforces.com/profile/lzwjava) |
 |                | [UVa Judge](https://uhunt.onlinejudge.org/id/113519) |
 |                | [博客](https://lzwjava.github.io)               |
@@ -37,16 +37,16 @@ translated: true
 |                | [CodeChef](https://www.codechef.com/users/lzwjava) |
 |                | [CSDN](https://blog.csdn.net/lzw_java)          |
 |                | [StackOverflow](https://stackoverflow.com/users/3044511/lzwjava) |
-| 社交     | [微博](https://weibo.com/zhiweilee)            |
-|                | [Twitter](https://twitter.com/lzwjava)          |
-|                | [LinkedIn](https://www.linkedin.com/in/lzwjava) |
-|                | [Facebook](https://www.facebook.com/lzwjava)    |
+| 社交       | [微博](https://weibo.com/zhiweilee)            |
+|                | [推特](https://twitter.com/lzwjava)          |
+|                | [领英](https://www.linkedin.com/in/lzwjava) |
+|                | [脸书](https://www.facebook.com/lzwjava)    |
 |                | [小红书](https://www.xiaohongshu.com/user/profile/577ba85b6a6a6913f98f237b) |
 |                | [BlueSky](https://bsky.app/profile/lzwjava.bsky.social) |
 |                | [Threads](https://www.threads.net/@lzwjava)     |
-| 视频      | [豆瓣](https://www.douban.com/people/lzwjava/) |
+| 视频       | [豆瓣](https://www.douban.com/people/lzwjava/) |
 |                | [抖音](https://www.tiktok.com/@jamesleecool)  |
 |                | [YouTube](https://www.youtube.com/channel/UC-jqwnFwWOS4ydgTsQR-9ZQ) |
-| 消息      | [Telegram](https://t.me/lzwjava)               |
+| 通讯       | [Telegram](https://t.me/lzwjava)               |
 |                | [WhatsApp](https://wa.me/12345678900)          |
-| 其他      | [Quora](https://www.quora.com/profile/Lzw-2)    |
+| 其他       | [Quora](https://www.quora.com/profile/Lzw-2)    |
