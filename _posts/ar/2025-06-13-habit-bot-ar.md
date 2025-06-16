@@ -7,7 +7,7 @@ title: بناء بوت العادات باستخدام ميسترال
 translated: true
 ---
 
-في منشور المدونة هذا، نستكشف إنشاء بوت العادات المصمم لإرسال تذكيرات آلية باستخدام Python وGitHub Actions. يعتمد هذا البوت على واجهة برمجة تطبيقات Telegram لتراسل الرسائل ويتكامل مع Mistral AI لإنشاء مطالبات ذات صلة سياقيًا. من خلال جدولة المهام باستخدام GitHub Actions، يشجع البوت على العادات المتسقة عبر الإشعارات في الوقت المناسب. سنستعرض عملية الإعداد، بدءًا من تكوين البيئة وصولاً إلى البرمجة والنشر، مما يوفر دليلًا عمليًا لأتمتة نظام تتبع العادات الخاص بك.
+في هذه المقالة، نستكشف إنشاء بوت العادات المصمم لإرسال تذكيرات آلية باستخدام Python وGitHub Actions. يستفيد هذا البوت من واجهة برمجة تطبيقات Telegram للمراسلة ويتكامل مع Mistral AI لتوليد مطالبات ذات صلة سياقية. من خلال جدولة المهام باستخدام GitHub Actions، يشجع البوت على العادات المتسقة عبر الإشعارات في الوقت المناسب. سنستعرض الإعداد، بدءًا من تكوين البيئة إلى البرمجة والنشر، ونقدم دليلًا عمليًا لأتمتة نظام تتبع العادات الخاص بك.
 
 ## الكود
 
@@ -20,10 +20,10 @@ import datetime
 from dotenv import load_dotenv
 import random
 
-# تحميل متغيرات البيئة من ملف .env
+# تحميل المتغيرات البيئية من ملف .env
 load_dotenv()
 
-# متغيرات البيئة
+# المتغيرات البيئية
 TELEGRAM_HABIT_BOT_API_KEY = os.environ.get("TELEGRAM_HABIT_BOT_API_KEY")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
@@ -69,7 +69,7 @@ def send_telegram_message(bot_token, chat_id, message):
 
 
 def call_mistral_api(prompt, model="mistral-large-latest"):
-    """يستدعي واجهة برمجة تطبيقات Mistral لإنشاء رد."""
+    """يستدعي واجهة برمجة تطبيقات Mistral لتوليد رد."""
     if not MISTRAL_API_KEY:
         print("خطأ: متغير البيئة MISTRAL_API_KEY غير مضبوط.")
         return None
@@ -99,22 +99,25 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
             content = response_json['choices'][0]['message']['content']
             print(f"محتوى Mistral API: {content}")
             return content
-        print(f"خطأ في واجهة Mistral API: {e}")
+        print(f"خطأ في Mistral API: تنسيق رد غير صالح: {response_json}")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"خطأ في Mistral API: {e}")
         return None
 
 def generate_copilot_message():
-    """ينشئ جملة مطالبة تقنية تشجع على استخدام Copilot عبر واجهة Mistral API."""
+    """يولد جملة مطالبة تقنية تشجع على استخدام Copilot عبر واجهة Mistral API."""
     prompt = (
-        f"أنشئ جملة مطالبة تقنية فريدة ومحددة لمهندس خلفي"
+        f"قم بتوليد جملة مطالبة تقنية فريدة ومحددة لمهندس Backend"
         "اختر عشوائيًا تقنية واحدة من: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, AI أو DevOps, Linux. الخوارزميات والخدمات المصرفية "
-        "قم بتنسيقها كـ 'هل تعثرت في [تحدي محدد]؟ اسأل Copilot!' أو 'تواجه صعوبة في [مهمة]؟ ابحث عن Copilot للمساعدة!' "
-        "تأكد من تنوع التحديات (مثل التكوين، تصحيح الأخطاء، التحسين). "
-        "احتفظ بها أقل من 300 حرف، وتجنب Markdown أو الروابط، واطلع فقط على الجملة."
+        "قم بصياغتها كـ 'هل تواجه مشكلة في [تحدي محدد]؟ اسأل Copilot!' أو 'هل تعاني من [مهمة]؟ ابحث عن Copilot للمساعدة!' "
+        "تأكد من تنوع التحديات (مثل التهيئة، تصحيح الأخطاء، التحسين). "
+        "احتفظ بها تحت 300 حرف، وتجنب Markdown أو الروابط، وأخرج الجملة فقط."
     )
     message = call_mistral_api(prompt)
     if message:
         return message.strip()[:300]
-    return "هل تعثرت في تكوين تاريخ أمر Control-M؟ اسأل Copilot!"
+    return "هل تواجه مشكلة في تهيئة تاريخ طلب Control-M؟ اسأل Copilot!"
 
 def main():
     parser = argparse.ArgumentParser(description="بوت تذكير العادات على Telegram")
@@ -142,12 +145,12 @@ if __name__ == "__main__":
 ## إجراء GitHub
 
 ```yaml
-name: العادة
+name: العادات
 
 on:
   schedule:
-    # تشغيل كل 10 دقائق (0، 10، 20، 30، 40، 50 دقيقة بعد الساعة) من 05:00–13:00 بالتوقيت العالمي، من الاثنين إلى الجمعة
-    # 05:00–13:00 بالتوقيت العالمي = 13:00–21:00 بتوقيت بكين (UTC+8)
+    # تشغيل كل 10 دقائق (0, 10, 20, 30, 40, 50 دقيقة بعد الساعة) من 05:00–13:00 UTC، من الاثنين إلى الجمعة
+    # 05:00–13:00 UTC = 13:00–21:00 بتوقيت بكين (UTC+8)
     - cron: '0,10,20,30,40,50 5-13 * * 1-5'
 
   workflow_dispatch:
@@ -182,7 +185,7 @@ jobs:
       MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
 
     steps:
-      - name: استخراج المستودع
+      - name: استنساخ المستودع
         uses: actions/checkout@v4
         with:
           fetch-depth: 5
@@ -197,7 +200,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: تشغيل نص تذكير العادات (مجدول)
+      - name: تشغيل نص تذكير العادات (المجدول)
         run: python scripts/bot/habit_bot.py --job send_reminder
         if: github.event_name == 'schedule'
 
@@ -208,4 +211,5 @@ jobs:
       - name: إشعار عند الدفع إلى الفرع الرئيسي
         run: python scripts/bot/habit_bot.py --job send_message --message "تم دفع تغييرات الكود لبوت العادات إلى الفرع الرئيسي."
         if: github.event_name == 'push'
+
 ```

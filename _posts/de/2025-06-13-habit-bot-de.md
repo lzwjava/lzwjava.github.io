@@ -7,7 +7,7 @@ title: Einen Gewohnheitsbot mit Mistral bauen
 translated: true
 ---
 
-In diesem Blogbeitrag untersuchen wir die Erstellung eines Habit Bots, der automatisierte Erinnerungen mit Python und GitHub Actions versendet. Dieser Bot nutzt die Telegram-API für Nachrichten und integriert Mistral AI, um kontextbezogene Aufforderungen zu generieren. Durch die Planung von Aufgaben mit GitHub Actions fördert der Bot konsequente Gewohnheiten durch zeitnahe Benachrichtigungen. Wir gehen Schritt für Schritt durch die Einrichtung, von der Umgebungskonfiguration bis zum Skripting und der Bereitstellung, und bieten eine praktische Anleitung zur Automatisierung Ihres Gewohnheitstracking-Systems.
+In diesem Blogbeitrag untersuchen wir die Erstellung eines Habit Bots, der automatisierte Erinnerungen mit Python und GitHub Actions versendet. Dieser Bot nutzt die Telegram API für Nachrichten und integriert Mistral AI, um kontextbezogene Aufforderungen zu generieren. Durch die Planung von Aufgaben mit GitHub Actions fördert der Bot konsequente Gewohnheiten durch zeitnahe Benachrichtigungen. Wir gehen Schritt für Schritt durch die Einrichtung, von der Konfiguration der Umgebung über das Skripting bis zur Bereitstellung, und bieten eine praktische Anleitung zur Automatisierung Ihres Gewohnheitstrackingsystems.
 
 ## Code
 
@@ -28,7 +28,7 @@ TELEGRAM_HABIT_BOT_API_KEY = os.environ.get("TELEGRAM_HABIT_BOT_API_KEY")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 
-# Telegram-Nachrichtenlängenlimit
+# Maximale Nachrichtenlänge für Telegram
 TELEGRAM_MAX_LENGTH = 4096
 
 def send_telegram_message(bot_token, chat_id, message):
@@ -37,11 +37,11 @@ def send_telegram_message(bot_token, chat_id, message):
         print("Fehler: TELEGRAM_HABIT_BOT_API_KEY oder TELEGRAM_CHAT_ID nicht gesetzt.")
         return False
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    # Entferne Markdown-Sterne und URLs für Telegram-Kompatibilität
+    # Entferne Markdown-Sternchen und URLs für Telegram-Kompatibilität
     message_no_stars = message.replace('*', '')
     url_pattern = re.compile(r'(https?://[^\s]+)')
     message_no_links = url_pattern.sub('', message_no_stars)
-    # Teile die Nachricht, wenn sie das Längenlimit von Telegram überschreitet
+    # Teile die Nachricht, falls sie die maximale Länge von Telegram überschreitet
     messages = []
     msg = message_no_links
     while len(msg) > TELEGRAM_MAX_LENGTH:
@@ -69,7 +69,7 @@ def send_telegram_message(bot_token, chat_id, message):
 
 
 def call_mistral_api(prompt, model="mistral-large-latest"):
-    """Ruft die Mistral-API auf, um eine Antwort zu generieren."""
+    """Ruft die Mistral API auf, um eine Antwort zu generieren."""
     if not MISTRAL_API_KEY:
         print("Fehler: MISTRAL_API_KEY Umgebungsvariable nicht gesetzt.")
         return None
@@ -91,35 +91,38 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
         "max_tokens": 300  # Begrenze die Antwortlänge
     }
     try:
-        print(f"Rufe Mistral-API mit Modell auf: {model}")
+        print(f"Rufe Mistral API mit Modell auf: {model}")
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
         if response_json.get('choices'):
             content = response_json['choices'][0]['message']['content']
-            print(f"Mistral-API-Inhalt: {content}")
+            print(f"Mistral API Inhalt: {content}")
             return content
-        print(f"Fehler in der Mistral-API: {e}")
+        print(f"Mistral API Fehler: Ungültiges Antwortformat: {response_json}")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Mistral API Fehler: {e}")
         return None
 
 def generate_copilot_message():
-    """Generiert einen technischen Aufforderungssatz zur Nutzung von Copilot über die Mistral-API."""
+    """Generiert einen technischen Aufforderungssatz zur Nutzung von Copilot über die Mistral API."""
     prompt = (
-        f"Generiere einen einzigartigen, spezifischen technischen Aufforderungssatz für einen Backend-Ingenieur"
-        "Wähle zufällig eine Technologie aus: Java, Spring Boot, Control-M, IBM WebSphere, Maven, Multithreading, Nexus, Windows, JVM, Service-NOW, Python, AI oder DevOps, Linux. Algorithmen und Banking "
-        "Formatiere als 'Stecken Sie bei [spezifischer Herausforderung] fest? Fragen Sie Copilot!' oder 'Kämpfen Sie mit [Aufgabe]? Finden Sie Copilot zur Hilfe!' "
-        "Sorge für Abwechslung in den Herausforderungen (z.B. Konfiguration, Debugging, Optimierung). "
+        f"Generiere einen einzigartigen, spezifischen technischen Aufforderungssatz für einen Backend-Engineer."
+        "Wähle zufällig eine Technologie aus: Java, Spring Boot, Control-M, IBM WebSphere, Maven, Multithreading, Nexus, Windows, JVM, Service-NOW, Python, AI oder DevOps, Linux. Algorithmen und Banking. "
+        "Formatiere als 'Stecken Sie bei [spezifische Herausforderung] fest? Fragen Sie Copilot!' oder 'Probleme mit [Aufgabe]? Lassen Sie sich von Copilot helfen!' "
+        "Sorge für Abwechslung bei den Herausforderungen (z.B. Konfiguration, Debugging, Optimierung). "
         "Halte es unter 300 Zeichen, vermeide Markdown oder URLs und gib nur den Satz aus."
     )
     message = call_mistral_api(prompt)
     if message:
         return message.strip()[:300]
-    return "Stecken Sie bei der Konfiguration des Control-M-Order-Datums fest? Fragen Sie Copilot!"
+    return "Stecken Sie bei der Konfiguration des Control-M Auftragsdatums fest? Fragen Sie Copilot!"
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram Habit Reminder Bot")
-    parser.add_argument("--job", choices=["send_reminder", "send_message"], required=True, help="Job to perform")
-    parser.add_argument("--message", type=str, help="Message to send for 'send_message' job")
+    parser.add_argument("--job", choices=["send_reminder", "send_message"], required=True, help="Ausführender Job")
+    parser.add_argument("--message", type=str, help="Nachricht für 'send_message' Job")
     args = parser.parse_args()
 
     if args.job == "send_reminder":
@@ -146,12 +149,12 @@ name: Habit
 
 on:
   schedule:
-    # Führe alle 10 Minuten (0, 10, 20, 30, 40, 50 Minuten nach der vollen Stunde) von 05:00–13:00 UTC, Mo–Fr aus
+    # Führt alle 10 Minuten (0, 10, 20, 30, 40, 50 Minuten nach der vollen Stunde) von 05:00–13:00 UTC, Mo–Fr aus
     # 05:00–13:00 UTC = 13:00–21:00 Pekinger Zeit (UTC+8)
     - cron: '0,10,20,30,40,50 5-13 * * 1-5'
 
   workflow_dispatch:
-    # Erlaube manuelle Auslösung für Tests
+    # Erlaubt manuelle Auslösung für Tests
     inputs:
       message:
         description: 'Benutzerdefinierte Nachricht für Tests (optional)'
@@ -197,15 +200,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Habit-Reminder-Skript ausführen (Geplant)
+      - name: Habit Reminder Skript ausführen (Geplant)
         run: python scripts/bot/habit_bot.py --job send_reminder
         if: github.event_name == 'schedule'
 
-      - name: Habit-Reminder-Skript ausführen (Manuelle Auslösung)
+      - name: Habit Reminder Skript ausführen (Manuell)
         run: python scripts/bot/habit_bot.py --job ${{ github.event.inputs.job }} --message "${{ github.event.inputs.message }}"
         if: github.event_name == 'workflow_dispatch'
 
       - name: Bei Push auf main-Branch benachrichtigen
         run: python scripts/bot/habit_bot.py --job send_message --message "Codeänderungen für den Habit Bot wurden in den main-Branch gepusht."
         if: github.event_name == 'push'
+
 ```

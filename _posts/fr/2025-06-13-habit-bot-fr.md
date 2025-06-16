@@ -7,7 +7,7 @@ title: Construire un Bot d'Habitudes avec Mistral
 translated: true
 ---
 
-Dans cet article de blog, nous explorons la création d'un Habit Bot conçu pour envoyer des rappels automatisés en utilisant Python et GitHub Actions. Ce bot utilise l'API Telegram pour la messagerie et s'intègre à Mistral AI pour générer des invites pertinentes en contexte. En planifiant des tâches avec GitHub Actions, le bot encourage des habitudes régulières grâce à des notifications opportunes. Nous détaillerons la configuration, de la préparation de l'environnement au script et au déploiement, offrant ainsi un guide pratique pour automatiser votre système de suivi des habitudes.
+Dans cet article de blog, nous explorons la création d'un Habit Bot conçu pour envoyer des rappels automatisés en utilisant Python et GitHub Actions. Ce bot utilise l'API Telegram pour la messagerie et s'intègre à Mistral AI pour générer des invites contextuellement pertinentes. En planifiant des tâches avec GitHub Actions, le bot encourage des habitudes régulières grâce à des notifications opportunes. Nous détaillerons la configuration, de la mise en place de l'environnement au script et au déploiement, offrant ainsi un guide pratique pour automatiser votre système de suivi des habitudes.
 
 ## Code
 
@@ -34,10 +34,10 @@ TELEGRAM_MAX_LENGTH = 4096
 def send_telegram_message(bot_token, chat_id, message):
     """Envoie un message à un chat Telegram en utilisant l'API Telegram Bot."""
     if not bot_token or not chat_id:
-        print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non configuré.")
+        print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non définis.")
         return False
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
-    # Supprimer les astérisques Markdown et les URLs pour assurer la compatibilité avec Telegram
+    # Supprimer les astérisques Markdown et les URL pour assurer la compatibilité avec Telegram
     message_no_stars = message.replace('*', '')
     url_pattern = re.compile(r'(https?://[^\s]+)')
     message_no_links = url_pattern.sub('', message_no_stars)
@@ -71,7 +71,7 @@ def send_telegram_message(bot_token, chat_id, message):
 def call_mistral_api(prompt, model="mistral-large-latest"):
     """Appelle l'API Mistral pour générer une réponse."""
     if not MISTRAL_API_KEY:
-        print("Erreur : La variable d'environnement MISTRAL_API_KEY n'est pas configurée.")
+        print("Erreur : la variable d'environnement MISTRAL_API_KEY n'est pas définie.")
         return None
     url = "https://api.mistral.ai/v1/chat/completions"
     headers = {
@@ -99,6 +99,9 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
             content = response_json['choices'][0]['message']['content']
             print(f"Contenu de l'API Mistral : {content}")
             return content
+        print(f"Erreur de l'API Mistral : format de réponse invalide : {response_json}")
+        return None
+    except requests.exceptions.RequestException as e:
         print(f"Erreur de l'API Mistral : {e}")
         return None
 
@@ -107,17 +110,17 @@ def generate_copilot_message():
     prompt = (
         f"Génère une phrase d'invite technique unique et spécifique pour un ingénieur backend"
         "Sélectionne aléatoirement une technologie parmi : Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, IA ou DevOps, Linux. Algorithmes et Banque "
-        "Formate comme 'Bloqué sur [défi spécifique] ? Demandez à Copilot !' ou 'En difficulté avec [tâche] ? Trouvez Copilot pour vous aider !' "
-        "Assure une variété dans les défis (ex : configuration, débogage, optimisation). "
-        "Garde-la sous 300 caractères, évite Markdown ou les URLs, et ne renvoie que la phrase."
+        "Formate comme 'Bloqué sur [défi spécifique] ? Demande à Copilot !' ou 'En difficulté avec [tâche] ? Trouve Copilot pour t'aider !' "
+        "Assure une variété dans les défis (par exemple, configuration, débogage, optimisation). "
+        "Garde-la sous 300 caractères, évite Markdown ou les URL, et ne renvoie que la phrase."
     )
     message = call_mistral_api(prompt)
     if message:
         return message.strip()[:300]
-    return "Bloqué sur la configuration de la date de commande Control-M ? Demandez à Copilot !"
+    return "Bloqué sur la configuration de la date de commande Control-M ? Demande à Copilot !"
 
 def main():
-    parser = argparse.ArgumentParser(description="Bot de Rappel d'Habitudes Telegram")
+    parser = argparse.ArgumentParser(description="Bot de rappel d'habitudes Telegram")
     parser.add_argument("--job", choices=["send_reminder", "send_message"], required=True, help="Tâche à effectuer")
     parser.add_argument("--message", type=str, help="Message à envoyer pour la tâche 'send_message'")
     args = parser.parse_args()
@@ -127,22 +130,22 @@ def main():
             message = generate_copilot_message()
             send_telegram_message(TELEGRAM_HABIT_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
         else:
-            print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non configuré.")
+            print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non définis.")
     elif args.job == "send_message":
         if TELEGRAM_HABIT_BOT_API_KEY and TELEGRAM_CHAT_ID:
             message = args.message if args.message else "Message de test par défaut du bot !"
             send_telegram_message(TELEGRAM_HABIT_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
         else:
-            print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non configuré.")
+            print("Erreur : TELEGRAM_HABIT_BOT_API_KEY ou TELEGRAM_CHAT_ID non définis.")
 
 if __name__ == "__main__":
     main()
 ```
 
-## GitHub Action
+## Action GitHub
 
 ```yaml
-name: Habit
+name: Habitude
 
 on:
   schedule:
@@ -154,11 +157,11 @@ on:
     # Permet un déclenchement manuel pour les tests
     inputs:
       message:
-        description: 'Message personnalisé pour les tests (optionnel)'
+        description: 'Message personnalisé pour les tests (facultatif)'
         required: false
         default: 'Message de test depuis GitHub Actions.'
       job:
-        description: 'Tâche à exécuter (optionnel)'
+        description: 'Tâche à exécuter (facultatif)'
         required: false
         default: 'send_message'
 
@@ -197,15 +200,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Exécuter le script de rappel d'habitudes (Planifié)
+      - name: Exécuter le script de rappel d'habitude (Planifié)
         run: python scripts/bot/habit_bot.py --job send_reminder
         if: github.event_name == 'schedule'
 
-      - name: Exécuter le script de rappel d'habitudes (Déclenchement Manuel)
+      - name: Exécuter le script de rappel d'habitude (Déclenchement manuel)
         run: python scripts/bot/habit_bot.py --job ${{ github.event.inputs.job }} --message "${{ github.event.inputs.message }}"
         if: github.event_name == 'workflow_dispatch'
 
       - name: Notifier en cas de push sur la branche main
-        run: python scripts/bot/habit_bot.py --job send_message --message "Modifications du code pour le bot d'habitudes poussées sur la branche main."
+        run: python scripts/bot/habit_bot.py --job send_message --message "Modifications du code pour le bot d'habitude poussées sur la branche main."
         if: github.event_name == 'push'
+
 ```

@@ -7,7 +7,7 @@ title: 用Mistral打造習慣養成機器人
 translated: true
 ---
 
-在這篇博客文章中，我們探討如何創建一個習慣機器人，利用Python和GitHub Actions發送自動提醒。這個機器人運用Telegram API進行訊息傳遞，並整合Mistral AI來生成情境相關的提示。透過GitHub Actions排程任務，機器人能夠適時發送通知，鼓勵養成持續的習慣。我們將逐步介紹從環境配置到腳本編寫及部署的整個設置過程，為自動化你的習慣追蹤系統提供實用指南。
+在這篇網誌文章中，我們探討如何利用Python和GitHub Actions創建一個習慣提醒機器人。這個機器人透過Telegram API發送自動化提醒訊息，並整合Mistral AI生成情境相關的提示。透過GitHub Actions排程任務，機器人能定時發送通知，鼓勵持續養成習慣。我們將逐步介紹從環境設定、腳本編寫到部署的完整流程，為自動化習慣追蹤系統提供實用指南。
 
 ## 代碼
 
@@ -20,10 +20,10 @@ import datetime
 from dotenv import load_dotenv
 import random
 
-# 從.env檔案載入環境變數
+# 從.env檔案加載環境變量
 load_dotenv()
 
-# 環境變數
+# 環境變量
 TELEGRAM_HABIT_BOT_API_KEY = os.environ.get("TELEGRAM_HABIT_BOT_API_KEY")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
@@ -32,16 +32,16 @@ MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 TELEGRAM_MAX_LENGTH = 4096
 
 def send_telegram_message(bot_token, chat_id, message):
-    """使用Telegram Bot API發送訊息到Telegram聊天室。"""
+    """使用Telegram Bot API發送訊息到指定聊天室"""
     if not bot_token or not chat_id:
-        print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設置。")
+        print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設定")
         return False
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     # 移除Markdown星號和URL以確保Telegram兼容性
     message_no_stars = message.replace('*', '')
     url_pattern = re.compile(r'(https?://[^\s]+)')
     message_no_links = url_pattern.sub('', message_no_stars)
-    # 如果訊息超過Telegram的長度限制，則分割訊息
+    # 若訊息超過Telegram長度限制則進行分割
     messages = []
     msg = message_no_links
     while len(msg) > TELEGRAM_MAX_LENGTH:
@@ -61,7 +61,7 @@ def send_telegram_message(bot_token, chat_id, message):
         try:
             response = requests.post(url, params=params)
             response.raise_for_status()
-            print(f"成功發送Telegram訊息部分（{len(part)}字元）。")
+            print(f"成功發送Telegram訊息部分（{len(part)}字元）")
         except requests.exceptions.RequestException as e:
             print(f"發送Telegram訊息時出錯：{e}")
             success = False
@@ -69,9 +69,9 @@ def send_telegram_message(bot_token, chat_id, message):
 
 
 def call_mistral_api(prompt, model="mistral-large-latest"):
-    """調用Mistral API生成回應。"""
+    """調用Mistral API生成回應"""
     if not MISTRAL_API_KEY:
-        print("錯誤：MISTRAL_API_KEY環境變數未設置。")
+        print("錯誤：未設定MISTRAL_API_KEY環境變量")
         return None
     url = "https://api.mistral.ai/v1/chat/completions"
     headers = {
@@ -87,7 +87,7 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
                 "content": prompt
             }
         ],
-        "temperature": 0.7,  # 調整溫度以控制創造性
+        "temperature": 0.7,  # 調整溫度參數控制創造性
         "max_tokens": 300  # 限制回應長度
     }
     try:
@@ -99,26 +99,29 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
             content = response_json['choices'][0]['message']['content']
             print(f"Mistral API內容：{content}")
             return content
+        print(f"Mistral API錯誤：無效的回應格式：{response_json}")
+        return None
+    except requests.exceptions.RequestException as e:
         print(f"Mistral API錯誤：{e}")
         return None
 
 def generate_copilot_message():
-    """通過Mistral API生成鼓勵使用Copilot的技術提示句子。"""
+    """透過Mistral API生成鼓勵使用Copilot的技術提示句子"""
     prompt = (
-        f"為後端工程師生成一個獨特、具體的技術提示句子"
-        "隨機選擇以下一項技術：Java、Spring Boot、Control-M、IBM WebSphere、Maven、多線程、Nexus、Windows、JVM、Service-NOW、Python、AI或DevOps、Linux。算法和銀行業 "
-        "格式為'卡在[具體挑戰]？問問Copilot！'或'在[任務]上遇到困難？找Copilot幫忙！' "
-        "確保挑戰多樣化（例如配置、調試、優化）。 "
+        f"為後端工程師生成一個獨特且具體的技術提示句子"
+        "隨機選擇以下一項技術：Java、Spring Boot、Control-M、IBM WebSphere、Maven、多線程、Nexus、Windows、JVM、Service-NOW、Python、AI或DevOps、Linux。算法與銀行業"
+        "格式為'卡在[具體挑戰]？問問Copilot！'或'遇到[任務]困難？找Copilot幫忙！'"
+        "確保挑戰多樣化（例如配置、調試、優化）。"
         "保持句子在300字元以內，避免使用Markdown或URL，僅輸出句子。"
     )
     message = call_mistral_api(prompt)
     if message:
         return message.strip()[:300]
-    return "卡在配置Control-M訂單日期？問問Copilot！"
+    return "卡在設定Control-M訂單日期？問問Copilot！"
 
 def main():
     parser = argparse.ArgumentParser(description="Telegram習慣提醒機器人")
-    parser.add_argument("--job", choices=["send_reminder", "send_message"], required=True, help="要執行的任務")
+    parser.add_argument("--job", choices=["send_reminder", "send_message"], required=True, help="執行任務")
     parser.add_argument("--message", type=str, help="'send_message'任務要發送的訊息")
     args = parser.parse_args()
 
@@ -127,13 +130,13 @@ def main():
             message = generate_copilot_message()
             send_telegram_message(TELEGRAM_HABIT_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
         else:
-            print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設置。")
+            print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設定")
     elif args.job == "send_message":
         if TELEGRAM_HABIT_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = args.message if args.message else "來自機器人的默認測試訊息！"
+            message = args.message if args.message else "來自機器人的預設測試訊息！"
             send_telegram_message(TELEGRAM_HABIT_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
         else:
-            print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設置。")
+            print("錯誤：TELEGRAM_HABIT_BOT_API_KEY或TELEGRAM_CHAT_ID未設定")
 
 if __name__ == "__main__":
     main()
@@ -142,12 +145,12 @@ if __name__ == "__main__":
 ## GitHub Action
 
 ```yaml
-name: 習慣
+name: 習慣提醒
 
 on:
   schedule:
     # 每10分鐘運行一次（每小時的0、10、20、30、40、50分），UTC時間05:00–13:00，週一至週五
-    # UTC時間05:00–13:00 = 北京時間13:00–21:00（UTC+8）
+    # 05:00–13:00 UTC = 北京時間13:00–21:00（UTC+8）
     - cron: '0,10,20,30,40,50 5-13 * * 1-5'
 
   workflow_dispatch:
@@ -156,7 +159,7 @@ on:
       message:
         description: '測試用的自訂訊息（可選）'
         required: false
-        default: '來自GitHub Actions的測試訊息。'
+        default: '來自GitHub Actions的測試訊息'
       job:
         description: '要運行的任務（可選）'
         required: false
@@ -197,7 +200,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 運行習慣提醒腳本（排程）
+      - name: 運行習慣提醒腳本（排程任務）
         run: python scripts/bot/habit_bot.py --job send_reminder
         if: github.event_name == 'schedule'
 
@@ -205,7 +208,8 @@ jobs:
         run: python scripts/bot/habit_bot.py --job ${{ github.event.inputs.job }} --message "${{ github.event.inputs.message }}"
         if: github.event_name == 'workflow_dispatch'
 
-      - name: 推送至主分支時通知
-        run: python scripts/bot/habit_bot.py --job send_message --message "習慣機器人的代碼更改已推送至主分支。"
+      - name: 推送至main分支時通知
+        run: python scripts/bot/habit_bot.py --job send_message --message "習慣機器人的代碼變更已推送至main分支"
         if: github.event_name == 'push'
+
 ```
