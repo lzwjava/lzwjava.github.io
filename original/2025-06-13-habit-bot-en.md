@@ -99,73 +99,10 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
             content = response_json['choices'][0]['message']['content']
             print(f"Mistral API Content: {content}")
             return content
-        print(f"Mname: Habit
-
-on:
-  schedule:
-    # Run every 10 minutes (0, 10, 20, 30, 40, 50 minutes past the hour) from 05:00–13:00 UTC, Mon–Fri
-    # 05:00–13:00 UTC = 13:00–21:00 Beijing time (UTC+8)
-    - cron: '0,10,20,30,40,50 5-13 * * 1-5'
-
-  workflow_dispatch:
-    # Allow manual trigger for testing
-    inputs:
-      message:
-        description: 'Custom message for testing (optional)'
-        required: false
-        default: 'Test message from GitHub Actions.'
-      job:
-        description: 'Job to run (optional)'
-        required: false
-        default: 'send_message'
-
-  push:
-    branches: ["main"]
-    paths:
-      - 'scripts/bot/habit_bot.py'
-      - '.github/workflows/habit_reminder.yml'
-
-concurrency:
-  group: 'habit_reminder'
-  cancel-in-progress: false
-
-jobs:
-  habit_reminder_job:
-    runs-on: ubuntu-latest
-    environment: github-pages
-    env:
-      TELEGRAM_HABIT_BOT_API_KEY: ${{ secrets.TELEGRAM_HABIT_BOT_API_KEY }}
-      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-      MISTRAL_API_KEY: ${{ secrets.MISTRAL_API_KEY }}
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 5
-
-      - name: Set up Python 3.13
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.13"
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run habit reminder script (Scheduled)
-        run: python scripts/bot/habit_bot.py --job send_reminder
-        if: github.event_name == 'schedule'
-
-      - name: Run habit reminder script (Manual Trigger)
-        run: python scripts/bot/habit_bot.py --job ${{ github.event.inputs.job }} --message "${{ github.event.inputs.message }}"
-        if: github.event_name == 'workflow_dispatch'
-
-      - name: Notify on push to main branch
-        run: python scripts/bot/habit_bot.py --job send_message --message "Code changes for habit bot pushed to main branch."
-        if: github.event_name == 'push'
-istral API Error: {e}")
+        print(f"Mistral API Error: Invalid response format: {response_json}")
+        return None
+    except requests.exceptions.RequestException as e:
+        print(f"Mistral API Error: {e}")
         return None
 
 def generate_copilot_message():
