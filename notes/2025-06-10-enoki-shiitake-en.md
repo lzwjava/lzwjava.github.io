@@ -1,5 +1,5 @@
 ---
-title: **Preventing Spoilage of Fresh Enoki and Shiitake Mushrooms
+title: Preventing Spoilage of Fresh Enoki and Shiitake Mushrooms
 lang: en
 layout: post
 audio: false
