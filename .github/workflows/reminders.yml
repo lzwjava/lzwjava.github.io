@@ -36,6 +36,8 @@ on:
     - cron: '0 18 * * 3,4,5'
     # Reminds to play basketball: 7 PM Beijing Time (11 AM UTC) on Fri, Sat, Sun.
     - cron: '0 11 * * 5,6,0'      
+    # Reminds to charge car in parent's house: 11 PM Beijing Time (3 PM UTC) on Wed, Thu.
+    - cron: '0 15 * * 3,4'    
   workflow_dispatch:  # Allows manual triggering
   push:
     branches: ["main"]
@@ -138,6 +140,10 @@ jobs:
       - name: Run Telegram script for associate exam preparation
         run: python scripts/bot/reminders_bot.py --job send_message --message "Time to prepare associate degree exam!"
         if: github.event.schedule == '0 13 * * 1'
+
+      - name: Run Telegram script for charge car in parent's house reminder
+        run: python scripts/bot/reminders_bot.py --job send_message --message "Charge car in parent's house!"
+        if: github.event.schedule == '0 15 * * 3,4'
 
       - name: Run Telegram script for test message
         run: python scripts/bot/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."
