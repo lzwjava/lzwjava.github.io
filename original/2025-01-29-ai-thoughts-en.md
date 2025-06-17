@@ -47,7 +47,9 @@ translated: false
 
 - Other important types of data include numerical, geospatial, biometric, sensor, transactional, metadata, time-series, structured, unstructured, semi-structured, health, environmental, log, network, and behavioral data.
 
-- Google is still better for website indexing, especially if you want to download software or a document from a specific site. It works like a domain search. You're not using it to find information, but rather to navigate to other sites to perform tasks. An LLM may not have the latest download links.
+- Google is still better for website indexing, especially if you want to download software or a document from a specific site. It works like a domain search. You're not using it to find information, but rather to navigate to other sites to perform tasks. An LLM may not have the latest download links. 
+
+- Google works like a domain search; if you want to go to a Maven repository site to check the latest version, you can use it.
 
 - Google remains useful for image search, whereas LLMs excel at text generation. Still, people often prefer real images to verify hardware details, dimensions, object shapes, or a person's appearance.
 
@@ -60,6 +62,7 @@ translated: false
 - The reason I prefer to use Ubuntu since the release of LLM is that the rich and colorful apps in macOS are less appealing to me. I prefer writing my programs and doing everything through the terminal and text.
 
 - AI can be evaluated by how well it can update a pom.xml or requirements.txt file to the latest version, update libraries, and perform checks. This process can involve a significant amount of work and can sometimes be complex.
+
 
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
