@@ -145,7 +145,7 @@ def call_grok_api(prompt):
         print(f"Error decoding JSON response: {e}")
         return None
 
-def gitmessageai(push=True, only_message=False, api='deepseek', allow_pull_push=False):
+def gitmessageai(push=True, only_message=False, api='deepseek', allow_pull_push=False, type='file'):
     # Stage all changes
     subprocess.run(["git", "add", "-A"], check=True)    
 
@@ -158,41 +158,42 @@ def gitmessageai(push=True, only_message=False, api='deepseek', allow_pull_push=
         return
     
     file_changes = []
-    current_file = None
-    lines = diff_output.splitlines()
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        if line.startswith("diff --git"):
-            parts = line.split(" ")
-            if len(parts) >= 4:
-                file_a = parts[2][2:]
-                file_b = parts[3][2:]
-                if file_a == file_b:
-                    if i + 1 < len(lines) and "deleted file mode" in lines[i+1]:
-                        file_changes.append(f"Deleted file {file_a}")
-                        i += 1
-                    elif i + 1 < len(lines) and "new file mode" in lines[i+1]:
-                        file_changes.append(f"Added file {file_a}")
-                        i += 1
-                    elif i + 1 < len(lines):
-                        file_changes.append(f"Updated file {file_a}")
-                        i +=1
-                else:
-                    if i + 1 < len(lines) and "similarity index" in lines[i+1]:
-                        file_changes.append(f"Renamed file {file_a} to {file_b}")
-                        i += 1
-        i += 1
-    
-    for change in file_changes:
-        print(change)
-    
-    if not file_changes:
-        print("No changes to commit.")
-        return
+    if type == 'file':
+        current_file = None
+        lines = diff_output.splitlines()
+        i = 0
+        while i < len(lines):
+            line = lines[i]
+            if line.startswith("diff --git"):
+                parts = line.split(" ")
+                if len(parts) >= 4:
+                    file_a = parts[2][2:]
+                    file_b = parts[3][2:]
+                    if file_a == file_b:
+                        if i + 1 < len(lines) and "deleted file mode" in lines[i+1]:
+                            file_changes.append(f"Deleted file {file_a}")
+                            i += 1
+                        elif i + 1 < len(lines) and "new file mode" in lines[i+1]:
+                            file_changes.append(f"Added file {file_a}")
+                            i += 1
+                        elif i + 1 < len(lines):
+                            file_changes.append(f"Updated file {file_a}")
+                            i +=1
+                    else:
+                        if i + 1 < len(lines) and "similarity index" in lines[i+1]:
+                            file_changes.append(f"Renamed file {file_a} to {file_b}")
+                            i += 1
+            i += 1
+        
+        for change in file_changes:
+            print(change)
+        
+        if not file_changes:
+            print("No changes to commit.")
+            return
 
-    # Prepare the prompt for the AI
-    prompt = f"""
+        # Prepare the prompt for the AI
+        prompt = f"""
 Generate a concise commit message in Conventional Commits format for the following code changes.
 Use one of the following types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, or revert.
 If applicable, include a scope in parentheses to describe the part of the codebase affected.
@@ -201,7 +202,33 @@ The commit message should not exceed 70 characters. Just give the commit message
 Changed files:
 {', '.join(file_changes[:20])}
 
-"""    
+"""
+    elif type == 'content':
+        # Get a detailed summary of the changes
+        diff_process = subprocess.run(["git", "diff", "--staged"], capture_output=True, text=True, check=True)
+        diff_output = diff_process.stdout
+
+        if not diff_output:
+            print("No changes to commit.")
+            return
+        
+        # Limit the diff_output to 2000 characters
+        diff_output = diff_output[:2000]
+
+        # Prepare the prompt for the AI
+        prompt = f"""
+Generate a concise commit message in Conventional Commits format for the following code changes.
+Use one of the following types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, or revert.
+If applicable, include a scope in parentheses to describe the part of the codebase affected.
+The commit message should not exceed 70 characters. Just give the commit message, without any leading or trailing notes.
+
+Code changes:
+{diff_output}
+
+"""
+    else:
+        print(f"Error: Invalid type specified: {type}")
+        return
 
     if api == 'deepseek':
         commit_message = call_deepseek_api(prompt)
@@ -262,6 +289,7 @@ if __name__ == "__main__":
     parser.add_argument('--only-message', dest='only_message', action='store_true', help='Only print the AI generated commit message.')
     parser.add_argument('--api', type=str, default='mistral', choices=['deepseek', 'gemini', 'mistral', 'grok'], help='API to use for commit message generation (deepseek, gemini, mistral, grok).')
     parser.add_argument('--allow-pull-push', dest='allow_pull_push', action='store_true', help='Allow git pull and push if git push failed.')
+    parser.add_argument('--type', type=str, default='content', choices=['file', 'content'], help='Type of diff to use for commit message generation (file, content).')
 
     args = parser.parse_args()
-    gitmessageai(push=args.push, only_message=args.only_message, api=args.api, allow_pull_push=args.allow_pull_push)
+    gitmessageai(push=args.push, only_message=args.only_message, api=args.api, allow_pull_push=args.allow_pull_push, type=args.type)
