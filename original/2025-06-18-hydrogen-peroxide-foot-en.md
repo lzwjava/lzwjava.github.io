@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-I remember when I was in middle school, I had athlete's foot. Sometimes parts of my foot were white, and there were bubbles in the skin. It seemed my foot had been sweating for a long time. When I came back home, my parents would help me wash my foot. It shocked them.
+When I was in middle school, I had athlete's foot. Sometimes parts of my foot were white, and the skin would peel off, leaving some dead skin. It seemed my foot had been sweating for a long time. When I came back home, my parents would help me wash my foot. It shocked them.
 
 After graduating from high school, I became less involved in sports. Though I knew my feet usually smelled, especially in the summer, I ignored it for years.
 
