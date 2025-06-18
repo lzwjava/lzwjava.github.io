@@ -25,6 +25,6 @@ I began to learn more about Hydrogen Peroxide with AI chatbots. It's a useful ch
 
 ---
 
-* [Simple Ways to Cure Athlete's Foot](https://yinwang1.substack.com/p/888)
+1. [Simple Ways to Cure Athlete's Foot](https://yinwang1.substack.com/p/888)
 
-* [Microscopic Video of Hydrogen Peroxide Killing Fungus](https://yinwang1.substack.com/p/94a)
+2. [Microscopic Video of Hydrogen Peroxide Killing Fungus](https://yinwang1.substack.com/p/94a)
