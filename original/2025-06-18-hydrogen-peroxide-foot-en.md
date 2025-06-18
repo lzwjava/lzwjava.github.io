@@ -11,9 +11,9 @@ When I was in middle school, I had athlete's foot. Sometimes parts of my foot we
 
 After graduating from high school, I became less involved in sports. Though I knew my feet usually smelled, especially in the summer, I ignored it for years.
 
-In recent years, I read Yin Wang's article about athlete's foot. He tried many ways, and in the comments of some product, he saw someone mention hydrogen peroxide to cure athlete's foot.
+In recent years, I read Yin Wang's articles about athlete's foot. He tried many ways, and in the comments of some product, he saw someone mention hydrogen peroxide to cure athlete's foot.
 
-I tried it around 2023, but I wasn't serious about it then. I just noticed bubbles on my foot. The concentration of hydrogen peroxide I bought was 3%, which is safe. It cost about 30 CNY to purchase 5 liters of 3% hydrogen peroxide solution. I also bought some 500 ml bottles. I used it once or twice and then left them to collect dust.
+I tried it around 2023, but I wasn't serious about it then. I just noticed bubbles on the slippers. The concentration of hydrogen peroxide I bought was 3%, which is safe. It cost about 30 CNY to purchase 5 liters of 3% hydrogen peroxide solution. I also bought some 500 ml bottles. I used it once or twice and then left them to collect dust.
 
 After about a year, I wanted to use them again, but I noticed they had lost their effectiveness. The bubbles no longer appeared on the slippers.
 
