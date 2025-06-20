@@ -21,9 +21,9 @@ So, I bought a new bottle of hydrogen peroxide, and it worked well. After using 
 
 I've lived in Guangzhou, China, in recent years. So in the summer, even in a room with air conditioning, the smell of feet is unpleasant. I wear slippers at home and sandals in the office, so my feet are usually exposed to the air. It's really important to have clean feet, not just for others but for myself.
 
-I began to learn more about Hydrogen Peroxide with AI chatbots. It's a useful chemical ingredient. For readers, you can refer to the Substack articles by Yin Wang below to learn more.
+I began to learn more about Hydrogen Peroxide with AI chatbots. It's a useful chemical ingredient. To save hydrogen peroxide, I started using disposable foot covers. After soaking my feet, I use the remaining liquid to soak my slippers.
 
-To save hydrogen peroxide, I started using disposable foot covers. After soaking my feet, I use the remaining liquid to soak my slippers.
+For readers, you can refer to the Substack articles by Yin Wang below to learn more.
 
 ---
 
