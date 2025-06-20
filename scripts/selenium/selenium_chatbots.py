@@ -20,39 +20,20 @@ firefox_options.profile = firefox_profile
 service = Service(executable_path="/home/lzw/bin/geckodriver")  # Adjust if geckodriver is elsewhere
 driver = webdriver.Firefox(service=service, options=firefox_options)
 
+driver.get("https://grok.com")
+
+# Add the cookies you extracted
+cookies = [
+    {"name": "cf_clearance", "value": "value", "domain": ".grok.com"}
+]
+for cookie in cookies:
+    driver.add_cookie(cookie)
+
 # Open the URL
 driver.get("https://grok.com")
 
 # Print the title of the page
 print("Title of the page:", driver.title)
-
-try:
-    # Wait for the specific text to appear
-    wait = WebDriverWait(driver, 20)
-    element = wait.until(
-        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Verify you are human')]"))
-    )
-    print("Element found:", element.text)
-
-except Exception as e:
-    print("Element not found:", e)
-
-time.sleep(1)
-
-try:
-    # Wait for the checkbox to be present
-    wait = WebDriverWait(driver, 20)
-    label = wait.until(
-        EC.presence_of_element_located((By.XPATH, "//label[@class='cb-lb']"))
-    )
-    checkbox = label.find_element(By.TAG_NAME, "input")
-    print("Checkbox found:", checkbox.is_displayed())
-    checkbox.click()
-    print("Checkbox clicked.")
-
-except Exception as e:
-    print("Checkbox not found or not clickable:", e)
-
 
 try:
     # Wait for the textarea to be present
