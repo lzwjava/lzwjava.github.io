@@ -2,26 +2,70 @@ from selenium import webdriver
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.firefox_profile import FirefoxProfile
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import time
 
 # Set up Firefox options
 firefox_options = Options()
 # firefox_options.add_argument("--headless")  # Optional: Remove for visible browser
 
 # Specify the default profile path
-profile_path = "/home/lzw/Downloads/sele"  # Adjust based on profiles.ini
+profile_path = "/home/lzw/.mozilla/firefox/wzfodx6v.default"  # Adjust based on profiles.ini
 firefox_profile = FirefoxProfile(profile_path)
 firefox_options.profile = firefox_profile
-firefox_options.log.level = "trace"
 
 # Set up geckodriver service
 service = Service(executable_path="/home/lzw/bin/geckodriver")  # Adjust if geckodriver is elsewhere
 driver = webdriver.Firefox(service=service, options=firefox_options)
 
 # Open the URL
-driver.get("https://grok.com/")
+driver.get("https://grok.com")
 
 # Print the title of the page
 print("Title of the page:", driver.title)
+
+try:
+    # Wait for the specific text to appear
+    wait = WebDriverWait(driver, 20)
+    element = wait.until(
+        EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Verify you are human')]"))
+    )
+    print("Element found:", element.text)
+
+except Exception as e:
+    print("Element not found:", e)
+
+time.sleep(1)
+
+try:
+    # Wait for the checkbox to be present
+    wait = WebDriverWait(driver, 20)
+    label = wait.until(
+        EC.presence_of_element_located((By.XPATH, "//label[@class='cb-lb']"))
+    )
+    checkbox = label.find_element(By.TAG_NAME, "input")
+    print("Checkbox found:", checkbox.is_displayed())
+    checkbox.click()
+    print("Checkbox clicked.")
+
+except Exception as e:
+    print("Checkbox not found or not clickable:", e)
+
+
+try:
+    # Wait for the textarea to be present
+    wait = WebDriverWait(driver, 20)
+    textarea = wait.until(
+        EC.presence_of_element_located((By.XPATH, "//textarea[@aria-label='Ask Grok anything']"))
+    )
+    print("Textarea found:", textarea.is_displayed())
+
+except Exception as e:
+    print("Textarea not found:", e)
+
+time.sleep(60)
 
 # Close the driver
 driver.quit()
