@@ -23,6 +23,8 @@ I've lived in Guangzhou, China, in recent years. So in the summer, even in a roo
 
 I began to learn more about Hydrogen Peroxide with AI chatbots. It's a useful chemical ingredient. For readers, you can refer to the Substack articles by Yin Wang below to learn more.
 
+To save hydrogen peroxide, I started using disposable foot covers. After soaking my feet, I use the remaining liquid to soak my slippers.
+
 ---
 
 1. [Simple Ways to Cure Athlete's Foot - Yin Wang](https://yinwang1.substack.com/p/888)
