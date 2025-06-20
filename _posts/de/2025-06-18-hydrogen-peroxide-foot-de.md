@@ -11,20 +11,20 @@ Als ich in der Mittelschule war, hatte ich Fußpilz. Manchmal waren Teile meines
 
 Nach dem Abitur war ich weniger sportlich aktiv. Obwohl ich wusste, dass meine Füße oft unangenehm rochen, besonders im Sommer, ignorierte ich es jahrelang.
 
-In den letzten Jahren las ich Yin Wangs Artikel über Fußpilz. Er probierte viele Methoden aus, und in den Kommentaren zu einem Produkt erwähnte jemand Wasserstoffperoxid als Heilmittel gegen Fußpilz.
+In den letzten Jahren las ich Yin Wangs Artikel über Fußpilz. Er probierte viele Methoden aus, und in den Kommentaren zu einem Produkt erwähnte jemand Wasserstoffperoxid als Heilmittel für Fußpilz.
 
-Ich probierte es um 2023 aus, aber damals nahm ich es nicht ernst. Ich bemerkte nur Blasen an meinem Fuß. Die Konzentration des gekauften Wasserstoffperoxids betrug 3%, was unbedenklich ist. Es kostete etwa 30 CNY, um 5 Liter einer 3%igen Wasserstoffperoxidlösung zu kaufen. Ich kaufte auch einige 500-ml-Flaschen. Ich verwendete sie ein- oder zweimal und ließ sie dann verstauben.
+Um 2023 herum experimentierte ich zunächst mit Wasserstoffperoxid, aber meine Anwendung war inkonsequent. Ich beobachtete, wie sich Blasen auf meinen Hausschuhen bildeten. Die 3%ige Wasserstoffperoxid-Lösung, die ich kaufte, war günstig und kostete etwa 30 CNY für eine 5-Liter-Flasche. Ich kaufte auch mehrere 500-ml-Flaschen mit Wasserstoffperoxid, die jeweils etwa 5 CNY kosteten. Allerdings verwendete ich die Lösung nur ein- oder zweimal, bevor die Flaschen größtenteils ungenutzt blieben.
 
-Nach etwa einem Jahr wollte ich sie wieder verwenden, aber ich bemerkte, dass sie ihre Wirkung verloren hatten. Die Blasen bildeten sich nicht mehr auf den Hausschuhen.
+Etwa ein Jahr später versuchte ich, die Lösung erneut zu verwenden, aber sie hatte ihre Wirkung verloren; die Blasen bildeten sich nicht mehr auf den Hausschuhen.
 
-Also kaufte ich eine neue Flasche, und sie funktionierte gut. Nach der Anwendung und dem Reiben des Fußes mit der Hand, um daran zu riechen, war der unangenehme Geruch kaum noch vorhanden.
+Also kaufte ich eine neue Flasche Wasserstoffperoxid, und sie funktionierte gut. Nach der Anwendung und dem Einreiben meines Fußes war der unangenehme Geruch deutlich reduziert.
 
-In den letzten Jahren habe ich in Guangzhou, China, gelebt. Selbst in einem klimatisierten Raum ist der Fußgeruch im Sommer unangenehm. Ich trage zu Hause Hausschuhe und im Büro Sandalen, sodass meine Füße meist der Luft ausgesetzt sind. Saubere Füße zu haben, ist wirklich wichtig, nicht nur für andere, sondern auch für mich selbst.
+In den letzten Jahren lebte ich in Guangzhou, China. Selbst in einem klimatisierten Raum war der Fußgeruch im Sommer unangenehm. Ich trage zu Hause Hausschuhe und im Büro Sandalen, sodass meine Füße meist der Luft ausgesetzt sind. Saubere Füße zu haben, ist wirklich wichtig, nicht nur für andere, sondern auch für mich selbst.
 
-Ich begann, mich mit KI-Chatbots näher über Wasserstoffperoxid zu informieren. Es ist ein nützlicher chemischer Inhaltsstoff. Leser können sich in den folgenden Substack-Artikeln von Yin Wang weiter informieren.
+Ich begann, mich mit KI-Chatbots näher über Wasserstoffperoxid zu informieren. Es ist ein nützlicher chemischer Inhaltsstoff. Für die Leser können Sie die folgenden Substack-Artikel von Yin Wang als Referenz nutzen, um mehr zu erfahren.
 
 ---
 
-* [Einfache Methoden zur Heilung von Fußpilz](https://yinwang1.substack.com/p/888)
+1. [Einfache Wege, Fußpilz zu heilen - Yin Wang](https://yinwang1.substack.com/p/888)
 
-* [Mikroskopisches Video von Wasserstoffperoxid, das Pilze abtötet](https://yinwang1.substack.com/p/94a)
+2. [Mikroskopisches Video von Wasserstoffperoxid, das Pilze abtötet - Yin Wang](https://yinwang1.substack.com/p/94a)
