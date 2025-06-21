@@ -43,3 +43,13 @@ A 3% hydrogen peroxide solution in a 500ml bottle, left open and undisturbed, wi
 **Recommendation**: Close the lid tightly after use and store it properly to maintain its efficacy. If it’s been open for an extended period (e.g., days), consider testing it (e.g., by checking if it fizzes on contact with organic material) or replacing it for critical applications like disinfection.
 
 If you need more specific data (e.g., exact decomposition rates under certain conditions), I can search for additional studies or calculations. Let me know!
+
+---
+
+Hydrogen peroxide (H₂O₂) kills bacteria by acting as a strong oxidizing agent, generating reactive oxygen species (ROS) that damage bacterial cell components like proteins, DNA, and membranes. When it interacts with bacteria, enzymes like catalase (present in many bacteria) break it down into water (H₂O) and oxygen (O₂). This decomposition can reduce its effectiveness over time, as the hydrogen peroxide is consumed.
+
+Yes, it partially becomes oxygen (O₂) and water after reacting. The reaction is:
+
+2H₂O₂ → 2H₂O + O₂
+
+This means once it kills bacteria or reacts with organic material, it loses its antimicrobial potency, as it’s converted into harmless water and oxygen. The rate of this loss depends on factors like concentration, bacterial enzyme activity, and environmental conditions.
