@@ -17,7 +17,6 @@ def decompress_jsonlz4(file_path):
 
 # Example usage
 if __name__ == "__main__":
-    import sys
     file_path = sys.argv[1]
     data = decompress_jsonlz4(file_path)
     print(json.dumps(data, indent=4))
