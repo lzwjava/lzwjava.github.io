@@ -21,10 +21,6 @@ Now, I set the air conditioner to 27 or 28 degrees and wear these sleeping socks
 
 But why don't I use a pair of normal socks? They are too tight and not comfortable.
 
-Source: Walmart.com
-
-Would you like me to generate an image of sleeping socks for you?
-
 {: .centered }  
 ![](/assets/images/socks/socks.jpg){: .responsive }  
 *Source: Walmart.com*{: .caption }
