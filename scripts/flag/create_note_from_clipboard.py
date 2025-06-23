@@ -70,6 +70,7 @@ def main():
     if not full_title:
         print("Failed to generate full title. Using default.")
         full_title = "Untitled Note"
+    full_title = re.sub(r'\*', ' ', full_title)
     full_title = full_title.strip()
 
     # Generate short title (max 3 words) for filename
