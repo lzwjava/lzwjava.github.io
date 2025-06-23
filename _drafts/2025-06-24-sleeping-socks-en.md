@@ -7,19 +7,23 @@ translated: false
 generated: false
 ---
 
-I have been using sleeping socks for months. It is great. I regret not to think about this idea and tried it before. 
+I have been using sleeping socks for months. They are great. I regret not thinking of this idea and trying it sooner.
 
-Before, I usually sleep with air conditioner on at around 23 or 24 degree in summer. And I use a quilt to sleep as it is winter in Guangzhou.
+Previously, I usually slept with the air conditioner on at around 23 or 24 degrees in the summer. I used a quilt to sleep as if it were winter in Guangzhou.
 
-It costs a lot of electricity to let air conditoner on for nights, months. Then in recent years, I have tried many new ideas. So one day, I started to think about it.
+It costs a lot of electricity to run the air conditioner all night for months. In recent years, I have tried many new ideas. One day, I started to think about it.
 
-Why do I need quilt? It is because when I don't use quilt, my foot is cold. And I can turn up the temperature air conditioner. However, it is cold for my foot even I turn air conditionar degree to 27 degree or 28 degree.
+Why do I need a quilt? It is because when I don't use a quilt, my feet get cold. I can turn up the temperature of the air conditioner. However, even when I set the air conditioner to 27 or 28 degrees, my feet still feel cold.
 
-And then I tried to find this sleeping socks in pinduoduo. And it was great.
+Then I tried finding these sleeping socks on Pinduoduo, and they were great.
 
-Now, I turn the air conditioner to 27 or 28 degrees. And wear this sleeping socks to whole night, then it is great.
+Now, I set the air conditioner to 27 or 28 degrees and wear these sleeping socks all night. It works perfectly.
 
-But why don't I use a pair of normal socks. Those are too tight, and it is not comfortable.
+But why don't I use a pair of normal socks? They are too tight and not comfortable.
+
+Source: Walmart.com
+
+Would you like me to generate an image of sleeping socks for you?
 
 {: .centered }  
 ![](/assets/images/socks/socks.jpg){: .responsive }  
