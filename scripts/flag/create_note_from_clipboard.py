@@ -48,33 +48,37 @@ def get_first_n_words(text, n=100):
 
 def process_title_for_filename(title):
     title = title.strip()
-    title = re.sub(r'\s+', '-', title)  # Replace whitespace with hyphens
+    title = re.sub(r'\s+', '-', title) 
     title = re.sub(r'[^a-zA-Z0-9-]', '', title)  # Remove special characters
     title = title.lower()
-    if len(title) > 50:
-        title = title[:50]
     return title
 
 def main():
     # Get clipboard content
     content = pyperclip.paste()
+    if len(content.strip()) < 100:
+        print("Clipboard content is less than 100 characters. Aborting.")
+        sys.exit(1)
     if not content.strip():
         print("Clipboard is empty. Nothing to create.")
         sys.exit(1)
 
-    # Generate title using AI
+    # Generate full title for front matter
     prompt_content = get_first_n_words(content)
     prompt = f"Generate a short title for the following text and respond with only the title: {prompt_content}"
-    title = call_mistral_api(prompt)
-    if not title:
-        print("Failed to generate title. Using default.")
-        title = "untitled"
-    title = title.strip()
+    full_title = call_mistral_api(prompt)
+    if not full_title:
+        print("Failed to generate full title. Using default.")
+        full_title = "Untitled Note"
+    full_title = full_title.strip()
 
-    # Process title for filename
-    processed_title = process_title_for_filename(title)
-    if not processed_title:
-        processed_title = "note"
+    # Generate short title (max 3 words) for filename
+    prompt = f"Generate a very short title (maximum three words) for the following text and respond with only the title: {prompt_content}"
+    short_title = call_mistral_api(prompt)
+    if not short_title:
+        print("Failed to generate short title. Using default.")
+        short_title = "untitled-note"
+    short_title = process_title_for_filename(short_title)
 
     # Create filename with date
     today = datetime.date.today()
@@ -82,18 +86,18 @@ def main():
     notes_dir = 'notes'
     if not os.path.exists(notes_dir):
         os.makedirs(notes_dir)
-    base_file_name = f"{date_str}-{processed_title}-en.md"
+    base_file_name = f"{date_str}-{short_title}-en.md"
     file_path = os.path.join(notes_dir, base_file_name)
 
     # Ensure unique filename
     counter = 1
     while os.path.exists(file_path):
-        file_path = os.path.join(notes_dir, f"{date_str}-{processed_title}-{counter}-en.md")
+        file_path = os.path.join(notes_dir, f"{date_str}-{short_title}-{counter}-en.md")
         counter += 1
 
-    # Create front matter
+    # Create front matter with full title
     front_matter = f"""---
-title: {title}
+title: {full_title}
 lang: en
 layout: post
 audio: false
