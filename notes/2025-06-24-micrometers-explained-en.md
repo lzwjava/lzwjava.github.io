@@ -1,5 +1,5 @@
 ---
-title: Guide to Micrometers: Tools and Observability
+title: "Guide to Micrometers: Tools and Observability"
 lang: en
 layout: post
 audio: false
