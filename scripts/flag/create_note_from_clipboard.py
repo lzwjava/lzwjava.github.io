@@ -68,8 +68,8 @@ def main():
     prompt = f"Generate a short title for the following text and respond with only the title: {prompt_content}"
     full_title = call_mistral_api(prompt)
     if not full_title:
-        print("Failed to generate full title. Using default.")
-        full_title = "Untitled Note"
+        print("Failed to generate full title. Exit.")
+        sys.exit(1)
     full_title = re.sub(r'\*', ' ', full_title)
     full_title = full_title.strip()
 
@@ -77,8 +77,8 @@ def main():
     prompt = f"Generate a very short title (maximum three words) for the following text and respond with only the title: {prompt_content}"
     short_title = call_mistral_api(prompt)
     if not short_title:
-        print("Failed to generate short title. Using default.")
-        short_title = "untitled-note"
+        print("Failed to generate short title. Exit.")
+        sys.exit(1)
     short_title = process_title_for_filename(short_title)
 
     # Create filename with date
