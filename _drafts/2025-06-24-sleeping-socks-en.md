@@ -13,11 +13,11 @@ Previously, I usually slept with the air conditioner on at around 23 or 24 degre
 
 It costs a lot of electricity to run the air conditioner all night for months. In recent years, I have tried many new ideas. One day, I started to think about it.
 
-Why do I need a quilt? It is because when I don't use a quilt, my feet get cold. I can turn up the temperature of the air conditioner. However, even when I set the air conditioner to 27 or 28 degrees, my feet still feel cold.
+Why did I need a quilt? It was because my feet would get cold without one. I could turn up the temperature of the air conditioner, but even at 27 or 28 degrees, my feet would still feel cold. If I turned the air conditioner up to 29 or 30 degrees, it would be pointless and better to shut it off. However, that would be too hot.
 
 Then I tried finding these sleeping socks on Pinduoduo, and they were great.
 
-Now, I set the air conditioner to 27 or 28 degrees and wear these sleeping socks all night. It works perfectly.
+Now, I set the air conditioner to 27 or 28 degrees and wear these sleeping socks all night. It works perfectly. 
 
 But why don't I use a pair of normal socks? They are too tight and not comfortable.
 
