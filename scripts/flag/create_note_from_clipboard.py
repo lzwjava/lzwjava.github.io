@@ -96,7 +96,7 @@ def main():
         file_path = os.path.join(notes_dir, f"{date_str}-{short_title}-{counter}-en.md")
         counter += 1
         
-    if ":" in full_title:
+    if ":" in full_title and '"' not in full_title:
         full_title = f'"{full_title}"'
 
     # Create front matter with full title
