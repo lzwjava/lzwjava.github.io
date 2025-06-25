@@ -7,46 +7,48 @@ title: Investieren
 translated: true
 ---
 
-- Verwenden Sie ein dediziertes Bankkonto für P2P-Handel beim Kauf von Kryptowährungen in China. Dies erleichtert die Aufzeichnung von Videos oder das Erstellen von Screenshots, sodass Händler die Transaktionshistorie überprüfen können, da die Transaktionshistorie kurz ist.
+- Verwende ein separates Bankkonto für den P2P-Handel, wenn du in China Kryptowährung kaufst. Das erleichtert das Aufnehmen von Videos oder das Erstellen von Screenshots, da der Transaktionsverlauf kurz ist und Händler ihn leichter überprüfen können.
 
-- Bevorzugen Sie Banküberweisungen gegenüber WeChatPay oder Alipay, da sie weniger reguliert sind. Wenn ein Bankkonto für Überweisungen an Händler nicht funktioniert, verwenden Sie ein anderes.
+- Bevorzuge Banküberweisungen gegenüber WeChatPay oder Alipay, da diese weniger reguliert sind. Falls ein Bankkonto für Überweisungen an Händler nicht funktioniert, verwende ein anderes.
 
-- Wenn wir Konsumentenkredite von großen Plattformen aufnehmen, sollten wir diese direkt auf die Bankkarte einzahlen, die wir für den P2P-Handel verwenden. Die Händler auf Binance müssen die Herkunft des Geldes überprüfen.
+- Wenn wir Verbraucherkredite von großen Plattformen aufnehmen, sollten wir das Geld direkt auf die Bankkarte einzahlen, die wir für den P2P-Handel nutzen. Die Händler auf Binance müssen die Herkunft des Geldes überprüfen.
 
-- Es ist oft vorteilhafter, die native Münze eines Netzwerks zu halten; zum Beispiel SOL im Solana-Netzwerk oder ETH im Ethereum-Netzwerk. Diese native Münzen werden in der Regel verwendet, um Transaktionsgebühren zu zahlen, und sind auf den meisten Mainstream-Kryptowährungsbörsen und dezentralen Börsen (DEX) weit verbreitet.
+- Es ist oft besser, die native Coin eines Netzwerks zu halten, z. B. SOL im Solana-Netzwerk oder ETH im Ethereum-Netzwerk. Diese nativen Coins werden typischerweise für Transaktionsgebühren verwendet und sind auf gängigen Kryptobörsen und dezentralen Börsen (DEX) weit verbreitet.
 
-- Vermeiden Sie die Nutzung von Cross-Chain-Bridges aufgrund ihrer hohen Kosten. Zum Beispiel habe ich einmal eine Netzwerkgebühr von 100 USD gezahlt, um 1200 USD wert SOL in ETH umzuwandeln. Stattdessen übertragen Sie Ihre Kryptowährung auf eine Börse, die dieselbe Kette unterstützt, und verwenden dann den Spot-Markt für die Umwandlung.
+- Vermeide Cross-Chain-Bridges aufgrund ihrer hohen Kosten. Beispielsweise habe ich einmal 100 USD Netzwerkgebühren gezahlt, um 1200 USD SOL in ETH umzuwandeln. Transferiere deine Kryptos stattdessen auf eine Börse, die dieselbe Chain unterstützt, und nutze dann den Spot-Markt für die Umwandlung.
 
-- Halten Sie kein USDT. Halten Sie stattdessen ETH, SOL und BTC. Ändern Sie die traditionelle Denkweise. Messen Sie alles aus der Perspektive der Kryptowährung, anstatt Kryptowährungen aus der Perspektive von gesetzlichem Zahlungsmittel zu messen.
+- Halte kein USDT. Halte stattdessen ETH, SOL und BTC. Ändere die traditionelle Denkweise. Betrachte alles aus der Perspektive der Kryptowährung, anstatt Kryptocoins aus der Sicht von Fiatgeld zu bewerten.
 
 - Persönlich nutze ich Binance, OKX und Phantom.
 
-- Überlegen Sie, was vertrauenswürdig ist und was nicht.
+- Überlege, was vertrauenswürdig ist und was nicht.
 
-- Die meisten Dinge sind Vermögenswerte und haben Werte, die in Geld gemessen werden. Im Laufe der Zeit wird der Wert einiger Vermögenswerte steigen, während der Wert anderer sinken wird. Tauschen Sie weniger wertvolle Vermögenswerte gegen wertvollere aus.
+- Die meisten Dinge sind Vermögenswerte und haben einen geldwerten Wert. Mit der Zeit wird der Wert einiger Vermögenswerte steigen, während der Wert anderer sinkt. Tausche weniger wertvolle Vermögenswerte gegen wertvollere aus.
 
-- Die Bedeutung der Gedanken oder Handlungen eines jeden sollte relativ zu seiner Marktkapitalisierung sein. Da ich nur wenige Bestände habe, sind meine Gedanken für den Gesamtmarkt von geringer Bedeutung.
+- Die Bedeutung der Gedanken oder Handlungen einer Person sollte relativ zu ihrer Marktkapitalisierung sein. Da ich nur wenige Anteile halte, sind meine Gedanken für den Gesamtmarkt irrelevant.
 
-- Analysieren Sie Dinge objektiv und überlegen Sie, wie andere handeln. Denken Sie langfristig.
+- Analysiere Dinge objektiv und beobachte, wie andere handeln. Denke langfristig.
 
-- Moral spielt beim Handel weniger eine Rolle. Handlungen, die gesetzlich erlaubt sind, sind akzeptabel. Manchmal ist das Gesetz veraltet. Wenn Sie etwas vertrauen, investieren Sie Geld und verlieren es dann, müssen Sie es einfach akzeptieren.
+- Moral spielt beim Handel eine geringere Rolle. Handlungen, die gesetzlich erlaubt sind, sind akzeptabel. Manchmal ist das Gesetz veraltet. Wenn du in etwas investierst, dem du vertraust, und dann verlierst, musst du es einfach akzeptieren.
 
-- Sie: Herzlichen Glückwunsch! Sie haben viel Geld mit Bitcoin gemacht, oder? Changpeng Zhao: Nein, nicht genau. Ich habe immer noch die gleiche Anzahl an Bitcoins. Es ist nur so, dass alles andere im Verhältnis zu Bitcoin ein bisschen billiger geworden ist.
+- Sie: Glückwunsch! Du hast viel Geld mit Bitcoin verdient, oder? Changpeng Zhao: Nein, nicht wirklich. Ich habe immer noch die gleiche Anzahl an Bitcoins. Es ist nur so, dass alles andere im Vergleich zu Bitcoin etwas billiger geworden ist.
 
-- Beim regelmäßigen Investieren ist der Schlüssel, über die Jahre hinweg konsequent zu investieren. Daher ist es nicht notwendig, sich zu beeilen und in einer bestimmten Woche oder einem bestimmten Monat mehr zu investieren, insbesondere wenn das Geld nicht aus Ihren Ersparnissen stammt, sondern geliehen ist, eine Frist hat oder Kosten verursacht. Es kann schwierig sein, über ein Jahr oder einige Jahre hinweg konsequent zu investieren.
+- Beim regelmäßigen Investieren geht es darum, über Jahre hinweg konsequent zu investieren. Daher besteht keine Notwendigkeit, sich zu beeilen und in einer bestimmten Woche oder einem Monat mehr zu investieren, insbesondere wenn das Geld nicht aus Ersparnissen stammt, sondern geliehen ist, eine Frist hat oder Kosten verursacht. Es kann schwierig sein, über ein Jahr oder einige Jahre hinweg konsequent zu investieren.
 
-- Der Gewinn und Verlust Ihres Portfolios kann nach monatelangem regelmäßigen Investieren null sein. Warum also nicht alles auf einmal zu Beginn investieren? Das Gefühl ist anders. Sie sind mit diesen Aktien auf und ab gefahren. Sie gewinnen Widerstandsfähigkeit und Geduld, was unschätzbar ist.
+- Die Gewinne und Verluste deines Portfolios können nach monatelangem regelmäßigen Investieren bei null liegen. Warum also nicht gleich zu Beginn alles auf einmal investieren? Das Gefühl ist anders. Du bist mit diesen Aktien auf und ab gefahren. Du gewinnst Widerstandsfähigkeit und Geduld, was unbezahlbar ist.
 
-- Regelmäßiges Investieren ist sehr interessant. Der Preis von Aktien oder Münzen steigt und fällt. Ich beobachte, wie der Markt funktioniert. Oft diskutieren oder reagieren Menschen auf Nachrichten auf emotionale Weise. Aber ich verstehe viel über das, in was ich investiere. Jedes Mal, wenn ich seinen langfristigen Wert in Frage stelle, habe ich meine Strategie nicht viel geändert.
+- Regelmäßiges Investieren ist sehr interessant. Die Preise von Aktien oder Coins steigen und fallen. Ich beobachte, wie der Markt funktioniert. Oft diskutieren oder reagieren Menschen emotional auf Nachrichten. Aber ich verstehe viel von dem, worin ich investiere. Jedes Mal, wenn ich den langfristigen Wert infrage stelle, habe ich meine Strategie kaum geändert.
 
-- Regelmäßiges Investieren gibt Ihnen ein gutes Gefühl, wenn Sie sehen, wie die Preise der Aktien wieder steigen. Die Preise steigen und fallen, und die Zeit wird es zeigen.
+- Regelmäßiges Investieren gibt dir ein gutes Gefühl, wenn du siehst, dass die Aktienkurse zurückkommen. Die Preise steigen und fallen, und du weißt, die Zeit wird es zeigen.
 
-- Leihen Sie sich kein Geld, um zu investieren; sparen Sie stattdessen. Regelmäßiges Investieren dauert Jahre, um Gewinn zu erzielen, und alles kann auf dem Markt passieren. Geld, das bald fällig ist, wird Ihnen nicht helfen, langfristig zu investieren. Wenn eine schlechte Situation eintritt und Sie Ihre Investitionen liquidieren müssen, um das Geld zurückzuzahlen, werden Sie wahrscheinlich einen erheblichen Verlust erleiden.
+- Nimm kein Geld auf, um zu investieren; spare stattdessen. Regelmäßiges Investieren braucht Jahre, um Gewinne zu erzielen, und auf dem Markt kann alles passieren. Geld, das bald fällig wird, hilft dir nicht beim langfristigen Investieren. Wenn eine schlechte Situation eintritt und du deine Investitionen auflösen musst, um das Geld zurückzuzahlen, wirst du wahrscheinlich einen erheblichen Verlust erleiden.
 
-- Der Schlüssel zum regelmäßigen Investieren ist es, ein erhebliches Volumen an Investitionen anzuhäufen und die richtigen Trends zu identifizieren. Es ist besser, in den späteren Phasen mehr Kapital zu investieren. Vermeiden Sie es, während der Bullenmärkte zu investieren, da in den folgenden Monaten ein Abschwung folgen könnte, was das Prinzip des regelmäßigen Investierens untergraben würde. Wenn Sie während der Abschwünge, ob sie Monate oder Jahre dauern, weiterhin investieren, erreichen Sie einen günstigeren durchschnittlichen Einstiegspreis.
+- Der Schlüssel zum regelmäßigen Investieren liegt darin, ein signifikantes Investitionsvolumen aufzubauen und die richtigen Trends zu erkennen. Es ist besser, in späteren Phasen mehr Kapital zu investieren. Vermeide es, in Bullenmärkten mehr zu investieren, da in den folgenden Monaten ein Abschwung folgen könnte, was dem Prinzip des regelmäßigen Investierens widerspricht. Wenn du während Abschwungphasen weiterinvestierst, egal ob sie Monate oder Jahre dauern, erzielst du einen günstigeren durchschnittlichen Einstiegspreis.
 
-- Das Investieren mit geliehenem Geld hat ein weiteres Problem: es erzeugt Zinsen. Zum Beispiel bedeutet ein jährlicher Zinssatz von 10%, dass Sie mindestens 5% auf Ihrer Investition erzielen müssen, um die Kosten zu decken. Dies macht das Investieren schwieriger, insbesondere während der Abschwünge.
+- Geld aufzunehmen, um zu investieren, hat ein weiteres Problem: Es verursacht Zinsen. Beispielsweise bedeutet ein jährlicher Zinssatz von 10 %, dass du mindestens 5 % mit deiner Investition erzielen musst, um die Kosten zu decken. Das erschwert das Investieren, insbesondere in Abschwungphasen.
 
-- Der Betrag, den Sie in regelmäßige Investitionen stecken, sollte so sein, dass Sie ihn für Tage oder Wochen vernachlässigen können, ohne ihn anzusehen. Selbst wenn er mehr als 50 Prozent verliert, können Sie es akzeptieren. Mit dieser Denkweise können Sie langfristig investieren und Gewinne erzielen.
+- Die Höhe deiner regelmäßigen Investitionen sollte so sein, dass du sie tagelang oder wochenlang ignorieren kannst. Selbst wenn sie mehr als 50 Prozent verlieren, kannst du es akzeptieren. Mit dieser Einstellung kannst du langfristig investieren und Gewinne erzielen.
 
-- Wenn Sie sich zu sehr um die Leistung Ihres regelmäßigen Investitionsportfolios kümmern und häufig Ihre Aktien- oder Krypto-App öffnen, bedeutet dies, dass Sie zu viel Geld investiert haben, Geld geliehen haben oder nicht zuversichtlich in Ihre langfristige Strategie sind.
+- Wenn du dich zu sehr um die Performance deines regelmäßigen Investitionsportfolios kümmerst und häufig deine Aktien- oder Krypto-App öffnest, bedeutet das, dass du zu viel Geld investiert hast, Geld geliehen hast oder nicht an deine langfristige Strategie glaubst.
+
+- Großes Geld wartet.
