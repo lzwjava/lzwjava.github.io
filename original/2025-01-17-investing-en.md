@@ -49,3 +49,6 @@ title: Investing
 - The amount of money you put into regular investments should be such that you can neglect it without looking at it for days or weeks. Even if it loses more than 50 percent, you can accept it. With this kind of mindset, you can invest for the long term and make profits.
 
 - If you care too much about the performance of your regular investing portfolio and frequently open your stocks or crypto app, it means you have invested too much money, borrowed money, or are not confident in your long-term strategy.
+
+- Big money waits.
+
