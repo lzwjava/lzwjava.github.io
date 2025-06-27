@@ -53,7 +53,7 @@ def process_title_for_filename(title):
     title = title.lower()
     return title
 
-def main():
+def create_note():
     # Get clipboard content
     content = pyperclip.paste()
     if len(content.strip()) < 100:
@@ -115,4 +115,4 @@ generated: true
     print(f"Created note: {file_path}")
 
 if __name__ == "__main__":
-    main()
+    create_note()
