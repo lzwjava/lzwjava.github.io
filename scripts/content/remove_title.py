@@ -1,58 +1,45 @@
 import os
 import re
-
-def remove_note_from_title(file_path):
-    with open(file_path, 'r', encoding='utf-8') as file:
-        lines = file.readlines()
-
-    title_pattern = re.compile(r'title:\s*"([^"]*?)\(Note:[^"]*?\)"')
-
-    for i, line in enumerate(lines):
-        match = title_pattern.search(line)
-        if match:
-            new_title = re.sub(r'\(Note:[^"]*?\)', '', match.group(1)).strip()
-            lines[i] = f'title: "{new_title}"\n'
-            print(f"Updated title in {file_path} to '{new_title}'")
-            break
-
-    with open(file_path, 'w', encoding='utf-8') as file:
-        file.writelines(lines)
+import frontmatter
 
 def process_markdown_content(file_path):
-    with open(file_path, 'r', encoding='utf-8') as f:
-        content = f.read()
-
-    # Split frontmatter and body
-    if content.startswith('---'):
-        parts = content.split('---', 2)
-        if len(parts) >= 3:
-            frontmatter = f'---{parts[1]}---\n'
-            body = parts[2].lstrip('\n')
-        else:
-            # No valid frontmatter
-            return
-    else:
-        # No frontmatter
+    # Load file with frontmatter
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            post = frontmatter.load(file)
+    except Exception as e:
+        print(f"Error reading {file_path}: {e}")
         return
 
-    # Split body into lines and check first three for level 1 title
-    body_lines = body.splitlines()
-    new_body_lines = []
-    skip_count = 0
-    for i in range(min(3, len(body_lines))):
-        if body_lines[i].strip().startswith('# '):
-            skip_count += 1
-        else:
-            break
-    new_body_lines = body_lines[skip_count:]
-    # Strip leading/trailing whitespace
-    new_body = '\n'.join(new_body_lines).strip() + '\n'
+    # Check if frontmatter exists
+    if not post.metadata:
+        # No frontmatter, skip
+        return
 
-    # Write back to file
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(frontmatter)
-        f.write('\n')
-        f.write(new_body)
+    # Get the body content
+    body = post.content
+
+    # Get the first 5 lines of the body
+    body_lines = body.splitlines()[:5]
+    first_five_lines = '\n'.join(body_lines)
+
+    # Count level 1 headers in the first 5 lines
+    header_pattern = re.compile(r'^#\s+.*$', re.MULTILINE)
+    headers = header_pattern.findall(first_five_lines)
+    if len(headers) != 1:
+        # Skip if not exactly one level 1 header in the first 5 lines
+        return
+
+    # Remove the single level 1 header along with preceding newline(s) from the entire body
+    header_with_newline_pattern = re.compile(r'\n+#\s+.*$', re.MULTILINE)
+    new_body = header_with_newline_pattern.sub('', body, count=1)
+
+    # Update the content
+    post.content = new_body
+
+    # Write back to file using dumps to get string representation
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write(frontmatter.dumps(post))
 
 def process_files_in_directory(directory):
     if not os.path.isdir(directory):
@@ -61,11 +48,9 @@ def process_files_in_directory(directory):
     for filename in os.listdir(directory):
         if filename.endswith('.md'):
             file_path = os.path.join(directory, filename)
-            remove_note_from_title(file_path)
             process_markdown_content(file_path)
 
-# Get the absolute path to the notes directory
-current_directory = os.path.dirname(os.path.abspath(__file__))
-notes_directory = os.path.join(current_directory, '../notes')
+# Get the path to the notes directory
+notes_directory = os.path.join('./notes')
 
 process_files_in_directory(notes_directory)
