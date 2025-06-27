@@ -20,13 +20,17 @@ CLASH_API_BASE_URL = f"http://{CLASH_CONTROLLER_HOST}:{CLASH_CONTROLLER_PORT}"
 TARGET_PROXY_GROUP = "🚧Proxy" 
 
 def setup_logging():
-    """Configures basic logging for the script."""
+    """Configures basic logging for the script. Clears previous log."""
+    if os.path.exists('clash.log'):
+        with open('clash.log', 'w'): # clears the log file
+            pass
     logging.basicConfig(
         filename='clash.log', 
         level=logging.INFO,
         format='%(asctime)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
+
 
 def start_system_proxy(global_proxy_address):
     """Sets system-wide proxy environment variables."""
