@@ -109,6 +109,12 @@ translated: false
 generated: true
 ---"""
 
+    # Remove title from content if it exists
+    lines = content.splitlines()
+    if lines and lines[0].startswith('# '):
+        content = '\n'.join(lines[1:])
+    content = content.strip()
+
     # Write to file
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(front_matter + '\n\n' + content)
