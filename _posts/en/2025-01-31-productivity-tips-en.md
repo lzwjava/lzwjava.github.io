@@ -30,3 +30,5 @@ translated: false
 * Use code or other tools to automate tasks, allowing you to focus on the most interesting aspects.
 
 * When you truly enjoy working or learning, you don't worry about progress, and you don't have a goal to rush towards. You simply want to do or learn things for their own sake. You don't worry about how much time has passed or the difficulty of the materials. You enter a flow state.
+
+* Sometimes, it's hard to focus—even just reading a tutorial on the screen can be difficult. However, when you're writing code and get stuck on a bug, you may find yourself fully focused. Try to find ways to write and run code as part of your learning process.
