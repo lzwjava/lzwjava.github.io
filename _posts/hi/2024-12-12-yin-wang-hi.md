@@ -10,7 +10,7 @@ translated: true
 
 ## चीनी
 
-- वीबो: [不再关心人类de垠](https://weibo.com/u/6347862377)
+- वीबो: [अब मानवता की परवाह नहीं करने वाला यिन](https://weibo.com/u/6347862377)
 - वर्डप्रेस: [yinwang1.wordpress.com](https://yinwang1.wordpress.com)
 - ब्लॉग: [yinwang.org](http://www.yinwang.org)
 - सबस्टैक: [yinwang1.substack.com](https://yinwang1.substack.com)

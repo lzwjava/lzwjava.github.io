@@ -22,4 +22,4 @@ translated: true
 - WordPress : [yinwang0.wordpress.com](https://yinwang0.wordpress.com)
 - Twitter : [twitter.com/yinwang0](https://twitter.com/yinwang0)
 - GitHub : [github.com/yinwang0](https://github.com/yinwang0)
-- Livre, Ground-Up Computer Science : [yinwang.org/blog-cn/2021/05/11/gucs-sample](https://www.yinwang.org/blog-cn/2021/05/11/gucs-sample)
+- Livre, Computer Science from the Ground Up : [yinwang.org/blog-cn/2021/05/11/gucs-sample](https://www.yinwang.org/blog-cn/2021/05/11/gucs-sample)
