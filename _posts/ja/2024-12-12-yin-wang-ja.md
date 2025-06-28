@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: ja
 layout: post
-title: Yin Wangの完全な作品集
+title: 陰王全集
 top: 20
 translated: true
 ---
@@ -17,7 +17,8 @@ translated: true
 
 ## 英語
 
-* ブログの英語翻訳: [https://github.com/lzwjava/yinwang.github.io](https://github.com/lzwjava/yinwang.github.io)
+* ブログの英語訳: [https://github.com/lzwjava/yinwang.github.io](https://github.com/lzwjava/yinwang.github.io)
 * Substack: [https://yinwang0.substack.com](https://yinwang0.substack.com)
 * WordPress: [https://yinwang0.wordpress.com](https://yinwang0.wordpress.com)
 * Twitter: [https://twitter.com/yinwang0](https://twitter.com/yinwang0)
+* GitHub: [https://github.com/yinwang0](https://github.com/yinwang0)
