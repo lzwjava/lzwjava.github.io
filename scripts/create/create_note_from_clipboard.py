@@ -65,7 +65,7 @@ def create_note():
 
     # Generate full title for front matter
     prompt_content = get_first_n_words(content)
-    prompt = f"Generate a short title for the following text and respond with only the title: {prompt_content}"
+    prompt = f"Generate a very short title (maxium six words) for the following text and respond with only the title: {prompt_content}"
     full_title = call_mistral_api(prompt)
     if not full_title:
         print("Failed to generate full title. Exit.")
