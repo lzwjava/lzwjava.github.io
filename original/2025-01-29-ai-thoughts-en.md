@@ -63,6 +63,7 @@ translated: false
 
 - AI can be evaluated by how well it can update a pom.xml or requirements.txt file to the latest version, update libraries, and perform checks. This process can involve a significant amount of work and can sometimes be complex.
 
+- In the AI era, programming languages that have better performance and robustness are more important and will be more popular, while syntax is less important. This is because LLM will help generate code, making it less of a hassle as long as the program executes well.
 
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
