@@ -139,3 +139,7 @@ draw some graphs to understand
 ---
 
 Identify only the lines needing changes, and provide corrected snippets (not the full code). Preserve the original indentation so I can copy-paste them directly.
+
+---
+
+organize this transcript, keep original text as possible, just make it more coherent 
