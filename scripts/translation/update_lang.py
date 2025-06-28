@@ -157,8 +157,8 @@ def translate_text(text, target_language, type="content", special=False, model="
                 print(f"  Error: Translation response is empty or invalid:")
                 print(response.content)
                 return None
-            if response_json['choices'][0].get('finish_reason') != "stop":
-                print(f"  Error: Translation did not finish with 'stop' reason:")
+            if response_json['choices'][0].get('finish_reason') not in ("stop", "length"):
+                print(f"  Error: Translation did not finish with 'stop' or 'length' reason:")
                 print(response.content)
                 return None
             translated_text = response_json['choices'][0]['message']['content']
