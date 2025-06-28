@@ -7,7 +7,7 @@ translated: false
 generated: true
 ---
 
-## September 26, 1985
+September 26, 1985
 
 Below is an organized version of Richard Feynman's 1985 lecture on artificial intelligence, preserving the original text as much as possible while structuring it for coherence. The lecture addresses whether machines can think like humans, surpass human intelligence, and discover new ideas autonomously.
 
