@@ -5,11 +5,13 @@ import shutil
 import argparse
 import logging
 import requests
+import threading
 import json
 import urllib.parse
 
 # Assuming speed.py is in the same directory or accessible in PYTHONPATH
 from speed import get_top_proxies 
+import threading
 
 # --- Configuration ---
 CLASH_CONTROLLER_HOST = "127.0.0.1"
@@ -151,13 +153,26 @@ def main():
         # Step 3: Start Clash in the background
         clash_process = None
         try:
-            # It's crucial that Clash starts with the external-controller enabled and accessible
-            # This is usually configured within the config.yaml itself.
-            clash_process = subprocess.Popen([clash_executable_path], 
-                                             stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            # Start Clash and redirect its output to a logging function instead of a file
+            def log_clash_output(pipe, level=logging.INFO):
+                for line in iter(pipe.readline, b''):
+                    logging.log(level, f"[Clash] {line.decode(errors='replace').rstrip()}")
+                pipe.close()
+
+            clash_process = subprocess.Popen(
+                [clash_executable_path],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                bufsize=1
+            )
             logging.info(f"Clash started with PID {clash_process.pid}")
+
+            # Start threads to capture and log stdout and stderr
+            threading.Thread(target=log_clash_output, args=(clash_process.stdout, logging.INFO), daemon=True).start()
+            threading.Thread(target=log_clash_output, args=(clash_process.stderr, logging.ERROR), daemon=True).start()
+
             # Give Clash a moment to fully initialize and open its API port
-            time.sleep(5) 
+            time.sleep(5)
         except FileNotFoundError:
             logging.critical(f"Clash executable not found at: {clash_executable_path}")
             logging.critical("Please ensure the path is correct and Clash is installed.")
