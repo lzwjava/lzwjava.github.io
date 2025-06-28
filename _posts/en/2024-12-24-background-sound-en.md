@@ -21,3 +21,6 @@ translated: false
 
 * It's like being in a classroom—while you focus on the board, there are background sounds from the teacher and other students. The effectiveness of your learning depends on your engagement.
 
+---
+
+Update: In the summer of 2025, I stopped preferring to have background sound. Silence may allow the mind to be peaceful.

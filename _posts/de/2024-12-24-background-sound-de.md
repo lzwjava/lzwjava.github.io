@@ -3,21 +3,24 @@ audio: false
 generated: false
 lang: de
 layout: post
-title: Bevorzugen Sie Hintergrundgeräusche
+title: Bevorzuge Hintergrundgeräusche
 translated: true
 ---
 
-* Bevorzugen Sie Hintergrundgeräusche, egal was Sie gerade tun.
+* Bevorzuge Hintergrundgeräusche, egal was du tust.  
 
-* Podcasts, YouTube-Videos oder Musik abspielen.
+* Spiel einen Podcast, YouTube-Videos oder Musik ab.  
 
-* Wechseln Sie zwischen dem linken und rechten Ohrhörer, um Ihren Ohren eine Pause zu gönnen.
+* Wechsle zwischen linkem und rechtem Ohrstöpsel, um deinen Ohren eine Pause zu gönnen.  
 
-* Konzentration oder Ablenkung wird nicht allein dadurch bestimmt, ob Hintergrundgeräusche vorhanden sind. Es gibt Zeiten, in denen es keine Geräusche gibt, aber man dennoch abgelenkt ist.
+* Konzentration oder Ablenkung hängen nicht allein davon ab, ob es Hintergrundgeräusche gibt. Es gibt Zeiten, in denen es keine Geräusche gibt, aber du dich trotzdem abgelenkt fühlst.  
 
-* Versuche, über mehrere Monate hinweg kontinuierlich Hintergrundgeräusche zu haben.
+* Versuche, über einige Monate hinweg konsequent Hintergrundgeräusche zu haben.  
 
-* Für das Sprachenlernen kann es besonders hilfreich sein.
+* Für das Sprachenlernen kann es besonders hilfreich sein.  
 
-* Es ist wie in einem Klassenzimmer – während du dich auf die Tafel konzentrierst, gibt es Hintergrundgeräusche vom Lehrer und anderen Schülern. Die Effektivität deines Lernens hängt von deiner Aufmerksamkeit ab.
+* Es ist wie in einem Klassenzimmer – während du dich auf die Tafel konzentrierst, gibt es Hintergrundgeräusche vom Lehrer und anderen Schülern. Der Lernerfolg hängt von deiner Beteiligung ab.  
 
+---  
+
+**Update:** Im Sommer 2025 habe ich aufgehört, Hintergrundgeräusche zu bevorzugen. Stille kann dem Geist Frieden schenken.
