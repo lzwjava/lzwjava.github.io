@@ -42,7 +42,7 @@ def call_mistral_api(prompt):
             print(f"Response content: {e.response.text}")
         return None
 
-def get_first_n_words(text, n=100):
+def get_first_n_words(text, n=500):
     words = text.split()
     return ' '.join(words[:n])
 
