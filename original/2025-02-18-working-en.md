@@ -51,7 +51,7 @@ translated: false
 
 - If working in programming, set up a program profiler, IDE, code checkstyle, coding assistants, database tools, and Git tools in the first weeks. Use them regularly to boost productivity.
 
-- Working at banks or big tech can feel quite restrained due to its strict security policies. However, it depends. You can still download or install many java libraries or packages as you like. With AI, you basically can tons of things.
+- Working at banks or big tech can feel quite restrained due to its strict security policies. However, it depends. You can still download or install many java libraries or packages as you like. With AI, you basically can do tons of things.
 
 - Treat corporate work as if you are working on your own projects. Although you need to follow the direction of the team, even when following that direction, there are opportunities to choose different tasks or suggest tasks that you like, as long as they bring value to the project.
 
