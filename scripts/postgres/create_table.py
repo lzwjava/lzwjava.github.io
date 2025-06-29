@@ -21,6 +21,25 @@ cur.execute("""
 
 conn.commit()
 cur.close()
-conn.close()
 
 print("Table created successfully.")
+
+# Insert some rows into 'example_table' using the same connection
+cur = conn.cursor()
+cur.execute(
+    "INSERT INTO example_table (name) VALUES (%s), (%s), (%s);",
+    ("Alice", "Bob", "Charlie")
+)
+conn.commit()
+cur.close()
+
+print("Rows inserted successfully.")
+# Query some rows from 'example_table' using the same connection
+cur = conn.cursor()
+cur.execute("SELECT id, name, created_at FROM example_table;")
+rows = cur.fetchall()
+for row in rows:
+    print(row)
+cur.close()
+conn.close()
+
