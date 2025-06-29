@@ -34,9 +34,9 @@ def generate_audio(paragraphs, output_dir="audio"):
         os.makedirs(output_dir)
     
     audio_files = []
+    voice_name = random.choice(["en-US-Journey-D", "en-US-Journey-F", "en-US-Journey-O"])
     for i, paragraph in enumerate(paragraphs):
         synthesis_input = texttospeech.SynthesisInput(text=paragraph)
-        voice_name = random.choice(["en-US-Journey-D", "en-US-Journey-F", "en-US-Journey-O"])
         voice = texttospeech.VoiceSelectionParams(
             language_code="en-US",
             name=voice_name
@@ -60,7 +60,7 @@ def create_video(paragraphs, audio_files, output_file="educational_video.mp4"):
         print(f"Creating text clip for paragraph {i+1}: {paragraph}")
         text_clip = TextClip(
             text=paragraph,  # Changed from 'txt' to 'text'
-            font="Arial-Unicode-Bold",  # More reliable font
+            font="Arial",  # More reliable font
             color="white",
             size=(1280, 720),
             method="caption",
@@ -69,10 +69,10 @@ def create_video(paragraphs, audio_files, output_file="educational_video.mp4"):
         )
         audio_clip = AudioFileClip(audio_file)
         duration = audio_clip.duration
-        text_clip = text_clip.set_duration(duration)
+        text_clip = text_clip.with_duration(duration)
         bg_clip = ColorClip(size=(1280, 720), color=(0, 0, 0), duration=duration)
-        video_clip = CompositeVideoClip([bg_clip, text_clip.set_position("center")])
-        video_clip = video_clip.set_audio(audio_clip)
+        video_clip = CompositeVideoClip([bg_clip, text_clip.with_position("center")])
+        video_clip = video_clip.with_audio(audio_clip)
         clips.append(video_clip)
     
     final_clip = concatenate_videoclips(clips)
@@ -97,7 +97,7 @@ def main():
     audio_files = generate_audio(refined_paragraphs, "test")
     print("Audio files generated:", audio_files)
     
-    create_video(refined_paragraphs, audio_files)
+    create_video(refined_paragraphs, audio_files, "test/educational_video.mp4")
     print("Video created: educational_video.mp4")
 
 if __name__ == "__main__":
