@@ -49,7 +49,7 @@ translated: false
 
 - In some large companies, the progress of AI chatbots or internal AI tools may be slow. We can use our personal computers to learn related public technologies with AI tools after work. This makes it less cumbersome to work on corporate computers since we are already familiar with a lot.
 
-- If working in programming, set up a program profiler, IDE, code checkstyle, coding assistant, database tools, and Git tools like Copilot in the first weeks. Use them regularly to boost productivity.
+- If working in programming, set up a program profiler, IDE, code checkstyle, coding assistants, database tools, and Git tools in the first weeks. Use them regularly to boost productivity.
 
 - Working at banks or big tech can feel quite restrained due to its strict security policies. However, it depends. You can still download or install many java libraries or packages as you like. With AI, you basically can tons of things.
 
