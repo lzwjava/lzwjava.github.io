@@ -65,6 +65,8 @@ translated: false
 
 - In the AI era, programming languages that have better performance and robustness are more important and will be more popular, while syntax is less important. This is because LLM will help generate code, making it less of a hassle as long as the program executes well.
 
+- People tend to read everything from AI chatbots because it is easy to learn, they can ask questions about any aspect, the format is consistent, and the quality is often among the best found on the Internet.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
