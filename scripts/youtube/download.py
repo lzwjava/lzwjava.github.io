@@ -6,7 +6,7 @@ def main():
     parser = argparse.ArgumentParser(description="Download YouTube videos at specified resolution.")
     parser.add_argument("url", help="YouTube video URL")
     parser.add_argument(
-        "--resolution",
+        "resolution",
         choices=["1080p", "720p", "480p"],
         default="720p",
         help="Video resolution to download (default: 720p)"
