@@ -71,7 +71,7 @@ fi
 
 
 
-export PATH="/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"
+export PATH="/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/lzw/idea-IC-251.26094.121/bin"
 
 export GLOBAL_PROXY='127.0.0.1:7890'
 
@@ -83,6 +83,7 @@ function start_proxy {
     export HTTP_PROXY_REQUEST_FULLURI=false
     export HTTPS_PROXY_REQUEST_FULLURI=false
     export ALL_PROXY=$http_proxy
+    export all_proxy=$http_proxy 
 }
 
 function start_proxy_without_prefix {
@@ -93,6 +94,7 @@ function start_proxy_without_prefix {
     export HTTP_PROXY_REQUEST_FULLURI=false
     export HTTPS_PROXY_REQUEST_FULLURI=false
 		export ALL_PROXY=$http_proxy
+    export all_proxy=$http_proxy
 }
 
 function stop_proxy {
@@ -103,6 +105,7 @@ function stop_proxy {
     export HTTP_PROXY_REQUEST_FULLURI=true
     export HTTPS_PROXY_REQUEST_FULLURI=true
 		export ALL_PROXY=		
+    export all_proxy=
 }
 
 export NO_PROXY="localhost,127.0.0.1,.example.com,::1"
@@ -121,8 +124,8 @@ function stop_git_proxy {
 start_proxy
 start_git_proxy
 
-alias python=python3
-alias pip=pip3
+alias python=python3.13
+alias pip='python3.13 -m pip'
 
 function gpa {
   python ~/bin/gitmessageai.py --api mistral --allow-pull-push
@@ -227,3 +230,13 @@ function checkproxy {
   echo "Git HTTPS Proxy:"
   git config --get https.proxy
 }
+
+alias start=open
+
+
+
+
+
+
+export CLASH_EXECUTABLE="/home/lzw/bin/clash-linux-amd64"
+
