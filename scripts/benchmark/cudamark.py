@@ -9,13 +9,12 @@ def parallel_sort_gpu(arr):
     gpu_arr = cp.sort(gpu_arr)
     return cp.asnumpy(gpu_arr)
 
-def benchmark(thread_count, list_size):
-    # thread_count is not used, as GPU handles parallelism internally
+def benchmark(list_size):
     arr = np.random.randint(0, 1_000_001, size=list_size, dtype=np.int32)
     start = time.time()
     sorted_arr = parallel_sort_gpu(arr)
     end = time.time()
-    return end - start
+    return sorted_arr, end - start
 
 def main():
     cpu_cores = os.cpu_count()
@@ -25,10 +24,9 @@ def main():
     list_size = 50_000_000
 
     for n in thread_counts:
-        t = benchmark(n, list_size)
+        sorted_arr, t = benchmark(list_size)
         print(f"Threads: {n}, Time taken: {t:.4f} seconds")
         times.append(t)
-
     print("\nThreadCount,TimeTakenSeconds")
     for n, t in zip(thread_counts, times):
         print(f"{n},{t:.6f}")
