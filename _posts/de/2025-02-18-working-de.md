@@ -7,42 +7,53 @@ title: Arbeiten
 translated: true
 ---
 
-- Bevor Sie Zugriff auf das Code-Repository erhalten, fragen Sie Ihre Kollegen nach der `pom.xml`-Datei und versuchen Sie, die Nexus-Abhängigkeiten herunterzuladen.
 
-- Ohne den eigentlichen Code, aber mit den Nexus-Bibliotheken, können wir tatsächlich die JAR-Datei dekompilieren oder mit den Bibliotheken experimentieren. Wir können eine ganze Menge tun. Denken Sie außerhalb der Box.
+- Bevor du Zugriff auf das Code-Repository erhältst, bitte Kollegen um die `pom.xml`-Datei und versuche, Nexus-Abhängigkeiten herunterzuladen.
 
-- Es ist vorzuziehen, Benutzer-Token im Sonatype Nexus Repository in `settings.yaml` zu konfigurieren.
+- Ohne den eigentlichen Code, aber mit den Nexus-Bibliotheken, können wir die JAR-Datei dekompilieren oder mit den Bibliotheken experimentieren. Wir können eine Menge tun. Denke außerhalb der Box.
 
-- Warten Sie nicht auf die Genehmigung von Zugriffsanfragen. Bevor Sie Zugriffsrechte haben, denken Sie darüber nach, was Sie tun können.
+- Es ist vorzuziehen, Benutzertoken im Sonatype Nexus Repository in der `settings.yaml` zu konfigurieren.
 
-- Viel von der Arbeit kann erledigt werden, bevor Sie mit der Arbeit beginnen. Man kann sich mit fast allem im Voraus vertraut machen. Alles hat Ersatzcode oder Materialien aus Open Source.
+- Warte nicht auf die Genehmigung von Zugriffsanfragen. Bevor du Zugriffsrechte hast, überlege, was du tun kannst.
 
-- Ein Job umfasst oft spezifische Einstellungen, leicht unterschiedliche Code-Logik und Zugriffsrechte oder Passwörter, um Dinge zu erledigen.
+- Ein großer Teil der Arbeit kann erledigt werden, bevor du anfängst. Man kann sich im Voraus mit fast allem vertraut machen. Alles hat Open-Source-Ersatzcode oder Materialien.
 
-- Überlegen Sie sich die nächste Phase des Projekts. Überlegen Sie, wie das aktuelle Projekt voranschreiten wird und was die Benutzer benötigen oder erwarten.
+- Ein Job beinhaltet oft spezifische Einstellungen, leicht abweichende Code-Logik sowie Zugriffsrechte oder Passwörter, um Dinge zu erledigen.
 
-- Denken Sie an alle möglichen Wege, um die Arbeit zu erledigen, Fortschritte zu machen und so viel wie möglich vorzubereiten, bevor Sie Zugriffsrechte oder die Materialien erhalten, die andere bereitstellen.
+- Antizipiere die nächste Phase des Projekts. Überlege, wie das aktuelle Projekt voranschreiten wird und was Benutzer benötigen oder erwarten.
 
-- Geben Sie sich nicht zufrieden; erledigen Sie Dinge und automatisieren Sie so viel wie möglich.
+- Denke an alle möglichen Wege, die Arbeit zu erledigen, Fortschritte zu machen und dich so gut wie möglich vorzubereiten, bevor du Zugriffsrechte oder die Materialien anderer erhältst.
 
-- Verwenden Sie die Python `requests`-Bibliothek, um Postman zu ersetzen.
+- Gib dich nicht zufrieden; erledige die Dinge und automatisiere so viel wie möglich.
 
-- Windows und PowerShell sind ebenfalls gangbare Optionen. Die häufig verwendeten Befehle sind auf einige Dutzend beschränkt. Lernen Sie sie gut.
+- Nutze die Python-`requests`-Bibliothek als Ersatz für Postman.
 
-- Überlegen Sie, wie ein Ingenieur an diesem Projekt für 5 oder 10 Jahre arbeiten könnte, und denken Sie darüber nach, wie man ähnliche Effizienz schnell erreichen kann.
+- Windows und PowerShell sind ebenfalls brauchbare Optionen. Die häufig verwendeten Befehle beschränken sich auf einige Dutzend. Lerne sie gut.
 
-- Verwenden Sie Notizen und Protokollverzeichnisse. Kopieren Sie Protokolle sorgfältig aus der Konsole oder den Frontend-Seiten für eine detaillierte Analyse.
+- Überlege, wie ein Ingenieur dieses Projekt über 5 oder 10 Jahre bearbeiten würde, und denke darüber nach, wie du ähnliche Effizienz schnell erreichen kannst.
 
-- Überlegen Sie, wie Sie dieses Wissen an neu hinzugekommene Teammitglieder weitergeben können.
+- Verwende Notizen- und Log-Verzeichnisse. Kopiere Logs sorgfältig von der Konsole oder Frontend-Seiten für detaillierte Analysen.
 
-- Überlegen Sie, was wir erreichen können, wenn jeder sein Bestes gibt und wir 50 solche Ingenieure haben.
+- Überlege, wie du dieses Wissen an neu hinzugekommene Teammitglieder vermitteln kannst.
 
-- Bibliotheken, die leicht aus internen Nexus-Repositories heruntergeladen werden können, können manuell heruntergeladen und im `.m2`-Repository platziert werden.
+- Denke darüber nach, was wir erreichen können, wenn jeder sein Bestes gibt und wir 50 solcher Ingenieure haben.
 
-- Lesen Sie die `pom.xml`-Datei, um das Maven-Compile-Ziel und die erforderliche JDK-Version für das Projekt zu bestimmen.
+- Bibliotheken, die einfach aus internen Nexus-Repositories heruntergeladen werden können, können manuell heruntergeladen und im `.m2`-Repository abgelegt werden.
 
-- Anstatt Jira oder Confluence zu durchsuchen, konstruieren Sie direkt eine URL, um zum Profil zu gelangen und Seiten zu finden.
+- Lies die `pom.xml`-Datei, um das Maven-Kompilierungsziel und die erforderliche JDK-Version für das Projekt zu bestimmen.
 
-- Wenn wir auf ein Problem stoßen, zum Beispiel wenn `npm run build` in einer großen Build-Pipeline Probleme hat, können wir es separat ausführen, um sicherzustellen, dass es funktioniert, bevor wir die gesamte Pipeline ausführen. Dies macht den Debug-Zyklus schneller und kleiner.
+- Anstatt Jira oder Confluence zu durchsuchen, konstruiere direkt eine URL, um zum Profil zu gelangen und Seiten zu finden.
 
-- Die Probleme oder ähnliche Fehler werden im Laufe Ihrer Karriere wiederholt auftreten, also stellen Sie sicher, dass Sie Notizen darüber machen. Diese Praxis bleibt auch im Zeitalter der künstlichen Intelligenz nützlich. Manchmal liefern große Sprachmodelle Antworten, die nicht vollständig korrekt sind und überprüft werden müssen.
+- Wenn wir auf einen Bug stoßen, z. B. wenn `npm run build` in einer großen Build-Pipeline Probleme verursacht, können wir es separat ausführen, um sicherzustellen, dass es funktioniert, bevor die gesamte Pipeline läuft. Dies macht den Debug-Zyklus schneller und kleiner.
+
+- Die Probleme oder ähnlichen Bugs werden sich während deiner Karriere wiederholen, also stelle sicher, dass du Notizen darüber machst. Diese Praxis bleibt auch im KI-Zeitalter nützlich. Manchmal liefern große Sprachmodelle Antworten, die nicht ganz korrekt sind und überprüft werden müssen.
+
+- In einigen großen Unternehmen kann der Fortschritt von KI-Chatbots oder internen KI-Tools langsam sein. Wir können unsere privaten Computer nutzen, um nach der Arbeit verwandte öffentliche Technologien mit KI-Tools zu lernen. Dies macht die Arbeit auf Firmencomputern weniger mühsam, da wir bereits vieles kennen.
+
+- Wenn du in der Programmierung arbeitest, richte in den ersten Wochen einen Programmierprofiler, eine IDE, Code-Checkstyle, Coding-Assistenten, Datenbanktools und Git-Tools ein. Nutze sie regelmäßig, um die Produktivität zu steigern.
+
+- Die Arbeit bei Banken oder großen Tech-Unternehmen kann sich aufgrund strenger Sicherheitsrichtlinien sehr eingeschränkt anfühlen. Es kommt jedoch darauf an. Du kannst immer noch viele Java-Bibliotheken oder Pakete nach Belieben herunterladen oder installieren. Mit KI kannst du im Grunde eine Menge tun.
+
+- Behandle die Arbeit im Unternehmen so, als würdest du an deinen eigenen Projekten arbeiten. Obwohl du der Teamrichtung folgen musst, gibt es selbst dann Möglichkeiten, verschiedene Aufgaben zu wählen oder Aufgaben vorzuschlagen, die dir gefallen, solange sie dem Projekt einen Mehrwert bringen.
+
+- Erkunde alle Optionen bei IDEs, Software, Tools, VS-Code-Erweiterungen, verschiedenen Funktionalitäten und Arbeitsweisen. Auch auf den eingeschränkten Arbeitslaptops großer Tech-Unternehmen oder Banken kannst du sie für einen angenehmeren Arbeitsplatz optimieren.

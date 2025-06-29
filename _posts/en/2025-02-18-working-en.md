@@ -48,3 +48,11 @@ translated: false
 - The problems or similar bugs will recur repeatedly throughout your career, so make sure you keep notes about them. This practice remains useful even in the AI era. Sometimes, large language models provide answers that aren’t entirely accurate and require you to verify them.
 
 - In some large companies, the progress of AI chatbots or internal AI tools may be slow. We can use our personal computers to learn related public technologies with AI tools after work. This makes it less cumbersome to work on corporate computers since we are already familiar with a lot.
+
+- If working in programming, set up a program profiler, IDE, code checkstyle, coding assistants, database tools, and Git tools in the first weeks. Use them regularly to boost productivity.
+
+- Working at banks or big tech can feel quite restrained due to its strict security policies. However, it depends. You can still download or install many java libraries or packages as you like. With AI, you basically can do tons of things.
+
+- Treat corporate work as if you are working on your own projects. Although you need to follow the direction of the team, even when following that direction, there are opportunities to choose different tasks or suggest tasks that you like, as long as they bring value to the project.
+
+- Explore all choices when dealing with IDEs, software, tools, VS Code extensions, different functionalities, and ways of doing things. In the limiting working laptop of big tech or big banks, you can still tweak it for a more enjoyable workstation.
