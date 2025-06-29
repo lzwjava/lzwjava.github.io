@@ -16,10 +16,11 @@ def main():
     output_dir = "test"
     os.makedirs(output_dir, exist_ok=True)
 
+    # Updated format strings to ensure best audio quality
     if args.resolution == "720p":
-        format_str = 'bestvideo[height<=720]+bestaudio/best[height<=720]'
-    else:
-        format_str = 'bestvideo[height<=480]+bestaudio/best[height<=480]'
+        format_str = 'bestvideo[height<=720]+bestaudio'
+    else:  # 480p
+        format_str = 'bestvideo[height<=480]+bestaudio'
 
     command = [
         "yt-dlp",
