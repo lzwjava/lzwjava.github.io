@@ -74,12 +74,12 @@ def create_note():
     full_title = full_title.strip()
 
     # Generate short title (max 3 words) for filename
-    prompt = f"Generate a very short title (maximum three words) for the following text and respond with only the title: {prompt_content}"
+    prompt = f"Generate a very short title (maximum three words, all lowercase, use only letters, numbers, or hyphens, no spaces or special characters) for the following text and respond with only the title: {prompt_content}"
     short_title = call_mistral_api(prompt)
     if not short_title:
         print("Failed to generate short title. Exit.")
         sys.exit(1)
-    short_title = process_title_for_filename(short_title)
+    short_title = short_title.strip()
 
     # Create filename with date
     today = datetime.date.today()
