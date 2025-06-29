@@ -162,8 +162,7 @@ def main():
             clash_process = subprocess.Popen(
                 [clash_executable_path],
                 stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                bufsize=1
+                stderr=subprocess.PIPE
             )
             logging.info(f"Clash started with PID {clash_process.pid}")
 
