@@ -3,8 +3,8 @@ import psycopg2
 # Connect to your postgres database
 conn = psycopg2.connect(
     dbname="mydatabase",
-    user="postgres",
-    password="",  # Replace with your actual password
+    user="lzw",
+    password="lzwpassword",  # Replace with your actual password
     host="localhost"
 )
 
