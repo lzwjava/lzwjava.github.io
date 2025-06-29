@@ -210,3 +210,5 @@ export DYLD_LIBRARY_PATH=$(brew --prefix curl)/lib
 
 
 
+
+export CLASH_EXECUTABLE=/Users/lzwjava/bin/clash-darwin-amd64

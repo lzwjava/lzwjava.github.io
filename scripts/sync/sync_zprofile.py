@@ -14,6 +14,7 @@ with open(source_file, 'r') as f_source:
 # Remove lines containing API key exports
 content = re.sub(r'export \w+_API_KEY=".*"\n?', '', content)
 content = re.sub(r'export TIGER_\w+=".*"\n?', '', content)
+content = re.sub(r'export CLASH_\w+=".*"\n?', '', content)
 
 # Ensure target directory exists
 os.makedirs(os.path.dirname(target_file), exist_ok=True)
