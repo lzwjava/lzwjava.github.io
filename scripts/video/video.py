@@ -61,7 +61,6 @@ def create_video(paragraphs, audio_files, output_file="educational_video.mp4"):
         text_clip = TextClip(
             text=paragraph,  # Changed from 'txt' to 'text'
             font="Arial-Unicode-Bold",  # More reliable font
-            fontsize=40,
             color="white",
             size=(1280, 720),
             method="caption",
