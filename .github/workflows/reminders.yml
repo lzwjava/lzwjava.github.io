@@ -30,8 +30,8 @@ on:
     - cron: '0 16 25 * *'
     # Reminds to ask family to support mortgage payment on the 16th of every month at 9 PM Taipei time (1 PM UTC).
     - cron: '0 13 16 * *'
-    # Reminds to watch TV with partner every Friday, Saturday, and Sunday at 10 PM Taipei time (2 PM UTC).
-    - cron: '0 14 * * 5,6,0'
+    # Reminds to watch TV with partner every Friday, Saturday at 10 PM Taipei time (2 PM UTC).
+    - cron: '0 14 * * 5,6'
     # Reminds to remove parking permit sticker at 2 AM Beijing time (6 PM UTC) on Wed, Thu, Fri.
     - cron: '0 18 * * 3,4,5'
     # Reminds to play basketball: 7 PM Beijing Time (11 AM UTC) on Fri, Sat, Sun.
@@ -127,7 +127,7 @@ jobs:
 
       - name: Run Telegram script for watch TV with partner reminder
         run: python scripts/bot/reminders_bot.py --job send_message --message "Time to watch movies with your partner!"
-        if: github.event.schedule == '0 14 * * 5,6,0'
+        if: github.event.schedule == '0 14 * * 5,6'
 
       - name: Run Telegram script for car window paper stick reminder
         run: python scripts/bot/reminders_bot.py --job send_message --message "Remove parking permit sticker from car window"
