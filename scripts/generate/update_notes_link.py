@@ -42,7 +42,7 @@ def copy_original_to_posts():
     shutil.copy2(src, dst)
     print(f"Copied {src} to {dst}")
 
-def main():
+def update_notes_link():
     notes_count = count_notes_files()
     links_count = count_links_in_notes_md()
     
@@ -60,4 +60,4 @@ def main():
         print("Skipping notes link regeneration.")
 
 if __name__ == "__main__":
-    main()
+    update_notes_link()
