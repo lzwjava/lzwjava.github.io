@@ -71,7 +71,7 @@ fi
 
 
 
-export PATH="/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/lzw/idea-IC-251.26094.121/bin"
+export PATH="/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/lzw/idea-IC-251.26094.121/bin:/home/lzw/bin/RustRover-2025.1.4/bin"
 
 export GLOBAL_PROXY='127.0.0.1:7890'
 
