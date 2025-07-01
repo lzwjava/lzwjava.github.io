@@ -1,7 +1,7 @@
 import subprocess
 import argparse
 
-def get_current_wifi_interface():
+def get_current_network_interface():
     try:
         result = subprocess.run(
             ["networksetup", "-listallnetworkservices"],
@@ -11,11 +11,20 @@ def get_current_wifi_interface():
         )
         services = result.stdout.splitlines()
         for service in services:
-            if "Wi-Fi" in service:
-                return service.strip()
+            service = service.strip()
+            if "Wi-Fi" in service or "USB 10/100 LAN" in service:
+                # Verify if the interface is active
+                status = subprocess.run(
+                    ["networksetup", "-getinfo", service],
+                    capture_output=True,
+                    text=True,
+                    check=True
+                )
+                if "IP address" in status.stdout and "0.0.0.0" not in status.stdout:
+                    return service
         return None
     except subprocess.CalledProcessError as e:
-        print(f"Error getting Wi-Fi interface: {e}")
+        print(f"Error getting network interface: {e}")
         return None
 
 def set_proxy(interface, proxy_host, proxy_port):
@@ -59,7 +68,7 @@ def unset_proxy(interface):
         print(f"Error unsetting proxy: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Manage HTTP and HTTPS proxy settings for Wi-Fi on macOS")
+    parser = argparse.ArgumentParser(description="Manage HTTP and HTTPS proxy settings for Wi-Fi or USB Ethernet on macOS")
     parser.add_argument(
         "action",
         choices=["set", "unset"],
@@ -70,18 +79,18 @@ def main():
     proxy_host = "127.0.0.1"
     proxy_port = 7890
 
-    wifi_interface = get_current_wifi_interface()
+    network_interface = get_current_network_interface()
 
-    if not wifi_interface:
-        print("No Wi-Fi interface found. Please ensure Wi-Fi is connected.")
+    if not network_interface:
+        print("No active Wi-Fi or USB Ethernet interface found. Please ensure a network is connected.")
         return
 
-    print(f"Found Wi-Fi interface: {wifi_interface}")
+    print(f"Found active network interface: {network_interface}")
 
     if args.action == "set":
-        set_proxy(wifi_interface, proxy_host, proxy_port)
+        set_proxy(network_interface, proxy_host, proxy_port)
     else:
-        unset_proxy(wifi_interface)
+        unset_proxy(network_interface)
 
 if __name__ == "__main__":
     main()
