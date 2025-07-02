@@ -229,6 +229,7 @@ In logic circuits and digital design, a **sum-of-products** (SOP) is a standard 
 
 ### Example:
 For a truth table with inputs A, B, and output F:
+
 | A | B | F |
 |---|---|---|
 | 0 | 0 | 0 |
