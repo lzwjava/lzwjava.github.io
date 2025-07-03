@@ -7,24 +7,30 @@ title: コンタクト
 translated: true
 ---
 
-こんにちは、私は李志偉です。簡単な自己紹介は[こちら](/introduction-en)で確認できます。サイトにある8つのボタンは私が最も情熱を持っていることを示しており、ぜひ探索してください。
+こんにちは、李志偉（Zhiwei Li）と申します。簡単な自己紹介は[こちら](/introduction-en)でご覧いただけます。私のサイトにある8つのボタンは、私が最も情熱を注いでいることを示していますので、ぜひ探索してみてください。
 
-特に、近視を回復させるための3つの[論文](/papers-en)に注目してください。これらの特集エッセイは、ホームページの「選択」ボタンを使って簡単に見つけることができます。
+特に、私が執筆した近視回復に関する3つの[論文](/papers-en)に注目していただきたいです。ホームページの「select」ボタンを使えば、これらの注目記事を簡単に見つけることができます。
 
-興味があれば、ぜひ連絡してください！X、WhatsApp、Telegramでこんにちはと言ってください、コメントを残してください、ダイレクトメッセージを送ってください、またはメールを送ってください。
+興味があれば、ぜひご連絡ください！X（旧Twitter）やTelegramで挨拶をしたり、コメントを残したり、ダイレクトメッセージを送る、またはメールを送ることもできます。
 
-#### X(Twitter)
+#### X（Twitter）
 
-私のXアカウントはこちらです：[https://mobile.twitter.com/lzwjava](https://mobile.twitter.com/lzwjava)。
+私のXアカウントはこちらです: [https://twitter.com/lzwjava](https://twitter.com/lzwjava)
 
-#### Whatsapp
+#### GitHub
 
-<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /><img/></div>
+GitHubでつながりましょう: [github.com/lzwjava](https://github.com/lzwjava)
+
+#### LinkedIn
+
+LinkedInで私を見つけてください: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
 #### Telegram
 
 <div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
 
-#### Email
+または、[@lzwjava](https://t.me/lzwjava)にメッセージを送ってください。
+
+#### メール
 
 lzwjava@gmail.com

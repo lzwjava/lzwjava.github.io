@@ -7,23 +7,29 @@ title: Kontakt
 translated: true
 ---
 
-Hallo, ich bin Zhiwei Li. Sie können eine kurze Einführung [hier](/introduction-en) finden. Die acht Schaltflächen auf meiner Website heben hervor, wofür ich am meisten brenne; ich ermutige Sie, sie zu erkunden.
+Hallo, ich bin Zhiwei Li. Eine kurze Vorstellung findest du [hier](/introduction-en). Die acht Buttons auf meiner Website zeigen, wofür ich mich am meisten begeistere; ich lade dich ein, sie zu erkunden.
 
-Besonders möchte ich Ihre Aufmerksamkeit auf meine drei [Artikel](/papers-en) zur Umkehrung von Myopie lenken. Diese hervorgehobenen Essays können Sie leicht mit der "Auswahl"-Schaltfläche auf der Startseite finden.
+Besonders möchte ich dich auf meine drei [Arbeiten](/papers-en) zur Umkehrung von Kurzsichtigkeit aufmerksam machen. Diese Essays kannst du leicht über den "select"-Button auf der Startseite finden.
 
-Melden Sie sich gerne, wenn Sie interessiert sind! Sie können mir auf X, WhatsApp oder Telegram Hallo sagen, einen Kommentar hinterlassen, mir eine direkte Nachricht senden oder mir eine E-Mail schreiben.
+Melde dich gerne, wenn du interessiert bist! Du kannst mich auf X oder Telegram begrüßen, einen Kommentar hinterlassen, mir eine Direktnachricht schicken oder mir eine E-Mail senden.
 
-#### X (Twitter)
+#### X(Twitter)
 
-Mein X-Konto finden Sie hier: [https://mobile.twitter.com/lzwjava](https://mobile.twitter.com/lzwjava).
+Mein X-Account ist hier: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
-#### Whatsapp
+#### GitHub
 
-<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /><img/></div>
+Verbinde dich mit mir auf GitHub: [github.com/lzwjava](https://github.com/lzwjava)
+
+#### LinkedIn
+
+Finde mich auf LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
 #### Telegram
 
 <div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+
+Oder schreib [@lzwjava](https://t.me/lzwjava) an.
 
 #### E-Mail
 

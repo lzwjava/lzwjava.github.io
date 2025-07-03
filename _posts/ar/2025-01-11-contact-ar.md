@@ -3,25 +3,33 @@ audio: false
 generated: false
 lang: ar
 layout: post
-title: الاتصال
+title: اتصال
 translated: true
 ---
 
-مرحبًا، أنا زهيوي لي. يمكنك العثور على مقدمة موجزة [هنا](/introduction-en). تسليط ثمانية أزرار على موقعي الضوء على ما أنا أكثر شغفًا به؛ أشجعك على استكشافها.
+مرحبًا، أنا زهيوي لي. يمكنك العثور على مقدمة مختصرة [هنا](/introduction-en). الأزرار الثمانية على موقعي تُبرز ما أهتم به بشدة؛ أشجعك على استكشافها.
 
-خاصة، أود أن أركز انتباهك على ثلاث [ورقات](/papers-en) حول عكس قصر النظر. يمكنك العثور على هذه المقالات المميزة بسهولة باستخدام زر "اختيار" على الصفحة الرئيسية.
+على وجه الخصوص، أود لفت انتباهك إلى أوراقي البحثية الثلاث [هنا](/papers-en) حول عكس قصر النظر. يمكنك بسهولة العثور على هذه المقالات المميزة باستخدام زر "تحديد" في الصفحة الرئيسية.
 
-لا تتردد في الاتصال بي إذا كنت مهتمًا! يمكنك أن تقول مرحبًا لي على X، أو Telegram، أو ترك تعليق، أو إرسال رسالة مباشرة، أو إرسال بريد إلكتروني.
+لا تتردد في التواصل إذا كنت مهتمًا! يمكنك تحيتي على X، أو Telegram، أو ترك تعليق، أو إرسال رسالة مباشرة، أو مراسلتي عبر البريد الإلكتروني.
 
-#### X (Twitter)
+#### X (تويتر)
 
-حسابي على X هو هنا: [https://mobile.twitter.com/lzwjava](https://mobile.twitter.com/lzwjava).
+حسابي على X هنا: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
+
+#### GitHub
+
+تواصل معي على GitHub: [github.com/lzwjava](https://github.com/lzwjava)
+
+#### لينكدإن
+
+يمكنك إيجادي على لينكدإن: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
 #### Telegram
 
 <div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
 
-أو أرسل رسالة إلى [@lzwjava](https://t.me/lzwjava).
+أو راسل [@lzwjava](https://t.me/lzwjava).
 
 #### البريد الإلكتروني
 
