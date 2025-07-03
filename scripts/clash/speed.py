@@ -10,7 +10,7 @@ CLASH_CONTROLLER_HOST = "127.0.0.1"  # Use 127.0.0.1 as the controller is on the
 CLASH_CONTROLLER_PORT = 9090
 CLASH_API_BASE_URL = f"http://{CLASH_CONTROLLER_HOST}:{CLASH_CONTROLLER_PORT}"
 LATENCY_TEST_URL = "https://github.com" # Updated test URL
-LATENCY_TEST_TIMEOUT_MS = 1000  # Milliseconds
+LATENCY_TEST_TIMEOUT_MS = 2000  # Milliseconds
 CONCURRENT_CONNECTIONS = 10 # Number of concurrent tests
 
 # List of known group proxy names to exclude from speed testing
