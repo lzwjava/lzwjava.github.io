@@ -17,7 +17,7 @@ def append_clipboard_to_note(note_path):
 
     # Append clipboard content to the note
     with open(note_path, 'a', encoding='utf-8') as file:
-        file.write('\n\n' + content.strip())
+        file.write('\n---\n' + content.strip())
     print(f"Appended clipboard content to: {note_path}")
 
 def main():
