@@ -51,6 +51,3 @@ Now, I’m sharing a conversation I had with ChatGPT about CFA, hoping it will h
 
 https://chatgpt.com/share/6864e9a1-66c8-8002-b9f5-55e845fde7ae
 
---- 
-
-Let me know if you need further clarification or assistance!
