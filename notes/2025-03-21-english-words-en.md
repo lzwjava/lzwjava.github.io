@@ -152,3 +152,7 @@ The specific meaning depends on the context. If you have a particular scenario i
 ---
 
 Pulsating means producing a regular, rhythmic throbbing, vibrating, or beating, often in a wave-like pattern. It can describe physical sensations (e.g., a pulsating headache), movements (e.g., pulsating light), or sounds (e.g., pulsating music). The term suggests a repetitive, pulsing action or feeling.
+
+---
+
+Pulsating means expanding and contracting rhythmically, like a pulse or heartbeat. It can describe something that moves, vibrates, or changes intensity in a regular, repeating pattern, such as pulsating lights, sound, or pain.
