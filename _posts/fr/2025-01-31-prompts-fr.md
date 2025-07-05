@@ -11,145 +11,108 @@ translated: true
 [
     {
       "speaker": "A",
-      "line": "Hey, j'ai entendu beaucoup parler d'un certain sujet. Peux-tu me l'expliquer ?"
+      "line": "嘿，我最近听到很多关于某个话题的讨论。你能帮我解释一下吗？"
     },
     {
       "speaker": "B",
-      "line": "Bien sûr ! Commençons par les bases. ..."
+      "line": "当然！我们从基础开始吧。..."
     }
 ]
 ```
 
 ---
 
-Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
-
-- Approfondir des sous-thèmes spécifiques et explorer leurs complexités.
-- Comparer et contraster différentes technologies ou méthodologies liées au sujet.
-- Discuter des cas d'utilisation réels et de leurs implications.
-- Poser des questions pertinentes pour révéler des insights plus profonds.
-- Inclure occasionnellement des quiz pour tester leurs connaissances respectives.
-- Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que sur des formules.
-
-Assurez-vous que le dialogue coule naturellement, avec un échange équilibré d'idées et de perspectives.
-
-Le format doit être le suivant :
-
-```json
-[
-    {
-      "speaker": "A",
-      "line": "Hey, j'ai entendu beaucoup parler d'un certain sujet. Peux-tu me l'expliquer ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Bien sûr ! Commençons par les bases. ..."
-    }
-]
-```
-
-À propos de l'examen 04730, de l'examen d'auto-étude en Chine et de la technologie électronique de base 3.
+A: 嘿，我最近听到很多关于PDF内容的讨论。你能帮我详细解释一下吗？  
+B: 当然！我们从基础开始吧。  
 
 ---
 
-Créez une conversation naturelle et étendue entre deux experts, A et B, avec au moins 50 échanges. Les experts doivent discuter d'un sujet spécifique en profondeur, avec une conversation fluide et interactive. Les deux participants doivent poser des questions, partager des idées et explorer les nuances du sujet. Utilisez des techniques telles que l'approfondissement des sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ échanges.
-
-À propos du contenu PDF. Le format doit être le suivant :
-
-A : Hey, j'ai entendu beaucoup parler d'un certain sujet. Peux-tu me l'expliquer ?
-
-B : Bien sûr ! Commençons par les bases.
+生成一张快乐的农历蛇年新年图片，包含文字名称  
 
 ---
 
-Générez une image joyeuse pour le Nouvel An lunaire du Serpent avec des noms de texte inclus.
+创建一张480p的YouTube视频封面图，包含以下元素：AI、鲨鱼、未来感、鲜艳、多彩、日出、城市，中央超大文字“DeepSeek R1”  
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un très grand texte "DeepSeek R1" au centre.
+创建一张480p的YouTube视频封面图，包含以下元素：基础电子技术、未来感、激动人心  
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
+生成一条简洁的提交信息，采用Conventional Commits格式，不超过70个字符  
 
 ---
 
-Générez un message de commit concis au format Conventional Commits pour les changements de code suivants.
-Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
-Si applicable, incluez une portée entre parenthèses pour décrire la partie du code affectée.
-Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes préliminaires ou finales.
-
-Fichiers modifiés :
-{', '.join(file_changes)}
+创建一个YouTube标题  
 
 ---
 
-Créez un titre pour YouTube.
+蕾(つぼみ) - Tsubomi  
+
+提供其日语歌词，并逐词解释发音和含义  
 
 ---
 
-蕾(つぼみ) - Tsubomi
-
-Donnez ses paroles en japonais et expliquez-les, pour chaque mot et prononciation.
+提供关于本章的全面教程  
 
 ---
 
-Donnez un tutoriel complet sur ce chapitre.
+全面介绍其历史，谁发现的，背后的故事  
 
 ---
 
-Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière.
+推荐关于...的YouTube视频  
 
 ---
 
-Recommandez des vidéos YouTube sur...
+介绍菲律宾棉兰老岛的达沃市  
 
 ---
 
-Donnez quelques introductions sur la ville de Davo à Mindanao, Philippines.
+全面分析电感器的工作原理  
 
 ---
 
-Donnez une analyse complète du fonctionnement des inductances.
+菲律宾  
+
+有什么特别之处？独特性是什么？其人民如何贡献技术？如何创新和影响？  
 
 ---
 
-Philippines
-
-Qu'est-ce qui est spécial ? Quelle est leur singularité ? Comment leur peuple contribue-t-il à la technologie ? Comment leur peuple innove-t-il et a-t-il un impact ?
+关于xx的讨论  
 
 ---
 
-Donnez une discussion sur xx.
+关于xx的评论  
 
 ---
 
-Donnez une critique sur xx.
+帮助整理这次谈话，尽量提取出文本，并提供笔记  
 
 ---
 
-Aidez à organiser cette discussion, extrayez autant que possible la transcription et aidez à prendre des notes.
+张益唐，数学，他的故事是什么，我们能学到什么  
 
 ---
 
-Yitang Zhang, mathématiques, quelle est son histoire, que pouvons-nous apprendre de lui ?
+基于这个YouTube视频，创建一个教程，不包含时间戳  
 
 ---
 
-Sur la base de cette vidéo YouTube, créez un tutoriel, n'incluez pas d'horodatage.
+谷歌下一次财报发布时间是什么时候？  
 
 ---
 
-Quand est-ce que Google publiera son prochain rapport de résultats ?
+画一些图表来帮助理解  
 
 ---
 
-Dessinez quelques graphiques pour mieux comprendre.
+仅识别需要修改的行，并提供修正后的代码片段（非完整代码）。保留原始缩进以便直接复制粘贴  
 
 ---
 
-Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Préservez l'indentation originale pour que je puisse les copier-coller directement.
+整理此文本，尽量保留原文，使其更连贯  
 
 ---
 
-Organisez cette transcription, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
+提供30道关于某主题的单选测验题

@@ -142,4 +142,10 @@ Identify only the lines needing changes, and provide corrected snippets (not the
 
 ---
 
-organize this transcript, keep original text as possible, just make it more coherent
+organize this transcript, keep original text as possible, just make it more coherent 
+
+---
+
+give 30 single-option multiple-choice quiz questions about sth.
+
+---
