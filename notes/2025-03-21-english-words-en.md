@@ -156,3 +156,16 @@ Pulsating means producing a regular, rhythmic throbbing, vibrating, or beating, 
 ---
 
 Pulsating means expanding and contracting rhythmically, like a pulse or heartbeat. It can describe something that moves, vibrates, or changes intensity in a regular, repeating pattern, such as pulsating lights, sound, or pain.
+
+---
+
+The word "indispensable" is an adjective that describes something or someone as absolutely necessary, essential, or too important to be done without. If something is indispensable, it means that it is crucial and cannot be substituted or omitted without causing significant problems or difficulties.
+
+---
+
+Yes, both "dispensable" and "dispense" are valid words in English.
+
+"Dispensable" is an adjective that describes something as able to be dispensed with; not absolutely necessary. It is essentially the opposite of "indispensable."
+
+"Dispense" is a verb that generally means to distribute or provide something, often in small quantities or to individual recipients. It can also mean to exempt someone from a rule or obligation. For example, a pharmacist dispenses medication, or a machine might dispense snacks.
+
