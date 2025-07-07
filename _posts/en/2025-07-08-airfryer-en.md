@@ -13,7 +13,7 @@ I’ve made the dishes below, and the experience has been really enjoyable.
 
 The last dish shown here wasn’t cooked in the air fryer—it was just noodles made in a pot. Since it’s one of my recent cooking attempts, I’ve included it here as well.  
 
-Whether you’ll like a cooking tool depends mostly on how often you use it.  
+If you often use a cooking tool after getting it, you can say you really like it.
 
 The air fryer has replaced my electric oven. I’d actually like to use both, but my wife won’t allow it—she complains that it takes up too much space and clutters our dining room and kitchen, which are already filled with plenty of tools and dinnerware.  
 
