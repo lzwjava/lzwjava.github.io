@@ -94,11 +94,7 @@ def call_mistral_api(prompt, model="mistral-large-latest"):
 def generate_copilot_message():
     """Generates a technical prompt sentence encouraging Copilot use via Mistral API."""
     prompt = (
-        f"Generate a unique, specific technical prompt sentence for a user backend engineer"
-        "Randomly select one technology from: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, AI or DevOps, Linux. Algorithms and Banking "
-        "Format as 'Stuck on [specific challenge]? Ask Copilot!' or 'Struggling with [task]? Find Copilot to help!' "
-        "Ensure variety in challenges (e.g., configuration, debugging, optimization). "
-        "Keep it under 300 characters, avoid Markdown or URLs, and output only the sentence."
+        f"Provide a concise daily tip related to one of the following technologies: machine learning, backend engineering, Java, or Python. Only the tip content is needed."
     )
     message = call_mistral_api(prompt)
     if message:
