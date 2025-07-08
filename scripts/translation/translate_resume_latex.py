@@ -8,6 +8,7 @@ load_dotenv()
 DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 MODEL_NAME = "deepseek-chat"
 INPUT_DIR = "latex/en/resume-en"
+OUTPUT_DIR = "latex"
 
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
@@ -98,7 +99,7 @@ def main():
         print(f"Error: Section file {input_file} not found.")
         return
 
-    output_dir = os.path.join(os.path.dirname(INPUT_DIR), target_language, f"resume-{target_language}")
+    output_dir = os.path.join(OUTPUT_DIR, target_language, f"resume-{target_language}")
     output_file = os.path.join(output_dir, section_to_translate)
 
     print(f"Submitting translation job for section {section_to_translate}...")
@@ -106,3 +107,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+# python scripts/translation/translate_resume_latex.py --section corporateprojects.tex --lang zh --kind resume
+
