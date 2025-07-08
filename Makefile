@@ -25,6 +25,9 @@ resume-en-dark.pdf: $(RESUME_EN_DIR)/resume-en-dark.tex $(RESUME_SRCS)
 resume-zh.pdf: $(RESUME_ZH_DIR)/resume-zh.tex $(RESUME_ZH_SRCS)
 	$(CC) -output-directory=$(RESUME_ZH_DIR) $<
 
+resume-zh-dark.pdf: $(RESUME_ZH_DIR)/resume-zh-dark.tex $(RESUME_ZH_SRCS)
+	$(CC) -output-directory=$(RESUME_ZH_DIR) $<
+
 coverletter.pdf: $(COVER_LETTER_DIR)/coverletter.tex
 	$(CC) -output-directory=$(COVER_LETTER_DIR) $<
 
@@ -59,6 +62,7 @@ copy:
 	cp $(RESUME_EN_DIR)/resume-en.pdf assets/resume/Zhiwei.Li.Resume.pdf
 	cp $(RESUME_EN_DIR)/resume-en-dark.pdf assets/resume/Zhiwei.Li.Resume.Dark.pdf
 	cp $(RESUME_ZH_DIR)/resume-zh.pdf assets/resume/Zhiwei.Li.Resume.ZH.pdf
+	cp $(RESUME_ZH_DIR)/resume-zh-dark.pdf assets/resume/Zhiwei.Li.Resume.ZH.Dark.pdf
 
 copy-introduction:
 	cp latex/en/introduction-en.pdf assets/resume/Zhiwei.Li.Introduction.EN.pdf
