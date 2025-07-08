@@ -15,20 +15,42 @@
 
 \usepackage{fontspec} 	% フォント設定を許可
 \usepackage{xeCJK} 		% 中英文字型を別々に設定
-\setCJKmainfont{PingFang SC} 	% 中文字型を設定
-\setCJKsansfont{PingFang SC} % Sans-serifフォント
-\setCJKmonofont{PingFang SC} % モノスペースフォント
-\setmainfont{Times New Roman}
-\setromanfont{Times New Roman}
-\setmonofont{Times New Roman}
-\XeTeXlinebreaklocale "zh" 	% 中国語の自動改行を有効化
+\usepackage{ifthen} % For conditional logic
 
-\linespread{1.4}\selectfont 	% 行間
+% ====================
+% FONT CONFIGURATION
+% ====================
+% Define a flag to switch between different font sets
+% Set to 'macos' for macOS, 'linux' for Linux, 'windows' for Windows
+\newcommand{\fontsystem}{linux}
+
+% Font definitions for different systems
+\ifthenelse{\equal{\fontsystem}{macos}}{
+    % macOS fonts
+    \newcommand{\cjkmainfont}{PingFang SC}
+    \newcommand{\cjksansfont}{PingFang SC}
+    \newcommand{\cjkmonofont}{PingFang SC}
+    \newcommand{\englishfont}{Times New Roman}
+}{
+    \ifthenelse{\equal{\fontsystem}{linux}}{
+        % Linux fonts (common alternatives)
+        \newcommand{\cjkmainfont}{IPAexGothic} % Main font for Japanese (and other CJK)
+        \newcommand{\cjksansfont}{IPAexGothic} % Sans-serif font for Japanese
+        \newcommand{\cjkmonofont}{IPAexMincho} % Monospace font for Japanese
+        \newcommand{\englishfont}{Liberation Serif} % English font (unchanged)
+    }{
+        % Windows fonts (or fallback)
+        \newcommand{\cjkmainfont}{Microsoft YaHei}
+        \newcommand{\cjksansfont}{Microsoft YaHei}
+        \newcommand{\cjkmonofont}{Microsoft YaHei}
+        \newcommand{\englishfont}{Times New Roman}
+    }
+}
 
 %-------------------------------------------------------------------------------
 %	個人情報
 %-------------------------------------------------------------------------------
-\photo[circle,noedge,right]{./awesome-cv/profile}
+\photo[circle,noedge,right]{./latex/profile}
 \name{李智維}{}
 \position{フルスタックエンジニア{\enskip\cdotp\enskip}バックエンドエンジニア}
 \address{中国広州市黄埔区}
