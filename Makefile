@@ -19,6 +19,9 @@ latex: $(foreach x, coverletter coverletter-zh resume-zh resume, $x.pdf)
 resume-en.pdf: $(RESUME_EN_DIR)/resume-en.tex $(RESUME_SRCS)
 	$(CC) -output-directory=$(RESUME_EN_DIR) $<
 
+resume-en-dark.pdf: $(RESUME_EN_DIR)/resume-en-dark.tex $(RESUME_SRCS)
+	$(CC) -output-directory=$(RESUME_EN_DIR) $<
+
 resume-zh.pdf: $(RESUME_ZH_DIR)/resume-zh.tex $(RESUME_ZH_SRCS)
 	$(CC) -output-directory=$(RESUME_ZH_DIR) $<
 
@@ -54,6 +57,7 @@ copy:
 	mkdir -p assets/resume
 
 	cp $(RESUME_EN_DIR)/resume-en.pdf assets/resume/Zhiwei.Li.Resume.pdf
+	cp $(RESUME_EN_DIR)/resume-en-dark.pdf assets/resume/Zhiwei.Li.Resume.Dark.pdf
 	cp $(RESUME_ZH_DIR)/resume-zh.pdf assets/resume/Zhiwei.Li.Resume.ZH.pdf
 
 copy-introduction:
