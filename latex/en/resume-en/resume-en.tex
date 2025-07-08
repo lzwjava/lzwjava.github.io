@@ -2,7 +2,7 @@
 % CONFIGURATIONS
 %-------------------------------------------------------------------------------
 % A4 paper size by default, use 'letterpaper' for US letter
-\documentclass[11pt, a4paper]{./latex/awesome-cv}
+\documentclass[11pt, a4paper]{./latex/awesome-cv-dark}
 
 % Configure page margins
 \geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
@@ -13,17 +13,50 @@
 % Set section highlight
 \setbool{acvSectionColorHighlight}{true}
 
-\usepackage{fontspec} 	% 允許設定字體
-\usepackage{xeCJK} 		% 分開設置中英文字型
-\setCJKmainfont{PingFang SC} 	% 設定中文字型
-\setCJKsansfont{PingFang SC} % Sans-serif font
-\setCJKmonofont{PingFang SC} % Monospace font
-\setmainfont{Times New Roman}
-\setromanfont{Times New Roman}
-\setmonofont{Times New Roman}
-\XeTeXlinebreaklocale "zh" 	% 針對中文自動換行
+\usepackage{fontspec} % 允許設定字體
+\usepackage{xeCJK} % 分開設置中英文字型
+\usepackage{ifthen} % For conditional logic
 
-\linespread{1.4}\selectfont 	% 行距
+% ====================
+% FONT CONFIGURATION
+% ====================
+% Define a flag to switch between different font sets
+% Set to 'macos' for macOS, 'linux' for Linux, 'windows' for Windows
+\newcommand{\fontsystem}{linux}
+
+% Font definitions for different systems
+\ifthenelse{\equal{\fontsystem}{macos}}{
+    % macOS fonts
+    \newcommand{\cjkmainfont}{PingFang SC}
+    \newcommand{\cjksansfont}{PingFang SC}
+    \newcommand{\cjkmonofont}{PingFang SC}
+    \newcommand{\englishfont}{Times New Roman}
+}{
+    \ifthenelse{\equal{\fontsystem}{linux}}{
+        % Linux fonts (common alternatives)
+        \newcommand{\cjkmainfont}{Noto Sans CJK SC}
+        \newcommand{\cjksansfont}{Noto Sans CJK SC}
+        \newcommand{\cjkmonofont}{Noto Sans Mono CJK SC}
+        \newcommand{\englishfont}{Liberation Serif}
+    }{
+        % Windows fonts (or fallback)
+        \newcommand{\cjkmainfont}{Microsoft YaHei}
+        \newcommand{\cjksansfont}{Microsoft YaHei}
+        \newcommand{\cjkmonofont}{Microsoft YaHei}
+        \newcommand{\englishfont}{Times New Roman}
+    }
+}
+
+% Apply font settings
+\setCJKmainfont{\cjkmainfont}
+\setCJKsansfont{\cjksansfont}
+\setCJKmonofont{\cjkmonofont}
+\setmainfont{\englishfont}
+\setromanfont{\englishfont}
+\setmonofont{\englishfont}
+
+\XeTeXlinebreaklocale "zh" % 針對中文自動換行
+\linespread{1.4}\selectfont % 行距
 %-------------------------------------------------------------------------------
 %	PERSONAL INFORMATION
 %-------------------------------------------------------------------------------
