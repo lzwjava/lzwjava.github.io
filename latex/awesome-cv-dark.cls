@@ -1,5 +1,5 @@
-%% Start of file `awesome-cv.cls'.
-% Awesome CV Class File
+%% Start of file `awesome-cv-dark.cls'.
+% Awesome CV Class File - Dark Mode Version
 %
 % This class has been downloaded from:
 % https://github.com/posquit0/Awesome-CV
@@ -21,7 +21,7 @@
 %-------------------------------------------------------------------------------
 %                Identification
 %-------------------------------------------------------------------------------
-\ProvidesClass{awesome-cv}[2017/02/05 v1.6.1 Awesome Curriculum Vitae Class]
+\ProvidesClass{awesome-cv-dark}[2017/02/05 v1.6.1 Awesome Curriculum Vitae Class - Dark Mode]
 \NeedsTeXFormat{LaTeX2e}
 
 
@@ -117,38 +117,49 @@
 % Enable if you want to make header or footer using fancyhdr
 \pagestyle{fancy}
 
+%% Dark Mode Page Color
+% Set page background color to dark
+\AtBeginDocument{%
+  \pagecolor{darkbg}%
+}
 
 %-------------------------------------------------------------------------------
-%                Configuration for colors
+%                Configuration for colors - Dark Mode Theme
 %-------------------------------------------------------------------------------
-% Gray-scale colors
+% Dark mode base colors
+\definecolor{darkbg}{HTML}{1a1a1a}
+\definecolor{darkerbg}{HTML}{0d1117}
+\definecolor{cardbg}{HTML}{2d2d2d}
 \definecolor{white}{HTML}{FFFFFF}
 \definecolor{black}{HTML}{000000}
-\definecolor{darkgray}{HTML}{333333}
-\definecolor{gray}{HTML}{5D5D5D}
-\definecolor{lightgray}{HTML}{999999}
-% Basic colors
-\definecolor{green}{HTML}{C2E15F}
-\definecolor{orange}{HTML}{FDA333}
-\definecolor{purple}{HTML}{D3A4F9}
-\definecolor{red}{HTML}{FB4485}
-\definecolor{blue}{HTML}{6CE0F1}
-% Text colors
-\definecolor{darktext}{HTML}{414141}
-\colorlet{text}{darkgray}
+\definecolor{darkgray}{HTML}{8b949e}
+\definecolor{gray}{HTML}{c9d1d9}
+\definecolor{lightgray}{HTML}{e6edf3}
+
+% Dark mode accent colors
+\definecolor{green}{HTML}{7CE38B}
+\definecolor{orange}{HTML}{FFA657}
+\definecolor{purple}{HTML}{DDA0DD}
+\definecolor{red}{HTML}{FF6B6B}
+\definecolor{blue}{HTML}{79C0FF}
+
+% Dark mode text colors
+\definecolor{darktext}{HTML}{e6edf3}
+\colorlet{text}{lightgray}
 \colorlet{graytext}{gray}
-\colorlet{lighttext}{lightgray}
-\colorlet{sectiondivider}{gray}
-% Awesome colors
-\definecolor{awesome-emerald}{HTML}{00A388}
-\definecolor{awesome-skyblue}{HTML}{0395DE}
-\definecolor{awesome-red}{HTML}{DC3522}
-\definecolor{awesome-pink}{HTML}{EF4089}
-\definecolor{awesome-orange}{HTML}{FF6138}
-\definecolor{awesome-nephritis}{HTML}{27AE60}
-\definecolor{awesome-concrete}{HTML}{95A5A6}
-\definecolor{awesome-darknight}{HTML}{131A28}
-\colorlet{awesome}{awesome-red}
+\colorlet{lighttext}{darkgray}
+\colorlet{sectiondivider}{darkgray}
+
+% Dark mode awesome colors
+\definecolor{awesome-emerald}{HTML}{26D0CE}
+\definecolor{awesome-skyblue}{HTML}{58A6FF}
+\definecolor{awesome-red}{HTML}{FF7B72}
+\definecolor{awesome-pink}{HTML}{FF69B4}
+\definecolor{awesome-orange}{HTML}{FFA657}
+\definecolor{awesome-nephritis}{HTML}{7CE38B}
+\definecolor{awesome-concrete}{HTML}{8b949e}
+\definecolor{awesome-darknight}{HTML}{0d1117}
+\colorlet{awesome}{awesome-skyblue}
 
 % Boolean value to switch section color highlighting
 \newbool{acvSectionColorHighlight}
@@ -170,14 +181,14 @@
 \newcommand*{\bodyfontlight}{\sourcesansprolight}
 
 %-------------------------------------------------------------------------------
-%                Configuration for styles
+%                Configuration for styles - Dark Mode Adjustments
 %-------------------------------------------------------------------------------
 % Configure styles for each CV elements
 % For fundamental structures
-\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{38pt}{1em}\headerfontlight\color{graytext} #1}}
+\newcommand*{\headerfirstnamestyle}[1]{{\fontsize{38pt}{1em}\headerfontlight\color{lighttext} #1}}
 \newcommand*{\headerlastnamestyle}[1]{{\fontsize{38pt}{1em}\headerfont\bfseries\color{text} #1}}
 \newcommand*{\headerpositionstyle}[1]{{\fontsize{9pt}{1em}\bodyfont\scshape\color{awesome} #1}}
-\newcommand*{\headeraddressstyle}[1]{{\fontsize{10pt}{1em}\headerfont\itshape\color{lighttext} #1}}
+\newcommand*{\headeraddressstyle}[1]{{\fontsize{10pt}{1em}\headerfont\itshape\color{graytext} #1}}
 \newcommand*{\headersocialstyle}[1]{{\fontsize{8pt}{1em}\headerfont\color{text} #1}}
 \newcommand*{\headerquotestyle}[1]{{\fontsize{11pt}{1em}\bodyfont\itshape\color{darktext} #1}}
 \newcommand*{\footerstyle}[1]{{\fontsize{10pt}{1em}\footerfont\scshape\color{lighttext} #1}}
@@ -450,7 +461,7 @@
         {\setlength{\photodim}{1.3cm}}%
         {\setlength{\photodim}{1.8cm}}%
       \ifthenelse{\equal{\@photoedge}{edge}}%
-        {\def\@photoborder{darkgray}}%
+        {\def\@photoborder{lightgray}}%
         {\def\@photoborder{none}}%
       \begin{tikzpicture}%
         \node[\@photoshape, draw=\@photoborder, line width=0.3mm, inner sep=\photodim, fill overzoom image=\@photo] () {};
