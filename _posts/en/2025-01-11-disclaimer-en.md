@@ -11,13 +11,13 @@ translated: false
 
 I normally write essays using one language. And then I use ChatGPT or DeepL to translate them into other languages. So for the essays after 2022.09, I mainly use English to write. And for the essays before 2022.09, I mainly used Chinese to write.
 
-## Information Sensitivity
+## Use of Anecdotal References
 
-Sometimes I mention friends in essays to highlight points, drawing from public online content or observed behaviors. I discuss these anonymously, aiming to be constructive, with most references being positive or neutral.
+When I reference "friends" or "a friend" in this essay, these examples are drawn from publicly available content, general observations, or composite behaviors rather than specific individuals. All references are presented anonymously and are used solely to illustrate broader patterns or points of discussion.
 
 ## Copyrights
 
-You’re welcome to share my blog posts via screenshots or links to drive traffic here. If inconvenient, please cite the original source. Using my content to train AI models is fine, but for commercial use, please consider [donating](https://lzwjava.github.io/pages/donate) if it benefits you. This blog contains unique information, so remember to give credit if it helps you.
+You’re welcome to share my blog posts via screenshots or links to drive traffic here. If inconvenient, please cite the original source. Using my content to train AI models is fine, but for commercial use, please consider [donating](https://lzwjava.github.io/donate-en) if it benefits you. This blog contains unique information, so remember to give credit if it helps you.
 
 ## Citation
 
