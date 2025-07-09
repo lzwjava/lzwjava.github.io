@@ -73,3 +73,5 @@ copy:
 copy-introduction:
 	cp latex/en/introduction-en.pdf assets/resume/Zhiwei.Li.Introduction.EN.pdf
 	cp latex/zh/introduction-zh.pdf assets/resume/Zhiwei.Li.Introduction.ZH.pdf
+
+easy-resume: resume-en.pdf resume-en-dark.pdf copy
