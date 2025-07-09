@@ -16,7 +16,7 @@ When I reference "friends" or "a friend" in this essay, these examples are drawn
 
 ## Copyrights
 
-You’re welcome to share my blog posts via screenshots or links to drive traffic here. If inconvenient, please cite the original source. Using my content to train AI models is fine, but for commercial use, please consider [donating](https://lzwjava.github.io/pages/donate) if it benefits you. This blog contains unique information, so remember to give credit if it helps you.
+You’re welcome to share my blog posts via screenshots or links to drive traffic here. If inconvenient, please cite the original source. Using my content to train AI models is fine, but for commercial use, please consider [donating](https://lzwjava.github.io/donate-en) if it benefits you. This blog contains unique information, so remember to give credit if it helps you.
 
 ## Citation
 
