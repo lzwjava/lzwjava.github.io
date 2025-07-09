@@ -12,7 +12,7 @@ I normally write essays using one language. And then I use ChatGPT or DeepL to t
 
 ## Information Sensitivity
 
-Sometimes I mention friends in essays to highlight points, drawing from public online content or observed behaviors. I discuss these anonymously, aiming to be constructive, with most references being positive or neutral.
+Sometimes I use "friends" or "a friend" phrases in essays to highlight points, drawing from public online content or observed behaviors. I discuss these anonymously. I don't reference someone specifically, but rather take specific behaviors or speech patterns to discuss.
 
 ## Copyrights
 
