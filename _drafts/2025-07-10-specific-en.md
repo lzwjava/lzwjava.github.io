@@ -7,19 +7,18 @@ translated: false
 generated: false
 ---
 
-- Be specific in every thing and every matter.
+- Be specific in everything and every matter.
 
-- Communication and interaction should be specific. Espcailly some deep interaction, like persuade, resolving conflict. Do not need to escalate the unhappy or frustrated, angery things.
+- Communication and interaction should be specific, especially in deep interactions such as persuasion and conflict resolution. There is no need to escalate unhappiness, frustration, or anger.
 
-- It is convenient to share posts online. It seems very convenient but remember to be specific. Rember say specifally to some specific groups.
+- It is convenient to share posts online. It seems very convenient, but remember to be specific. Remember to address specific groups specifically.
 
-- Tons of applications in the world, somehow they are categroizing information and make world more specific and organized.
+- There are tons of applications in the world; somehow, they are categorizing information and making the world more specific and organized.
 
-- When I am young, I somehow lazy to communicate or handle things, posting in WeChat a lot. And for some period I am in down period, that's not good to share in public. 
+- When I was young, I was somewhat lazy about communicating or handling things, so I posted on WeChat a lot. For some period, I was in a down period, which is not good to share publicly.
 
-- Handling your unhappiness or struggle silently. Few people will come to save you. Everyone is busy with their life just like you.
+- Handle your unhappiness or struggles silently. Few people will come to save you. Everyone is busy with their life, just like you.
 
-- In the corporate world, we better treat things for specific. Every messages or every request, every communication or every tasks. It works well though it need more effort.
-
+- In the corporate world, it is better to treat things specifically. Every message, request, communication, or task should be handled specifically. It works well, though it requires more effort.
 
 
