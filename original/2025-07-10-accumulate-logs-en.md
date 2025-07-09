@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-When I worked as a contractor for a multi-cloud application platform, we used Pivotal Cloud Foundry to serve the microservices. At that time, I started to accumulate logs when working in the company.
+When I worked as a contractor for a Singaporean bank, we used a multi-cloud application platform to serve the microservices. At that time, I started to accumulate logs when working in the company.
 
 Several years have passed, and I still think it is one of the best ways to help me work or do software engineering. As time goes by, in my logs directory, there are hundreds of log files.
 
