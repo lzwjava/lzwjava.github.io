@@ -79,7 +79,7 @@ def create_note():
     if not short_title:
         print("Failed to generate short title. Exit.")
         sys.exit(1)
-    short_title = short_title.strip()
+    short_title = short_title.strip().lower()
 
     # Create filename with date
     today = datetime.date.today()

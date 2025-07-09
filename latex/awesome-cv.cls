@@ -219,6 +219,7 @@
 \newcommand*{\letternamestyle}[1]{{\fontsize{12pt}{1em}\bodyfont\bfseries\color{darktext} #1}}
 \newcommand*{\letterenclosurestyle}[1]{{\fontsize{12pt}{1em}\bodyfontlight\slshape\color{lighttext} #1}}
 
+\renewcommand*{\paragraphstyle}{\fontsize{11pt}{1em}\mdseries\upshape\color{text}}
 
 %-------------------------------------------------------------------------------
 %                Commands for personal information
