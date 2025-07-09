@@ -15,7 +15,7 @@ translated: false
 
 - There are tons of applications in the world; somehow, they are categorizing information and making the world more specific and organized.
 
-- When I was young, I was somewhat lazy about communicating or handling things, so I posted on WeChat a lot. For some period, I was in a down period, which is not good to share publicly.
+- When I was young, I was somewhat lazy about communicating or handling things, so I posted on WeChat a lot. For a period, I was in a low point and shared frequently. That is what I regret doing.
 
 - Handle your unhappiness or struggles silently. Few people will come to save you. Everyone is busy with their life, just like you.
 
