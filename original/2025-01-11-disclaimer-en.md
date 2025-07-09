@@ -10,9 +10,9 @@ title: Disclaimer
 
 I normally write essays using one language. And then I use ChatGPT or DeepL to translate them into other languages. So for the essays after 2022.09, I mainly use English to write. And for the essays before 2022.09, I mainly used Chinese to write.
 
-## Information Sensitivity
+## Use of Anecdotal References
 
-Sometimes I use "friends" or "a friend" phrases in essays to highlight points, drawing from public online content or observed behaviors. I discuss these anonymously. I don't reference someone specifically, but rather take specific behaviors or speech patterns to discuss.
+When I reference "friends" or "a friend" in this essay, these examples are drawn from publicly available content, general observations, or composite behaviors rather than specific individuals. All references are presented anonymously and are used solely to illustrate broader patterns or points of discussion.
 
 ## Copyrights
 
