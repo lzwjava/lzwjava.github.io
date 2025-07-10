@@ -6,6 +6,7 @@ import argparse
 import requests
 import re
 import json
+from datetime import datetime
 
 load_dotenv()
 
@@ -50,6 +51,7 @@ def call_mistral_api(prompt):
 def main():
     parser = argparse.ArgumentParser(description="English grammar 'compiler' for Markdown files using Mistral API. Reports one error at a time.")
     parser.add_argument("file", help="The Markdown file to check for grammar errors.")
+    parser.add_argument("--skip-lines", nargs='+', type=int, default=[], help="Line numbers to skip checking for errors.")
     args = parser.parse_args()
 
     if not os.path.exists(args.file):
@@ -63,9 +65,16 @@ def main():
     numbered_lines = [f"Line {i+1}: {line.rstrip()}" for i, line in enumerate(lines)]
     content = "\n".join(numbered_lines)
 
-    prompt = f"""You are a English grammar checker. Analyze the provided text (which is from a Markdown file) for grammar errors only. Ignore Markdown syntax, formatting, style, or any non-grammar issues. Focus solely on English grammar in the text content.
+    current_datetime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    date_text = f"Today's date and time is {current_datetime}.\n"
 
-Scan the text line by line in order. Report ONLY the very first grammar error you encounter. Do not report multiple errors or any other information. And today is 11 July, 2025.
+    skip_text = ""
+    if args.skip_lines:
+        skip_text = f"Ignore any errors in the following lines: {', '.join(map(str, args.skip_lines))}.\n"
+
+    prompt = f"""You are a strict English grammar checker. Analyze the provided text (which is from a Markdown file) for grammar errors only. Ignore Markdown syntax, formatting, style, or any non-grammar issues. Focus solely on English grammar in the text content.
+
+{date_text}{skip_text}Scan the text line by line in order. Report ONLY the very first grammar error you encounter. Do not report multiple errors or any other information.
 
 If there are no grammar errors at all, respond with exactly this: 'No grammar errors found.'
 
@@ -92,7 +101,7 @@ Text to check:
                         left, right = line.split(':', 1)
                         left = left.strip()
                         right = right.strip()
-                        processed_lines.append(f"{left.ljust(20)}: {right}")
+                        processed_lines.append(f"{left.ljust(30)}:{right}")
                 print('\n'.join(processed_lines))
             else:
                 print(response)
