@@ -72,7 +72,7 @@ def main():
     if args.skip_lines:
         skip_text = f"Ignore any errors in the following lines: {', '.join(map(str, args.skip_lines))}.\n"
 
-    prompt = f"""You are a strict English grammar checker. Analyze the provided text (which is from a Markdown file) for grammar errors only. Ignore Markdown syntax, formatting, style, or any non-grammar issues. Focus solely on English grammar in the text content.
+    prompt = f"""You are a lenient English grammar checker suitable for daily writing. Analyze the provided text (which is from a Markdown file) for significant grammar errors only. Ignore minor issues, Markdown syntax, formatting, style, or any non-grammar issues. Focus solely on English grammar in the text content.
 
 {date_text}{skip_text}Scan the text line by line in order. Report ONLY the very first grammar error you encounter. Do not report multiple errors or any other information.
 
