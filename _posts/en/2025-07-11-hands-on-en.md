@@ -27,7 +27,7 @@ One easy way to know whether what Yin Wang says is true is to just put down your
 
 I can see that one of the big mistakes is that they don't do hands-on experiments while we do a lot and think about them extensively. They just say what the book says.
 
-In the corporate world, I can see this scenario too. In a team, engineers may come up with solutions. However, half of them probably don't work. We need to try the solutions to see what happens. It is just like the tens of thousands of times I thought that code should work but testing failed in my 10 years of software engineering experience.
+In the corporate world, I can see this scenario too. In a team, engineers and leaders may come up with solutions. However, half of them probably don't work. We need to try the solutions to see what happens. It is just like the tens of thousands of times I thought that code should work but testing failed in my 10 years of software engineering experience.
 
 From the hands-on aspect, we actually can do a lot of filtering. We should hire, communicate, and work with those people who are more hands-on. In the company, those who like hands-on work will probably be better leaders. Steve Jobs once highlighted the importance of highly performant individual contributors.
 
