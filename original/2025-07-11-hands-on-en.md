@@ -7,9 +7,9 @@ translated: false
 generated: false
 ---
 
-After Yin Wang claimed the myopia reversal method in his [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), there have been some opposing views on this. I happened to read some.
+After Yin Wang proposed the myopia reversal method in his [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), there have been some opposing views on this. I happened to read some.
 
-Since 2022, I have been conducting that experiment for 3 years, just as this [paper](http://localhost:4000/vision-restoration-en) describes.
+Since 2022, I have been conducting that experiment just as this [paper](http://localhost:4000/vision-restoration-en) describes.
 
 It is easy for me to know what is right or wrong. It is incorrect to say that heredity is the primary risk factor for myopia. In Todd Becker's YouTube [Video](https://www.youtube.com/watch?v=x5Efg42-Qn0), in the introduction, there is a paragraph:
 
@@ -17,7 +17,7 @@ It is easy for me to know what is right or wrong. It is incorrect to say that he
 
 From my experience, I can say this is correct. My father has 3 brothers. Three out of the 4 siblings don't have myopia, while one does. The youngest brother of my father has myopia and has the highest education, probably a bachelor's degree. They were born in the 1960s and 1970s.
 
-For myself, I started to develop myopia when I was in junior high school around 2009. At that time, I probably had around 200 degrees. I recall that when I would stay up at night and play on my mobile phone, like a Nokia, while lying in bed without lights on. After a summer like that, I felt that my eyesight had become poor.
+For myself, I started to develop myopia when I was in junior high school around 2009. At that time, I probably had around 200 diopters. I recall that I stayed up at night and used my Nokia phone while lying in bed with the lights off. After a summer like that, I felt that my eyesight had become poor.
 
 I happen to know some of the authors of opposing views in real life. They also do some blogging or commenting on blogs. After I have conducted a 3-year experiment, and Yin Wang has tried so many ways to reverse myopia, the first thought when I see such opposing views on the Internet is that we don't care. They don't know how much effort we have made, how we rejected our ideas or started again, how we adjusted our experiments, or how we mulled over all these things.
 
