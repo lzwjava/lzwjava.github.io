@@ -2,14 +2,17 @@ import os
 import datetime
 import glob
 import shutil
+import sys
+import subprocess
+import time
 
 def publish_drafts_to_posts():
     """Checks for draft files created today and moves them to the _posts/en directory."""
     today = datetime.date.today()
     date_str = today.strftime('%Y-%m-%d')
     
-    drafts_dir = '_drafts'
-    posts_en_dir = os.path.join('original')
+    drafts_dir = '_drafts"
+    posts_en_dir = os.path.join('_posts', 'en')
 
     if not os.path.exists(drafts_dir):
         print(f"Drafts directory '{drafts_dir}' does not exist. No files to publish.")
@@ -19,7 +22,7 @@ def publish_drafts_to_posts():
         os.makedirs(posts_en_dir)
 
     # Pattern to find files in drafts directory starting with today's date and ending with -en.md
-    pattern = os.path.join(drafts_dir, f"{date_str}-*-en.md")
+    pattern = os.path.join(drafts_dir, f"{date_str}-*-en.md}")
     
     found_files = glob.glob(pattern)
 
@@ -36,6 +39,26 @@ def publish_drafts_to_posts():
             print(f"Moved '{file_name}' from '{drafts_dir}' to '{posts_en_dir}'.")
         except Exception as e:
             print(f"Error moving '{file_name}': {e}")
+
+    # Restart VSCode to close open tabs and prevent accidental editing of moved files
+    restart_vscode()
+
+def restart_vscode():
+    print("Restarting VSCode to prevent accidental re-creation of draft files...")
+    if sys.platform == 'win32':
+        os.system('taskkill /f /im Code.exe /t')
+        time.sleep(2)
+        subprocess.Popen(['code', '.'])
+    elif sys.platform == 'darwin':
+        os.system("pkill -f 'Visual Studio Code'")
+        time.sleep(2)
+        subprocess.call(['open', '-a', 'Visual Studio Code', '.'])
+    elif sys.platform.startswith('linux'):
+        os.system('killall code')
+        time.sleep(2)
+        subprocess.Popen(['code', '.'])
+    else:
+        print("Unsupported platform for restarting VSCode.")
 
 if __name__ == "__main__":
     publish_drafts_to_posts()
