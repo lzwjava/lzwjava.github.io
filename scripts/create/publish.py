@@ -11,7 +11,7 @@ def publish_drafts_to_posts():
     today = datetime.date.today()
     date_str = today.strftime('%Y-%m-%d')
     
-    drafts_dir = '_drafts"
+    drafts_dir = "_drafts"
     posts_en_dir = os.path.join('_posts', 'en')
 
     if not os.path.exists(drafts_dir):
@@ -22,7 +22,7 @@ def publish_drafts_to_posts():
         os.makedirs(posts_en_dir)
 
     # Pattern to find files in drafts directory starting with today's date and ending with -en.md
-    pattern = os.path.join(drafts_dir, f"{date_str}-*-en.md}")
+    pattern = os.path.join(drafts_dir, f"{date_str}-*-en.md")
     
     found_files = glob.glob(pattern)
 

@@ -1,10 +1,17 @@
 ---
 audio: false
+<<<<<<< HEAD
 generated: false
+=======
+>>>>>>> 628b6ea00 (Update publish.py)
 lang: en
 layout: post
 title: Avoid Seeking Validation
 translated: false
+<<<<<<< HEAD
+=======
+generated: false
+>>>>>>> 628b6ea00 (Update publish.py)
 ---
 
 Seeking validation is probably common for most people. You need validation from parents, teachers, bosses, and others to survive or thrive in society.
@@ -47,4 +54,11 @@ Avoiding seeking validation saves your time and others' time too. It helps you f
 
 Yin Wang's Weibo name became "the Yin who doesn't care about human beings anymore." I didn't understand it initially. After mulling over it time and time again in recent years, I start to appreciate it.
 
+<<<<<<< HEAD
 Newton didn't care about his fellows, so he found the principles of nature. Yin Wang doesn't care about his fellows, so he found the principles of computer programs and beyond. They don't seek validation and sometimes even hide what they discover to avoid arguments with people who are seeking validation.
+=======
+Newton didn't care about his fellows, so he found the principles of nature. Yin Wang doesn't care about his fellows, so he found the principles of computer programs and beyond. They don't seek validation and sometimes even hide what they discover to avoid arguments with people who are seeking validation.
+
+
+
+>>>>>>> 628b6ea00 (Update publish.py)
