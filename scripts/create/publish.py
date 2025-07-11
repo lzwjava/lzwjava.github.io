@@ -11,7 +11,7 @@ def publish_drafts_to_posts():
     today = datetime.date.today()
     date_str = today.strftime('%Y-%m-%d')
     
-    drafts_dir = "_drafts"
+    drafts_dir = '_drafts'
     posts_en_dir = os.path.join('_posts', 'en')
 
     if not os.path.exists(drafts_dir):
@@ -40,25 +40,30 @@ def publish_drafts_to_posts():
         except Exception as e:
             print(f"Error moving '{file_name}': {e}")
 
-    # Restart VSCode to close open tabs and prevent accidental editing of moved files
     restart_vscode()
 
 def restart_vscode():
-    print("Restarting VSCode to prevent accidental re-creation of draft files...")
-    if sys.platform == 'win32':
-        os.system('taskkill /f /im Code.exe /t')
-        time.sleep(2)
-        subprocess.Popen(['code', '.'])
-    elif sys.platform == 'darwin':
-        os.system("pkill -f 'Visual Studio Code'")
-        time.sleep(2)
-        subprocess.call(['open', '-a', 'Visual Studio Code', '.'])
-    elif sys.platform.startswith('linux'):
-        os.system('killall code')
-        time.sleep(2)
-        subprocess.Popen(['code', '.'])
-    else:
-        print("Unsupported platform for restarting VSCode.")
+    print("Restarting VSCode gracefully to prevent accidental re-creation of draft files...")
+    try:
+        if sys.platform == 'win32':
+            # Graceful close without /f
+            os.system('taskkill /im Code.exe /t')
+            time.sleep(3)  # Delay for cleanup
+            subprocess.Popen(['code', '.'])  # Reopen
+        elif sys.platform == 'darwin':
+            # Use AppleScript for graceful quit
+            os.system('osascript -e \'quit app "Visual Studio Code"\'')
+            time.sleep(3)
+            subprocess.call(['open', '-a', 'Visual Studio Code', '.'])
+        elif sys.platform.startswith('linux'):
+            # SIGTERM for graceful termination
+            os.system('killall code')
+            time.sleep(3)
+            subprocess.Popen(['code', '.'])
+        else:
+            print("Unsupported platform for restarting VSCode.")
+    except Exception as e:
+        print(f"Error during restart: {e}. Please manually restart VSCode.")
 
 if __name__ == "__main__":
     publish_drafts_to_posts()
