@@ -18,13 +18,7 @@ Here are the steps based on the official documentation:
 
 If you encounter issues (e.g., the API key field doesn't update or clear properly, which has been reported as a bug in some cases), try this workaround first:
 - Select a different model from the model picker in the Chat view to deselect the one you're trying to remove.
-- Return to Manage Models, edit the provider, and then delete the API key.<grok:render card_id="529247" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">23</argument>
-</grok:render><grok:render card_id="6efdec" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">25</argument>
-</grok:render><grok:render card_id="c98b32" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">14</argument>
-</grok:render>
+- Return to Manage Models, edit the provider, and then delete the API key.
 
 Prerequisites and notes:
 - This only applies to chat features; it doesn't affect code completions or other tools.
