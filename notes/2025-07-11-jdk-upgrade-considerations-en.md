@@ -80,17 +80,7 @@ Upgrading a large codebase (tens of thousands of lines) from JDK 8 and Spring 5.
 - **Next Steps**: 
   1. Scan code with jdeps/jlink for issues.
   2. Set up a branch for migration testing.
-  3. Consult official guides: Oracle JDK Migration Guide<grok:render card_id="7014df" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">33</argument>
-</grok:render>, Spring Versions Wiki<grok:render card_id="2934f7" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">0</argument>
-</grok:render>, IBM DB2 JDBC Downloads<grok:render card_id="3b270a" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">20</argument>
-</grok:render>, Liberty Java Support<grok:render card_id="4c2f35" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">10</argument>
-</grok:render>.
-  4. If upgrading Spring to 6, follow the migration guide for Jakarta changes<grok:render card_id="154d2f" card_type="citation_card" type="render_inline_citation">
-<argument name="citation_id">40</argument>
-</grok:render>.
+  3. Consult official guides: Oracle JDK Migration Guide, Spring Versions Wiki, IBM DB2 JDBC Downloads, Liberty Java Support.
+  4. If upgrading Spring to 6, follow the migration guide for Jakarta changes.
 
 If you provide more details (e.g., specific Spring modules or DB2 version), I can refine this further.
