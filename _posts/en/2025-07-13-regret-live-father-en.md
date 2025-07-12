@@ -49,7 +49,7 @@ Those were wild years; only later could I appreciate how intensive and exciting 
 
 "The fastest way to destroy a person is constantly correcting them, even over small things." I saw this in TikTok videos. It hit me. My father is using this way to treat me, wanting to correct me with good intentions but actually destroying me.
 
-I hate people who always think they are right, that they do things best, and that others should follow. I hate people correcting me. I already try to become the best version of myself. I already have tons of hassles and troubles to deal with. Why still correct me?
+I hate people who always think they are right, that they do things best, and that others should follow. I hate people correcting me. I already try to become the best version of myself. I already have tons of hassles and troubles to deal with. Why still correct me? They are creating distrust and somehow don't believe others can do the right things.
 
 And I don't believe what they say. There are just tons of ways of doing things; even how to eat and what to eat vary a lot among humans. Why should we all be the same?
 
