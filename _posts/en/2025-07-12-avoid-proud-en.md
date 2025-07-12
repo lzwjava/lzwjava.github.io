@@ -11,11 +11,9 @@ This is one of the easy mistakes I have made again and again. I often do well wh
 
 In my adult life, most of the time, I liked posting in WeChat Moments. That made me seek too much validation and care about the opinions of others too much.
 
-Somehow, I get too happy about my success and probably brag a bit about my achievements. This dishonesty may lead to some disagreement from others. This gives pressure to others. What if others don't brag and are honest all the time? That leads to unfair competition. We don't like unfairness.
-
 And in investing, I have done this so many times: become too happy when an investment finally works, and then break my regular investing practice and start to suddenly invest more. So it raises my average price and quickly leads to losses if the market turns upside down.
 
-And after I have some users for my product, I start to hire employees and want to delegate, wanting to switch off founder mode. This made my company lose half a million CNY—for a 22-year-old in China.
+After getting users for my product and receiving an investment, I started hiring employees and tried to delegate, wanting to switch off founder mode. This decision cost my company half a million CNY—a significant loss for a 22-year-old in China.
 
 And after securing a job working as a contractor for a big bank, and learning English well, I thought that I was going to thrive in international companies in China to avoid its declining domestic market, and that I should be able to carry 1.2 million in debt. I was wrong too.
 
