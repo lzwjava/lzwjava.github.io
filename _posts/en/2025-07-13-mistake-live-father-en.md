@@ -41,7 +41,7 @@ Why did I buy that house? It was still because of one argument with my father. I
 
 My father is too strict and always asks me to do this or not to do that, controlling a lot of things about me just like I'm a kid. But now I am an adult in my late 20s.
 
-My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life: three contractor jobs in a bank, each less than one year; being jobless for one year; and losing myself for around one year.
+My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life. It is not healthy to often allow myself to be angry, regretful, or self-critical.
 
 For my 6.5 years in Beijing, looking back, that was actually the happiest time in my life. After one year in university, I worked in startups, cofounded with others, or ran my own startup for 5.5 years. In the middle, I went to the USA twice, each time for about 20 days.
 
