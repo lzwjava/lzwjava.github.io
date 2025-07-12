@@ -21,6 +21,8 @@ For myself, I started developing myopia when I was in junior high school around 
 
 I happen to know some of the authors of opposing views. They also blog or comment. After I conducted a 3-year experiment, and Yin Wang tried so many ways to reverse myopia, the first thought when I see such opposing views on the Internet is that we don't care. They don't know how much effort we have made, how we rejected our ideas or started again, how we adjusted our experiments, or how we mulled over all these things.
 
+The author has a good heart in warning us about Yin Wang's discovery. But really, the author has not yet conducted many experiments on it. I agree with a lot of his ideas about startups, as he has a 10-year startup journey. But for myopia itself, most of our efforts in experiments or reading—and most human discoveries or discussions about it—don't matter. Only a few truths matter.
+
 We are not disrespectful towards the opposing views. Science is science. It doesn't matter that there are 2 billion people with myopia. And a large number of them use eyeglasses with full prescription that allow them to see a blackboard 5m away, but they use them to look at mobile phones a lot. That's why their myopia becomes deeper and deeper.
 
 One easy way to know whether what Yin Wang says is true is to just put down your glasses. If your myopia is just 175 or 200 degrees, you can see your mobile phone without needing glasses. And if you are wearing eyeglasses with full prescription, you can put the mobile phone far away, like 80 cm or 1 meter, and you probably can still see the words on the screen.
