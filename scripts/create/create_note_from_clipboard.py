@@ -53,6 +53,18 @@ def process_title_for_filename(title):
     title = title.lower()
     return title
 
+def clean_grok_tags(content):
+    if "<grok:render" in content:
+        prompt = f"""Remove all <grok:render> tags and their contents from the following text, and format the text cleanly by removing extra spaces and ensuring proper sentence spacing. Respond with only the cleaned text:
+
+{content}"""
+        cleaned_content = call_mistral_api(prompt)
+        if not cleaned_content:
+            print("Failed to clean grok tags. Using original content.")
+            return content
+        return cleaned_content.strip()
+    return content
+
 def create_note():
     # Get clipboard content
     content = pyperclip.paste()
@@ -62,6 +74,9 @@ def create_note():
     if not content.strip():
         print("Clipboard is empty. Nothing to create.")
         sys.exit(1)
+
+    # Clean grok tags if present
+    content = clean_grok_tags(content)
 
     # Generate full title for front matter
     prompt_content = get_first_n_words(content)
@@ -122,4 +137,3 @@ generated: true
 
 if __name__ == "__main__":
     create_note()
-    
