@@ -12,7 +12,7 @@ def publish_drafts_to_posts():
     date_str = today.strftime('%Y-%m-%d')
     
     drafts_dir = '_drafts'
-    posts_en_dir = os.path.join('_posts', 'en')
+    posts_en_dir = "original"
 
     if not os.path.exists(drafts_dir):
         print(f"Drafts directory '{drafts_dir}' does not exist. No files to publish.")
