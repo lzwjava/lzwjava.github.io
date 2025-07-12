@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Regretting Living with My Strict Father in My Late 20s
+title: Regretting Living with My Strict Father in My Adult Years
 translated: false
 ---
 
