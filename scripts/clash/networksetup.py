@@ -1,7 +1,7 @@
 import subprocess
 import argparse
 
-def get_current_network_interface():
+def get_connected_network_interfaces():
     try:
         result = subprocess.run(
             ["networksetup", "-listallnetworkservices"],
@@ -10,9 +10,10 @@ def get_current_network_interface():
             check=True
         )
         services = result.stdout.splitlines()
+        connected_interfaces = []
         for service in services:
             service = service.strip()
-            if "Wi-Fi" in service or "USB 10/100 LAN" in service:
+            if service and ("Wi-Fi" in service or "USB 10/100 LAN" in service):
                 # Verify if the interface is active
                 status = subprocess.run(
                     ["networksetup", "-getinfo", service],
@@ -20,12 +21,18 @@ def get_current_network_interface():
                     text=True,
                     check=True
                 )
-                if "IP address" in status.stdout and "0.0.0.0" not in status.stdout:
-                    return service
-        return None
+                lines = status.stdout.splitlines()
+                ip_address = None
+                for line in lines:
+                    if line.startswith("IP address:"):
+                        ip_address = line.split(":", 1)[1].strip().lower()
+                        break
+                if ip_address and ip_address != "none" and ip_address != "0.0.0.0" and ip_address != "":
+                    connected_interfaces.append(service)
+        return connected_interfaces
     except subprocess.CalledProcessError as e:
-        print(f"Error getting network interface: {e}")
-        return None
+        print(f"Error getting network interfaces: {e}")
+        return []
 
 def set_proxy(interface, proxy_host, proxy_port):
     try:
@@ -51,7 +58,7 @@ def set_proxy(interface, proxy_host, proxy_port):
         )
         print(f"Successfully set HTTP and HTTPS proxies to {proxy_host}:{proxy_port} for {interface}")
     except subprocess.CalledProcessError as e:
-        print(f"Error setting proxy: {e}")
+        print(f"Error setting proxy for {interface}: {e}")
 
 def unset_proxy(interface):
     try:
@@ -65,7 +72,7 @@ def unset_proxy(interface):
         )
         print(f"Successfully unset HTTP and HTTPS proxies for {interface}")
     except subprocess.CalledProcessError as e:
-        print(f"Error unsetting proxy: {e}")
+        print(f"Error unsetting proxy for {interface}: {e}")
 
 def main():
     parser = argparse.ArgumentParser(description="Manage HTTP and HTTPS proxy settings for Wi-Fi or USB Ethernet on macOS")
@@ -79,18 +86,18 @@ def main():
     proxy_host = "127.0.0.1"
     proxy_port = 7890
 
-    network_interface = get_current_network_interface()
+    connected_interfaces = get_connected_network_interfaces()
 
-    if not network_interface:
+    if not connected_interfaces:
         print("No active Wi-Fi or USB Ethernet interface found. Please ensure a network is connected.")
         return
 
-    print(f"Found active network interface: {network_interface}")
-
-    if args.action == "set":
-        set_proxy(network_interface, proxy_host, proxy_port)
-    else:
-        unset_proxy(network_interface)
+    for interface in connected_interfaces:
+        print(f"Processing active network interface: {interface}")
+        if args.action == "set":
+            set_proxy(interface, proxy_host, proxy_port)
+        else:
+            unset_proxy(interface)
 
 if __name__ == "__main__":
     main()
