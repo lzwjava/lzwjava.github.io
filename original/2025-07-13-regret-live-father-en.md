@@ -53,7 +53,7 @@ I hate people who always think they are right, that they do things best, and tha
 
 And I don't believe what they say. There are just tons of ways of doing things; even how to eat and what to eat vary a lot among humans. Why should we all be the same?
 
-It just like writing code. If you tell me how to write this and that, and I follow your exact steps, it will be very painful. However, if you let me play with the compiler, I can work out the correct code.
+It just like writing code. If you tell me how to write this and that, and I follow your exact steps, it will be very painful. However, if you let me play with the compiler, I can work out the working code.
 
 I use the word "strict" here. I write this down to avoid them. I should escape from my parents. And now I live in my own house, just coming to see them when I log off work and go home when passing their house. Then I meet them for like half an hour. This is perfect for me: living alone and taking care of family. I need to be alone to carry out my work and study.
 
