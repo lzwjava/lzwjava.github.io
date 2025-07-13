@@ -65,7 +65,7 @@ In projects like yours—focusing on data import/validation/export, workflows, a
 
 - **Scalability and Integration**:
   - Leverage AI for system optimization, like auto-scaling resources in WebSphere based on load predictions.
-  - In outsourced setups like TEKsystems, AI can standardize documentation (you mentioned 50 guides), making them searchable via semantic search.
+  - In outsourced setups, AI can standardize documentation (you mentioned 50 guides), making them searchable via semantic search.
 
 These approaches can lead to cost savings (e.g., 20–30% productivity gains in software engineering) and better products, but start small: Pilot NL-to-SQL in a sandbox, ensure data privacy (critical in banking), and measure ROI through metrics like reduced deployment time.
 
