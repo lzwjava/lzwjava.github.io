@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Regretting Living with My Strict Father
+title: Lessons from Living with My Strict Father
 translated: false
 ---
 
@@ -17,7 +17,9 @@ In his essay [Welcome to Hogwarts](https://substack.com/inbox/post/142205386), Y
 
 After returning from Beijing and living in Guangzhou for more than five years, I realized that one of my biggest mistakes was living with my strict father.
 
-We have had too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, drops of urine fall outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
+Before discussing arguments, let me recall some good memories with my father. I was very happy when, in my first year at university, I asked my father to send me money so that I could buy a Xiaomi 2s mobile phone. My father also cooked for our family many times; over the 15 years we lived with him, he cooked often. My father gave us about half a million CNY to buy the house that my wife and I own. My father also helped us prepare for the wedding. My father brought my mother, my sister, and me to Guangzhou from our village; he took exams to earn his degrees and prepared the materials to migrate our household to Guangzhou. He also commuted with my sister and me to and from primary school for 3 years in Guangzhou. 
+
+However, we have had many arguments in recent years. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, drops of urine fall outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
 
 I have improved and adapted. When I lived by myself in Beijing, I didn't have this kind of problem. Most of the time, I rented a house with an independent toilet. If you go to a public toilet, you'll find that for men, it's very normal to pee a little off target.
 
