@@ -2,10 +2,11 @@
 audio: false
 lang: en
 layout: post
-title: Paragraph-Based Translation to Reduce Token Usage
+title: Optimizing Translation Costs with Paragraph-Based Markdown 
 translated: false
 generated: false
 ---
+
 My Jekyll blog uses Markdown to write paragraphs. After writing in English, I use AI tools like DeepSeek or Mistral to translate into eight other languages. Although they are already inexpensive, there is still room for improvement.
 
 Sometimes, I just edit a word or a paragraph, and then the entire text of a post will be translated into the other eight languages. In this case, the token usage is high. If I only translate one paragraph again, the token usage will be lower, especially for long posts.
