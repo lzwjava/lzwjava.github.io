@@ -61,7 +61,7 @@ And the most important external reason to blame is that China's economy largely 
 
 What I cannot easily forgive myself for is having already written the essay, ['The Present and Future of China's Economy,'](https://lzwjava.github.io/present-future-en) after reading books by He Qinglian, including 'The Pitfalls of Modernization' and 'China: Crumbling but Not Collapsing.' It is easy to know what is right but hard to do it.
 
-To come back to my father. My father is too strict and always asks me to do this or not to do that, controlling a lot of things about me just like I'm a kid. But now I am an adult in my early 30s.
+To come back to my father. My father has high expectations and often has specific ways he believes things should be done. While his intentions may be good, I sometimes find it challenging to meet these expectations as an adult around 30 years old. However, I recognize that his strictness comes from a place of care, even if it feels controlling at times.
 
 My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life. It is not healthy to often allow myself to be angry, regretful, or self-critical.
 
