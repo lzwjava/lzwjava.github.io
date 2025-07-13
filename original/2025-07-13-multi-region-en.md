@@ -25,7 +25,7 @@ There are probably some projects in big tech companies that use continents to se
 
 The first thing when doing multi-region development is to know what's different, what's the compliance that we must follow, and how to reduce duplicate efforts as much as possible.
 
-For text-to-speech, Google Cloud needs to train different languages. They provide different models and different languages for it. For languages, the differences between languages are their sounds, their pronunciation, and their character appearance. The former means when using Google Cloud to do text-to-speech, we need to use different models. For their character appearance, that means when doing PDF generation, we need to be careful about its font selection.
+For text-to-speech, Google Cloud needs to train different languages. They provide different models and different languages for it. For languages, the differences between languages are their sounds and their character appearance. The former means when using Google Cloud to do text-to-speech, we need to use different models. For their character appearance, that means when doing PDF generation, we need to be careful about its font selection.
 
 For multi-region projects, in Spring Boot projects, we can use its aliases and different object initialization to do so. We can use properties or YAML configuration smartly. We can put all different logic based on region into some specific modules or classes.
 
