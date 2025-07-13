@@ -53,6 +53,8 @@ However, I do have my own personal issues, including a problem with vanity. I wa
 
 And the most important external reason to blame is that China's economy largely depends on turning this country into a big construction site, which is not sustainable. That created foam and pumped up the house prices. The second reason is that in my city and district, the leaders of the construction department or mayor were corrupt in the last two decades. Some of them went to prison. They pushed the movement for large-scale demolition and reconstruction and gained large amounts of bribes from businessmen who sold houses to people.
 
+What I cannot easily forgive myself for is having already written the essay, ['The Present and Future of China's Economy,'](https://lzwjava.github.io/present-future-en) after reading books by He Qinglian, including 'The Pitfalls of Modernization' and 'China: Crumbling but Not Collapsing.' It is easy to know what is right but hard to do it.
+
 To come back to my father. My father is too strict and always asks me to do this or not to do that, controlling a lot of things about me just like I'm a kid. But now I am an adult in my early 30s.
 
 My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life. It is not healthy to often allow myself to be angry, regretful, or self-critical.
