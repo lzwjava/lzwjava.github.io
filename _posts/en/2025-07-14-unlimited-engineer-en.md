@@ -7,9 +7,9 @@ title: Become an Unlimited Engineer in Big Companies
 translated: false
 ---
 
-Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it when they leave, as if they had never worked there before.
+Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it when they leave, as if they had never worked there before. There is tons of detail or information in the project. Often, when you work there, you can't recall some information and forget a lot, no matter whether you leave after a year or a few years.
 
-You have memories of working there, but without any records or information documented at that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government.
+One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government.
 
 The software center in big companies is very limited. In the software center, there are only thousands of software tools for their 100,000 employees to complete their work—nothing else. They categorize every website, especially those that can upload information or documents, which are often banned.
 
