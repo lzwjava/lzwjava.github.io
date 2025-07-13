@@ -45,7 +45,7 @@ That bike is a folding bicycle. He somehow thought that probably because of mort
 
 He somehow misunderstood me, and without saying much, he warned me and asked me not to do it. I got angry and said I was just joking. At that time, even though I had just bought a house with my wife 20 km away, it needed one year to be delivered. I was impatient to move out from my parents' house.
 
-Why did I buy that house? It was still because of one argument with my father. I don't remember the details of that argument. The frequent arguments with my father made me want to move out of the house. And then we bought the house for 2 million in 2022. As of 2025, it has dropped down to be worth just 1 million. We have around one million in mortgage for this. It will still need me and my wife to spend 10 years to pay off the mortgage.
+Why did I buy that house? It was still because of one argument with my father. I don't remember the details of that argument. The frequent arguments with my father made me want to move out of the house. And then we bought the house for 2 million in 2022. As of 2025, it has dropped down to be worth just 1 million. We have around one million in mortgage for this. It will probably still need me and my wife to spend 10 years to pay off the mortgage.
 
 To blame my father for this is not fair. I have my problems too. I want to impress others and want to buy a house to show my success after shutting down my 3.5-year startup journey, and just have a foothold while working as a contractor for an international bank. I have a vanity problem.
 
