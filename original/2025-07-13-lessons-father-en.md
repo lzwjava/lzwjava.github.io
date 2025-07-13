@@ -81,7 +81,7 @@ I write this down to avoid them. I should escape from my parents. And now I live
 
 My father should find more things to do instead of focusing on me. In this world, there are just too many things to do.
 
-Regret is unpleasant, but I have to speak out and write it down here so I can avoid it in later life. Parents are something you are hard to break up with, so I have to keep it in mind to avoid such negative things happening again in my life.
+Lessons are unpleasant, but I have to speak out and write it down here so I can avoid it in later life. Parents are something you are hard to break up with, so I have to keep it in mind to avoid such negative things happening again in my life.
 
 This is probably very normal. My grandfather had four sons, with my father ranking third. They had a lot of arguments too. My grandfather passed away in 2021 in his 80s.
 
