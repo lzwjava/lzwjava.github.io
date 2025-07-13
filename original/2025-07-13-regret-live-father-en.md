@@ -11,9 +11,9 @@ In his essay [Welcome to Hogwarts](https://substack.com/inbox/post/142205386), Y
 
 > I still haven't figured out what "reincarnation" really means, but many people are born different from their parents, with different hobbies and different personalities. As they grow up, they realize that their parents and themselves are completely different people, as if they're not from the same family. It's the same with parents, similar with siblings, and "friends" are no exception, of course.
 
-After returning from Beijing to live in Guangzhou for more than five years, I realized that one of my biggest mistakes was living with my strict father.
+After returning from Beijing and living in Guangzhou for more than five years, I realized that one of my biggest mistakes was living with my strict father.
 
-We have too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, urine drops outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
+We have had too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, drops of urine fall outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
 
 I have improved and adapted. When I lived by myself in Beijing, I didn't have this kind of problem. Most of the time, I rented a house with an independent toilet. If you go to a public toilet, you'll find that for men, it's very normal to pee a little off target.
 
@@ -23,7 +23,15 @@ I don't avoid hassle. I just want the freedom to decide when to deal with it.
 
 Another big argument that hurt me was when I was playing with Arduino and a breadboard. My father saw it and criticized me, saying I should be preparing for exams to get an associate degree because I dropped out of my bachelor's program 10 years ago. We have had too many arguments about this dropout and the degree issue.
 
-I have to say that the essays Paul Graham wrote encouraging people to drop out and create startups are not responsible, at least for young Chinese people. [After Credentials](https://paulgraham.com/credentials.html). For himself, he got a bachelor's from Cornell and master's and PhD degrees from Harvard University.
+I have to say that the essays Paul Graham wrote encouraging people to drop out and create startups are not responsible, at least for young Chinese people. [After Credentials](https://paulgraham.com/credentials.html). For himself, he got a bachelor's from Cornell and master's and PhD degrees from Harvard University. A lot of his essays he wrote are just to encourage most ambitious young people in their 20s to apply to his Y Combinator. It seems well-intentioned to encourage people to earn enough money first and retire early, in a short period to earn a lifetime's expenses. But actually, that is not for everyone. For myself, as a Chinese person who just enrolled in Beijing Forestry University instead of Stanford or Harvard, I regret not seeing the other side of his ideas before.
+
+I printed out his blog to read carefully when I was in high school in the early 2010s. The startup seed he planted in me is huge. For himself, he seems not to lose anything by doing that. Y Combinator wants to put $100k or $250k into tens or hundreds of startups in its first batch. His model is okay. He made a platform just like crypto or stock; no matter whether people win or lose, he will always profit. Y Combinator should be transparent about some of its failures and some miserable lives of founders who failed hard. By encouraging people to work hard, somehow he wrapped risks in this sweet clothing, which is really dangerous. His behavior is like Elon Musk's advocacy to deliver autopilot to people. Some of the users got killed because the autopilot was not mature.
+
+For myself, my startup journey actually resulted in no loss of money for me. I did it for like 4 years: cofounded for half a year, and did my own startup for 3.5 years. My company lost half a million and earned back half a million CNY to give back to investors. That's an acceptable ending, and I learned so much and had such intensive life experiences, which I am grateful for.
+
+But the point is that lacking a bachelor's degree made me rejected by a lot of Chinese companies, especially in a hard economy. They often don't have patience for those who graduated from 211 or 985 universities, let alone those who dropped out. You can say it is a problem of Chinese companies instead of those in the USA. But Paul Graham didn't warn me about this.
+
+For me now, as my critical thinking is much better, I can see that his Lisp or programming skill is not as good as most people thought; his level is below Daniel P. Friedman and R. Kent Dybvig.
 
 So, because of this, I somehow pursued my hobby projects while my father criticized me about it. I felt grieved, and it was painful.
 
