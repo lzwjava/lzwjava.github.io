@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Regretting Living with My Strict Father in My Adult Years
+title: Regretting Living with My Strict Father
 translated: false
 generated: false
 ---
