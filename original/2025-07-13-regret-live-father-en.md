@@ -47,7 +47,9 @@ He somehow misunderstood me, and without saying much, he warned me and asked me 
 
 Why did I buy that house? It was still because of one argument with my father. I don't remember the details of that argument. The frequent arguments with my father made me want to move out of the house. And then we bought the house for 2 million in 2022. As of 2025, it has dropped down to be worth just 1 million. We have around one million in mortgage for this. It will probably still need me and my wife to spend 10 years to pay off the mortgage.
 
-To blame my father for this is not fair. I have my problems too. I want to impress others and want to buy a house to show my success after shutting down my 3.5-year startup journey, and just have a foothold while working as a contractor for an international bank. I have a vanity problem.
+It is not fair to blame my father for this. Without the arguments with my father, I probably would have bought that house too. Few people in China in 2022 could have known that the housing market would face such a severe downturn in the following years.
+
+However, I do have my own personal issues, including a problem with vanity. I wanted to impress others and aimed to buy a house to showcase my success after ending my 3.5-year startup journey. I also had too much confidence in my ability to maintain a stable position while working as a contractor for an international bank. I probably should not have financial problems carrying a 1.2 million debt.
 
 And the most important external reason to blame is that China's economy largely depends on turning this country into a big construction site, which is not sustainable. That created foam and pumped up the house prices. The second reason is that in my city and district, the leaders of the construction department or mayor were corrupt in the last two decades. Some of them went to prison. They pushed the movement for large-scale demolition and reconstruction and gained large amounts of bribes from businessmen who sold houses to people.
 
