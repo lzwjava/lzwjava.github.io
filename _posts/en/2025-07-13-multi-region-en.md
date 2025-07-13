@@ -15,9 +15,7 @@ For Standard Chartered Bank, there are apps like SC Mobile India and SC Mobile H
 
 These apps likely use different backend servers and have some differing features, but they maintain the same design language. This is probably wrong to do that. In the first years, it seems simple or doable. But after a decade, they will know it is very painful. The maintenance cost or synchronization cost, the testing cost—there are tons of duplicate efforts.
 
-However, for Facebook, Google, or Apple Pay, it is kind of simple. Someone may say they are not financial apps; they have some compliance rules that need to be followed. It is not true. The compliance often means the database server, or the database, or some data that government departments want to check or for audit companies to do audits.
-
-However, other efforts are the same. The software is very flexible. We should let code be in the same repository, we should use data source configuration to host different regions' data, and we should share the same code, same design, same workflow, and same testing as much as possible.
+However, for Facebook, Google, or Apple Pay, it is kind of simple. Someone may say they are not financial apps; they have some compliance rules that need to be followed. It is not true. The compliance often means the database server, or the database, or some data that government departments want to check or for audit companies to do audits. However, other efforts are the same. The software is very flexible. We should let code be in the same repository, we should use data source configuration to host different regions' data, and we should share the same code, same design, same workflow, and same testing as much as possible.
 
 Apple Pay is a good example of this. The App Store is also a good example of this. They serve every country too.
 
@@ -35,7 +33,7 @@ The good news is that now AI can help us to refactor or write better code, or fi
 
 Not only for coding, deployment, and release maintenance, but also for extensibility. Consider how to add a new country or region. How much effort will that require? If it is minimal or just involves some configuration, then our design is great. If it takes a few months, that's acceptable too. If it takes several years, will we still proceed with it?
 
-In Yin Wang's essay, [On Linux，Windows 和 Mac](https://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac), he mentioned that an Adobe designer told him they spent two years migrating from Windows to macOS.
+In Yin Wang's essay, [On Linux，Windows 和 Mac](https://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac), he mentioned that an Adobe designer told him they spent two years migrating Photoshop from Windows to macOS.
 
 Will supporting a new region require two years of adaptation? For some projects, it might. This is a critical design consideration.
 
