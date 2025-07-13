@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Regretting Living with My Strict Father
+title: Lessons from Living with My Strict Father
 translated: false
 generated: false
 ---
@@ -16,6 +16,8 @@ In his essay [Welcome to Hogwarts](https://substack.com/inbox/post/142205386), Y
 > I still haven't figured out what "reincarnation" really means, but many people are born different from their parents, with different hobbies and different personalities. As they grow up, they realize that their parents and themselves are completely different people, as if they're not from the same family. It's the same with parents, similar with siblings, and "friends" are no exception, of course.
 
 After returning from Beijing and living in Guangzhou for more than five years, I realized that one of my biggest mistakes was living with my strict father.
+
+Before discussing about arguments, let me recall back some good memory with my paretns. I was very happy when I asked my father to send my money in my first year in university to let me have a Xiaomi 2s mobile phone. My father also cooked many times for our family, like in 15 years, when living with him, he will cook often. And my father gave us like half a million CNY to buy the house that owned by me and my wife. And my father help us to host the wedding. 
 
 We have had too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, drops of urine fall outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
 
