@@ -63,7 +63,7 @@ What I cannot easily forgive myself for is having already written the essay, ['T
 
 To come back to my father. My father has high expectations and often has specific ways he believes things should be done. While his intentions may be good, I sometimes find it challenging to meet these expectations as an adult around 30 years old. 
 
-My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life. It is not healthy to often allow myself to be angry, regretful, or self-critical.
+My late 20s are behind me. I was born in January 1995. Those five years in my late 20s were somewhat of a nightmare in my life. It is not healthy to frequently allow myself to feel angry, regretful, or self-critical.
 
 For my 6.5 years in Beijing, looking back, that was actually the happiest time in my life. After one year in university, I worked in startups, cofounded with others, or ran my own startup for 5.5 years. In the middle, I went to the USA twice, each time for about 20 days.
 
