@@ -9,23 +9,23 @@ translated: true
 
 Pour les entreprises internationales, il existe souvent des projets qui servent les populations de plusieurs régions, comme Singapour, Hong Kong, le Royaume-Uni, les États-Unis et la Chine.
 
-J'ai travaillé sur certains projets qui desservent les utilisateurs de plusieurs régions. Faire les choses correctement dans les projets backend n'est pas facile.
+J'ai travaillé sur certains projets servant des utilisateurs de plusieurs régions. Faire les choses correctement dans les projets backend n'est pas facile.
 
-Pour la Standard Chartered Bank, il y a l'application SC Mobile India, l'application SC Mobile Hong Kong, etc. Ils donnent essentiellement à chaque pays sa propre application. Ils utilisent probablement des applications différentes, des serveurs backend différents, et certaines fonctionnalités sont différentes mais avec le même langage de conception.
+Pour la Standard Chartered Bank, il y a des applications comme SC Mobile India et SC Mobile Hong Kong. Pour McDonald's, il existe des versions comme McDonald's Chine et McDonald's USA. Pour Starbucks, il y a Starbucks USA et Starbucks Chine. Essentiellement, ils fournissent à chaque pays ses propres applications. Ces applications utilisent probablement différents serveurs backend et ont certaines fonctionnalités différentes, mais elles conservent le même langage de conception.
 
-Il est probablement incorrect de faire cela. Les premières années, cela semble simple ou réalisable. Mais après une décennie, ils sauront que c'est très douloureux. Le coût de maintenance ou de synchronisation, le coût des tests—il y a des tonnes d'efforts en double.
+Il est probablement erroné de faire cela. Les premières années, cela semble simple ou réalisable. Mais après une décennie, ils sauront que c'est très douloureux. Le coût de maintenance ou de synchronisation, le coût des tests—il y a des tonnes d'efforts en double.
 
-Cependant, pour Facebook, Google ou Apple Pay, c'est assez simple. Certaines personnes pourraient dire qu'ils ne sont pas des applications financières ; ils ont certaines règles de conformité à respecter. Ce n'est pas vrai. La conformité signifie souvent le serveur de base de données, ou la base de données, ou certaines données que les départements gouvernementaux veulent vérifier ou pour que les sociétés d'audit effectuent des audits.
+Cependant, pour Facebook, Google ou Apple Pay, c'est un peu plus simple. Certains pourraient dire qu'ils ne sont pas des applications financières ; ils ont certaines règles de conformité à respecter. Ce n'est pas vrai. La conformité signifie souvent le serveur de base de données, ou la base de données, ou certaines données que les départements gouvernementaux veulent vérifier ou pour que les sociétés d'audit effectuent des audits.
 
 Cependant, les autres efforts sont les mêmes. Le logiciel est très flexible. Nous devrions laisser le code être dans le même dépôt, nous devrions utiliser la configuration de la source de données pour héberger les données de différentes régions, et nous devrions partager autant que possible le même code, la même conception, le même flux de travail et les mêmes tests.
 
 Apple Pay est un bon exemple de cela. L'App Store est également un bon exemple de cela. Ils desservent chaque pays aussi.
 
-Il y a probablement des projets dans les grandes entreprises technologiques qui utilisent les continents pour séparer, comme l'Asie et la région Pacifique, l'Amérique du Nord. Pour ceux-ci aussi.
+Il y a probablement certains projets dans les grandes entreprises technologiques qui utilisent les continents pour les séparer, comme l'Asie et la région Pacifique, l'Amérique du Nord. Pour ceux-ci aussi.
 
-La première chose à faire lors du développement multi-régions est de savoir ce qui est différent, quelles sont les conformités que nous devons suivre, et comment réduire au maximum les efforts en double.
+La première chose à faire lors du développement multi-régions est de savoir ce qui est différent, quelle est la conformité que nous devons suivre, et comment réduire au maximum les efforts en double.
 
-Pour la synthèse vocale, Google Cloud doit entraîner différentes langues. Ils fournissent différents modèles et différentes langues pour cela. Pour les langues, les différences entre les langues sont leurs sons, leur prononciation et leur apparence des caractères. Le premier signifie que lorsque nous utilisons Google Cloud pour la synthèse vocale, nous devons utiliser différents modèles. Pour leur apparence des caractères, cela signifie que lors de la génération de PDF, nous devons être prudents dans le choix de la police.
+Pour la synthèse vocale, Google Cloud doit entraîner différentes langues. Ils fournissent différents modèles et différentes langues pour cela. Pour les langues, les différences entre les langues sont leurs sons, leur prononciation et leur apparence des caractères. Le premier signifie que lorsque nous utilisons Google Cloud pour la synthèse vocale, nous devons utiliser différents modèles. Pour leur apparence des caractères, cela signifie que lors de la génération de PDF, nous devons être prudents quant à la sélection des polices.
 
 Pour les projets multi-régions, dans les projets Spring Boot, nous pouvons utiliser ses alias et différentes initialisations d'objets pour cela. Nous pouvons utiliser intelligemment les propriétés ou la configuration YAML. Nous pouvons mettre toute la logique différente basée sur la région dans certains modules ou classes spécifiques.
 
