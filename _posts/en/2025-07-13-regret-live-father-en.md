@@ -13,7 +13,7 @@ In his essay [Welcome to Hogwarts](https://substack.com/inbox/post/142205386), Y
 
 After returning from Beijing to live in Guangzhou for more than five years, I realized that one of my biggest mistakes was living with my strict father.
 
-We have too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, urine drops outside. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
+We have too many arguments. In 2020, when I started living with my parents in their home in Huangpu District, one of the things we had different opinions on was that I tended to make the toilet messy. Sometimes, when I pee, urine drops outside the bowl. They are very strict about cleanliness. My mother and father often complain about me being unclean in this regard.
 
 I have improved and adapted. When I lived by myself in Beijing, I didn't have this kind of problem. Most of the time, I rented a house with an independent toilet. If you go to a public toilet, you'll find that for men, it's very normal to pee a little off target.
 
@@ -37,9 +37,13 @@ That bike is a folding bicycle. He somehow thought that probably because of mort
 
 He somehow misunderstood me, and without saying much, he warned me and asked me not to do it. I got angry and said I was just joking. At that time, even though I had just bought a house with my wife 20 km away, it needed one year to be delivered. I was impatient to move out from my parents' house.
 
-Why did I buy that house? It was still because of one argument with my father. I don't remember the details of that argument.
+Why did I buy that house? It was still because of one argument with my father. I don't remember the details of that argument. The frequent arguments with my father made me want to move out of the house. And then we bought the house for 2 million in 2022. As of 2025, it has dropped down to be worth just 1 million. We have around one million in mortgage for this. It will still need me and my wife to spend 10 years to pay off the mortgage.
 
-My father is too strict and always asks me to do this or not to do that, controlling a lot of things about me just like I'm a kid. But now I am an adult in my late 20s.
+To blame my father for this is not fair. I have my problems too. I want to impress others and want to buy a house to show my success after shutting down my 3.5-year startup journey, and just have a foothold while working as a contractor for an international bank. I have a vanity problem.
+
+And the most important external reason to blame is that China's economy largely depends on turning this country into a big construction site, which is not sustainable. That created foam and pumped up the house prices. The second reason is that in my city and district, the leaders of the construction department or mayor were corrupt in the last two decades. Some of them went to prison. They pushed the movement for large-scale demolition and reconstruction and gained large amounts of bribes from businessmen who sold houses to people.
+
+To come back to my father. My father is too strict and always asks me to do this or not to do that, controlling a lot of things about me just like I'm a kid. But now I am an adult in my early 30s.
 
 My late 20s have passed. I was born in January 1995. For those five years in my late 20s, that was a nightmare in my life. It is not healthy to often allow myself to be angry, regretful, or self-critical.
 
@@ -53,7 +57,7 @@ I hate people who always think they are right, that they do things best, and tha
 
 And I don't believe what they say. There are just tons of ways of doing things; even how to eat and what to eat vary a lot among humans. Why should we all be the same?
 
-It just like writing code. If you tell me how to write this and that, and I follow your exact steps, it will be very painful. However, if you let me play with the compiler, I can work out the working code.
+It is just like writing code. If you tell me how to write this and that, and I follow your exact steps, it will be very painful. However, if you let me play with the compiler, I can work out the working code.
 
 I use the word "strict" here. I write this down to avoid them. I should escape from my parents. And now I live in my own house, just coming to see them when I log off work and go home when passing their house. Then I meet them for like half an hour. This is perfect for me: living alone and taking care of family. I need to be alone to carry out my work and study.
 
@@ -63,4 +67,4 @@ Regret is unpleasant, but I have to speak out and write it down here so I can av
 
 This is probably very normal. My grandfather had four sons, with my father ranking third. They had a lot of arguments too. My grandfather passed away in 2021 in his 80s.
 
-So now, I probably still need to live with my parents for 30 or 40 years. I hope that we can live more peacefully. So the solution is to live in different places. We have seldom chances to meet, let alone argue.
+So now, I probably still need to deal with my parents for 30 or 40 years. I hope that we can live more peacefully. So the solution is to live in different places. We have seldom chances to meet, let alone argue.
