@@ -13,4 +13,5 @@ Sometimes, I just edit a word or a paragraph, then whole text of a post will be 
 
 But I still want to use markdown to record my ideas. Use database and maintain in database to update post is not convenient. Use yaml or JSON is probably too. 
 
-The importance to know is that what's difference between edit and after edit. I need to know the 
+The importance to know is that what's difference between edit and after edit. If we use paragraph-based, that's mean I use new line "\n" character to split text. 
+
