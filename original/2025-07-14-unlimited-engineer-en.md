@@ -33,4 +33,4 @@ Many companies now adopt AI tools internally, such as GitHub Copilot. I’ve ins
 
 I felt limited the first time I worked in big companies with strict information control. But recently, I found that the limitation is in our brains. They don't stop us from building things or working effectively.
 
-So probably in life too. Every time we feel limited, it is possible that we haven't thought enough. If we try a lot, we might think of something no one else has. To become an Unlimited Engineer in big companies is to become an unlimited person, which is great.
+So probably in life too. Every time we feel limited, it is possible that we haven't thought enough. If we try a lot, we might think of something no one else has. To become an unlimited engineer in big companies is to become an unlimited person, which is great.
