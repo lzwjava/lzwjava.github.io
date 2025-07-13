@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Thoughts about Multi-Region Development
+title: Thoughts about Multi-Region Software Development
 translated: false
 ---
 

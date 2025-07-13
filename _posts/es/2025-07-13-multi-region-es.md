@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: es
 layout: post
-title: Pensamientos sobre el desarrollo multi-regional
+title: Reflexiones sobre el desarrollo de software multi-regional
 translated: true
 ---
 
@@ -13,7 +13,7 @@ He trabajado en algunos proyectos que atienden a usuarios de múltiples regiones
 
 Para el Standard Chartered Bank, existe la aplicación SC Mobile India, la aplicación SC Mobile Hong Kong, etc. Básicamente, dan a cada país su propia aplicación. Probablemente usen diferentes aplicaciones, diferentes servidores backend y algunas características son diferentes, pero con el mismo lenguaje de diseño.
 
-Probablemente esté mal hacerlo así. En los primeros años, parece simple o factible. Pero después de una década, sabrán que es muy doloroso. El costo de mantenimiento o sincronización, el costo de pruebas—hay toneladas de esfuerzos duplicados.
+Probablemente esto esté mal hecho. En los primeros años, parece simple o factible. Pero después de una década, sabrán que es muy doloroso. El costo de mantenimiento o sincronización, el costo de pruebas—hay toneladas de esfuerzos duplicados.
 
 Sin embargo, para Facebook, Google o Apple Pay, es algo simple. Alguien puede decir que no son aplicaciones financieras; tienen algunas reglas de cumplimiento que deben seguir. No es cierto. El cumplimiento a menudo significa el servidor de base de datos, o la base de datos, o algunos datos que los departamentos gubernamentales quieren verificar o que las empresas de auditoría realicen auditorías.
 
@@ -23,12 +23,12 @@ Apple Pay es un buen ejemplo de esto. La App Store también es un buen ejemplo d
 
 Probablemente haya algunos proyectos en grandes empresas tecnológicas que usan continentes para separar, como Asia y la región del Pacífico, Norteamérica. Para estos también.
 
-Lo primero al hacer desarrollo multi-regional es saber qué es diferente, cuál es el cumplimiento que debemos seguir y cómo reducir los esfuerzos duplicados en la mayor medida posible.
+Lo primero al hacer desarrollo multi-regional es saber qué es diferente, qué es el cumplimiento que debemos seguir y cómo reducir los esfuerzos duplicados en la mayor medida posible.
 
 Para el texto a voz, Google Cloud necesita entrenar diferentes idiomas. Proporcionan diferentes modelos y diferentes idiomas para ello. Para los idiomas, las diferencias entre idiomas son sus sonidos, su pronunciación y su apariencia de caracteres. Lo primero significa que al usar Google Cloud para hacer texto a voz, necesitamos usar diferentes modelos. Para su apariencia de caracteres, eso significa que al hacer generación de PDF, debemos tener cuidado con la selección de fuentes.
 
-Para proyectos multi-regional, en proyectos de Spring Boot, podemos usar sus alias y diferentes inicializaciones de objetos para hacerlo. Podemos usar propiedades o configuración YAML de manera inteligente. Podemos poner toda la lógica diferente basada en la región en algunos módulos o clases específicas.
+Para proyectos multi-región, en proyectos de Spring Boot, podemos usar sus alias y diferentes inicializaciones de objetos para hacerlo. Podemos usar propiedades o configuración YAML de manera inteligente. Podemos poner toda la lógica diferente basada en la región en algunos módulos o clases específicas.
 
 Y para el alojamiento de código, diferentes ramas para diferentes países parecen fáciles al principio, pero después de algunos años, sabrás lo doloroso que es. Necesitas hacer git cherry-pick para otras regiones. Y necesitas probar de nuevo en otra rama. Cada vez que haces un pequeño cambio, necesitas sincronizarlo con las ramas. Y con el tiempo, si no ponemos nuestro esfuerzo en minimizar las diferencias de código o lógica, las diferencias en el código entre múltiples regiones o países se vuelven lo suficientemente grandes como para ser imposibles de corregir.
 
-La buena noticia es que ahora la IA puede ayudarnos a refactorizar o escribir mejor código, o corregir los problemas de diseño de código multi-regional. No importa cuán grande sea el error, cuando lo corregimos, es un error pequeño.
+La buena noticia es que ahora la IA puede ayudarnos a refactorizar o escribir mejor código, o corregir los problemas de diseño de código multi-región. No importa cuán grande sea el error, cuando lo corregimos, es un error pequeño.
