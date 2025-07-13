@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it when they leave, as if they had never worked there before. There is tons of detail or information in the project. Often, when you work there, you can't recall some information and forget a lot, no matter whether you leave after a year or a few years.
+Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it upon leaving, as if they had never worked there. There are tons of details and information involved in the projects. Often, while working there, you can't recall certain information and tend to forget a lot, not to mention after leaving for a year or a few years.
 
 One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government.
 
