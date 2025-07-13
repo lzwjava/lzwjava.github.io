@@ -7,6 +7,10 @@ translated: false
 generated: false
 ---
 
+Disclaimer: This is my personal reflection on our differences, written with a desire to understand each other better.
+
+---
+
 In his essay [Welcome to Hogwarts](https://substack.com/inbox/post/142205386), Yin Wang writes:
 
 > I still haven't figured out what "reincarnation" really means, but many people are born different from their parents, with different hobbies and different personalities. As they grow up, they realize that their parents and themselves are completely different people, as if they're not from the same family. It's the same with parents, similar with siblings, and "friends" are no exception, of course.
@@ -21,7 +25,7 @@ When I lived outside, I spent one year in a house in a different building but th
 
 I don't avoid hassle. I just want the freedom to decide when to deal with it.
 
-Another big argument that hurt me was when I was playing with Arduino and a breadboard. My father saw it and criticized me, saying I should be preparing for exams to get an associate degree because I dropped out of my bachelor's program 10 years ago. We have had too many arguments about this dropout and the degree issue.
+Another big argument that hurt me was when I was playing with Arduino and a breadboard. Hobbies like that recharge me, and balancing them with studies is something I'm learning. My father saw it and criticized me, saying I should be preparing for exams to get an associate degree because I dropped out of my bachelor's program 10 years ago. We have had too many arguments about this dropout and the degree issue.
 
 I have to say that the essays Paul Graham wrote encouraging people to drop out and create startups are not responsible, at least for young Chinese people. [After Credentials](https://paulgraham.com/credentials.html). For himself, he got a bachelor's from Cornell and master's and PhD degrees from Harvard University. A lot of his essays he wrote are just to encourage most ambitious young people in their 20s to apply to his Y Combinator. It seems well-intentioned to encourage people to earn enough money first and retire early, in a short period to earn a lifetime's expenses. But actually, that is not for everyone. For myself, as a Chinese person who just enrolled in Beijing Forestry University instead of Stanford or Harvard, I regret not seeing the other side of his ideas before.
 
@@ -80,3 +84,5 @@ Regret is unpleasant, but I have to speak out and write it down here so I can av
 This is probably very normal. My grandfather had four sons, with my father ranking third. They had a lot of arguments too. My grandfather passed away in 2021 in his 80s.
 
 So now, I probably still need to deal with my parents for 30 or 40 years. I hope that we can live more peacefully. So the solution is to live in different places. We have seldom chances to meet, let alone argue.
+
+I value our family bond and hope living separately allows us to appreciate each other more, without the daily frictions.
