@@ -25,10 +25,12 @@ But they are similar in one aspect—very strict information control in the work
 
 First, there are still thousands of software options in the software center, especially compiler software. Often, these companies use Windows for work, and compiler software is very useful as it allows you to create many scripts or small tools. For Maven, there are many libraries in the internal Nexus repositories. For Python, there are many pip packages in the internal package sources.
 
-Not to mention other programming languages like Go. Some companies even support Rust. There are C and C++ building tools, JavaScript, npm repositories, and C#. Basically, if you know more programming languages and their libraries, you are free. In the AI era, we can build tools like Postman for ourselves by writing Python scripts. Companies now adopt some AI tools internally, like GitHub Copilot.
+Not to mention other programming languages like Go—some companies even support Rust. There are C and C++ building tools, JavaScript and npm repositories, and C#. Essentially, the more programming languages and libraries you know, the more flexibility you have.
 
-I installed the top 100 Python packages, which greatly help me write scripts. But more importantly, I need to learn and become more familiar with them so I can use them whenever possible.
+In the AI era, we can build tools like Postman ourselves by writing Python scripts. If a database tool lacks a specific feature—such as checking privileges in a production database or comparing them to the UAT environment—we can write our own database scripts. We can also use AI to help automate tasks, like writing Selenium scripts for testing or creating performance testing scripts.
+
+Many companies now adopt AI tools internally, such as GitHub Copilot. I’ve installed the top 100 Python packages, which have significantly improved my scripting efficiency. However, the key is to learn and become more familiar with them so I can leverage them effectively whenever needed.
 
 I felt limited the first time I worked in big companies with strict information control. But recently, I found that the limitation is in our brains. They don't stop us from building things or working effectively.
 
-So probably in life too. Every time we feel limited, it is possible that we haven't thought enough. If we try a lot, we might think of something no one else has. To become an Unlimited Engineer in big companies is to become an unlimited person, which is great.
+So probably in life too. Every time we feel limited, it is possible that we haven't thought enough. If we try a lot, we might think of something no one else has. To become an unlimited engineer in big companies is to become an unlimited person, which is great.
