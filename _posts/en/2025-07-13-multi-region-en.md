@@ -32,3 +32,11 @@ For multi-region projects, in Spring Boot projects, we can use its aliases and d
 And for code hosting, different branches for different countries seem easy at first, but after some years, you will know how painful it is. You need to git cherry-pick for other regions. And you need to test again in another branch. Whenever doing every small change, you need to synchronize to branches. And as time goes by, if we don't put our effort into minimizing the code or logic differences, the differences in the code between multiple regions or countries become large enough to be impossible to fix.
 
 The good news is that now AI can help us to refactor or write better code, or fix the multi-region code design issues. No matter how big the mistake is, when we fix it, it is a small mistake.
+
+Not only for coding, deployment, and release maintenance, but also for extensibility. Consider how to add a new country or region. How much effort will that require? If it is minimal or just involves some configuration, then our design is great. If it takes a few months, that's acceptable too. If it takes several years, will we still proceed with it?
+
+In Yin Wang's essay, [On Linux，Windows 和 Mac](https://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac), he mentioned that an Adobe designer told him they spent two years migrating from Windows to macOS.
+
+Will supporting a new region require two years of adaptation? For some projects, it might. This is a critical design consideration.
+
+The world is becoming more connected. No matter which country or region we initially target, we must also consider other regions. It's better to get it right from the start. For established international companies, it's advisable to develop software products for at least two countries or regions from the outset. Maintain this multi-region mindset from the beginning. If we have more engineering resources, we can support more countries or regions.
