@@ -13,7 +13,7 @@ One will remember some significant moments there: the outline of the project, th
 
 The software center in big companies is very limited. In the software center, there are only thousands of software tools for their 100,000 employees to complete their work—nothing else. They categorize every website, especially those that can upload information or documents, which are often banned.
 
-Often, Outlook and Teams have strict settings that only allow information in but not out. In Teams Mobile, for example, external links are not allowed to open. The BYOD (Bring Your Own Device) policy often has strict settings, possibly allowing only Teams to be used.
+Often, Outlook and Teams have strict settings that only allow information in but not out. The BYOD (Bring Your Own Device) policy often has strict settings.
 
 I was quite upset during my first time working as a contractor for these big companies. I even came up with the following idea to address this issue:
 
