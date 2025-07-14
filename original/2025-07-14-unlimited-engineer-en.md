@@ -7,26 +7,29 @@ translated: false
 generated: false
 ---
 
-Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it upon leaving, as if they had never worked there. There are tons of details and information involved in the projects. Often, while working there, you can't recall certain information and tend to forget a lot, not to mention after leaving for a year or a few years.
+- Big companies enforce strict data security policies where employees or contractors receive laptops in the first week and return them upon leaving.
 
-One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. And there are other strict information control policies. 
+- Projects involve many details, but employees often forget information during their work, especially after leaving for a year or more.
 
-I was quite upset during my first time working as a contractor for these big companies. I even came up with the following idea to address this issue:
+- Memories from the experience include project outlines, team interactions, and LinkedIn connections, but no documented records remain due to strict information controls.
 
-> Train a large language model on all sensitive data of the company, especially in big companies. This way, employees can open and use most websites and tools when they need to share information. Our LLM model would be smart enough to detect whether it contains sensitive data. Employees could use Twitter, watch YouTube to learn, and use GitHub on their company laptops. Why aren't companies starting to do this? They might be okay with their current security VPN, which has worked this way for 10 years. But now, AI is changing this.
+- The first contracting experience in such companies can be upsetting, making software engineering more challenging and significantly impacting work.
 
-However, due to the limited suitable jobs for me on the market, I want to use English to work in Guangzhou, China. There are few companies in China that use English as their working language; the options are limited to places like Standard Chartered Bank, AIA Insurance, DBS Bank, etc. And if you would like to work as a contractor for them, there would be more options.
+- Recently, I figured out how to make the environment feel unlimited by leveraging internal resources, even if it is not truly unrestricted.
 
-But they are similar in one aspect—very strict information control in the working environment. Recently, however, I have figured out how to make it feel unlimited, even if it isn't actually unlimited.
+- Thousands of software options are available, especially compilers on Windows, enabling the creation of scripts and small tools.
 
-First, there are still thousands of software options in the software center, especially compiler software. Often, these companies use Windows for work, and compiler software is very useful as it allows you to create many scripts or small tools. For Maven, there are many libraries in the internal Nexus repositories. For Python, there are many pip packages in the internal package sources.
+- Learn as many libraries and programming languages as possible; maximize the use of what is given internally.
 
-Not to mention other programming languages like Go—some companies even support Rust. There are C and C++ building tools, JavaScript and npm repositories, and C#. Essentially, the more programming languages and libraries you know, the more flexibility you have.
+- Support exists for languages like Go, Rust, C/C++ build tools, JavaScript with npm, and C#, increasing flexibility with more knowledge.
 
-In the AI era, we can build tools like Postman ourselves by writing Python scripts. If a database tool lacks a specific feature—such as checking privileges in a production database or comparing them to the UAT environment—we can write our own database scripts. We can also use AI to help automate tasks, like writing Selenium scripts for testing or creating performance testing scripts.
+- In the AI era, build custom tools like Postman using Python scripts or write database scripts if tools lack features.
 
-Many companies are now adopting AI tools internally, such as GitHub Copilot. The top 100 Python packages have significantly improved my scripting efficiency. However, the key is to learn and become more familiar with them so that I can leverage them effectively whenever needed.
+- Use AI to automate tasks, such as Selenium scripts for testing or performance testing scripts.
 
-I felt limited the first time I worked in big companies with strict information control. But recently, I found that the limitation is in our brains. They don't stop us from building things or working effectively.
+- Initial feelings of limitation in big companies stemmed from mindset, as policies do not prevent building things or working effectively.
 
-So probably in life too. Every time we feel limited, it is possible that we haven't thought enough. If we try a lot, we might think of something no one else has. To become an unlimited engineer in big companies is to become an unlimited person, which is great.
+- In life, perceived limitations often arise from not thinking deeply enough; trying more can lead to unique ideas.
+
+- Becoming an unlimited engineer in big companies means becoming an unlimited person overall.
+
