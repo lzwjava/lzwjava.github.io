@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Become an Unlimited Engineer Under Strict Information Control
+title: Become an Unlimited Engineer
 translated: false
 ---
 
