@@ -23,3 +23,11 @@ translated: false
 
 - It helps a lot in my life and allows me to work anywhere. It’s cheaper than the cellular plan from China Telecom. I have a Google Pixel phone, which doesn’t have a SIM card, so this is really useful.
 
+---
+
+Update: After using it for some time, I even purchased a 1-year plan for around 300 CNY. I actually regret buying it for my situation. It doesn't provide the convenience of turning a mobile phone into a personal hotspot. This is probably because the signal in my parents' house area is not good. They suggested they have China Telecom, China Mobile, and China Unicom networks, but that didn't help much. So, the main lesson is to consider the cellular data signal in your primary usage area. I tried it for about a month before buying it.
+
+Another reason is that I don't need this when I stop working from my parents' house, given the benefits of working from home two days a week. When I work from my parents' house, both my mobile phone and the Hotspot Shangzanwifi have poor signals, likely equally bad. But since I work there for extended periods, I thought it better to set it up for times when I need to use my mobile phone.
+
+Additionally, when I travel outside, I often forget to bring it. This makes their use case less common.
+
