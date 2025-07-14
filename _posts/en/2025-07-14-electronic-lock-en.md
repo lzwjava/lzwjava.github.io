@@ -8,7 +8,7 @@ translated: false
 ---
 
 {: .centered }  
-![](assets/images/lock/lock.jpg) {: .responsive }  
+![](assets/images/lock/lock.jpg){: .responsive }  
 *Source: Amazon*{: .caption }
 
 In the summer of 2019, when I was living in Beijing, I read the book "Surely You're Joking, Mr. Feynman!" by Richard Feynman. In the book, he shared his experiences of unlocking other people's lockers by guessing the passwords, etc. I don't remember the details, but it gave me a strong impression.
