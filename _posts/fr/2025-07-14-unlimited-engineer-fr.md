@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Devenez un ingénieur illimité
+title: Devenir un ingénieur illimité
 translated: true
 ---
 
@@ -11,13 +11,13 @@ translated: true
 
 - Les projets impliquent de nombreux détails, mais les employés oublient souvent des informations au cours de leur travail, surtout après être partis depuis un an ou plus.
 
-- Les souvenirs de l'expérience incluent les contours des projets, les interactions d'équipe et les connexions LinkedIn, mais aucun enregistrement documenté ne subsiste en raison des contrôles stricts de l'information.
+- Les souvenirs de l'expérience incluent les plans de projet, les interactions d'équipe et les connexions LinkedIn, mais aucun enregistrement documenté ne subsiste en raison des contrôles stricts de l'information.
 
-- La première expérience de sous-traitance dans de telles entreprises peut être déstabilisante, rendant l'ingénierie logicielle plus difficile et ayant un impact significatif sur le travail.
+- La première expérience de sous-traitance dans de telles entreprises peut être décevante, rendant l'ingénierie logicielle plus difficile et impactant significativement le travail.
 
 - Récemment, j'ai découvert comment rendre l'environnement illimité en exploitant les ressources internes, même si ce n'est pas vraiment sans restriction.
 
-- Des milliers d'options logicielles sont disponibles, notamment des compilateurs sur Windows, permettant de créer des scripts et de petits outils.
+- Des milliers d'options logicielles sont disponibles, notamment des compilateurs sous Windows, permettant de créer des scripts et de petits outils.
 
 - Apprenez autant de bibliothèques et de langages de programmation que possible ; maximisez l'utilisation de ce qui est donné en interne.
 
@@ -29,6 +29,6 @@ translated: true
 
 - Les premières impressions de limitation dans les grandes entreprises provenaient de l'état d'esprit, car les politiques n'empêchent pas de construire des choses ou de travailler efficacement.
 
-- Dans la vie, les limitations perçues proviennent souvent d'une réflexion insuffisante ; essayer davantage peut mener à des idées uniques.
+- Dans la vie, les limitations perçues proviennent souvent d'un manque de réflexion approfondie ; essayer davantage peut mener à des idées uniques.
 
 - Devenir un ingénieur illimité dans les grandes entreprises signifie devenir une personne illimitée dans l'ensemble.
