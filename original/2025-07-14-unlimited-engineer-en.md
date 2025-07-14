@@ -19,7 +19,7 @@ I was quite upset during my first time working as a contractor for these big com
 
 > Train a large language model on all sensitive data of the company, especially in big companies. This way, employees can open and use most websites and tools when they need to share information. Our LLM model would be smart enough to detect whether it contains sensitive data. Employees could use Twitter, watch YouTube to learn, and use GitHub on their company laptops. Why aren't companies starting to do this? They might be okay with their current security VPN, which has worked this way for 10 years. But now, AI is changing this.
 
-However, due to the limited suitable jobs for me on the market, I want to use English to work in Guangzhou, China. There are few companies in China that use English as their working language; the options are limited to places like HSBC Bank, Standard Chartered Bank, AIA Insurance, DBS Bank, etc.
+However, due to the limited suitable jobs for me on the market, I want to use English to work in Guangzhou, China. There are few companies in China that use English as their working language; the options are limited to places like HSBC Bank, Standard Chartered Bank, AIA Insurance, DBS Bank, etc. And if you would like to work as a contractor for them, there would be more options.
 
 But they are similar in one aspect—very strict information control in the working environment. Recently, however, I have figured out how to make it feel unlimited, even if it isn't actually unlimited.
 
