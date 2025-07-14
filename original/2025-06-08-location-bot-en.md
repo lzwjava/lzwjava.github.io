@@ -276,3 +276,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+---
+
+Update: This is not good because you need to share your live location with the bot.
