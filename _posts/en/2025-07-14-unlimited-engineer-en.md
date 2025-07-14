@@ -9,11 +9,9 @@ translated: false
 
 Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it upon leaving, as if they had never worked there. There are tons of details and information involved in the projects. Often, while working there, you can't recall certain information and tend to forget a lot, not to mention after leaving for a year or a few years.
 
-One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government.
+One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government. 
 
-The software center in big companies is very limited. In the software center, there are only thousands of software tools for their 100,000 employees to complete their work—nothing else. They categorize every website, especially those that can upload information or documents, which are often banned.
-
-Often, Outlook and Teams have strict settings that only allow information in but not out. The BYOD (Bring Your Own Device) policy often has strict settings.
+And there are other strict information control policies. There are three levels of SSH jumps that make you feel like you are doing software engineering. It's just like being on a secret island, doing a protection job for tons of gold for some wealthy individuals. Every time you need to fetch a small piece of gold for their use, you have to use keys to unlock highly technical doors.
 
 I was quite upset during my first time working as a contractor for these big companies. I even came up with the following idea to address this issue:
 
@@ -29,7 +27,7 @@ Not to mention other programming languages like Go—some companies even support
 
 In the AI era, we can build tools like Postman ourselves by writing Python scripts. If a database tool lacks a specific feature—such as checking privileges in a production database or comparing them to the UAT environment—we can write our own database scripts. We can also use AI to help automate tasks, like writing Selenium scripts for testing or creating performance testing scripts.
 
-Many companies now adopt AI tools internally, such as GitHub Copilot. I’ve installed the top 100 Python packages, which have significantly improved my scripting efficiency. However, the key is to learn and become more familiar with them so I can leverage them effectively whenever needed.
+Many companies are now adopting AI tools internally, such as GitHub Copilot. The top 100 Python packages have significantly improved my scripting efficiency. However, the key is to learn and become more familiar with them so that I can leverage them effectively whenever needed.
 
 I felt limited the first time I worked in big companies with strict information control. But recently, I found that the limitation is in our brains. They don't stop us from building things or working effectively.
 
