@@ -25,8 +25,10 @@ translated: false
 
 ---
 
-Update: After using it for some time, I even purchased a 1-year plan for around 300 CNY. I actually regret buying it for my situation. It doesn't provide the convenience of turning a mobile phone into a personal hotspot. This is probably because the signal in my parents' house area is not good. They suggested they have China Telecom, China Mobile, and China Unicom networks, but that didn't help much. So, the main lesson is to consider the cellular data signal in your primary usage area. I tried it for about a month before buying it.
+Update: After using it for some time, I decided to purchase a 1-year plan for around 360 CNY. However, I regret this decision given my circumstances. The device doesn't offer the convenience of using a mobile phone as a personal hotspot, likely due to the poor signal at my parents' house. Despite having options like China Telecom, China Mobile, and China Unicom, the signal remains inadequate. The key takeaway is to evaluate the cellular data signal in your primary usage area before making such a purchase. I tested it for about a month before committing to the plan.
 
-Another reason is that I don't need this when I stop working from my parents' house, given the benefits of working from home two days a week. When I work from my parents' house, both my mobile phone and the Hotspot Shangzanwifi have poor signals, likely equally bad. But since I work there for extended periods, I thought it better to set it up for times when I need to use my mobile phone.
+Another factor is that I don't require this setup when I'm not working from my parents' house, especially with the flexibility of working from home two days a week. Both my mobile phone and the Hotspot Shangzanwifi experience poor signals there, which are similarly unreliable. Since I spend extended periods working there, I initially thought setting it up would be beneficial for times when I need to use my mobile phone.
 
-Additionally, when I travel outside, I often forget to bring it. This makes their use case less common.
+Moreover, I frequently forget to bring it when I travel, which further limits its usefulness.
+
+The one-year subscription makes each month cheaper. For example, if you pay 50 CNY for one month, with a 12-month subscription, you only pay 30 CNY per month. It seems like a smart deal. However, as a cost-conscious and disciplined consumer like me, I found myself using it less after two months. I still somewhat blame them for this unreasonable pricing and feel regret. I won't be buying it again next year.

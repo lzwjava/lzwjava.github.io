@@ -13,7 +13,7 @@ translated: true
 
 - Buena integración con WeChat. En WeChat, puedes comprar un plan de datos. Si compras un plan de un año, cuesta 29 CNY al mes; si compras un plan de medio año, cuesta 39 CNY al mes; y si compras un plan de un mes, cuesta 59 CNY al mes. Cada mes incluye 1500 GB de datos móviles.
 
-- Requiere KYC: Necesitas subir fotos frontales y posteriores de tu identificación nacional y completar la detección facial por video. El KYC es obligatorio para China Mobile y China Telecom. Para la red China Unicom, parece que no se requiere KYC.
+- Requiere KYC: Debes subir fotos del anverso y reverso de tu documento de identidad nacional y completar la detección facial por video. El KYC es obligatorio para China Mobile y China Telecom. Para la red China Unicom, parece que no se requiere KYC.
 
 - Es como un banco de energía portátil. No he probado usarlo para cargar mi teléfono.
 
@@ -25,8 +25,10 @@ translated: true
 
 ---
 
-Actualización: Después de usarlo por un tiempo, incluso compré un plan de 1 año por alrededor de 300 CNY. En realidad, me arrepiento de haberlo comprado para mi situación. No proporciona la comodidad de convertir un teléfono móvil en un punto de acceso personal. Esto probablemente se deba a que la señal en la zona de la casa de mis padres no es buena. Ellos sugirieron que tienen redes de China Telecom, China Mobile y China Unicom, pero eso no ayudó mucho. Por lo tanto, la lección principal es considerar la señal de datos móviles en tu área de uso principal. Lo probé durante aproximadamente un mes antes de comprarlo.
+Actualización: Después de usarlo por un tiempo, decidí comprar un plan de un año por alrededor de 360 CNY. Sin embargo, me arrepiento de esta decisión dado mis circunstancias. El dispositivo no ofrece la comodidad de usar un teléfono móvil como punto de acceso personal, probablemente debido a la mala señal en la casa de mis padres. A pesar de tener opciones como China Telecom, China Mobile y China Unicom, la señal sigue siendo insuficiente. La conclusión es evaluar la señal de datos móviles en tu área de uso principal antes de realizar una compra. Lo probé durante aproximadamente un mes antes de comprometerme con el plan.
 
-Otra razón es que no lo necesito cuando dejo de trabajar desde la casa de mis padres, dado los beneficios de trabajar desde casa dos días a la semana. Cuando trabajo desde la casa de mis padres, tanto mi teléfono móvil como el Hotspot Shangzanwifi tienen señales pobres, probablemente igualmente malas. Pero como trabajo allí por períodos prolongados, pensé que sería mejor configurarlo para cuando necesite usar mi teléfono móvil.
+Otro factor es que no necesito este equipo cuando no trabajo desde la casa de mis padres, especialmente con la flexibilidad de trabajar desde casa dos días a la semana. Tanto mi teléfono móvil como el Hotspot Shangzanwifi tienen señales pobres allí, que son igualmente poco confiables. Como paso largos períodos trabajando allí, inicialmente pensé que configurarlo sería beneficioso para cuando necesite usar mi teléfono móvil.
 
-Además, cuando viajo al exterior, a menudo olvido llevarlo. Esto hace que su caso de uso sea menos común.
+Además, con frecuencia olvido llevarlo cuando viajo, lo que limita aún más su utilidad.
+
+La suscripción de un año hace que cada mes sea más barato. Por ejemplo, si pagas 50 CNY por un mes, con una suscripción de 12 meses, solo pagas 30 CNY al mes. Parece un buen trato. Sin embargo, como consumidor consciente del costo y disciplinado como yo, dejé de usarlo después de dos meses. Todavía les culpo un poco por este precio irrazonable y me arrepiento. No lo compraré de nuevo el próximo año.
