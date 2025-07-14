@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Can Hydrogen Peroxide Cure Athlete's Foot?
+title: Can Hydrogen Peroxide Cure Athlete's Foot
 translated: false
 generated: false
 ---
