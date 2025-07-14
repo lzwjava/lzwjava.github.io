@@ -2,38 +2,37 @@
 audio: false
 lang: en
 layout: post
-title: The experience of cracking a password on an electronic lock
+title: The Experience of Cracking a Password on an Electronic Lock
 translated: false
 generated: false
 ---
 
 {: .centered }  
-![](assets/images/lock/lock.jpg){: .responsive }  
+![](assets/images/lock/lock.jpg) {: .responsive }  
 *Source: Amazon*{: .caption }
 
-In 2019 summar, when I lived in Beijing, I read the book "Surely You're Joking, Mr. Feynman" by Ricard Feynman. In the book, he shared his experience how to unlock others' locker by guessing the password etc. I don't remember the detail. But that give me the impression. 
+In the summer of 2019, when I was living in Beijing, I read the book "Surely You're Joking, Mr. Feynman!" by Richard Feynman. In the book, he shared his experiences of unlocking other people's lockers by guessing the passwords, etc. I don't remember the details, but it gave me a strong impression.
 
-I suddenly go to see the electric lock my house. It is like above image. When I put my head close to see it, I can see the dast. I used the password 369258. And that place is really kind of clean while 147 places has dust. That's really interesting. I rented a house from Ziroom around 4800 CNY a month in Tongzhou. So the electric lock they installed for the house they are renting out. It is like above product.
+I suddenly went to look at the electronic lock on my house. It is like the one shown in the image above. When I put my head close to it to examine it, I could see the dust. I used the password 369258, and those areas were really kind of clean, while the 147 areas had dust. That's really interesting. I rented a house from Ziroom for around 4800 CNY a month in Tongzhou. So, the electronic lock they installed for the houses they rent out is like the product shown above.
 
-I kind of got excited about this exprience. I got bold a little bit. And at that time, I am working in my startup in my home, so I don't need to go to office like others. At the noon hour, I thought that my neighbour probably go to work.
+I kind of got excited about this experience. I got a little bit. And at that time, I was working on my startup from home, so I didn't need to go to an office like others. At noon, I thought that my neighbors probably went to work.
 
-And more importantly, though you can see dust distrubution on the panel, and even if you know what six digits are, and there are a lot of combination in it. So I guess my trik about hacking it probably won't work. So let's try it.
+And more importantly, though you can see the dust distribution on the panel, even if you know what the six digits are, there are a lot of combinations possible. So, I guessed my trick for hacking it probably wouldn't work. But let's try it anyway.
 
-I went to a house that's just in same position under my rented house. I start to work on it. Oh, yeah, the dust distribution were very clear. I could see that the 123690 places are clean while 4578 places are covered with dust. So I tried it and suddenly I can hear the open sound. I am so curious and excited and a little frighterning. Somehow, I want to enter to see what's inside the house, and take a look and then go out. 
+I went to the house that was just in the same position below my rented house. I started to work on it. Oh, yeah, the dust distribution was very clear. I could see that the areas for 123690 were clean, while the areas for 4578 were covered with dust. So, I tried it, and suddenly I could hear the opening sound. I was so curious, excited, and a little frightened. Somehow, I wanted to enter to see what was inside the house, take a look, and then leave.
 
-However, at this point, there was a girl in the bathroom. She made a little sound saying, who. I closed the door without explaination. I quickly returned to my house. 
+However, at that point, there was a girl in the bathroom. She made a little sound, saying, "Who?" I closed the door without any explanation and quickly returned to my house.
 
-After one minute, I found that I couldn't settle down and let things just be this. I went to below house again and explained it , spoke loudly with door closed to let her listen. I said that I read a book about hacking eletronic lock and just curious to see , and I live the upper floor.
+After one minute, I found that I couldn't settle down and let things be. I went to the house below again and explained it, speaking loudly with the door closed so she could hear. I said that I had read a book about hacking electronic locks and was just curious, and that I lived on the upper floor.
 
-She said ok , she knew it. At the night, she with her brother and another relative come to my house, and then asked why I do so etc. I explained again.  My wife came back from work at night too. My wife is there to help me to explain. They couldn't be satisfield. And they called the police. 
+She said okay, she knew. That night, she came to my house with her brother and another relative, and they asked why I did it, etc. I explained again. My wife came back from work that night too. My wife was there to help me explain. They weren't satisfied, and they called the police.
 
-I said goodbye to my wife, and went to police station with them, and then do some oral records, and I apologize to them, and then after two or three hours. Police let me to come back home. 
+I said goodbye to my wife and went to the police station with them. Then, I gave some oral statement records, apologized to them, and after two or three hours, the police let me go home.
 
-The insta360 founder once hacked the mobile phone number of the famous 360 founder by listening the sound of typing. There is a lot of hacking story. 
+The founder of Insta360 once hacked the mobile phone number of the famous 360 founder by listening to the sound of typing. There are a lot of hacking stories.
 
-I never thought that I can make my one. It is a little troublesome. But for an engineer, I am happy to know that I make it. But I am really sorry for that girl. She probably have a little more fear in the future days. 
+I never thought that I could create my own. It was a little troublesome, but as an engineer, I'm happy to know that I did it. But I am really sorry for that girl. She probably has a little more fear in the days ahead.
 
-Nowadays, there is some improvement for electirc lock. Some kinds of product have a camera on the panel, and some have the open records. And in nowadays, some people have monitor camera in theri home.
+Nowadays, there are some improvements to electronic locks. Some types of products have a camera on the panel, and some have opening records. And nowadays, some people have monitoring cameras in their homes.
 
-Will my sharing in this to make society unsecure? It is not my problem. I accidentally found it. This is somehow the bug of such prodcuts. Probably a few of other people know. Instead of letting small people know this hack, we better let more people to konw that , so they can prevent it from hacking. 
-
+Will sharing this make society insecure? It's not my problem. I accidentally discovered it. This is somehow a bug in such products. Probably only a few other people know about it. Instead of letting only a small number of people know this hack, it's better to let more people know about it so they can prevent hacks like this.
