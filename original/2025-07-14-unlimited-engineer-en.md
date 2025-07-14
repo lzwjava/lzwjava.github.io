@@ -9,9 +9,7 @@ generated: false
 
 Big companies often have strict policies regarding data security. Every employee or contractor receives their laptop in the first week and returns it upon leaving, as if they had never worked there. There are tons of details and information involved in the projects. Often, while working there, you can't recall certain information and tend to forget a lot, not to mention after leaving for a year or a few years.
 
-One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. The VPN or firewall in big companies is much like the Great Firewall that prevents people in China from using popular foreign websites whose information cannot be controlled by the Chinese government. 
-
-And there are other strict information control policies. There are three levels of SSH jumps for checking logs of some backend services. It's just like being on a secret island, doing a protection job for tons of gold for some wealthy individuals. Every time you need to fetch a small piece of gold for their use, you have to use keys to unlock highly technical doors.
+One will remember some significant moments there: the outline of the project, the feeling of working with the people there, and the LinkedIn connections built from that experience. So, you have memories of working there, but without any records or documented information from that time. And there are other strict information control policies. 
 
 I was quite upset during my first time working as a contractor for these big companies. I even came up with the following idea to address this issue:
 
