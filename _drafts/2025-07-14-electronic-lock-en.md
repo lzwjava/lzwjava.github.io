@@ -31,7 +31,7 @@ I said goodbye to my wife and went to the police station with them. Then, I gave
 
 The founder of Insta360 once hacked the mobile phone number of the famous 360 founder by listening to the sound of typing. There are a lot of hacking stories.
 
-I never thought that I could create my own. It was a little troublesome, but as an engineer, I'm happy to know that I did it. But looking back, my behavior was reckless and invasive—I crossed a line by attempting to enter someone else's home without permission, even if driven by curiosity. I deeply regret scaring the girl and causing distress to her family. To improve, I should have channeled that curiosity ethically, perhaps by testing on my own lock or discussing the vulnerability with the landlord or security experts instead of acting on impulse. In the future, I'll prioritize respect for others' privacy and seek legal, constructive ways to explore ideas.
+I never thought that I could create my own. It was a little troublesome, but as an engineer, I'm happy to know that I did it. But looking back, my behavior was reckless and invasive—I crossed a line by attempting to enter someone else's home without permission, even if driven by curiosity. I deeply regret scaring the girl and causing distress to her family. To improve, I should have channeled that curiosity ethically, perhaps by discussing the vulnerability with the landlord or security experts instead of acting on impulse. In the future, I'll prioritize respect for others' privacy and seek legal, constructive ways to explore ideas.
 
 Nowadays, there are some improvements to electronic locks. Some types of products have a camera on the keypad, and some have opening records. And nowadays, some people have monitoring cameras in their homes.
 
