@@ -33,7 +33,7 @@ The good news is that now AI can help us to refactor or write better code, or fi
 
 Not only for coding, deployment, and release maintenance, but also for extensibility. Consider how to add a new country or region. How much effort will that require? If it is minimal or just involves some configuration, then our design is great. If it takes a few months, that's acceptable too. If it takes several years, will we still proceed with it?
 
-In Yin Wang's essay, [On Linux，Windows 和 Mac](https://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac), he mentioned that an Adobe designer told him they spent two years migrating Photoshop from Windows to macOS.
+In Yin Wang's essay, [On Linux，Windows And Mac](https://www.yinwang.org/blog-cn/2013/03/07/linux-windows-mac), he mentioned that an Adobe designer told him they spent two years migrating Photoshop from Windows to macOS.
 
 Will supporting a new region require two years of adaptation? For some projects, it might. This is a critical design consideration.
 
