@@ -15,21 +15,29 @@ This post was written in July 2025.
 ![](assets/images/qq-account/qq-account.jpg){: .responsive }  
 *Source: Telegram*{: .caption }
 
-I probably regsiterd my QQ around 2006. I gradudated from primary schhol at that summar. I still remembered the place I registed QQ is to use a computer in the office of my president of the primary school. The last name of the president is Huang. The face of him is still vivid in my mind.
+I probably registered my QQ around 2006. I graduated from primary school that summer. I still remember the place where I registered QQ: using a computer in the office of the principal of my primary school. The principal's last name is Huang. His face is still vivid in my mind.
 
-I heared that the vice president of my primary school has passed away due to some illness. He was a good guy too. My father brought us from a viliage in Meizhou to Guangzhou here. And school administration people accepted us, including him. We use some formal procedure ways to do this, but surely he kind of help us by guiding us, etc.
+I heard that the vice principal of my primary school has passed away due to some illness. He was a good guy too. My father brought us from a village in Meizhou to Guangzhou. And the school administration people accepted us, including him. We used some formal procedures to do this, but surely he helped us by guiding us, etc.
 
-We still remember the warm and good heart of people after many years, and sometimes still remember the moment the people who are angry with us or criticize us.
+We still remember the warm and good hearts of people after many years, and sometimes we still remember the moments when people were angry with us or criticized us.
 
-And with the some classmate in my primary school, I still remembered some female classmates, we registed our QQ again. Like they do so first, and I wait, and then turn over to me register the QQ. 
+Along with some classmates from my primary school, I still remember some female classmates; we registered our QQ accounts together. They did it first, and I waited, then it was my turn to register QQ.
 
-To retrospect, when the moment I have chance to use Internet, I already kind of enjoy the freedom human never have that before. The only limitation is your imagination and exploration, your language proficienty and reading ability. The Interent give you freedom.
+In retrospect, at the moment I had a chance to use the Internet, I already enjoyed a kind of freedom that humans had never had before. The only limitations were your imagination and exploration, your language proficiency, and your reading ability. The Internet gives you freedom.
 
-So why it is 2006 not, in 2007. It is because I remember in 2007, my sixth grade, I sometimes go to the internet cafe bar to enjoy Internet.
+So why 2006 and not 2007? It is because I remember that in 2007, during my sixth grade, I sometimes went to the internet cafe to enjoy the Internet.
 
-The sun of that day are just like today in July 2025. This seems never changed. The primary school become kind of old now and they did some reconstruction.
+The sun that day was just like it is today in July 2025. This seems to never change. The primary school has become kind of old now, and it has undergone some reconstruction.
 
-I have been to back for one or two times at night or weekend in recent years. I saw the new scences of school while there are still stand still in many things or places. As my time is not convenient, so I can't see the teachers. 
+I have been back there once or twice at night or on weekends in recent years. I saw the new scenes of the school, while many things or places still stand still. Since my schedule is not convenient, I can't see the teachers.
 
-I don't know whether I will come back to talk with them. I would like to do so. As most of them, I have kind of losing contact with them. I don't have their QQs, or WeChats. I have QQs of some of my classmates in the primary school, but not the teachers.
+I don't know whether I will go back to talk with them. I would like to do so. For most of them, I have lost contact with them. I don't have their QQ or WeChat accounts. I have the QQ accounts of some of my classmates from primary school, but not the teachers.
+
+I am still making progress of my career and strugling in my wife. So not to the time, but for personal thing. If I have better success in my life, I would like to come back to visit them.
+
+The teachers taught me are probably at their early 30s, with kids like 5 years ago and just got pregnant. So around twenty years passed, they are in their 45s or 50s.
+
+Life passed fast. As a primary student, I didn't have ability to think from others. I don't know the detailed story of my teachers or their hometowns. I am grateful they have dedicated time or effort to us. I probably should be most grateful as I graduated with ranking number 1 among classmates.
+
+The ego of early life is important. I don't have much problem of that. I don't know how I do it. It seems easy for me. Of course, I learned from teachers a lot.
 
