@@ -3,11 +3,11 @@ audio: false
 generated: false
 lang: ar
 layout: post
-title: أتمتة بطاقة اللكم باستخدام بوت موقع تلغرام
+title: تتمة بطاقتك بالبطاقة مع روبوت موقع التليغرام
 translated: true
 ---
 
-هل سبق لك أن تمنيت أن تكون بطاقة الحضور اليومية أقل إرهاقًا؟ بالتأكيد حدث ذلك معي. لهذا السبب قمت ببناء بوت شخصي على Telegram يستخدم تتبع الموقع لأتمتة إشعارات الوصول إلى المكتب وتذكيري بتلك التسجيلات الحاسمة. يناقش هذا المنشور كيف جمعت بين Python وGitHub Actions لإنشاء نظام سلس وخالٍ من المتاعب، يبقيني على اطلاع عندما أحتاج إليه، كل ذلك بناءً على موقعي.
+هل كنت ترغب يومًا في أن يكون "بطاقة الحضور" اليومية أقل إزعاجًا؟ أنا بالتأكيد كنت. لذلك، بنيت روبوتًا شخصيًا على تليجرام يستخدم تتبع الموقع لتتمة إشعارات الوصول إلى المكتب وتذكيرني بالتحققات الهامة. يناقش هذا المقال كيف جمعت بين بايثون وGitHub Actions لإنشاء نظام سلس بدون يدين، يحافظ على إطلاعي في الوقت المناسب الذي أحتاجه، بناءً على موقعي.
 
 ```yml
 name: Hourly Location Check
@@ -63,7 +63,7 @@ jobs:
         python -m pip install --upgrade pip
         # Assuming you have a requirements.simple.txt in your repo root.
         # If not, use: pip install requests python-dotenv
-        pip install -r requirements.simple.txt 
+        pip install -r requirements.simple.txt
 
     - name: Run location check script (Scheduled)
       run: python scripts/release/location_bot.py --job check_location
@@ -275,3 +275,7 @@ def main():
 if __name__ == '__main__':
     main()
 ```
+
+---
+
+تحديث: هذا ليس جيدًا لأنك تحتاج إلى مشاركة موقعك الحي مع الروبوت.

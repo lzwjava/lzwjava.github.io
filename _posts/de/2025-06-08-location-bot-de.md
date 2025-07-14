@@ -7,25 +7,25 @@ title: Automatisierung Ihrer Lochkarte mit einem Telegram-Standort-Bot
 translated: true
 ---
 
-Hast du dir jemals gewünscht, dass dein tägliches "Stempeln" weniger lästig wäre? Das habe ich auf jeden Fall. Deshalb habe ich einen persönlichen Telegram-Bot entwickelt, der Standortverfolgung nutzt, um Ankunftsbenachrichtigungen im Büro zu automatisieren und mich an wichtige Check-ins zu erinnern. Dieser Beitrag zeigt, wie ich Python mit GitHub Actions kombiniert habe, um ein nahtloses, handsfreies System zu schaffen, das mich genau dann informiert, wenn ich es brauche – basierend auf meinem Standort.
+Hast du dich jemals gefragt, ob dein täglicher "Stempelkarten"-Routine weniger lästig sein könnte? Ich auf jeden Fall. Deshalb habe ich einen persönlichen Telegram-Bot gebaut, der Standortverfolgung nutzt, um Büroankunftsbenachrichtigungen zu automatisieren und mich an wichtige Check-ins zu erinnern. Dieser Beitrag zeigt, wie ich Python mit GitHub Actions kombiniert habe, um ein nahtloses, hands-off-System zu erstellen, das mich genau dann informiert, wenn ich es brauche – alles basierend auf meinem Standort.
 
 ```yml
 name: Stündliche Standortprüfung
 
 on:
   schedule:
-    # Läuft jede Stunde, zur vollen Stunde, zwischen 11 Uhr und 23 Uhr, an Wochentagen (Montag-Freitag)
+    # Wird jede Stunde, auf die Stunde, zwischen 11 Uhr und 23 Uhr, an Wochentagen (Montag-Freitag) ausgeführt
     # Die Zeit ist in UTC. Singapur-Zeit (SGT) ist UTC+8.
     # Also ist 11 Uhr SGT 03:00 UTC und 23 Uhr SGT 15:00 UTC.
     # Daher müssen wir von 03:00 bis 15:00 UTC planen.
     - cron: '0 3-15 * * 1-5'
 
-    # Erinnerung, LIVE-Standort zu teilen: Mittwoch 11 Uhr SGT (3 Uhr UTC)
+    # Erinnerung zum STARTEN der Live-Standortfreigabe: Mittwoch 11 Uhr SGT (3 Uhr UTC)
     # Aktuelle Zeit: Sonntag, 8. Juni 2025, 17:10:58 +08 (SGT)
     # Für Mittwoch 11 Uhr SGT (UTC+8): 11 - 8 = 3 Uhr UTC.
     - cron: '0 3 * * 3' # 3 für Mittwoch
 
-    # Erinnerung, LIVE-Standortfreigabe zu STOPPEN: Freitag 23 Uhr SGT (15 Uhr UTC)
+    # Erinnerung zum STOPPEN der Live-Standortfreigabe: Freitag 23 Uhr SGT (15 Uhr UTC)
     # Aktuelle Zeit: Sonntag, 8. Juni 2025, 17:10:58 +08 (SGT)
     # Für Freitag 23 Uhr SGT (UTC+8): 23 - 8 = 15 Uhr UTC.
     - cron: '0 15 * * 5' # 5 für Freitag
@@ -34,7 +34,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'scripts/release/location_bot.py' # Korrigierter Pfad zum Skript
+      - 'scripts/release/location_bot.py' # Korrigierter Pfad zu deinem Skript
       - '.github/workflows/location.yml' # Pfad zu dieser Workflow-Datei
 
 concurrency:
@@ -51,39 +51,39 @@ jobs:
     - name: Repository auschecken
       uses: actions/checkout@v4
       with:
-        fetch-depth: 5 # Nur die letzten 5 Commits für Effizienz abrufen
+        fetch-depth: 5 # Lade nur die letzten 5 Commits für Effizienz
 
     - name: Python 3.13.2 einrichten
       uses: actions/setup-python@v4
       with:
-        python-version: "3.13.2" # Genaue Python-Version angeben
+        python-version: "3.13.2" # Spezifische Python-Version angeben
 
     - name: Abhängigkeiten installieren
       run: |
         python -m pip install --upgrade pip
-        # Angenommen, du hast eine requirements.simple.txt im Repository-Stamm.
+        # Angenommen, du hast eine requirements.simple.txt in deinem Repo-Verzeichnis.
         # Falls nicht, verwende: pip install requests python-dotenv
-        pip install -r requirements.simple.txt 
+        pip install -r requirements.simple.txt
 
     - name: Standortprüfungsskript ausführen (Geplant)
       run: python scripts/release/location_bot.py --job check_location
-      # Dieser Schritt läuft bei geplanten Triggern für die stündliche Prüfung
-      if: github.event.schedule == '0 3-15 * * 1-5' # Stimmt mit dem stündlichen Cron-Plan überein
+      # Dieser Schritt wird bei geplanten Auslösern für die stündliche Prüfung ausgeführt
+      if: github.event.schedule == '0 3-15 * * 1-5' # Übereinstimmung mit dem stündlichen Cron-Zeitplan
 
-    - name: Erinnerung, LIVE-Standort zu teilen
+    - name: Erinnerung zum STARTEN der Live-Standortfreigabe
       run: python scripts/release/location_bot.py --job start_sharing_message
-      if: github.event.schedule == '0 3 * * 3' # Passt zum Mittwoch-11-Uhr-SGT-Cron
+      if: github.event.schedule == '0 3 * * 3' # Übereinstimmung mit dem Cron-Zeitplan für Mittwoch 11 Uhr SGT
 
-    - name: Erinnerung, LIVE-Standortfreigabe zu STOPPEN
+    - name: Erinnerung zum STOPPEN der Live-Standortfreigabe
       run: python scripts/release/location_bot.py --job stop_sharing_message
-      if: github.event.schedule == '0 15 * * 5' # Passt zum Freitag-23-Uhr-SGT-Cron
+      if: github.event.schedule == '0 15 * * 5' # Übereinstimmung mit dem Cron-Zeitplan für Freitag 23 Uhr SGT
 
-    - name: Telegram-Skript für Testnachricht ausführen (Manueller Trigger)
+    - name: Telegram-Skript für Testnachricht ausführen (Manuelle Auslösung)
       run: python scripts/release/location_bot.py --job send_message --message "Dies ist eine manuell ausgelöste Testnachricht von GitHub Actions."
       if: github.event_name == 'workflow_dispatch'
 
-    - name: Telegram-Skript für Push auf main-Branch ausführen
-      run: python scripts/release/location_bot.py --job send_message --message "Codeänderungen für den Standort-Bot wurden in den main-Branch gepusht."
+    - name: Telegram-Skript für Push auf den main-Zweig ausführen
+      run: python scripts/release/location_bot.py --job send_message --message "Codeänderungen für den Standort-Bot wurden in den main-Zweig gepusht."
       if: github.event_name == 'push'
 ```
 
@@ -99,47 +99,47 @@ import time # Für potenzielle zukünftige kontinuierliche Überwachung
 
 load_dotenv()
 
-# Neu: Spezifischer API-Schlüssel für den Standort-Bot
-TELEGRAM_LOCATION_BOT_API_KEY = os.environ.get("TELEGRAM_LOCATION_BOT_API_KEY") # Stelle sicher, dass dies in deiner .env gesetzt ist
-TELEGRAM_CHAT_ID = "610574272" # Diese Chat-ID dient zum Senden der Benachrichtigung
+# Neu: Spezifischer API-Key für den Standort-Bot
+TELEGRAM_LOCATION_BOT_API_KEY = os.environ.get("TELEGRAM_LOCATION_BOT_API_KEY") # Stelle sicher, dass dieser in deiner .env gesetzt ist
+TELEGRAM_CHAT_ID = "610574272" # Diese Chat-ID wird zum Senden der Benachrichtigungsnachricht verwendet
 
-# Bürokoordinaten definieren
+# Definiere die Koordinaten deines Büros
 OFFICE_LATITUDE = 23.135368
 OFFICE_LONGITUDE = 113.32952
 
-# Näherungsradius in Metern
+# Nähe-Radius in Metern
 PROXIMITY_RADIUS_METERS = 300
 
 def send_telegram_message(bot_token, chat_id, message):
-    """Sendet eine Nachricht an einen Telegram-Chat über die Telegram Bot API."""
+    """Sendet eine Nachricht an einen Telegram-Chat unter Verwendung der Telegram-Bot-API."""
     url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
     params = {
         "chat_id": chat_id,
         "text": message,
-        "parse_mode": "Markdown" # Markdown für fetten Text in der Nachricht
+        "parse_mode": "Markdown" # Markdown für fett gedruckten Text in der Nachricht verwenden
     }
     response = requests.post(url, params=params)
     if response.status_code != 200:
         print(f"Fehler beim Senden der Telegram-Nachricht: {response.status_code} - {response.text}")
 
 def get_latest_location(bot_token):
-    """Ruft die neueste LIVE-Standortaktualisierung vom Bot ab."""
+    """Ruft die neueste Live-Standortaktualisierung vom Bot ab."""
     url = f"https://api.telegram.org/bot{bot_token}/getUpdates"
     # Offset, um nur neue Aktualisierungen nach der letzten verarbeiteten zu erhalten (für kontinuierliches Polling)
-    # Für ein einfaches einmaliges Skript holen wir nur die neueste, aber für Polling würdest du einen Offset verwalten.
-    params = {"offset": -1} # Holt die allerletzte Aktualisierung
+    # Für ein einfaches Einmal-Skript holen wir einfach das neueste, aber für Polling würdest du einen Offset verwalten.
+    params = {"offset": -1} # Hole die allerletzte Aktualisierung
     response = requests.get(url, params=params)
-    print("GetUpdates-Antwort:", response) # Debugging
+    print("GetUpdates Response:", response) # Debugging
     if response.status_code == 200:
         updates = response.json()
-        print("GetUpdates-JSON:", json.dumps(updates, indent=4)) # Debugging
+        print("GetUpdates JSON:", json.dumps(updates, indent=4)) # Debugging
         if updates['result']:
             last_update = updates['result'][-1]
-            # Bevorzugt edited_message für LIVE-Standorte
+            # Priorisiere edited_message für Live-Standorte
             if 'edited_message' in last_update and 'location' in last_update['edited_message']:
                 return last_update['edited_message']['location'], last_update['edited_message']['chat']['id']
             elif 'message' in last_update and 'location' in last_update['message']:
-                # Verarbeitet initiale LIVE-Standortnachrichten oder statische Standortfreigaben
+                # Behandle anfängliche Live-Standortnachrichten oder statische Standortfreigaben
                 return last_update['message']['location'], last_update['message']['chat']['id']
     return None, None
 
@@ -148,7 +148,7 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     Berechnet die Entfernung zwischen zwei Punkten auf der Erde mit der Haversine-Formel.
     Gibt die Entfernung in Metern zurück.
     """
-    R = 6371000  # Erdradius in Metern
+    R = 6371000  # Radius der Erde in Metern
 
     lat1_rad = math.radians(lat1)
     lon1_rad = math.radians(lon1)
@@ -165,13 +165,13 @@ def haversine_distance(lat1, lon1, lat2, lon2):
     return distance
 
 def main():
-    parser = argparse.ArgumentParser(description="Telegram Bot Skript")
-    # Aktualisierte Auswahlmöglichkeiten für --job Argument
-    parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location', 'start_sharing_message', 'stop_sharing_message'], required=True, help="Ausführungstask")
-    # --message Argument für 'send_message' Task hinzugefügt
-    parser.add_argument('--message', type=str, help="Nachricht für 'send_message' Task")
-    # --test Argument für 'check_location' Task hinzugefügt
-    parser.add_argument('--test', action='store_true', help="Für 'check_location' Task, erzwingt das Senden einer Nachricht unabhängig von der Nähe.")
+    parser = argparse.ArgumentParser(description="Telegram-Bot-Skript")
+    # Aktualisierte Optionen für das --job-Argument
+    parser.add_argument('--job', choices=['get_chat_id', 'send_message', 'check_location', 'start_sharing_message', 'stop_sharing_message'], required=True, help="Aufgabe, die ausgeführt werden soll")
+    # Hinzugefügtes --message-Argument für die 'send_message'-Aufgabe
+    parser.add_argument('--message', type=str, help="Nachricht zum Senden für die 'send_message'-Aufgabe")
+    # Hinzugefügtes --test-Argument für die 'check_location'-Aufgabe
+    parser.add_argument('--test', action='store_true', help="Für die 'check_location'-Aufgabe, eine Nachricht senden, unabhängig von der Nähe.")
     args = parser.parse_args()
 
     if args.job == 'get_chat_id':
@@ -196,11 +196,11 @@ def main():
                 if chat_id:
                     print(f"Chat-ID: {chat_id}")
                 else:
-                    print("Chat-ID konnte aus der letzten Aktualisierung nicht abgerufen werden.")
+                    print("Chat-ID konnte nicht aus der letzten Aktualisierung abgerufen werden.")
             else:
                 print("Keine Aktualisierungen gefunden.")
         else:
-            print(f"Fehler beim Abrufen der Aktualisierungen: {response.status_code} - {response.text}")
+            print(f"Fehler beim Abrufen von Aktualisierungen: {response.status_code} - {response.text}")
 
     elif args.job == 'send_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
@@ -212,17 +212,17 @@ def main():
 
     elif args.job == 'start_sharing_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = "⚠️ *Erinnerung:* Bitte beginne, deinen LIVE-Standort mit dem Bot zu teilen!"
+            message = "⚠️ *Erinnerung:* Bitte beginne damit, deinen Live-Standort mit dem Bot zu teilen!"
             send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print("Erinnerung zum Teilen gesendet.")
+            print("Erinnerung zum Starten der Freigabe gesendet.")
         else:
             print("TELEGRAM_LOCATION_BOT_API_KEY und TELEGRAM_CHAT_ID sind nicht gesetzt.")
 
     elif args.job == 'stop_sharing_message':
         if TELEGRAM_LOCATION_BOT_API_KEY and TELEGRAM_CHAT_ID:
-            message = "✅ *Erinnerung:* Du kannst die LIVE-Standortfreigabe jetzt beenden."
+            message = "✅ *Erinnerung:* Du kannst jetzt aufhören, deinen Live-Standort zu teilen."
             send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, message)
-            print("Erinnerung zum Stoppen gesendet.")
+            print("Erinnerung zum Stoppen der Freigabe gesendet.")
         else:
             print("TELEGRAM_LOCATION_BOT_API_KEY und TELEGRAM_CHAT_ID sind nicht gesetzt.")
 
@@ -248,30 +248,34 @@ def main():
             needs_punch_card = distance <= PROXIMITY_RADIUS_METERS
 
             if needs_punch_card:
-                print(f"Du befindest dich innerhalb von {PROXIMITY_RADIUS_METERS}m um das Büro!")
+                print(f"Du bist innerhalb von {PROXIMITY_RADIUS_METERS}m des Büros!")
                 notification_message = (
-                    f"🎉 *Im Büro angekommen!* 🎉\n"
-                    f"Zeit, in WeCom zu stempeln.\n"
-                    f"Aktuelle Entfernung vom Büro: {distance:.2f}m."
+                    f"🎉 *Büro angekommen!* 🎉\n"
+                    f"Zeit, in WeCom die Karte zu stempeln.\n"
+                    f"Deine aktuelle Entfernung zum Büro: {distance:.2f}m."
                 )
             else:
-                print(f"Du befindest dich außerhalb des {PROXIMITY_RADIUS_METERS}m-Bürobereichs.")
-                # Nachricht für außerhalb des Radius
+                print(f"Du bist außerhalb des {PROXIMITY_RADIUS_METERS}m-Büro-Kreises.")
+                # Nachricht, wenn außerhalb des Radius
                 notification_message = (
-                    f"📍 Du bist *außerhalb* der Büronähe ({PROXIMITY_RADIUS_METERS}m).\n"
-                    f"Derzeit kein Stempeln erforderlich.\n"
-                    f"Aktuelle Entfernung vom Büro: {distance:.2f}m."
+                    f"📍 Du bist *außerhalb* der Büro-Nähe ({PROXIMITY_RADIUS_METERS}m).\n"
+                    f"Kein Stempeln der Karte erforderlich.\n"
+                    f"Deine aktuelle Entfernung zum Büro: {distance:.2f}m."
                 )
 
-            # Nachricht senden, wenn innerhalb der Nähe ODER --test Flag gesetzt ist
+            # Nachricht senden, wenn innerhalb der Nähe ODER wenn die --test-Flag verwendet wird
             if needs_punch_card or args.test:
                 send_telegram_message(TELEGRAM_LOCATION_BOT_API_KEY, TELEGRAM_CHAT_ID, notification_message)
             else:
-                # Wenn nicht in der Nähe UND nicht im Testmodus, nur in der Konsole ausgeben (keine Telegram-Nachricht)
-                print("Nicht in der Nähe und nicht im Testmodus, keine Nachricht an Telegram gesendet.")
+                # Wenn nicht innerhalb der Nähe UND nicht im Testmodus, nur in die Konsole drucken (keine Telegram-Nachricht)
+                print("Nicht innerhalb der Nähe und nicht im Testmodus, keine Nachricht an Telegram gesendet.")
         else:
-            print("Dein letzter Standort konnte nicht abgerufen werden. Stelle sicher, dass du den LIVE-Standort mit dem Bot teilst.")
+            print("Aktueller Standort konnte nicht abgerufen werden. Stelle sicher, dass du deinen Live-Standort mit dem Bot teilst.")
 
 if __name__ == '__main__':
     main()
 ```
+
+---
+
+Aktualisierung: Das ist nicht gut, weil du deinen Live-Standort mit dem Bot teilen musst.
