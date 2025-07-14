@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: On Cracking a Password on an Electronic Lock
+title: Cracking a Password on an Electronic Lock
 translated: false
 generated: false
 ---
