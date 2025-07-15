@@ -15,7 +15,7 @@ This post was written in July 2025.
 ![](assets/images/qq-account/qq-account.jpg){: .responsive }
 *Source: mmos.com*{: .caption }
 
-I probably registered my QQ account around 2006. I graduated from primary school that summer. I still remember the place where I registered for QQ: using a computer in the office of the principal of my primary school. The principal's last name was Huang. His face is still vivid in my mind.
+I graduated from primary school in the summer of 2007. I probably registered my QQ account around 2006. I still remember the place where I registered for QQ: using a computer in the office of the principal of my primary school. The principal's last name was Huang. His face is still vivid in my mind.
 
 I heard that the vice principal of my primary school has passed away due to some illness. He was a good person. My father brought us from a village in Meizhou to Guangzhou, and the school administration accepted us, including him. We followed some formal procedures, but surely he helped us by guiding us, etc.
 
@@ -49,6 +49,6 @@ In my primary school in Meizhou, we started studying English from grade 5. Howev
 
 I cried secretly on the first day when participating in my first classes. But a few classmates around me noticed that. The reason I cried was the vulnerability and discomfort. The teacher and classmates were all new faces to me. I was 9 years old at that time.
 
-In 2006, there was a tsunami and earthquake in Indonesia. I donated all of my award money to this accident donation, initiated by my head teacher. Later, I even met an engineer from Indonesia when working as a contractor for a big bank.
+In 2006, there was a tsunami and earthquake in Indonesia. I donated all of my award money to the relief fund for this disaster, initiated by my head teacher, which amounted to 36.5 CNY. That was probably equivalent to one day's salary for my parents around that time. Later, I even met an engineer from Indonesia while working as a contractor for a major bank.
 
 This kind of memory is really good. I hope to recall more.
