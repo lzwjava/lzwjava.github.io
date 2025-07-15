@@ -49,6 +49,6 @@ In my primary school in Meizhou, we started studying English from grade 5. Howev
 
 I cried secretly on the first day when participating in my first classes. But a few classmates around me noticed that. The reason I cried was the vulnerability and discomfort. The teacher and classmates were all new faces to me. I was 9 years old at that time.
 
-In 2006, there was a tsunami and earthquake in Indonesia. I donated all of my award money to this accident donation, initiated by my head teacher. Later, I even met an engineer from Indonesia when working as a contractor for a big bank.
+In 2006, there was a tsunami and earthquake in Indonesia. I donated all of my award money to the relief fund for this disaster, initiated by my head teacher, which amounted to 36.5 CNY. That was probably equivalent to one day's salary for my parents around that time. Later, I even met an engineer from Indonesia while working as a contractor for a major bank.
 
 This kind of memory is really good. I hope to recall more.
