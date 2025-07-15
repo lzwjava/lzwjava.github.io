@@ -55,6 +55,6 @@ I cried secretly on the first day when participating in my first classes. But a 
 
 In December 2004, there was a tsunami and earthquake in Indonesia. I donated all of my award money to the relief fund for this disaster, initiated by my head teacher, which amounted to 36.5 CNY. That was probably equivalent to one day's salary for my parents around that time. This award money was earned by me after a semester's work and winning the first prize in the final exam. That semester was my first semester after I came to Guangzhou. I thought I was very happy at that time, thinking I could catch up soon in the new environment.
 
-About 20 years later, while working as a contractor for a major bank in the summer of 2023, I even met an engineer from Indonesia in the project. One of my friends came to travel from there, and he gave me an extra Indonesian SIM card. Their country code is +62.
+About 20 years later, while working as a contractor for a major bank in the summer of 2023, I even met an engineer from Indonesia in the project. And one of my friends came to travel from there, and he gave me an extra Indonesian SIM card. Their country code is +62.
 
 This kind of memory is really good. I hope to recall more.
