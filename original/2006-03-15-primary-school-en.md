@@ -15,7 +15,7 @@ This post was written in July 2025.
 ![](assets/images/qq-account/qq-account.jpg){: .responsive }
 *Source: mmos.com*{: .caption }
 
-I probably registered my QQ account around 2006. I graduated from primary school that summer. I still remember the place where I registered for QQ: using a computer in the office of the principal of my primary school. The principal's last name was Huang. His face is still vivid in my mind.
+I graduated from primary school in the summer of 2007. I probably registered my QQ account around 2006. I still remember the place where I registered for QQ: using a computer in the office of the principal of my primary school. The principal's last name was Huang. His face is still vivid in my mind.
 
 I heard that the vice principal of my primary school has passed away due to some illness. He was a good person. My father brought us from a village in Meizhou to Guangzhou, and the school administration accepted us, including him. We followed some formal procedures, but surely he helped us by guiding us, etc.
 
