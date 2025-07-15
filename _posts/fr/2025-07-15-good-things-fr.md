@@ -3,8 +3,7 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Une fois que nous avons connu de bonnes choses, nous ne supportons pas les
-  choses moins bonnes
+title: Nous ne pouvons pas supporter moins de bonnes choses
 translated: true
 ---
 

@@ -3,8 +3,7 @@ audio: false
 generated: false
 lang: es
 layout: post
-title: Una vez que hemos experimentado cosas buenas, no podemos soportar cosas menos
-  buenas
+title: No Podemos Aguantar Menos Cosas Buenas
 translated: true
 ---
 
