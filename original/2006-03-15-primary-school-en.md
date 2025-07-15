@@ -31,7 +31,7 @@ So why 2006 and not 2007? It is because I remember that in 2007, during my sixth
 
 The sun that day was just like it is today in July 2025. This seems to never change. The primary school has become kind of old now, and it has undergone some reconstruction.
 
-I have been back there once or twice at night or on weekends in recent years. I saw the new scenes of the school, while many things or places still stand still. Since my schedule is not convenient, I can't see the teachers.
+I have been back there once or twice at night or on weekends in recent years. I saw the new scenes of the school, while many things or places stand still. Since my schedule is not convenient, I can't see the teachers.
 
 I don't know whether I will go back to talk with them. I would like to do so. For most of them, I have lost contact with them. I don't have their QQ or WeChat accounts. I have the QQ accounts of some of my classmates from primary school, but not the teachers.
 
