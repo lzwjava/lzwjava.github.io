@@ -25,6 +25,8 @@ Along with some classmates from my primary school, I still remember some female 
 
 In retrospect, at the moment I had a chance to use the Internet, I already enjoyed a kind of freedom that humans had never had before. The only limitations were your imagination and exploration, your language proficiency, and your reading ability. The Internet gives you freedom.
 
+QQ is probably the first internet service for a lot of people who grew up in China. So they will have quite a good memory of their QQ numbers and use them like passwords on other sites. I used my QQ number for some of those unimportant websites or apps too that don't involve money.
+
 So why 2006 and not 2007? It is because I remember that in 2007, during my sixth grade, I sometimes went to the internet cafe to enjoy the Internet.
 
 The sun that day was just like it is today in July 2025. This seems to never change. The primary school has become kind of old now, and it has undergone some reconstruction.
