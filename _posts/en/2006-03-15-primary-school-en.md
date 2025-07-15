@@ -41,7 +41,7 @@ Life passes quickly. As a primary student, I didn't have the ability to think ab
 
 The ego of early life is important. I don't have much of a problem with that. I don't know how I did it. It seemed easy for me. Of course, I learned a lot from my teachers.
 
-One special thing is that I am from a village in Meizhou, while half of my classmates are from Guangzhou. The other half of my classmates are from Hunan, Jiangxi, Hubei, and other cities in Guangdong. The primary school I attended is Xinzhuang Primary School in Huangpu District.
+One special thing is that I am from a village in Meizhou, while half of my classmates are from Guangzhou. The other half of my classmates are from Hunan, Jiangxi, Hubei, and other cities in Guangdong. The primary school I attended is Xinzhuang Primary School in Huangpu District. At that time, Yonghe Town was a suburban town in Guangzhou. There were many factories around, such as a Pepsi-Cola plant, dairy factories, and chemical factories, among others.
 
 In my primary school in Meizhou village, I received the first award for three consecutive years. So, I want to maintain that record here in Guangzhou as well. I don't want to let my parents down, so I need to keep up the good work.
 
