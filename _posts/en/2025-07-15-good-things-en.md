@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Once We Have Experienced Good Things, We Can't Bear Less Good Things
+title: We Can't Bear Less Good Things
 translated: false
 ---
 
