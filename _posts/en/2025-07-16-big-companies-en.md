@@ -27,7 +27,7 @@ It says that [Mira Murati’s Thinking Machines Lab is worth $12B in seed round]
 
 So using established time to measure a startup is not a good indicator; it is better to measure it by what the team is, who the founders are, and what area they are in.
 
-In my solo startup, I just need to use 1 minute to deploy my backend server and use 5 minutes to fix a minor bug and deploy. It is direct and fast. For big companies, it takes 1 week to prepare the Change Request, fill in details to pass the release engineer checker, get approvals from managers, do the deployment with the IT team, and do post-verification or health checks.
+In my solo startup, I just need to use 1 minute to deploy my backend server and use 5 minutes to fix a minor bug and deploy. It is direct and fast. For big companies, it takes 1 week to prepare the deployment request, get approvals from managers, do the deployment with the IT team, and do health checks.
 
 Though the actual time spent might be 8 hours, if we measure it, it is still 1 week from preparing the deployment to the final health check.
 
@@ -76,3 +76,17 @@ For big companies, the benefit of being risk-averse is that their products are r
 But like AI, actually, a lot of users are ok to those product that's not so stable for the early, like deepseek. We know that deepseek down a lot around Feb March of 2025 when it gains a lot of attentino. but after some time, it becomes better and no users seem have much problem of that.
 
 So it depends. Sometimes, for innovative products, we need to get them to market quickly, even if they have some issues. Users can understand.
+
+If we think about the process, we can be more careful. We should better categorize our deployment types. Some types of changes are okay to deploy quickly, while others are not. For testing, we should categorize which parts of the testing we need to perform for regression testing for the changed code, and which parts we do not. The same applies to SonarQube checking.
+
+In big companies, it is certain that many checks, tests, or approvals are unnecessary. We might let engineers do their work, and since the system has all the records, we can select some to review.
+
+We should also eliminate all manager approvals. What knowledge do managers have that engineers do not? Could this knowledge be written into code to approve or reject the requests automatically?
+
+Because everything is slow there, workers are unlikely to change things. The change from a big monolithic project to microservices for a project that has run for a decade might take two years. 
+
+For software, code and logic are tightly intertwined, especially in well-designed systems. Thus, the development, testing, or collaboration involved can be substantial.
+
+That's why scaling a team suddenly often doesn't work. If there is a microservice architecture that is loosely coupled, then the output of the team may be proportional to the number of team members. If there is a monolithic project that is tightly coupled, then the output of the team may only increase by 30% if we double the size of the team working on it.
+
+Regarding stability, I see that big companies tend to have multiple team members work on duplicate tasks. For example, for task A and task B, they do not assign two team engineers to work separately on task A and task B. Instead, they have both work on parts of task A and task B so that every engineer in a squad knows what others are doing. This makes the team more stable, as it prevents a situation where only one person knows a lot about large parts of the code and has been working on that for several years without collaboration. Then, if that person leaves the company, no one else can work on it.
