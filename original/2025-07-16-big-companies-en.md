@@ -55,7 +55,6 @@ For startups, it seems a much better case. Because it is really serious. Some of
 
 For individuals with integrity, it can be deeply disheartening to lose substantial investment funds, ranging from millions to hundreds of millions of dollars, and end up with little to show for it—perhaps just a rudimentary product or a user base that, despite its size, generates minimal revenue.
 
-
 In Paul Graham's essay, [Hiring is Obsolete](https://paulgraham.com/hiring.html).
 
 But what do big companies do well? One is long-termism. They tend to do things for the long term. For some good big companies, their project designs are quite good; they use microservices to avoid the mistake of becoming a big monolithic program after a decade. And they have governance teams to make some foundational frameworks and unify the development practices for the whole team.
