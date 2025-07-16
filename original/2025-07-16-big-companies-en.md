@@ -91,3 +91,6 @@ That's why scaling a team suddenly often doesn't work. If there is a microservic
 
 Regarding stability, I see that big companies tend to have multiple team members work on duplicate tasks. For example, for task A and task B, they do not assign two team engineers to work separately on task A and task B. Instead, they have both work on parts of task A and task B so that these two engineers know what the other is doing. This makes the team more stable, as it prevents a situation where only one person knows a lot about large parts of the code and has been working on that for several years without collaboration. Then, if that person leaves the company, no one else can work on it.
 
+One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
+
+
