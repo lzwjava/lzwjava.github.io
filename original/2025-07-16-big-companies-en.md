@@ -71,3 +71,4 @@ And big companies tend to use experience to give rewards to employees. While the
 
 Working in big companies is like learning in school. You progress from primary school to middle school, then to universities. In startups, however, there are more ups and downs, and there is more flexibility as you move from one idea or market to another.
 
+For big companies, the benefit of being risk-averse is that their products are relatively stable with no apparent bugs or downtime. That's good.
