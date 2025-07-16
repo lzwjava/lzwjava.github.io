@@ -53,11 +53,8 @@ The managing director did not gain much insight from the situation, as this was 
 
 For startups, it seems a much better case. Because it is really serious. Some of the founders who lose or fail are really having a hard time, especially the honest ones.
 
-For honest people, it is a hard feeling to lose millions or 100 million dollars of investing money and deliver nothing, a toy product, have millions of users but low revenue.
+For individuals with integrity, it can be deeply disheartening to lose substantial investment funds, ranging from millions to hundreds of millions of dollars, and end up with little to show for it—perhaps just a rudimentary product or a user base that, despite its size, generates minimal revenue.
 
-So when I reflected back, I was very astonished that it was probably only I who cared, though I just worked as a contractor engineer for that team. For me, they were making apparent mistakes. And I knew that too well from my experience. I remember that for a few months, the delivery lead was very happy to announce that our team was growing large and our contractors in Guangzhou were reaching a milestone number.
-
-I knew that too well; I probably would be happier when I announced that I hired 9 people to join my own startup on WeChat Moment.
 
 In Paul Graham's essay, [Hiring is Obsolete](https://paulgraham.com/hiring.html).
 
