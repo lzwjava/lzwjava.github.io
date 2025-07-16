@@ -32,3 +32,5 @@ generated: false
 - A bad engineer isn’t just costly in terms of salary—they waste time and force capable engineers to clean up their mess.  
 
 - Impatient to demonstrate that they are okay, they claim to know how to change things here and there, but in reality, they lack deep understanding.
+
+- They work for an international company but still use Baidu to search for information.
