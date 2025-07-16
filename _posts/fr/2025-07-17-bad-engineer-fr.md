@@ -25,7 +25,7 @@ translated: true
 
 - Même dans une entreprise internationale, insiste pour taper en chinois (par exemple, dans les discussions Teams).
 
-- Vient d'une grande entreprise autrefois prestigieuse qui a décliné ces dernières années—se reposant sur le succès passé plutôt que sur l'innovation. De tels employés se reposent sur leurs diplômes et leur réputation, reflétant la dépendance de leur entreprise à la marque plutôt qu'à la qualité.
+- Vient d'une grande entreprise autrefois prestigieuse qui a décliné ces dernières années—se reposant sur le succès passé plutôt que sur l'innovation. De tels employés se contentent de leurs diplômes et de leur réputation, reflétant la dépendance de leur entreprise à la marque plutôt qu'à la qualité.
 
 - S'inquiète de ses performances, mais recourt à la tricherie ou aux raccourcis au lieu de s'améliorer.
 
@@ -39,4 +39,6 @@ translated: true
 
 - Il a peur et est nerveux parce qu'il a utilisé des méthodes malhonnêtes—comme falsifier son expérience professionnelle dans son CV ou mémoriser les questions d'entretien fournies par les recruteurs—pour obtenir le poste par chance. Maintenant, il vit dans la crainte constante d'être démasqué, ce qui explique pourquoi il sourit ou rit rarement.
 
-- Les mauvais ingénieurs se révèlent souvent vers la trentaine ou la quarantaine. Ils passent la majeure partie de leur carrière à jouer, ne faisant qu'une heure de travail réel—ou même moins—quand c'est nécessaire dans une journée de travail.
+- Les mauvais ingénieurs se révèlent souvent vers la trentaine ou la quarantaine. Ils passent la majeure partie de leur carrière à jouer, ne faisant qu'une heure de travail réel—ou moins—quand c'est nécessaire dans une journée de travail.
+
+- Ils sont tentés de rester silencieux parce qu'il n'y a pas beaucoup de progrès à rapporter, et ils ne veulent pas que cela se sache.
