@@ -40,3 +40,5 @@ generated: false
 - They are afraid and nervous because they used dishonest methods—such as falsifying work experience on their resume or memorizing interview questions provided by recruiters—to luckily secure the job. Now, they live in constant fear of being exposed, which is why they rarely smile or laugh.
 
 - Bad engineers often reveal themselves in their mid-30s or 40s. They spend most of their career playing games, doing just one hour of real work—or even less—when needed in a working day.
+
+- They are tempted to remain quiet because there isn't much progress to report, and they don't want it to be found out.
