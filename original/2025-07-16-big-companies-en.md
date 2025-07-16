@@ -27,7 +27,7 @@ It says that [Mira Murati’s Thinking Machines Lab is worth $12B in seed round]
 
 So using established time to measure a startup is not a good indicator; it is better to measure it by what the team is, who the founders are, and what area they are in.
 
-In my solo startup, I just need to use 1 minute to deploy my backend server and use 5 minutes to fix a minor bug and deploy. It is direct and fast. For big companies, it takes 1 week to prepare the Change Request, fill in details to pass the release engineer checker, get approvals from managers, do the deployment with the IT team, and do post-verification or health checks.
+In my solo startup, I just need to use 1 minute to deploy my backend server and use 5 minutes to fix a minor bug and deploy. It is direct and fast. For big companies, it takes 1 week to prepare the Deployment Request, get approvals from managers, do the deployment with the IT team, and do health checks.
 
 Though the actual time spent might be 8 hours, if we measure it, it is still 1 week from preparing the deployment to the final health check.
 
