@@ -38,3 +38,5 @@ generated: false
 - Because their English is poor, they can’t communicate about complex topics in English.
 
 - They are afraid and nervous because they used dishonest methods—such as falsifying work experience on their resume or memorizing interview questions provided by recruiters—to luckily secure the job. Now, they live in constant fear of being exposed, which is why they rarely smile or laugh.
+
+- Bad engineers often reveal themselves in their mid-30s or 40s. They spend most of their career playing games, doing just one hour of real work—or even less—when needed.
