@@ -34,3 +34,6 @@ generated: false
 - Impatient to demonstrate that they are okay, they claim to know how to change things here and there, but in reality, they lack deep understanding.
 
 - They work for an international company but still use Baidu to search for information.
+
+- Because their English is poor, they can’t communicate about complex topics in English.
+
