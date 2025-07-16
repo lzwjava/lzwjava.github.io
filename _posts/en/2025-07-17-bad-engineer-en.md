@@ -25,7 +25,9 @@ translated: false
 
 - Even in an international company, insists on typing in Chinese (e.g., in Teams chats).  
 
-- Comes from a once-prestigious big company that has declined in recent years—relying on past success rather than innovation. Such employees coast on their degrees and reputation, mirroring their company's reliance on brand over quality.  
+- Comes from a once-prestigious big company that has declined in recent years—relying on past success rather than innovation. Such employees coast on their degrees and reputation, mirroring their company's reliance on brand over quality.
+
+- Poorly skilled engineers often remain employed at a large company for many years for two main reasons: first, their inability to transition to new jobs easily, and second, they tend to stay until a company branch shuts down due to employer tolerance.
 
 - Worries about performance, yet resorts to cheating or cutting corners instead of improving.  
 
@@ -35,7 +37,7 @@ translated: false
 
 - They work for an international company but still use Baidu to search for information.
 
-- Because their English is poor, they can’t communicate about complex topics in English.
+- Because their English is poor, they can’t even communicate about simple topics in English.
 
 - They are afraid and nervous because they used dishonest methods—such as falsifying work experience on their resume or memorizing interview questions provided by recruiters—to luckily secure the job. Now, they live in constant fear of being exposed, which is why they rarely smile or laugh.
 

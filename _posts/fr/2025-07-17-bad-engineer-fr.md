@@ -9,9 +9,9 @@ translated: true
 
 - Communique uniquement par des captures d'écran, utilisant des phrases comme *"pourquoi pas ok ?"* ou *"a une question"*—anglais extrêmement basique.
 
-- Demande votre aide lors des réunions, mais fait ensuite la plupart de la conversation et n'écoute pas attentivement vos suggestions.
+- Demande votre aide en réunion, mais fait ensuite la plupart de la conversation et n'écoute pas attentivement vos suggestions.
 
-- A un esprit rigide et a du mal avec la pensée critique.
+- A un esprit rigide et a du mal à penser de manière critique.
 
 - Met des mois à terminer de petites tâches, trouvant toujours des excuses.
 
@@ -25,20 +25,22 @@ translated: true
 
 - Même dans une entreprise internationale, insiste pour taper en chinois (par exemple, dans les discussions Teams).
 
-- Vient d'une grande entreprise autrefois prestigieuse qui a décliné ces dernières années—se reposant sur le succès passé plutôt que sur l'innovation. De tels employés se contentent de leurs diplômes et de leur réputation, reflétant la dépendance de leur entreprise à la marque plutôt qu'à la qualité.
+- Vient d'une grande entreprise autrefois prestigieuse qui a décliné ces dernières années—se reposant sur les succès passés plutôt que sur l'innovation. De tels employés se reposent sur leurs diplômes et leur réputation, reflétant la dépendance de leur entreprise à la marque plutôt qu'à la qualité.
 
-- S'inquiète de ses performances, mais recourt à la tricherie ou aux raccourcis au lieu de s'améliorer.
+- Les ingénieurs peu compétents restent souvent employés dans une grande entreprise pendant de nombreuses années pour deux raisons principales : d'abord, leur incapacité à se reconvertir facilement, et ensuite, ils restent jusqu'à la fermeture d'une succursale de l'entreprise en raison de la tolérance de l'employeur.
+
+- S'inquiète des performances, mais recourt à la tricherie ou aux raccourcis au lieu de s'améliorer.
 
 - Un mauvais ingénieur n'est pas seulement coûteux en termes de salaire—il gaspille du temps et force les ingénieurs compétents à nettoyer ses erreurs.
 
-- Impatient de prouver qu'il est à la hauteur, il prétend savoir comment changer les choses ici et là, mais en réalité, il manque de compréhension approfondie.
+- Impatient de prouver qu'il est compétent, il affirme savoir comment changer certaines choses ici et là, mais en réalité, il manque de compréhension approfondie.
 
-- Il travaille pour une entreprise internationale mais utilise toujours Baidu pour chercher des informations.
+- Il travaille pour une entreprise internationale mais utilise toujours Baidu pour rechercher des informations.
 
-- Parce que son anglais est mauvais, il ne peut pas communiquer sur des sujets complexes en anglais.
+- Parce que son anglais est mauvais, il ne peut même pas communiquer sur des sujets simples en anglais.
 
-- Il a peur et est nerveux parce qu'il a utilisé des méthodes malhonnêtes—comme falsifier son expérience professionnelle dans son CV ou mémoriser les questions d'entretien fournies par les recruteurs—pour obtenir le poste par chance. Maintenant, il vit dans la crainte constante d'être démasqué, ce qui explique pourquoi il sourit ou rit rarement.
+- Il a peur et est nerveux parce qu'il a utilisé des méthodes malhonnêtes—comme falsifier son expérience professionnelle dans son CV ou mémoriser des questions d'entretien fournies par des recruteurs—pour obtenir le poste par chance. Maintenant, il vit dans la crainte constante d'être démasqué, ce qui explique pourquoi il sourit ou rit rarement.
 
-- Les mauvais ingénieurs se révèlent souvent vers la trentaine ou la quarantaine. Ils passent la majeure partie de leur carrière à jouer, ne faisant qu'une heure de travail réel—ou moins—quand c'est nécessaire dans une journée de travail.
+- Les mauvais ingénieurs se révèlent souvent dans la trentaine ou la quarantaine. Ils passent la majeure partie de leur carrière à jouer à des jeux, ne faisant qu'une heure de travail réel—or moins—par jour de travail.
 
-- Ils sont tentés de rester silencieux parce qu'il n'y a pas beaucoup de progrès à rapporter, et ils ne veulent pas que cela se sache.
+- Ils sont tentés de rester silencieux parce qu'il n'y a pas beaucoup de progrès à signaler, et ils ne veulent pas que cela soit découvert.
