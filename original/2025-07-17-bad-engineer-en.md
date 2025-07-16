@@ -25,7 +25,9 @@ generated: false
 
 - Even in an international company, insists on typing in Chinese (e.g., in Teams chats).  
 
-- Comes from a once-prestigious big company that has declined in recent years—relying on past success rather than innovation. Such employees coast on their degrees and reputation, mirroring their company's reliance on brand over quality.  
+- Comes from a once-prestigious big company that has declined in recent years—relying on past success rather than innovation. Such employees coast on their degrees and reputation, mirroring their company's reliance on brand over quality.
+
+- Poorly skilled engineers often remain employed at a large company for many years for two main reasons: first, their inability to transition to new jobs easily, and second, they tend to stay until a company branch shuts down due to employer tolerance.
 
 - Worries about performance, yet resorts to cheating or cutting corners instead of improving.  
 
