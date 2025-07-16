@@ -7,7 +7,7 @@ title: On Big Companies
 translated: false
 ---
 
-Big companies are just like big programs. For a big company with 100,000 employees and 100,000 contractors, they are just like a big program with 200,000 methods.
+Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 200,000 methods.
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
 
