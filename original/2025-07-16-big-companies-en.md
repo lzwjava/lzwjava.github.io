@@ -89,8 +89,10 @@ For software, code and logic are tightly intertwined, especially in well-designe
 
 That's why scaling a team suddenly often doesn't work. If there is a microservice architecture that is loosely coupled, then the output of the team may be proportional to the number of team members. If there is a monolithic project that is tightly coupled, then the output of the team may only increase by 30% if we double the size of the team working on it.
 
+Due to its slow pace, it can sometimes be difficult to determine whether an employee or contractor is incapable or if the system is too complex and cumbersome for new joiners. In one case I observed, someone had been with the company for four months and accomplished very little, merely changing a few lines of code to submit a pull request. Moreover, the quality of the code was poor as he did not understand it well. His English was also very weak, and he could only communicate by pasting screenshots and using basic English to ask questions.
+
 Regarding stability, I see that big companies tend to have multiple team members work on duplicate tasks. For example, for task A and task B, they do not assign two team engineers to work separately on task A and task B. Instead, they have both work on parts of task A and task B so that these two engineers know what the other is doing. This makes the team more stable, as it prevents a situation where only one person knows a lot about large parts of the code and has been working on that for several years without collaboration. Then, if that person leaves the company, no one else can work on it.
 
 One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
 
-
+How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me. 
