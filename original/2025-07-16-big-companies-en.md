@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Big Companies
+title: On Big Companies
 translated: false
 generated: false
 ---
