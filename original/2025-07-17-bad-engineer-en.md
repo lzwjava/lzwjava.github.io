@@ -29,7 +29,5 @@ generated: false
 
 - Worries about performance, yet resorts to cheating or cutting corners instead of improving.  
 
-- Even after one or two years, fails to catch up—because they don’t listen or read carefully.  
-
 - A bad engineer isn’t just costly in terms of salary—they waste time and force capable engineers to clean up their mess.  
 
