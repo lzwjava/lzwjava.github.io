@@ -6,6 +6,7 @@ title: How I Learned the KQV Mechanism in Transformers
 translated: false
 generated: false
 ---
+
 After reading [K, Q, V Mechanism in Transformers](https://lzwjava.github.io/notes/2025-06-02-attention-kqv-en), I somehow understood how K, Q, and V work.
 
 Q stands for Query, K stands for Key, and V stands for Value. For a sentence, the Query is a matrix that stores the value of a token that it needs to ask other tokens about. The Key stands for the description of the tokens, and the Value stands for the actual meaning matrix of the tokens.
