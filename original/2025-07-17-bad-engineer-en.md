@@ -37,7 +37,7 @@ generated: false
 
 - They work for an international company but still use Baidu to search for information.
 
-- Because their English is poor, they can’t communicate about simple topics in English.
+- Because their English is poor, they can’t even communicate about simple topics in English.
 
 - They are afraid and nervous because they used dishonest methods—such as falsifying work experience on their resume or memorizing interview questions provided by recruiters—to luckily secure the job. Now, they live in constant fear of being exposed, which is why they rarely smile or laugh.
 
