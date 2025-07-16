@@ -41,19 +41,15 @@ In my startup, once I got a half-million investment to hire 9 people, and after 
 
 That's a very intensive and painful memory. And that made me remember that lesson all the time.
 
-From my experience, I had a chance to observe a similar case in a big company. What I observed is that no one actually got punished for that. Some high-level managers and most of the people hired at that time had to be let go. I don't know whether it relates to hiring fast and hiring a lot suddenly.
+In a notable case within a large corporation, it was observed that there were no significant repercussions for those involved. Some senior managers and many of the recently hired employees were let go. It remains unclear whether this was related to a rapid and substantial hiring spree.
 
-One reason that doesn't work is that big companies have tedious and many processes or procedures. The engineers who join for half a year or a year couldn't contribute much. Two months are for becoming familiar with the basics, 3 months are for becoming familiar with projects, and 3 months are for some tedious process or testing, and 2 months are for actual work that can be felt by users.
+One contributing factor to this outcome is the cumbersome and numerous processes within large companies. Engineers who had been with the company for six months to a year were unable to make significant contributions. The timeline typically included two months to grasp the basics, three months to become acquainted with the projects, three months navigating through tedious procedures or testing, and finally, two months of productive work that impacted users.
 
-And if we suppose every employee or contractor works for 8 hours, then 2 months of actual work doesn't accomplish much.
+Assuming an eight-hour workday, two months of actual productive work did not yield substantial results. The department's budget was depleted, and the user base did not expand as anticipated, leading to further layoffs.
 
-And the budget for the department couldn't last. The user base didn't grow as expected. So they had to let people go.
+It appeared that no valuable lessons were learned from this experience. Initially, a group of managers decided on a rapid and extensive hiring strategy, which seemed unnecessary at the time. Blaming the entire group of managers was not feasible, nor was it practical to dismiss only those who had been with the company for a short period, especially when other managers and technical leads had been part of the team for six to eight years.
 
-And it seems no one really learned this lesson. At the start, there was a group of managers making the decision to hire fast and a lot. And it seems at that time, this wasn't much needed. So you can't blame a group of managers for that. You can't let go of only part of them, especially those who only joined for 1 or 2 years. Because the other managers or technical leads have been in the team from the start, so they stayed there for 6 years or 8 years.
-
-The managing director didn't learn much from it. Because this is just one of three departments under him. And his salary or compensation is still the same.
-
-Even in that team, if you are not the responsible one, you can't learn that lesson. Just like Steve Jobs' comments about consulting. So no one will learn this lesson and make a great team to do something marvelous for the users.
+The managing director did not gain much insight from the situation, as this was just one of three departments under their supervision, and their compensation remained unchanged. Even within the team, those not directly responsible were unable to learn from the experience, echoing Steve Jobs' remarks on consulting. Consequently, no one absorbed the lesson necessary to form an exceptional team capable of delivering outstanding results for users.
 
 For startups, it seems a much better case. Because it is really serious. Some of the founders who lose or fail are really having a hard time, especially the honest ones.
 
