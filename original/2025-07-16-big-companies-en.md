@@ -72,3 +72,7 @@ And big companies tend to use experience to give rewards to employees. While the
 Working in big companies is like learning in school. You progress from primary school to middle school, then to universities. In startups, however, there are more ups and downs, and there is more flexibility as you move from one idea or market to another.
 
 For big companies, the benefit of being risk-averse is that their products are relatively stable with no apparent bugs or downtime. That's good.
+
+But like AI, actually, a lot of users are ok to those product that's not so stable for the early, like deepseek. We know that deepseek down a lot around Feb March of 2025 when it gains a lot of attentino. but after some time, it becomes better and no users seem have much problem of that.
+
+So it depends. Sometimes, for innovative products, we need to get them to market quickly, even if they have some issues. Users can understand.
