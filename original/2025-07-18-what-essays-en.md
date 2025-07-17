@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-I have covered a lot of things in my blog. Compared to [Yin Wang's Blog](https://www.yinwang.org), there is still much I have not yet written about, or like Hanhan's blog, [Hankcs](https://www.hankcs.com).
+I have covered a lot of things in my blog. Compared to [Yin Wang's Blog](https://www.yinwang.org), there is still much I have not yet written about, or like Hehan's blog, [Hankcs](https://www.hankcs.com).
 
 To address this, I should consider what I need to do. Then, I can share a lot about the journey of exploring that topic.
 
