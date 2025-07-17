@@ -11,7 +11,7 @@ Big companies are just like big programs. For a big company with 100,000 employe
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
 
-Big companies have so many procedures and processes because they don't trust their employees or contractors. So they need to check a lot and control a lot.
+Dario Amodei also mentioned that big companies have so many procedures and processes because they don't trust their employees or contractors. So they need to check a lot and control a lot.
 
 One thing about big companies is that they are afraid to make mistakes. One reason is that they have grown so big to be worth 300 billion or 1 trillion dollars; they must have made tons of mistakes and grown from that. However, when they are successful, they are averse to taking risks and making mistakes again.
 
