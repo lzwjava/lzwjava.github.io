@@ -96,3 +96,6 @@ Regarding stability, I see that big companies tend to have multiple team members
 One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
 
 How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me. 
+
+The second thing is to follow what others do; it is safe. Becoming an average engineer on the team is safe, just like being an average person on the street—neither too outstanding nor too neglected, but right in the middle.
+
