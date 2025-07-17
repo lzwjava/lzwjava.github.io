@@ -7,34 +7,34 @@ translated: false
 generated: false
 ---
 
-When I am young, I often don't think much of others. I usually think of myself. That means I don't think much how other people live, think of me, purpose, mental state, struggle, character, etc.
+When I was young, I often didn't think much about others. I usually thought about myself, meaning I didn't consider much about how other people lived, what they thought of me, their purposes, mental states, struggles, characters, etc.
 
-When I have more conflicts with others, then I want to think of others more. Why they don't like me? Why they have opinions with me? Why they are not ok with my honest behavior or words? Why some of people leave me? Why some people we start to lost contact with?
+When I had more conflicts with others, I wanted to think more about them. Why didn't they like me? Why did they have opinions about me? Why weren't they okay with my honest behavior or words? Why did some people leave me? Why did some people and I start to lose contact?
 
-Do I overthink much? It is not that we lose contact with, but that I don't try to contact proactively?
+Did I overthink? Was it not that we lost contact, but that I didn't try to contact them proactively?
 
-And in the corporate career, why someone say such thing? why someone shows impatience? What's everyone's priority? Who can deliver and who are not? Who's words are more honest? Who can point out the solutions? Who's insight has more wisdom? 
+And in the corporate career, why did someone say such things? Why did someone show impatience? What were everyone's priorities? Who could deliver and who couldn't? Whose words were more honest? Who could point out the solutions? Whose insights had more wisdom?
 
-It is tons of work to analyze. So when I am younger, I didn't think about much that. Because it cost time and thinking. This is harder thing to do.
+It is a lot of work to analyze. So when I was younger, I didn't think about it much because it took time and effort. It is a harder thing to do.
 
-I have to say, thoughts of others are highly related to their behaviors. When someone mentioned that this company is only a bank, why don't you go to other tech company. Then after half a year, you might see that he or she change to another job.
+I have to say, thoughts of others are highly related to their behaviors. When someone mentioned that this company was only a bank and suggested going to another tech company, then after half a year, you might see that he or she had changed to another job.
 
-But sometimes, it is hard to guess. While someone may commit to work diligently, but actually they have other thoughts, but however, they don't execute at the moment and stay in the team. 
+But sometimes, it is hard to guess. While someone may appear to work diligently, they might actually have other thoughts but do not act on them at the moment and stay in the team.
 
-Marriage is serious thing. So if couple break up, there should be some fundamental thing that couldn't be fixed. For job, if employee and employer break up, there is probably also some big gap between. 
+Marriage is a serious thing. So if a couple breaks up, there should be some fundamental issue that couldn't be fixed. For a job, if an employee and employer part ways, there is probably also a significant gap between them.
 
-While people have differnt thoughts, they seldom change them. Only a small of people can update their thoughts frequently.  And it depends too. So this include whether someone like you.
+While people have different thoughts, they seldom change them. Only a small number of people update their thoughts frequently, and it depends on various factors. This includes whether someone likes you.
 
-For someone don't like you, it is hard to let them like you. For someone don't hate you, it is hard to make them hate you too. For someone in the middle, then it probably will change the attitude to you due to some interactions.
+For someone who doesn't like you, it is hard to make them like you. For someone who doesn't hate you, it is hard to make them hate you too. For someone in the middle, their attitude toward you might change due to some interactions.
 
-Why we think of thoughts of others? One reason is that we want to collabore better with others, so our thoughts won't have much conflicts with others. We ard hard to change our thoughts to that of others, but at least we can know what's difference between and then we are probally more willing to accept thoughts of others too.
+Why do we think about the thoughts of others? One reason is that we want to collaborate better with others so that our thoughts won't conflict much with theirs. We find it hard to change our thoughts to match those of others, but at least we can know the differences and then we are probably more willing to accept others' thoughts too.
 
-People like to be same. People think they are best and others should follow. And some people have better tolerance of being different. Even in one team, different people have differnt feeling or judgement of others. Though the people may treat everyone same, but to others' understanding, sometimes it is different.
+People like to be the same. People think they are the best and others should follow. Some people have better tolerance for being different. Even in one team, different people have different feelings or judgments about others. Though people may treat everyone the same, others' understanding might differ.
 
-And maybe that we should focus on behaviors of others, we are hard to know thoughts of others exactly. Because that change fast. As time pass by, when one mull over things, one may have different opinions of things. 
+Perhaps we should focus on the behaviors of others since it is hard to know their thoughts exactly. Because thoughts change fast, as time passes, when one mulls over things, one may have different opinions.
 
-And there is saying to say that we better to see how others act instead of talking. Because in the talking, they might be lying or that just saying part of truth, or that quickly change the actions without updating talking.
+There is a saying that it is better to see how others act instead of what they say. Because in their talk, they might be lying, telling only part of the truth, or quickly changing their actions without updating their words.
 
-How to know thoughts of others better? One is to meet more people to know different views of things and world. One is to think more and from different angle to gain more empathy. One is that if you guys to talk openly, just directly ask.
+How to know the thoughts of others better? One way is to meet more people to understand different views of things and the world. Another is to think more and from different angles to gain more empathy. Another way is if you talk openly, just directly ask.
 
-If we really can think thoroughly and think from different angles, others' thoughts are just our thoughts. That will be great because it make more harmony and make us live in this world better.
+If we can think thoroughly and from different angles, others' thoughts are just like our thoughts. That would be great because it creates more harmony and helps us live in this world better.
