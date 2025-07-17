@@ -93,6 +93,8 @@ Due to its slow pace, it can sometimes be difficult to determine whether an empl
 
 Regarding stability, I see that big companies tend to have multiple team members work on duplicate tasks. For example, for task A and task B, they do not assign two team engineers to work separately on task A and task B. Instead, they have both work on parts of task A and task B so that these two engineers know what the other is doing. This makes the team more stable, as it prevents a situation where only one person knows a lot about large parts of the code and has been working on that for several years without collaboration. Then, if that person leaves the company, no one else can work on it.
 
+Another thing big companies do well is maintain cash flow and profit discipline. The reason is that as they grow larger, they often face substantial financial crises. This is probably the most important thing they prioritize. They have learned this the hard way and have ingrained these practices into their operations. Even when they are making profits of 10 billion USD or 30 billion USD a year, they continue to optimize their workforce and conduct layoffs.
+
 One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
 
 How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me. 
