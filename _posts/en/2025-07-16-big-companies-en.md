@@ -11,7 +11,7 @@ Big companies are just like big programs. For a big company with 100,000 employe
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
 
-Big companies have so many procedures and processes because they don't trust their employees or contractors. So they need to check a lot and control a lot.
+Dario Amodei also mentioned that big companies have so many procedures and processes because they don't trust their employees or contractors. So they need to check a lot and control a lot.
 
 One thing about big companies is that they are afraid to make mistakes. One reason is that they have grown so big to be worth 300 billion or 1 trillion dollars; they must have made tons of mistakes and grown from that. However, when they are successful, they are averse to taking risks and making mistakes again.
 
@@ -92,6 +92,8 @@ That's why scaling a team suddenly often doesn't work. If there is a microservic
 Due to its slow pace, it can sometimes be difficult to determine whether an employee or contractor is incapable or if the system is too complex and cumbersome for new joiners. In one case I observed, someone had been with the company for four months and accomplished very little, merely changing a few lines of code to submit a pull request. Moreover, the quality of the code was poor as he did not understand it well. His English was also very weak, and he could only communicate by pasting screenshots and using basic English to ask questions.
 
 Regarding stability, I see that big companies tend to have multiple team members work on duplicate tasks. For example, for task A and task B, they do not assign two team engineers to work separately on task A and task B. Instead, they have both work on parts of task A and task B so that these two engineers know what the other is doing. This makes the team more stable, as it prevents a situation where only one person knows a lot about large parts of the code and has been working on that for several years without collaboration. Then, if that person leaves the company, no one else can work on it.
+
+Another thing big companies do well is maintain cash flow and profit discipline. The reason is that as they grow larger, they often face substantial financial crises. This is probably the most important thing they prioritize. They have learned this the hard way and have ingrained these practices into their operations. Even when they are making profits of 10 billion USD or 30 billion USD a year, they continue to optimize their workforce and conduct layoffs.
 
 One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
 
