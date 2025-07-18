@@ -1,6 +1,7 @@
 import copy
 import yaml
 import os
+import re
 
 from translate_client import translate_text
 
