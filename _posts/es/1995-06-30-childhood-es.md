@@ -7,6 +7,10 @@ title: Recuerdos de la infancia
 translated: true
 ---
 
+Este post fue escrito en julio de 2025.
+
+---
+
 Nací en 1995. Las fotos de abajo fueron tomadas por un fotógrafo que fue invitado por nuestra escuela primaria en Meizhou.
 
 {: .centered }

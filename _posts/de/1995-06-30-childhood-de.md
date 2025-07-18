@@ -7,6 +7,10 @@ title: Kindheitserinnerungen
 translated: true
 ---
 
+Dieser Beitrag wurde im Juli 2025 verfasst.
+
+---
+
 Ich wurde 1995 geboren. Die unten stehenden Fotos wurden von einem Fotografen gemacht, der von unserer Grundschule in Meizhou eingeladen wurde.
 
 {: .centered }
