@@ -17,9 +17,7 @@ And in the corporate career, why did someone say such things? Why did someone sh
 
 It is a lot of work to analyze. So when I was younger, I didn't think about it much because it took time and effort. It is a harder thing to do.
 
-I have to say, thoughts of others are highly related to their behaviors. When someone mentioned that this company was only a bank and suggested going to another tech company, then after half a year, you might see that he or she had changed to another job.
-
-But sometimes, it is hard to guess. While someone may appear to work diligently, they might actually have other thoughts but do not act on them at the moment and stay in the team.
+I have to say that the thoughts of others are highly related to their behaviors. When someone mentions something and you observe their behavior later, you will probably find a correlation.
 
 Marriage is a serious thing. So if a couple breaks up, there should be some fundamental issue that couldn't be fixed. For a job, if an employee and employer part ways, there is probably also a significant gap between them.
 
