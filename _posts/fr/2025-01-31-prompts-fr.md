@@ -7,271 +7,150 @@ title: Prompts utiles
 translated: true
 ---
 
+Here is the translated content in French:
+
+---
+
+Traduisez les publications ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
+
+---
+
+Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
+
+- Explorer des sous-thèmes spécifiques et leurs complexités.
+- Comparer et opposer différentes technologies ou méthodologies liées au sujet.
+- Discuter des cas d'utilisation réels et de leurs implications.
+- Poser des questions approfondies pour découvrir des insights plus profonds.
+- Inclure occasionnellement des quiz pour tester leurs connaissances.
+- Se concentrer sur les aspects pratiques et mécanismes du sujet, plutôt que de s'appuyer sur des formules.
+
+Assurez-vous que le dialogue s'écoule naturellement, avec un échange équilibré d'idées et de perspectives.
+
+Le format doit être le suivant :
+
 ```json
 [
     {
       "speaker": "A",
-      "line": "Salut, j’ai beaucoup entendu parler de l’examen 04730, de l’examen d’auto-apprentissage en Chine et de la technologie électronique de base 3. Peux-tu m’expliquer tout cela en détail ?"
+      "line": "Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?"
     },
     {
       "speaker": "B",
-      "line": "Bien sûr ! Commençons par les bases. L’examen 04730 est une certification reconnue en Chine, souvent liée à des compétences techniques spécifiques. L’examen d’auto-apprentissage en Chine permet aux candidats de se préparer sans suivre de cours formels, ce qui est très pratique pour ceux qui ont un emploi du temps chargé."
-    },
-    {
-      "speaker": "A",
-      "line": "Intéressant. Et la technologie électronique de base 3, c’est quoi exactement ?"
-    },
-    {
-      "speaker": "B",
-      "line": "C’est un domaine qui couvre les fondamentaux de l’électronique, comme les circuits, les composants et les principes de base. C’est essentiel pour comprendre des systèmes plus complexes par la suite."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment ces examens sont-ils structurés ? Y a-t-il des différences majeures entre eux ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Oui, l’examen 04730 est souvent plus théorique, tandis que l’examen d’auto-apprentissage peut inclure des applications pratiques. La technologie électronique de base 3, elle, est plus axée sur les compétences techniques concrètes."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les défis courants pour les candidats à ces examens ?"
-    },
-    {
-      "speaker": "B",
-      "line": "La compréhension des concepts abstraits peut être difficile, surtout sans formation formelle. De plus, la gestion du temps pendant les examens est cruciale."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment recommandes-tu de se préparer efficacement ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Je suggère de commencer par les bases, de pratiquer avec des exercices et de passer des examens blancs pour se familiariser avec le format."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les avantages de passer ces examens ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils ouvrent des portes dans le domaine de l’électronique et peuvent améliorer les perspectives de carrière."
-    },
-    {
-      "speaker": "A",
-      "line": "Y a-t-il des ressources en ligne que tu recommandes ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Oui, des plateformes comme Coursera et Udemy offrent des cours en ligne, et des forums comme Reddit peuvent être utiles pour poser des questions."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les technologies électroniques évoluent-elles actuellement ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Elles évoluent rapidement, avec des avancées dans l’IA, l’IoT et les circuits intégrés."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les domaines les plus prometteurs dans l’électronique ?"
-    },
-    {
-      "speaker": "B",
-      "line": "L’électronique quantique et les systèmes embarqués sont particulièrement prometteurs."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens comme le 04730 s’adaptent-ils à ces nouvelles technologies ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils intègrent progressivement des modules sur les nouvelles technologies, mais il faut encore du temps pour que les programmes soient à jour."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles compétences supplémentaires sont utiles pour réussir dans ce domaine ?"
-    },
-    {
-      "speaker": "B",
-      "line": "La programmation, la résolution de problèmes et la capacité à travailler en équipe sont essentielles."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens d’auto-apprentissage en Chine se comparent-ils à ceux d’autres pays ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils sont souvent plus flexibles et moins chers, mais ils peuvent manquer de reconnaissance internationale."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les pièges à éviter lors de la préparation ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Éviter de se concentrer uniquement sur la théorie et négliger la pratique."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens évaluent-ils les compétences pratiques ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Certains incluent des projets pratiques ou des simulations pour tester les compétences appliquées."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les tendances actuelles dans l’électronique de base ?"
-    },
-    {
-      "speaker": "B",
-      "line": "L’accent est mis sur l’efficacité énergétique et la miniaturisation des composants."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les candidats peuvent-ils rester motivés pendant leur préparation ?"
-    },
-    {
-      "speaker": "B",
-      "line": "En fixant des objectifs réalistes et en célébrant les petites victoires."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les meilleurs moments pour passer ces examens ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Cela dépend des préférences personnelles, mais beaucoup choisissent de passer les examens après une période de préparation intense."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens sont-ils notés ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Généralement, il y a une combinaison de questions théoriques et pratiques, avec des critères de notation clairs."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les erreurs courantes que les candidats commettent ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Négliger les détails, mal gérer leur temps et ne pas réviser suffisamment."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens d’auto-apprentissage en Chine sont-ils perçus par les employeurs ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils sont de plus en plus reconnus, surtout dans les secteurs technologiques."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les ressources les plus utiles pour les candidats ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Les manuels officiels, les forums en ligne et les groupes d’étude sont très utiles."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens évoluent-ils avec les nouvelles technologies ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils intègrent progressivement des modules sur les nouvelles technologies, mais il faut encore du temps pour que les programmes soient à jour."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les compétences supplémentaires utiles pour réussir dans ce domaine ?"
-    },
-    {
-      "speaker": "B",
-      "line": "La programmation, la résolution de problèmes et la capacité à travailler en équipe sont essentielles."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens d’auto-apprentissage en Chine se comparent-ils à ceux d’autres pays ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils sont souvent plus flexibles et moins chers, mais ils peuvent manquer de reconnaissance internationale."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les pièges à éviter lors de la préparation ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Éviter de se concentrer uniquement sur la théorie et négliger la pratique."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens évaluent-ils les compétences pratiques ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Certains incluent des projets pratiques ou des simulations pour tester les compétences appliquées."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les tendances actuelles dans l’électronique de base ?"
-    },
-    {
-      "speaker": "B",
-      "line": "L’accent est mis sur l’efficacité énergétique et la miniaturisation des composants."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les candidats peuvent-ils rester motivés pendant leur préparation ?"
-    },
-    {
-      "speaker": "B",
-      "line": "En fixant des objectifs réalistes et en célébrant les petites victoires."
-    },
-    {
-      "speaker": "A",
-      "line": "Quels sont les meilleurs moments pour passer ces examens ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Cela dépend des préférences personnelles, mais beaucoup choisissent de passer les examens après une période de préparation intense."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens sont-ils notés ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Généralement, il y a une combinaison de questions théoriques et pratiques, avec des critères de notation clairs."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les erreurs courantes que les candidats commettent ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Négliger les détails, mal gérer leur temps et ne pas réviser suffisamment."
-    },
-    {
-      "speaker": "A",
-      "line": "Comment les examens d’auto-apprentissage en Chine sont-ils perçus par les employeurs ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ils sont de plus en plus reconnus, surtout dans les secteurs technologiques."
-    },
-    {
-      "speaker": "A",
-      "line": "Quelles sont les ressources les plus utiles pour les candidats ?"
-    },
-    {
-      "speaker": "B",
-      "line": "Les manuels officiels, les forums en ligne et les groupes d’étude sont très utiles."
+      "line": "Bien sûr ! Commençons par les bases. ..."
     }
 ]
 ```
+
+À propos de l'examen 04730, de l'examen d'auto-apprentissage en Chine et de la technologie électronique de base 3.
+
+---
+
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration en profondeur des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+
+À propos du contenu PDF. Le format doit être le suivant :
+
+A : Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?
+
+B : Bien sûr ! Commençons par les bases.
+
+---
+
+Générez une image joyeuse pour le Nouvel An du Serpent lunaire avec des noms inclus.
+
+---
+
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
+
+---
+
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
+
+---
+
+Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
+Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
+Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes supplémentaires.
+
+Fichiers modifiés :
+{', '.join(file_changes)}
+
+---
+
+Créez un titre YouTube.
+
+---
+
+蕾(つぼみ) - Tsubomi
+
+Donnez les paroles en japonais, et expliquez-les, pour chaque mot et prononciation.
+
+---
+
+Donnez un tutoriel complet sur ce chapitre.
+
+---
+
+Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière.
+
+---
+
+Recommandez des vidéos YouTube sur ...
+
+---
+
+Donnez quelques introductions sur la ville de Davao à Mindanao, aux Philippines.
+
+---
+
+Donnez une analyse complète du fonctionnement des inducteurs.
+
+---
+
+Philippines
+
+Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et impactent-ils ?
+
+---
+
+Donnez une discussion sur xx.
+
+---
+
+Donnez un avis sur xx.
+
+---
+
+Aidez à organiser cette conférence, sortez le plus possible du transcript et aidez à donner une note.
+
+---
+
+Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
+
+---
+
+Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les timestamps.
+
+---
+
+Quelle est la prochaine date de publication du rapport de résultats de Google ?
+
+---
+
+Dessinez quelques graphiques pour comprendre.
+
+---
+
+Identifiez uniquement les lignes nécessitant des modifications, et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse les copier-coller directement.
+
+---
+
+Organisez ce transcript, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
+
+---
+
+Donnez 30 questions à choix multiples à option unique sur un sujet.
+
+---
+
+Écrivez en japonais comme un enfant de primaire, utilisez des phrases très simples.

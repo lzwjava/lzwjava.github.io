@@ -7,7 +7,11 @@ title: Useful Prompts
 translated: false
 ---
 
-Here is the translated content:
+Here is the translated content in English:
+
+---
+
+Translate the following posts or words into Chinese, ensuring that names (e.g., people, places, brands, or specific terms) are not translated and remain in their original form. Only translate the surrounding text into Chinese.
 
 ---
 
@@ -37,113 +41,114 @@ The format should be as follows:
 ]
 ```
 
-关于04730考试、中国自考和基础电子技术3的对话。
+About the 04730 exam, self-study China exam, and basic electronics technology 3.
 
 ---
 
-创建一个自然且延伸的对话，A和B两位专家之间至少进行50轮深入讨论。他们应该深入探讨一个具体主题，对话流畅自然。双方应提出问题、分享见解，并探索主题的细微差别。使用技巧如深入探讨子主题、比较技术、探索用例、辩论权衡取舍和讨论新兴趋势。扩展至50+轮。
+Create a natural and extended conversation between two experts, A and B, with at least 50 turns. The experts should discuss a specific topic in depth, with the conversation flowing back and forth. Both participants should ask questions, share insights, and explore the nuances of the subject matter. Use skills such as diving deeper into subsections, comparing technologies, exploring use cases, debating trade-offs, and discussing emerging trends. Expand to 50+ turns.
 
-关于PDF内容。格式如下：
+About the PDF content. The format should be as follows:
 
-A: 嘿，我最近听到很多关于某个主题的讨论。你能帮我解释一下吗？
+A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
 
-B: 当然！我们从基础开始。
-
----
-
-生成一张带有文字名称的快乐蛇年新年图像。
+B: Sure! Let’s start with the basics.
 
 ---
 
-创建一个480p的YouTube视频封面图像，包含以下元素：AI、鲨鱼、未来感、鲜艳、日出、超大城市，中间有DeepSeek R1的大字。
+Generate a happy Lunar Snake New Year image with text names included.
 
 ---
 
-创建一个480p的YouTube视频封面图像，包含以下元素：基础电子技术、未来感、激动人心。
+Create a 480p YouTube video cover image with below elements, AI, shark, futuristic, vivid, colorful, sunrise, city with super large text DeepSeek R1 in the center.
 
 ---
 
-为以下代码更改生成一个简洁的Conventional Commits格式的提交消息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，可以包含一个范围来描述代码库的受影响部分。提交消息不超过70个字符。只给出提交消息，不需要任何前导或尾随说明。
+Create a 480p YouTube video cover image with below elements: Basic Electronics, futuristic, exciting.
 
-更改的文件：
+---
+
+Generate a concise commit message in Conventional Commits format for the following code changes.
+Use one of the following types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, or revert.
+If applicable, include a scope in parentheses to describe the part of the codebase affected.
+The commit message should not exceed 70 characters. Just give the commit message, without any leading or trailing notes.
+
+Changed files:
 {', '.join(file_changes)}
 
 ---
 
-创建一个YouTube标题。
+Create a YouTube title.
 
 ---
 
 蕾(つぼみ) - Tsubomi
 
-给出日语歌词，并解释每个词的含义和发音。
+Give its lyrics in Japanese, and explain them, for every word and pronunciation.
 
 ---
 
-为这一章节提供一个全面的教程。
+Give a comprehensive tutorial about this chapter.
 
 ---
 
-给出一个全面的历史，谁发现了它，背后的故事是什么？
+Give a comprehensive history of this, who discovered this, what's the story behind.
 
 ---
 
-推荐关于...的YouTube视频。
+Recommend YouTube videos about ...
 
 ---
 
-给出关于菲律宾达沃市的介绍。
+Give some introductions about Davao City in Mindanao, Philippines.
 
 ---
 
-给出电感器工作原理的全面分析。
+Give a comprehensive analysis of how inductors work.
 
 ---
 
-菲律宾
-
-什么特别？它的独特之处是什么？它的人民如何为技术做出贡献？它的人民如何发明并产生影响？
+Philippines: What are special? What's its uniqueness? How do its people contribute to technology? How do its people invent and impact?
 
 ---
 
-关于xx的讨论。
+Give a discussion about xx.
 
 ---
 
-关于xx的评论。
+Give a review about xx.
 
 ---
 
-帮助组织这个演讲，尽量减少转录内容，并帮助提供笔记。
+Help organize this talk, get out of transcript as much, and help give a note.
 
 ---
 
-叶聪，数学，他的故事是什么？我们能从中学到什么？
+Yitang Zhang, math, what's his story, what we can learn from.
 
 ---
 
-基于这个YouTube视频，创建一个教程，不包括时间戳。
+Based on this YouTube video, create a tutorial, do not include timestamp.
 
 ---
 
-下一次Google将发布财报的时间是什么？
+What's next time Google will release earning report?
 
 ---
 
-绘制一些图表以便更好地理解。
+Draw some graphs to understand.
 
 ---
 
-仅识别需要更改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便可以直接复制粘贴。
+Identify only the lines needing changes, and provide corrected snippets (not the full code). Preserve the original indentation so I can copy-paste them directly.
 
 ---
 
-组织这个转录，尽量保持原文，只是让它更连贯。
+Organize this transcript, keep original text as possible, just make it more coherent.
 
 ---
 
-给出关于某事的30个单选多选题。
+Give 30 single-option multiple-choice quiz questions about sth.
 
 ---
 
-用日语写，像小学生一样，使用非常简单的短语。
+Write Japanese like a primary school kid, use very simple phrases.
