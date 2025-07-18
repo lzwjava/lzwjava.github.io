@@ -4,7 +4,7 @@ generated: false
 lang: hant
 layout: post
 title: 有用的提示
-translated: false
+translated: true
 ---
 
 ```json
