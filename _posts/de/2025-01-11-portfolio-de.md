@@ -7,6 +7,10 @@ title: Portfolio
 translated: true
 ---
 
+Hier ist die Übersetzung des Markdown-Textes ins Deutsche:
+
+---
+
 Die PDF-Datei kann [hier](/assets/resume/Zhiwei.Li.Portfolio.pdf) gefunden werden.
 
 Diese Sammlung von Software stellt die vielfältigen Projekte dar, an denen ich im Laufe der Jahre in Zusammenarbeit mit verschiedenen renommierten Unternehmen und Partnern arbeiten durfte.
@@ -25,7 +29,7 @@ Die Bandbreite der von mir gelösten Algorithmusprobleme umfasst verschiedene Be
 
 ## Blumen-Erkennung, Android, 2014.4 - 2014.8
 
-Entwickelte eine Android-Anwendung zur Blumen-Erkennung, die Nutzern hilft, Blumen durch Fotos zu identifizieren und Kreise zum Erkennen zu zeichnen.
+Entwickelte eine Android-Anwendung zur Blumen-Erkennung, die Nutzern hilft, Blumen durch Fotos zu identifizieren und Kreise zum Erkennungsprozess zu zeichnen.
 
 **Verwendete Technologien:** Android SDK, Java
 
@@ -48,7 +52,7 @@ Eine Android-Anwendung, die Nutzern hilft, Englisch durch das Anschauen von Film
 
 **Erfolge:** Gewann den dritten Preis beim AVOS Cloud Hackathon 2014.
 
-[SegmentFault: Rezension der Erfolge des AVOS Cloud Hackathon 2014](https://segmentfault.com/a/1190000000427302)
+[SegmentFault: Bewertung der Erfolge des AVOS Cloud Hackathon 2014](https://segmentfault.com/a/1190000000427302)
 
 ## Bjfu Assistant, Android, 2014.1 - 2014.6
 
@@ -73,12 +77,12 @@ Eine Campus-Assistenten-Android-Anwendung, die Funktionen wie Notenabfrage und T
 
 ## LeanChat, Android, 2014.7 - 2014.12
 
-LeanChat ist eine Chat-Anwendung, die Funktionen wie Freundesverwaltung, Gruppenverwaltung, ortsbasierte Nachrichten, Personen in der Nähe, persönliche Profile und Anmelde-/Registrierungsfunktionen umfasst, die vollständig die Speicher- und Kommunikationsfähigkeiten von LeanCloud nutzen.
+LeanChat ist eine Chat-Anwendung mit Funktionen wie Freundesverwaltung, Gruppenverwaltung, ortsbasierter Nachrichtenübermittlung, Personen in der Nähe, persönlichen Profilen und Anmelde-/Registrierungsfunktionen, die vollständig die Speicher- und Kommunikationsfähigkeiten von LeanCloud nutzen.
 
 **Verwendete Technologien:** Android SDK, Java, LeanCloud
 
 **Verantwortlichkeiten:**
-- Entwickelte Funktionen zur Freundesverwaltung, Gruppenverwaltung und ortsbasierten Nachrichten.
+- Entwickelte Funktionen zur Freundesverwaltung, Gruppenverwaltung und ortsbasierten Nachrichtenübermittlung.
 - Implementierte persönliche Profile und Anmelde-/Registrierungsfunktionen.
 - Nutzte die Speicher- und Kommunikationsfähigkeiten von LeanCloud.
 
@@ -96,13 +100,13 @@ LeanChat ist eine Chat-Anwendung, die Funktionen wie Freundesverwaltung, Gruppen
 
 ## LeanChat, iOS, 2015.1 - 2015.10
 
-Entwickelte die iOS-Version von LeanChat, einer Chat-Anwendung, die die Backend-Dienste von LeanCloud für Nachrichten und Speicherung nutzt.
+Entwickelte die iOS-Version von LeanChat, einer Chat-Anwendung, die die Backend-Dienste von LeanCloud für Nachrichtenübermittlung und Speicherung nutzt.
 
 **Verwendete Technologien:** iOS SDK, Objective-C, LeanCloud
 
 **Verantwortlichkeiten:**
 - Erstellte Funktionen zur Freundes- und Gruppenverwaltung.
-- Entwickelte ortsbasierte Nachrichten und Funktionen für Personen in der Nähe.
+- Entwickelte ortsbasierte Nachrichtenübermittlung und Funktionen für Personen in der Nähe.
 - Entwarf persönliche Profile und Anmelde-/Registrierungsbildschirme.
 
 [Open Source auf GitHub](https://github.com/lzwjava/leanchat-ios), 446 Commits.
@@ -119,7 +123,7 @@ Entwickelte die iOS-Version von LeanChat, einer Chat-Anwendung, die die Backend-
 
 ## LeanCloud Java SDK & Objective-C SDK, 2015.4 - 2015.10
 
-War an der Entwicklung des LeanCloud Java SDK und Objective-C SDK beteiligt, das Entwicklern Tools bereitstellt, um LeanCloud-Dienste einfach in ihre Anwendungen zu integrieren.
+War an der Entwicklung des LeanCloud Java SDK und Objective-C SDK beteiligt, das Entwicklern Tools zur einfachen Integration von LeanCloud-Diensten in ihre Anwendungen bereitstellt.
 
 **Verwendete Technologien:** Java, Objective-C, LeanCloud
 
@@ -131,7 +135,7 @@ War an der Entwicklung des LeanCloud Java SDK und Objective-C SDK beteiligt, das
 
 ## TabsKiller, Frontend, 2015.7
 
-Entwickelte ein Chrome-Plugin, das automatisch die ältesten Registerkarten schließt, wenn der Browser mit zu vielen Registerkarten überladen ist, und verbesserte so die Browserleistung und das Nutzererlebnis.
+Entwickelte ein Chrome-Plugin, das automatisch die ältesten Tabs schließt, wenn der Browser mit zu vielen Tabs überladen ist, und verbesserte so die Browserleistung und das Nutzererlebnis.
 
 **Verwendete Technologien:** JavaScript, Chrome API
 
@@ -159,7 +163,7 @@ Open Source auf [GitHub](https://github.com/lzwjava/Reveal-In-GitHub), 57 Commit
 
 ## CodeReview, Full Stack, 2015.11 - 2016.7
 
-CodeReview ist eine professionelle Plattform für Code-Reviews, Kommunikation und Austausch. Ingenieure können ihren Code zur Expertenbewertung einreichen, um die Qualität ihres Codes zu verbessern.
+CodeReview ist eine professionelle Plattform für Code-Reviews, Kommunikation und Austausch. Ingenieure können ihren Code zur Überprüfung durch Experten einreichen, um die Qualität ihres Codes zu verbessern.
 
 **Verwendete Technologien:** PHP, Vue.js, CodeIgniter, Alibaba Cloud
 
@@ -167,7 +171,7 @@ CodeReview ist eine professionelle Plattform für Code-Reviews, Kommunikation un
 - Entwickelte den Backend mit PHP und CodeIgniter.
 - Implementierte Frontend-Funktionen mit Vue.js.
 - Integrierte Alibaba Cloud für skalierbare und zuverlässige Infrastruktur.
-- Verwaltete Benutzerverwaltung, Code-Einreichung und -Bewertungsprozesse, Benachrichtigungssysteme, Zahlungsintegration und Event-/Workshop-Verwaltung.
+- Verwaltete Benutzerverwaltung, Code-Einreichung und Review-Prozesse, Benachrichtigungssysteme, Zahlungsintegration und Event-/Workshop-Verwaltung.
 
 Open Source auf GitHub.
 
@@ -184,15 +188,15 @@ Open Source auf GitHub.
 
 ## Fun Live, Full Stack, 2016.6 - 2017.12
 
-Fun Live ist eine Wissens-Live-Streaming-Plattform, bei der Nutzer an verschiedenen Wissensvorträgen wie Programmierung oder Design teilnehmen können. Nutzer können Gebühren für Live-Sitzungen zahlen oder den Dozenten belohnen.
+Fun Live ist eine Wissens-Live-Streaming-Plattform, bei der Nutzer an verschiedenen Wissensvorträgen wie Programmierung oder Design teilnehmen können. Nutzer können Gebühren für Live-Sitzungen zahlen oder den Vortragenden belohnen.
 
-**Verwendete Technologien:** PHP, MySQL, Vue.js, CodeIgniter, Alibaba Cloud, SRS Streaming, WeChat SDK
+**Verwendete Technologien:** PHP, MySQL, Vue.js, CodeIgniter, Alibaba Cloud, SRS-Streaming, WeChat SDK
 
 **Verantwortlichkeiten:**
 - Entwickelte den Großteil des Backend- und Frontend-Codes.
 - Integrierte das OBS-Tool für Live-Streaming.
 - Implementierte Benutzerregistrierung, Zahlungs- und Benachrichtigungsfunktionen.
-- Erreichte eine erhebliche Nutzerbindung mit etwa 30.000 Nutzern und Millionen von Seitenaufrufen.
+- Erreichte eine erhebliche Nutzerbeteiligung mit etwa 30.000 Nutzern und Millionen von Seitenaufrufen.
 
 Open Source auf GitHub.
 
@@ -243,13 +247,13 @@ Desktop-Website:
 
 ## Mianbao Live, Backend, 2017.10 - 2017.12
 
-Mianbao Live ist ein Anbieter von Content-Monetarisierungs- und Social-Economy-Lösungen.
+Mianbao Live ist ein Anbieter von Content-Monetarisierung und sozialer Wirtschaft in einem.
 
 **Verwendete Technologien:** PHP, Laravel, TypeScript, Go
 
 **Verantwortlichkeiten:**
 - Refaktorierte den Backend, um die Logik aus mehreren Sprachen in eine zu konsolidieren.
-- Verbesserte Leistung, Stabilität und Benutzererfahrung.
+- Verbesserte Leistung, Stabilität und Nutzererfahrung.
 - Implementierte die serverseitige Entwicklung mit Laravel.
 
 <div align="center">
@@ -260,9 +264,9 @@ Mianbao Live ist ein Anbieter von Content-Monetarisierungs- und Social-Economy-L
 
 </div>
 
-## Die WeChat Mini-Programm für das Super Brain-Programm, Full Stack, 2018.3 - 2018.4
+## Das WeChat Mini-Programm für das Super Brain-Programm, Full Stack, 2018.3 - 2018.4
 
-Entwickelte das WeChat Mini-Programm für das Super Brain-Programm von Jiangsu TV, das ansprechende Rätsel für Nutzer bietet. Moderatoren führen Nutzer durch mündliche Sendungen und präsentieren spezifische technische Herausforderungen.
+Entwickelte das WeChat Mini-Programm für das Super Brain-Programm von Jiangsu TV, das spannende Rätsel für Nutzer bietet. Moderatoren führen Nutzer durch mündliche Sendungen und präsentieren spezifische technische Herausforderungen.
 
 **Verwendete Technologien:** Java, Spring, Redis, Alibaba Cloud, WeChat DevTools
 
@@ -279,14 +283,14 @@ Entwickelte das WeChat Mini-Programm für das Super Brain-Programm von Jiangsu T
 
 ## Chongding, Full Stack, 2017.9 - 2018.1
 
-Chongding ist eine mobile Quiz-App ähnlich wie HQ Trivia, die Nutzern ermöglicht, an Live-Quizspielen mit Preisgeld teilzunehmen.
+Chongding ist eine mobile Quiz-App ähnlich wie HQ Trivia, die es Nutzern ermöglicht, an Live-Quizspielen mit Preisgeld teilzunehmen.
 
 **Verwendete Technologien:** Java, Spring, Redis, Kafka, Zookeeper, WebSocket, Socket.IO
 
 **Verantwortlichkeiten:**
-- Entwickelte Backend-Dienste und Frontend des Admin-Panels.
+- Entwickelte Backend-Dienste und Admin-Panel-Frontend.
 - Entwarf und implementierte Echtzeit-Quizspiel-Funktionen.
-- Trat zur technischen Lösung bei, um Live-Streaming mit Spielereignissen unter Verwendung von SEI (Supplemental Enhancement Information) zu synchronisieren.
+- Trug zur technischen Lösung bei, um Live-Streaming mit Spielereignissen unter Verwendung von SEI (Supplemental Enhancement Information) zu synchronisieren.
 
 <div align="center">
 
@@ -302,8 +306,8 @@ Verwaltete und entwickelte 50 verschiedene Projekte für Square Root Inc, darunt
 
 **Verantwortlichkeiten:**
 - Verhandelte Projekte, koordinierte Teams und kommunizierte mit Kunden.
-- Trat zur Softwareentwicklung für verschiedene Projekte bei.
-- Stellte eine rechtzeitige Lieferung und hochwertige Ergebnisse für Kunden sicher.
+- Trug zur Softwareentwicklung für verschiedene Projekte bei.
+- Stellte sichere Lieferung und hochwertige Ergebnisse für Kunden sicher.
 
 <div align="center">
 
@@ -314,15 +318,15 @@ Verwaltete und entwickelte 50 verschiedene Projekte für Square Root Inc, darunt
 
 ## ShowMeBug - Enterprise WeChat-Eingang, Full Stack, 2021.7 - 2021.9
 
-ShowMeBug ist eine Technologiekompetenzbewertungsplattform, die praktisches Programmieren unterstützt und eine effiziente und genaue Bewertung und Rekrutierung technischer Talente ermöglicht.
+ShowMeBug ist eine Plattform zur Bewertung technischer Kompetenzen, die praktisches Programmieren unterstützt und eine effiziente und genaue Bewertung und Rekrutierung technischer Talente ermöglicht.
 
-Integrierte ShowMeBug mit Enterprise WeChat, wodurch ein nahtloser Zugriff auf technische Interview-Tools innerhalb des Enterprise WeChat-Ökosystems ermöglicht wird.
+Integrierte ShowMeBug in Enterprise WeChat, wodurch ein nahtloser Zugriff auf technische Interview-Tools innerhalb des Enterprise WeChat-Ökosystems ermöglicht wird.
 
 **Verwendete Technologien:** Ruby, PostgreSQL, WeChat SDK, Docker
 
 **Verantwortlichkeiten:**
 - Entwickelte Integrationsfunktionen für Anmeldung und Interviewzugriff.
-- Führte technische Forschungen zur Konstruktion von Programmierumgebungen im Browser unter Verwendung von Docker durch.
+- Führte technische Forschung zur Konstruktion von Programmierumgebungen im Browser unter Verwendung von Docker durch.
 
 <div align="center">
 
@@ -342,7 +346,7 @@ Entwickelte das Frontend für LvchenSign, eine Website, die sich auf die Herstel
 - Entwarf und implementierte das Frontend der Website.
 - Erstellte eine intuitive und benutzerfreundliche Oberfläche zur Präsentation der Produkte.
 
-Open Source auf [GitHub](https://github.com/lzwjava/lvchensign), 40 Commits. Online-Seite unter [lvchesign.com](http://lvchensign.com).
+Open Source auf [GitHub](https://github.com/lzwjava/lvchensign), 40 Commits. Online-Seite auf [lvchensign.com](http://lvchensign.com).
 
 <div align="center">
 
@@ -352,7 +356,7 @@ Open Source auf [GitHub](https://github.com/lzwjava/lvchensign), 40 Commits. Onl
 
 ## DBS Client Connect - Aktienhandel, Backend, 2021.12 - 2022.6
 
-Trat zu DBS Client Connect bei, einer KI- und datengesteuerten Kundenbeziehungsmanagementplattform, mit Fokus auf Mikrodienste für den Aktienhandel.
+Trug zu DBS Client Connect bei, einer KI- und datengesteuerten Kundenbeziehungsmanagement-Plattform, mit Fokus auf Mikrodienste für den Aktienhandel.
 
 **Verwendete Technologien:** Java, Spring Cloud, Jenkins, Pivotal Cloud Foundry
 
@@ -371,13 +375,13 @@ Trat zu DBS Client Connect bei, einer KI- und datengesteuerten Kundenbeziehungsm
 
 DBS DigiBank CN wurde neu gedacht und neu gestaltet, damit Sie das schnellere und bequemere Banking unterwegs genießen können.
 
-Trat zu DBS DigiBank CN bei, mit Fokus auf die Backend-Entwicklung von Mikrodiensten für Investmentfonds als Teil eines Teamprojekts.
+Trug zu DBS DigiBank CN bei, mit Fokus auf die Backend-Entwicklung für Investmentfonds-Mikrodienste als Teil eines kooperativen Teams.
 
 **Verwendete Technologien:** Java, Spring Cloud, Jenkins, Pivotal Cloud Foundry, Kibana
 
 **Verantwortlichkeiten:**
 - Verbesserte Funktionen zum Abonnieren und Rückkaufen von Investmentfonds, wodurch das Nutzererlebnis und die Systemzuverlässigkeit verbessert wurden.
-- Behob Fehler und verbesserte den Code für die Mikrodienste im Zusammenhang mit strukturierten Anlageprodukten, Anlageportfolios und Transaktionslisten, wodurch zur allgemeinen Systemstabilität und Genauigkeit beigetragen wurde.
+- Behob Fehler und verbesserte den Code für Mikrodienste im Zusammenhang mit strukturierten Anlageprodukten, Anlageportfolios und Transaktionslisten, wodurch zur allgemeinen Systemstabilität und Genauigkeit beigetragen wurde.
 - Führte Leistungsanalysen durch und analysierte Protokolle, um Berichte über QPS zu erstellen, und arbeitete mit Teammitgliedern zusammen, um die Leistung zu optimieren.
 - Entwickelte ein Tool zur Automatisierung der Testgenerierung für das Testwerkzeug Karate, wodurch der Testprozess rationalisiert und die Testabdeckung verbessert wurde.
 
@@ -389,17 +393,17 @@ Trat zu DBS DigiBank CN bei, mit Fokus auf die Backend-Entwicklung von Mikrodien
 
 <p><a href="https://www.dbs.com.cn/treasures/digital-service/digibank.html">Bildquelle: DBS Digibank CN</a></p></div>
 
-## PayMe By HSBC - Auto Top Up, Backend, 2022.12 - 2023.7
+## PayMe von HSBC - Auto Top Up, Backend, 2022.12 - 2023.7
 
 PayMe von HSBC ist eine bequeme Möglichkeit, Zahlungen an Freunde zu senden und mobile Zahlungen an Händler sowohl online als auch offline zu tätigen.
 
 **Verwendete Technologien:** Java, Spring, Kafka, Azure, Azure DevOps, AWS
 
 **Verantwortlichkeiten:**
-- Arbeitete mit einem Team von Backend-Entwicklern an der Entwicklung der Auto Top Up-Funktion, die automatisch Gelder von der Kredit- oder Debitkarte des Nutzers aufstockt, wenn der Kontostand unter einen bestimmten Betrag fällt.
+- Arbeitete mit einem Team von Backend-Entwicklern an der Entwicklung der Auto Top Up-Funktion, die automatisch Gelder von der Kredit- oder Debitkarte des Nutzers auflädt, wenn der Kontostand unter einen bestimmten Betrag fällt.
 - Überwachte gemeinsam Nachzahlungsereignisse von Azure EventHub, um eine nahtlose Integration sicherzustellen und auf Nachzahlungen zu prüfen, wann immer ein Nutzer seine Auto Top-Up-Konfiguration einrichtete.
-- Wendete objektorientierte Programmierprinzipien an, um Fälle elegant zu behandeln, und nutzte aspektorientierte Programmierung, um Protokolle für Änderungen in der Auto Top-Up-Tabelle zu protokollieren.
-- Unterstützte das Team während des AWS-Migrationsprozesses, indem Fehler bei IAM- und RDS-Konfigurationen behoben wurden, um einen reibungslosen Übergang zu gewährleisten.
+- Wendete objektorientierte Programmierprinzipien an, um Fälle elegant zu behandeln, und nutzte aspektorientierte Programmierung, um Protokolle für Änderungen in der Auto Top-Up-Tabelle zu auditieren.
+- Unterstützte das Team während des AWS-Migrationsprozesses, indem es IAM- und RDS-Konfigurationen problematisierte, um einen reibungslosen Übergang sicherzustellen.
 
 <div align="center">
 
@@ -407,21 +411,21 @@ PayMe von HSBC ist eine bequeme Möglichkeit, Zahlungen an Freunde zu senden und
 
 <img src="/assets/images/portfolio/payme2.png" width="200px" /><img/>
 
-<p><a href="https://payme.hsbc.com.hk/">Bildquelle: PayMe By HSBC</a></p>
+<p><a href="https://payme.hsbc.com.hk/">Bildquelle: PayMe von HSBC</a></p>
 
 </div>
 
 ## AI-Powered Story Bot, Full Stack, 2023.05 - 2023.07
 
-Trat zur Entwicklung eines AI-gestützten Story-Bots bei, der Claudes API für personalisierte Geschichten nutzt.
+Trug zur Entwicklung eines AI-gestützten Story-Bots bei, der Claudes API für personalisierte Geschichten nutzt.
 
-**Verwendete Technologien:** Python, Flask, React, Nginx, AWS, Prometheus, ELK Stack, ChatGPT-4
+**Verwendete Technologien:** Python, Flask, React, Nginx, AWS, Prometheus, ELK-Stack, ChatGPT-4
 
 **Verantwortlichkeiten:**
 - Entwickelte Backend mit Flask und integrierte Claudes API.
 - Erstellte Frontend mit React für Prompt-Einstellungen und -Verwaltung.
-- Bereitgestellt auf AWS und Nginx für sichere Kommunikation.
-- Implementierte Prometheus für Überwachung und ELK Stack für Protokollverwaltung.
+- Bereitgestellt auf AWS und nutzte Nginx für sichere Kommunikation.
+- Implementierte Prometheus für Überwachung und ELK-Stack für Protokollverwaltung.
 - Implementierte eine End-to-End-Trace-ID-Lösung zur Verfolgung von Anfragen im gesamten System.
 
 ## Finanztransformationsplattform - HSBC, Backend, 2025.02 - Gegenwart
@@ -431,6 +435,6 @@ Trat zur Entwicklung eines AI-gestützten Story-Bots bei, der Claudes API für p
 **Verantwortlichkeiten:**
 - Entwickelte und optimierte Backend-Systeme für die Finanztransformationsplattform in der Enterprise Technology-Abteilung von HSBC als Backend-Entwickler, der von TEKsystems ausgelagert wurde.
 - Pflegte Funktionen zur Verarbeitung von Finanzdaten, einschließlich Import, Validierung und Export, und verbesserte Einreichungs- und Genehmigungsworkflows für neue Finanzheader, wobei Expertise in Buchhaltung, Hauptbuch und Bankensystemen genutzt wurde.
-- Verwalte den gesamten Entwicklungslebenszyklus von der lokalen Entwicklung bis zu UAT-Tests und Produktionsfreigaben, wobei Copilot für Aufgaben wie Root-Cause-Analyse, Generierung von Python-Skripten und Dokumentation von etwa 50 technischen Leitfäden genutzt wurde, die zu wichtigen Referenzen für Teammitglieder wurden.
-- Entwickelte innovative technische Lösungen für Banken unter Nutzung von AI-Tools wie Copilot, Leistungsprofilierung mit YourKit und systematischem Testen, wobei als autonomer AI-Agent fungiert wurde, um die Projektarchitektur zu analysieren, mit Teams zusammenzuarbeiten und durch umfassende Protokollierung und Dokumentation zu verbessern.
-- Erkundete die Implementierung eines AI-Software-Agenten in einem großen Finanzprojekt unter Nutzung von AspectJ, um umfangreiche Protokolle zu sammeln und Debug-Zustände in Text umzuwandeln, um Kontext für AI-Chatbots bereitzustellen.
+- Verwaltete den gesamten Entwicklungslebenszyklus von der lokalen Entwicklung bis zu UAT-Tests und Produktionsreleases, wobei Copilot für Aufgaben wie Ursachenanalyse, Generierung von Python-Skripten und Dokumentation von etwa 50 technischen Leitfäden genutzt wurde, die zu wichtigen Referenzen für Teammitglieder wurden.
+- Entwickelte innovative technische Lösungen für Banken unter Verwendung von AI-Tools wie Copilot, Leistungsprofilierung mit YourKit und systematischem Testen, während als autonomer AI-Agent fungiert wurde, um die Projektarchitektur zu analysieren, mit Teams zusammenzuarbeiten und durch umfassende Protokollierung und Dokumentation zu verbessern.
+- Erforschte die Implementierung eines AI-Software-Agenten in einem großen Finanzprojekt unter Verwendung von AspectJ, um umfangreiche Protokolle zu sammeln und Debug-Zustände in Text umzuwandeln, der Kontext für AI-Chatbots bereitstellt.
