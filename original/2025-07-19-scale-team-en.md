@@ -34,3 +34,5 @@ generated: false
 - Good people help you achieve your mission, while bad people distract you from it.
 
 - Don't try to change others; it is impossible. A person's mindset or worldview is shaped over their entire life. Instead, ask yourself, "What is my mission, and how can I attract a great team to achieve it?"
+
+- Having a good attitude is better than current ability.
