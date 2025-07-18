@@ -4,9 +4,9 @@ from mistral_client import call_mistral_api
 
 def create_translation_prompt(target_language, type="content", front_matter_prompt=None):
     if type == "title":
-        base_prompt = "Translate the following title to {target_language}. Provide only the translated title, without any additional notes or explanations. Do not repeat or mention the input text.\n"
+        base_prompt = "Translate the following title into {target_language}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {target_language}, return it as is.\n"
     else:
-        base_prompt = "Translate the following markdown text to {target_language}. Provide only the translated output, without any additional notes or explanations.\n"
+        base_prompt = "Translate the following markdown text into {target_language}. Return only the translated content without any additional notes or explanations. If the text is already in {target_language}, return it unchanged.\n"
         if front_matter_prompt:
             base_prompt += f"{front_matter_prompt}\n"
     if target_language == 'ja':
@@ -31,14 +31,7 @@ def create_translation_prompt(target_language, type="content", front_matter_prom
         return base_prompt.format(target_language=target_language)
 
 
-def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None):
-    if not text or not text.strip():
-        return ""
-    if target_language == 'en':
-        print(f"  Skipping translation for English: {text[:50]}...")
-        return text.strip()
-    print(f"  Translating text: {text[:50]}...")
-    
+def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None):    
     if model == "deepseek":
         prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_deepseek_api(prompt)
@@ -56,6 +49,6 @@ def translate_text(text, target_language, type="content", model="deepseek", fron
         return None
     
 if __name__ == "__main__":
-    text = translate_text('Hi, it is sunny today.', 'zh', model='mistral')
+    text = translate_text('Hi, it is sunny today. Hahaa...', 'ja', model='mistral')
     print(text)
     
