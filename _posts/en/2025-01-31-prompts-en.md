@@ -7,6 +7,10 @@ title: Useful Prompts
 translated: false
 ---
 
+Here is the translated content in English:
+
+---
+
 Translate the following posts or words into Chinese, ensuring that names (e.g., people, places, brands, or specific terms) are not translated and remain in their original form. Only translate the surrounding text into Chinese.
 
 ---
@@ -45,18 +49,17 @@ Create a natural and extended conversation between two experts, A and B, with at
 
 About the PDF content. The format should be as follows:
 
-
 A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
 
-B: Sure! Let’s start with the basics. 
+B: Sure! Let’s start with the basics.
 
 ---
 
-Generate a happy Lunar Snake New Year image with text names included
+Generate a happy Lunar Snake New Year image with text names included.
 
 ---
 
-Create a 480p YouTube video cover image with below elements, AI, shark, futuristic, vivid, colorful, sunrise, city with super large text DeepSeek R1 in the center
+Create a 480p YouTube video cover image with below elements, AI, shark, futuristic, vivid, colorful, sunrise, city with super large text DeepSeek R1 in the center.
 
 ---
 
@@ -72,69 +75,67 @@ The commit message should not exceed 70 characters. Just give the commit message
 Changed files:
 {', '.join(file_changes)}
 
-----
+---
 
-Create a Youtube title 
+Create a YouTube title.
 
-----
+---
 
 蕾(つぼみ) - Tsubomi
 
-give its lyrics in Japanese, and explain them, for every word and prounciation 
+Give its lyrics in Japanese, and explain them, for every word and pronunciation.
 
 ---
 
-Give a comprehensive tutuorial about this chapter.
+Give a comprehensive tutorial about this chapter.
 
 ---
 
-give a comprehensive history of this, who discover this, what's the story behind
+Give a comprehensive history of this, who discovered this, what's the story behind.
 
 ---
 
-recommend youtube videos about ...
+Recommend YouTube videos about ...
 
 ---
 
-give some introductions about davo city in mindanao , philipines
+Give some introductions about Davao City in Mindanao, Philippines.
 
 ---
 
-give a comprehensive analysis of how Inductors work
+Give a comprehensive analysis of how inductors work.
 
 ---
 
-Philippines
-
-what are special ? what's uniqueness? how its people contribue to technology? how does its people invent and impact?
+Philippines: What are special? What's unique? How do its people contribute to technology? How do its people invent and impact?
 
 ---
 
-give a dicussion about xx
+Give a discussion about xx.
 
 ---
 
-give a review about xx
+Give a review about xx.
 
 ---
 
-help organize this talk, get out of transcript as much, and help give a note
+Help organize this talk, get out of transcript as much, and help give a note.
 
 ---
 
-yitang zhang, math , what's his story, what we can learn from 
+Yitang Zhang, math, what's his story, what we can learn from.
 
 ---
 
-based on this youtube video, create a tutorial, do not include timestamp
+Based on this YouTube video, create a tutorial, do not include timestamp.
 
 ---
 
-what's next time google will release earning report?
+What's next time Google will release earnings report?
 
 ---
 
-draw some graphs to understand
+Draw some graphs to understand.
 
 ---
 
@@ -142,10 +143,12 @@ Identify only the lines needing changes, and provide corrected snippets (not the
 
 ---
 
-organize this transcript, keep original text as possible, just make it more coherent 
+Organize this transcript, keep original text as possible, just make it more coherent.
 
 ---
 
-give 30 single-option multiple-choice quiz questions about sth.
+Give 30 single-option multiple-choice quiz questions about sth.
 
 ---
+
+Write Japanese like a primary school kid, use very simple phrases.

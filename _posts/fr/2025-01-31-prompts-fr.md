@@ -11,7 +11,7 @@ Here is the translated content in French:
 
 ---
 
-Traduisez les posts ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
+Traduisez les publications ou les mots suivants en chinois, en veillant à ne pas traduire les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) et à les laisser dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
 
 ---
 
@@ -45,7 +45,7 @@ Le format doit être le suivant :
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, la conversation allant et venant. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration approfondie de sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
@@ -59,7 +59,7 @@ Générez une image joyeuse pour le Nouvel An du Serpent lunaire avec des noms i
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
 
 ---
 
@@ -70,7 +70,7 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
 Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
 Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée.
-Le message de commit ne doit pas dépasser 70 caractères. Donnez uniquement le message de commit, sans aucune note en tête ou en fin.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes supplémentaires.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
@@ -83,7 +83,7 @@ Créez un titre YouTube.
 
 蕾(つぼみ) - Tsubomi
 
-Donnez les paroles en japonais, et expliquez-les, mot par mot et prononciation.
+Donnez les paroles en japonais, et expliquez-les, pour chaque mot et la prononciation.
 
 ---
 
@@ -109,7 +109,7 @@ Donnez une analyse complète du fonctionnement des inducteurs.
 
 Philippines
 
-Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et ont-ils un impact ?
+Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et impactent-ils ?
 
 ---
 
@@ -125,7 +125,7 @@ Aidez à organiser cette conférence, sortez le plus possible du transcript et a
 
 ---
 
-Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
+Yitang Zhang, mathématiques, quelle est son histoire, que pouvons-nous apprendre de lui ?
 
 ---
 
@@ -133,7 +133,7 @@ Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les time
 
 ---
 
-Quelle est la prochaine fois que Google publiera son rapport de bénéfices ?
+Quelle est la prochaine fois que Google publiera son rapport de résultats ?
 
 ---
 
@@ -141,11 +141,11 @@ Dessinez quelques graphiques pour comprendre.
 
 ---
 
-Identifiez uniquement les lignes nécessitant des modifications, et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse copier-coller directement.
+Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation d'origine afin que je puisse copier-coller directement.
 
 ---
 
-Organisez ce transcript, gardez le texte original autant que possible, rendez-le simplement plus cohérent.
+Organisez ce transcript, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
 
 ---
 
