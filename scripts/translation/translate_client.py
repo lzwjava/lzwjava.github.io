@@ -2,7 +2,7 @@ from gemini_client import call_gemini_api
 from deepseek_client import call_deepseek_api
 from mistral_client import call_mistral_api
 
-def create_translation_prompt(target_language, type="content", special=False, front_matter_prompt=None):
+def create_translation_prompt(target_language, type="content", front_matter_prompt=None):
     if type == "title":
         base_prompt = "Translate the following title to {target_language}. Provide only the translated title, without any additional notes or explanations. Do not repeat or mention the input text.\n"
     else:
@@ -31,7 +31,7 @@ def create_translation_prompt(target_language, type="content", special=False, fr
         return base_prompt.format(target_language=target_language)
 
 
-def translate_text(text, target_language, type="content", special=False, model="deepseek", front_matter_prompt=None):
+def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None):
     if not text or not text.strip():
         return ""
     if target_language == 'en':
@@ -40,15 +40,15 @@ def translate_text(text, target_language, type="content", special=False, model="
     print(f"  Translating text: {text[:50]}...")
     
     if model == "deepseek":
-        prompt = create_translation_prompt(target_language, type, special, front_matter_prompt) + "\n\n" + text
+        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_deepseek_api(prompt)
         return translated_text
     elif model == "mistral":
-        prompt = create_translation_prompt(target_language, type, special, front_matter_prompt) + "\n\n" + text
+        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_mistral_api(prompt)
         return translated_text
     elif model == "gemini":
-        prompt = create_translation_prompt(target_language, type, special, front_matter_prompt) + "\n\n" + text
+        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_gemini_api(prompt)
         return translated_text
     else:
