@@ -11,13 +11,13 @@ Here is the translated content in French:
 
 ---
 
-Traduisez les publications ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
+Traduisez les publications ou les mots suivants en chinois, en veillant à ne pas traduire les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) et à les laisser dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
 
 ---
 
 Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
 
-- Explorer des sous-thèmes spécifiques et leurs subtilités.
+- Approfondir des sous-thèmes spécifiques et explorer leurs subtilités.
 - Comparer et opposer différentes technologies ou méthodologies liées au sujet.
 - Discuter des cas d'utilisation réels et de leurs implications.
 - Poser des questions approfondies pour découvrir des insights plus profonds.
@@ -32,7 +32,7 @@ Le format doit être le suivant :
 [
     {
       "speaker": "A",
-      "line": "Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?"
+      "line": "Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?"
     },
     {
       "speaker": "B",
@@ -45,11 +45,11 @@ Le format doit être le suivant :
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration plus approfondie des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec la conversation allant et venant. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'approfondissement des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
-A : Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?
+A : Salut, j’ai beaucoup entendu parler de certains sujets. Peux-tu me les expliquer ?
 
 B : Bien sûr ! Commençons par les bases.
 
@@ -83,7 +83,7 @@ Créez un titre YouTube.
 
 蕾(つぼみ) - Tsubomi
 
-Donnez les paroles en japonais, et expliquez-les, pour chaque mot et prononciation.
+Donnez les paroles en japonais, et expliquez-les, pour chaque mot et la prononciation.
 
 ---
 
@@ -109,7 +109,7 @@ Donnez une analyse complète du fonctionnement des inducteurs.
 
 Philippines
 
-Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et impactent-ils ?
+Qu'est-ce qui est spécial ? Quelle est leur singularité ? Comment les gens contribuent-ils à la technologie ? Comment les gens inventent-ils et impactent-ils ?
 
 ---
 
@@ -129,11 +129,11 @@ Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
 
 ---
 
-Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure de timestamp.
+Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les timestamps.
 
 ---
 
-Quelle est la prochaine fois que Google publiera son rapport de bénéfices ?
+Quelle est la prochaine fois que Google publiera son rapport de résultats ?
 
 ---
 
@@ -141,7 +141,7 @@ Dessinez quelques graphiques pour comprendre.
 
 ---
 
-Identifiez uniquement les lignes nécessitant des modifications, et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse les copier-coller directement.
+Identifiez uniquement les lignes nécessitant des modifications, et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse copier-coller directement.
 
 ---
 
