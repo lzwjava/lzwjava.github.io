@@ -7,175 +7,150 @@ title: Prompts utiles
 translated: false
 ---
 
+Here is the translated content in French:
+
+---
+
+Traduisez les publications ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, personnes, lieux, marques ou termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
+
+---
+
+Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
+
+- Explorer des sous-thèmes spécifiques et leurs subtilités.
+- Comparer et opposer différentes technologies ou méthodologies liées au sujet.
+- Discuter des cas d'utilisation réels et de leurs implications.
+- Poser des questions approfondies pour découvrir des insights plus profonds.
+- Inclure occasionnellement des quiz pour tester leurs connaissances.
+- Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que de s'appuyer sur des formules.
+
+Assurez-vous que le dialogue s'écoule naturellement, avec un échange équilibré d'idées et de perspectives.
+
+Le format doit être le suivant :
+
 ```json
 [
     {
       "speaker": "A",
-      "line": "Hey, I’ve been hearing a lot about the 04730 exam, self-study China exam, and basic electronics technology 3. Can you break it down for me?"
+      "line": "Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?"
     },
     {
       "speaker": "B",
-      "line": "Sure! Let’s start with the basics. The 04730 exam is a specialized certification test in China, often related to electronics or technical fields. The self-study China exam is a broader term for exams that can be prepared for independently, while basic electronics technology 3 is likely a course or module focusing on fundamental electronics concepts."
-    },
-    {
-      "speaker": "A",
-      "line": "Got it. What are the key topics covered in basic electronics technology 3?"
-    },
-    {
-      "speaker": "B",
-      "line": "It typically includes circuit analysis, semiconductor devices, digital electronics, and possibly some practical lab work. The 04730 exam might delve deeper into specific applications or industry standards."
-    },
-    {
-      "speaker": "A",
-      "line": "How do the self-study exams compare to traditional classroom-based ones?"
-    },
-    {
-      "speaker": "B",
-      "line": "Self-study exams offer flexibility but require strong self-discipline. They often include online resources, practice tests, and forums for peer support. Traditional exams might have structured lectures and hands-on labs, which can be more engaging for some learners."
-    },
-    {
-      "speaker": "A",
-      "line": "What are some common challenges students face in these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "Time management, understanding complex theories, and applying concepts to real-world problems are frequent hurdles. For example, in basic electronics, grasping Kirchhoff’s laws or troubleshooting circuits can be tricky."
-    },
-    {
-      "speaker": "A",
-      "line": "How can someone prepare effectively for the 04730 exam?"
-    },
-    {
-      "speaker": "B",
-      "line": "Start with the official syllabus, use textbooks like *Basic Electronics* by John Bird, and practice with past papers. Joining study groups or online forums can also help clarify doubts."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any emerging trends in electronics technology that might be relevant?"
-    },
-    {
-      "speaker": "B",
-      "line": "Absolutely! Topics like IoT, renewable energy systems, and AI-driven electronics are becoming more prominent. Understanding these can give you an edge in exams and the job market."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s a practical use case of basic electronics in everyday life?"
-    },
-    {
-      "speaker": "B",
-      "line": "Smart home devices, like thermostats or security systems, rely on basic electronics principles. Even something as simple as a smartphone involves circuits, sensors, and power management."
-    },
-    {
-      "speaker": "A",
-      "line": "How do digital and analog electronics differ in these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "Digital electronics deals with binary signals (0s and 1s), while analog electronics works with continuous signals. Exams often test your ability to analyze both, such as designing a digital filter or troubleshooting an analog amplifier."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s a common mistake students make in circuit analysis?"
-    },
-    {
-      "speaker": "B",
-      "line": "Misapplying Ohm’s law or ignoring component tolerances. For example, assuming a resistor’s value is exact when it has a 5% tolerance can lead to errors in calculations."
-    },
-    {
-      "speaker": "A",
-      "line": "How important is lab work in understanding these concepts?"
-    },
-    {
-      "speaker": "B",
-      "line": "Critical! Theory alone won’t suffice. Building circuits, measuring voltages, and debugging faults provide hands-on experience that textbooks can’t match."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the role of semiconductors in modern electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "They’re the backbone! Transistors, diodes, and ICs enable everything from computers to solar panels. Understanding their characteristics is key to designing efficient circuits."
-    },
-    {
-      "speaker": "A",
-      "line": "How do you approach studying for the self-study China exam?"
-    },
-    {
-      "speaker": "B",
-      "line": "Create a study schedule, use flashcards for key terms, and simulate exam conditions with timed practice tests. Staying consistent is more important than cramming."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s a quick quiz question to test knowledge of basic electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sure! What’s the unit of electrical resistance? A) Volt, B) Ohm, C) Ampere, D) Watt?"
-    },
-    {
-      "speaker": "A",
-      "line": "B) Ohm, right?"
-    },
-    {
-      "speaker": "B",
-      "line": "Correct! Good job. Another one: What does LED stand for?"
-    },
-    {
-      "speaker": "A",
-      "line": "Light Emitting Diode?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exactly! Now, how about a harder one: What’s the purpose of a capacitor in a circuit?"
-    },
-    {
-      "speaker": "A",
-      "line": "To store and release electrical energy, right?"
-    },
-    {
-      "speaker": "B",
-      "line": "Perfect! You’re doing well. Let’s discuss the differences between series and parallel circuits next."
-    },
-    {
-      "speaker": "A",
-      "line": "In series, current is the same, and voltage divides. In parallel, voltage is the same, and current divides. Is that right?"
-    },
-    {
-      "speaker": "B",
-      "line": "Spot on! Now, how would you troubleshoot a circuit that isn’t working?"
-    },
-    {
-      "speaker": "A",
-      "line": "Check for loose connections, measure voltages at key points, and verify component values."
-    },
-    {
-      "speaker": "B",
-      "line": "Great approach. What’s a common issue with breadboard circuits?"
-    },
-    {
-      "speaker": "A",
-      "line": "Poor connections or short circuits due to misplaced wires?"
-    },
-    {
-      "speaker": "B",
-      "line": "Yes! Always double-check your wiring. Now, let’s talk about the future of electronics. How do you see AI impacting the field?"
-    },
-    {
-      "speaker": "A",
-      "line": "AI could automate design, optimize circuits, and even predict failures before they happen."
-    },
-    {
-      "speaker": "B",
-      "line": "Exactly! It’s an exciting time. Any final thoughts on preparing for these exams?"
-    },
-    {
-      "speaker": "A",
-      "line": "Stay curious, practice regularly, and don’t hesitate to ask for help when needed."
-    },
-    {
-      "speaker": "B",
-      "line": "Wise words. Good luck with your studies!"
+      "line": "Bien sûr ! Commençons par les bases. ..."
     }
 ]
 ```
+
+À propos de l'examen 04730, de l'examen d'auto-apprentissage en Chine et de la technologie électronique de base 3.
+
+---
+
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration approfondie de sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+
+À propos du contenu PDF. Le format doit être le suivant :
+
+A : Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?
+
+B : Bien sûr ! Commençons par les bases.
+
+---
+
+Générez une image joyeuse pour le Nouvel An du Serpent lunaire avec des noms inclus.
+
+---
+
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
+
+---
+
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : Électronique de base, futuriste, excitant.
+
+---
+
+Créez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
+Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
+Si applicable, incluez un scope entre parenthèses pour décrire la partie du code affectée.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes supplémentaires.
+
+Fichiers modifiés :
+{', '.join(file_changes)}
+
+---
+
+Créez un titre YouTube.
+
+---
+
+蕾(つぼみ) - Tsubomi
+
+Donnez les paroles en japonais et expliquez-les, pour chaque mot et prononciation.
+
+---
+
+Donnez un tutoriel complet sur ce chapitre.
+
+---
+
+Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière.
+
+---
+
+Recommandez des vidéos YouTube sur ...
+
+---
+
+Donnez quelques introductions sur la ville de Davao à Mindanao, aux Philippines.
+
+---
+
+Donnez une analyse complète du fonctionnement des inducteurs.
+
+---
+
+Philippines
+
+Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et ont-ils un impact ?
+
+---
+
+Donnez une discussion sur xx.
+
+---
+
+Donnez une critique sur xx.
+
+---
+
+Aidez à organiser cette conférence, retirez autant que possible du transcript et aidez à donner une note.
+
+---
+
+Yitang Zhang, mathématiques, quelle est son histoire, que pouvons-nous apprendre de lui ?
+
+---
+
+Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les timestamps.
+
+---
+
+Quelle est la prochaine date de publication du rapport de résultats de Google ?
+
+---
+
+Dessinez quelques graphiques pour comprendre.
+
+---
+
+Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse copier-coller directement.
+
+---
+
+Organisez ce transcript, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
+
+---
+
+Donnez 30 questions à choix multiples à option unique sur un sujet.
+
+---
+
+Écrivez en japonais comme un enfant de primaire, utilisez des phrases très simples.
