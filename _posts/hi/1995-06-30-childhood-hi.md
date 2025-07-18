@@ -1,0 +1,18 @@
+---
+audio: false
+generated: false
+lang: hi
+layout: post
+title: बचपन की यादें
+translated: false
+---
+
+मुझे 1995 में जन्म हुआ था। नीचे दिए गए फोटो एक फोटोग्राफर द्वारा लिए गए थे, जिसे हमारी प्राइमरी स्कूल, मेइज़ौ द्वारा आमंत्रित किया गया था।
+
+{: .centered }
+![](assets/images/childhood/c1.jpg){: .responsive }
+*स्रोत: फोटोग्राफर*{: .caption }
+
+{: .centered }
+![](assets/images/childhood/c2.jpg){: .responsive }
+*स्रोत: फोटोग्राफर*{: .caption }
