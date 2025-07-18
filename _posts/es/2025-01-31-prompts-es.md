@@ -11,291 +11,603 @@ translated: true
 [
     {
       "speaker": "A",
-      "line": "Hola, he estado escuchando mucho sobre el examen 04730, el examen de autoestudio de China y la tecnología básica de electrónica 3. ¿Puedes explicarme en qué consisten?"
+      "line": "Hola, he estado escuchando mucho sobre el examen 04730, el examen de autoestudio de China y la tecnología electrónica básica 3. ¿Puedes desglosarlo para mí?"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos por los fundamentos. El examen 04730 es una evaluación técnica específica, mientras que el examen de autoestudio de China se enfoca en la comprensión de conceptos electrónicos básicos aplicados en contextos chinos. La tecnología básica de electrónica 3, por otro lado, cubre principios fundamentales como circuitos, componentes y aplicaciones prácticas."
+      "line": "¡Claro! Comencemos con los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Interesante. ¿Podrías profundizar en los temas clave de cada uno?"
+      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Podrías enumerarlos?"
     },
     {
       "speaker": "B",
-      "line": "Por supuesto. El examen 04730 suele incluir temas como diseño de circuitos, análisis de señales y normativas técnicas. El examen de autoestudio de China se centra en la interpretación de diagramas, cálculos básicos y aplicaciones industriales. La tecnología básica de electrónica 3 abarca desde la teoría de semiconductores hasta el uso de herramientas de medición."
+      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, leyes fundamentales como Ohm y Kirchhoff, y aplicaciones prácticas. ¿Te suena familiar alguno de estos?"
     },
     {
       "speaker": "A",
-      "line": "¿Cómo se comparan estos exámenes en términos de dificultad?"
+      "line": "Sí, pero ¿cómo se compara con el examen de autoestudio de China? ¿Es más teórico o práctico?"
     },
     {
       "speaker": "B",
-      "line": "El examen 04730 es más técnico y requiere un conocimiento avanzado de electrónica, mientras que el examen de autoestudio de China es más aplicativo. La tecnología básica de electrónica 3 es más teórica, pero igualmente exigente en su comprensión de conceptos fundamentales."
+      "line": "El examen de autoestudio de China es más teórico, enfocado en conceptos y fórmulas, mientras que el 04730 combina teoría con problemas prácticos. ¿Has tenido experiencia con algún examen similar?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué metodologías de estudio recomendarías para cada uno?"
+      "line": "No, pero me interesa saber cómo se preparan los estudiantes. ¿Qué recursos recomendarías?"
     },
     {
       "speaker": "B",
-      "line": "Para el 04730, practicar con problemas reales y simulaciones es clave. Para el examen de autoestudio, enfocarse en casos prácticos y proyectos pequeños. Para la tecnología básica de electrónica 3, dominar los fundamentos teóricos y experimentar con kits de electrónica."
+      "line": "Libros de electrónica básica, simuladores de circuitos como Tinkercad y cursos en línea. ¿Has usado alguno de estos antes?"
     },
     {
       "speaker": "A",
-      "line": "¿Hay algún recurso en línea que recomiendes?"
+      "line": "Sí, pero no en profundidad. ¿Qué opinas de los simuladores frente a la práctica real?"
     },
     {
       "speaker": "B",
-      "line": "Sí, plataformas como Coursera y edX tienen cursos especializados. También hay foros como Stack Exchange donde se discuten problemas técnicos. Para el examen de autoestudio, los materiales oficiales del gobierno chino son muy útiles."
+      "line": "Los simuladores son útiles para entender conceptos, pero la práctica real es esencial para dominar habilidades como soldadura o medición. ¿Has trabajado con prototipos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué habilidades prácticas se adquieren al aprobar estos exámenes?"
+      "line": "No, pero me gustaría empezar. ¿Qué equipo básico necesitaría?"
     },
     {
       "speaker": "B",
-      "line": "El 04730 te prepara para roles en ingeniería de diseño. El examen de autoestudio te da habilidades para trabajar en contextos industriales chinos. La tecnología básica de electrónica 3 es esencial para cualquier carrera en electrónica o ingeniería."
+      "line": "Un kit de electrónica con resistencias, capacitores, LEDs y un protoboard. ¿Te gustaría una lista detallada?"
     },
     {
       "speaker": "A",
-      "line": "¿Cómo se aplican estos conocimientos en la industria actual?"
+      "line": "Sí, por favor. Y, ¿cómo se relaciona la tecnología electrónica 3 con estos exámenes?"
     },
     {
       "speaker": "B",
-      "line": "En la industria 4.0, el conocimiento de electrónica básica es crucial para el desarrollo de IoT, automatización y robótica. Los exámenes técnicos como el 04730 son valorados en sectores de telecomunicaciones y energía."
+      "line": "Es un nivel avanzado que cubre temas como microcontroladores y circuitos integrados. ¿Te interesa algún área en particular?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué desafíos enfrentan los estudiantes al prepararse para estos exámenes?"
+      "line": "Sí, los microcontroladores. ¿Podrías explicar su funcionamiento básico?"
     },
     {
       "speaker": "B",
-      "line": "La complejidad de los problemas, la necesidad de práctica constante y la actualización constante de los contenidos. Además, el examen de autoestudio requiere un buen dominio del idioma chino."
+      "line": "Claro. Son chips programables que ejecutan instrucciones. ¿Sabes qué lenguaje de programación se usa comúnmente?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué consejos darías para superar estos desafíos?"
+      "line": "Creo que es C o Arduino. ¿Cuál es la diferencia?"
     },
     {
       "speaker": "B",
-      "line": "Crear un plan de estudio estructurado, practicar con exámenes anteriores y unirse a comunidades de estudio. Para el chino, tomar clases de idioma y practicar con materiales técnicos."
+      "line": "Arduino es una plataforma con su propio lenguaje basado en C++. ¿Has programado antes?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué innovaciones recientes en electrónica podrían influir en estos exámenes?"
+      "line": "Sí, pero no con microcontroladores. ¿Qué proyectos sencillos recomendarías para empezar?"
     },
     {
       "speaker": "B",
-      "line": "La electrónica flexible, los materiales conductores avanzados y la inteligencia artificial aplicada a circuitos. Estos temas podrían integrarse en futuras versiones de los exámenes."
+      "line": "Un sistema de encendido de LED con sensores. ¿Te gustaría un esquema básico?"
     },
     {
       "speaker": "A",
-      "line": "¿Cómo crees que evolucionarán estos exámenes en los próximos años?"
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la teoría en estos exámenes?"
     },
     {
       "speaker": "B",
-      "line": "Probablemente incluirán más temas de electrónica verde, sostenibilidad y aplicaciones en energías renovables. También podrían integrar simulaciones virtuales y realidad aumentada para evaluar habilidades prácticas."
+      "line": "Con preguntas de opción múltiple y problemas de cálculo. ¿Te gustaría practicar algunos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de estos exámenes en el mercado laboral actual?"
+      "line": "Sí, pero primero, ¿qué temas son más difíciles para los estudiantes?"
     },
     {
       "speaker": "B",
-      "line": "Son muy valorados, especialmente en países con una fuerte industria electrónica. Demuestran un nivel de competencia que las empresas buscan en candidatos."
+      "line": "Las leyes de Kirchhoff y el análisis de circuitos en corriente alterna. ¿Quieres que profundicemos en alguno?"
     },
     {
       "speaker": "A",
-      "line": "¿Hay algún mito común sobre estos exámenes que te gustaría desmentir?"
+      "line": "Sí, las leyes de Kirchhoff. ¿Podrías explicarlas con un ejemplo?"
     },
     {
       "speaker": "B",
-      "line": "Que son solo para ingenieros. En realidad, son útiles para técnicos, diseñadores y hasta emprendedores en el campo de la electrónica."
+      "line": "Claro. La primera ley dice que la suma de corrientes en un nodo es cero. ¿Entiendes?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué recursos adicionales recomendarías para alguien que quiere prepararse?"
+      "line": "Sí, pero ¿cómo se aplica en un circuito real?"
     },
     {
       "speaker": "B",
-      "line": "Libros como 'Electrónica para Dummies' para principiantes, y para el examen de autoestudio, manuales oficiales del gobierno chino. También hay canales de YouTube con tutoriales prácticos."
+      "line": "Imagina un circuito con tres resistencias en serie. ¿Cómo calcularías la corriente total?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la combinación de teoría y práctica en estos exámenes?"
+      "line": "Usando la ley de Ohm. ¿Pero cómo se relaciona con Kirchhoff?"
     },
     {
       "speaker": "B",
-      "line": "Es esencial. La teoría sin práctica no es suficiente, y la práctica sin teoría puede ser limitada. Ambos aspectos deben equilibrarse."
+      "line": "Kirchhoff ayuda a resolver circuitos complejos. ¿Quieres un ejemplo numérico?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué papel juega la creatividad en el diseño de circuitos?"
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica?"
     },
     {
       "speaker": "B",
-      "line": "Es crucial. La creatividad permite optimizar diseños, resolver problemas de manera innovadora y desarrollar soluciones únicas."
+      "line": "Con simuladores y proyectos prácticos. ¿Has construido algún circuito antes?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué herramientas de software son útiles para el diseño de circuitos?"
+      "line": "No, pero me gustaría empezar. ¿Qué herramientas necesito?"
     },
     {
       "speaker": "B",
-      "line": "Programas como Altium Designer, KiCad y Proteus son muy populares. También hay simuladores como SPICE que ayudan a probar diseños antes de construirlos."
+      "line": "Un multímetro, soldador y protoboard. ¿Te gustaría una guía paso a paso?"
     },
     {
       "speaker": "A",
-      "line": "¿Cómo se evalúa la seguridad en el diseño de circuitos?"
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
     },
     {
       "speaker": "B",
-      "line": "Se consideran factores como la protección contra sobretensiones, el aislamiento adecuado y el cumplimiento de normativas como CE y UL."
+      "line": "Con proyectos y pruebas de laboratorio. ¿Te gustaría saber más sobre ellos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué errores comunes cometen los principiantes en electrónica?"
+      "line": "Sí, pero primero, ¿qué errores comunes cometen los estudiantes?"
     },
     {
       "speaker": "B",
-      "line": "Conectar componentes al revés, no verificar las especificaciones de voltaje y corriente, y no usar herramientas de medición adecuadas."
+      "line": "Conexiones incorrectas y cálculos erróneos. ¿Quieres que repasemos algunos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué consejos darías para evitar estos errores?"
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen de autoestudio de China con el 04730?"
     },
     {
       "speaker": "B",
-      "line": "Siempre verificar los diagramas antes de soldar, usar multímetros para medir voltajes y corrientes, y practicar con kits de electrónica básica."
+      "line": "El primero es más teórico, el segundo más práctico. ¿Te gustaría un resumen comparativo?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la documentación en proyectos de electrónica?"
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar?"
     },
     {
       "speaker": "B",
-      "line": "Es vital. Una buena documentación facilita el mantenimiento, la reproducción del proyecto y la colaboración con otros ingenieros."
+      "line": "Libros, cursos en línea y grupos de estudio. ¿Te gustaría una lista?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué tendencias emergentes en electrónica podrían influir en estos exámenes?"
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica?"
     },
     {
       "speaker": "B",
-      "line": "La electrónica cuántica, los circuitos bioinspirados y la integración de IA en sistemas embebidos. Estos temas podrían ser parte de futuras evaluaciones."
+      "line": "Con ejercicios y exámenes de práctica. ¿Quieres que repasemos algunos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la ética en el diseño de circuitos?"
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Es fundamental. Los diseñadores deben considerar el impacto ambiental, la seguridad del usuario y el cumplimiento de regulaciones."
+      "line": "Microcontroladores y circuitos integrados. ¿Quieres que profundicemos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué habilidades blandas son importantes para un ingeniero electrónico?"
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la teoría en el examen de autoestudio de China?"
     },
     {
       "speaker": "B",
-      "line": "Comunicación efectiva, trabajo en equipo, pensamiento crítico y capacidad de resolver problemas bajo presión."
+      "line": "Con preguntas de opción múltiple. ¿Te gustaría practicar?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la colaboración en proyectos de electrónica?"
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el 04730?"
     },
     {
       "speaker": "B",
-      "line": "Es esencial. La colaboración permite compartir conocimientos, resolver problemas complejos y desarrollar soluciones más robustas."
+      "line": "Sistemas de encendido de LED y sensores. ¿Te gustaría un esquema?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué recursos en línea recomendarías para aprender más sobre electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del 04730?"
     },
     {
       "speaker": "B",
-      "line": "Canales de YouTube como EEVblog, cursos en Coursera y edX, y foros como Stack Exchange y Reddit."
+      "line": "Con simuladores y proyectos. ¿Te gustaría una guía?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la práctica constante en electrónica?"
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica?"
     },
     {
       "speaker": "B",
-      "line": "Es clave. La práctica constante mejora las habilidades técnicas, la confianza y la capacidad de resolver problemas reales."
+      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué consejos darías para alguien que quiere empezar en electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se compara la tecnología electrónica 3 con los otros exámenes?"
     },
     {
       "speaker": "B",
-      "line": "Comenzar con proyectos simples, usar kits de electrónica básica y no tener miedo a cometer errores. La paciencia y la curiosidad son fundamentales."
+      "line": "Es más avanzado. ¿Te gustaría un resumen?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la seguridad en el laboratorio de electrónica?"
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Es prioritaria. Usar equipo de protección, seguir protocolos de seguridad y estar siempre atento a posibles riesgos eléctricos."
+      "line": "Libros y cursos en línea. ¿Te gustaría una lista?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la actualización constante en electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica de la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Es crucial. La tecnología avanza rápidamente, y mantenerse actualizado permite aprovechar nuevas herramientas y metodologías."
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la creatividad en la resolución de problemas en electrónica?"
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen de autoestudio de China?"
     },
     {
       "speaker": "B",
-      "line": "Es vital. La creatividad permite encontrar soluciones innovadoras y optimizar diseños de manera eficiente."
+      "line": "Las leyes de Kirchhoff. ¿Quieres que profundicemos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la documentación en proyectos de electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen de autoestudio de China?"
     },
     {
       "speaker": "B",
-      "line": "Es fundamental. Una buena documentación facilita el mantenimiento, la reproducción del proyecto y la colaboración con otros ingenieros."
+      "line": "No hay parte práctica. ¿Te gustaría un resumen?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la colaboración en proyectos de electrónica?"
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Es esencial. La colaboración permite compartir conocimientos, resolver problemas complejos y desarrollar soluciones más robustas."
+      "line": "Microcontroladores. ¿Te gustaría un esquema?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué recursos en línea recomendarías para aprender más sobre electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica de la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Canales de YouTube como EEVblog, cursos en Coursera y edX, y foros como Stack Exchange y Reddit."
+      "line": "Con simuladores. ¿Te gustaría una guía?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué opinas sobre la importancia de la práctica constante en electrónica?"
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica de la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Es clave. La práctica constante mejora las habilidades técnicas, la confianza y la capacidad de resolver problemas reales."
+      "line": "Programación incorrecta. ¿Quieres que repasemos?"
     },
     {
       "speaker": "A",
-      "line": "¿Qué consejos darías para alguien que quiere empezar en electrónica?"
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con la tecnología electrónica 3?"
     },
     {
       "speaker": "B",
-      "line": "Comenzar con proyectos simples, usar kits de electrónica básica y no tener miedo a cometer errores. La paciencia y la curiosidad son fundamentales."
+      "line": "El 04730 es más básico. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con proyectos. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con simuladores. ¿Te gustaría una guía?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen de autoestudio de China con la tecnología electrónica 3?"
+    },
+    {
+      "speaker": "B",
+      "line": "El primero es más teórico. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros. ¿Te gustaría una lista?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "Leyes de Kirchhoff. ¿Quieres que profundicemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "No hay parte práctica. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "No aplica. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "No aplica. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "No aplica. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "El 04730 es más práctico. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con proyectos. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con simuladores. ¿Te gustaría una guía?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con la tecnología electrónica 3?"
+    },
+    {
+      "speaker": "B",
+      "line": "El 04730 es más básico. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con proyectos. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con simuladores. ¿Te gustaría una guía?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con el examen de autoestudio de China?"
+    },
+    {
+      "speaker": "B",
+      "line": "El 04730 es más práctico. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con ejercicios. ¿Quieres que repasemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con proyectos. ¿Te gustaría un resumen?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Con simuladores. ¿Te gustaría una guía?"
+    },
+    {
+      "speaker": "A",
+      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
     }
 ]
 ```

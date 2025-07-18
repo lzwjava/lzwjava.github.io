@@ -7,103 +7,147 @@ title: Useful Prompts
 translated: false
 ---
 
+Here is the translated content:
+
+---
+
+将以下markdown文本翻译成中文，确保名称（如人名、地名、品牌或特定术语）不翻译，保持原样。仅将周围文本翻译成中文。
+
+---
+
+创建两位专家A和B关于专业主题的动态深度对话。对话应引人入胜且详细，双方应积极贡献。他们应：
+
+- 深入探讨具体子主题及其细节。
+- 比较和对比相关技术或方法。
+- 讨论实际应用及其影响。
+- 提出深入问题以揭示更深层次的见解。
+- 偶尔进行小测验以测试彼此的知识。
+- 关注主题的实际方面和机制，而非依赖公式。
+
+确保对话自然流畅，观点和视角平衡交换。
+
+格式如下：
+
 ```json
 [
     {
       "speaker": "A",
-      "line": "Hey, I’ve been hearing a lot about the 04730 exam, self-study China exam, and basic electronics technology 3. Can you break them down for me?"
+      "line": "Hey, I’ve been hearing a lot about some topic. Can you break it down for me?"
     },
     {
       "speaker": "B",
-      "line": "Sure! Let’s start with the basics. The 04730 exam is a specialized certification test in China, often related to certain technical or professional fields. The self-study China exam is a flexible option for those who prefer independent learning. Basic Electronics Technology 3 is a course that builds on foundational electronics knowledge."
-    },
-    {
-      "speaker": "A",
-      "line": "That makes sense. How do these exams compare in terms of difficulty and scope?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam is typically more focused and technical, while the self-study China exam can vary widely depending on the subject. Basic Electronics Technology 3 is more structured, covering core concepts like circuits, components, and troubleshooting."
-    },
-    {
-      "speaker": "A",
-      "line": "Got it. What are some real-world applications of the knowledge from Basic Electronics Technology 3?"
-    },
-    {
-      "speaker": "B",
-      "line": "It’s widely used in industries like telecommunications, automotive, and consumer electronics. For example, understanding inductors and capacitors is crucial for designing efficient power supplies."
-    },
-    {
-      "speaker": "A",
-      "line": "Speaking of inductors, how do they work in practical circuits?"
-    },
-    {
-      "speaker": "B",
-      "line": "Inductors store energy in a magnetic field when current flows through them. They oppose changes in current, which is useful in filtering and stabilizing circuits. For instance, they’re key in power converters and radio frequency circuits."
-    },
-    {
-      "speaker": "A",
-      "line": "Interesting! What about the self-study China exam—how does it differ from traditional classroom learning?"
-    },
-    {
-      "speaker": "B",
-      "line": "Self-study offers flexibility but requires strong discipline. It’s great for professionals who need to upskill without attending classes. However, it lacks the interactive feedback of a classroom."
-    },
-    {
-      "speaker": "A",
-      "line": "True. Let’s quiz each other—what’s a common use case for inductors in consumer electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "They’re often used in power adapters and chargers to smooth out voltage fluctuations. How about you—what’s a key challenge in self-study exams?"
-    },
-    {
-      "speaker": "A",
-      "line": "Staying motivated and finding reliable study materials. What about the 04730 exam—is it more theory or hands-on?"
-    },
-    {
-      "speaker": "B",
-      "line": "It’s a mix, but many sections require practical problem-solving. For example, troubleshooting electronic circuits is a common task."
-    },
-    {
-      "speaker": "A",
-      "line": "That’s useful. Let’s dive deeper—how do inductors compare to capacitors in filtering applications?"
-    },
-    {
-      "speaker": "B",
-      "line": "Inductors block high-frequency signals, while capacitors block low-frequency ones. Together, they form LC filters for precise frequency control."
-    },
-    {
-      "speaker": "A",
-      "line": "Great point. What emerging trends are shaping these exams and technologies?"
-    },
-    {
-      "speaker": "B",
-      "line": "AI-driven learning tools are making self-study more interactive. In electronics, miniaturization and IoT integration are pushing the boundaries of design."
-    },
-    {
-      "speaker": "A",
-      "line": "Exciting! How do you think these trends will impact exam formats in the future?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exams may shift toward practical simulations and AI-assisted assessments, reducing reliance on memorization."
-    },
-    {
-      "speaker": "A",
-      "line": "That’s a game-changer. Let’s wrap up—any final thoughts on preparing for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "Consistent practice, hands-on projects, and leveraging online resources are key. For electronics, building circuits and analyzing real-world problems is invaluable."
-    },
-    {
-      "speaker": "A",
-      "line": "Thanks for the insights! This was a great discussion."
-    },
-    {
-      "speaker": "B",
-      "line": "Anytime! Let’s revisit this topic once new trends emerge."
+      "line": "Sure! Let’s start with the basics. ..."
     }
 ]
 ```
+
+关于04730考试、中国自学考试和基础电子技术3。
+
+---
+
+创建两位专家A和B之间自然且延伸的对话，至少50轮。专家应深入讨论特定主题，对话应来回流动。双方应提问、分享见解并探索主题的细微差别。使用技能如深入探讨子部分、比较技术、探索用例、辩论权衡取舍和讨论新兴趋势。扩展至50+轮。
+
+关于PDF内容。格式如下：
+
+A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
+
+B: Sure! Let’s start with the basics.
+
+---
+
+生成带有文本姓名的快乐农历蛇年新年图像
+
+---
+
+创建480p YouTube视频封面图像，包含以下元素：AI、鲨鱼、未来感、鲜艳、色彩斑斓、日出、超大城市，中心有DeepSeek R1大字
+
+---
+
+创建480p YouTube视频封面图像，包含以下元素：基础电子学、未来感、激动人心。
+
+---
+
+为以下代码更改生成符合Conventional Commits格式的简洁提交信息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，包含括号内的范围以描述代码库的受影响部分。提交信息不超过70个字符。仅给出提交信息，不带任何前导或尾随说明。
+
+更改的文件：
+{', '.join(file_changes)}
+
+----
+
+创建YouTube标题
+
+----
+
+蕾(つぼみ) - Tsubomi
+
+给出其日语歌词，并解释每个词及发音
+
+---
+
+为本章提供全面的教程。
+
+---
+
+给出关于此的全面历史，谁发现了它，背后的故事是什么
+
+---
+
+推荐关于...的YouTube视频
+
+---
+
+给出菲律宾达沃市的介绍
+
+---
+
+给出电感器工作原理的全面分析
+
+---
+
+菲律宾
+
+什么特别？有什么独特之处？它的人如何为技术做出贡献？它的人如何发明并产生影响？
+
+---
+
+关于xx进行讨论
+
+---
+
+关于xx的评论
+
+---
+
+帮助组织这次演讲，尽可能减少转录，并帮助提供笔记
+
+---
+
+叶聪，数学，他的故事是什么，我们能从中学到什么
+
+---
+
+基于此YouTube视频，创建教程，不包括时间戳
+
+---
+
+下次Google将何时发布财报？
+
+---
+
+绘制一些图表以便理解
+
+---
+
+仅识别需要更改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便我可以直接复制粘贴。
+
+---
+
+组织此转录，尽可能保留原文，仅使其更连贯
+
+---
+
+关于某事给出30个单选多选题
+
+---
+
+用日语写，像小学孩子一样，使用非常简单的短语
