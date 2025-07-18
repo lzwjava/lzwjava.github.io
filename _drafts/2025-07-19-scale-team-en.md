@@ -7,31 +7,28 @@ translated: false
 generated: false
 ---
 
-- Think about it for long term. Do you have enough budget? How long can your team survive? What if nothing gain after scaling team?
+- Think about it for the long term. Do you have enough budget? How long can your team survive? What if there is no gain after scaling the team?
 
-- Be cautious to do it after getting investment. It is easy to burn money while hard to earn.
+- Be cautious about doing it after getting investment. It is easy to burn money but hard to earn it.
 
-- Keep very high standard bar to hire. The people you hire should be at least good as you.
+- Keep a very high standard when hiring. The people you hire should be at least as good as you.
 
-- Observe people who have energy and good attitude, the age or experience doesn't matter that much.
+- Observe people who have energy and a good attitude; age or experience doesn't matter that much.
 
-- Fire people quickly if they are not good fit. Wrong hire cost money and time. And it let other good people to do the shit that poor hire leave.
+- Fire people quickly if they are not a good fit. A wrong hire costs money and time and forces other good people to deal with the mess that the poor hire leaves.
 
-- Being loyal is good thing. But that exceptional person work for your team for 1 year is better than average person work for 2 years.
+- Loyalty is a good thing. However, an exceptional person working for your team for 1 year is better than an average person working for 2 years.
 
-- Separate tasks wisely or more distributedly. So exceptional people can work fast and quick.
+- Distribute tasks wisely and more evenly. This way, exceptional people can work fast and efficiently.
 
-- Salary and compensation do matter. At the end, we want that for freedom. Give more than market standard or do it with equity way.
+- Salary and compensation do matter. After all, we work for freedom. Offer more than the market standard or provide equity.
 
-- Exceptional people jump in market for time by time. We better plan the hire for next year, next two years. And meet candidate periodically. We only hire when it is good fit.
+- Exceptional people enter the market from time to time. It's better to plan hires for the next year or two and meet candidates periodically. Hire only when it is a good fit.
 
-- Do it with scientificaly. Observer people carefully and measure their output. And then adjust. Hire people , just like using libraries of code. We build great team as like we build great software.
+- Approach hiring scientifically. Observe people carefully and measure their output, then adjust. Hire people as you would use libraries of code. Build a great team just as you would build great software.
 
-- Keep the company with clean structure and highly efficeint. Simplify and simplify. It is easy to be complicated and berauticratic while hard to be conhesive and simple.
+- Keep the company with a clean structure and highly efficient. Simplify and simplify. It is easy to become complicated and bureaucratic but hard to be cohesive and simple.
 
-- Think long term again and again. It is that for companies, we hire people to build and earn profit, instead of we hire people to do charity.
+- Think long-term again and again. For companies, we hire people to build and earn profit, not to do charity.
 
-- Good people help you achieve mission while bad people help you distract from mission. 
-
-
-
+- Good people help you achieve your mission, while bad people distract you from it.
