@@ -7,25 +7,17 @@ translated: false
 generated: false
 ---
 
-There are some car accidents in my life. The most severe happend in April 2018, after 1 month I got the driver license. I travled to Xilinhot, Inner Mongolia,.
+There have been some car accidents in my life. The most severe one happened in April 2018, just one month after I got my driver's license. I was traveling to Xilinhot, Inner Mongolia. I was driving about 100 km/h with my wife. After exiting the highway at a toll booth, which didn't have a curved road and was straight, I thought I was still on the highway. So, I didn't slow down at all. Suddenly, there was a crossroad.
 
-I droved like 100 km an hour with my wife. After a highway exit which is just a toll and it doesn't have curve road, and it is in the straight road, I thought I am still in the highway. So I didn't break my car a bit. And suddenly there is a crossroad.
+My car crashed into a white car that was just making a turn. My car was pushed about 10 meters away. Things got messy. The other car was pushed into the road divider. I was fine because I was wearing my seatbelt, and I didn't have any injuries. However, my wife had some shoulder problems.
 
-My car crashed into a white car who just was turning around his car. And my car was moving like 10 meters away too. Things got messay. His car was moved into the road divider. 
+I could see that the other car was badly hit. I went to check on the situation. I was afraid that I might have seriously injured someone. Upon checking, I found a male driver alone in the car, with his head bleeding. I called for medical emergency services and the police.
 
-I was fine as I wear the safe belt and my body was complete and without any hurt. My wife's shoulder has some problem. 
+Actually, we were lucky. Before hitting his car, there was a big truck in front of us. We were glad that this big truck was driving fast and missed our car. Otherwise, our car might have gone under the truck, which could have been very dangerous for us.
 
-However, I can see that ther other car was hit hard. And I went to check the case. I am afraid that I probably kill people.
+Later, the insurance company for my car helped me. I had just bought the second-hand car half a month before the accident, so the insurance was under the original owner of my car.
 
-I went to see that , and found a male driver alone. And his head was full of blood. I called the medical emergecy and police.
-
-Actually, we were lucky for that before hitting his car, there was a big truck at front of mine. We were glad that this big truck drove fast and missed our car. Otherwise, our car probably drove into the down part of the big truck. That probably made our bodies very dangerous.
-
-Later, the insurance companies of my car helped me. I just bought the second-hand car half a month before. So the insurances were bought by the original owner of my car.
-
-This gave a life-long memory to me. And later accidents of mine are actually trivil.
-
-I gald that car accidents in my life now doesn't kill me. So I record here to wish I can have less car accidents in my later life, so hope you are same too.
+This accident left a lifelong memory for me. Later accidents I've had have been trivial. I am glad that the car accidents in my life have not killed me. I record this here to wish for fewer car accidents in my later life, and I hope the same for you.
 
 {: .centered }  
 ![](assets/images/accident/a1.jpg){: .responsive }  
