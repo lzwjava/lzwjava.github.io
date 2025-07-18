@@ -42,3 +42,6 @@ def call_mistral_api(prompt):
             print(f"Response status code: {e.response.status_code}")
             print(f"Response content: {e.response.text}")
         return None
+
+if __name__ == "__main__":
+    print(call_mistral_api('hi'))    

@@ -3,7 +3,7 @@ import requests
 import json
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent"
 
 def call_gemini_api(prompt):
     api_key = GEMINI_API_KEY
@@ -43,3 +43,6 @@ def call_gemini_api(prompt):
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON response: {e}")
         return None
+    
+if __name__ == "__main__":
+    print(call_gemini_api('hi'))    
