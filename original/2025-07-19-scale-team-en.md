@@ -36,3 +36,6 @@ generated: false
 - Don't try to change others; it is impossible. A person's mindset or worldview is shaped over their entire life. Instead, ask yourself, "What is my mission, and how can I attract a great team to achieve it?"
 
 - Having a good attitude is better than current ability.
+
+- Scaling a team is similar to scaling backend services. Certainly, the number or performance of servers is important. However, the code and system design are at least equally important, if not more. Similarly, while the raw headcount or quality of employees is important, the mission, company structure, and product are at least equally important, if not more.
+
