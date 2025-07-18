@@ -7,9 +7,17 @@ def get_oldest_year():
         files = os.listdir('original')
         years = []
         for file in files:
-            if file.startswith('20'):
-                year = int(file.split('-')[0])
-                years.append(year)
+            # Split the filename by '-' and try to extract the year
+            parts = file.split('-')
+            for part in parts:
+                if len(part) == 4 and part.isdigit() and part.startswith('20'):
+                    year = int(part)
+                    years.append(year)
+                    break
+                elif len(part) == 4 and part.isdigit() and int(part) > 1900:
+                    year = int(part)
+                    years.append(year)
+                    break
         return min(years) if years else None
     except Exception as e:
         print(f"Error getting oldest year: {e}")
