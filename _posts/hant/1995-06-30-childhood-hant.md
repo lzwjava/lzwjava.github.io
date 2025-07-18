@@ -11,8 +11,8 @@ translated: false
 
 {: .centered }
 ![](assets/images/childhood/c1.jpg){: .responsive }
-*Source: Photographer*{: .caption }
+*來源：攝影師*{: .caption }
 
 {: .centered }
 ![](assets/images/childhood/c2.jpg){: .responsive }
-*Source: Photographer*{: .caption }
+*來源：攝影師*{: .caption }
