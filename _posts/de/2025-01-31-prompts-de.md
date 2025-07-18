@@ -19,10 +19,10 @@ Verfassen Sie einen dynamischen und tiefgründigen Dialog zwischen zwei Experten
 
 - In spezifische Unterthemen eintauchen und deren Feinheiten erkunden.
 - Verschiedene Technologien oder Methodologien im Zusammenhang mit dem Thema vergleichen und gegenüberstellen.
-- Reale Anwendungsfälle und deren Auswirkungen diskutieren.
+- Echte Anwendungsfälle und deren Auswirkungen diskutieren.
 - Tiefgründige Fragen stellen, um tiefere Einblicke zu gewinnen.
 - Gelegentlich Quizfragen einbauen, um das Wissen des anderen zu testen.
-- Den Fokus auf die praktischen Aspekte und Mechanismen des Themas legen, anstatt sich auf Formeln zu verlassen.
+- Den Fokus auf die praktischen Aspekte und Mechanismen des Themas legen, anstatt sich auf Formeln zu stützen.
 
 Stellen Sie sicher, dass der Dialog natürlich fließt, mit einem ausgewogenen Austausch von Ideen und Perspektiven.
 
@@ -31,27 +31,27 @@ Das Format sollte wie folgt aussehen:
 ```json
 [
     {
-      "sprecher": "A",
-      "zeile": "Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?"
+      "speaker": "A",
+      "line": "Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?"
     },
     {
-      "sprecher": "B",
-      "zeile": "Natürlich! Lass uns mit den Grundlagen beginnen. ..."
+      "speaker": "B",
+      "line": "Klar! Lass uns mit den Grundlagen beginnen. ..."
     }
 ]
 ```
 
-Über die 04730-Prüfung, die chinesische Selbststudienprüfung und die Grundlagen der Elektroniktechnik 3.
+Über die 04730-Prüfung, die Selbststudium-China-Prüfung und die Grundlagen der Elektroniktechnik 3.
 
 ---
 
-Erstellen Sie ein natürliches und ausführliches Gespräch zwischen zwei Experten, A und B, mit mindestens 50 Wendungen. Die Experten sollten ein bestimmtes Thema in die Tiefe diskutieren, wobei das Gespräch hin und her fließt. Beide Teilnehmer sollten Fragen stellen, Einblicke teilen und die Nuancen des Themas erkunden. Verwenden Sie Fähigkeiten wie das Vertiefen in Unterabschnitte, das Vergleichen von Technologien, das Erkunden von Anwendungsfällen, das Debattieren von Kompromissen und das Diskutieren von aufkommenden Trends. Erweitern Sie auf 50+ Wendungen.
+Erstellen Sie ein natürliches und ausführliches Gespräch zwischen zwei Experten, A und B, mit mindestens 50 Wendungen. Die Experten sollten ein bestimmtes Thema vertieft diskutieren, wobei das Gespräch hin und her geht. Beide Teilnehmer sollten Fragen stellen, Einblicke teilen und die Nuancen des Themas erkunden. Verwenden Sie Fähigkeiten wie das Vertiefen in Unterabschnitte, das Vergleichen von Technologien, das Erforschen von Anwendungsfällen, das Debattieren von Kompromissen und das Diskutieren von aufkommenden Trends. Erweitern Sie auf 50+ Wendungen.
 
 Über den PDF-Inhalt. Das Format sollte wie folgt aussehen:
 
 A: Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?
 
-B: Natürlich! Lass uns mit den Grundlagen beginnen.
+B: Klar! Lass uns mit den Grundlagen beginnen.
 
 ---
 
@@ -59,11 +59,11 @@ Erstellen Sie ein fröhliches Bild zum Lunar Snake New Year mit Textnamen.
 
 ---
 
-Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit den folgenden Elementen: KI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit supergroßem Text DeepSeek R1 in der Mitte.
+Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit folgenden Elementen: AI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit riesigem Text DeepSeek R1 in der Mitte.
 
 ---
 
-Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit den folgenden Elementen: Grundlagen der Elektronik, futuristisch, aufregend.
+Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit folgenden Elementen: Grundlagen der Elektronik, futuristisch, aufregend.
 
 ---
 
@@ -83,7 +83,7 @@ Erstellen Sie einen YouTube-Titel.
 
 蕾(つぼみ) - Tsubomi
 
-Geben Sie die Lyrics auf Japanisch an und erklären Sie sie, für jedes Wort und die Aussprache.
+Geben Sie die Lyrics auf Japanisch an und erklären Sie sie, Wort für Wort und Aussprache.
 
 ---
 
@@ -129,7 +129,7 @@ Yitang Zhang, Mathematik, was ist seine Geschichte, was können wir daraus lerne
 
 ---
 
-Basierend auf diesem YouTube-Video, erstellen Sie einen Tutorial, ohne Zeitstempel einzuschließen.
+Basierend auf diesem YouTube-Video, erstellen Sie einen Tutorial, ohne Zeitstempel.
 
 ---
 
@@ -141,7 +141,7 @@ Zeichnen Sie einige Grafiken, um sie zu verstehen.
 
 ---
 
-Identifizieren Sie nur die Zeilen, die Änderungen benötigen, und geben Sie korrigierte Snippets (nicht den gesamten Code) an. Bewahren Sie die ursprüngliche Einrückung auf, damit ich sie direkt kopieren und einfügen kann.
+Identifizieren Sie nur die Zeilen, die Änderungen benötigen, und geben Sie korrigierte Codeausschnitte (nicht den gesamten Code) an. Bewahren Sie die ursprüngliche Einrückung auf, damit ich sie direkt kopieren und einfügen kann.
 
 ---
 
@@ -149,7 +149,7 @@ Organisieren Sie dieses Transkript, behalten Sie den ursprünglichen Text so wei
 
 ---
 
-Geben Sie 30 Multiple-Choice-Fragen mit einer einzigen Option über etwas.
+Geben Sie 30 Multiple-Choice-Fragen mit einer einzigen Option zu einem bestimmten Thema.
 
 ---
 
