@@ -4,7 +4,7 @@ generated: false
 lang: fr
 layout: post
 title: Souvenirs d'enfance
-translated: true
+translated: false
 ---
 
 Je suis né en 1995. Les photos ci-dessous ont été prises par un photographe invité par notre école primaire à Meizhou.
