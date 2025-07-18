@@ -135,8 +135,7 @@ def main():
             input_file = filename
             output_dir = f"_posts/{lang}"
             os.makedirs(output_dir, exist_ok=True)
-            output_filename = os.path.basename(filename).replace("-en.md", f"-{lang}.md").replace("-zh.md", f"-{lang}.md")
-            output_filename = output_filename.replace("-ja.md", f"-{lang}.md")
+            output_filename = os.path.basename(filename).replace("-en.md", f"-{lang}.md").replace("-zh.md", f"-{lang}.md").replace("-ja.md", f"-{lang}.md")
             output_file = os.path.join(output_dir, output_filename)
             print(f"Submitting translation job for {filename} to {lang}...")
             future = executor.submit(translate_markdown_file, input_file, output_file, lang, model)
