@@ -229,7 +229,9 @@ WeChat MiniProgram:
 
 <img src="/assets/images/portfolio/wxapp1.jpg" width="200px" /><img/>
 
-<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img/>
+<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img
+
+/>
 
 <img src="/assets/images/portfolio/wxapp3.jpg" width="200px" /><img/>
 
