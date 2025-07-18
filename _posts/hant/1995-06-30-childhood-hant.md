@@ -11,7 +11,7 @@ translated: true
 
 ---
 
-我於1995年出生。以下照片由我們梅州小學邀請的攝影師拍攝。
+我於1995年出生。以下照片由應邀為我們梅州小學拍攝的攝影師拍攝。
 
 {: .centered }
 ![](assets/images/childhood/c1.jpg){: .responsive }
