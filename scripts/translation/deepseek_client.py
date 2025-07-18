@@ -1,6 +1,5 @@
 import os
 import requests
-import json
 
 MODEL_NAME = "deepseek-chat"
 
