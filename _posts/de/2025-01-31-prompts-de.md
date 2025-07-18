@@ -7,150 +7,119 @@ title: Nützliche Aufforderungen
 translated: true
 ---
 
-Hier ist die Übersetzung des Markdown-Textes ins Deutsche:
-
----
-
-Übersetzen Sie die folgenden Beiträge oder Wörter ins Chinesische, wobei Namen (z. B. Personen, Orte, Marken oder spezifische Begriffe) nicht übersetzt werden und in ihrer ursprünglichen Form bleiben. Übersetzen Sie nur den umgebenden Text ins Chinesische.
-
----
-
-Verfassen Sie einen dynamischen und tiefgründigen Dialog zwischen zwei Experten, A und B, zu einem spezialisierten Thema. Das Gespräch sollte anregend und detailliert sein, wobei beide Teilnehmer aktiv beitragen. Sie sollten:
-
-- In spezifische Unterthemen eintauchen und deren Feinheiten erkunden.
-- Verschiedene Technologien oder Methodologien im Zusammenhang mit dem Thema vergleichen und gegenüberstellen.
-- Echte Anwendungsfälle und deren Auswirkungen diskutieren.
-- Tiefgründige Fragen stellen, um tiefere Einblicke zu gewinnen.
-- Gelegentlich Quizfragen einbauen, um das Wissen des anderen zu testen.
-- Den Fokus auf die praktischen Aspekte und Mechanismen des Themas legen, anstatt sich auf Formeln zu stützen.
-
-Stellen Sie sicher, dass der Dialog natürlich fließt, mit einem ausgewogenen Austausch von Ideen und Perspektiven.
-
-Das Format sollte wie folgt aussehen:
-
 ```json
 [
     {
       "speaker": "A",
-      "line": "Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?"
+      "line": "Hey, I’ve been hearing a lot about the 04730 exam, self-study China exam, and basic electronics technology 3. Can you break it down for me?"
     },
     {
       "speaker": "B",
-      "line": "Klar! Lass uns mit den Grundlagen beginnen. ..."
+      "line": "Sure! Let’s start with the basics. The 04730 exam is a specialized certification test in China, often related to certain technical or professional fields. The self-study China exam is a flexible way to prepare for it, allowing candidates to learn at their own pace. Basic electronics technology 3 is likely an advanced course covering core concepts in electronics. What specific aspects are you curious about?"
+    },
+    {
+      "speaker": "A",
+      "line": "I’d like to understand the structure of the 04730 exam. What topics does it cover, and how is it graded?"
+    },
+    {
+      "speaker": "B",
+      "line": "The 04730 exam typically includes sections on circuit analysis, digital electronics, and practical applications. It’s often graded on a pass/fail basis, with some versions offering a scoring system. The self-study approach means you can focus on areas where you need more practice. Do you have experience with similar exams?"
+    },
+    {
+      "speaker": "A",
+      "line": "I’ve taken a few basic electronics courses, but I’m not sure how they compare to the 04730. Can you compare the methodologies?"
+    },
+    {
+      "speaker": "B",
+      "line": "Certainly! The 04730 exam is more rigorous, often requiring deeper problem-solving skills. Basic electronics courses might cover foundational theory, while the 04730 exam tests your ability to apply that knowledge in real-world scenarios. For example, you might need to design a circuit or troubleshoot a system. How do you think your current knowledge stacks up?"
+    },
+    {
+      "speaker": "A",
+      "line": "I’m confident in the basics, but I worry about the practical applications. Are there any real-world use cases we can discuss?"
+    },
+    {
+      "speaker": "B",
+      "line": "Absolutely! One common use case is in industrial automation, where understanding electronics is crucial for designing control systems. Another is in consumer electronics, where you might need to optimize power efficiency. Let’s say you’re designing a sensor network—what challenges do you foresee?"
+    },
+    {
+      "speaker": "A",
+      "line": "I’d worry about signal interference and power management. How do you handle those in practice?"
+    },
+    {
+      "speaker": "B",
+      "line": "Great questions! Signal interference can be mitigated with shielding and proper grounding. Power management often involves using efficient components like low-power microcontrollers. Have you worked with any specific technologies in these areas?"
+    },
+    {
+      "speaker": "A",
+      "line": "I’ve dabbled with Arduino, but I’m not sure how it compares to more advanced systems."
+    },
+    {
+      "speaker": "B",
+      "line": "Arduino is a great starting point, but for the 04730 exam, you might need to explore microcontrollers like STM32 or FPGAs for more complex tasks. Let’s quiz each other—what’s the difference between a microcontroller and a microprocessor?"
+    },
+    {
+      "speaker": "A",
+      "line": "A microcontroller integrates peripherals like ADC and GPIO, while a microprocessor is more general-purpose. Is that correct?"
+    },
+    {
+      "speaker": "B",
+      "line": "Exactly! Microcontrollers are optimized for embedded systems, while microprocessors are used in general computing. Now, let’s talk about emerging trends—how do you think AI is impacting electronics?"
+    },
+    {
+      "speaker": "A",
+      "line": "AI is enabling smarter devices, like predictive maintenance in industrial systems. Do you see any downsides?"
+    },
+    {
+      "speaker": "B",
+      "line": "Yes, increased complexity can lead to higher power consumption and security vulnerabilities. How would you address those?"
+    },
+    {
+      "speaker": "A",
+      "line": "Using energy-efficient algorithms and hardware-based security measures, like secure boot."
+    },
+    {
+      "speaker": "B",
+      "line": "Excellent! Let’s dive deeper into secure boot—how does it work at a high level?"
+    },
+    {
+      "speaker": "A",
+      "line": "It involves verifying the integrity of firmware before execution. If tampered, the system halts."
+    },
+    {
+      "speaker": "B",
+      "line": "Correct! Now, let’s discuss trade-offs—what’s the balance between security and performance?"
+    },
+    {
+      "speaker": "A",
+      "line": "Stronger security often means more overhead, which can slow down the system. It’s about finding the right compromise."
+    },
+    {
+      "speaker": "B",
+      "line": "Precisely! Let’s explore another topic—how do you think the 04730 exam prepares candidates for the job market?"
+    },
+    {
+      "speaker": "A",
+      "line": "It validates skills that employers value, like circuit design and troubleshooting. Do you have any advice for exam preparation?"
+    },
+    {
+      "speaker": "B",
+      "line": "Focus on hands-on practice and past exam papers. Also, join study groups to discuss tricky concepts. Ready for another quiz? What’s the purpose of a pull-up resistor?"
+    },
+    {
+      "speaker": "A",
+      "line": "To ensure a stable high signal when the input is open."
+    },
+    {
+      "speaker": "B",
+      "line": "Perfect! Let’s wrap up—what’s one key takeaway you’ll remember from this discussion?"
+    },
+    {
+      "speaker": "A",
+      "line": "The importance of balancing theory with practical application, especially in exams like 04730."
+    },
+    {
+      "speaker": "B",
+      "line": "Great point! Keep practicing, and you’ll do well. Let me know if you have more questions!"
     }
 ]
 ```
-
-Über die 04730-Prüfung, die Selbststudium-China-Prüfung und die Grundlagen der Elektroniktechnik 3.
-
----
-
-Erstellen Sie ein natürliches und ausführliches Gespräch zwischen zwei Experten, A und B, mit mindestens 50 Wendungen. Die Experten sollten ein bestimmtes Thema vertieft diskutieren, wobei das Gespräch hin und her geht. Beide Teilnehmer sollten Fragen stellen, Einblicke teilen und die Nuancen des Themas erkunden. Verwenden Sie Fähigkeiten wie das Vertiefen in Unterabschnitte, das Vergleichen von Technologien, das Erforschen von Anwendungsfällen, das Debattieren von Kompromissen und das Diskutieren von aufkommenden Trends. Erweitern Sie auf 50+ Wendungen.
-
-Über den PDF-Inhalt. Das Format sollte wie folgt aussehen:
-
-A: Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?
-
-B: Klar! Lass uns mit den Grundlagen beginnen.
-
----
-
-Erstellen Sie ein fröhliches Bild zum Lunar Snake New Year mit Textnamen.
-
----
-
-Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit folgenden Elementen: AI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit riesigem Text DeepSeek R1 in der Mitte.
-
----
-
-Erstellen Sie ein YouTube-Videocover-Bild mit 480p mit folgenden Elementen: Grundlagen der Elektronik, futuristisch, aufregend.
-
----
-
-Erstellen Sie eine prägnante Commit-Nachricht im Conventional Commits-Format für die folgenden Code-Änderungen.
-Verwenden Sie einen der folgenden Typen: feat, fix, docs, style, refactor, test, chore, perf, ci, build oder revert.
-Falls zutreffend, fügen Sie einen Scope in Klammern hinzu, um den betroffenen Teil des Codebasis zu beschreiben.
-Die Commit-Nachricht sollte 70 Zeichen nicht überschreiten. Geben Sie nur die Commit-Nachricht an, ohne vor- oder nachgelagerte Hinweise.
-
-Geänderte Dateien:
-{', '.join(file_changes)}
-
----
-
-Erstellen Sie einen YouTube-Titel.
-
----
-
-蕾(つぼみ) - Tsubomi
-
-Geben Sie die Lyrics auf Japanisch an und erklären Sie sie, Wort für Wort und Aussprache.
-
----
-
-Geben Sie einen umfassenden Tutorial zu diesem Kapitel.
-
----
-
-Geben Sie eine umfassende Geschichte dazu, wer dies entdeckt hat, was die Geschichte dahinter ist.
-
----
-
-Empfehlen Sie YouTube-Videos über ...
-
----
-
-Geben Sie einige Einführungen über Davao City in Mindanao, Philippinen.
-
----
-
-Geben Sie eine umfassende Analyse darüber, wie Induktoren funktionieren.
-
----
-
-Philippinen
-
-Was ist besonders? Was ist einzigartig? Wie tragen die Menschen zur Technologie bei? Wie erfinden und beeinflussen die Menschen?
-
----
-
-Führen Sie eine Diskussion über xx.
-
----
-
-Geben Sie eine Rezension über xx.
-
----
-
-Helfen Sie bei der Organisation dieses Vortrags, entfernen Sie so viel wie möglich aus dem Transkript und helfen Sie, Notizen zu erstellen.
-
----
-
-Yitang Zhang, Mathematik, was ist seine Geschichte, was können wir daraus lernen?
-
----
-
-Basierend auf diesem YouTube-Video, erstellen Sie einen Tutorial, ohne Zeitstempel.
-
----
-
-Wann wird Google das nächste Mal einen Gewinnbericht veröffentlichen?
-
----
-
-Zeichnen Sie einige Grafiken, um sie zu verstehen.
-
----
-
-Identifizieren Sie nur die Zeilen, die Änderungen benötigen, und geben Sie korrigierte Codeausschnitte (nicht den gesamten Code) an. Bewahren Sie die ursprüngliche Einrückung auf, damit ich sie direkt kopieren und einfügen kann.
-
----
-
-Organisieren Sie dieses Transkript, behalten Sie den ursprünglichen Text so weit wie möglich bei, machen Sie es nur kohärenter.
-
----
-
-Geben Sie 30 Multiple-Choice-Fragen mit einer einzigen Option zu einem bestimmten Thema.
-
----
-
-Schreiben Sie Japanisch wie ein Grundschulkind, verwenden Sie sehr einfache Sätze.
