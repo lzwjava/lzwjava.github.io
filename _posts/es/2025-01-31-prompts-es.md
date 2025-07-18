@@ -15,407 +15,191 @@ translated: false
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos por los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+      "line": "¡Claro! Comencemos por lo básico. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte específica te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Podrías enumerarlos?"
+      "line": "Me gustaría saber sobre los temas clave que cubre. ¿Podrías enumerarlos?"
     },
     {
       "speaker": "B",
-      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, teoría de señales y aplicaciones prácticas. ¿Quieres profundizar en alguno en particular?"
+      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, leyes fundamentales como Ohm y Kirchhoff, y aplicaciones prácticas. ¿Te suena familiar alguno de estos?"
     },
     {
       "speaker": "A",
-      "line": "Sí, hablemos de circuitos básicos. ¿Cuál es la diferencia entre un circuito en serie y uno en paralelo?"
+      "line": "Sí, pero ¿cómo se comparan con el examen de tecnología electrónica básica 3?"
     },
     {
       "speaker": "B",
-      "line": "En un circuito en serie, la corriente es la misma en todos los componentes, mientras que en paralelo, el voltaje es constante. ¿Sabes cómo calcular la resistencia total en cada caso?"
+      "line": "El examen 04730 es más general, mientras que el de tecnología electrónica básica 3 se enfoca en detalles técnicos más avanzados. ¿Has estudiado alguno antes?"
     },
     {
       "speaker": "A",
-      "line": "Creo que en serie es la suma de resistencias, y en paralelo es el inverso de la suma de inversos. ¿Es correcto?"
+      "line": "No, pero me interesa saber cómo prepararme. ¿Qué recursos recomiendas?"
     },
     {
       "speaker": "B",
-      "line": "¡Exacto! Ahora, ¿qué opinas sobre la importancia de los diodos en los circuitos?"
+      "line": "Libros de texto, simuladores de circuitos y cursos en línea son excelentes. ¿Prefieres aprender con ejemplos prácticos o teoría?"
     },
     {
       "speaker": "A",
-      "line": "Los diodos permiten el flujo de corriente en una dirección, ¿verdad? ¿Cómo se usan en rectificadores?"
+      "line": "Me gustan los ejemplos prácticos. ¿Podrías darme uno?"
     },
     {
       "speaker": "B",
-      "line": "Sí, en rectificadores convierten corriente alterna en continua. ¿Conoces los tipos de rectificadores más comunes?"
+      "line": "Claro. Imagina un circuito con una resistencia y un LED. ¿Cómo calcularías la corriente necesaria?"
     },
     {
       "speaker": "A",
-      "line": "Creo que son de media onda y de onda completa. ¿Cuál es más eficiente?"
+      "line": "Usaría la ley de Ohm: V = I * R. ¿Es correcto?"
     },
     {
       "speaker": "B",
-      "line": "El de onda completa es más eficiente porque aprovecha ambas mitades del ciclo de la corriente alterna. ¿Qué otros componentes electrónicos son esenciales?"
+      "line": "¡Exacto! Ahora, ¿qué pasaría si el voltaje es 5V y la resistencia es 1000 ohms?"
     },
     {
       "speaker": "A",
-      "line": "Los condensadores y los inductores, ¿verdad? ¿Podrías explicar cómo funcionan los inductores?"
+      "line": "La corriente sería 0.005 amperios, o 5 miliamperios."
     },
     {
       "speaker": "B",
-      "line": "Los inductores almacenan energía en un campo magnético cuando la corriente fluye a través de ellos. ¿Sabes cómo se calcula la inductancia?"
+      "line": "Perfecto. ¿Y si el LED requiere 20 miliamperios? ¿Qué ajustes harías?"
     },
     {
       "speaker": "A",
-      "line": "Usando la fórmula L = (μ * N² * A) / l, donde μ es la permeabilidad, N es el número de vueltas, A es el área y l es la longitud. ¿Es correcto?"
+      "line": "Añadiría una resistencia en serie para limitar la corriente."
     },
     {
       "speaker": "B",
-      "line": "¡Perfecto! Ahora, ¿qué aplicaciones prácticas tienen los inductores en la electrónica?"
+      "line": "Muy bien. ¿Qué valor de resistencia necesitarías?"
     },
     {
       "speaker": "A",
-      "line": "Se usan en filtros, transformadores y circuitos de conmutación. ¿Podrías dar un ejemplo de un filtro LC?"
+      "line": "Usando V = I * R, sería (5V - 2V) / 0.02A = 150 ohms."
     },
     {
       "speaker": "B",
-      "line": "Un filtro LC pasa ciertas frecuencias y bloquea otras. ¿Qué tipo de filtro es un filtro paso bajo?"
+      "line": "¡Correcto! Ahora, ¿qué pasa con los inductores en circuitos?"
     },
     {
       "speaker": "A",
-      "line": "Pasa frecuencias bajas y bloquea altas. ¿Cómo se compara con un filtro paso alto?"
+      "line": "Almacenan energía en un campo magnético. ¿Cómo se comparan con los condensadores?"
     },
     {
       "speaker": "B",
-      "line": "El paso alto hace lo contrario: pasa frecuencias altas y bloquea bajas. ¿Qué otros tipos de filtros conoces?"
+      "line": "Los inductores oponen cambios de corriente, mientras que los condensadores almacenan carga. ¿En qué aplicaciones se usan más?"
     },
     {
       "speaker": "A",
-      "line": "Filtros paso banda y rechazo de banda. ¿Podrías explicar cómo funcionan?"
+      "line": "Los inductores en filtros y transformadores, y los condensadores en circuitos de temporización."
     },
     {
       "speaker": "B",
-      "line": "El paso banda permite un rango de frecuencias, mientras que el rechazo de banda bloquea un rango específico. ¿Qué aplicaciones tienen en la comunicación?"
+      "line": "Exacto. ¿Qué tal un quiz rápido? ¿Cuál es la unidad de inductancia?"
     },
     {
       "speaker": "A",
-      "line": "Se usan en radios y sistemas de telecomunicaciones para seleccionar señales deseadas. ¿Qué más cubre el examen 04730?"
+      "line": "El henrio (H)."
     },
     {
       "speaker": "B",
-      "line": "También incluye temas como semiconductores, amplificadores y circuitos integrados. ¿Te interesa alguno en particular?"
+      "line": "¡Bien! Ahora, ¿cómo afecta la autoinductancia a un circuito?"
     },
     {
       "speaker": "A",
-      "line": "Sí, hablemos de amplificadores. ¿Cuál es la diferencia entre un amplificador operacional y uno de potencia?"
+      "line": "Genera una fuerza electromotriz que se opone al cambio de corriente."
     },
     {
       "speaker": "B",
-      "line": "Los amplificadores operacionales son para señales pequeñas y precisas, mientras que los de potencia manejan altas corrientes. ¿Sabes cómo se calcula la ganancia?"
+      "line": "Muy bien. ¿Y en un circuito RL en serie, cómo se calcula la corriente?"
     },
     {
       "speaker": "A",
-      "line": "La ganancia es la relación entre la señal de salida y la de entrada. ¿Qué es un amplificador inversor?"
+      "line": "Usando la impedancia total: Z = sqrt(R² + (XL)²), donde XL = 2πfL."
     },
     {
       "speaker": "B",
-      "line": "Es un amplificador operacional configurado para invertir la fase de la señal. ¿Qué otras configuraciones conoces?"
+      "line": "¡Excelente! ¿Qué pasa con los circuitos RLC?"
     },
     {
       "speaker": "A",
-      "line": "No inversor, seguidor de voltaje y sumador. ¿Podrías explicar el seguidor de voltaje?"
+      "line": "Incluyen resistencia, inductancia y capacitancia, y pueden tener resonancia."
     },
     {
       "speaker": "B",
-      "line": "Tiene una ganancia de 1 y se usa para aislar etapas de un circuito. ¿Qué más te gustaría saber sobre electrónica básica?"
+      "line": "Correcto. ¿En qué frecuencia ocurre la resonancia?"
     },
     {
       "speaker": "A",
-      "line": "Hablemos de circuitos integrados. ¿Qué son y cómo funcionan?"
+      "line": "Cuando XL = XC, es decir, 2πfL = 1/(2πfC)."
     },
     {
       "speaker": "B",
-      "line": "Son circuitos miniaturizados en un solo chip. ¿Sabes qué es un microcontrolador?"
+      "line": "¡Perfecto! ¿Qué aplicaciones tienen estos circuitos?"
     },
     {
       "speaker": "A",
-      "line": "Es un circuito integrado que puede ejecutar programas. ¿Qué aplicaciones tiene?"
+      "line": "Filtros, osciladores y sintonizadores de radio."
     },
     {
       "speaker": "B",
-      "line": "Se usan en electrodomésticos, automóviles y sistemas embebidos. ¿Qué más te interesa?"
+      "line": "Muy bien. ¿Qué tal otro quiz? ¿Qué ley describe la autoinductancia?"
     },
     {
       "speaker": "A",
-      "line": "¿Podríamos hablar sobre el examen de autoestudio de China? ¿Qué lo hace único?"
+      "line": "La ley de Faraday."
     },
     {
       "speaker": "B",
-      "line": "Es un examen riguroso que evalúa conocimientos técnicos en electrónica. ¿Qué parte te parece más desafiante?"
+      "line": "¡Correcto! Ahora, ¿cómo se comporta un inductor en corriente continua?"
     },
     {
       "speaker": "A",
-      "line": "La teoría de señales y los cálculos avanzados. ¿Tienes algún consejo para prepararse?"
+      "line": "Actúa como un corto circuito ideal en estado estable."
     },
     {
       "speaker": "B",
-      "line": "Practicar con problemas reales y entender los conceptos fundamentales. ¿Qué más te gustaría saber?"
+      "line": "Exacto. ¿Y en corriente alterna?"
     },
     {
       "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias actuales en electrónica?"
+      "line": "Oponen reactancia inductiva, XL = 2πfL."
     },
     {
       "speaker": "B",
-      "line": "Claro, la electrónica está avanzando hacia la miniaturización y la inteligencia artificial. ¿Qué opinas?"
+      "line": "Muy bien. ¿Qué tal si hablamos de aplicaciones prácticas?"
     },
     {
       "speaker": "A",
-      "line": "Es emocionante, pero también desafiante. ¿Qué más está cambiando?"
+      "line": "Claro. ¿Cómo se usan los inductores en fuentes de alimentación?"
     },
     {
       "speaker": "B",
-      "line": "La integración de sensores y la comunicación inalámbrica. ¿Qué más te interesa?"
+      "line": "En convertidores DC-DC para almacenar energía y suavizar la corriente."
     },
     {
       "speaker": "A",
-      "line": "¿Podríamos hablar sobre la historia de la electrónica?"
+      "line": "¿Y en motores eléctricos?"
     },
     {
       "speaker": "B",
-      "line": "Comenzó con los primeros experimentos con electricidad y evolucionó con el transistor. ¿Qué más te gustaría saber?"
+      "line": "Forman parte de los devanados para generar campos magnéticos."
     },
     {
       "speaker": "A",
-      "line": "¿Quiénes fueron los pioneros en electrónica?"
+      "line": "Interesante. ¿Qué tal un quiz final? ¿Qué material se usa comúnmente en núcleos de inductores?"
     },
     {
       "speaker": "B",
-      "line": "Thomas Edison, Nikola Tesla y muchos otros. ¿Qué más te interesa?"
+      "line": "Hierro, ferrita o materiales laminados para reducir pérdidas."
     },
     {
       "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones prácticas de la electrónica?"
+      "line": "¡Gracias por la explicación! ¿Hay algo más que deba saber?"
     },
     {
       "speaker": "B",
-      "line": "Claro, desde dispositivos médicos hasta sistemas de comunicación. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre los desafíos futuros en electrónica?"
-    },
-    {
-      "speaker": "B",
-      "line": "La sostenibilidad y la eficiencia energética son clave. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es crucial para el futuro. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La electrónica cuántica y la computación avanzada. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo prepararse para el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Estudiar los conceptos fundamentales y practicar con problemas reales. ¿Qué más te gustaría saber?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las diferencias entre el examen 04730 y otros exámenes de electrónica?"
-    },
-    {
-      "speaker": "B",
-      "line": "El 04730 es más técnico y práctico. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las mejores prácticas para estudiar electrónica?"
-    },
-    {
-      "speaker": "B",
-      "line": "Practicar con circuitos reales y entender los fundamentos. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones de la electrónica en la vida cotidiana?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde teléfonos hasta electrodomésticos. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias futuras en electrónica?"
-    },
-    {
-      "speaker": "B",
-      "line": "La inteligencia artificial y la robótica son clave. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es emocionante. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La electrónica flexible y los dispositivos portátiles. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo la electrónica está cambiando el mundo?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde la medicina hasta la comunicación, el impacto es enorme. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las habilidades necesarias para ser un buen ingeniero electrónico?"
-    },
-    {
-      "speaker": "B",
-      "line": "Conocimiento técnico, creatividad y resolución de problemas. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las mejores herramientas para aprender electrónica?"
-    },
-    {
-      "speaker": "B",
-      "line": "Simuladores, kits de desarrollo y libros técnicos. ¿Qué más te gustaría saber?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones de la electrónica en la industria?"
-    },
-    {
-      "speaker": "B",
-      "line": "Automatización, robótica y sistemas de control. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias en electrónica de consumo?"
-    },
-    {
-      "speaker": "B",
-      "line": "Dispositivos inteligentes y wearables. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es fascinante. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La realidad aumentada y la realidad virtual. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo la electrónica está revolucionando la medicina?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde dispositivos médicos hasta diagnósticos avanzados. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones de la electrónica en la educación?"
-    },
-    {
-      "speaker": "B",
-      "line": "Herramientas interactivas y aprendizaje adaptativo. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias en electrónica automotriz?"
-    },
-    {
-      "speaker": "B",
-      "line": "Vehículos autónomos y sistemas de asistencia al conductor. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es emocionante. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La electrificación y la conectividad. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo la electrónica está cambiando la forma en que vivimos?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde el hogar inteligente hasta la comunicación global. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones de la electrónica en la energía?"
-    },
-    {
-      "speaker": "B",
-      "line": "Energía renovable y sistemas de almacenamiento. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias en electrónica industrial?"
-    },
-    {
-      "speaker": "B",
-      "line": "Automatización y robótica avanzada. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es fascinante. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La inteligencia artificial y la IoT. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo la electrónica está revolucionando la comunicación?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde internet hasta las redes 5G. ¿Qué más te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las aplicaciones de la electrónica en la seguridad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sistemas de vigilancia y biometría. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre las tendencias en electrónica de entretenimiento?"
-    },
-    {
-      "speaker": "B",
-      "line": "Realidad virtual y streaming. ¿Qué opinas?"
-    },
-    {
-      "speaker": "A",
-      "line": "Es emocionante. ¿Qué más está por venir?"
-    },
-    {
-      "speaker": "B",
-      "line": "La inteligencia artificial y la personalización. ¿Qué más te interesa?"
-    },
-    {
-      "speaker": "A",
-      "line": "¿Podríamos hablar sobre cómo la electrónica está cambiando el futuro?"
-    },
-    {
-      "speaker": "B",
-      "line": "Desde la medicina hasta la energía, el impacto es enorme. ¿Qué más te gustaría explorar?"
+      "line": "Practica con simuladores y experimenta con circuitos reales. ¡Buena suerte con tus estudios!"
     }
 ]
 ```
