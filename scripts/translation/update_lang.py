@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 import yaml
 import concurrent.futures
 import copy
-
+from markdown_translate_client import translate_markdown_file
 
 load_dotenv()
 
