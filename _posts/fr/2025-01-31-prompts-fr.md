@@ -11,13 +11,13 @@ Here is the translated content in French:
 
 ---
 
-Traduisez les publications ou les mots suivants en chinois, en veillant à ne pas traduire les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) et à les laisser dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
+Traduisez les publications ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
 
 ---
 
 Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
 
-- Explorer des sous-thèmes spécifiques et leurs complexités.
+- Explorer des sous-thèmes spécifiques et leurs subtilités.
 - Comparer et opposer différentes technologies ou méthodologies liées au sujet.
 - Discuter des cas d'utilisation réels et de leurs implications.
 - Poser des questions approfondies pour découvrir des insights plus profonds.
@@ -59,7 +59,7 @@ Générez une image joyeuse pour le Nouvel An du Serpent lunaire avec des noms i
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
 
 ---
 
@@ -68,7 +68,7 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 ---
 
 Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
-Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build, ou revert.
+Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
 Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée.
 Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes supplémentaires.
 
@@ -77,13 +77,13 @@ Fichiers modifiés :
 
 ---
 
-Créez un titre YouTube
+Créez un titre YouTube.
 
 ---
 
 蕾(つぼみ) - Tsubomi
 
-Donnez les paroles en japonais, et expliquez-les, pour chaque mot et la prononciation
+Donnez les paroles en japonais, et expliquez-les, pour chaque mot et prononciation.
 
 ---
 
@@ -91,7 +91,7 @@ Donnez un tutoriel complet sur ce chapitre.
 
 ---
 
-Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière
+Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire derrière.
 
 ---
 
@@ -99,11 +99,11 @@ Recommandez des vidéos YouTube sur ...
 
 ---
 
-Donnez quelques introductions sur la ville de Davao à Mindanao, aux Philippines
+Donnez quelques introductions sur la ville de Davao à Mindanao, aux Philippines.
 
 ---
 
-Donnez une analyse complète du fonctionnement des inducteurs
+Donnez une analyse complète du fonctionnement des inducteurs.
 
 ---
 
@@ -113,31 +113,31 @@ Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants con
 
 ---
 
-Donnez une discussion sur xx
+Donnez une discussion sur xx.
 
 ---
 
-Donnez un avis sur xx
+Donnez un avis sur xx.
 
 ---
 
-Aidez à organiser cette conférence, sortez le plus possible du transcript et aidez à donner une note
+Aidez à organiser cette conférence, sortez le plus possible du transcript et aidez à donner une note.
 
 ---
 
-Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui
+Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
 
 ---
 
-Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les timestamps
+Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure de timestamp.
 
 ---
 
-Quelle est la prochaine date de publication du rapport de résultats de Google ?
+Quelle est la prochaine fois que Google publiera son rapport de bénéfices ?
 
 ---
 
-Dessinez quelques graphiques pour comprendre
+Dessinez quelques graphiques pour comprendre.
 
 ---
 
@@ -145,7 +145,7 @@ Identifiez uniquement les lignes nécessitant des modifications, et fournissez d
 
 ---
 
-Organisez ce transcript, gardez le texte original autant que possible, rendez-le simplement plus cohérent
+Organisez ce transcript, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
 
 ---
 
@@ -153,4 +153,4 @@ Donnez 30 questions à choix multiples à option unique sur un sujet.
 
 ---
 
-Écrivez en japonais comme un enfant de primaire, utilisez des phrases très simples
+Écrivez en japonais comme un enfant de primaire, utilisez des phrases très simples.
