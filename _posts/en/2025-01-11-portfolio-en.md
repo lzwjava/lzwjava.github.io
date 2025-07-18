@@ -21,7 +21,7 @@ Uva Online Judge record is [here](https://uhunt.onlinejudge.org/id/113519).
 
 <div align="center"><img src="/assets/images/portfolio/uva.png"/><img /></div>
 
-The range of algorithm problems I'v solved encompasses various areas, including data structures, graph, mathematics, string processing, geometry and several other advanced or specialized topics.
+The range of algorithm problems I've solved encompasses various areas, including data structures, graph, mathematics, string processing, geometry and several other advanced or specialized topics.
 
 ## Flower Recognition, Android, 2014.4 - 2014.8
 
@@ -332,7 +332,7 @@ Integrated ShowMeBug with Enterprise WeChat, enabling seamless access to technic
 
 ## LvchenSign, Frontend, 2020.4 - 2020.5
 
-LvchenSign specializes in the production of advertising signage for various businesses and events. With a focus on quality and creativity, it strive to deliver impactful visual solutions that elevate brands and captivate audiences.
+LvchenSign specializes in the production of advertising signage for various businesses and events. With a focus on quality and creativity, it strives to deliver impactful visual solutions that elevate brands and captivate audiences.
 
 Developed the frontend for LvchenSign, a website specializing in the production of advertising signage.
 
