@@ -4,7 +4,7 @@ generated: false
 lang: ar
 layout: post
 title: ذكريات الطفولة
-translated: true
+translated: false
 ---
 
 ولدتُ في عام 1995. الصور أدناه تم التقاطها من قبل مصور تم دعوته من قبل مدرستنا الابتدائية في ميزو.
