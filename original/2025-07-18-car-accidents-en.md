@@ -17,6 +17,8 @@ Actually, we were lucky. Before hitting his car, there was a big truck in front 
 
 Later, the insurance company for my car helped me. I had just bought the second-hand car half a month before the accident, so the insurance was under the original owner of my car.
 
+The police found that the driver of the white car had consumed a significant amount of alcohol. Consequently, the next day, the police decided to hold both of us equally responsible, splitting the fault fifty-fifty.
+
 This accident left a lifelong memory for me. Later accidents I've had have been trivial. I am glad that the car accidents in my life have not killed me. I record this here to wish for fewer car accidents in my later life, and I hope the same for you.
 
 {: .centered }  
