@@ -8,6 +8,9 @@ DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions"
 
 def call_deepseek_api(prompt):
+    if not DEEPSEEK_API_KEY:
+        print("Error: DEEPSEEK_API_KEY is not set in .env file.")
+        return None
     try:
         headers = {
             "Content-Type": "application/json",
@@ -40,4 +43,8 @@ def call_deepseek_api(prompt):
         else:
             print("  Response content is empty.")
         return None
+    
+
+if __name__ == "__main__":
+    print(call_deepseek_api('hi'))
     

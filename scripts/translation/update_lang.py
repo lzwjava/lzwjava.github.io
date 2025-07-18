@@ -240,9 +240,6 @@ def get_changed_files():
     return changed_files
 
 def main():
-    if not DEEPSEEK_API_KEY and not MISTRAL_API_KEY and not GEMINI_API_KEY:
-        print("Error: DEEPSEEK_API_KEY, MISTRAL_API_KEY or GEMINI_API_KEY is not set in .env file.")
-        return
     parser = argparse.ArgumentParser(description="Translate markdown files to a specified language.")
     parser.add_argument("--lang", type=str, default="all", help="Target language for translation (e.g., ja, es, all).")
     parser.add_argument("--dry_run", action="store_true", help="Perform a dry run without modifying files.")
