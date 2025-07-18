@@ -7,7 +7,7 @@ title: 童年回忆
 translated: false
 ---
 
-我出生于1995年。以下照片由梅州小学邀请的摄影师拍摄。
+我出生于1995年。下面的照片是由我们梅州小学邀请的摄影师拍摄的。
 
 {: .centered }
 ![](assets/images/childhood/c1.jpg){: .responsive }
