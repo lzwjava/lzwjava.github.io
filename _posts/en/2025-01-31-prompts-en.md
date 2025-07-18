@@ -7,199 +7,147 @@ title: Useful Prompts
 translated: false
 ---
 
+Here is the translated content:
+
+---
+
+将以下markdown文本翻译成中文，确保名称（如人名、地名、品牌或特定术语）不翻译，保持原样。仅将周围文本翻译成中文。
+
+---
+
+为两位专家A和B创作一个动态且深入的对话，围绕一个专业主题展开。对话应引人入胜且详细，双方应积极参与。他们应：
+
+- 深入探讨具体子主题及其细节。
+- 比较和对比相关技术或方法。
+- 讨论实际应用案例及其影响。
+- 提出深入探讨的问题。
+- 互相测试知识，偶尔进行小测验。
+- 关注主题的实际方面和机制，而非依赖公式。
+
+确保对话自然流畅，观点和视角交流平衡。
+
+格式应如下：
+
 ```json
 [
     {
       "speaker": "A",
-      "line": "Hey, I’ve been hearing a lot about the 04730 exam, self-study China exam, and basic electronics technology 3. Can you break down what these are and how they differ?"
+      "line": "Hey, I’ve been hearing a lot about some topic. Can you break it down for me?"
     },
     {
       "speaker": "B",
-      "line": "Absolutely! Let’s start with the basics. The 04730 exam is a specialized certification test, often related to certain technical or professional fields. The self-study China exam is likely a standardized test for individuals preparing independently, possibly for academic or professional purposes. Basic Electronics Technology 3 is probably an advanced course or certification in electronics."
-    },
-    {
-      "speaker": "A",
-      "line": "Got it. How do these exams compare in terms of difficulty and scope?"
-    },
-    {
-      "speaker": "B",
-      "line": "Great question. The 04730 exam tends to be more niche, focusing on specific skills or knowledge areas. The self-study China exam might cover broader topics but requires self-discipline. Basic Electronics Technology 3 is likely more technical, diving deep into circuit design, components, and applications."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any real-world applications or industries where these certifications are particularly valuable?"
-    },
-    {
-      "speaker": "B",
-      "line": "Definitely. The 04730 exam could be useful in fields like engineering or IT, where specialized certifications are valued. The self-study China exam might be relevant for academic admissions or job applications in China. Basic Electronics Technology 3 is crucial for roles in electronics engineering, telecommunications, or even robotics."
-    },
-    {
-      "speaker": "A",
-      "line": "How do the study materials or resources differ for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, you might find targeted study guides or online courses. The self-study China exam could rely on textbooks, past papers, or online platforms. Basic Electronics Technology 3 would likely require hands-on labs, textbooks, and possibly simulation software."
-    },
-    {
-      "speaker": "A",
-      "line": "What about the exam formats? Are they multiple-choice, practical, or a mix?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might be multiple-choice or scenario-based. The self-study China exam could include essays or problem-solving. Basic Electronics Technology 3 often has a mix of theory and practical labs."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any emerging trends or changes in how these exams are administered?"
-    },
-    {
-      "speaker": "B",
-      "line": "Yes, many exams are moving online, especially the self-study China exam. Basic Electronics Technology 3 might incorporate more virtual labs or simulations. The 04730 exam could see more adaptive testing or AI-driven assessments."
-    },
-    {
-      "speaker": "A",
-      "line": "How do candidates typically prepare for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, candidates might join study groups or use flashcards. The self-study China exam requires disciplined self-paced learning. Basic Electronics Technology 3 often involves hands-on practice with real circuits."
-    },
-    {
-      "speaker": "A",
-      "line": "What are some common pitfalls or mistakes candidates make?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, overlooking small details can be costly. For the self-study China exam, procrastination is a big issue. In Basic Electronics Technology 3, skipping practical labs can lead to gaps in understanding."
-    },
-    {
-      "speaker": "A",
-      "line": "How do these certifications impact career prospects?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam can open doors in specialized roles. The self-study China exam might help with academic or professional mobility. Basic Electronics Technology 3 is often a stepping stone to higher-level engineering certifications."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any alternatives or complementary certifications?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, related certifications in the same field could be useful. The self-study China exam might pair well with language proficiency tests. Basic Electronics Technology 3 could be complemented by certifications in programming or robotics."
-    },
-    {
-      "speaker": "A",
-      "line": "How do these exams compare in terms of global recognition?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might be regionally recognized. The self-study China exam is widely accepted in China and some international institutions. Basic Electronics Technology 3 is globally recognized, especially in engineering fields."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the typical duration of these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam could be a few hours. The self-study China exam might span multiple days. Basic Electronics Technology 3 often has a theory exam and a practical lab session."
-    },
-    {
-      "speaker": "A",
-      "line": "How do the costs compare?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might be moderately priced. The self-study China exam could be more affordable. Basic Electronics Technology 3 might require investment in lab equipment or software."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any prerequisites for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might require prior experience. The self-study China exam could have educational prerequisites. Basic Electronics Technology 3 often requires foundational knowledge in physics and math."
-    },
-    {
-      "speaker": "A",
-      "line": "How do the grading systems work?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might use a pass/fail system. The self-study China exam could have a percentile ranking. Basic Electronics Technology 3 often has a weighted score for theory and practical components."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the pass rate for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might have a high pass rate due to its niche nature. The self-study China exam could vary widely. Basic Electronics Technology 3 often has a moderate pass rate due to its technical depth."
-    },
-    {
-      "speaker": "A",
-      "line": "How do these exams adapt to technological advancements?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might update its content periodically. The self-study China exam could incorporate new testing formats. Basic Electronics Technology 3 often integrates the latest tools and technologies."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any notable success stories or case studies?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, some candidates have used it to pivot into high-paying roles. The self-study China exam has helped many secure admissions to top universities. Basic Electronics Technology 3 has launched careers in cutting-edge tech fields."
-    },
-    {
-      "speaker": "A",
-      "line": "What advice would you give to someone preparing for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "For the 04730 exam, focus on understanding the core concepts. For the self-study China exam, create a strict study schedule. For Basic Electronics Technology 3, practice with real circuits as much as possible."
-    },
-    {
-      "speaker": "A",
-      "line": "How do these exams compare in terms of time commitment?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might require a few months of study. The self-study China exam could take a year or more. Basic Electronics Technology 3 often demands consistent, hands-on practice over several months."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any online communities or forums for support?"
-    },
-    {
-      "speaker": "B",
-      "line": "Yes, for the 04730 exam, there are niche forums. The self-study China exam has active communities on platforms like Reddit. Basic Electronics Technology 3 has dedicated engineering forums and lab groups."
-    },
-    {
-      "speaker": "A",
-      "line": "How do these exams contribute to lifelong learning?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam keeps professionals updated in their field. The self-study China exam fosters continuous learning. Basic Electronics Technology 3 encourages ongoing experimentation and innovation."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the future outlook for these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "The 04730 exam might evolve with industry needs. The self-study China exam could expand globally. Basic Electronics Technology 3 will likely incorporate more AI and automation."
-    },
-    {
-      "speaker": "A",
-      "line": "Any final thoughts or recommendations?"
-    },
-    {
-      "speaker": "B",
-      "line": "Choose the exam that aligns with your career goals. Stay updated with the latest resources and trends. And most importantly, enjoy the learning process!"
+      "line": "Sure! Let’s start with the basics. ..."
     }
 ]
 ```
+
+关于04730考试、中国自学考试和基础电子技术3。
+
+---
+
+创建一个自然且延伸的对话，两位专家A和B围绕一个具体主题深入讨论，对话应流畅往复。双方应提问、分享见解并探讨主题细节。使用技巧如深入探讨子主题、比较技术、探索应用案例、权衡取舍和讨论新兴趋势。扩展至50+轮。
+
+关于PDF内容。格式应如下：
+
+A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
+
+B: Sure! Let’s start with the basics.
+
+---
+
+生成一张带有文本姓名的快乐农历蛇年新年图片。
+
+---
+
+创建一张480p的YouTube视频封面图，包含以下元素：AI、鲨鱼、未来感、鲜艳、色彩丰富、日出、超大城市，中心位置有大字“DeepSeek R1”。
+
+---
+
+创建一张480p的YouTube视频封面图，包含以下元素：基础电子学、未来感、激动人心。
+
+---
+
+为以下代码更改生成符合Conventional Commits格式的简洁提交信息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如适用，包含括号内的范围以描述受影响的代码库部分。提交信息不超过70个字符。仅提供提交信息，不带前后说明。
+
+更改的文件：
+{', '.join(file_changes)}
+
+---
+
+创建一个YouTube标题。
+
+---
+
+蕾(つぼみ) - Tsubomi
+
+给出其日语歌词，并逐字解释，包括发音。
+
+---
+
+为这一章节提供全面的教程。
+
+---
+
+给出这一主题的全面历史，谁发现了它，背后的故事是什么。
+
+---
+
+推荐关于...的YouTube视频。
+
+---
+
+介绍一下菲律宾达沃市。
+
+---
+
+给出电感器工作原理的全面分析。
+
+---
+
+菲律宾
+
+什么特别？有什么独特之处？其人民如何为技术发展做出贡献？他们如何发明并产生影响？
+
+---
+
+关于xx展开讨论。
+
+---
+
+关于xx的评论。
+
+---
+
+帮助整理这个演讲，尽量减少转录内容，并帮助提供笔记。
+
+---
+
+叶聪，数学，他的故事是什么，我们能从中学到什么？
+
+---
+
+基于这个YouTube视频，创建一个教程，不包含时间戳。
+
+---
+
+下一次Google何时发布财报？
+
+---
+
+绘制一些图表以便更好地理解。
+
+---
+
+仅识别需要修改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便我可以直接复制粘贴。
+
+---
+
+整理这个转录，尽量保留原文，仅使其更加连贯。
+
+---
+
+给出关于某事的30个单选多选题。
+
+---
+
+用日语写，像小学生一样，使用非常简单的短语。
