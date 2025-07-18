@@ -4,7 +4,7 @@ from mistral_client import call_mistral_api
 
 def create_translation_prompt(target_language, type="content", front_matter_prompt=None):
     if type == "title":
-        base_prompt = "Translate the following title into {target_language}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {target_language}, return it as is.\n"
+        base_prompt = "Translate the following title into {target_language}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {target_language}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
     else:
         base_prompt = "Translate the following markdown text into {target_language}. Return only the translated content without any additional notes or explanations. If the text is already in {target_language}, return it unchanged.\n"
         if front_matter_prompt:
