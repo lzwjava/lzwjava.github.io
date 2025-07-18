@@ -427,3 +427,13 @@ Contributed to the development of an AI-powered story bot using Claude's API for
 - Implemented Prometheus for monitoring and ELK stack for log management.
 - Implemented end-to-end trace ID solution for tracking requests across the system.
 
+## Finance Transformation Platform - HSBC, Backend, 2025.02 - Present
+
+**Technologies Used:** Java, Spring Boot, IBM Db2, Multithreading, Maven, Nexus, Angular, Python, Windows, Control-M, IBM WebSphere Application Server, Copilot, YourKit
+
+**Responsibilities:**
+- Developed and optimized backend systems for the Finance Transformation Platform in HSBC’s Enterprise Technology Department as a Backend Engineer outsourced under TEKsystems.
+- Maintained features for financial data processing, including import, validation, and export, while enhancing submission and approval workflows for new financial headers, leveraging expertise in accounting, ledger, and banking systems.
+- Managed the full development lifecycle from local development to UAT testing and production releases, utilizing Copilot for tasks such as root cause analysis, generating Python scripts, and documenting around 50 technical guides that became key references for teammates.
+- Developed innovative banking technical solutions using AI tools like Copilot, performance profiling with YourKit, and systematic testing, while functioning as an autonomous AI agent to analyze project architecture, collaborate with teams, and improve through comprehensive logging and documentation.
+- Explored implementation of an AI software agent in a major financial project using AspectJ to gather extensive logs and convert debug states to text, providing context for AI chatbots.
