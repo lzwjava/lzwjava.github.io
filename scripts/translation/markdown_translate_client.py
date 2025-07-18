@@ -73,7 +73,7 @@ def translate_markdown_file(input_file, output_file, target_language, model="dee
             "introduction" in input_file.lower() or 
             "Zhiwei" in content_without_front_matter
         )
-        translated_content = translate_text(content_without_front_matter, target_language, special=special, model=model, front_matter_prompt=front_matter_prompt)
+        translated_content = translate_text(content_without_front_matter, target_language, model=model, front_matter_prompt=front_matter_prompt)
         if translated_content:
             translated_content = translated_front_matter + "\n\n" + translated_content
         else:
@@ -87,3 +87,11 @@ def translate_markdown_file(input_file, output_file, target_language, model="dee
         print(f"  Finished processing file: {output_file}")
     except Exception as e:
         print(f"  Error processing file {input_file}: {e}")
+        
+if __name__ == "__main__":
+    translate_markdown_file(
+        input_file='original/2025-07-18-japanese-essay-ja.md',
+        output_file='test-zh.md',
+        target_language='zh',
+        model='deepseek'
+    )
