@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 200,000 methods.
+Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 150,000 methods.
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
 
@@ -100,4 +100,6 @@ One of my colleagues told me that big companies operate with a monopoly on certa
 How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me. 
 
 The second thing is to follow what others do; it is safe. Becoming an average engineer on the team is safe, just like being an average person on the street—neither too outstanding nor too neglected, but right in the middle.
+
+I have to say there are many big companies. Some have more than 200,000 employees, while others have around 20,000. There are also good big companies and poor-performing ones. Appearance or market cap sometimes doesn't reveal much. They can rise significantly in a few years, as Nvidia has recently, or they can suddenly collapse, like Credit Suisse.
 
