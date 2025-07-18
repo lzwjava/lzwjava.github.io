@@ -4,7 +4,7 @@ import sys
 import re
 import glob
 
-def create_md(name):
+def create_md(name, lang="en"):
     """Create a draft Markdown file in the _drafts directory."""
     # Get today's date
     today = datetime.date.today()
@@ -15,25 +15,25 @@ def create_md(name):
     if not os.path.exists(drafts_dir):
         os.makedirs(drafts_dir)
 
-    en_file_path = os.path.join(drafts_dir, f"{date_str}-{name}-en.md")
+    file_path = os.path.join(drafts_dir, f"{date_str}-{name}-{lang}.md")
 
-    # English front matter
-    en_front_matter = f"""---
+    # Front matter
+    front_matter = f"""---
 audio: false
-lang: en
+lang: {lang}
 layout: post
 title: {name}
 translated: false
 generated: false
 ---"""
 
-    # Create the English markdown file
-    with open(en_file_path, 'w', encoding='utf-8') as en_file:
-        en_file.write(en_front_matter)
+    # Create the markdown file
+    with open(file_path, 'w', encoding='utf-8') as file:
+        file.write(front_matter)
 
-    print(f"Created file: {en_file_path}")
+    print(f"Created file: {file_path}")
 
-def create_note(name):
+def create_note(name, lang="en"):
     """Create a note Markdown file in the notes directory."""
     # Get today's date
     today = datetime.date.today()
@@ -44,12 +44,12 @@ def create_note(name):
     if not os.path.exists(notes_dir):
         os.makedirs(notes_dir)
 
-    note_file_path = os.path.join(notes_dir, f"{date_str}-{name}-en.md")
+    note_file_path = os.path.join(notes_dir, f"{date_str}-{name}-{lang}.md")
 
     # Note front matter (simplified version, adjust as needed)
     note_front_matter = f"""---
 title: {name}
-lang: en
+lang: {lang}
 layout: post
 audio: false
 translated: false
@@ -62,23 +62,23 @@ generated: true
 
     print(f"Created note: {note_file_path}")
 
-def create_original(name):
-    """Create an original Markdown file directly in the _posts/en directory."""
+def create_original(name, lang="en"):
+    """Create an original Markdown file directly in the _posts/{lang} directory."""
     # Get today's date
     today = datetime.date.today()
     date_str = today.strftime('%Y-%m-%d')
 
     # Define file paths
-    posts_dir = os.path.join('_posts', 'en')
+    posts_dir = os.path.join('_posts', lang)
     if not os.path.exists(posts_dir):
         os.makedirs(posts_dir)
 
-    file_path = os.path.join(posts_dir, f"{date_str}-{name}-en.md")
+    file_path = os.path.join(posts_dir, f"{date_str}-{name}-{lang}.md")
 
     # Front matter (same as create_md)
     front_matter = f"""---
 audio: false
-lang: en
+lang: {lang}
 layout: post
 title: {name}
 translated: false
@@ -146,19 +146,24 @@ def move(file_path):
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
     if len(sys.argv) < 3:
-        print("Usage: python scripts/file.py <create|create-note|create-original|delete|move> <name>")
-    else:
-        action = sys.argv[1]
-        name = sys.argv[2]
+        print("Usage: python scripts/file.py <create|create-note|create-original|delete|move> <name> [<lang>]")
+        print("For create actions, <lang> is optional, defaults to 'en'.")
+        sys.exit(1)
+
+    action = sys.argv[1]
+    name = sys.argv[2]
+    lang = "en" if len(sys.argv) < 4 else sys.argv[3]
+
+    if action in ["create", "create-note", "create-original"]:
         if action == "create":
-            create_md(name)
+            create_md(name, lang=lang)
         elif action == "create-note":
-            create_note(name)
+            create_note(name, lang=lang)
         elif action == "create-original":
-            create_original(name)
-        elif action == "delete":
-            delete_md(name)
-        elif action == "move":
-            move(name)
-        else:
-            print("Invalid action. Use 'create', 'create-note', 'create-original', 'delete', or 'move'.")
+            create_original(name, lang=lang)
+    elif action == "delete":
+        delete_md(name)
+    elif action == "move":
+        move(name)
+    else:
+        print("Invalid action. Use 'create', 'create-note', 'create-original', 'delete', or 'move'.")
