@@ -35,7 +35,7 @@ def translate_front_matter(front_matter, target_language, input_file, model="dee
             print(f"  Skipping title translation for {input_file} to {target_language}")
         
         front_matter_dict_copy['lang'] = target_language        
-        front_matter_dict_copy['translated'] = target_language != 'en'
+        front_matter_dict_copy['translated'] = target_language != front_matter_dict_copy.get('lang', 'en')
         
         audio_file = os.path.join("assets/audios/", os.path.basename(input_file).replace("-en", f"-{target_language}").replace("-zh", f"-{target_language}").replace(".md", ".mp3"))
         if os.path.exists(audio_file):
