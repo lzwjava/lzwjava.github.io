@@ -7,7 +7,7 @@ title: On Big Companies
 translated: false
 ---
 
-Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 200,000 methods.
+Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 150,000 methods.
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
 
@@ -83,7 +83,7 @@ In big companies, it is certain that many checks, tests, or approvals are unnece
 
 We should also eliminate all manager approvals. What knowledge do managers have that engineers do not? Could this knowledge be written into code to approve or reject the requests automatically?
 
-Because everything is slow there, workers are unlikely to change things. The change from a big monolithic project to microservices for a project that has run for a decade might take two years. 
+Because everything is slow there, workers are unlikely to change things. The change from a big monolithic project to microservices for a project that has run for a decade might take two years.
 
 For software, code and logic are tightly intertwined, especially in well-designed systems. Thus, the development, testing, or collaboration involved can be substantial.
 
@@ -97,6 +97,8 @@ Another thing big companies do well is maintain cash flow and profit discipline.
 
 One of my colleagues told me that big companies operate with a monopoly on certain products that require a lot of labor or time to build. That makes sense. They don't rely on speed but on their size, resources, and brand.
 
-How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me. 
+How to surive in big companies? One is that do more, less talk. This is my deliver manager in an outsourcing vendor told me.
 
 The second thing is to follow what others do; it is safe. Becoming an average engineer on the team is safe, just like being an average person on the street—neither too outstanding nor too neglected, but right in the middle.
+
+I have to say there are many big companies. Some have more than 200,000 employees, while others have around 20,000. There are also good big companies and poor-performing ones. Appearance or market cap sometimes doesn't reveal much. They can rise significantly in a few years, as Nvidia has recently, or they can suddenly collapse, like Credit Suisse.
