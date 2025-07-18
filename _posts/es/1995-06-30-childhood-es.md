@@ -4,7 +4,7 @@ generated: false
 lang: es
 layout: post
 title: Recuerdos de la infancia
-translated: false
+translated: true
 ---
 
 Nací en 1995. Las fotos de abajo fueron tomadas por un fotógrafo que fue invitado por nuestra escuela primaria en Meizhou.

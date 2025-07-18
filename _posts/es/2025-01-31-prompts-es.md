@@ -15,183 +15,159 @@ translated: true
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+      "line": "¡Claro! Comencemos por lo básico. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Me gustaría saber sobre los temas principales. ¿Qué cubre exactamente la tecnología electrónica básica 3?"
+      "line": "Me gustaría entender mejor la estructura del examen. ¿Cómo se divide?"
     },
     {
       "speaker": "B",
-      "line": "Cubre fundamentos como circuitos, componentes electrónicos, leyes de Ohm y Kirchhoff, y aplicaciones prácticas. ¿Has estudiado algo de esto antes?"
+      "line": "El examen se divide en tres secciones principales: teoría, práctica y un proyecto final. La teoría cubre conceptos fundamentales, la práctica incluye montaje de circuitos y el proyecto final es un diseño aplicado."
     },
     {
       "speaker": "A",
-      "line": "Sí, pero no en profundidad. ¿Cómo se compara con otros exámenes de electrónica?"
+      "line": "¿Qué tipo de preguntas aparecen en la sección teórica?"
     },
     {
       "speaker": "B",
-      "line": "Es más práctico que teórico. Por ejemplo, el examen 04730 enfatiza la resolución de problemas reales, mientras que otros pueden ser más teóricos. ¿Qué opinas de esto?"
+      "line": "Hay preguntas de opción múltiple, verdadero/falso y problemas de cálculo. Por ejemplo, ¿cuál es la ley de Ohm? ¿Puedes recordarla?"
     },
     {
       "speaker": "A",
-      "line": "Creo que es útil, pero ¿qué tan difícil es el examen de autoestudio de China?"
+      "line": "¡Claro! V = I × R. ¿Y en la sección práctica, qué habilidades se evalúan?"
     },
     {
       "speaker": "B",
-      "line": "Depende de tu preparación. Incluye preguntas sobre teoría y práctica. ¿Has considerado usar materiales de estudio específicos?"
+      "line": "Se evalúa la capacidad de leer esquemas, soldar componentes y medir voltaje y corriente. ¿Has trabajado con osciloscopios antes?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cuáles recomendarías? ¿Hay algún libro o recurso en línea que valga la pena?"
+      "line": "Sí, pero solo básicamente. ¿Qué tan importante es el proyecto final?"
     },
     {
       "speaker": "B",
-      "line": "Los manuales oficiales y los foros de estudio son excelentes. ¿Qué tal si hablamos de inductores? ¿Sabes cómo funcionan?"
+      "line": "Es crucial. Representa el 40% de la calificación y demuestra tu capacidad para aplicar lo aprendido. ¿Qué tipo de proyectos has visto?"
     },
     {
       "speaker": "A",
-      "line": "Sé que almacenan energía en un campo magnético, pero ¿cómo se aplican en circuitos?"
+      "line": "Algo sobre amplificadores operacionales. ¿Qué otros temas son comunes?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. Se usan en filtros, transformadores y fuentes de alimentación. ¿Conoces algún caso de uso en la vida real?"
+      "line": "Filtros, fuentes de alimentación y circuitos lógicos. ¿Sabes cómo funciona un filtro paso bajo?"
     },
     {
       "speaker": "A",
-      "line": "Sí, en cargadores de teléfonos y radios. Pero, ¿qué pasa con las limitaciones de los inductores?"
+      "line": "Sí, bloquea frecuencias altas. ¿Qué materiales se necesitan para el examen?"
     },
     {
       "speaker": "B",
-      "line": "Pueden ser voluminosos y generar pérdidas por calor. ¿Has trabajado con ellos en proyectos?"
+      "line": "Un kit de componentes básicos, un multímetro y un osciloscopio. ¿Tienes acceso a estos?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me gustaría. ¿Qué consejos tienes para principiantes?"
+      "line": "Sí, pero me preocupa el tiempo. ¿Cuánto tiempo se da para cada sección?"
     },
     {
       "speaker": "B",
-      "line": "Empieza con simuladores como LTspice. ¿Qué opinas de los condensadores en comparación?"
+      "line": "Tres horas para teoría, dos para práctica y una semana para el proyecto. ¿Cómo planeas organizarte?"
     },
     {
       "speaker": "A",
-      "line": "Los condensadores almacenan energía eléctrica, pero los inductores usan campos magnéticos. ¿Cuál es más eficiente?"
+      "line": "Estudiando teoría primero y luego practicando. ¿Qué recursos recomiendas?"
     },
     {
       "speaker": "B",
-      "line": "Depende del contexto. Los condensadores son mejores para alta frecuencia, los inductores para baja. ¿Has visto algún avance reciente en inductores?"
+      "line": "Libros como 'Electrónica Básica' de Boylestad y simuladores como Proteus. ¿Has usado alguno?"
     },
     {
       "speaker": "A",
-      "line": "Sí, los inductores de núcleo de aire son más compactos. ¿Cómo afecta esto a los diseños de circuitos?"
+      "line": "No, pero quiero probar. ¿Qué desafíos enfrentan los estudiantes?"
     },
     {
       "speaker": "B",
-      "line": "Permiten diseños más pequeños y ligeros. ¿Qué tal si hablamos de la historia de la electrónica básica?"
+      "line": "La precisión en mediciones y la gestión del tiempo. ¿Qué tal un quiz rápido? ¿Cuál es la unidad de inductancia?"
     },
     {
       "speaker": "A",
-      "line": "¡Buena idea! ¿Quién descubrió los principios básicos?"
+      "line": "El Henry. ¿Y la resistencia?"
     },
     {
       "speaker": "B",
-      "line": "Michael Faraday y James Clerk Maxwell sentaron las bases. ¿Sabes cómo se aplicaron inicialmente?"
+      "line": "El Ohm. Muy bien. ¿Qué opinas de las simulaciones virtuales?"
     },
     {
       "speaker": "A",
-      "line": "En telégrafos y motores eléctricos. ¿Qué impacto tuvo esto en la tecnología moderna?"
+      "line": "Son útiles, pero nada reemplaza la práctica real. ¿Cómo se califica el proyecto?"
     },
     {
       "speaker": "B",
-      "line": "Fue fundamental para la revolución industrial y la era digital. ¿Qué opinas de la contribución de China en electrónica?"
+      "line": "Por diseño, implementación y resultados. ¿Qué innovaciones recientes has visto en electrónica?"
     },
     {
       "speaker": "A",
-      "line": "China ha avanzado mucho en fabricación y diseño. ¿Qué empresas destacas?"
+      "line": "Componentes miniaturizados y IoT. ¿Cómo afectan al examen?"
     },
     {
       "speaker": "B",
-      "line": "Huawei y Xiaomi son líderes. ¿Has considerado estudiar en China para electrónica?"
+      "line": "Añaden preguntas sobre sensores y comunicación inalámbrica. ¿Qué tal un ejemplo de pregunta?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero no sé por dónde empezar. ¿Qué universidades recomiendas?"
+      "line": "Claro. ¿Cuál es la función de un diodo Zener?"
     },
     {
       "speaker": "B",
-      "line": "Tsinghua y Zhejiang son excelentes. ¿Qué tal si hablamos de los exámenes de certificación?"
+      "line": "Regular voltaje. ¿Y un transistor?"
     },
     {
       "speaker": "A",
-      "line": "El examen 04730 es riguroso. ¿Cómo se preparan los estudiantes?"
+      "line": "Amplificar o conmutar señales. ¿Qué opinas de los exámenes en línea?"
     },
     {
       "speaker": "B",
-      "line": "Con simuladores y práctica constante. ¿Qué opinas de los exámenes de autoestudio?"
+      "line": "Son convenientes, pero requieren supervisión. ¿Qué tal un desafío? ¿Cómo calcularías la corriente en un circuito serie?"
     },
     {
       "speaker": "A",
-      "line": "Son útiles para autodidactas. ¿Qué recursos recomiendas para el examen de tecnología electrónica básica 3?"
+      "line": "Usando la ley de Ohm y la resistencia total. ¿Qué otros temas son clave?"
     },
     {
       "speaker": "B",
-      "line": "Los manuales oficiales y los foros de estudio. ¿Qué tal si hacemos un pequeño quiz sobre inductores?"
+      "line": "Teorema de Thevenin y Norton. ¿Los conoces?"
     },
     {
       "speaker": "A",
-      "line": "¡Claro! ¿Cuál es la unidad de inductancia?"
+      "line": "Sí, simplifican circuitos complejos. ¿Qué herramientas de diseño usas?"
     },
     {
       "speaker": "B",
-      "line": "El henrio (H). ¿Qué pasa con la resistencia en un inductor?"
+      "line": "KiCad y Altium. ¿Has probado alguna?"
     },
     {
       "speaker": "A",
-      "line": "Aumenta con la frecuencia. ¿Cómo se calcula la inductancia?"
+      "line": "No, pero quiero aprender. ¿Qué consejos tienes para el examen?"
     },
     {
       "speaker": "B",
-      "line": "Con la fórmula L = N²μA/l. ¿Qué opinas de los inductores en fuentes de alimentación?"
+      "line": "Practica con exámenes anteriores y revisa tus cálculos. ¿Qué opinas de la electrónica moderna?"
     },
     {
       "speaker": "A",
-      "line": "Son cruciales para estabilizar la corriente. ¿Qué tal si hablamos de los desafíos en el diseño de inductores?"
+      "line": "Es fascinante, pero compleja. ¿Qué tendencias ves?"
     },
     {
       "speaker": "B",
-      "line": "Minimizar pérdidas y optimizar el espacio. ¿Has visto algún avance en materiales para inductores?"
+      "line": "Energía renovable y automatización. ¿Qué tal un último quiz? ¿Qué mide un amperímetro?"
     },
     {
       "speaker": "A",
-      "line": "Sí, los materiales superconductores. ¿Cómo afectan esto a la eficiencia?"
+      "line": "Corriente eléctrica. ¡Gracias por la ayuda!"
     },
     {
       "speaker": "B",
-      "line": "Reducen pérdidas significativamente. ¿Qué opinas de los inductores en dispositivos médicos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Son esenciales en resonancia magnética. ¿Qué tal si hablamos de los inductores en telecomunicaciones?"
-    },
-    {
-      "speaker": "B",
-      "line": "Se usan en antenas y filtros. ¿Qué opinas de los inductores en energía renovable?"
-    },
-    {
-      "speaker": "A",
-      "line": "Son clave en convertidores de energía. ¿Qué tal si resumimos lo que hemos aprendido?"
-    },
-    {
-      "speaker": "B",
-      "line": "Hemos cubierto desde los fundamentos hasta aplicaciones avanzadas. ¿Qué te gustaría explorar en el futuro?"
-    },
-    {
-      "speaker": "A",
-      "line": "Más sobre inductores en energía renovable. ¡Gracias por la conversación!"
-    },
-    {
-      "speaker": "B",
-      "line": "¡De nada! Siempre es un placer discutir electrónica. ¡Hasta la próxima!"
+      "line": "¡De nada! ¿Quieres seguir practicando?"
     }
 ]
 ```
