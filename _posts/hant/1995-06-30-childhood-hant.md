@@ -7,7 +7,7 @@ title: 童年回憶
 translated: true
 ---
 
-我於1995年出生。以下照片由我們小學時邀請的攝影師拍攝。
+我於1995年出生。以下照片是由我們小學時邀請的攝影師拍攝的。
 
 {: .centered }
 ![](assets/images/childhood/c1.jpg){: .responsive }
