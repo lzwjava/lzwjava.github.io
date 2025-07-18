@@ -11,22 +11,18 @@ Here is the translated content:
 
 ---
 
-将以下markdown文本翻译成中文，确保名称（如人名、地名、品牌或特定术语）不翻译，保持原样。仅将周围文本翻译成中文。
+Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
 
----
+- Delve into specific subtopics and explore their intricacies.
+- Compare and contrast different technologies or methodologies related to the subject.
+- Discuss real-world use cases and their implications.
+- Ask probing questions to uncover deeper insights.
+- Include occasional quizzes to test each other's knowledge.
+- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
 
-为两位专家A和B创作一个关于专业主题的动态深度对话。对话应引人入胜且详细，双方应积极贡献。他们应：
+Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
 
-- 深入探讨具体子主题及其细节。
-- 比较和对比相关技术或方法。
-- 讨论实际应用案例及其影响。
-- 提出深入探讨的问题。
-- 偶尔进行小测验以测试彼此的知识。
-- 关注主题的实际方面和机制，而非依赖公式。
-
-确保对话自然流畅，观点和视角交流平衡。
-
-格式应如下：
+The format should be as follows:
 
 ```json
 [
@@ -41,33 +37,33 @@ Here is the translated content:
 ]
 ```
 
-关于04730考试、中国自学考试和基础电子技术3。
+关于04730考试、中国自考和基础电子技术3的对话。
 
 ---
 
-创建一个自然且延伸的对话，两位专家A和B讨论一个具体主题，至少50个回合。对话应深入探讨主题，双方应提问、分享见解并探索主题细节。使用技巧如深入探讨子主题、比较技术、探索用例、辩论权衡取舍和讨论新兴趋势。扩展至50+回合。
+创建一个自然且延伸的对话，A和B两位专家之间至少进行50轮深入讨论。他们应该深入探讨一个具体主题，对话流畅自然。双方应提出问题、分享见解，并探索主题的细微差别。使用技巧如深入探讨子主题、比较技术、探索用例、辩论权衡取舍和讨论新兴趋势。扩展至50+轮。
 
-关于PDF内容。格式应如下：
+关于PDF内容。格式如下：
 
-A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
+A: 嘿，我最近听到很多关于某个主题的讨论。你能帮我解释一下吗？
 
-B: Sure! Let’s start with the basics.
-
----
-
-生成一张带有文字姓名的欢乐农历蛇年新年图像。
+B: 当然！我们从基础开始。
 
 ---
 
-创建一个480p YouTube视频封面图像，包含以下元素：AI、鲨鱼、未来感、鲜艳、多彩、日出、超大城市，中心有超大文字DeepSeek R1。
+生成一张带有文字名称的快乐蛇年新年图像。
 
 ---
 
-创建一个480p YouTube视频封面图像，包含以下元素：基础电子学、未来感、激动人心。
+创建一个480p的YouTube视频封面图像，包含以下元素：AI、鲨鱼、未来感、鲜艳、日出、超大城市，中间有DeepSeek R1的大字。
 
 ---
 
-为以下代码更改生成一个符合Conventional Commits格式的简洁提交信息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，包含括号内的范围以描述代码库的受影响部分。提交信息不得超过70个字符。仅提供提交信息，不带任何前导或尾随说明。
+创建一个480p的YouTube视频封面图像，包含以下元素：基础电子技术、未来感、激动人心。
+
+---
+
+为以下代码更改生成一个简洁的Conventional Commits格式的提交消息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，可以包含一个范围来描述代码库的受影响部分。提交消息不超过70个字符。只给出提交消息，不需要任何前导或尾随说明。
 
 更改的文件：
 {', '.join(file_changes)}
@@ -80,15 +76,15 @@ B: Sure! Let’s start with the basics.
 
 蕾(つぼみ) - Tsubomi
 
-给出其日语歌词，并解释每个词的含义和发音。
+给出日语歌词，并解释每个词的含义和发音。
 
 ---
 
-为这一章节提供全面的教程。
+为这一章节提供一个全面的教程。
 
 ---
 
-给出这一章节的全面历史，谁发现了它，背后的故事是什么？
+给出一个全面的历史，谁发现了它，背后的故事是什么？
 
 ---
 
@@ -96,11 +92,11 @@ B: Sure! Let’s start with the basics.
 
 ---
 
-介绍菲律宾达沃市的情况。
+给出关于菲律宾达沃市的介绍。
 
 ---
 
-提供关于电感器工作原理的全面分析。
+给出电感器工作原理的全面分析。
 
 ---
 
@@ -110,11 +106,11 @@ B: Sure! Let’s start with the basics.
 
 ---
 
-关于xx进行讨论。
+关于xx的讨论。
 
 ---
 
-关于xx进行评论。
+关于xx的评论。
 
 ---
 
@@ -130,7 +126,7 @@ B: Sure! Let’s start with the basics.
 
 ---
 
-下一次Google将发布什么财报？
+下一次Google将发布财报的时间是什么？
 
 ---
 
@@ -138,16 +134,16 @@ B: Sure! Let’s start with the basics.
 
 ---
 
-仅识别需要更改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便我可以直接复制粘贴。
+仅识别需要更改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便可以直接复制粘贴。
 
 ---
 
-组织这个转录，尽量保持原文，仅使其更加连贯。
+组织这个转录，尽量保持原文，只是让它更连贯。
 
 ---
 
-提供关于某事的30个单选多项选择题。
+给出关于某事的30个单选多选题。
 
 ---
 
-用日语写作，像小学生一样，使用非常简单的短语。
+用日语写，像小学生一样，使用非常简单的短语。
