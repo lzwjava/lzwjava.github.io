@@ -7,30 +7,24 @@ translated: false
 generated: false
 ---
 
-When I wrote down this essay in April 2023, [Why and How I Learn Japanese](https://lzwjava.github.io/japanese-en). Actually, I think I didn't make much progree about it.
+When I wrote this essay in April 2023, [Why and How I Learn Japanese](https://lzwjava.github.io/japanese-en), I realized that I hadn't made much progress. Two years have passed. I have listened for more than 300 hours, averaging half an hour a day. The rhythm may have become more familiar to me, but I still can't recognize many words.
 
-Two years passed. I have listened more like 300 hours, average half an hour a day. But actually, the rhythm may become more familiar to me. But I still can't recognize much words.
+I shouldn't have much trouble learning basic phrases, even lyrics or articles. There are AI tools available. I know of a great Japanese dictionary, [Jisho](https://jisho.org). The pattern I have observed is that I keep making the same mistakes again and again. The mistake is that when I listen, my mouth may follow the sound, but I don't understand.
 
-I shouldn't have much problem to learn basic phrase, even a lyrics, an article. There is AI tool. I know great Japanese dictionary, https://jisho.org .
+It is like learning English without speaking or writing. It is like learning to swim without jumping into the pool. This makes learning slower because you never gain insight or learn the essence until you make mistakes or get your hands dirty.
 
-What pattern I have observed is that I keep making mistakes again and again. The mistake is that when I listen, my mouth may follow the sound, but I don't understand.
+Why does Yin Wang learn so easily? Because he is dedicated to figuring out the meaning of every word, like さよなら (Sayonara).
 
-It is like learning English without speaking or writing. It is like learning swimming without jumping the pool.
+My progress with my associate degree is slow. I wrote an essay about it, [Associate Degree: Progress and Reflection](https://lzwjava.github.io/associate-degree-en).
 
-This make learning slower. Because you never get insight or learn the essance about it until you get messay or your hand get dirty.
+Why do I keep failing the exams? Because I often don't grasp what the exams are challenging me with. I read materials or watch videos without solving many actual exam questions.
 
-Why Yin Wang learn so easier? Because he dedeciated to figure out every meaning, every word, like さよなら, Sayonara.
+I like to take a hands-on approach in my work because I have to finish tasks. Without a hands-on approach, it is often not possible to figure out the root cause of bugs.
 
-My progress about my associate degree is slow. I wrote down the essay, [Associate Degree: Progress and Reflection](https://lzwjava.github.io/associate-degree-en).
+Why do I still like a hands-on approach in my leisure time? Because AI helps me a lot. I can fix many problems with the assistance of AI.
 
-Why I keep failing the exams? Because I often don't grasp what exams challenge me. I read materials or watch videos without solving actual exam questions much.
+How to Learn Easier? One has to be slow at the start to figure out the basics. After having a car accident in my first months of driving, my skills have improved, though there have still been [car accidents](https://lzwjava.github.io/car-accidents-en) in recent years.
 
-I like to hands-on in my work. Because I have to finish tasks. Without hands-on, it is not possible to figure out the root cause of bugs often. 
+Every time I make mistakes or don't understand something, it is because I don't try to figure out the reason and learn from it. So I keep making mistakes or remain clueless about something.
 
-Why I still like hands-on in my leisure time? Because AI will help me a lot. I can fix a lot of problems with the assitance of AI.
-
-How to Learn Easier? One has to be slow at the start to figure out basic stuffs. After having a car accident in my first months driving, my skill has become better though there are still [car accidents](https://lzwjava.github.io/car-accidents-en) in recent years.
-
-Everytime, I make mistakes or don't understand something. It is because I don't try to figure out the reason and learn from it. So I keep making mistake or keep being clueless about something.
-
-This is probaby one of big lesson of my life. Nowadays, learning is so important. The world become more complicated. This is about How to Learn Easier. And this is probably equal to how to live better.
+This is probably one of the big lessons of my life. Nowadays, learning is so important. The world is becoming more complicated. This is about how to learn easier, and this is probably equivalent to how to live better.
