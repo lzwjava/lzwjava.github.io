@@ -150,3 +150,5 @@ give 30 single-option multiple-choice quiz questions about sth.
 
 ---
 
+write japanses like primary school kid, use very simple phrase
+
