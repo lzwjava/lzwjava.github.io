@@ -10,18 +10,16 @@ import yaml
 import concurrent.futures
 import traceback
 import copy
+from gemini_client import call_gemini_api
+from deepseek_client import call_deepseek_api
+from mistral_client import call_mistral_api
 
 load_dotenv()
 
-GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
-MODEL_NAME = "deepseek-chat"
+
 INPUT_DIR = "original"
 MAX_THREADS = 10
-DEEPSEEK_API_URL = "https://api.deepseek.com/chat/completions"
-MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+
 
 def create_translation_prompt(target_language, type="content", special=False, front_matter_prompt=None):
     if type == "title":
@@ -51,82 +49,6 @@ def create_translation_prompt(target_language, type="content", special=False, fr
     else:
         return base_prompt.format(target_language=target_language)
 
-def call_mistral_api(prompt):
-    api_key = MISTRAL_API_KEY
-    if not api_key:
-        print("Error: MISTRAL_API_KEY environment variable not set.")
-        return None
-    
-    url = MISTRAL_API_URL
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
-    data = {
-        "model": "mistral-small-latest",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    }
-    try:
-        response = requests.post(url, headers=headers, json=data)
-        response.raise_for_status()
-        response_json = response.json()
-        if response_json and response_json['choices']:
-            content = response_json['choices'][0]['message']['content']
-            return content
-        else:
-            print(f"Mistral API Error: Invalid response format: {response_json}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Mistral API Error: {e}")
-        if e.response:
-            print(f"Response status code: {e.response.status_code}")
-            print(f"Response content: {e.response.text}")
-        return None
-
-def call_gemini_api(prompt):
-    api_key = GEMINI_API_KEY
-    if not api_key:
-        print("Error: GEMINI_API_KEY environment variable not set.")
-        return None
-    
-    url = f"{GEMINI_API_URL}?key={api_key}"
-    headers = {'Content-Type': 'application/json'}
-    data = {
-      "contents": [{
-        "parts":[{"text": prompt}]
-        }]
-       }
-    try:
-        response = requests.post(url, headers=headers, data=json.dumps(data))
-        response.raise_for_status()
-        json_response = response.json()
-        if 'candidates' in json_response and json_response['candidates']:
-            first_candidate = json_response['candidates'][0]
-            if 'content' in first_candidate and 'parts' in first_candidate['content']:
-                first_part = first_candidate['content']['parts'][0]
-                if 'text' in first_part:
-                    return first_part['text']
-                else:
-                    print("No text found in the response")
-                    return None
-            else:
-                print("Unexpected response format: content or parts missing")
-                return None
-        else:
-            print("No candidates found in the response")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Error during Gemini API request: {e}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON response: {e}")
-        return None
 
 def translate_text(text, target_language, type="content", special=False, model="deepseek", front_matter_prompt=None):
     if not text or not text.strip():
@@ -137,40 +59,9 @@ def translate_text(text, target_language, type="content", special=False, model="
     print(f"  Translating text: {text[:50]}...")
     
     if model == "deepseek":
-        try:
-            headers = {
-                "Content-Type": "application/json",
-                "Authorization": f"Bearer {DEEPSEEK_API_KEY}"
-            }
-            data = {
-                "model": MODEL_NAME,
-                "messages": [
-                    {"role": "system", "content": create_translation_prompt(target_language, type, special, front_matter_prompt)},
-                    {"role": "user", "content": text}
-                ],
-                "stream": False
-            }
-            response = requests.post(DEEPSEEK_API_URL, headers=headers, json=data)        
-            response.raise_for_status()
-            response_json = response.json()
-            if not response_json or not response_json.get('choices') or not response_json['choices'][0]['message']['content']:
-                print(f"  Error: Translation response is empty or invalid:")
-                print(response.content)
-                return None
-            if response_json['choices'][0].get('finish_reason') not in ("stop", "length"):
-                print(f"  Error: Translation did not finish with 'stop' or 'length' reason:")
-                print(response.content)
-                return None
-            translated_text = response_json['choices'][0]['message']['content']
-            return translated_text
-        except requests.exceptions.RequestException as e:
-            print(f"  Translation failed with error: {e}")
-            traceback.print_exc()
-            if response and response.content:
-                print(f"  Response content: {response.content}")
-            else:
-                print("  Response content is empty.")
-            return None
+        prompt = create_translation_prompt(target_language, type, special, front_matter_prompt) + "\n\n" + text
+        translated_text = call_deepseek_api(prompt)
+        return translated_text
     elif model == "mistral":
         prompt = create_translation_prompt(target_language, type, special, front_matter_prompt) + "\n\n" + text
         translated_text = call_mistral_api(prompt)
