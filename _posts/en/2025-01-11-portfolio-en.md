@@ -9,7 +9,7 @@ translated: false
 
 The PDF file can be found [here](/assets/resume/Zhiwei.Li.Portfolio.pdf).
 
-This collection of software represents the diverse projects I have had the privilege to work on throughout the years, in collaboration with various esteemed companies and partners. 
+This collection of software represents the diverse projects I have had the privilege to work on throughout the years, in collaboration with various esteemed companies and partners.
 
 I am grateful for the opportunities and experiences these collaborations have provided, and I look forward to continuing to contribute my skills and expertise to future endeavors.
 
@@ -38,7 +38,7 @@ Developed a flower recognition Android application designed to help users identi
 
 ## iword, Android, 2014.3
 
-An Android application to help users learn English by watching movie clips. 
+An Android application to help users learn English by watching movie clips.
 
 **Technologies Used:** Android SDK, Java
 
@@ -159,7 +159,7 @@ Open Sourced at [GitHub](https://github.com/lzwjava/Reveal-In-GitHub), 57 commit
 
 ## CodeReview, Full Stack, 2015.11 - 2016.7
 
-CodeReview is a professional platform for code review, communication, and sharing. Engineers can submit their code for expert review to improve the quality of their code. 
+CodeReview is a professional platform for code review, communication, and sharing. Engineers can submit their code for expert review to improve the quality of their code.
 
 **Technologies Used:** PHP, Vue.js, CodeIgniter, Alibaba Cloud
 
@@ -184,7 +184,7 @@ Open Sourced at GitHub.
 
 ## Fun Live, Full Stack, 2016.6 - 2017.12
 
-Fun Live is a knowledge live broadcast platform where users can participate in various knowledge lectures such as programming or design. Users can pay fees to attend live sessions or reward the lecturer. 
+Fun Live is a knowledge live broadcast platform where users can participate in various knowledge lectures such as programming or design. Users can pay fees to attend live sessions or reward the lecturer.
 
 **Technologies Used:** PHP, MySQL, Vue.js, CodeIgniter, Alibaba Cloud, SRS streaming, WeChat SDK
 
@@ -369,10 +369,9 @@ Contributed to DBS Client Connect, an AI- and data-driven customer-relationship 
 
 </div>
 
-
 ## DBS DigiBank CN - Mutual Funds, Backend, 2022.7-2022.11
 
-DBS DigiBank CN rethought and redesigned for you to enjoy the faster and more convenient way to bank on the go. 
+DBS DigiBank CN rethought and redesigned for you to enjoy the faster and more convenient way to bank on the go.
 
 Contributed to DBS DigiBank CN, focusing on backend development for mutual funds micro-services as part of a collaborative team.
 
@@ -392,10 +391,9 @@ Contributed to DBS DigiBank CN, focusing on backend development for mutual funds
 
 <p><a href="https://www.dbs.com.cn/treasures/digital-service/digibank.html">Image source: DBS Digibank CN</a></p></div>
 
+## PayMe By HSBC - Auto Top Up, Backend, 2022.12 - 2023.7
 
-## PayMe By HSBC - Auto Top Up, Backend, 2022.12 - 2023.7 
-
-PayMe from HSBC is a convenient way to send payments to friends, and make mobile payments to merchants both on and offline. 
+PayMe from HSBC is a convenient way to send payments to friends, and make mobile payments to merchants both on and offline.
 
 **Technologies Used:** Java, Spring, Kafka, Azure, Azure DevOps, AWS
 
@@ -428,3 +426,13 @@ Contributed to the development of an AI-powered story bot using Claude's API for
 - Implemented Prometheus for monitoring and ELK stack for log management.
 - Implemented end-to-end trace ID solution for tracking requests across the system.
 
+## Finance Transformation Platform - HSBC, Backend, 2025.02 - Present
+
+**Technologies Used:** Java, Spring Boot, IBM Db2, Multithreading, Maven, Nexus, Angular, Python, Windows, Control-M, IBM WebSphere Application Server, Copilot, YourKit
+
+**Responsibilities:**
+- Developed and optimized backend systems for the Finance Transformation Platform in HSBC’s Enterprise Technology Department as a Backend Engineer outsourced under TEKsystems.
+- Maintained features for financial data processing, including import, validation, and export, while enhancing submission and approval workflows for new financial headers, leveraging expertise in accounting, ledger, and banking systems.
+- Managed the full development lifecycle from local development to UAT testing and production releases, utilizing Copilot for tasks such as root cause analysis, generating Python scripts, and documenting around 50 technical guides that became key references for teammates.
+- Developed innovative banking technical solutions using AI tools like Copilot, performance profiling with YourKit, and systematic testing, while functioning as an autonomous AI agent to analyze project architecture, collaborate with teams, and improve through comprehensive logging and documentation.
+- Explored implementation of an AI software agent in a major financial project using AspectJ to gather extensive logs and convert debug states to text, providing context for AI chatbots.

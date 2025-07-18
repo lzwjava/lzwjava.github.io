@@ -11,603 +11,451 @@ translated: true
 [
     {
       "speaker": "A",
-      "line": "Hola, he estado escuchando mucho sobre el examen 04730, el examen de autoestudio de China y la tecnología electrónica básica 3. ¿Puedes desglosarlo para mí?"
+      "line": "Hola, he estado escuchando mucho sobre el examen 04730, el examen de autoestudio de China y la tecnología electrónica básica 3. ¿Puedes explicarme en qué consisten?"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+      "line": "¡Claro! Comencemos por lo básico. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Podrías enumerarlos?"
+      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Incluye circuitos, componentes o algo más?"
     },
     {
       "speaker": "B",
-      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, leyes fundamentales como Ohm y Kirchhoff, y aplicaciones prácticas. ¿Te suena familiar alguno de estos?"
+      "line": "Sí, cubre circuitos básicos, componentes como resistencias, capacitores e inductores, y también conceptos de corriente continua y alterna. ¿Has estudiado algo de esto antes?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cómo se compara con el examen de autoestudio de China? ¿Es más teórico o práctico?"
+      "line": "Un poco, pero me confundo con las diferencias entre corriente continua y alterna. ¿Podrías aclararme eso?"
     },
     {
       "speaker": "B",
-      "line": "El examen de autoestudio de China es más teórico, enfocado en conceptos y fórmulas, mientras que el 04730 combina teoría con problemas prácticos. ¿Has tenido experiencia con algún examen similar?"
+      "line": "¡Por supuesto! La corriente continua (CC) fluye en una dirección constante, como en una pila, mientras que la alterna (CA) cambia de dirección periódicamente, como en el suministro eléctrico de tu casa. ¿Entiendes la diferencia?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me interesa saber cómo se preparan los estudiantes. ¿Qué recursos recomendarías?"
+      "line": "Sí, eso ayuda. ¿Y qué hay de los inductores? ¿Cómo funcionan en un circuito?"
     },
     {
       "speaker": "B",
-      "line": "Libros de electrónica básica, simuladores de circuitos como Tinkercad y cursos en línea. ¿Has usado alguno de estos antes?"
+      "line": "Los inductores almacenan energía en un campo magnético cuando la corriente pasa a través de ellos. ¿Sabes cómo se calcula la inductancia?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero no en profundidad. ¿Qué opinas de los simuladores frente a la práctica real?"
+      "line": "Creo que es con la fórmula L = N²μA/l, pero no estoy seguro. ¿Es correcta?"
     },
     {
       "speaker": "B",
-      "line": "Los simuladores son útiles para entender conceptos, pero la práctica real es esencial para dominar habilidades como soldadura o medición. ¿Has trabajado con prototipos?"
+      "line": "¡Exacto! Donde L es la inductancia, N es el número de vueltas, μ es la permeabilidad, A es el área y l es la longitud. ¿Qué otros componentes electrónicos conoces?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me gustaría empezar. ¿Qué equipo básico necesitaría?"
+      "line": "Resistencias, capacitores y diodos. ¿Cómo se comparan los diodos con los transistores?"
     },
     {
       "speaker": "B",
-      "line": "Un kit de electrónica con resistencias, capacitores, LEDs y un protoboard. ¿Te gustaría una lista detallada?"
+      "line": "Los diodos permiten el flujo de corriente en una dirección, mientras que los transistores pueden amplificar o conmutar señales. ¿Has trabajado con transistores antes?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se relaciona la tecnología electrónica 3 con estos exámenes?"
+      "line": "No, pero me gustaría aprender. ¿Podrías recomendar algún recurso para empezar?"
     },
     {
       "speaker": "B",
-      "line": "Es un nivel avanzado que cubre temas como microcontroladores y circuitos integrados. ¿Te interesa algún área en particular?"
+      "line": "¡Claro! Hay muchos tutoriales en línea y libros como 'Electrónica Básica para Principiantes'. ¿Qué tipo de proyectos te gustaría construir?"
     },
     {
       "speaker": "A",
-      "line": "Sí, los microcontroladores. ¿Podrías explicar su funcionamiento básico?"
+      "line": "Quizás algo simple como un circuito de encendido y apagado. ¿Qué materiales necesitaría?"
     },
     {
       "speaker": "B",
-      "line": "Claro. Son chips programables que ejecutan instrucciones. ¿Sabes qué lenguaje de programación se usa comúnmente?"
+      "line": "Un transistor, una resistencia, un diodo LED y una fuente de alimentación. ¿Sabes cómo conectarlos?"
     },
     {
       "speaker": "A",
-      "line": "Creo que es C o Arduino. ¿Cuál es la diferencia?"
+      "line": "Creo que el transistor va entre la fuente y el LED, pero no estoy seguro. ¿Podrías dibujar un diagrama?"
     },
     {
       "speaker": "B",
-      "line": "Arduino es una plataforma con su propio lenguaje basado en C++. ¿Has programado antes?"
+      "line": "¡Por supuesto! Imagina un transistor con tres patillas: emisor, base y colector. La base controla el flujo entre emisor y colector. ¿Entiendes?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero no con microcontroladores. ¿Qué proyectos sencillos recomendarías para empezar?"
+      "line": "Sí, pero ¿cómo elijo el valor de la resistencia?"
     },
     {
       "speaker": "B",
-      "line": "Un sistema de encendido de LED con sensores. ¿Te gustaría un esquema básico?"
+      "line": "Depende de la corriente que necesites. Para un LED típico, una resistencia de 220 ohmios suele ser adecuada. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la teoría en estos exámenes?"
+      "line": "¿Cómo afecta la temperatura a los componentes electrónicos?"
     },
     {
       "speaker": "B",
-      "line": "Con preguntas de opción múltiple y problemas de cálculo. ¿Te gustaría practicar algunos?"
+      "line": "El calor puede degradar los componentes con el tiempo. ¿Sabes qué es la disipación térmica?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero primero, ¿qué temas son más difíciles para los estudiantes?"
+      "line": "No, ¿podrías explicarlo?"
     },
     {
       "speaker": "B",
-      "line": "Las leyes de Kirchhoff y el análisis de circuitos en corriente alterna. ¿Quieres que profundicemos en alguno?"
+      "line": "Es el proceso de dispersar el calor generado por los componentes. ¿Qué otros temas te interesan?"
     },
     {
       "speaker": "A",
-      "line": "Sí, las leyes de Kirchhoff. ¿Podrías explicarlas con un ejemplo?"
+      "line": "¿Cómo se diseñan los circuitos integrados?"
     },
     {
       "speaker": "B",
-      "line": "Claro. La primera ley dice que la suma de corrientes en un nodo es cero. ¿Entiendes?"
+      "line": "Es un proceso complejo que involucra diseño, fabricación y prueba. ¿Sabes qué es un circuito integrado?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cómo se aplica en un circuito real?"
+      "line": "Sí, es un chip con muchos componentes en un solo paquete. ¿Cómo se fabrican?"
     },
     {
       "speaker": "B",
-      "line": "Imagina un circuito con tres resistencias en serie. ¿Cómo calcularías la corriente total?"
+      "line": "Usando fotolitografía y procesos químicos. ¿Qué más te gustaría saber sobre electrónica?"
     },
     {
       "speaker": "A",
-      "line": "Usando la ley de Ohm. ¿Pero cómo se relaciona con Kirchhoff?"
+      "line": "¿Cómo se miden las señales en un osciloscopio?"
     },
     {
       "speaker": "B",
-      "line": "Kirchhoff ayuda a resolver circuitos complejos. ¿Quieres un ejemplo numérico?"
+      "line": "Conectando las sondas a los puntos de medición. ¿Sabes cómo interpretar las ondas en la pantalla?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica?"
+      "line": "No, ¿podrías explicarlo?"
     },
     {
       "speaker": "B",
-      "line": "Con simuladores y proyectos prácticos. ¿Has construido algún circuito antes?"
+      "line": "Las ondas muestran voltaje vs. tiempo. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me gustaría empezar. ¿Qué herramientas necesito?"
+      "line": "¿Cómo se diseñan los circuitos de radiofrecuencia?"
     },
     {
       "speaker": "B",
-      "line": "Un multímetro, soldador y protoboard. ¿Te gustaría una guía paso a paso?"
+      "line": "Usando inductores, capacitores y transistores de alta frecuencia. ¿Sabes qué es un oscilador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+      "line": "Sí, genera una señal periódica. ¿Cómo se ajusta la frecuencia?"
     },
     {
       "speaker": "B",
-      "line": "Con proyectos y pruebas de laboratorio. ¿Te gustaría saber más sobre ellos?"
+      "line": "Cambiendo los valores de los componentes. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero primero, ¿qué errores comunes cometen los estudiantes?"
+      "line": "¿Cómo se diseñan los circuitos de potencia?"
     },
     {
       "speaker": "B",
-      "line": "Conexiones incorrectas y cálculos erróneos. ¿Quieres que repasemos algunos?"
+      "line": "Usando transistores de potencia y disipadores de calor. ¿Sabes qué es un regulador de voltaje?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen de autoestudio de China con el 04730?"
+      "line": "Sí, mantiene el voltaje constante. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "El primero es más teórico, el segundo más práctico. ¿Te gustaría un resumen comparativo?"
+      "line": "Depende de la corriente y voltaje requeridos. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar?"
+      "line": "¿Cómo se diseñan los circuitos de audio?"
     },
     {
       "speaker": "B",
-      "line": "Libros, cursos en línea y grupos de estudio. ¿Te gustaría una lista?"
+      "line": "Usando amplificadores operacionales y filtros. ¿Sabes qué es un filtro paso bajo?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica?"
+      "line": "Sí, permite pasar frecuencias bajas. ¿Cómo se diseña uno?"
     },
     {
       "speaker": "B",
-      "line": "Con ejercicios y exámenes de práctica. ¿Quieres que repasemos algunos?"
+      "line": "Usando resistencias y capacitores. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en la tecnología electrónica 3?"
+      "line": "¿Cómo se diseñan los circuitos digitales?"
     },
     {
       "speaker": "B",
-      "line": "Microcontroladores y circuitos integrados. ¿Quieres que profundicemos?"
+      "line": "Usando puertas lógicas y microcontroladores. ¿Sabes qué es un microcontrolador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la teoría en el examen de autoestudio de China?"
+      "line": "Sí, es un chip que puede ejecutar programas. ¿Cómo se programa?"
     },
     {
       "speaker": "B",
-      "line": "Con preguntas de opción múltiple. ¿Te gustaría practicar?"
+      "line": "Usando lenguajes como C o Python. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el 04730?"
+      "line": "¿Cómo se diseñan los circuitos de comunicación?"
     },
     {
       "speaker": "B",
-      "line": "Sistemas de encendido de LED y sensores. ¿Te gustaría un esquema?"
+      "line": "Usando módulos de radiofrecuencia y protocolos como Bluetooth. ¿Sabes qué es un protocolo?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del 04730?"
+      "line": "Sí, son reglas para la comunicación. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con simuladores y proyectos. ¿Te gustaría una guía?"
+      "line": "Depende de la distancia y velocidad requeridas. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica?"
+      "line": "¿Cómo se diseñan los circuitos de sensores?"
     },
     {
       "speaker": "B",
-      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+      "line": "Usando transductores y amplificadores. ¿Sabes qué es un transductor?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara la tecnología electrónica 3 con los otros exámenes?"
+      "line": "Sí, convierte una señal física en eléctrica. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Es más avanzado. ¿Te gustaría un resumen?"
+      "line": "Depende de la aplicación. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar la tecnología electrónica 3?"
+      "line": "¿Cómo se diseñan los circuitos de control?"
     },
     {
       "speaker": "B",
-      "line": "Libros y cursos en línea. ¿Te gustaría una lista?"
+      "line": "Usando microcontroladores y algoritmos. ¿Sabes qué es un algoritmo?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica de la tecnología electrónica 3?"
+      "line": "Sí, es un conjunto de instrucciones. ¿Cómo se diseña uno?"
     },
     {
       "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
+      "line": "Depende de la aplicación. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen de autoestudio de China?"
+      "line": "¿Cómo se diseñan los circuitos de robótica?"
     },
     {
       "speaker": "B",
-      "line": "Las leyes de Kirchhoff. ¿Quieres que profundicemos?"
+      "line": "Usando motores, sensores y microcontroladores. ¿Sabes qué es un motor?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen de autoestudio de China?"
+      "line": "Sí, convierte energía eléctrica en mecánica. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "No hay parte práctica. ¿Te gustaría un resumen?"
+      "line": "Depende de la potencia y velocidad requeridas. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para la tecnología electrónica 3?"
+      "line": "¿Cómo se diseñan los circuitos de energía renovable?"
     },
     {
       "speaker": "B",
-      "line": "Microcontroladores. ¿Te gustaría un esquema?"
+      "line": "Usando paneles solares y controladores de carga. ¿Sabes qué es un panel solar?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica de la tecnología electrónica 3?"
+      "line": "Sí, convierte luz en electricidad. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con simuladores. ¿Te gustaría una guía?"
+      "line": "Depende de la potencia y eficiencia requeridas. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica de la tecnología electrónica 3?"
+      "line": "¿Cómo se diseñan los circuitos de automatización?"
     },
     {
       "speaker": "B",
-      "line": "Programación incorrecta. ¿Quieres que repasemos?"
+      "line": "Usando PLCs y sensores. ¿Sabes qué es un PLC?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con la tecnología electrónica 3?"
+      "line": "Sí, es un controlador programable. ¿Cómo se programa?"
     },
     {
       "speaker": "B",
-      "line": "El 04730 es más básico. ¿Te gustaría un resumen?"
+      "line": "Usando lenguajes como Ladder o Structured Text. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de telecomunicaciones?"
     },
     {
       "speaker": "B",
-      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+      "line": "Usando módems y antenas. ¿Sabes qué es un módem?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+      "line": "Sí, convierte datos digitales en analógicos. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
+      "line": "Depende de la velocidad y distancia requeridas. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de seguridad?"
     },
     {
       "speaker": "B",
-      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+      "line": "Usando sensores y alarmas. ¿Sabes qué es una alarma?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+      "line": "Sí, emite una señal de advertencia. ¿Cómo se elige una?"
     },
     {
       "speaker": "B",
-      "line": "Con proyectos. ¿Te gustaría un resumen?"
+      "line": "Depende de la sensibilidad y potencia requeridas. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de iluminación?"
     },
     {
       "speaker": "B",
-      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
+      "line": "Usando LEDs y dimmers. ¿Sabes qué es un dimmer?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
+      "line": "Sí, controla el brillo de las luces. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con simuladores. ¿Te gustaría una guía?"
+      "line": "Depende de la potencia y compatibilidad. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de entretenimiento?"
     },
     {
       "speaker": "B",
-      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+      "line": "Usando altavoces y amplificadores. ¿Sabes qué es un amplificador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen de autoestudio de China con la tecnología electrónica 3?"
+      "line": "Sí, aumenta la potencia de una señal. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "El primero es más teórico. ¿Te gustaría un resumen?"
+      "line": "Depende de la potencia y calidad de sonido requeridas. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen de autoestudio de China?"
+      "line": "¿Cómo se diseñan los circuitos de transporte?"
     },
     {
       "speaker": "B",
-      "line": "Libros. ¿Te gustaría una lista?"
+      "line": "Usando motores y controladores. ¿Sabes qué es un controlador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen de autoestudio de China?"
+      "line": "Sí, regula el funcionamiento de un sistema. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
+      "line": "Depende de la aplicación y requisitos. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen de autoestudio de China?"
+      "line": "¿Cómo se diseñan los circuitos de medicina?"
     },
     {
       "speaker": "B",
-      "line": "Leyes de Kirchhoff. ¿Quieres que profundicemos?"
+      "line": "Usando sensores y microcontroladores. ¿Sabes qué es un sensor médico?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen de autoestudio de China?"
+      "line": "Sí, mide parámetros fisiológicos. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "No hay parte práctica. ¿Te gustaría un resumen?"
+      "line": "Depende de la precisión y aplicación. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen de autoestudio de China?"
+      "line": "¿Cómo se diseñan los circuitos de agricultura?"
     },
     {
       "speaker": "B",
-      "line": "No aplica. ¿Te gustaría un resumen?"
+      "line": "Usando sensores y sistemas de riego. ¿Sabes qué es un sistema de riego?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen de autoestudio de China?"
+      "line": "Sí, distribuye agua a las plantas. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "No aplica. ¿Te gustaría un resumen?"
+      "line": "Depende de la eficiencia y área de cultivo. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen de autoestudio de China?"
+      "line": "¿Cómo se diseñan los circuitos de construcción?"
     },
     {
       "speaker": "B",
-      "line": "No aplica. ¿Te gustaría un resumen?"
+      "line": "Usando sensores y sistemas de control. ¿Sabes qué es un sistema de control?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con el examen de autoestudio de China?"
+      "line": "Sí, regula el funcionamiento de una máquina. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "El 04730 es más práctico. ¿Te gustaría un resumen?"
+      "line": "Depende de la aplicación y requisitos. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de energía?"
     },
     {
       "speaker": "B",
-      "line": "Libros y simuladores. ¿Te gustaría una lista?"
+      "line": "Usando generadores y transformadores. ¿Sabes qué es un transformador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
+      "line": "Sí, cambia el voltaje de una señal. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
+      "line": "Depende de la potencia y voltaje requeridos. ¿Qué más te interesa?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
+      "line": "¿Cómo se diseñan los circuitos de transporte?"
     },
     {
       "speaker": "B",
-      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
+      "line": "Usando motores y controladores. ¿Sabes qué es un controlador?"
     },
     {
       "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
+      "line": "Sí, regula el funcionamiento de un sistema. ¿Cómo se elige uno?"
     },
     {
       "speaker": "B",
-      "line": "Con proyectos. ¿Te gustaría un resumen?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con simuladores. ¿Te gustaría una guía?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con la tecnología electrónica 3?"
-    },
-    {
-      "speaker": "B",
-      "line": "El 04730 es más básico. ¿Te gustaría un resumen?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Libros y simuladores. ¿Te gustaría una lista?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con proyectos. ¿Te gustaría un resumen?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con simuladores. ¿Te gustaría una guía?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se compara el examen 04730 con el examen de autoestudio de China?"
-    },
-    {
-      "speaker": "B",
-      "line": "El 04730 es más práctico. ¿Te gustaría un resumen?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué recursos recomendarías para estudiar el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Libros y simuladores. ¿Te gustaría una lista?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte teórica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con ejercicios. ¿Quieres que repasemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué temas son más difíciles en el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Análisis de circuitos. ¿Quieres que profundicemos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se evalúa la práctica en el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con proyectos. ¿Te gustaría un resumen?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué proyectos prácticos recomendarías para el examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sistemas de encendido de LED. ¿Te gustaría un esquema?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿cómo se preparan los estudiantes para la parte práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Con simuladores. ¿Te gustaría una guía?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sí, por favor. Y, ¿qué errores comunes cometen los estudiantes en la práctica del examen 04730?"
-    },
-    {
-      "speaker": "B",
-      "line": "Conexiones incorrectas. ¿Quieres que repasemos?"
+      "line": "Depende de la aplicación y requisitos. ¿Qué más te gustaría aprender?"
     }
 ]
 ```
