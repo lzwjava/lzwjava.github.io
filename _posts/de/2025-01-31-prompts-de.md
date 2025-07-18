@@ -3,7 +3,7 @@ audio: true
 generated: false
 lang: de
 layout: post
-title: Nützliche Prompts
+title: Nützliche Aufforderungen
 translated: false
 ---
 

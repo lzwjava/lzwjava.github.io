@@ -15,351 +15,191 @@ translated: false
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos por los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+      "line": "¡Claro! Comencemos por lo básico. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte específica te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Podrías enumerarlos?"
+      "line": "Me gustaría saber sobre los temas clave y cómo se compara con otros exámenes similares. ¿Qué lo hace único?"
     },
     {
       "speaker": "B",
-      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, leyes de Ohm y Kirchhoff, y aplicaciones prácticas. ¿Te suena familiar alguno de estos?"
+      "line": "Buena pregunta. A diferencia de otros exámenes, el 04730 se enfoca en aplicaciones prácticas y problemas reales. ¿Has tenido experiencia con circuitos básicos?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cómo se compara con el examen de autoestudio de China? ¿Es más teórico o práctico?"
+      "line": "Sí, pero no estoy seguro de cómo se relaciona con el examen de autoestudio de China. ¿Podrías explicar eso?"
     },
     {
       "speaker": "B",
-      "line": "El examen de autoestudio de China es más teórico, mientras que el 04730 tiene un enfoque práctico. ¿Has trabajado con circuitos antes?"
+      "line": "El examen de autoestudio de China es más teórico, mientras que el 04730 es práctico. ¿Qué tipo de proyectos has trabajado?"
     },
     {
       "speaker": "A",
-      "line": "Sí, un poco. ¿Qué tipo de proyectos prácticos se esperan en el 04730?"
+      "line": "He trabajado con sensores y microcontroladores. ¿Cómo se evalúa eso en el 04730?"
     },
     {
       "speaker": "B",
-      "line": "Puedes esperar construir circuitos simples, medir voltajes y corrientes, y diagnosticar fallos. ¿Te gustaría un ejemplo?"
+      "line": "Hay secciones sobre diseño de circuitos y resolución de problemas. ¿Qué desafíos has enfrentado en tus proyectos?"
     },
     {
       "speaker": "A",
-      "line": "¡Sí, por favor! ¿Podrías describir un caso de uso real?"
+      "line": "A veces es difícil entender las especificaciones técnicas. ¿El examen cubre eso?"
     },
     {
       "speaker": "B",
-      "line": "Imagina un circuito de encendido de luces LED. Necesitarías calcular la resistencia adecuada para evitar que los LEDs se quemen. ¿Cómo lo harías?"
+      "line": "Sí, incluye interpretación de diagramas y cálculos. ¿Qué herramientas usas para diseñar circuitos?"
     },
     {
       "speaker": "A",
-      "line": "Usaría la ley de Ohm: V = IR. ¿Es correcto?"
+      "line": "Principalmente software como Proteus. ¿El examen permite el uso de herramientas digitales?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. ¿Y qué pasa si el voltaje es de 5V y el LED requiere 2V con una corriente de 20mA?"
+      "line": "No, es un examen teórico-práctico en papel. ¿Qué opinas de la tecnología electrónica básica 3?"
     },
     {
       "speaker": "A",
-      "line": "La resistencia sería (5V - 2V) / 0.02A = 150 ohms. ¿Correcto?"
+      "line": "Es un buen punto de partida, pero ¿cómo se compara con otros cursos?"
     },
     {
       "speaker": "B",
-      "line": "¡Perfecto! Ahora, ¿qué pasa si el LED tiene una tolerancia de voltaje?"
+      "line": "Es más accesible que otros, pero menos detallado. ¿Qué áreas te gustaría explorar más?"
     },
     {
       "speaker": "A",
-      "line": "Añadiría un margen de seguridad, quizás 200 ohms. ¿Qué opinas?"
+      "line": "Me interesa la electrónica de potencia. ¿El examen cubre eso?"
     },
     {
       "speaker": "B",
-      "line": "Buena idea. ¿Y si el circuito fuera más complejo, como un amplificador?"
+      "line": "Sí, pero de manera básica. ¿Has considerado certificaciones más avanzadas?"
     },
     {
       "speaker": "A",
-      "line": "Ahí entrarían los transistores y las leyes de Kirchhoff. ¿Podrías explicar cómo funcionan?"
+      "line": "Sí, pero primero quiero dominar los fundamentos. ¿Qué recursos recomiendas?"
     },
     {
       "speaker": "B",
-      "line": "Claro. La ley de corrientes de Kirchhoff dice que la suma de corrientes que entran a un nodo es igual a la suma de corrientes que salen. ¿Te suena?"
+      "line": "Libros como 'Electrónica Básica' de Charles Platt son excelentes. ¿Qué tal un quiz rápido sobre resistencias?"
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cómo se aplica en un circuito real?"
+      "line": "¡Claro! ¿Cuál es la fórmula para calcular la resistencia en un circuito en serie?"
     },
     {
       "speaker": "B",
-      "line": "Imagina un circuito con tres resistencias en serie. La corriente total se divide según las resistencias. ¿Cómo calcularías la corriente en cada rama?"
+      "line": "La resistencia total es la suma de todas las resistencias individuales. ¿Y en paralelo?"
     },
     {
       "speaker": "A",
-      "line": "Usaría la ley de Ohm para cada resistencia. ¿Es así?"
+      "line": "Es el inverso de la suma de los inversos. ¿Qué pasa con los condensadores?"
     },
     {
       "speaker": "B",
-      "line": "Sí, pero ¿qué pasa si hay fuentes de voltaje en paralelo?"
+      "line": "En serie, es el inverso de la suma de los inversos, y en paralelo, es la suma directa. ¿Qué opinas de los inductores?"
     },
     {
       "speaker": "A",
-      "line": "Ahí la tensión sería la misma en todas las ramas. ¿Correcto?"
+      "line": "Son más complejos. ¿Cómo se comportan en circuitos de corriente alterna?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. ¿Y qué tal si hablamos de inductores? ¿Sabes cómo funcionan?"
+      "line": "Actúan como resistencia inductiva. ¿Sabes cómo calcular la reactancia inductiva?"
     },
     {
       "speaker": "A",
-      "line": "Son componentes que almacenan energía en un campo magnético, ¿verdad?"
+      "line": "Sí, es X_L = 2πfL. ¿Qué otros componentes son importantes?"
     },
     {
       "speaker": "B",
-      "line": "Sí, pero ¿cómo afectan a la corriente en un circuito de corriente alterna?"
+      "line": "Los diodos y transistores son clave. ¿Cómo funcionan en rectificadores?"
     },
     {
       "speaker": "A",
-      "line": "Oponen resistencia al cambio de corriente. ¿Es reactancia inductiva?"
+      "line": "Convierten CA en CC. ¿Qué tipos de rectificadores existen?"
     },
     {
       "speaker": "B",
-      "line": "¡Muy bien! ¿Y qué pasa con los condensadores?"
+      "line": "De media onda, de onda completa y puente de diodos. ¿Qué aplicaciones conoces?"
     },
     {
       "speaker": "A",
-      "line": "Almacenan energía en un campo eléctrico y permiten el paso de corriente alterna. ¿Correcto?"
+      "line": "Fuentes de alimentación y cargadores. ¿Qué tal un quiz sobre transistores?"
     },
     {
       "speaker": "B",
-      "line": "Sí, pero ¿cómo interactúan los inductores y condensadores en un circuito resonante?"
+      "line": "¡Perfecto! ¿Qué tipo de transistor es el más común en amplificadores?"
     },
     {
       "speaker": "A",
-      "line": "Crean resonancia a una frecuencia específica. ¿Es así?"
+      "line": "El transistor de efecto de campo (FET). ¿Qué ventajas tiene?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. ¿Y qué aplicaciones tienen estos circuitos?"
+      "line": "Bajo consumo y alta impedancia de entrada. ¿Qué opinas de los microcontroladores?"
     },
     {
       "speaker": "A",
-      "line": "En radios, filtros y osciladores. ¿Podrías dar un ejemplo?"
+      "line": "Son versátiles. ¿Qué plataformas recomiendas para aprender?"
     },
     {
       "speaker": "B",
-      "line": "Claro. Un filtro pasa-bajas usa un inductor y un condensador para bloquear frecuencias altas. ¿Cómo lo harías?"
+      "line": "Arduino y Raspberry Pi son excelentes. ¿Qué proyectos has hecho con ellos?"
     },
     {
       "speaker": "A",
-      "line": "Conectaría el inductor en serie y el condensador en paralelo. ¿Es correcto?"
+      "line": "Un sistema de riego automático. ¿Qué desafíos enfrentaste?"
     },
     {
       "speaker": "B",
-      "line": "¡Sí! Ahora, ¿qué tal si hablamos de semiconductores?"
+      "line": "La programación y la calibración. ¿Cómo los resolviste?"
     },
     {
       "speaker": "A",
-      "line": "Son materiales que conducen electricidad bajo ciertas condiciones. ¿Verdad?"
+      "line": "Usando sensores de humedad y ajustando los umbrales. ¿Qué opinas de la robótica?"
     },
     {
       "speaker": "B",
-      "line": "Sí, pero ¿cómo funcionan los diodos?"
+      "line": "Es fascinante. ¿Qué áreas te gustaría explorar en el futuro?"
     },
     {
       "speaker": "A",
-      "line": "Permiten el paso de corriente en una dirección. ¿Es así?"
+      "line": "La inteligencia artificial aplicada a la electrónica. ¿Qué recursos recomiendas?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. ¿Y los transistores?"
+      "line": "Cursos en línea y proyectos prácticos. ¿Qué tal si hablamos de seguridad en circuitos?"
     },
     {
       "speaker": "A",
-      "line": "Amplifican o conmutan señales. ¿Correcto?"
+      "line": "Es crucial. ¿Qué precauciones debemos tomar?"
     },
     {
       "speaker": "B",
-      "line": "Sí. ¿Qué tipo de transistor es más común en electrónica básica?"
+      "line": "Usar herramientas aisladas y seguir protocolos. ¿Qué opinas de las normativas?"
     },
     {
       "speaker": "A",
-      "line": "El transistor de efecto de campo (FET). ¿Es así?"
+      "line": "Son importantes para la certificación. ¿Qué más debería saber?"
     },
     {
       "speaker": "B",
-      "line": "No, en electrónica básica es el transistor bipolar (BJT). ¿Sabes cómo funciona?"
+      "line": "La ética en la ingeniería y la sostenibilidad. ¿Qué opinas de las energías renovables?"
     },
     {
       "speaker": "A",
-      "line": "Tiene tres terminales: emisor, base y colector. ¿Verdad?"
+      "line": "Son el futuro. ¿Cómo se integran con la electrónica?"
     },
     {
       "speaker": "B",
-      "line": "Sí, pero ¿cómo controla la corriente?"
+      "line": "A través de inversores y sistemas de almacenamiento. ¿Qué más te gustaría aprender?"
     },
     {
       "speaker": "A",
-      "line": "La corriente en el emisor es controlada por la corriente en la base. ¿Es así?"
+      "line": "Todo lo que puedas enseñarme. ¡Gracias por la conversación!"
     },
     {
       "speaker": "B",
-      "line": "¡Perfecto! Ahora, ¿qué tal si hablamos de microcontroladores?"
-    },
-    {
-      "speaker": "A",
-      "line": "Son circuitos integrados programables. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo se comunican con otros componentes?"
-    },
-    {
-      "speaker": "A",
-      "line": "Usan puertos de entrada/salida (GPIO). ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exacto. ¿Y qué protocolos de comunicación conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "I2C, SPI y UART. ¿Correcto?"
-    },
-    {
-      "speaker": "B",
-      "line": "¡Sí! Ahora, ¿qué tal si hablamos de sensores?"
-    },
-    {
-      "speaker": "A",
-      "line": "Dispositivos que detectan cambios en el entorno. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo funcionan los sensores de temperatura?"
-    },
-    {
-      "speaker": "A",
-      "line": "Miden la resistencia o voltaje que cambia con la temperatura. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exacto. ¿Y los sensores de luz?"
-    },
-    {
-      "speaker": "A",
-      "line": "Usan fotodiodos o LDRs. ¿Correcto?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí. ¿Qué aplicaciones tienen estos sensores?"
-    },
-    {
-      "speaker": "A",
-      "line": "En sistemas de automatización y domótica. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "¡Perfecto! Ahora, ¿qué tal si hablamos de fuentes de alimentación?"
-    },
-    {
-      "speaker": "A",
-      "line": "Son dispositivos que convierten y regulan voltajes. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo funcionan los reguladores de voltaje?"
-    },
-    {
-      "speaker": "A",
-      "line": "Mantienen un voltaje constante en la salida. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exacto. ¿Y los convertidores DC-DC?"
-    },
-    {
-      "speaker": "A",
-      "line": "Convierten un voltaje DC en otro. ¿Correcto?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí. ¿Qué tipo de convertidor es más eficiente?"
-    },
-    {
-      "speaker": "A",
-      "line": "Los convertidores de conmutación. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "¡Sí! Ahora, ¿qué tal si hablamos de herramientas de diseño?"
-    },
-    {
-      "speaker": "A",
-      "line": "Como Proteus o LTspice. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo se usan para simular circuitos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Se dibujan los componentes y se analizan las señales. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exacto. ¿Y qué tal si hablamos de prototipado?"
-    },
-    {
-      "speaker": "A",
-      "line": "Se construyen circuitos en placas de pruebas. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿qué herramientas se necesitan?"
-    },
-    {
-      "speaker": "A",
-      "line": "Soldador, alicates y multímetro. ¿Correcto?"
-    },
-    {
-      "speaker": "B",
-      "line": "¡Perfecto! Ahora, ¿qué tal si hablamos de seguridad en electrónica?"
-    },
-    {
-      "speaker": "A",
-      "line": "Evitar cortocircuitos y sobrecalentamiento. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo se protegen los circuitos?"
-    },
-    {
-      "speaker": "A",
-      "line": "Con fusibles y diodos de protección. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "Exacto. ¿Y qué tal si hablamos de tendencias futuras?"
-    },
-    {
-      "speaker": "A",
-      "line": "Electrónica flexible y IoT. ¿Verdad?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sí, pero ¿cómo afectarán a la industria?"
-    },
-    {
-      "speaker": "A",
-      "line": "Harán los dispositivos más pequeños y conectados. ¿Es así?"
-    },
-    {
-      "speaker": "B",
-      "line": "¡Perfecto! Creo que hemos cubierto mucho. ¿Tienes alguna pregunta más?"
-    },
-    {
-      "speaker": "A",
-      "line": "No, gracias. ¡Ha sido muy útil!"
-    },
-    {
-      "speaker": "B",
-      "line": "¡De nada! Si necesitas más detalles, aquí estoy."
+      "line": "¡De nada! Siempre es un placer compartir conocimientos. ¡Hasta la próxima!"
     }
 ]
 ```
