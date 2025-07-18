@@ -3,12 +3,14 @@ audio: false
 generated: false
 lang: es
 layout: post
-title: Mi primer ensayo en japonés
+title: Primer ensayo en japonés
 translated: true
 ---
 
-Me alegra mucho poder escribir mi primer ensayo en japonés. La mayor parte de este ensayo fue escrita por una IA, pero no es una traducción de algo que escribí en inglés. En su lugar, escribí cada oración en japonés y usé el comando `command+k` en VS Code junto con el comando de corrección de Gemini 2.5 Flash.
+Poder escribir mi primer ensayo en japonés me hace muy feliz. Aunque la mayor parte de este texto ha sido escrito por IA, no es una traducción de algo que yo haya escrito en inglés. En su lugar, he escrito cada oración en japonés y luego la he corregido usando el comando `command+k` en VS Code con Gemini 2.5 Flash.
 
-De esta manera, me he vuelto más consciente de la apariencia de los caracteres japoneses.
+De esta manera, he podido prestar más atención a la apariencia de los caracteres japoneses.
 
-Este enfoque me ayuda a ser más consciente de la apariencia de los caracteres japoneses. Además, aprendo más al editar el texto generado por la IA.
+Este enfoque me ayuda a ser más consciente de cómo se ven los caracteres japoneses. Además, al editar el texto generado por IA, aprendo mucho más.
+
+Con la ayuda de la IA, he dedicado una hora a modificar este contenido. Espero que todo salga bien.

@@ -3,12 +3,14 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: 初めての日本語の作文
+title: First Japanese Composition
 translated: false
 ---
 
-初めての日本語の作文を書くことができて、とても嬉しいです。この作文の大部分はAIによって書かれていますが、それは私が英語で書いてから日本語に翻訳したものではありません。そうではなく、日本語の文章を一文ずつ書いていく際に、VS Codeで`command+k`を使い、Gemini 2.5 Flashで修正コマンドを使って書いています。
+I'm happy to be able to write my first Japanese composition. Most of this composition was written by AI, but it wasn't translated from English. Instead, I wrote each sentence in Japanese and used the `command+k` shortcut in VS Code with Gemini 2.5 Flash to make corrections.
 
-このようにして、日本語の文字の見た目をより意識するようになります。
+This approach helps me pay more attention to the appearance of Japanese characters.
 
-このアプローチは、私が日本語の文字の見た目をより意識するのに役立ちます。また、AIが生成したテキストを編集する際に、より多くのことを学ぶことができます。
+It also helps me learn more when editing AI-generated text.
+
+I spent about an hour modifying this content with AI assistance. I hope it works out.
