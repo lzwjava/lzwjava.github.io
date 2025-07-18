@@ -1,13 +1,13 @@
 ---
 audio: false
 generated: false
-lang: zh
+lang: hant
 layout: post
-title: 童年回忆
+title: 童年回憶
 translated: false
 ---
 
-我出生于1995年。以下照片是由我们梅州小学邀请的摄影师拍摄的。
+我於1995年出生。以下照片由我們小學時邀請的攝影師拍攝。
 
 {: .centered }
 ![](assets/images/childhood/c1.jpg){: .responsive }
