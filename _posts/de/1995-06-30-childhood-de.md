@@ -4,7 +4,7 @@ generated: false
 lang: de
 layout: post
 title: Kindheitserinnerungen
-translated: false
+translated: true
 ---
 
 Ich wurde 1995 geboren. Die unten stehenden Fotos wurden von einem Fotografen aufgenommen, der von unserer Grundschule in Meizhou eingeladen wurde.
