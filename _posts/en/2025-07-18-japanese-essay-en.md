@@ -4,7 +4,7 @@ generated: false
 lang: en
 layout: post
 title: First Japanese Composition
-translated: false
+translated: true
 ---
 
 I'm happy to have written my first Japanese composition. Most of this composition was written by AI, but it wasn't translated from English to Japanese. Instead, I wrote each sentence in Japanese and used the `command+k` shortcut in VS Code with Gemini 2.5 Flash's correction command to refine it.

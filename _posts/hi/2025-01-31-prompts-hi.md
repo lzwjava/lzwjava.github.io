@@ -4,7 +4,7 @@ generated: false
 lang: hi
 layout: post
 title: उपयोगी प्रॉम्प्ट्स
-translated: false
+translated: true
 ---
 
 Here is the translated Hindi content:

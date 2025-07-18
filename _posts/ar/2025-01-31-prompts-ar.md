@@ -4,7 +4,7 @@ generated: false
 lang: ar
 layout: post
 title: تعليقات مفيدة
-translated: false
+translated: true
 ---
 
 Here is the translated content in Arabic:

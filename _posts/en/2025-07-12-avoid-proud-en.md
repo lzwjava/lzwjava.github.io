@@ -1,10 +1,10 @@
 ---
 audio: false
+generated: false
 lang: en
 layout: post
 title: Avoid Being Proud After Achieving Some Success
-translated: false
-generated: false
+translated: true
 ---
 
 This is one of the easy mistakes I have made again and again. I often do well when I am the underdog. However, if I think I am kind of successful, then I will fall into a hole.

@@ -4,7 +4,7 @@ generated: false
 lang: hant
 layout: post
 title: 童年回憶
-translated: false
+translated: true
 ---
 
 我於1995年出生。以下照片是由我們小學時邀請的攝影師拍攝的。

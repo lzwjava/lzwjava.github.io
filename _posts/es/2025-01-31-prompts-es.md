@@ -4,7 +4,7 @@ generated: false
 lang: es
 layout: post
 title: Prompts útiles
-translated: false
+translated: true
 ---
 
 ```json

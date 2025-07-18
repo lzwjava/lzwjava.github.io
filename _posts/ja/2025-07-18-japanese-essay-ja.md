@@ -4,7 +4,7 @@ generated: false
 lang: ja
 layout: post
 title: 初めての日本語の作文
-translated: false
+translated: true
 ---
 
 初めての日本語の作文を書くことができて、とても嬉しいです。この作文の大部分はAIによって書かれていますが、それは私が英語で書いてから日本語に翻訳したものではありません。そうではなく、日本語の文章を一文ずつ書いていく際に、VS Codeで`command+k`を使い、Gemini 2.5 Flashで修正コマンドを使って書いています。

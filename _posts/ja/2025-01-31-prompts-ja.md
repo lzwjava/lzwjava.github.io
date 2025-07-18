@@ -4,7 +4,7 @@ generated: false
 lang: ja
 layout: post
 title: 有用なプロンプト
-translated: false
+translated: true
 ---
 
 ```json

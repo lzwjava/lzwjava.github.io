@@ -4,7 +4,7 @@ generated: false
 lang: en
 layout: post
 title: Provide only when necessary
-translated: false
+translated: true
 ---
 
 I have repeated the same mistakes many times. Sometimes, when others don’t need my ideas, essays, or help, I don’t have to give them. I should leave them alone.

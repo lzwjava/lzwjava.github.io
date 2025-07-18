@@ -4,7 +4,7 @@ generated: false
 lang: de
 layout: post
 title: Nützliche Prompts
-translated: false
+translated: true
 ---
 
 ```json
