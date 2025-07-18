@@ -32,3 +32,5 @@ generated: false
 - Think long-term again and again. For companies, we hire people to build and earn profit, not to do charity.
 
 - Good people help you achieve your mission, while bad people distract you from it.
+
+- Don't try to change others; it is impossible. A person's mindset or worldview is shaped over their entire life. Instead, ask yourself, "What is my mission, and how can I attract a great team to achieve it?"
