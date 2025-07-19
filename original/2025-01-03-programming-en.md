@@ -85,3 +85,5 @@ title: Programming
 * Debugging shows a lot of information, including the values of surrounding variables, thread names, and function stacks.
 
 * Automate everything, such as proxy updates and selection of the best proxy server. Use Python to write scripts extensively.
+
+* Keep things simple, make functions small, and keep files small. This makes them easy to test, verify, and check with one sample.
