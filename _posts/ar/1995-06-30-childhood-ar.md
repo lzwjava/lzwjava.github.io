@@ -7,16 +7,16 @@ title: ذكريات الطفولة
 translated: true
 ---
 
-تم نشر هذا المقال في يوليو 2025.
+تم كتابة هذا المنشور في يوليو 2025.
 
 ---
 
-ولدت في عام 1995. الصور أدناه تم التقاطها من قبل مصور تم دعوته من قبل مدرستنا الابتدائية في ميزو.
+لقد ولدت في عام 1995. الصور أدناه تم التقاطها بواسطة مصور تمت دعوته من قبل مدرستنا الابتدائية في ميتشو.
 
-{: .centered }
-![](assets/images/childhood/c1.jpg){: .responsive }
+{: .centered }  
+![](assets/images/childhood/c1.jpg){: .responsive }  
 *المصدر: المصور*{: .caption }
 
-{: .centered }
-![](assets/images/childhood/c2.jpg){: .responsive }
+{: .centered }  
+![](assets/images/childhood/c2.jpg){: .responsive }  
 *المصدر: المصور*{: .caption }

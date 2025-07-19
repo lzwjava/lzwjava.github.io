@@ -10,7 +10,7 @@ def translate_front_matter(front_matter, target_language, input_file, model="dee
     print(f"  Translating front matter for: {input_file}")
     if not front_matter:
         print(f"  No front matter found for: {input_file}")
-        return ""
+        return "", None, None
     try:
         front_matter_dict = {}
         if front_matter:
@@ -43,10 +43,10 @@ def translate_front_matter(front_matter, target_language, input_file, model="dee
 
         result = "---\n" + yaml.dump(front_matter_dict_copy, allow_unicode=True) + "---"
         print(f"  Front matter translation complete for: {input_file}")
-        return result, front_matter_prompt
+        return result, front_matter_prompt, original_lang
     except yaml.YAMLError as e:
         print(f"  Error parsing front matter: {e}")
-        return front_matter, None
+        return front_matter, None, None
 
 def translate_markdown_file(input_file, output_file, target_language, model="deepseek"):
     print(f"  Processing file: {input_file}")
@@ -64,14 +64,9 @@ def translate_markdown_file(input_file, output_file, target_language, model="dee
         print(f"front_matter_match: {front_matter_match}")
         print(f"front_matter: {front_matter}")
         
-        translated_front_matter, front_matter_prompt = translate_front_matter(front_matter, target_language, input_file, model=model)            
-        
-        special = target_language == "zh" and (
-            "resume" in input_file.lower() or 
-            "introduction" in input_file.lower() or 
-            "Zhiwei" in content_without_front_matter
-        )
-        translated_content = translate_text(content_without_front_matter, target_language, model=model, front_matter_prompt=front_matter_prompt)
+        translated_front_matter, front_matter_prompt, original_lang = translate_front_matter(front_matter, target_language, input_file, model=model)            
+
+        translated_content = translate_text(content_without_front_matter, target_language, model=model, front_matter_prompt=front_matter_prompt, original_lang=original_lang)
         if translated_content:
             translated_content = translated_front_matter + "\n\n" + translated_content
         else:

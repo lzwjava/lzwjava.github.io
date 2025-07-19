@@ -24,10 +24,23 @@ def get_output_filename(filename, target_lang):
 def get_changed_files():
     changed_files = set()
     languages = ['ja', 'es', 'hi', 'zh', 'en', 'fr', 'de', 'ar', 'hant']
+    print("Starting to scan files in the input directory...")
     for filename in os.listdir(INPUT_DIR):
         if not filename.endswith(".md"):
+            print(f"Skipping non-markdown file: {filename}")
             continue
+        # Extract orig_lang from filename
+        orig_lang = None
+        for possible in ['en', 'zh', 'ja']:
+            if filename.endswith(f"-{possible}.md"):
+                orig_lang = possible
+                break
+        if not orig_lang:
+            print(f"Unexpected filename format: {filename}")
+            continue
+        
         input_file = os.path.join(INPUT_DIR, filename)
+        print(f"Processing file: {input_file}")
         try:
             with open(input_file, 'r', encoding='utf-8') as infile:
                 content = infile.read()
@@ -36,49 +49,44 @@ def get_changed_files():
             front_matter_dict, content_without_front_matter = frontmatter.parse(content)
             front_matter_dict = front_matter_dict or {}
             original_title = front_matter_dict.get('title', '')
-            original_lang = front_matter_dict.get('lang', 'en')
+            print(f"  Original language (from filename): {orig_lang}, Title: {original_title}")
             
-            output_dir = f"_posts/{original_lang}"
+            output_dir = f"_posts/{orig_lang}"
             output_filename = filename
             output_file = os.path.join(output_dir, output_filename)
+            print(f"  Checking original output file: {output_file}")
             
-            needs_retranslate_all = False
+            needs_retranslate_all = True  # Default to True if file doesn't exist
             if os.path.exists(output_file):
                 with open(output_file, 'r', encoding='utf-8') as translated_infile:
                     translated_content = translated_infile.read()
                 translated_front_matter_dict, translated_content_without_front_matter = frontmatter.parse(translated_content)
                 translated_front_matter_dict = translated_front_matter_dict or {}
                 translated_title = translated_front_matter_dict.get('title', '')
-                if translated_title != original_title or translated_content_without_front_matter.strip() != content_without_front_matter.strip():
-                    needs_retranslate_all = True
-                    print(f"  File {input_file} needs update due to content change in original lang {original_lang}")
-                    try:
-                        diff_command = ["diff", input_file, output_file]
-                        process = subprocess.Popen(diff_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                        stdout, stderr = process.communicate()
-                        if process.returncode == 1 and stdout:
-                            print(f"  Diff:\n{stdout}")
-                        elif stderr:
-                            print(f"  Diff command failed with error: {stderr}")
-                        else:
-                            print(f"  No diff available for {input_file} and {output_file}")
-                    except FileNotFoundError:
-                        print(f"  Diff command not found.")
-                    except Exception as e:
-                        print(f"  Error generating diff for {input_file}: {e}")
+                print(f"  Translated title: {translated_title}")
+                if translated_title == original_title and translated_content_without_front_matter.strip() == content_without_front_matter.strip():
+                    needs_retranslate_all = False
+                else:
+                    print(f"  File {input_file} needs update due to content change in original lang {orig_lang}")
+            else:
+                print(f"  Original output file does not exist: {output_file}")
             
             for target_lang in languages:
                 target_dir = f"_posts/{target_lang}"
                 target_filename = get_output_filename(filename, target_lang)
                 target_file = os.path.join(target_dir, target_filename)
+                print(f"  Checking translation for language {target_lang}: {target_file}")
                 if needs_retranslate_all or not os.path.exists(target_file):
                     changed_files.add((input_file, target_lang))
                     if needs_retranslate_all:
                         print(f"  File {input_file} needs update for {target_lang} due to content change")
                     else:
                         print(f"  File {input_file} is missing translation for {target_lang}")
+                else:
+                    print(f"  Translation for {target_lang} already exists, skipping.")
         except Exception as e:
             print(f"Error processing file {input_file}: {e}")
+    print(f"Finished scanning. Total files needing updates: {len(changed_files)}")
     return changed_files
 
 

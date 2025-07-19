@@ -31,7 +31,9 @@ def create_translation_prompt(target_language, type="content", front_matter_prom
         return base_prompt.format(target_language=target_language)
 
 
-def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None):    
+def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None, original_lang=None):
+    if target_language == original_lang:
+        return text
     if model == "deepseek":
         prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_deepseek_api(prompt)
@@ -49,6 +51,6 @@ def translate_text(text, target_language, type="content", model="deepseek", fron
         return None
     
 if __name__ == "__main__":
-    text = translate_text('Hi, it is sunny today. Hahaa...', 'ja', model='mistral')
+    text = translate_text('Hi, it is sunny today. Hahaa...', 'ja', model='mistral', original_lang='en')
     print(text)
     
