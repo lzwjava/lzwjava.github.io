@@ -3,158 +3,265 @@ audio: false
 generated: false
 lang: es
 layout: post
-title: Sugerencias Útiles
+title: Prompts útiles
 translated: true
----
-
-```json
+---```json
 [
     {
       "speaker": "A",
-      "line": "Oye, he estado escuchando mucho sobre algún tema. ¿Me lo puedes explicar?"
+      "line": "Hola, he estado escuchando mucho sobre el examen 04730, el examen de autoestudio de China y la tecnología electrónica básica 3. ¿Puedes desglosarlo para mí?"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con lo básico. ..."
-    }
-]
-```
-
----
-
-Redacta un diálogo dinámico y detallado entre dos expertos, A y B, sobre un tema especializado. La conversación debe ser atractiva y minuciosa, con ambos participantes contribuyendo activamente. Deben:
-
-- Profundizar en subtemas específicos y explorar sus complejidades.
-- Comparar y contrastar diferentes tecnologías o metodologías relacionadas con el tema.
-- Discutir casos de uso reales y sus implicaciones.
-- Hacer preguntas profundas para descubrir perspectivas más detalladas.
-- Incluir ocasionalmente preguntas para evaluar el conocimiento del otro.
-- Centrarse en los aspectos prácticos y mecanismos del tema, en lugar de depender de fórmulas.
-
-Asegúrate de que el diálogo fluya de manera natural, con un intercambio equilibrado de ideas y perspectivas.
-
-El formato debe ser el siguiente:
-
-```json
-[
+      "line": "¡Claro! Comencemos por los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+    },
     {
       "speaker": "A",
-      "line": "Oye, he estado escuchando mucho sobre algún tema. ¿Me lo puedes explicar?"
+      "line": "Me gustaría entender la estructura del examen. ¿Cómo se divide y qué temas cubre?"
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Empecemos con lo básico. ..."
+      "line": "El examen suele dividirse en teoría y práctica. La teoría cubre conceptos como circuitos, componentes electrónicos y leyes fundamentales. La práctica incluye montaje de circuitos y resolución de problemas."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué tipo de componentes electrónicos son más relevantes en este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "Resistencias, condensadores, diodos y transistores son esenciales. También se evalúa el conocimiento de fuentes de alimentación y herramientas de medición como multímetros."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se compara este examen con otros similares en el campo de la electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "A diferencia de otros exámenes, el 04730 tiene un enfoque más práctico. Por ejemplo, en el examen de autoestudio de China, hay más énfasis en la teoría y la memorización."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué habilidades prácticas se desarrollan al preparar este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "Aprendes a leer esquemas, soldar componentes, diagnosticar fallos y usar equipos de prueba. También se enfatiza la seguridad en el laboratorio."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Hay algún caso de uso real donde estos conocimientos sean aplicables?"
+    },
+    {
+      "speaker": "B",
+      "line": "¡Por supuesto! Por ejemplo, en la reparación de dispositivos electrónicos, el diseño de circuitos simples o incluso en la automatización industrial básica."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué metodologías de estudio recomendarías para este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "Combinar teoría con práctica es clave. Usar kits de electrónica para experimentar y resolver problemas simulados ayuda mucho."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué desafíos enfrentan los estudiantes al prepararse para este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "La parte práctica puede ser difícil si no se tiene experiencia previa. También, algunos conceptos como el análisis de circuitos pueden ser abstractos al principio."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se evalúa la parte práctica del examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "Los examinadores suelen dar un problema específico, como montar un circuito o solucionar un fallo, y evalúan la precisión, eficiencia y seguridad del proceso."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué recursos recomendarías para estudiar?"
+    },
+    {
+      "speaker": "B",
+      "line": "Libros como 'Electrónica Básica' de Charles Platt, tutoriales en línea y simuladores de circuitos como Tinkercad son excelentes."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué tendencias emergentes en electrónica podrían influir en futuras versiones de este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "La electrónica de potencia, los sistemas embebidos y la robótica básica están ganando relevancia. Quizás en el futuro se incluyan más temas sobre IoT."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué consejos darías a alguien que se prepara para este examen?"
+    },
+    {
+      "speaker": "B",
+      "line": "Practicar regularmente, entender los fundamentos en lugar de memorizar, y no subestimar la importancia de la seguridad en el laboratorio."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se compara el examen de autoestudio de China con el 04730?"
+    },
+    {
+      "speaker": "B",
+      "line": "El examen de autoestudio es más teórico y general, mientras que el 04730 es más especializado y práctico. Ambos son valiosos, pero sirven a diferentes propósitos."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué papel juega la tecnología electrónica básica en la industria actual?"
+    },
+    {
+      "speaker": "B",
+      "line": "Es la base de casi toda la tecnología moderna. Desde smartphones hasta sistemas de energía renovable, los principios básicos de electrónica son fundamentales."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué innovaciones recientes en electrónica básica han sido más impactantes?"
+    },
+    {
+      "speaker": "B",
+      "line": "Los componentes miniaturizados, los materiales conductores avanzados y los circuitos impresos flexibles son algunos ejemplos."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se puede aplicar el conocimiento de electrónica básica en proyectos personales?"
+    },
+    {
+      "speaker": "B",
+      "line": "Puedes construir robots, sistemas de automatización para el hogar, o incluso instrumentos musicales electrónicos. ¡Las posibilidades son infinitas!"
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué errores comunes cometen los principiantes en electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conectar componentes al revés, ignorar la polaridad, y no usar herramientas adecuadas. También, subestimar la importancia de un buen diseño de circuito."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué herramientas de software son útiles para diseñar circuitos?"
+    },
+    {
+      "speaker": "B",
+      "line": "Proteus, KiCad y LTspice son excelentes para simular y diseñar circuitos. También hay herramientas gratuitas como EasyEDA."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se puede mejorar la eficiencia en el aprendizaje de electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Aprender por proyectos, unirse a comunidades de makers, y practicar la resolución de problemas reales. También, seguir tutoriales paso a paso."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué habilidades adicionales son útiles para alguien en electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Conocimientos básicos de programación, matemáticas aplicadas y habilidades de soldadura. También, la capacidad de trabajar en equipo y comunicar ideas claramente."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué recursos en línea recomendarías para aprender electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Canales de YouTube como EEVblog, cursos en Coursera o Udemy, y foros como Stack Exchange. También, blogs especializados en electrónica."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se puede mantenerse actualizado en el campo de la electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Seguir revistas especializadas, asistir a conferencias, y participar en hackathons o ferias de tecnología. También, seguir a expertos en redes sociales."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué proyectos electrónicos son ideales para principiantes?"
+    },
+    {
+      "speaker": "B",
+      "line": "Un robot simple, un sistema de alarma, o un medidor de temperatura. Proyectos que usen Arduino o Raspberry Pi son excelentes para empezar."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué desafíos enfrenta la industria de la electrónica en la actualidad?"
+    },
+    {
+      "speaker": "B",
+      "line": "La miniaturización, la sostenibilidad, y la seguridad de los datos. También, la escasez de ciertos materiales y la necesidad de mano de obra calificada."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Cómo se puede contribuir a la innovación en electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Experimentar, compartir conocimientos, y colaborar con otros. También, participar en proyectos de código abierto y contribuir a la comunidad maker."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué consejos darías a alguien que quiere dedicarse profesionalmente a la electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Aprender constantemente, especializarse en un área, y ganar experiencia práctica. También, desarrollar habilidades blandas como liderazgo y comunicación."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué impacto tiene la electrónica en la vida cotidiana?"
+    },
+    {
+      "speaker": "B",
+      "line": "Es omnipresente. Desde los dispositivos que usamos hasta los sistemas que mantienen nuestras ciudades funcionando. Sin electrónica, la vida moderna sería muy diferente."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué preguntas tienes para mí sobre este tema?"
+    },
+    {
+      "speaker": "B",
+      "line": "¿Qué aspecto de la electrónica te interesa más y por qué?"
+    },
+    {
+      "speaker": "A",
+      "line": "Me fascina la robótica. ¿Qué opinas sobre su futuro?"
+    },
+    {
+      "speaker": "B",
+      "line": "¡Excelente elección! La robótica está avanzando rápidamente, especialmente en áreas como la automatización industrial y la asistencia médica."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué otros campos de la electrónica crees que tendrán un gran impacto en el futuro?"
+    },
+    {
+      "speaker": "B",
+      "line": "La inteligencia artificial, la energía renovable y la computación cuántica. Todos dependen en gran medida de avances en electrónica."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué opinas sobre la ética en la electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "Es crucial. Desde el diseño de dispositivos hasta el manejo de datos, los profesionales deben considerar el impacto social y ambiental de su trabajo."
+    },
+    {
+      "speaker": "A",
+      "line": "¿Qué consejo final darías a alguien que quiere aprender electrónica?"
+    },
+    {
+      "speaker": "B",
+      "line": "¡Empieza hoy! No esperes a tener todo el conocimiento. La práctica y la curiosidad son tus mejores herramientas."
     }
 ]
 ```
-
-Sobre el examen 04730, el examen de autoestudio en China y la tecnología básica de electrónica 3.
-
----
-
-Crea una conversación natural y extensa entre dos expertos, A y B, con al menos 50 intercambios. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de manera orgánica. Ambos participantes deben hacer preguntas, compartir ideas y explorar los matices del tema. Utiliza habilidades como profundizar en subsecciones, comparar tecnologías, explorar casos de uso, debatir compensaciones y discutir tendencias emergentes. Amplía a más de 50 intercambios.
-
-Sobre el contenido de un PDF. El formato debe ser el siguiente:
-
-A: Oye, he estado escuchando mucho sobre algún tema. ¿Me lo puedes explicar?
-
-B: ¡Claro! Empecemos con lo básico.
-
----
-
-Genera una imagen feliz del Año Nuevo Lunar de la Serpiente con nombres incluidos en el texto.
-
----
-
-Crea una imagen de portada para un video de YouTube en 480p con los siguientes elementos: IA, tiburón, futurista, vívido, colorido, amanecer, ciudad con texto supergrande "DeepSeek R1" en el centro.
-
----
-
-Crea una imagen de portada para un video de YouTube en 480p con los siguientes elementos: Electrónica Básica, futurista, emocionante.
-
----
-
-Genera un mensaje de commit conciso en formato Conventional Commits para los siguientes cambios de código. Usa uno de los siguientes tipos: feat, fix, docs, style, refactor, test, chore, perf, ci, build o revert. Si es aplicable, incluye un alcance entre paréntesis para describir la parte del código afectada. El mensaje de commit no debe superar los 70 caracteres. Solo proporciona el mensaje de commit, sin notas iniciales o finales.
-
-Archivos cambiados:
-{', '.join(file_changes)}
-
----
-
-Crea un título para YouTube.
-
----
-
-蕾(つぼみ) - Tsubomi
-
-Proporciona sus letras en japonés y explícalas, palabra por palabra y pronunciación.
-
----
-
-Proporciona un tutorial completo sobre este capítulo.
-
----
-
-Proporciona una historia detallada de esto, quién lo descubrió, cuál es la historia detrás.
-
----
-
-Recomienda videos de YouTube sobre...
-
----
-
-Proporciona algunas introducciones sobre la ciudad de Davo en Mindanao, Filipinas.
-
----
-
-Proporciona un análisis detallado de cómo funcionan los inductores.
-
----
-
-Filipinas
-
-¿Qué tiene de especial? ¿Cuál es su singularidad? ¿Cómo contribuye su gente a la tecnología? ¿Cómo inventan e impactan sus habitantes?
-
----
-
-Proporciona una discusión sobre xx.
-
----
-
-Proporciona una reseña sobre xx.
-
----
-
-Ayuda a organizar esta charla, extrae lo más posible de la transcripción y ayuda a tomar notas.
-
----
-
-Yitang Zhang, matemáticas, ¿cuál es su historia?, ¿qué podemos aprender de él?
-
----
-
-Basado en este video de YouTube, crea un tutorial, no incluyas marcas de tiempo.
-
----
-
-¿Cuándo será el próximo informe de ganancias de Google?
-
----
-
-Dibuja algunos gráficos para entender.
-
----
-
-Identifica solo las líneas que necesitan cambios y proporciona fragmentos corregidos (no el código completo). Conserva la sangría original para que pueda copiarlos y pegarlos directamente.
-
----
-
-Organiza esta transcripción, mantén el texto original tanto como sea posible, solo hazlo más coherente.
-
----
-
-Proporciona 30 preguntas de opción múltiple sobre algo.
-
----
-
-Escribe en japonés como un niño de primaria, usa frases muy simples.
