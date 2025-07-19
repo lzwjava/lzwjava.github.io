@@ -15,575 +15,247 @@ translated: true
     },
     {
       "speaker": "B",
-      "line": "¡Claro! Comencemos con los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué parte te interesa más?"
+      "line": "¡Claro! Comencemos por los conceptos básicos. El examen 04730 es una certificación técnica en China que evalúa conocimientos en electrónica básica. ¿Qué aspecto específico te interesa más?"
     },
     {
       "speaker": "A",
-      "line": "Me gustaría saber sobre los temas principales que cubre. ¿Podrías enumerarlos?"
+      "line": "Me gustaría entender la estructura del examen. ¿Cómo se divide y qué temas cubre?"
     },
     {
       "speaker": "B",
-      "line": "Por supuesto. Incluye circuitos básicos, componentes electrónicos, leyes fundamentales como Ohm y Kirchhoff, y aplicaciones prácticas. ¿Te suena familiar alguno de estos?"
+      "line": "El examen se divide en tres secciones principales: teoría, práctica y un proyecto final. La teoría incluye conceptos fundamentales como circuitos, semiconductores y leyes de Kirchhoff."
     },
     {
       "speaker": "A",
-      "line": "Sí, pero ¿cómo se compara con el examen de autoestudio de China? ¿Es más teórico o práctico?"
+      "line": "¿Y la parte práctica? ¿Qué tipo de ejercicios se realizan?"
     },
     {
       "speaker": "B",
-      "line": "El examen de autoestudio de China es más teórico, enfocado en conceptos y fórmulas, mientras que el 04730 tiene un enfoque más práctico, con problemas de aplicación real. ¿Has tenido experiencia con alguno?"
+      "line": "En la práctica, los candidatos deben armar circuitos, medir voltajes y corrientes, y diagnosticar fallos en sistemas electrónicos simples. ¿Has tenido experiencia con esto antes?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me interesa la tecnología electrónica básica 3. ¿Qué lo hace único?"
+      "line": "Sí, pero me preocupa el proyecto final. ¿Qué se espera exactamente?"
     },
     {
       "speaker": "B",
-      "line": "Es un nivel intermedio que profundiza en circuitos más complejos, como amplificadores y osciladores. ¿Te gustaría explorar algún tema en particular?"
+      "line": "El proyecto final es un diseño completo, como un circuito regulador de voltaje o un sistema de control básico. ¿Qué tipo de proyectos te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "Sí, los amplificadores. ¿Cómo funcionan exactamente?"
+      "line": "¿Cómo se compara este examen con otros similares en el campo de la electrónica?"
     },
     {
       "speaker": "B",
-      "line": "Un amplificador aumenta la potencia de una señal. ¿Sabes qué componentes son esenciales en un amplificador operacional?"
+      "line": "A diferencia de otros exámenes, el 04730 enfatiza la aplicación práctica y la resolución de problemas en tiempo real. ¿Qué opinas de este enfoque?"
     },
     {
       "speaker": "A",
-      "line": "Creo que son resistencias y condensadores, pero no estoy seguro."
+      "line": "Me parece muy útil, pero ¿qué recursos recomendarías para prepararse?"
     },
     {
       "speaker": "B",
-      "line": "¡Correcto! También se necesitan fuentes de alimentación y transistores. ¿Qué tipo de amplificador conoces?"
+      "line": "Libros como 'Electrónica Básica' de Boylestad y Nashelsky son excelentes. También hay simuladores en línea como Multisim o Proteus. ¿Has usado alguno de estos?"
     },
     {
       "speaker": "A",
-      "line": "He oído hablar de amplificadores de audio, pero no sé cómo se clasifican."
+      "line": "Sí, pero me gustaría saber más sobre el examen de autoestudio de China. ¿Cómo se diferencia?"
     },
     {
       "speaker": "B",
-      "line": "Se clasifican en amplificadores de voltaje, corriente y potencia. ¿Cuál crees que es más común en dispositivos electrónicos?"
+      "line": "El examen de autoestudio se enfoca en la teoría y la comprensión conceptual, mientras que el 04730 es más práctico. ¿Qué prefieres, teoría o práctica?"
     },
     {
       "speaker": "A",
-      "line": "Probablemente los de potencia, ¿verdad?"
+      "line": "Ambas son importantes, pero la práctica es crucial. ¿Qué consejos tienes para alguien que se prepara para el 04730?"
     },
     {
       "speaker": "B",
-      "line": "Exacto. ¿Qué aplicaciones prácticas conoces que usen amplificadores?"
+      "line": "Practicar con kits de electrónica y participar en foros en línea puede ser muy beneficioso. ¿Qué otros temas te gustaría discutir?"
     },
     {
       "speaker": "A",
-      "line": "En altavoces y sistemas de sonido, pero no sé cómo se integran en circuitos complejos."
+      "line": "¿Cómo se evalúa la creatividad en el proyecto final?"
     },
     {
       "speaker": "B",
-      "line": "En circuitos complejos, los amplificadores operacionales se usan en filtros y osciladores. ¿Has trabajado con algún oscilador?"
+      "line": "Los evaluadores buscan soluciones innovadoras y bien documentadas. ¿Has trabajado en proyectos electrónicos antes?"
     },
     {
       "speaker": "A",
-      "line": "No, pero me gustaría saber cómo generan señales periódicas."
+      "line": "Sí, pero me gustaría saber más sobre la tecnología electrónica 3. ¿Qué avances recientes hay?"
     },
     {
       "speaker": "B",
-      "line": "Usan retroalimentación positiva. ¿Qué tipo de oscilador conoces?"
+      "line": "La miniaturización y la inteligencia artificial están transformando el campo. ¿Qué opinas de estos avances?"
     },
     {
       "speaker": "A",
-      "line": "He oído hablar del oscilador de cristal, pero no sé cómo funciona."
+      "line": "Son emocionantes, pero ¿cómo afectan a los exámenes como el 04730?"
     },
     {
       "speaker": "B",
-      "line": "El oscilador de cristal usa un cristal de cuarzo para generar frecuencias estables. ¿Qué aplicaciones tiene?"
+      "line": "Los exámenes ahora incluyen preguntas sobre tecnologías emergentes. ¿Qué más te gustaría saber?"
     },
     {
       "speaker": "A",
-      "line": "En relojes y dispositivos de comunicación, ¿verdad?"
+      "line": "¿Cómo se compara el 04730 con certificaciones internacionales como el CompTIA A+?"
     },
     {
       "speaker": "B",
-      "line": "¡Correcto! ¿Qué otros componentes electrónicos son cruciales en la tecnología moderna?"
+      "line": "El 04730 es más específico para el mercado chino, mientras que el CompTIA A+ es más general. ¿Qué certificaciones has considerado?"
     },
     {
       "speaker": "A",
-      "line": "Los microcontroladores y los sensores, pero no sé cómo interactúan."
+      "line": "Me interesa el 04730 por su enfoque práctico. ¿Qué habilidades se desarrollan con este examen?"
     },
     {
       "speaker": "B",
-      "line": "Los microcontroladores procesan datos de los sensores. ¿Qué tipo de sensores conoces?"
+      "line": "Habilidades como diseño de circuitos, diagnóstico de fallos y uso de herramientas de medición. ¿Qué otras habilidades te gustaría desarrollar?"
     },
     {
       "speaker": "A",
-      "line": "Los de temperatura y los de movimiento, pero no sé cómo se integran en sistemas."
+      "line": "¿Cómo se preparan los candidatos para la parte práctica del examen?"
     },
     {
       "speaker": "B",
-      "line": "Se integran mediante interfaces como I2C o SPI. ¿Qué ventajas tiene cada una?"
+      "line": "Con simuladores y kits de práctica. ¿Has usado alguno de estos recursos?"
     },
     {
       "speaker": "A",
-      "line": "No estoy seguro, pero creo que I2C es más simple."
+      "line": "Sí, pero me gustaría saber más sobre el proceso de evaluación."
     },
     {
       "speaker": "B",
-      "line": "Sí, I2C es más simple, pero SPI es más rápido. ¿Qué protocolo usarías en un sistema de adquisición de datos?"
+      "line": "Los evaluadores observan la precisión, la eficiencia y la creatividad. ¿Qué aspectos te preocupan más?"
     },
     {
       "speaker": "A",
-      "line": "Probablemente SPI, pero no sé cómo se configura."
+      "line": "La precisión es crucial. ¿Qué errores comunes debemos evitar?"
     },
     {
       "speaker": "B",
-      "line": "Se configura con registros y pines de control. ¿Qué otros protocolos conoces?"
+      "line": "Errores como conexiones incorrectas o cálculos apresurados. ¿Qué otros temas te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "USB y Bluetooth, pero no sé cómo funcionan a nivel de hardware."
+      "line": "¿Cómo se integra la tecnología electrónica 3 en el currículo del examen?"
     },
     {
       "speaker": "B",
-      "line": "USB usa controladores y puertos, mientras que Bluetooth usa módulos RF. ¿Qué aplicaciones tienen?"
+      "line": "Se incluyen módulos sobre sistemas embebidos y automatización. ¿Qué opinas de estos temas?"
     },
     {
       "speaker": "A",
-      "line": "USB en periféricos y Bluetooth en dispositivos inalámbricos, pero no sé cómo se diseñan."
+      "line": "Son relevantes, pero ¿cómo se evalúa el conocimiento teórico?"
     },
     {
       "speaker": "B",
-      "line": "Se diseñan con esquemas y PCB. ¿Qué software usas para diseñar circuitos?"
+      "line": "Con preguntas de opción múltiple y ensayos cortos. ¿Qué otros formatos de examen conoces?"
     },
     {
       "speaker": "A",
-      "line": "He usado KiCad, pero no sé cómo optimizar el diseño."
+      "line": "He visto exámenes prácticos en línea. ¿Son efectivos?"
     },
     {
       "speaker": "B",
-      "line": "KiCad es bueno para PCB, pero también hay herramientas como Altium. ¿Qué consideraciones son importantes en el diseño?"
+      "line": "Sí, pero nada reemplaza la práctica en el mundo real. ¿Qué otros recursos te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "La distribución de componentes y las rutas de señal, pero no sé cómo afectan el rendimiento."
+      "line": "¿Cómo se preparan los candidatos para el proyecto final?"
     },
     {
       "speaker": "B",
-      "line": "Una mala distribución puede causar interferencias. ¿Qué técnicas usas para minimizarlas?"
+      "line": "Con mentorías y proyectos colaborativos. ¿Has participado en alguno?"
     },
     {
       "speaker": "A",
-      "line": "No estoy seguro, pero creo que el blindaje ayuda."
+      "line": "No, pero me gustaría saber más sobre el proceso de evaluación del proyecto."
     },
     {
       "speaker": "B",
-      "line": "Sí, el blindaje y las capas de tierra. ¿Qué otros factores afectan la calidad del diseño?"
+      "line": "Se evalúa la funcionalidad, la documentación y la presentación. ¿Qué otros aspectos te interesan?"
     },
     {
       "speaker": "A",
-      "line": "La selección de componentes y la tolerancia, pero no sé cómo evaluarlos."
+      "line": "¿Cómo se compara el 04730 con otros exámenes de electrónica en China?"
     },
     {
       "speaker": "B",
-      "line": "Se evalúan con datoshoots y simulaciones. ¿Qué simuladores conoces?"
+      "line": "Es más práctico y específico. ¿Qué otros exámenes conoces?"
     },
     {
       "speaker": "A",
-      "line": "LTspice y Proteus, pero no sé cómo usarlos eficientemente."
+      "line": "He oído hablar del examen de tecnología electrónica avanzada. ¿Cómo se relaciona?"
     },
     {
       "speaker": "B",
-      "line": "LTspice es bueno para análisis de transitorios. ¿Qué tipo de análisis conoces?"
+      "line": "Es un nivel superior al 04730. ¿Qué otros temas te gustaría discutir?"
     },
     {
       "speaker": "A",
-      "line": "Análisis de Fourier y de estabilidad, pero no sé cómo interpretarlos."
+      "line": "¿Cómo se preparan los candidatos para la parte teórica del examen?"
     },
     {
       "speaker": "B",
-      "line": "El análisis de Fourier muestra componentes de frecuencia. ¿Qué aplicaciones tiene?"
+      "line": "Con libros de texto y cursos en línea. ¿Qué recursos has usado?"
     },
     {
       "speaker": "A",
-      "line": "En filtros y procesamiento de señales, pero no sé cómo diseñarlos."
+      "line": "He usado algunos, pero me gustaría saber más sobre la parte práctica."
     },
     {
       "speaker": "B",
-      "line": "Se diseñan con componentes pasivos. ¿Qué tipo de filtros conoces?"
+      "line": "La práctica es clave. ¿Qué otros temas te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "Filtros pasa-bajos y pasa-altos, pero no sé cómo calcular sus parámetros."
+      "line": "¿Cómo se evalúa la creatividad en el proyecto final?"
     },
     {
       "speaker": "B",
-      "line": "Se calculan con fórmulas de componentes. ¿Qué componentes usas en un filtro pasa-bajos?"
+      "line": "Con soluciones innovadoras y bien documentadas. ¿Qué otros aspectos te interesan?"
     },
     {
       "speaker": "A",
-      "line": "Resistencias y condensadores, pero no sé cómo elegir sus valores."
+      "line": "¿Cómo se preparan los candidatos para la parte práctica del examen?"
     },
     {
       "speaker": "B",
-      "line": "Se eligen con la frecuencia de corte deseada. ¿Qué otros tipos de filtros conoces?"
+      "line": "Con simuladores y kits de práctica. ¿Qué otros recursos te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "Filtros de banda y rechazo de banda, pero no sé cómo implementarlos."
+      "line": "¿Cómo se compara el 04730 con certificaciones internacionales como el CompTIA A+?"
     },
     {
       "speaker": "B",
-      "line": "Se implementan con inductores y capacitores. ¿Qué aplicaciones tienen?"
+      "line": "El 04730 es más específico para el mercado chino. ¿Qué otras certificaciones has considerado?"
     },
     {
       "speaker": "A",
-      "line": "En sistemas de audio y comunicación, pero no sé cómo optimizarlos."
+      "line": "Me interesa el 04730 por su enfoque práctico. ¿Qué habilidades se desarrollan con este examen?"
     },
     {
       "speaker": "B",
-      "line": "Se optimizan con simulaciones. ¿Qué herramientas usas para probar circuitos?"
+      "line": "Habilidades como diseño de circuitos y diagnóstico de fallos. ¿Qué otras habilidades te gustaría desarrollar?"
     },
     {
       "speaker": "A",
-      "line": "Osciloscopios y multímetros, pero no sé cómo interpretarlos."
+      "line": "¿Cómo se preparan los candidatos para la parte práctica del examen?"
     },
     {
       "speaker": "B",
-      "line": "El osciloscopio muestra señales en el tiempo. ¿Qué parámetros mides con él?"
+      "line": "Con simuladores y kits de práctica. ¿Qué otros recursos te gustaría explorar?"
     },
     {
       "speaker": "A",
-      "line": "Amplitud y frecuencia, pero no sé cómo ajustar la escala."
+      "line": "¿Cómo se evalúa la creatividad en el proyecto final?"
     },
     {
       "speaker": "B",
-      "line": "Se ajusta con los controles de voltaje y tiempo. ¿Qué otros instrumentos conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "Analizadores de espectro, pero no sé cómo usarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Miden la respuesta en frecuencia. ¿Qué aplicaciones tienen?"
-    },
-    {
-      "speaker": "A",
-      "line": "En telecomunicaciones y radar, pero no sé cómo interpretarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Muestran componentes de frecuencia. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de potencia, pero no sé cómo funciona."
-    },
-    {
-      "speaker": "B",
-      "line": "Usa convertidores y reguladores. ¿Qué tipo de convertidores conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "Convertidores DC-DC y AC-DC, pero no sé cómo diseñarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseñan con topologías. ¿Qué topologías conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "Buck y Boost, pero no sé cómo calcular sus eficiencias."
-    },
-    {
-      "speaker": "B",
-      "line": "Se calculan con pérdidas de componentes. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La robótica, pero no sé cómo se relaciona con la electrónica."
-    },
-    {
-      "speaker": "B",
-      "line": "La robótica usa sensores y actuadores. ¿Qué tipo de sensores conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "Sensores de ultrasonido y de luz, pero no sé cómo integrarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Se integran con microcontroladores. ¿Qué aplicaciones tienen?"
-    },
-    {
-      "speaker": "A",
-      "line": "En drones y vehículos autónomos, pero no sé cómo programarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Se programan con lenguajes como C y Python. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La inteligencia artificial, pero no sé cómo se aplica en electrónica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se aplica en procesamiento de señales. ¿Qué algoritmos conoces?"
-    },
-    {
-      "speaker": "A",
-      "line": "Redes neuronales y aprendizaje automático, pero no sé cómo implementarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Se implementan con frameworks como TensorFlow. ¿Qué aplicaciones tienen?"
-    },
-    {
-      "speaker": "A",
-      "line": "En visión por computadora y robótica, pero no sé cómo optimizarlos."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimizan con hardware especializado. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica cuántica, pero no sé cómo funciona."
-    },
-    {
-      "speaker": "B",
-      "line": "Usa qubits y superposición. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En computación y criptografía, pero no sé cómo se desarrolla."
-    },
-    {
-      "speaker": "B",
-      "line": "Se desarrolla con laboratorios de investigación. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica orgánica, pero no sé cómo se fabrica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se fabrica con materiales conductores. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En pantallas flexibles y sensores, pero no sé cómo se prueba."
-    },
-    {
-      "speaker": "B",
-      "line": "Se prueba con métodos no destructivos. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta frecuencia, pero no sé cómo funciona."
-    },
-    {
-      "speaker": "B",
-      "line": "Usa ondas electromagnéticas. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En comunicaciones y radar, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con simulaciones. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de bajo consumo, pero no sé cómo se optimiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimiza con técnicas de bajo voltaje. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En dispositivos portátiles y IoT, pero no sé cómo se implementa."
-    },
-    {
-      "speaker": "B",
-      "line": "Se implementa con microcontroladores de bajo consumo. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta potencia, pero no sé cómo se maneja."
-    },
-    {
-      "speaker": "B",
-      "line": "Se maneja con disipadores. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En sistemas industriales y vehículos eléctricos, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con componentes robustos. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta velocidad, pero no sé cómo se analiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se analiza con simulaciones de tiempo real. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En procesamiento de señales y comunicaciones, pero no sé cómo se implementa."
-    },
-    {
-      "speaker": "B",
-      "line": "Se implementa con FPGAs. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de bajo costo, pero no sé cómo se fabrica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se fabrica con técnicas de bajo costo. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En dispositivos de consumo y IoT, pero no sé cómo se optimiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimiza con diseño modular. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta fiabilidad, pero no sé cómo se prueba."
-    },
-    {
-      "speaker": "B",
-      "line": "Se prueba con métodos de estrés. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En sistemas críticos y aeroespaciales, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con redundancia. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta densidad, pero no sé cómo se fabrica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se fabrica con técnicas de integración. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En dispositivos miniaturizados y wearables, pero no sé cómo se optimiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimiza con diseño 3D. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta precisión, pero no sé cómo se calibra."
-    },
-    {
-      "speaker": "B",
-      "line": "Se calibra con estándares. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En instrumentos de medición y sistemas de control, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con componentes de alta calidad. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta velocidad, pero no sé cómo se analiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se analiza con simulaciones de tiempo real. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En procesamiento de señales y comunicaciones, pero no sé cómo se implementa."
-    },
-    {
-      "speaker": "B",
-      "line": "Se implementa con FPGAs. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de bajo costo, pero no sé cómo se fabrica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se fabrica con técnicas de bajo costo. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En dispositivos de consumo y IoT, pero no sé cómo se optimiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimiza con diseño modular. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta fiabilidad, pero no sé cómo se prueba."
-    },
-    {
-      "speaker": "B",
-      "line": "Se prueba con métodos de estrés. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En sistemas críticos y aeroespaciales, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con redundancia. ¿Qué otros temas te gustaría explorar?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta densidad, pero no sé cómo se fabrica."
-    },
-    {
-      "speaker": "B",
-      "line": "Se fabrica con técnicas de integración. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En dispositivos miniaturizados y wearables, pero no sé cómo se optimiza."
-    },
-    {
-      "speaker": "B",
-      "line": "Se optimiza con diseño 3D. ¿Qué otros temas te interesan?"
-    },
-    {
-      "speaker": "A",
-      "line": "La electrónica de alta precisión, pero no sé cómo se calibra."
-    },
-    {
-      "speaker": "B",
-      "line": "Se calibra con estándares. ¿Qué aplicaciones tiene?"
-    },
-    {
-      "speaker": "A",
-      "line": "En instrumentos de medición y sistemas de control, pero no sé cómo se diseña."
-    },
-    {
-      "speaker": "B",
-      "line": "Se diseña con componentes de alta calidad. ¿Qué otros temas te gustaría explorar?"
+      "line": "Con soluciones innovadoras y bien documentadas. ¿Qué otros aspectos te interesan?"
     }
 ]
 ```
