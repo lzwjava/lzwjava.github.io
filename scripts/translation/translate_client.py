@@ -32,25 +32,30 @@ def create_translation_prompt(target_language, type="content", front_matter_prom
 
 
 def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None, original_lang=None):
+    print(f"Debug: Starting translation process for text: {text[:50]}...")
+    print(f"Debug: Target language: {target_language}")
+    print(f"Debug: Model used: {model}")
+    
     if target_language == original_lang:
+        print(f"Debug: Target language matches original language, returning unchanged text")
         return text
+    
+    prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
+    
     if model == "deepseek":
-        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_deepseek_api(prompt)
         return translated_text
     elif model == "mistral":
-        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_mistral_api(prompt)
         return translated_text
     elif model == "gemini":
-        prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
         translated_text = call_gemini_api(prompt)
         return translated_text
     else:
-        print(f"  Error: Invalid model specified: {model}")
+        print(f"Error: Invalid model specified: {model}")
         return None
     
 if __name__ == "__main__":
+    print("Debug: Running main test translation")
     text = translate_text('Hi, it is sunny today. Hahaa...', 'ja', model='mistral', original_lang='en')
-    print(text)
-    
+    print(f"Debug: Final translated text: {text}")

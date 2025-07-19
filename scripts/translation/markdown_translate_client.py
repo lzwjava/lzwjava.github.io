@@ -84,7 +84,7 @@ def translate_markdown_file(input_file, output_file, target_language, model="dee
 if __name__ == "__main__":
     translate_markdown_file(
         input_file='original/2025-07-18-japanese-essay-ja.md',
-        output_file='test-en.md',
-        target_language='en',
+        output_file='test-ja.md',
+        target_language='ja',
         model='deepseek'
     )

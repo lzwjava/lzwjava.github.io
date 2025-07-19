@@ -33,14 +33,11 @@ def call_deepseek_api(prompt):
             print(f"  Error: Translation did not finish with 'stop' or 'length' reason:")
             print(response.content)
             return None
+        print('Translation successful')
         translated_text = response_json['choices'][0]['message']['content']
         return translated_text
     except requests.exceptions.RequestException as e:
-        print(f"  Translation failed with error: {e}")
-        if response and response.content:
-            print(f"  Response content: {response.content}")
-        else:
-            print("  Response content is empty.")
+        print(f"  Translation failed with error: {e}")       
         return None
     
 
