@@ -22,7 +22,7 @@ Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un 
 - Discuter des cas d'utilisation réels et de leurs implications.
 - Poser des questions approfondies pour découvrir des insights plus profonds.
 - Inclure occasionnellement des quiz pour tester leurs connaissances.
-- Se concentrer sur les aspects pratiques et mécanismes du sujet, plutôt que de s'appuyer sur des formules.
+- Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que de s'appuyer sur des formules.
 
 Assurez-vous que le dialogue s'écoule naturellement, avec un échange équilibré d'idées et de perspectives.
 
@@ -32,7 +32,7 @@ Le format doit être le suivant :
 [
     {
       "speaker": "A",
-      "line": "Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?"
+      "line": "Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?"
     },
     {
       "speaker": "B",
@@ -45,11 +45,11 @@ Le format doit être le suivant :
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration en profondeur des sous-sections, la comparaison des technologies, l'exploration des cas d'utilisation, le débat des compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration approfondie de sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
-A : Salut, j’ai beaucoup entendu parler de ce sujet. Peux-tu me l’expliquer ?
+A : Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?
 
 B : Bien sûr ! Commençons par les bases.
 
@@ -70,7 +70,7 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
 Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
 Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée.
-Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes supplémentaires.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note en tête ou en queue.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
@@ -83,7 +83,7 @@ Créez un titre YouTube.
 
 蕾(つぼみ) - Tsubomi
 
-Donnez les paroles en japonais, et expliquez-les, pour chaque mot et prononciation.
+Donnez les paroles en japonais et expliquez-les, pour chaque mot et prononciation.
 
 ---
 
@@ -121,7 +121,7 @@ Donnez un avis sur xx.
 
 ---
 
-Aidez à organiser cette conférence, sortez le plus possible du transcript et aidez à donner une note.
+Aidez à organiser cette conférence, retirez autant que possible du transcript et aidez à donner une note.
 
 ---
 
@@ -129,7 +129,7 @@ Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
 
 ---
 
-Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure les timestamps.
+Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure de timestamp.
 
 ---
 
@@ -141,7 +141,7 @@ Dessinez quelques graphiques pour comprendre.
 
 ---
 
-Identifiez uniquement les lignes nécessitant des modifications, et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation originale afin que je puisse les copier-coller directement.
+Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation d'origine afin que je puisse les copier-coller directement.
 
 ---
 
