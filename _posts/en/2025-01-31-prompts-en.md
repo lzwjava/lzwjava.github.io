@@ -7,145 +7,148 @@ title: Useful Prompts
 translated: false
 ---
 
-Here is the translated content:
+Translate the following posts or words into Chinese, ensuring that names (e.g., people, places, brands, or specific terms) are not translated and remain in their original form. Only translate the surrounding text into Chinese.
 
 ---
 
-将以下markdown文本翻译成中文，确保名称（如人名、地名、品牌或特定术语）不翻译，保持原样。仅将周围文本翻译成中文。
+Compose a dynamic and in-depth dialogue between two experts, A and B, on a specialized topic. The conversation should be engaging and detailed, with both participants actively contributing. They should:
 
----
+- Delve into specific subtopics and explore their intricacies.
+- Compare and contrast different technologies or methodologies related to the subject.
+- Discuss real-world use cases and their implications.
+- Ask probing questions to uncover deeper insights.
+- Include occasional quizzes to test each other's knowledge.
+- Focus on the practical aspects and mechanisms of the topic, rather than relying on formulas.
 
-创建一个关于04730考试、中国自学考试和基础电子技术3的动态深度对话，两位专家A和B围绕专业主题展开讨论。对话应引人入胜且详细，双方积极参与。他们应：
+Ensure the dialogue flows naturally, with a balanced exchange of ideas and perspectives.
 
-- 深入探讨具体子主题及其细节。
-- 比较和对比相关技术或方法。
-- 讨论实际应用案例及其影响。
-- 提出深入问题以挖掘更深层次的见解。
-- 偶尔进行小测验以测试彼此的知识。
-- 关注主题的实际方面和机制，而非依赖公式。
-
-确保对话流畅自然，观点和视角平衡交换。
-
-格式如下：
+The format should be as follows:
 
 ```json
 [
     {
       "speaker": "A",
-      "line": "你好，我最近听到很多关于某个主题的讨论。你能帮我解析一下吗？"
+      "line": "Hey, I’ve been hearing a lot about some topic. Can you break it down for me?"
     },
     {
       "speaker": "B",
-      "line": "当然！我们从基础开始。..."
+      "line": "Sure! Let’s start with the basics. ..."
     }
 ]
 ```
 
----
-
-创建一个自然且延伸的对话，两位专家A和B围绕特定主题深入讨论，对话至少50轮。双方应交替提问、分享见解，并探讨主题的细微差别。使用技巧如深入探讨子主题、比较技术、探索用例、辩论权衡取舍和讨论新兴趋势。扩展至50+轮。
-
-关于PDF内容。格式如下：
-
-A: 你好，我最近听到很多关于某个主题的讨论。你能帮我解析一下吗？
-
-B: 当然！我们从基础开始。
+About the 04730 exam, self-study China exam, and basic electronics technology 3.
 
 ---
 
-生成一张带有文字姓名的欢乐农历蛇年新年图片
+Create a natural and extended conversation between two experts, A and B, with at least 50 turns. The experts should discuss a specific topic in depth, with the conversation flowing back and forth. Both participants should ask questions, share insights, and explore the nuances of the subject matter. Use skills such as diving deeper into subsections, comparing technologies, exploring use cases, debating trade-offs, and discussing emerging trends. Expand to 50+ turns.
+
+About the PDF content. The format should be as follows:
+
+
+A: Hey, I’ve been hearing a lot about some topic. Can you break it down for me?
+
+B: Sure! Let’s start with the basics. 
 
 ---
 
-创建一个480p的YouTube视频封面图，包含以下元素：AI、鲨鱼、未来感、鲜艳、色彩斑斓、日出、超大城市，中间用超大字体写上DeepSeek R1
+Generate a happy Lunar Snake New Year image with text names included
 
 ---
 
-创建一个480p的YouTube视频封面图，包含以下元素：基础电子、未来感、激动人心。
+Create a 480p YouTube video cover image with below elements, AI, shark, futuristic, vivid, colorful, sunrise, city with super large text DeepSeek R1 in the center
 
 ---
 
-为以下代码变更生成一个符合Conventional Commits格式的简洁提交信息。使用以下类型之一：feat、fix、docs、style、refactor、test、chore、perf、ci、build或revert。如果适用，包含括号内的范围以描述受影响的代码库部分。提交信息不超过70个字符。仅提供提交信息，不带任何前后说明。
+Create a 480p YouTube video cover image with below elements: Basic Electronics, futuristic, exciting.
 
-更改的文件：
+---
+
+Generate a concise commit message in Conventional Commits format for the following code changes.
+Use one of the following types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, or revert.
+If applicable, include a scope in parentheses to describe the part of the codebase affected.
+The commit message should not exceed 70 characters. Just give the commit message, without any leading or trailing notes.
+
+Changed files:
 {', '.join(file_changes)}
 
 ----
 
-创建一个YouTube标题
+Create a Youtube title 
 
 ----
 
 蕾(つぼみ) - Tsubomi
 
-给出其日语歌词，并解释每个词的含义和发音
+give its lyrics in Japanese, and explain them, for every word and prounciation 
 
 ---
 
-为这一章节提供全面的教程。
+Give a comprehensive tutuorial about this chapter.
 
 ---
 
-给出关于这一主题的全面历史，谁发现了它，背后的故事是什么？
+give a comprehensive history of this, who discover this, what's the story behind
 
 ---
 
-推荐关于...的YouTube视频
+recommend youtube videos about ...
 
 ---
 
-给出关于菲律宾达沃市的介绍
+give some introductions about davo city in mindanao , philipines
 
 ---
 
-给出关于电感器工作原理的全面分析
+give a comprehensive analysis of how Inductors work
 
 ---
 
-菲律宾
+Philippines
 
-什么特别？它的独特之处是什么？它的人民如何为技术做出贡献？它的人民如何发明并产生影响？
-
----
-
-关于xx展开讨论
+what are special ? what's uniqueness? how its people contribue to technology? how does its people invent and impact?
 
 ---
 
-关于xx的评论
+give a dicussion about xx
 
 ---
 
-帮助组织这次演讲，尽量减少转录内容，并帮助提供笔记
+give a review about xx
 
 ---
 
-叶聪，数学，他的故事是什么？我们能从中学到什么？
+help organize this talk, get out of transcript as much, and help give a note
 
 ---
 
-基于这段YouTube视频，创建一个教程，不包括时间戳
+yitang zhang, math , what's his story, what we can learn from 
 
 ---
 
-谷歌下次发布财报的时间是什么？
+based on this youtube video, create a tutorial, do not include timestamp
 
 ---
 
-绘制一些图表以便理解
+what's next time google will release earning report?
 
 ---
 
-仅识别需要修改的行，并提供修正的代码片段（不提供完整代码）。保留原始缩进，以便我可以直接复制粘贴。
+draw some graphs to understand
 
 ---
 
-组织这份转录内容，尽量保持原文，仅使其更加连贯
+Identify only the lines needing changes, and provide corrected snippets (not the full code). Preserve the original indentation so I can copy-paste them directly.
 
 ---
 
-给出关于某事的30个单选多选题
+organize this transcript, keep original text as possible, just make it more coherent 
 
 ---
 
-用日语写，像小学生一样，使用非常简单的短语
+give 30 single-option multiple-choice quiz questions about sth.
+
+---
+
+write japanses like primary school kid, use very simple phrase
+
