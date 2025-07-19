@@ -21,7 +21,7 @@ Uva Online Judge record is [here](https://uhunt.onlinejudge.org/id/113519).
 
 <div align="center"><img src="/assets/images/portfolio/uva.png"/><img /></div>
 
-The range of algorithm problems I've solved encompasses various areas, including data structures, graph, mathematics, string processing, geometry and several other advanced or specialized topics.
+The range of algorithm problems I'v solved encompasses various areas, including data structures, graph, mathematics, string processing, geometry and several other advanced or specialized topics.
 
 ## Flower Recognition, Android, 2014.4 - 2014.8
 
@@ -229,7 +229,9 @@ WeChat MiniProgram:
 
 <img src="/assets/images/portfolio/wxapp1.jpg" width="200px" /><img/>
 
-<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img/>
+<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img
+
+/>
 
 <img src="/assets/images/portfolio/wxapp3.jpg" width="200px" /><img/>
 
