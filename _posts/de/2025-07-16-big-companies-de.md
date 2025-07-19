@@ -3,102 +3,102 @@ audio: false
 generated: false
 lang: de
 layout: post
-title: Große Unternehmen
+title: Über große Unternehmen
 translated: true
 ---
 
-Große Unternehmen sind wie große Programme. Ein großes Unternehmen mit 100.000 Mitarbeitern und 50.000 Auftragnehmern ist wie ein großes Programm mit 150.000 Methoden.
+Große Unternehmen sind wie große Programme. Für ein großes Unternehmen mit 100.000 Mitarbeitern und 50.000 Auftragnehmern ist es wie ein großes Programm mit 150.000 Methoden.
 
-Dario Amodei sagte, dass die Talentdichte viel wichtiger ist als die Anzahl der Talente. Zweihundert hochtalentierte Menschen können tausend talentierte Menschen mit 800 durchschnittlichen Menschen schlagen.
+Dario Amodei sagte, dass die Talentdichte viel wichtiger ist als die Anzahl der Talente. Zweihundert hochtalentierte Menschen können 1.000 talentierte Menschen mit 800 durchschnittlichen schlagen.
 
-Dario Amodei erwähnte auch, dass große Unternehmen so viele Verfahren und Prozesse haben, weil sie ihren Mitarbeitern oder Auftragnehmern nicht vertrauen. Daher müssen sie viel überprüfen und kontrollieren.
+Dario Amodei erwähnte auch, dass große Unternehmen so viele Verfahren und Prozesse haben, weil sie ihren Mitarbeitern oder Auftragnehmern nicht vertrauen. Daher müssen sie viel prüfen und kontrollieren.
 
-Eine Sache bei großen Unternehmen ist, dass sie Angst haben, Fehler zu machen. Ein Grund dafür ist, dass sie so groß geworden sind, dass sie 300 Milliarden oder 1 Billion Dollar wert sind; sie müssen viele Fehler gemacht und daraus gelernt haben. Wenn sie jedoch erfolgreich sind, scheuen sie davor zurück, Risiken einzugehen und Fehler zu machen.
+Eine Sache bei großen Unternehmen ist, dass sie Angst haben, Fehler zu machen. Ein Grund dafür ist, dass sie so groß geworden sind, dass sie 300 Milliarden oder 1 Billion Dollar wert sind; sie müssen unzählige Fehler gemacht und daraus gelernt haben. Doch wenn sie erfolgreich sind, sind sie risikoscheu und wollen keine Fehler mehr machen.
 
-Es ist wie bei einem großen Programm, das keine Fehler mag und versucht, alle Fehler zu eliminieren, insbesondere Sicherheitsfehler, besonders bei großen Banken.
+Es ist wie ein großes Programm, das keine Bugs mag und versucht, alle Fehler zu beseitigen, insbesondere Sicherheitslücken, vor allem in großen Banken.
 
 Startups sind schnell, aber die Ressourcen eines Startups sind viel geringer, und die Marke eines Startups ist nicht etabliert; sie haben nicht das Vertrauen großer Unternehmen.
 
-In China wollen junge talentierte Menschen nach dem Abschluss immer noch in große Unternehmen gehen und kämpfen darum. In Silicon Valley gibt es so viele Startups, einige davon laufen von Anfang an gut, nur mit Ideen.
+In China wollen junge Talente nach dem Abschluss immer noch zu großen Unternehmen gehen und kämpfen darum. Im Silicon Valley gibt es so viele Startups, von denen einige schon am Anfang mit nur einer Idee gut dastehen.
 
-Einige Unternehmen kämpfen 20 Jahre lang und werden wahrscheinlich von der Börse genommen, und einige Unternehmen sind bereits nach wenigen Monaten 5 Milliarden oder 10 Milliarden Dollar wert.
+Einige Unternehmen kämpfen seit 20 Jahren und haben immer noch Schwierigkeiten, wurden wahrscheinlich vom Aktienmarkt genommen, während andere Unternehmen mit nur wenigen Monaten auf dem Buckel mit 5 oder 10 Milliarden bewertet werden.
 
-Es heißt, dass [Mira Muratis Thinking Machines Lab in der Seed-Runde 12 Mrd. Dollar wert ist](https://techcrunch.com/2025/07/15/mira-muratis-thinking-machines-lab-is-worth-12b-in-seed-round/). Und [Ilya Sutskevers Safe Superintelligence sammelt 2 Mrd. Dollar bei einer Bewertung von 32 Mrd. Dollar ein](https://techcrunch.com/2025/04/12/openai-co-founder-ilya-sutskevers-safe-superintelligence-reportedly-valued-at-32b/).
+Es heißt, dass [Mira Muratis Thinking Machines Lab in der Seed-Runde 12 Milliarden wert ist](https://techcrunch.com/2025/07/15/mira-muratis-thinking-machines-lab-is-worth-12b-in-seed-round/). Und [Ilya Sutskever's Safe Superintelligence sammelt 2 Milliarden bei einer Bewertung von 32 Milliarden ein](https://techcrunch.com/2025/04/12/openai-co-founder-ilya-sutskevers-safe-superintelligence-reportedly-valued-at-32b/).
 
-Daher ist es nicht gut, ein Startup anhand der etablierten Zeit zu messen; es ist besser, es anhand des Teams, der Gründer und des Bereichs zu messen.
+Daher ist die etablierte Zeit kein guter Indikator, um ein Startup zu bewerten; es ist besser, es nach dem Team, den Gründern und ihrem Bereich zu beurteilen.
 
-In meinem Solo-Startup brauche ich nur 1 Minute, um meinen Backend-Server zu deployen, und 5 Minuten, um einen kleinen Fehler zu beheben und zu deployen. Es ist direkt und schnell. Bei großen Unternehmen dauert es 1 Woche, um den Deployment-Anfrage vorzubereiten, Genehmigungen von Managern einzuholen, den Deployment mit dem IT-Team durchzuführen und Gesundheitschecks durchzuführen.
+In meinem Solo-Startup brauche ich nur 1 Minute, um meinen Backend-Server zu deployen, und 5 Minuten, um einen kleinen Bug zu beheben und zu deployen. Es ist direkt und schnell. Bei großen Unternehmen dauert es 1 Woche, um die Deploy-Anfrage vorzubereiten, Genehmigungen von Managern einzuholen, das Deployment mit dem IT-Team durchzuführen und Gesundheitschecks zu machen.
 
-Obwohl die tatsächliche Zeit, die aufgewendet wird, 8 Stunden betragen könnte, dauert es immer noch 1 Woche vom Vorbereiten des Deployments bis zum abschließenden Gesundheitscheck.
+Obwohl die tatsächliche Zeit vielleicht 8 Stunden beträgt, gemessen von der Vorbereitung bis zum finalen Gesundheitscheck, ist es immer noch 1 Woche.
 
-Zum Beheben eines kleinen Fehlers und Deployen dauert es zwei Wochen. Man erhält den Ticket zur Untersuchung, führt Analysen und Tests durch, dann überprüft man den Code, fusioniert ihn, meldet ihn den Testteams zur Prüfung und deployt dann.
+Für die Behebung eines kleinen Bugs und das Deployment dauert es zwei Wochen. Man erhält das Ticket zur Untersuchung, führt Analysen und Tests durch, dann Review, Code-Merge, Bericht an Testteams und schließlich das Deployment.
 
-Große Unternehmen mögen es, ihre Richtlinien auf alle Teams oder Projekte durchzusetzen. Denn für ein großes Unternehmen mit 200.000 Menschen haben diese Richtlinien oder internen Prozesse, die nur auf 10.000 Menschen angewendet werden, nicht viel Bedeutung oder Ergebnis. Für einige interne Prozesse müssen große Unternehmen Menschen oder Geld investieren, um Tools zu entwickeln, die sie unterstützen. Wenn sie nur einen winzigen Anteil der Mitarbeiter bedienen, lohnt sich die Investition nicht.
+Große Unternehmen mögen es, ihre Richtlinien auf alle Teams oder Projekte anzuwenden. Denn für ein großes Unternehmen mit 200.000 Menschen haben interne Prozesse, die nur für 10.000 gelten, wenig Bedeutung. Für einige interne Prozesse müssen große Unternehmen Ressourcen investieren, um Tools zu entwickeln. Wenn dies nur einen kleinen Teil der Mitarbeiter betrifft, rechtfertigt der Return die Investition nicht.
 
 Ein weiterer Nachteil großer Unternehmen ist, dass oft niemand für große Fehler bestraft wird.
 
-In meinem Startup erhielt ich einmal eine halbe Million Investition, um 9 Menschen einzustellen, und nach 2 Monaten musste ich sie entlassen und das Geld verlieren. Ich habe 50 kleine Softwareprojekte mit Teilzeit-Ingenieuren gemacht, um das Geld zurückzugewinnen, um es dem Investor zurückzugeben.
+In meinem Startup erhielt ich einmal eine halbe Million Investition, um 9 Leute einzustellen, und nach 2 Monaten musste ich sie entlassen und verlor das Geld. Ich führte 50 kleine Softwareprojekte mit Teilzeit-Ingenieuren durch, um das Geld zurückzugewinnen und dem Investor zurückzugeben.
 
-Das ist eine sehr intensive und schmerzhafte Erinnerung. Und das hat mich immer daran erinnert, diese Lektion zu behalten.
+Das ist eine sehr intensive und schmerzhafte Erinnerung. Und sie lässt mich diese Lektion nie vergessen.
 
-In einem bemerkenswerten Fall innerhalb eines großen Unternehmens wurde beobachtet, dass es keine erheblichen Konsequenzen für die Beteiligten gab. Einige leitende Manager und viele der kürzlich eingestellten Mitarbeiter wurden entlassen. Es bleibt unklar, ob dies mit einer schnellen und erheblichen Einstellungsspur zusammenhing.
+In einem bemerkenswerten Fall innerhalb eines großen Unternehmens gab es keine nennenswerten Konsequenzen für die Beteiligten. Einige Senior Manager und viele neu eingestellte Mitarbeiter wurden entlassen. Es bleibt unklar, ob dies mit einer schnellen und umfangreichen Einstellungswelle zusammenhing.
 
-Ein Beitragender Faktor für dieses Ergebnis sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die seit sechs Monaten bis einem Jahr im Unternehmen waren, konnten keine wesentlichen Beiträge leisten. Der Zeitplan umfasste in der Regel zwei Monate, um die Grundlagen zu verstehen, drei Monate, um sich mit den Projekten vertraut zu machen, drei Monate, um sich durch lästige Verfahren oder Tests zu kämpfen, und schließlich zwei Monate produktive Arbeit, die die Nutzer betraf.
+Ein Faktor für dieses Ergebnis sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die seit sechs Monaten bis einem Jahr im Unternehmen waren, konnten keine signifikanten Beiträge leisten. Der Zeitplan umfasste typischerweise zwei Monate Grundverständnis, drei Monate Projekteinführung, drei Monate mühsame Verfahren oder Tests und schließlich zwei Monate produktive Arbeit, die Nutzer beeinflusste.
 
-Angenommen, ein Acht-Stunden-Arbeitstag, zwei Monate produktive Arbeit ergaben keine wesentlichen Ergebnisse. Das Budget der Abteilung war aufgebraucht, und die Nutzerbasis wuchs nicht wie erwartet, was zu weiteren Entlassungen führte.
+Bei einem Acht-Stunden-Tag brachten zwei Monate produktive Arbeit keine nennenswerten Ergebnisse. Das Budget der Abteilung war aufgebraucht, und die Nutzerbasis wuchs nicht wie erwartet, was zu weiteren Entlassungen führte.
 
-Es schien, als ob keine wertvollen Lehren aus dieser Erfahrung gezogen wurden. Anfangs entschied eine Gruppe von Managern über eine schnelle und umfangreiche Einstellungspolitik, die zu diesem Zeitpunkt unnötig erschien. Die gesamte Gruppe von Managern zu beschuldigen, war nicht möglich, noch war es praktikabel, nur diejenigen zu entlassen, die seit kurzer Zeit im Unternehmen waren, insbesondere wenn andere Manager und technische Leiter seit sechs bis acht Jahren Teil des Teams waren.
+Es schien, als wäre aus dieser Erfahrung nichts gelernt worden. Anfangs entschied eine Gruppe von Managern eine schnelle und umfangreiche Einstellung, die unnötig erschien. Die gesamte Gruppe verantwortlich zu machen, war nicht praktikabel, ebenso wenig wie nur die Kurzzeit-Mitarbeiter zu entlassen, besonders wenn andere Manager und Tech-Leads seit sechs bis acht Jahren im Team waren.
 
-Der Geschäftsführer gewann nicht viel Einsicht aus der Situation, da dies nur eine von drei Abteilungen unter seiner Aufsicht war und seine Vergütung unverändert blieb. Selbst innerhalb des Teams konnten diejenigen, die nicht direkt verantwortlich waren, nichts aus der Erfahrung lernen, was Steve Jobs' Bemerkungen über Beratung widerspiegelt. Infolgedessen wurde die Lektion, die notwendig war, um ein außergewöhnliches Team zu bilden, das außergewöhnliche Ergebnisse für die Nutzer liefern kann, nicht verinnerlicht.
+Der Geschäftsführer zog wenig Erkenntnisse daraus, da dies nur eine von drei Abteilungen unter seiner Aufsicht war und seine Vergütung unverändert blieb. Selbst im Team lernten die nicht direkt Verantwortlichen nichts, ähnlich Steve Jobs' Bemerkungen zu Beratung. Somit zog niemand die Lektion, die nötig wäre, um ein außergewöhnliches Team zu bilden, das herausragende Ergebnisse für Nutzer liefert.
 
-Für Startups scheint es ein viel besserer Fall zu sein. Denn es ist wirklich ernst. Einige der Gründer, die verlieren oder scheitern, haben es wirklich schwer, besonders die Ehrlichen.
+Für Startups scheint es viel besser zu sein. Denn es ist wirklich ernst. Einige Gründer, die scheitern, haben es besonders schwer, vor allem die ehrlichen.
 
-Für Personen mit Integrität kann es tief entmutigend sein, erhebliche Investitionsmittel im Wert von Millionen bis zu Hunderten von Millionen Dollar zu verlieren und am Ende nur ein rudimentäres Produkt oder eine Nutzerbasis zu haben, die, obwohl sie groß ist, kaum Einnahmen generiert.
+Für Menschen mit Integrität kann es zutiefst entmutigend sein, große Investitionssummen von Millionen bis Hunderten Millionen zu verlieren und am Ende nur ein rudimentäres Produkt oder eine Nutzerbasis mit minimalen Einnahmen vorzuweisen.
 
-Paul Graham schrieb einen Aufsatz davor, [Hiring is Obsolete](https://paulgraham.com/hiring.html).
+Paul Graham schrieb einmal einen Essay, [Hiring is Obsolete](https://paulgraham.com/hiring.html).
 
-Aber was machen große Unternehmen gut? Eines ist Langfristigkeit. Sie neigen dazu, Dinge langfristig zu tun. Bei einigen guten großen Unternehmen sind ihre Projektentwürfe recht gut; sie verwenden Microservices, um den Fehler zu vermeiden, nach einem Jahrzehnt zu einem großen monolithischen Programm zu werden. Und sie haben Governance-Teams, um einige grundlegende Frameworks zu erstellen und die Entwicklungsmethoden für das gesamte Team zu vereinheitlichen.
+Aber was machen große Unternehmen gut? Eines ist Langfristigkeit. Sie neigen dazu, Dinge langfristig anzugehen. Einige gute große Unternehmen haben sehr gute Projektdesigns; sie nutzen Microservices, um den Fehler zu vermeiden, nach einem Jahrzehnt ein monolithisches Programm zu sein. Und sie haben Governance-Teams, die grundlegende Frameworks erstellen und die Entwicklungspraktiken für das gesamte Team vereinheitlichen.
 
-Prozesse oder Verfahren sind nicht per se schlecht. Aber sie machen oft Dinge kompliziert und langsam. Wir finden das Java-einheitliche Code-Format nicht unangenehm, weil es ein Spotless- oder Checkstyle-Plugin gibt, das hilft. Diese Plugins haben eine gute Gestaltung und sind einfach zu verwenden.
+Prozesse oder Verfahren sind nicht per se schlecht. Aber sie machen Dinge oft kompliziert und langsam. Wir empfinden das einheitliche Java-Code-Format nicht als unangenehm, weil es Plugins wie Spotless oder Checkstyle gibt. Diese Plugins sind gut designt und einfach zu nutzen.
 
-Ein weiterer Punkt ist, dass große Unternehmen dazu neigen, einige Tools oder Projekte für den internen Gebrauch, für Front-Office-Mitarbeiter, zu erstellen. Aber diese Nutzerbasis beträgt nur Hunderte oder 10.000. Diese Nutzerbasis ist sehr begrenzt.
+Ein weiterer Punkt ist, dass große Unternehmen oft Tools oder Projekte für den internen Gebrauch entwickeln, für Frontmitarbeiter. Doch diese Nutzerbasis ist nur Hunderte oder 10.000. Das ist sehr begrenzt.
 
-Ich denke, wir sollten für diesen Zweck externe Tools verwenden. Wenn ein Tool wirklich gut für eine Bank ist, ist es wahrscheinlich auch gut für 200 Banken. Und das kann dieses Unternehmen zu einem Einhorn machen.
+Ich denke, wir sollten besser externe Tools dafür nutzen. Wenn ein Tool wirklich gut für eine Bank ist, ist es wahrscheinlich gut für 200 Banken. Und das kann das Unternehmen zum Einhorn machen.
 
-Tiancheng Lou, Gründer von Pony.ai, sagt, dass Unternehmen unabhängig sein müssen, weil es effizienter ist. Das stimmt.
+Tiancheng Lou, Gründer von Pony.ai, sagt, dass Unabhängigkeit für Unternehmen effizienter ist. Das stimmt.
 
-Und große Unternehmen neigen dazu, Erfahrung zu belohnen, um Mitarbeitern Belohnungen zu geben. Während der Markt das Ergebnis oder die Ausführung für Startup-Teams belohnt. Sie sind tatsächlich sehr unterschiedlich.
+Große Unternehmen belohnen Mitarbeiter oft nach Erfahrung. Während der Markt Startups nach Ergebnis oder Ausführung belohnt. Das ist ein großer Unterschied.
 
-In großen Unternehmen zu arbeiten ist wie Lernen in der Schule. Man kommt von der Grundschule zur Mittelschule, dann zur Universität. In Startups gibt es jedoch mehr Höhen und Tiefen, und es gibt mehr Flexibilität, wenn man von einer Idee oder einem Markt zum anderen wechselt.
+In großen Unternehmen zu arbeiten, ist wie in der Schule zu lernen. Man geht von der Grundschule zur Mittelschule und dann zur Universität. In Startups gibt es mehr Höhen und Tiefen, und mehr Flexibilität, wenn man von einer Idee oder einem Markt zum nächsten wechselt.
 
-Der Vorteil von großen Unternehmen, risikoscheu zu sein, ist, dass ihre Produkte relativ stabil sind, ohne offensichtliche Fehler oder Ausfallzeiten. Das ist gut.
+Für große Unternehmen ist der Vorteil der Risikoscheu, dass ihre Produkte relativ stabil sind, ohne offensichtliche Bugs oder Ausfallzeiten. Das ist gut.
 
-Aber wie bei KI sind viele Nutzer mit Produkten, die zu Beginn nicht so stabil sind, wie Deepseek, einverstanden. Wir wissen, dass Deepseek im Februar/März 2025, als es viel Aufmerksamkeit erhielt, oft ausfiel. Aber nach einiger Zeit wurde es besser, und die Nutzer hatten scheinbar keine Probleme mehr damit.
+Aber wie bei KI sind viele Nutzer anfangs mit weniger stabilen Produkten wie deepseek einverstanden. Wir wissen, dass deepseek im Februar/März 2025 oft down war, als es viel Aufmerksamkeit erhielt. Doch nach einiger Zeit wurde es besser, und die Nutzer hatten kaum Probleme damit.
 
-Es kommt also darauf an. Manchmal müssen wir innovative Produkte schnell auf den Markt bringen, auch wenn sie einige Probleme haben. Nutzer können das verstehen.
+Es kommt also darauf an. Manchmal müssen innovative Produkte schnell auf den Markt, auch wenn sie Probleme haben. Nutzer verstehen das.
 
-Wenn wir über den Prozess nachdenken, können wir vorsichtiger sein. Wir sollten unsere Deployment-Typen besser kategorisieren. Einige Arten von Änderungen sind in Ordnung, um schnell zu deployen, während andere nicht. Beim Testen sollten wir kategorisieren, welche Teile des Tests wir für Regressionstests für den geänderten Code durchführen müssen und welche nicht. Das Gleiche gilt für SonarQube-Prüfungen.
+Wenn wir über den Prozess nachdenken, können wir vorsichtiger sein. Wir sollten unsere Deployment-Typen besser kategorisieren. Einige Änderungen können schnell deployed werden, andere nicht. Beim Testen sollten wir unterscheiden, welche Teile für Regressionstests notwendig sind und welche nicht. Das Gleiche gilt für SonarQube-Checks.
 
-In großen Unternehmen ist es sicher, dass viele Prüfungen, Tests oder Genehmigungen unnötig sind. Wir könnten die Ingenieure ihre Arbeit machen lassen, und da das System alle Aufzeichnungen hat, können wir einige auswählen, um sie zu überprüfen.
+In großen Unternehmen sind viele Checks, Tests oder Genehmigungen unnötig. Wir könnten Ingenieure einfach arbeiten lassen und, da das System alle Aufzeichnungen hat, einige zur Überprüfung auswählen.
 
-Wir sollten auch alle Manager-Genehmigungen eliminieren. Welches Wissen haben Manager, das Ingenieure nicht haben? Könnte dieses Wissen in den Code geschrieben werden, um die Anfragen automatisch zu genehmigen oder abzulehnen?
+Wir sollten auch alle Manager-Genehmigungen abschaffen. Welches Wissen haben Manager, das Ingenieure nicht haben? Könnte dieses Wissen in Code geschrieben werden, um Anfragen automatisch zu genehmigen oder abzulehnen?
 
-Weil dort alles langsam ist, werden die Mitarbeiter wahrscheinlich nichts ändern. Der Wechsel von einem großen monolithischen Projekt zu Microservices für ein Projekt, das seit einem Jahrzehnt läuft, könnte zwei Jahre dauern.
+Weil dort alles langsam ist, ändern Mitarbeiter selten etwas. Der Wechsel von einem monolithischen Projekt zu Microservices für ein Projekt, das seit einem Jahrzehnt läuft, könnte zwei Jahre dauern.
 
-Bei Software sind Code und Logik eng miteinander verknüpft, insbesondere in gut gestalteten Systemen. Daher kann die Entwicklung, das Testen oder die Zusammenarbeit erheblich sein.
+Bei Software sind Code und Logik eng verwoben, besonders in gut designten Systemen. Daher können Entwicklung, Tests oder Zusammenarbeit umfangreich sein.
 
-Deshalb funktioniert das plötzliche Skalieren eines Teams oft nicht. Wenn es eine Microservice-Architektur gibt, die locker gekoppelt ist, dann kann die Leistung des Teams proportional zur Anzahl der Teammitglieder sein. Wenn es ein monolithisches Projekt gibt, das stark gekoppelt ist, dann kann die Leistung des Teams nur um 30% steigen, wenn wir die Größe des Teams verdoppeln, das daran arbeitet.
+Deshalb funktioniert plötzliches Team-Scaling oft nicht. Bei einer locker gekoppelten Microservice-Architektur ist die Teamleistung proportional zur Teamgröße. Bei einem eng gekoppelten monolithischen Projekt steigt die Leistung vielleicht nur um 30%, wenn das Team verdoppelt wird.
 
-Aufgrund seiner langsamen Geschwindigkeit kann es manchmal schwierig sein zu bestimmen, ob ein Mitarbeiter oder Auftragnehmer unfähig ist oder ob das System zu komplex und umständlich für Neueinsteiger ist. In einem Fall, den ich beobachtet habe, hatte jemand vier Monate im Unternehmen verbracht und sehr wenig erreicht, nur ein paar Codezeilen geändert, um einen Pull-Request einzureichen. Außerdem war die Qualität des Codes schlecht, da er ihn nicht gut verstand. Sein Englisch war auch sehr schlecht, und er konnte nur durch Einfügen von Screenshots und Verwendung von Grundenglisch Fragen stellen.
+Wegen der Langsamkeit ist es manchmal schwer zu sagen, ob ein Mitarbeiter unfähig ist oder das System zu komplex und umständlich für Neueinsteiger. In einem beobachteten Fall hatte jemand nach vier Monaten kaum etwas erreicht, nur ein paar Codezeilen geändert und einen Pull Request eingereicht. Die Codequalität war schlecht, da er ihn nicht verstand. Sein Englisch war auch sehr schwach, und er konnte nur mit Screenshots und einfachem Englisch kommunizieren.
 
-In Bezug auf Stabilität sehe ich, dass große Unternehmen dazu neigen, mehrere Teammitglieder für doppelte Aufgaben einzusetzen. Zum Beispiel für Aufgabe A und Aufgabe B, sie weisen nicht zwei Team-Ingenieure zu, um separat an Aufgabe A und Aufgabe B zu arbeiten. Stattdessen arbeiten beide an Teilen von Aufgabe A und B, damit diese beiden Ingenieure wissen, was der andere tut. Dies macht das Team stabiler, da es verhindert, dass nur eine Person viel über große Teile des Codes weiß und daran seit mehreren Jahren ohne Zusammenarbeit gearbeitet hat. Dann, wenn diese Person das Unternehmen verlässt, kann niemand anderes daran arbeiten.
+Zur Stabilität: Große Unternehmen lassen oft mehrere Teammitglieder an doppelten Aufgaben arbeiten. Für Aufgabe A und B arbeiten nicht zwei Ingenieure separat, sondern beide an Teilen von A und B, sodass sie wissen, was der andere tut. Das macht das Team stabiler, da nicht eine Person den Großteil des Codes allein über Jahre bearbeitet. Wenn diese Person geht, kann niemand anders daran arbeiten.
 
-Ein weiterer Punkt, den große Unternehmen gut machen, ist die Aufrechterhaltung des Cashflows und der Profitdisziplin. Der Grund dafür ist, dass sie, wenn sie größer werden, oft erhebliche finanzielle Krisen erleben. Dies ist wahrscheinlich das Wichtigste, was sie priorisieren. Sie haben dies auf die harte Tour gelernt und diese Praktiken in ihre Operationen eingebettet. Selbst wenn sie Gewinne von 10 Milliarden USD oder 30 Milliarden USD pro Jahr machen, optimieren sie weiterhin ihre Belegschaft und führen Entlassungen durch.
+Große Unternehmen halten auch Cashflow und Profit-Disziplin gut ein. Denn wenn sie wachsen, stehen sie oft vor großen finanziellen Krisen. Das ist wohl ihre wichtigste Priorität. Sie haben das auf die harte Tour gelernt und verankern es in ihrer Arbeit. Selbst bei Gewinnen von 10 oder 30 Milliarden Dollar im Jahr optimieren sie ihre Belegschaft und führen Entlassungen durch.
 
-Ein Kollege von mir sagte mir, dass große Unternehmen mit einem Monopol auf bestimmte Produkte operieren, die viel Arbeit oder Zeit erfordern, um aufgebaut zu werden. Das macht Sinn. Sie verlassen sich nicht auf Geschwindigkeit, sondern auf ihre Größe, Ressourcen und Marke.
+Ein Kollege sagte mir, große Unternehmen haben Monopole auf Produkte, die viel Arbeit oder Zeit erfordern. Das macht Sinn. Sie verlassen sich nicht auf Geschwindigkeit, sondern auf Größe, Ressourcen und Marke.
 
-Wie überlebt man in großen Unternehmen? Eine Möglichkeit ist, mehr zu tun und weniger zu reden. Das sagte mir mein Delivery-Manager in einem Outsourcing-Anbieter.
+Wie überlebt man in großen Unternehmen? Erstens: Mehr tun, weniger reden. Das sagte mir mein Delivery Manager bei einem Outsourcing-Anbieter.
 
-Die zweite Sache ist, das zu tun, was andere tun; es ist sicher. Ein durchschnittlicher Ingenieur im Team zu sein, ist sicher, genau wie ein durchschnittlicher Mensch auf der Straße – weder zu herausragend noch zu vernachlässigt, sondern genau in der Mitte.
+Zweitens: Mach es wie die anderen; das ist sicher. Ein durchschnittlicher Ingenieur im Team zu sein, ist sicher, wie ein Durchschnittsmensch auf der Straße – weder zu herausragend noch zu vernachlässigt, sondern genau in der Mitte.
 
-Ich muss sagen, es gibt viele große Unternehmen. Einige haben mehr als 200.000 Mitarbeiter, andere etwa 20.000. Es gibt gute große Unternehmen und schlecht performende. Erscheinung oder Marktkapitalisierung verrät manchmal nicht viel. Sie können in wenigen Jahren deutlich steigen, wie Nvidia es kürzlich getan hat, oder sie können plötzlich zusammenbrechen, wie Credit Suisse.
+Ich muss sagen, es gibt viele große Unternehmen. Einige haben über 200.000 Mitarbeiter, andere etwa 20.000. Es gibt gute und schlecht performende. Äußeres oder Marktkapitalisierung sagen manchmal wenig aus. Sie können in wenigen Jahren stark steigen, wie Nvidia, oder plötzlich kollabieren, wie Credit Suisse.

@@ -3,36 +3,15 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Prompts utiles
+title: Prompts Utiles
 translated: true
 ---
-
-Here is the translated content in French:
-
----
-
-Traduisez les publications ou les mots suivants en chinois, en veillant à ce que les noms (par exemple, les personnes, les lieux, les marques ou les termes spécifiques) ne soient pas traduits et restent dans leur forme originale. Traduisez uniquement le texte environnant en chinois.
-
----
-
-Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
-
-- Explorer des sous-thèmes spécifiques et leurs complexités.
-- Comparer et opposer différentes technologies ou méthodologies liées au sujet.
-- Discuter des cas d'utilisation réels et de leurs implications.
-- Poser des questions approfondies pour découvrir des insights plus profonds.
-- Inclure occasionnellement des quiz pour tester leurs connaissances.
-- Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que de s'appuyer sur des formules.
-
-Assurez-vous que le dialogue s'écoule naturellement, avec un échange équilibré d'idées et de perspectives.
-
-Le format doit être le suivant :
 
 ```json
 [
     {
       "speaker": "A",
-      "line": "Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?"
+      "ligne": "Salut, j’entends beaucoup parler d’un certain sujet. Peux-tu me l’expliquer ?"
     },
     {
       "speaker": "B",
@@ -41,25 +20,53 @@ Le format doit être le suivant :
 ]
 ```
 
-À propos de l'examen 04730, de l'examen d'auto-apprentissage en Chine et de la technologie électronique de base 3.
+---
+
+Composez un dialogue dynamique et approfondi entre deux experts, A et B, sur un sujet spécialisé. La conversation doit être engageante et détaillée, avec les deux participants contribuant activement. Ils doivent :
+
+- Approfondir des sous-thèmes spécifiques et explorer leurs complexités.
+- Comparer et contraster différentes technologies ou méthodologies liées au sujet.
+- Discuter des cas d'utilisation réels et de leurs implications.
+- Poser des questions pertinentes pour découvrir des insights plus profonds.
+- Inclure occasionnellement des quiz pour tester leurs connaissances mutuelles.
+- Se concentrer sur les aspects pratiques et les mécanismes du sujet, plutôt que sur des formules.
+
+Assurez-vous que le dialogue coule naturellement, avec un échange équilibré d'idées et de perspectives.
+
+Le format doit être le suivant :
+
+```json
+[
+    {
+      "speaker": "A",
+      "line": "Salut, j’entends beaucoup parler d’un certain sujet. Peux-tu me l’expliquer ?"
+    },
+    {
+      "speaker": "B",
+      "line": "Bien sûr ! Commençons par les bases. ..."
+    }
+]
+```
+
+À propos de l’examen 04730, de l’auto-apprentissage en Chine et de la technologie électronique de base 3.
 
 ---
 
-Créez une conversation naturelle et prolongée entre deux experts, A et B, avec au moins 50 tours. Les experts doivent discuter en profondeur d'un sujet spécifique, avec une conversation qui va et vient. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'exploration approfondie de sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ tours.
+Créez une conversation naturelle et étendue entre deux experts, A et B, avec au moins 50 répliques. Les experts doivent discuter en profondeur d’un sujet spécifique, avec une conversation fluide et interactive. Les deux participants doivent poser des questions, partager des insights et explorer les nuances du sujet. Utilisez des compétences telles que l'approfondissement des sous-sections, la comparaison de technologies, l'exploration de cas d'utilisation, le débat sur les compromis et la discussion des tendances émergentes. Étendez à 50+ répliques.
 
 À propos du contenu PDF. Le format doit être le suivant :
 
-A : Salut, j’ai beaucoup entendu parler d’un certain sujet. Peux-tu me l’expliquer ?
+A : Salut, j’entends beaucoup parler d’un certain sujet. Peux-tu me l’expliquer ?
 
 B : Bien sûr ! Commençons par les bases.
 
 ---
 
-Générez une image joyeuse pour le Nouvel An du Serpent lunaire avec des noms inclus.
+Générez une image joyeuse pour le Nouvel An lunaire du Serpent avec des noms de texte inclus.
 
 ---
 
-Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un texte super grand "DeepSeek R1" au centre.
+Créez une image de couverture pour une vidéo YouTube en 480p avec les éléments suivants : IA, requin, futuriste, vif, coloré, lever de soleil, ville avec un très grand texte "DeepSeek R1" au centre.
 
 ---
 
@@ -67,23 +74,23 @@ Créez une image de couverture pour une vidéo YouTube en 480p avec les élémen
 
 ---
 
-Générez un message de commit concis au format Conventional Commits pour les modifications de code suivantes.
+Générez un message de commit concis au format Conventional Commits pour les changements de code suivants.
 Utilisez l'un des types suivants : feat, fix, docs, style, refactor, test, chore, perf, ci, build ou revert.
-Si applicable, incluez un scope entre parenthèses pour décrire la partie du codebase affectée.
-Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans aucune note en tête ou en queue.
+Si applicable, incluez une portée entre parenthèses pour décrire la partie du code affectée.
+Le message de commit ne doit pas dépasser 70 caractères. Donnez simplement le message de commit, sans notes préliminaires ou finales.
 
 Fichiers modifiés :
 {', '.join(file_changes)}
 
 ---
 
-Créez un titre YouTube.
+Créez un titre pour YouTube.
 
 ---
 
 蕾(つぼみ) - Tsubomi
 
-Donnez les paroles en japonais et expliquez-les, pour chaque mot et prononciation.
+Donnez ses paroles en japonais et expliquez-les, pour chaque mot et prononciation.
 
 ---
 
@@ -95,21 +102,21 @@ Donnez une histoire complète de ceci, qui l'a découvert, quelle est l'histoire
 
 ---
 
-Recommandez des vidéos YouTube sur ...
+Recommandez des vidéos YouTube sur...
 
 ---
 
-Donnez quelques introductions sur la ville de Davao à Mindanao, aux Philippines.
+Donnez quelques introductions sur la ville de Davo à Mindanao, Philippines.
 
 ---
 
-Donnez une analyse complète du fonctionnement des inducteurs.
+Donnez une analyse complète du fonctionnement des inductances.
 
 ---
 
 Philippines
 
-Qu'est-ce qui est spécial ? Quelle est son unicité ? Comment ses habitants contribuent-ils à la technologie ? Comment ses habitants inventent-ils et impactent-ils ?
+Qu'est-ce qui est spécial ? Quelle est leur singularité ? Comment leur peuple contribue-t-il à la technologie ? Comment leur peuple innove-t-il et a-t-il un impact ?
 
 ---
 
@@ -117,23 +124,23 @@ Donnez une discussion sur xx.
 
 ---
 
-Donnez un avis sur xx.
+Donnez une critique sur xx.
 
 ---
 
-Aidez à organiser cette conférence, retirez autant que possible du transcript et aidez à donner une note.
+Aidez à organiser cette discussion, extrayez autant que possible la transcription et aidez à prendre des notes.
 
 ---
 
-Yitang Zhang, math, quelle est son histoire, que pouvons-nous apprendre de lui ?
+Yitang Zhang, mathématiques, quelle est son histoire, que pouvons-nous apprendre de lui ?
 
 ---
 
-Sur la base de cette vidéo YouTube, créez un tutoriel, ne pas inclure de timestamp.
+Sur la base de cette vidéo YouTube, créez un tutoriel, n'incluez pas d'horodatage.
 
 ---
 
-Quelle est la prochaine date de publication du rapport de résultats de Google ?
+Quand est-ce que Google publiera son prochain rapport de résultats ?
 
 ---
 
@@ -141,15 +148,15 @@ Dessinez quelques graphiques pour comprendre.
 
 ---
 
-Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Conservez l'indentation d'origine afin que je puisse les copier-coller directement.
+Identifiez uniquement les lignes nécessitant des modifications et fournissez des extraits corrigés (pas le code complet). Préservez l'indentation originale pour que je puisse les copier-coller directement.
 
 ---
 
-Organisez ce transcript, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
+Organisez cette transcription, conservez le texte original autant que possible, rendez-le simplement plus cohérent.
 
 ---
 
-Donnez 30 questions à choix multiples à option unique sur un sujet.
+Donnez 30 questions à choix multiples à option unique sur quelque chose.
 
 ---
 

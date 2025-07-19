@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: de
 layout: post
-title: Nützliche Aufforderungen
+title: Nützliche Eingabeaufforderungen
 translated: true
 ---
 
@@ -11,131 +11,123 @@ translated: true
 [
     {
       "speaker": "A",
-      "line": "Hey, I’ve been hearing a lot about the 04730 exam, self-study China exam, and basic electronics technology 3. Can you break it down for me?"
+      "line": "Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?"
     },
     {
       "speaker": "B",
-      "line": "Sure! Let’s start with the basics. The 04730 exam is a certification test in China, often related to specific technical fields. The self-study version allows candidates to prepare independently. Basic Electronics Technology 3 is a course or exam focusing on fundamental electronics principles."
-    },
-    {
-      "speaker": "A",
-      "line": "Got it. What are the key topics covered in Basic Electronics Technology 3?"
-    },
-    {
-      "speaker": "B",
-      "line": "It typically includes circuit analysis, semiconductor devices, digital electronics, and practical applications. For example, understanding Ohm’s Law, Kirchhoff’s Laws, and basic transistor operation."
-    },
-    {
-      "speaker": "A",
-      "line": "How does the self-study version differ from a traditional classroom setting?"
-    },
-    {
-      "speaker": "B",
-      "line": "Self-study requires more discipline. You’ll need to manage your time, find reliable resources, and possibly use online forums or study groups for support. Traditional classes offer structured learning and immediate feedback."
-    },
-    {
-      "speaker": "A",
-      "line": "What are some common challenges students face in self-study?"
-    },
-    {
-      "speaker": "B",
-      "line": "Procrastination, lack of motivation, and difficulty in troubleshooting complex problems without a teacher. Also, interpreting exam questions can be tricky without guidance."
-    },
-    {
-      "speaker": "A",
-      "line": "How can someone overcome these challenges?"
-    },
-    {
-      "speaker": "B",
-      "line": "Set a strict study schedule, use interactive learning tools like simulations, and join study groups. Breaking topics into smaller sections helps too."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the best way to prepare for the practical sections of the exam?"
-    },
-    {
-      "speaker": "B",
-      "line": "Hands-on practice is key. Use breadboards to build circuits, simulate designs with software like Proteus or LTspice, and document your experiments."
-    },
-    {
-      "speaker": "A",
-      "line": "Are there any recommended resources for self-study?"
-    },
-    {
-      "speaker": "B",
-      "line": "Yes! Books like ‘Make: Electronics’ by Charles Platt, online courses on platforms like Coursera, and YouTube channels like EEVblog are great. Also, past exam papers are invaluable."
-    },
-    {
-      "speaker": "A",
-      "line": "How important is math in these exams?"
-    },
-    {
-      "speaker": "B",
-      "line": "Math is fundamental. You’ll need to solve equations for circuits, analyze waveforms, and calculate component values. A solid grasp of algebra and calculus is essential."
-    },
-    {
-      "speaker": "A",
-      "line": "What about digital electronics? How does it compare to analog?"
-    },
-    {
-      "speaker": "B",
-      "line": "Digital is more about logic gates, Boolean algebra, and binary systems. Analog deals with continuous signals, like amplifiers and filters. Both are crucial in modern electronics."
-    },
-    {
-      "speaker": "A",
-      "line": "Can you give an example of a real-world application?"
-    },
-    {
-      "speaker": "B",
-      "line": "Sure! A smartphone combines both. The analog part processes audio signals, while the digital part handles data processing and display. Understanding both is key to designing such devices."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s a common mistake students make in circuit design?"
-    },
-    {
-      "speaker": "B",
-      "line": "Ignoring power supply considerations. A poorly designed power circuit can cause noise, overheating, or even damage components. Always include proper voltage regulation and filtering."
-    },
-    {
-      "speaker": "A",
-      "line": "How do you troubleshoot a malfunctioning circuit?"
-    },
-    {
-      "speaker": "B",
-      "line": "Start with the basics: check connections, power supply, and component values. Use a multimeter to measure voltages and currents. If needed, simulate the circuit to identify issues."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s the role of semiconductors in electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "They’re the backbone! Diodes, transistors, and ICs control current flow, amplify signals, and perform logic operations. Without them, modern electronics wouldn’t exist."
-    },
-    {
-      "speaker": "A",
-      "line": "How do you stay updated with the latest trends in electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "Follow industry publications, attend webinars, and experiment with new components. Platforms like Hackaday and IEEE Xplore are great for cutting-edge research."
-    },
-    {
-      "speaker": "A",
-      "line": "What’s your take on the future of electronics?"
-    },
-    {
-      "speaker": "B",
-      "line": "It’s heading toward miniaturization, AI integration, and sustainable designs. Quantum computing and flexible electronics are also emerging fields."
-    },
-    {
-      "speaker": "A",
-      "line": "Any final tips for exam day?"
-    },
-    {
-      "speaker": "B",
-      "line": "Stay calm, read questions carefully, and manage your time. If stuck, move on and return later. Good luck!"
+      "line": "Klar! Lass uns mit den Grundlagen beginnen. ..."
     }
 ]
 ```
+
+---
+
+Erstelle ein natürliches und ausführliches Gespräch zwischen zwei Experten, A und B, mit mindestens 50 Wechseln. Die Experten sollten ein bestimmtes Thema detailliert diskutieren, wobei das Gespräch hin und her fließt. Beide Teilnehmer sollten Fragen stellen, Einsichten teilen und die Nuancen des Themas erkunden. Verwende Fähigkeiten wie das Eintauchen in Unterthemen, den Vergleich von Technologien, die Untersuchung von Anwendungsfällen, das Debattieren von Kompromissen und die Diskussion aufkommender Trends. Erweitere auf 50+ Wechsel.
+
+Über den PDF-Inhalt. Das Format sollte wie folgt sein:
+
+A: Hey, ich habe viel über ein bestimmtes Thema gehört. Kannst du es mir erklären?
+
+B: Sicher! Lass uns mit den Grundlagen beginnen.
+
+---
+
+Erstelle ein fröhliches Bild zum Neujahr der Schlange mit eingeschlossenem Textnamen.
+
+---
+
+Erstelle ein 480p YouTube-Video-Cover-Bild mit folgenden Elementen: KI, Hai, futuristisch, lebendig, farbenfroh, Sonnenaufgang, Stadt mit sehr großem Text "DeepSeek R1" in der Mitte.
+
+---
+
+Erstelle ein 480p YouTube-Video-Cover-Bild mit folgenden Elementen: Grundlagen der Elektronik, futuristisch, aufregend.
+
+---
+
+Generiere eine prägnante Commit-Nachricht im Conventional Commits-Format für die folgenden Code-Änderungen.
+Verwende einen der folgenden Typen: feat, fix, docs, style, refactor, test, chore, perf, ci, build oder revert.
+Falls zutreffend, füge einen Bereich in Klammern hinzu, um den betroffenen Teil der Codebasis zu beschreiben.
+Die Commit-Nachricht sollte 70 Zeichen nicht überschreiten. Gib nur die Commit-Nachricht an, ohne zusätzliche Hinweise.
+
+Geänderte Dateien:
+{', '.join(file_changes)}
+
+---
+
+Erstelle einen YouTube-Titel.
+
+---
+
+蕾(つぼみ) - Tsubomi
+
+Gib die Lyrics auf Japanisch an und erkläre sie, jedes Wort und seine Aussprache.
+
+---
+
+Erstelle ein umfassendes Tutorial zu diesem Kapitel.
+
+---
+
+Gib eine umfassende Geschichte dazu, wer es entdeckt hat und was die Hintergrundgeschichte ist.
+
+---
+
+Empfehle YouTube-Videos über ...
+
+---
+
+Gib einige Einführungen über Davo City in Mindanao, Philippinen.
+
+---
+
+Gib eine umfassende Analyse, wie Induktoren funktionieren.
+
+---
+
+Philippinen
+
+Was ist besonders? Was ist einzigartig? Wie tragen die Menschen zur Technologie bei? Wie erfinden und beeinflussen die Menschen?
+
+---
+
+Führe eine Diskussion über xx.
+
+---
+
+Gib eine Rezension über xx.
+
+---
+
+Hilf, diesen Vortrag zu organisieren, entferne so viel wie möglich aus dem Transkript und hilf, Notizen zu machen.
+
+---
+
+Yitang Zhang, Mathematik, was ist seine Geschichte, was können wir daraus lernen?
+
+---
+
+Erstelle basierend auf diesem YouTube-Video ein Tutorial, füge keine Zeitstempel ein.
+
+---
+
+Wann veröffentlicht Google das nächste Mal einen Ertragsbericht?
+
+---
+
+Zeichne einige Graphen, um es zu verstehen.
+
+---
+
+Identifiziere nur die Zeilen, die Änderungen benötigen, und liefere korrigierte Ausschnitte (nicht den vollständigen Code). Behalte die ursprüngliche Einrückung bei, damit ich sie direkt kopieren und einfügen kann.
+
+---
+
+Organisiere dieses Transkript, behalte den Originaltext so weit wie möglich bei, mache ihn nur kohärenter.
+
+---
+
+Erstelle 30 Single-Option-Multiple-Choice-Quizfragen über etwas.
+
+---
+
+Schreibe Japanisch wie ein Grundschulkind, verwende sehr einfache Phrasen.

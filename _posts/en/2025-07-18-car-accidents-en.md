@@ -7,6 +7,8 @@ title: '"Car Accidents in My Life"'
 translated: false
 ---
 
+
+
 There have been some car accidents in my life. The most severe one happened in April 2018, just one month after I got my driver's license. I was traveling to Xilinhot, Inner Mongolia. I was driving about 100 km/h with my wife. After exiting the highway at a toll booth, which didn't have a curved road and was straight, I thought I was still on the highway. So, I didn't slow down at all. Suddenly, there was a crossroad.
 
 My car crashed into a white car that was just making a turn. My car was pushed about 10 meters away. Things got messy. The other car was pushed into the road divider. I was fine because I was wearing my seatbelt, and I didn't have any injuries. However, my wife had some shoulder problems.
@@ -40,3 +42,4 @@ This accident left a lifelong memory for me. Later accidents I've had have been 
 {: .centered }  
 ![](assets/images/accident/a5.jpg){: .responsive }  
 *Source: Self-Captured*{: .caption }
+
