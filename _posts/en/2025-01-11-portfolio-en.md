@@ -9,7 +9,7 @@ translated: false
 
 The PDF file can be found [here](/assets/resume/Zhiwei.Li.Portfolio.pdf).
 
-This collection of software represents the diverse projects I have had the privilege to work on throughout the years, in collaboration with various esteemed companies and partners.
+This collection of software represents the diverse projects I have had the privilege to work on throughout the years, in collaboration with various esteemed companies and partners. 
 
 I am grateful for the opportunities and experiences these collaborations have provided, and I look forward to continuing to contribute my skills and expertise to future endeavors.
 
@@ -38,7 +38,7 @@ Developed a flower recognition Android application designed to help users identi
 
 ## iword, Android, 2014.3
 
-An Android application to help users learn English by watching movie clips.
+An Android application to help users learn English by watching movie clips. 
 
 **Technologies Used:** Android SDK, Java
 
@@ -159,7 +159,7 @@ Open Sourced at [GitHub](https://github.com/lzwjava/Reveal-In-GitHub), 57 commit
 
 ## CodeReview, Full Stack, 2015.11 - 2016.7
 
-CodeReview is a professional platform for code review, communication, and sharing. Engineers can submit their code for expert review to improve the quality of their code.
+CodeReview is a professional platform for code review, communication, and sharing. Engineers can submit their code for expert review to improve the quality of their code. 
 
 **Technologies Used:** PHP, Vue.js, CodeIgniter, Alibaba Cloud
 
@@ -184,7 +184,7 @@ Open Sourced at GitHub.
 
 ## Fun Live, Full Stack, 2016.6 - 2017.12
 
-Fun Live is a knowledge live broadcast platform where users can participate in various knowledge lectures such as programming or design. Users can pay fees to attend live sessions or reward the lecturer.
+Fun Live is a knowledge live broadcast platform where users can participate in various knowledge lectures such as programming or design. Users can pay fees to attend live sessions or reward the lecturer. 
 
 **Technologies Used:** PHP, MySQL, Vue.js, CodeIgniter, Alibaba Cloud, SRS streaming, WeChat SDK
 
@@ -229,7 +229,9 @@ WeChat MiniProgram:
 
 <img src="/assets/images/portfolio/wxapp1.jpg" width="200px" /><img/>
 
-<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img/>
+<img src="/assets/images/portfolio/wxapp2.jpg" width="200px" /><img
+
+/>
 
 <img src="/assets/images/portfolio/wxapp3.jpg" width="200px" /><img/>
 
@@ -367,9 +369,10 @@ Contributed to DBS Client Connect, an AI- and data-driven customer-relationship 
 
 </div>
 
+
 ## DBS DigiBank CN - Mutual Funds, Backend, 2022.7-2022.11
 
-DBS DigiBank CN rethought and redesigned for you to enjoy the faster and more convenient way to bank on the go.
+DBS DigiBank CN rethought and redesigned for you to enjoy the faster and more convenient way to bank on the go. 
 
 Contributed to DBS DigiBank CN, focusing on backend development for mutual funds micro-services as part of a collaborative team.
 
@@ -389,9 +392,10 @@ Contributed to DBS DigiBank CN, focusing on backend development for mutual funds
 
 <p><a href="https://www.dbs.com.cn/treasures/digital-service/digibank.html">Image source: DBS Digibank CN</a></p></div>
 
-## PayMe By HSBC - Auto Top Up, Backend, 2022.12 - 2023.7
 
-PayMe from HSBC is a convenient way to send payments to friends, and make mobile payments to merchants both on and offline.
+## PayMe By HSBC - Auto Top Up, Backend, 2022.12 - 2023.7 
+
+PayMe from HSBC is a convenient way to send payments to friends, and make mobile payments to merchants both on and offline. 
 
 **Technologies Used:** Java, Spring, Kafka, Azure, Azure DevOps, AWS
 
