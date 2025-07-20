@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Lampe USB Alimentée Pratique et Lumineuse pour Voiture
+title: Lampe USB Alimentée Pratique et Éclatante pour Utilisation en Voiture
 translated: true
 ---
 
@@ -13,7 +13,7 @@ Avant, j'utilisais une lampe avec une batterie. Comme ce type de lampe est souve
 
 Maintenant, j'utilise une lampe alimentée par USB sans batterie, donc je n'ai pas besoin de l'éteindre manuellement lorsque je quitte et verrouille la voiture.
 
-Sur la photo, vous pouvez observer l'interrupteur intelligent dans la prise. Je l'ai mis là sans savoir comment l'utiliser. Je l'ai vu chez moi et j'ai pensé que je pourrais l'utiliser dans la voiture un jour. À la maison, j'utilise l'interrupteur intelligent pour contrôler la fontaine à eau, qui peut être vraiment dérangeante quand elle fait du bruit pendant que je dors.
+Sur la photo, vous pouvez observer l'interrupteur intelligent dans la prise. Je l'ai mis là sans savoir comment l'utiliser. Je l'ai vu chez moi et j'ai pensé que je pourrais l'utiliser dans la voiture un jour. À la maison, j'utilise l'interrupteur intelligent pour contrôler la fontaine à eau, ce qui peut être vraiment dérangeant quand elle fait du bruit pendant que je dors.
 
 {: .centered }
 ![](assets/images/car-lamp/c1.jpg){: .responsive }

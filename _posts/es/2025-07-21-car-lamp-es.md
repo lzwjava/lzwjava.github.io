@@ -7,7 +7,7 @@ title: Lámpara USB para coche, brillante y práctica
 translated: true
 ---
 
-Usar una lámpara en mi coche hace que el interior esté iluminado, por lo que el brillo dentro y fuera es aproximadamente el mismo. Esto ayuda a que mis ojos se sientan más cómodos al conducir. Elegí una lámpara alimentada por USB sin batería. Esto significa que el enchufe conectado al encendedor de mi coche eléctrico puede alimentar la lámpara. Cuando cierro el coche, la lámpara se apaga automáticamente.
+Usar una lámpara en mi coche hace que el interior esté bien iluminado, por lo que el brillo dentro y fuera es aproximadamente el mismo. Esto ayuda a que mis ojos se sientan más cómodos al conducir. Elegí una lámpara alimentada por USB sin batería. Esto significa que el enchufe conectado al encendedor de mi coche eléctrico puede alimentar la lámpara. Cuando cierro el coche, la lámpara se apaga automáticamente.
 
 Antes, usaba una que tenía batería. Como este tipo de lámpara se usa a menudo en casa para estudiar, etc., tener una batería las hace fáciles de mover sin necesidad de conectarlas a un enchufe. Por lo tanto, con una lámpara que tiene batería, necesitaba tocar la base de la lámpara para apagarla.
 
