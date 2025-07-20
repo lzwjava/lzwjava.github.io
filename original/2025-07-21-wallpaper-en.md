@@ -17,12 +17,12 @@ I learned about setting a reminder for 3:14 PM from Andrej Karpathy, who used th
 
 {: .centered }  
 ![](assets/images/wallpaper/w0.jpg){: .responsive }  
-*Source: Self-Screenshot*{: .caption }
+*Source: screenshot*{: .caption }
 
 {: .centered }  
 ![](assets/images/wallpaper/w1.jpg){: .responsive }  
-*Source: Self-Screenshot*{: .caption }
+*Source: screenshot*{: .caption }
 
 {: .centered }  
 ![](assets/images/wallpaper/w2.jpg){: .responsive }  
-*Source: Self-Screenshot*{: .caption }
+*Source: screenshot*{: .caption }
