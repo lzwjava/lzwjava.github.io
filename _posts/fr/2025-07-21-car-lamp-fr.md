@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Lampe USB Alimentée Pratique et Éclatante pour Utilisation en Voiture
+title: Lampe USB Alimentée Pratique et Lumineuse pour Voiture
 translated: true
 ---
 
