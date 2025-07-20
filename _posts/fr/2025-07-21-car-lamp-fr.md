@@ -7,7 +7,7 @@ title: Lampe USB Alimentée Pratique et Lumineuse pour Voiture
 translated: true
 ---
 
-Utiliser une lampe dans ma voiture rend l'intérieur lumineux, donc la luminosité à l'intérieur et à l'extérieur est approximativement la même. Cela aide mes yeux à se sentir plus à l'aise pendant la conduite. J'ai choisi une lampe alimentée par USB sans batterie. Cela signifie que la prise connectée au cendrier de ma voiture électrique peut alimenter la lampe. Lorsque je verrouille la voiture, la lampe s'éteint automatiquement.
+Utiliser une lampe dans ma voiture rend l'intérieur lumineux, donc la luminosité à l'intérieur et à l'extérieur est approximativement la même. Cela aide mes yeux à se sentir plus à l'aise pendant la conduite. J'ai choisi une lampe alimentée par USB sans batterie. Cela signifie que la prise connectée à l'allume-cigare de ma voiture électrique peut alimenter la lampe. Lorsque je verrouille la voiture, la lampe s'éteint automatiquement.
 
 Avant, j'utilisais une lampe avec une batterie. Comme ce type de lampe est souvent utilisé à la maison pour étudier, etc., avoir une batterie les rend faciles à déplacer sans avoir besoin de se connecter à une prise. Donc, avec une lampe qui a une batterie, je devais toucher la base de la lampe pour l'éteindre.
 

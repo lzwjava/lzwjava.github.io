@@ -3,7 +3,7 @@ audio: false
 generated: false
 lang: en
 layout: post
-title: Bright and Convenient USB-Powered Car Lamp
+title: Bright and Convenient USB-Powered Lamp for Car Use
 translated: false
 ---
 
