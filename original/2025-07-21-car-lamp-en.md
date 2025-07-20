@@ -7,7 +7,7 @@ translated: false
 generated: false
 ---
 
-Using a lamp in my car makes the environment bright, so the inner brightness and outer brightness are approximately the same. I chose a USB-powered one without a battery. This means that the socket connecting to the cigarette lighter in my EV car can power this lamp. When I lock the car, the lamp will automatically turn off.
+Using a lamp in my car makes the interior bright, so the brightness inside and outside is approximately the same. This helps my eyes feel more comfortable while driving. I chose a USB-powered lamp without a battery. This means the socket connected to the cigarette lighter in my EV car can power the lamp. When I lock the car, the lamp automatically turns off.
 
 Before, I used one that had a battery. Because this kind of lamp is often used at home for studying, etc., having a battery makes them easy to move around without needing to connect to a socket. So, with a lamp that has a battery, I needed to touch the base of the lamp to turn it off.
 
