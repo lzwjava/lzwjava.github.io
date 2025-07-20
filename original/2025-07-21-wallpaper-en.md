@@ -11,7 +11,7 @@ generated: false
 
 This shortcut changes the wallpaper on iOS. I have been using it for months, and it works wonderfully. On specific days of the week, at 3:14 PM, this shortcut automatically runs on my iPhone. It is simple and effective. It downloads an image from Unsplash and sets it as the wallpaper. Note that you need to install the Unsplash app first.
 
-Using a similar method is often better than buying or purchasing a wallpaper to do so.
+Using a similar method is often better than buying or purchasing a wallpaper application to do so.
 
 I learned about setting a reminder for 3:14 PM from Andrej Karpathy, who used this time to capture a photo at that moment.
 
