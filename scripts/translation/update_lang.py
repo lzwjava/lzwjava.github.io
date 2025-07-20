@@ -67,6 +67,8 @@ def get_changed_files():
                 if translated_title == original_title and translated_content_without_front_matter.strip() == content_without_front_matter.strip():
                     needs_retranslate_all = False
                 else:
+                    print(translated_title)                    
+                    print(original_title)
                     print(f"  File {input_file} needs update due to content change in original lang {orig_lang}")
             else:
                 print(f"  Original output file does not exist: {output_file}")
@@ -119,6 +121,10 @@ def main():
         total_files_to_process = len(changed_files)
     
     if dry_run:
+        print("Dry run mode enabled. No files will be modified.")
+        print("Files that would be processed:")
+        for filename, lang in changed_files:
+            print(f"  - {filename} to language {lang}")        
         print(f"Total Markdown files to process: {total_files_to_process}")
         return
     
