@@ -26,7 +26,7 @@ def translate_front_matter(front_matter, target_language, input_file, model="dee
         
         if 'title' in front_matter_dict_copy:
             print(f"  Translating title: {front_matter_dict_copy['title']}")
-            translated_title = translate_text(front_matter_dict_copy['title'], target_language, type="title", model=model, front_matter_prompt=front_matter_prompt)
+            translated_title = translate_text(front_matter_dict_copy['title'], target_language, type="title", model=model, front_matter_prompt=front_matter_prompt, original_lang=original_lang)
             if translated_title:
                 translated_title = translated_title.strip()
                 front_matter_dict_copy['title'] = translated_title
