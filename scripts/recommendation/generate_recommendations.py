@@ -1,13 +1,13 @@
 import os
 import frontmatter  # Ensure 'python-frontmatter' is installed
 import sys
+from datetime import datetime, timedelta
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 # Assuming deepseek_client.py defines a client similar to OpenAI's API
 from translation.deepseek_client import call_deepseek_api  # Adjust import if necessary based on your deepseek_client.py
 
-def generate_recommendations():
     # Path to the posts directory
     posts_dir = '_posts/en'
 
@@ -15,8 +15,8 @@ def generate_recommendations():
     post_files = [f for f in os.listdir(posts_dir) if f.endswith('.md')]
     print(f"Found {len(post_files)} post files in {posts_dir}")
 
-    # Parse each markdown file to extract the title
-    all_titles = []
+    # Parse each markdown file to extract the title and filename
+    post_data = []
     for file in post_files:
         # Load the markdown file content and front matter
         file_path = os.path.join(posts_dir, file)
@@ -25,19 +25,24 @@ def generate_recommendations():
                 post = frontmatter.load(f)
                 title = post.get('title', file.replace('.md', ''))  # Default to filename if no title is found
             print(f"  Extracted title: {title} from {file}")
-            all_titles.append(title)
+            # Extract the base name for the link (e.g., 'car-lamp-en' from '2025-07-21-car-lamp-en.md')
+            base_name = file.split('-', 3)[-1].replace('.md', '')
+            post_data.append({'title': title, 'link': base_name})
         except Exception as e:
             print(f"Error processing {file}: {e}")
 
-    # Sort titles alphabetically or by some order if needed; here just as list
-    all_titles.sort()
+    # Sort titles alphabetically or by some order if needed
+    post_data.sort(key=lambda x: x['title'])
+
+    # Prepare a list of titles with links for the prompt
+    all_posts_with_links = [f"- [{item['title']}](./{item['link']})" for item in post_data]
 
     # Prepare the prompt for the AI
-    prompt = f"""Here is a list of my blog post titles:
-{'\n'.join(all_titles)}
+    prompt = f"""Here is a list of my blog post titles with their links:
+{'\n'.join(all_posts_with_links)}
 
-Recommend the ones that would be most interesting to a visitor who is a 10-year experienced backend engineer. Focus on technical, programming, or engineering-related topics that align with backend development interests like proxies, AI tools, or similar. Provide a list of recommended titles, each with a brief reason why it's suitable. Format the output as markdown, with recommended titles as bullet points, e.g.:
-- Title: Reason.
+Recommend the ones that would be most interesting to a visitor who is a 10-year experienced backend engineer. Focus on technical, programming, or engineering-related topics that align with backend development interests like proxies, AI tools, or similar. Provide a list of recommended titles, each with a brief reason why it's suitable. Format the output as markdown, with recommended titles as bullet points. Include a link to each post in the format [title](./link), where 'link' is the base name of the file. For example, for a post titled 'Car Lamp' with a file name like '2025-07-21-car-lamp-en.md', the link should be './car-lamp-en'. Use the following format for each recommendation:
+- [Title](./link): Reason.
 """
 
     ai_response = call_deepseek_api(prompt=prompt)
