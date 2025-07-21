@@ -8,6 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from translation.deepseek_client import call_deepseek_api
 from post_utils import get_recent_posts, extract_post_data
+from output_utils import determine_output_filename, write_recommendations_file
 
 
 def build_prompt(post_data, years, recommend_desc):
@@ -19,7 +20,6 @@ def build_prompt(post_data, years, recommend_desc):
 Recommend the ones that would be most interesting to a visitor who is a {recommend_desc}. Focus on technical, programming, or engineering-related topics that align with their interests. Provide a list of recommended titles, each with a brief reason why it's suitable. Format the output as markdown, with recommended titles as bullet points. Include a link to each post in the format [title](./link), where 'link' is the base name of the file. For example, for a post titled 'Car Lamp' with a file name like '2025-07-21-car-lamp-en.md', the link should be './car-lamp-en'. Use the following format for each recommendation:
 - [Title](./link): Reason.
 """
-
 
 
 def generate_recommendations(output_file=None, years=1, recommend_desc="10-year experienced backend engineer"):
