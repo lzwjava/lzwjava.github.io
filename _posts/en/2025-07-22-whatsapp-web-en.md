@@ -19,5 +19,5 @@ I can imagine that a dedicated team has been working on it for years. I’m grat
 
 
 {: .centered }  
-![](assets/images/whatsapp/whatsappweb.png){: .responsive }  
+![](assets/images/whatsapp/whatsappweb.png)
 *Source: screenshot*{: .caption }
