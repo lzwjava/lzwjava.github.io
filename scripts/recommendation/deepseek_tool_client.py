@@ -1,6 +1,5 @@
 import os
 import requests
-import json
 from types import SimpleNamespace
 
 MODEL_NAME = "deepseek-chat"
@@ -45,14 +44,37 @@ def call_deepseek_api(messages, tools=None):
             print(response.content)
             return None
         print('API call successful')
-        # Parse to SimpleNamespace for dot access
-        message = parse_to_namespace(choice['message'])
-        return message
+        # Return the raw message dictionary instead of converting to SimpleNamespace
+        return choice['message']
     except requests.exceptions.RequestException as e:
         print(f"  API call failed with error: {e}")       
         return None
-    
 
 if __name__ == "__main__":
-    messages = [{"role": "user", "content": "hi"}]
-    print(call_deepseek_api(messages=messages))
+    messages = [
+        {"role": "user", "content": "Can you tell me the current weather in San Francisco, CA?"}
+    ]
+    tools = [
+        {
+            "type": "function",
+            "function": {
+                "name": "get_current_weather",
+                "description": "Get the current weather in a given location",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "location": {
+                            "type": "string",
+                            "description": "The city and state, e.g. San Francisco, CA"
+                        },
+                        "unit": {
+                            "type": "string",
+                            "enum": ["celsius", "fahrenheit"]
+                        }
+                    },
+                    "required": ["location"]
+                }
+            }
+        }
+    ]
+    print(call_deepseek_api(messages=messages, tools=tools))
