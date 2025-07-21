@@ -3,20 +3,20 @@ audio: false
 generated: false
 lang: ar
 layout: post
-title: أصوات غيبلي
+title: صور في Style Ghibli
 translated: true
 ---
 
-قمت بإنشاء فقط صورتين بأسلوب غيبلي. لذلك، اشتريت اشتراكًا لمدة شهر واحد في ChatGPT Plus مرة أخرى لزيادة حد استخدامي. لقد أنشأتُ صورًا لأسرتي وبعض الأصدقاء، وهم سعداء.
+استطعت توليد صورتين فقط في Style Ghibli. لذلك، اشتريت اشتراكًا لمدة شهر واحد في ChatGPT Plus مرة أخرى لزيادة حد استخدامي. لقد تولدت صورًا لأسرتي وبعض الأصدقاء، وهم سعيدون.
 
 {: .centered }
 ![](assets/images/ghibli/g0.jpg){: .responsive }
-*المصدر: تم إنشاؤه بواسطة الذكاء الاصطناعي*{: .caption }
+*المصدر: توليد AI*{: .caption }
 
 {: .centered }
 ![](assets/images/ghibli/g1.jpg){: .responsive }
-*المصدر: تم إنشاؤه بواسطة الذكاء الاصطناعي*{: .caption }
+*المصدر: توليد AI*{: .caption }
 
 {: .centered }
 ![](assets/images/ghibli/g2.jpg){: .responsive }
-*المصدر: تم إنشاؤه بواسطة الذكاء الاصطناعي*{: .caption }
+*المصدر: توليد AI*{: .caption }

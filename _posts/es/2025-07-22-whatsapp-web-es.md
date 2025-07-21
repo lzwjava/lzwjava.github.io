@@ -9,7 +9,7 @@ translated: true
 
 Estoy feliz de usar WhatsApp Web hoy. Me brindó una experiencia completamente nueva. Me registré por primera vez en la aplicación de WhatsApp en 2019 cuando necesitaba comunicarme con un cliente de software de Glassdoor. Gané 450 euros por ese proyecto.
 
-Sin embargo, no volví a usar WhatsApp hasta 2022, cuando trabajaba como contratista en un banco singapurense. Noté que mis colegas usaban la aplicación WhatsApp Business, así que cambié a ella. Al principio, registrar una cuenta no fue fácil. Mi número de teléfono en China no podía recibir el código de verificación por SMS, pero logré resolver el problema más tarde.
+Sin embargo, no usé WhatsApp nuevamente hasta 2022, cuando trabajaba como contratista en un banco singapurense. Noté que mis colegas usaban la aplicación WhatsApp Business, así que cambié a ella. Inicialmente, registrar una cuenta no fue fácil. Mi número de teléfono en China no podía recibir el código de verificación por SMS, pero logré resolver el problema más tarde.
 
 Luego usé la aplicación de WhatsApp para Mac por un tiempo. Sin embargo, por alguna razón, el código QR de inicio de sesión no se mostraba. Como resultado, cambié a usar WhatsApp Web.
 
