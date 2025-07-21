@@ -8,86 +8,26 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from deepseek_tool_client import call_deepseek_api
 from post_utils import get_recent_posts, extract_post_data
 from output_utils import determine_output_filename, write_recommendations_file
+from api_utils import build_prompt, setup_tools, setup_initial_messages
 
 
-def build_prompt(post_titles, years, recommend_desc):
-    """Build the AI prompt with post titles and recommendation criteria."""
-    all_posts_with_titles = [f"- {title}" for title in post_titles]
-    return f"""Here is a list of my blog post titles from the last {years} year(s):
-{'\n'.join(all_posts_with_titles)}
-
-Recommend the ones that would be most interesting to a visitor who is a {recommend_desc}. Focus on topics that align with their interests. 
-
-First, select the most suitable titles and prepare brief reasons why each is suitable.
-
-Then, for each selected title, call the 'get_link' tool to retrieve the link for that title. The tool will return a JSON object like {{"link": "example-link"}} or {{"error": "Title not found"}}.
-
-Finally, format the output as markdown, with recommended titles as bullet points. Include a link to each post in the format [title](./link), where 'link' is the base name obtained from the tool. Use the following format for each recommendation:
-- [Title](./link): Reason.
-
-If a link cannot be found, skip that recommendation or note it appropriately."""
-
-
-def generate_recommendations(output_file=None, years=1, recommend_desc="10-year experienced backend engineer"):
-    """Generate AI-based blog post recommendations for a target audience using tool calls."""
-    recent_posts = get_recent_posts(years=years)
-    post_data = extract_post_data(recent_posts)
-    
-    post_titles = sorted([item['title'] for item in post_data])
-    title_to_link = {item['title']: item['link'] for item in post_data}
-    
-    prompt = build_prompt(post_titles, years, recommend_desc)
-    
-    # Define the tool for getting links
-    tools = [
-        {
-            "type": "function",
-            "function": {
-                "name": "get_link",
-                "description": "Retrieve the link for a given blog post title. The link is the base name used in the URL.",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "title": {
-                            "type": "string",
-                            "description": "The exact title of the blog post."
-                        }
-                    },
-                    "required": ["title"]
-                }
-            }
-        }
-    ]
-    
-    # System prompt for the AI
-    system_prompt = "You are a helpful assistant that recommends blog posts. Use the provided tools to get links for selected titles before formatting the final output."
-    
-    # Initial messages
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": prompt}
-    ]
-    
-    # Call the API (assuming call_deepseek_api now supports messages and tools, and returns the response message object)
-    response_message = call_deepseek_api(messages=messages, tools=tools)
-    # Call the API (assuming call_deepseek_api now supports messages and tools, and returns the response message object)
-    response_message = call_deepseek_api(messages=messages, tools=tools)
-    # Convert SimpleNamespace to dict if needed
-    messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
-    
-    # Handle tool calls in a loop
-    while hasattr(response_message, 'tool_calls') and response_message.tool_calls:
+def handle_tool_calls(response_message, messages, title_to_link):
+    """Handle tool calls from the API response."""
+    if hasattr(response_message, 'tool_calls') and response_message.tool_calls:
         for tool_call in response_message.tool_calls:
             function_name = tool_call.function.name
-            if function_name == "get_link":
+            if function_name == "get_links":
                 try:
                     args = json.loads(tool_call.function.arguments)
-                    title = args['title']
-                    link = title_to_link.get(title)
-                    if link:
-                        tool_response = json.dumps({"link": link})
-                    else:
-                        tool_response = json.dumps({"error": "Title not found"})
+                    titles = args['titles']
+                    links_response = {}
+                    for title in titles:
+                        link = title_to_link.get(title)
+                        if link:
+                            links_response[title] = {"link": link}
+                        else:
+                            links_response[title] = {"error": "Title not found"}
+                    tool_response = json.dumps(links_response)
                 except Exception as e:
                     tool_response = json.dumps({"error": f"Error processing tool call: {str(e)}"})
                 
@@ -96,15 +36,37 @@ def generate_recommendations(output_file=None, years=1, recommend_desc="10-year 
                     "content": tool_response,
                     "tool_call_id": tool_call.id
                 })
-        
-        # Call the API again with updated messages
-        response_message = call_deepseek_api(messages=messages, tools=tools)
-        # Convert SimpleNamespace to dict if needed
-        messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
-    ai_response = response_message.content if hasattr(response_message, 'content') else ""
+        return True
+    return False
+
+
+def generate_recommendations(output_file=None, years=1, recommend_desc="10-year experienced backend engineer"):
+    """Generate AI-based blog post recommendations for a target audience using tool calls."""
+    # Fetch and process blog post data
+    recent_posts = get_recent_posts(years=years)
+    post_data = extract_post_data(recent_posts)
+    post_titles = sorted([item['title'] for item in post_data])
+    title_to_link = {item['title']: item['link'] for item in post_data}
     
+    # Prepare prompt and tools
+    prompt = build_prompt(post_titles, years, recommend_desc)
+    tools = setup_tools()
+    messages = setup_initial_messages(prompt)
+    
+    # Initial API call
+    response_message = call_deepseek_api(messages=messages, tools=tools)
+    messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
+    
+    # Handle tool calls and make a follow-up API call if needed
+    if handle_tool_calls(response_message, messages, title_to_link):
+        response_message = call_deepseek_api(messages=messages, tools=tools)
+        messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
+    
+    # Extract and save the final response
+    ai_response = response_message.content if hasattr(response_message, 'content') else ""
     final_output_file = determine_output_filename(output_file, recommend_desc)
     write_recommendations_file(final_output_file, ai_response, years, recommend_desc)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate blog post recommendations for backend engineers.")
