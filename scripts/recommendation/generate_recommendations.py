@@ -53,19 +53,32 @@ def generate_recommendations(output_file=None, years=1, recommend_desc="10-year 
     tools = setup_tools()
     messages = setup_initial_messages(prompt)
     
+    print(f"Initial prompt prepared with {len(post_titles)} post titles for audience: {recommend_desc}")
+    print("Making initial API call...")
+    
     # Initial API call
     response_message = call_deepseek_api(messages=messages, tools=tools)
     messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
     
+    print("Messages:", messages)
+    
+    print("Initial API response received.")
+    
     # Handle tool calls and make a follow-up API call if needed
     if handle_tool_calls(response_message, messages, title_to_link):
+        print("Tool calls detected, making follow-up API call...")
         response_message = call_deepseek_api(messages=messages, tools=tools)
         messages.append(vars(response_message) if not isinstance(response_message, dict) else response_message)
+        print("Follow-up API response received.")
+    else:
+        print("No tool calls detected, proceeding with initial response.")
     
     # Extract and save the final response
     ai_response = response_message.content if hasattr(response_message, 'content') else ""
     final_output_file = determine_output_filename(output_file, recommend_desc)
+    print(f"Saving recommendations to file: {final_output_file}")
     write_recommendations_file(final_output_file, ai_response, years, recommend_desc)
+    print("Recommendations saved successfully.")
 
 
 if __name__ == "__main__":
