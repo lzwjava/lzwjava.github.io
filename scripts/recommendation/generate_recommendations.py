@@ -1,81 +1,38 @@
 import os
-import frontmatter  # Ensure 'python-frontmatter' is installed
+import frontmatter
 import sys
 from datetime import datetime, timedelta
 import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-# Assuming deepseek_client.py defines a client similar to OpenAI's API
-from translation.deepseek_client import call_deepseek_api  # Adjust import if necessary based on your deepseek_client.py
+from translation.deepseek_client import call_deepseek_api
+from post_utils import get_recent_posts, extract_post_data
 
-def generate_recommendations(output_file=None, years=1, recommend_desc="10-year experienced backend engineer"):
-    # Path to the posts directory
-    posts_dir = '_posts/en'
 
-    # List all .md files in the posts directory
-    post_files = [f for f in os.listdir(posts_dir) if f.endswith('.md')]
-    print(f"Found {len(post_files)} post files in {posts_dir}")
-
-    # Filter posts from the last specified number of years
-    years_ago = datetime.now() - timedelta(days=365 * years)
-    recent_post_files = []
-    for file in post_files:
-        try:
-            # Extract date from filename (assuming format YYYY-MM-DD-title.md)
-            date_str = file.split('-', 3)[:3]
-            if len(date_str) == 3:
-                file_date = datetime.strptime('-'.join(date_str), '%Y-%m-%d')
-                if file_date >= years_ago:
-                    recent_post_files.append(file)
-        except (ValueError, IndexError):
-            print(f"Could not parse date from {file}, skipping")
-
-    print(f"Found {len(recent_post_files)} posts from the last {years} year(s)")
-
-    # Parse each markdown file to extract the title and filename
-    post_data = []
-    for file in recent_post_files:
-        # Load the markdown file content and front matter
-        file_path = os.path.join(posts_dir, file)
-        try:
-            with open(file_path, 'r', encoding='utf-8') as f:
-                post = frontmatter.load(f)
-                title = post.get('title', file.replace('.md', ''))  # Default to filename if no title is found
-            print(f"  Extracted title: {title} from {file}")
-            # Extract the base name for the link (e.g., 'car-lamp-en' from '2025-07-21-car-lamp-en.md')
-            base_name = file.split('-', 3)[-1].replace('.md', '')
-            post_data.append({'title': title, 'link': base_name})
-        except Exception as e:
-            print(f"Error processing {file}: {e}")
-
-    # Sort titles alphabetically or by some order if needed
-    post_data.sort(key=lambda x: x['title'])
-
-    # Prepare a list of titles with links for the prompt
+def build_prompt(post_data, years, recommend_desc):
+    """Build the AI prompt with post data and recommendation criteria."""
     all_posts_with_links = [f"- [{item['title']}](./{item['link']})" for item in post_data]
-
-    # Prepare the prompt for the AI
-    prompt = f"""Here is a list of my blog post titles with their links from the last {years} year(s):
+    return f"""Here is a list of my blog post titles with their links from the last {years} year(s):
 {'\n'.join(all_posts_with_links)}
 
 Recommend the ones that would be most interesting to a visitor who is a {recommend_desc}. Focus on technical, programming, or engineering-related topics that align with their interests. Provide a list of recommended titles, each with a brief reason why it's suitable. Format the output as markdown, with recommended titles as bullet points. Include a link to each post in the format [title](./link), where 'link' is the base name of the file. For example, for a post titled 'Car Lamp' with a file name like '2025-07-21-car-lamp-en.md', the link should be './car-lamp-en'. Use the following format for each recommendation:
 - [Title](./link): Reason.
 """
 
-    ai_response = call_deepseek_api(prompt=prompt)
-
-    # Determine the output file name
+def determine_output_filename(output_file, recommend_desc):
+    """Determine the output filename, generating a default if none provided."""
     if output_file is None:
-        # Use today's date and a default name if no file is provided
         today = datetime.now().strftime('%Y-%m-%d')
         default_name_prompt = f"""Generate a short, unique filename segment for a blog post recommending content for a {recommend_desc}. The format should be something like 'recommend-for-engineers'. Keep it concise and relevant."""
         default_name_response = call_deepseek_api(prompt=default_name_prompt).strip()
         output_file = os.path.join('original', f"{today}-{default_name_response}-en.md")
     else:
         output_file = os.path.join('original', output_file)
+    return output_file
 
-    # Generate the markdown content
+def write_recommendations_file(output_file, ai_response, years, recommend_desc):
+    """Write the AI-generated recommendations to a markdown file."""
     content = f"""---
 audio: false
 generated: true
@@ -89,14 +46,21 @@ These recommendations are generated by AI based on blog posts from the last {yea
 
 {ai_response}
 """
-
-    # Update the markdown file
     try:
         with open(output_file, 'w', encoding='utf-8') as md_file:
             md_file.write(content)
         print(f"Updated {output_file}")
     except Exception as e:
         print(f"Error updating {output_file}: {e}")
+
+def generate_recommendations(output_file=None, years=1, recommend_desc="10-year experienced backend engineer"):
+    """Generate AI-based blog post recommendations for a target audience."""
+    recent_posts = get_recent_posts(years=years)
+    post_data = extract_post_data(recent_posts)
+    prompt = build_prompt(post_data, years, recommend_desc)
+    ai_response = call_deepseek_api(prompt=prompt)
+    final_output_file = determine_output_filename(output_file, recommend_desc)
+    write_recommendations_file(final_output_file, ai_response, years, recommend_desc)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate blog post recommendations for backend engineers.")
