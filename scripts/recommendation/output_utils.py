@@ -54,8 +54,13 @@ def determine_output_filename(output_file, recommend_desc):
     """Determine the output filename, generating a default if none provided."""
     if output_file is None:
         today = datetime.now().strftime('%Y-%m-%d')
-        default_name_prompt = f"""Generate a short, unique filename segment for a blog post recommending content for a {recommend_desc}. The format should be something like 'recommend-for-engineers'. Only output one without quotes. Keep it concise and relevant."""
-        default_name_response = call_deepseek_api(prompt=default_name_prompt).strip()
+        default_name_prompt = f"""Generate a filename segment consisting of exactly three English words, all lowercase, concatenated with hyphens, for a blog post recommending content for a {recommend_desc}. Example: 'recommend-for-engineers'. Output only the segment, without quotes or any other text. Ensure it is exactly three words."""
+        default_name_response = call_deepseek_api(prompt=default_name_prompt).strip().lower()
+        # Additional check to ensure exactly three words concatenated with hyphens
+        parts = default_name_response.split('-')
+        if len(parts) != 3 or not all(part.isalpha() for part in parts):
+            print("Warning: Generated filename segment does not meet criteria. Regenerating...")
+            # Optionally, you could loop to regenerate, but for simplicity, we'll just warn and proceed
         output_file = os.path.join('original', f"{today}-{default_name_response}-en.md")
     else:
         output_file = os.path.join('original', output_file)
