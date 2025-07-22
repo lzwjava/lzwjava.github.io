@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if avatarImg exists
         if (avatarImg) {
             avatarImg.src = isDark
-                ? '/assets/images/avatar_dark.png'
+                ? '/assets/images/avatar_dark.jpg'
                 : '/assets/images/avatar.jpg';
         } else {
             console.log('Avatar image element not found!');
