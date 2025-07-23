@@ -1,7 +1,7 @@
 import os
 import subprocess
 
-from scripts.create.create_note_from_clipboard import create_note
+from create_note_from_clipboard import create_note
 
 def gpa():
     # Determine the shell command based on the operating system
