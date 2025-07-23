@@ -3,7 +3,8 @@ import sys
 import re
 import datetime
 import pyperclip
-from translation.mistral_client import call_mistral_api
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+from scripts.llm.test_mistral import call_mistral_api
 
 
 def get_first_n_words(text, n=500):
