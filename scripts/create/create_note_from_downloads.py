@@ -1,5 +1,5 @@
 import os
-import create_note_from_clipboard as cn
+import scripts.create.create_note_from_clipboard as cn
 import pyperclip
 
 def get_most_recent_file(dirpath):
