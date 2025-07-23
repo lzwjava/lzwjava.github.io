@@ -1,9 +1,3 @@
-import os
-import datetime
-import pyperclip
-import re
-import requests
-import sys
 from create_note_utils import get_clipboard_content, clean_grok_tags, generate_title, create_filename, format_front_matter, clean_content, write_note
 
 
