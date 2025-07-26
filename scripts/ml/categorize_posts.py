@@ -19,6 +19,9 @@ def load_posts(posts_dir='_posts'):
     return texts, labels
 
 texts, labels = load_posts()
+# Check if data is loaded correctly
+if len(texts) == 0:
+    raise ValueError("No posts loaded. Check the '_posts' directory.")
 # Build vocab (top 1000 words)
 all_words = ' '.join(texts).lower().split()
 vocab = {word: idx for idx, word in enumerate(Counter(all_words).most_common(1000))}
@@ -34,6 +37,9 @@ def text_to_vec(text):
 
 X = np.array([text_to_vec(t) for t in texts])
 y = torch.tensor(labels, dtype=torch.long)
+# Ensure input and target sizes match
+if len(X) != len(y):
+    raise ValueError(f"Size mismatch: input size {len(X)}, target size {len(y)}")
 
 # Step 2: Define model
 class Classifier(nn.Module):
@@ -69,5 +75,5 @@ def classify_post(text):
         pred = model(vec).argmax(1).item()
     return pred  # Map back to category name
 
-# Save model: torch.save(model.state_dict(), 'classifier.pth')
-# In build script: classify all posts and write to JSON
+# Save model
+torch.save(model.state_dict(), 'classifier.pth')
