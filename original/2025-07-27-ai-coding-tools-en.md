@@ -7,27 +7,36 @@ translated: false
 generated: false
 ---
 
-Recently, I successfully ran Claude Code, so I want to share my tool selection in the journey. And I have collected some [AI tool tips](ai-tips-en) in the journey.
+Recently, I successfully ran Claude Code, so I want to share my tool selection journey. I have also collected some [AI tool tips](ai-tips-en) along the way.
 
-I have to say I was quite late to Claude Code.
+I was quite late to adopt Claude Code.
 
-[Claude 3.5 Sonnet](https://www.anthropic.com/news/claude-3-5-sonnet) was released around the end of Feb 2025.
+[Claude Code](https://www.anthropic.com/news/claude-3-5-sonnet) was released around the end of Feb 2025.
 
-I have to say I didn't try it successfully until recently. One reason is that it needs the Anthropic API, which doesn't support Chinese Visa cards.
+I didn't succeed in trying it until recently. One reason is that it requires the Anthropic API, which doesn't support Chinese Visa cards.
 
-Another reason is that [Claude Code Router](https://github.com/musistudio/claude-code-router) has come out. So it made my recent try successful.
+Another reason is that [Claude Code Router](https://github.com/musistudio/claude-code-router) became available, which made my recent attempt successful.
 
-I keep hearing people say how good it is. I tried the Gemini CLI in July 2025. After several conversations to tell it to fix my code, I never touched it again.
+I keep hearing praise for it. I tried the Gemini CLI in July 2025 but abandoned it after several failed attempts to get it to fix my code.
 
-I have also tried another software agent, Aider. I didn't use Cursor much after about six months, as I found that many plugins in Cursor don't work since it's built on top of VSCode. I experimented with Cline for a while but didn't use it extensively.
+I also tried Aider, another software agent. I stopped using Cursor after about six months because many of its VSCode-based plugins malfunctioned. I briefly experimented with Cline but didn't adopt it.
 
-I use the Grok 3 beta model in a VSCode plugin, using the Copilot plugin with a customized model. It feels great.
+I use the Copilot plugin in VSCode with a customized model, Grok 3 beta through OpenRouter, which works well.
 
-I don't think Claude Code can change my habits. But as I can successfully run it and I have patience to run it a few more times, let's see how I feel in the next few weeks.
+I don't think Claude Code will change my habits, but since I can successfully run it and have the patience to try it a few more times, I'll see how I feel in the coming weeks.
 
-I am a picky user with 10 years of software engineering experience. So I hope that tools can be great in actual use. I don't buy into the brand. I just care about its actual daily usefulness.
+I am a picky user with 10 years of software engineering experience. I hope tools can be great in actual use. I don't buy into the brand—I just care about daily usefulness.
+
+After using Claude Code to fix this post's grammar, I've found it works well in certain scenarios. While I appreciate AI for grammar assistance (I even wrote a Python script to call LLM APIs for this purpose), I've noticed a frustrating pattern - even when I request minimal fixes, the tools keep surfacing numerous grammar suggestions for review. This manual verification process defeats the purpose of automation. As a compromise, I now let AI handle entire essays, though this approach limits my learning opportunities since I don't see the specific corrections being made. 
+
+What impressed me most was how Claude Code displays changes - showing before-and-after comparisons similar to git diffs, which makes reviewing edits much easier.
 
 {: .centered }
 ![](assets/images/claude/claude-code.jpg){: .responsive }
+*Source: Self-screenshot*{: .caption }
+
+
+{: .centered }
+![](assets/images/claude/claude-fix.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
 
