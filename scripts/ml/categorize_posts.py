@@ -6,9 +6,9 @@ import os
 from collections import Counter
 
 # Step 1: Load and preprocess data (simplified)
-def load_posts(posts_dir='_posts'):
+def load_posts(posts_dir='original'):
     texts = []
-    labels = []  # Assume manual labels: 0=ML, 1=Notes, etc.
+    labels = []  # Assume manual labels: 0=ML, 1=Notes, 2=Other
     for file in os.listdir(posts_dir):
         if file.endswith('.md'):
             with open(os.path.join(posts_dir, file), 'r') as f:
