@@ -11,7 +11,7 @@ The most important reason we still need to write in the AI era is that it helps 
 
 I am not against using AI to fix grammar. However, using prompts to make text more coherent might indicate that we don't think clearly.
 
-Recently, I have been thinking about AI-first architecture in modern development. I shared some of these thoughts with my engineer friend and used them to expand an [essay](./notes/ai-first-architecture-evaluation-en).
+Recently, I have been thinking about AI-first architecture in modern development. I shared some of these thoughts with my engineer friend and used them to expand an [essay](./notes/2025-07-23-ai-first-architecture-evaluation-en).
 
 Surely, AI helps complete my thoughts. It is good to read AI answers or evaluations of my points. But after one month, I think I will forget them.
 
