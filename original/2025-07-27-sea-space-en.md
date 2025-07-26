@@ -44,5 +44,5 @@ AI can handle a large part of work now. Perhaps people need to return to nature.
 
 References:
 
-* [火箭真能飞到太空？](https://substack.com/inbox/post/140904702)
-* [太空照片都是假的](https://substack.com/inbox/post/139892070)
+* [Can rockets really fly into space?](https://substack.com/inbox/post/140904702)
+* [All space photos are fake.](https://substack.com/inbox/post/139892070)
