@@ -19,7 +19,7 @@ Another reason is that [Claude Code Router](https://github.com/musistudio/claude
 
 I keep hearing people say how good it is. I tried the Gemini CLI in July 2025. After several conversations to tell it to fix my code, I never touched it again.
 
-And I tried another software agent. I didn't use Cursor much, and I found its VSCode plugin doesn't work. I tried Cline for some time, but didn't use much of it.
+And I tried another software agent Aider. I didn't use Cursor much, and I found its VSCode plugin doesn't work. I tried Cline for some time, but didn't use much of it.
 
 I use the Grok 3 beta model in a VSCode plugin, using the Copilot plugin with a customized model. It feels great.
 
