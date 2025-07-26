@@ -6,6 +6,15 @@ import os
 from sklearn.metrics.pairwise import cosine_similarity
 # Reuse load_posts and text_to_vec from above
 
+def text_to_vec(text, vocab_size=5000):
+    """Convert text to a simple bag-of-words vector based on character or word frequency."""
+    # Simple placeholder: create a vector of fixed size with dummy values
+    # In a real scenario, use TF-IDF, word embeddings, or similar
+    vec = np.zeros(vocab_size)
+    for i, char in enumerate(text[:vocab_size]):
+        vec[i] = ord(char) if i < len(text) else 0
+    return vec
+
 def load_posts(posts_dir='original'):
     texts = []
     labels = []  # Assume manual labels: 0=ML, 1=Notes, 2=Other
@@ -32,9 +41,10 @@ class Autoencoder(nn.Module):
             nn.Linear(256, embedding_size)
         )
         self.decoder = nn.Sequential(
-            nn.Linear(embedding_size, 256),
-            nn.ReLU(),
-            nn.Linear(256, input_size)
+vocab_size = 5000,
+model = Autoencoder(vocab_size)
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+loss_fn = nn.MSELoss()
         )
     
     def forward(self, x):
