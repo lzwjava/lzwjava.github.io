@@ -13,7 +13,7 @@ import utils_torch
 
 Display(visible=0, size=(840, 480)).start()
 
-torch.manual_seed(utils.SEED)
+torch.manual_seed(utils_torch.SEED)
 
 MEMORY_SIZE = 100_000
 GAMMA = 0.995
@@ -37,7 +37,7 @@ action = 0
 
 next_state, reward, done, _ = env.step(action)
 
-utils.display_table(current_state, action, next_state, reward, done)
+utils_torch.display_table(current_state, action, next_state, reward, done)
 
 current_state = next_state
 
@@ -91,7 +91,7 @@ def agent_learn(experiences, gamma):
     loss = compute_loss(experiences, gamma, q_network, target_q_network)
     loss.backward()
     optimizer.step()
-    utils.update_target_network(q_network, target_q_network)
+    utils_torch.update_target_network(q_network, target_q_network)
 
 start = time.time()
 
@@ -114,16 +114,16 @@ for i in range(num_episodes):
     for t in range(max_num_timesteps):
         state_qn = torch.tensor(state, dtype=torch.float32).unsqueeze(0)
         q_values = q_network(state_qn)
-        action = utils.get_action(q_values, epsilon)
+        action = utils_torch.get_action(q_values, epsilon)
 
         next_state, reward, done, _ = env.step(action)
 
         memory_buffer.append(experience(state, action, reward, next_state, done))
 
-        update = utils.check_update_conditions(t, NUM_STEPS_FOR_UPDATE, memory_buffer)
+        update = utils_torch.check_update_conditions(t, NUM_STEPS_FOR_UPDATE, memory_buffer)
 
         if update:
-            experiences = utils.get_experiences(memory_buffer)
+            experiences = utils_torch.get_experiences(memory_buffer)
             agent_learn(experiences, GAMMA)
 
         state = next_state.copy()
@@ -135,7 +135,7 @@ for i in range(num_episodes):
     total_point_history.append(total_points)
     av_latest_points = np.mean(total_point_history[-num_p_av:])
 
-    epsilon = utils.get_new_eps(epsilon)
+    epsilon = utils_torch.get_new_eps(epsilon)
 
     print(f"\rEpisode {i + 1} | Total point average of the last {num_p_av} episodes: {av_latest_points:.2f}", end="")
 
@@ -151,7 +151,7 @@ tot_time = time.time() - start
 
 print(f"\nTotal Runtime: {tot_time:.2f} s ({(tot_time / 60):.2f} min)")
 
-utils.plot_history(total_point_history)
+utils_torch.plot_history(total_point_history)
 
 import logging
 
@@ -159,5 +159,5 @@ logging.getLogger().setLevel(logging.ERROR)
 
 filename = "./videos/lunar_lander.mp4"
 
-utils.create_video(filename, env, q_network)
-utils.embed_mp4(filename)
+utils_torch.create_video(filename, env, q_network)
+utils_torch.embed_mp4(filename)
