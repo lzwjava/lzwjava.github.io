@@ -77,6 +77,7 @@ layout: post
 audio: false
 translated: false
 generated: true
+image: false
 ---"""
 
 
