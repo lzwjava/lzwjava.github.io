@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: The Retained Story of My HSBC Debit Card
+title: The Retained Story of My Debit Card
 translated: false
 generated: false
 ---
