@@ -27,7 +27,7 @@ I don't think Claude Code will change my habits, but since I can successfully ru
 
 I am a picky user with 10 years of software engineering experience. I hope tools can be great in actual use. I don't buy into the brand—I just care about daily usefulness.
 
-After using Claude Code to fix this post's grammar, I've found it works well in certain scenarios. While I appreciate AI for grammar assistance (I even wrote a Python script to call LLM APIs for this purpose), I've noticed a frustrating pattern - even when I request minimal fixes, the tools keep surfacing numerous grammar suggestions for review. This manual verification process defeats the purpose of automation. As a compromise, I now let AI handle entire essays, though this approach limits my learning opportunities since I don't see the specific corrections being made. 
+After using Claude Code to fix this post's grammar, I've found it works well in certain scenarios. While I appreciate AI for grammar assistance (I even wrote a Python script to call LLM APIs for this purpose), I've noticed a frustrating pattern - even when I request minimal fixes, the tools keep surfacing numerous grammar suggestions for review. This manual verification process defeats the purpose of automation. As a compromise, I now let AI handle entire essays, though this approach limits my learning opportunities since I don't see the specific corrections being made.
 
 What impressed me most was how Claude Code displays changes - showing before-and-after comparisons similar to git diffs, which makes reviewing edits much easier.
 
