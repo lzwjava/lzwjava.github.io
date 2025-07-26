@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: zh
 layout: post
 title: 探索 Grok 和 Claude 的系统提示

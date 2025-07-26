@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: AI के आउटपुट के बजाय प्रॉम्प्ट्स या कॉन्टेक्स्ट को ठीक करें

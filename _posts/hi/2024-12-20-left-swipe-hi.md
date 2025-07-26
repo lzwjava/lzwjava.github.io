@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: लेफ्ट स्वाइप और ऐप्स

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Erste Schritte mit der Google Text-to-Speech API

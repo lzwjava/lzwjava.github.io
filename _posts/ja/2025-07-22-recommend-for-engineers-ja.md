@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: ja
 layout: post
 title: 推奨されるブログ記事：経験豊富なバックエンドエンジニア向け

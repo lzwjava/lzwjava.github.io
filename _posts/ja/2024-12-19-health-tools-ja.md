@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ja
 layout: post
 title: 血圧計、聴診器、視力検査表

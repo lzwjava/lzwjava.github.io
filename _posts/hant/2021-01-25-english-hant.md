@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 透過大量輸入提升英語水平

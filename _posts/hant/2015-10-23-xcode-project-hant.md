@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 了解 Xcode 專案檔案

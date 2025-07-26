@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: hant
 layout: post
 title: 推薦給有經驗的後端工程師的部落格文章

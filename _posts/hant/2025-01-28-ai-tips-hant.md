@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: AI 工具技巧

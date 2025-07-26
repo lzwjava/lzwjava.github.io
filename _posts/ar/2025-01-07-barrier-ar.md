@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: التسجيل على أي منصة بغض النظر عن الهوية

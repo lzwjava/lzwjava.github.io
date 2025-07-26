@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: 'mathjax2mobi: MathJax HTML को ईबुक में बदलें'

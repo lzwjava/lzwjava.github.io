@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: Usage de l'Api de Deepseek et Mistral

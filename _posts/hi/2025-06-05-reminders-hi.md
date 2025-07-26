@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: टेलीग्राम के माध्यम से अनुस्मारक सुव्यवस्थित करें

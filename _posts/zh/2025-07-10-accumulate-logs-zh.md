@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: zh
 layout: post
 title: 积累日志的好处

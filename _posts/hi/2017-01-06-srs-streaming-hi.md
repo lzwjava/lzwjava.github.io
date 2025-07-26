@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: सादा रियलटाइम सर्वर (एसआरएस) फॉर आरटीएमपी स्ट्रीमिंग

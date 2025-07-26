@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: zh
 layout: post
 title: ChatGPT 应该允许从对话历史中创建 GPT

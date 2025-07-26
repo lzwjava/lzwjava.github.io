@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: يكون سهلا ارتكاب الأخطاء دون الممارسة العملية

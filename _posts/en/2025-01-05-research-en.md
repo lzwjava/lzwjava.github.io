@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: en
 layout: post
 title: The Journey of Reversing Myopia Naturally

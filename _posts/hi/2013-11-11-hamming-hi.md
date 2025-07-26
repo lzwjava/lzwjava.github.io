@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: Hamming Code problem पर बात करना

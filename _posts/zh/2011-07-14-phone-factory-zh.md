@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: zh
 layout: post
 title: 访问手机制造厂

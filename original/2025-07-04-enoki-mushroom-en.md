@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Enoki Mushrooms Are Easy to Deteriorate
 translated: false
-generated: false
 ---
 
 Enoki mushrooms are easy to deteriorate. I bought them from JD.com. It takes 3 or 4 days to deliver to my home. They use an ice pack to keep them cold, but the ice pack can easily melt within one or two days.

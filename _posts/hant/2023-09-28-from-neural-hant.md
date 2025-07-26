@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 從神經網絡到GPT

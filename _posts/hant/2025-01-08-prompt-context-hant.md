@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 修正提示或上下文，而非AI的輸出

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: en
 layout: post
 title: A Picky Engineer's Take on AI Coding Tools

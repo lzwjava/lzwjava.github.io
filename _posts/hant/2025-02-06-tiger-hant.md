@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hant
 layout: post
 title: 虎trade 開放 API

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: एक साल में कुछ भी कैसे सीखें

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: क्या हाइड्रोजन पेरोक्साइड एथलीट फुट को ठीक कर सकता है?

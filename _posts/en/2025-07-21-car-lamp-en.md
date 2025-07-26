@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: en
 layout: post
 title: Bright and Convenient USB-Powered Lamp for Car Use

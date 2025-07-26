@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: 夏の汗を受け入れるために、よく入浴しましょう

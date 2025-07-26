@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Messages de Commit Alimentés par l'IA

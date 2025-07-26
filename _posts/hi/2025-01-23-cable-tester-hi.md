@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: नेटवर्क कैबल टेस्टर

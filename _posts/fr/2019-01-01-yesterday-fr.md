@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: 2018, c'est déjà hier

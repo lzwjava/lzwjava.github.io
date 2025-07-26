@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ja
 layout: post
 title: USB電源式の明るく便利な車用ランプ

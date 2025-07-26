@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: ja
 layout: post
 title: 手を洗う洗濯機

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: zh
 layout: post
 title: 金针菇易变质

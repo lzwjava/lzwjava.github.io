@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: 1年で何かを学ぶ方法

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: Lampe USB Alimentée Pratique et Lumineuse pour Voiture

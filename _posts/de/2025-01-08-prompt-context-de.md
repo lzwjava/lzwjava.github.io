@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Beheben Sie Eingabeaufforderungen oder Kontext anstelle der Ausgabe der KI

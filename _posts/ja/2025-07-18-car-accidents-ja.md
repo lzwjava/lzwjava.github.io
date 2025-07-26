@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ja
 layout: post
 title: 自分の人生における自動車事故

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: hi
 layout: post
 title: आइओएस शॉर्टकट्स में महारत हासिल करना

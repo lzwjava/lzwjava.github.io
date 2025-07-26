@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: zh
 layout: post
 title: 冗长输出

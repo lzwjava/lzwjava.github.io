@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: zh
 layout: post
 title: Java 后端工程师：面试题精选

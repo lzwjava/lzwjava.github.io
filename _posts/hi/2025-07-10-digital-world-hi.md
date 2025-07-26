@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: डिजिटल दुनिया का प्रतिबिंब

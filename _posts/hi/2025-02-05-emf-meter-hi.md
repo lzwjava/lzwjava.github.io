@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: hi
 layout: post
 title: बहु-क्षेत्रीय EMF मीटर

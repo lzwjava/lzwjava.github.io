@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: मायोपिया को प्राकृतिक रूप से उलटने की यात्रा

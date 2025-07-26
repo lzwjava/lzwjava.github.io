@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: en
 layout: post
 title: 2025 Holiday Schedule

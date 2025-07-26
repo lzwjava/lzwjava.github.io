@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: fr
 layout: post
 title: Invasion OpenWrt sur Xiaomi Mi Router 4C

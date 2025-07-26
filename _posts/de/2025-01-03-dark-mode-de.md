@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: Implementierung des Dunkelmodus auf der Website

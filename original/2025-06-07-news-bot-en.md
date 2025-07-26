@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Automated News Summarization Bot
 translated: false
-generated: false
 ---
 
 This post showcases a Python-based news bot that scrapes and summarizes top stories from Hacker News, GitHub Trending, and NYTimes (Chinese) using the Mistral API. It sends concise daily reports via Telegram, with a GitHub Actions workflow for automated execution. Ideal for staying updated on tech and global news effortlessly. Below is an example of a daily news summary.

@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: ja
 layout: post
 title: 冗長な出力

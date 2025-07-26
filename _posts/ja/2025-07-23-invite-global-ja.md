@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: グローバルな同僚を中国のアプリに招待する

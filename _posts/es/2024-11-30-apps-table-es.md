@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Aplicaciones de iOS que usé - Versión de tabla

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Problemas de Renderizado de Fuentes en GitHub Desktop

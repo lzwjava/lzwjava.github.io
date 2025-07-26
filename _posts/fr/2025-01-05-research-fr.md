@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: Le Voyage de l'Inversion Naturelle de la Myopie

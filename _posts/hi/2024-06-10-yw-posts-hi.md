@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: यिन वांग के ब्लॉग पोस्ट का अंग्रेजी अनुवाद

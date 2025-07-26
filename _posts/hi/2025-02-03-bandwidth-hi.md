@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: 200Mbps बैंडविड्थ सीमा की जाँच करना

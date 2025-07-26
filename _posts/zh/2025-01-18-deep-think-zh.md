@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: zh
 layout: post
 title: 大量使用DeepThink或ChatGPT o1

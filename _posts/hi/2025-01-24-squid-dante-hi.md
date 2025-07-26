@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: 'प्रॉक्सी टूल: Squid और Danted'

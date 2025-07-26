@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: es
 layout: post
 title: Mejorando la velocidad del Wifi

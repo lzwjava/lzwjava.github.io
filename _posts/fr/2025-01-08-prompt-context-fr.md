@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Corriger les invites ou le contexte plutôt que la sortie de l'IA

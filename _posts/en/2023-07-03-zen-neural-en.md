@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: en
 layout: post
 title: Zen and the Art of Machine Learning

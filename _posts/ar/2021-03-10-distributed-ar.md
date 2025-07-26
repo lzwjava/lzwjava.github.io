@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: '## مقدمة إلى الحوسبة السحابية والبيانات الضخمة'

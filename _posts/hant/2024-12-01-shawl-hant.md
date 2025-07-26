@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hant
 layout: post
 title: 冬季睡眠用披肩

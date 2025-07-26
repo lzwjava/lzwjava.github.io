@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
-title: Repairing Dishwasher  
+title: Repairing Dishwasher
 translated: false
-generated: false
 ---
 
 Recently, I moved my dishwasher from my parents' home to my home in the same city. The dishwasher is a Midea 13 Q7. I bought it in the summer of 2019 while working in Beijing. At the start of 2020, I used Deppon delivery to move it to Guangzhou.

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: アルゴリズムの問題の解決方法

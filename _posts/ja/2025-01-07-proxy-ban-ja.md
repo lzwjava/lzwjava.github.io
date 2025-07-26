@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: プロキシサーバーの禁止に関する分析

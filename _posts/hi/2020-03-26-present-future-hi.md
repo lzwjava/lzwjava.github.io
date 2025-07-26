@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: चीन की अर्थव्यवस्था की वर्तमान स्थिति और भविष्य

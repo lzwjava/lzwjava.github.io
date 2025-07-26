@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: बेजिंग फॉरेस्ट्री यूनिवर्सिटी लॉगिन प्रणाली का विश्लेषण

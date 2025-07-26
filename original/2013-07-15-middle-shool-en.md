@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: My Middle School Years
 translated: false
-generated: false
 ---
 
 This post was written in July 2025.

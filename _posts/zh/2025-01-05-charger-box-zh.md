@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: zh
 layout: post
 title: 智能通用充电盒

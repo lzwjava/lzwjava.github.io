@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Presta Atención a la Frescura de los Alimentos

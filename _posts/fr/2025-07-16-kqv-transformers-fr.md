@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Comment j'ai appris le mécanisme KQV dans les transformeurs

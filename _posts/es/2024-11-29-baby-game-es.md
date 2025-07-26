@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: 'Juego para bebés: Sigue la Mano'

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: hi
 layout: post
 title: पोर्टेबल हॉटस्पॉट शंघज़ानवाईफाई

@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: ja
 layout: post
 title: Wi-Fi速度の向上

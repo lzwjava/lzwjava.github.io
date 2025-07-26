@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Le voyage d'apprentissage de l'anglais

@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: de
 layout: post
 title: Das Protokoll des Brew-Upgrades

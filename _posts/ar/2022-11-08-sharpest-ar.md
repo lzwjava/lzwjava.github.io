@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: 'إتقان اللغة الإنجليزية: داخل وخارج العمل'

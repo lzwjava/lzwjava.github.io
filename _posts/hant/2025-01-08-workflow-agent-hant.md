@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 工作流程是廣度優先搜索（BFS），代理是深度優先搜索（DFS）。

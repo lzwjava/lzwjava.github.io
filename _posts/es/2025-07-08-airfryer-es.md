@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Cocinando con una freidora de aire

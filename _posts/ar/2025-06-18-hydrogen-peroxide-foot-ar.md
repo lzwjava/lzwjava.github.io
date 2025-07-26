@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: هل يمكن أن يعالج بيروكسيد الهيدروجين القدم الرياضي؟

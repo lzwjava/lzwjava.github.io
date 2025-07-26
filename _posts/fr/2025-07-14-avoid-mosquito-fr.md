@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Peut-on empêcher les moustiques d'entrer dans la voiture ?

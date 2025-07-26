@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: es
 layout: post
 title: Investigando el límite de ancho de banda de 200M

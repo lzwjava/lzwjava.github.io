@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: fr
 layout: post
 title: Articles de blog recommandés pour les ingénieurs backend expérimentés

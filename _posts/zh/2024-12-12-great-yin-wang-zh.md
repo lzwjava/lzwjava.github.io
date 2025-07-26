@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: zh
 layout: post
 title: GTY - 伟大的老师王垠

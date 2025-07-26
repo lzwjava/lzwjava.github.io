@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: en
 layout: post
 title: How I Live Well in the AI and Blockchain Era

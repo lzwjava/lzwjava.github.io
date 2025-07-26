@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: zh
 layout: post
 title: 左滑手势与应用

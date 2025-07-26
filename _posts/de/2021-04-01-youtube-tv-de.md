@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: Hier nehmen wir an, dass wir wissen

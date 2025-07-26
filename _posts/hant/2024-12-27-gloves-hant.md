@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hant
 layout: post
 title: 寻找合适的冬季手套

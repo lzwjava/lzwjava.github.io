@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hant
 layout: post
 title: ChatGPT助我學日文

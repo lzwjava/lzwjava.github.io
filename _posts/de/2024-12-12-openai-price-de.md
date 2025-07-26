@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Warum ChatGPT Plus nach Token-Nutzung berechnen sollte

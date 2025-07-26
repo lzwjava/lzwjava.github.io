@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: Un ingénieur exigeant sur les outils de codage en IA

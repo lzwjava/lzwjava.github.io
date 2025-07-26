@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: zh
 layout: post
 title: 我买到的好东西

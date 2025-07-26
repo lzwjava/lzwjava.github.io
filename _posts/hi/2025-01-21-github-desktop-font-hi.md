@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: GitHub Desktop में फ़ॉन्ट रेंडरिंग समस्याएँ

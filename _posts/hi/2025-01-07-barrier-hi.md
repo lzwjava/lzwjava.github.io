@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: किसी भी प्लेटफॉर्म पर पहचान की परवाह किए बिना पंजीकरण करना।

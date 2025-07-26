@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: Experimentelle Überprüfung der Methode zur natürlichen Sehkraftwiederherstellung

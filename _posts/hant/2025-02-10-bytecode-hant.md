@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hant
 layout: post
 title: Java位元組碼

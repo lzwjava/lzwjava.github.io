@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: ar
 layout: post
 title: استخدام فتحات تهوية السيارة لتجفيف الشعر

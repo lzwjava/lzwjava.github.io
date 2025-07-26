@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: هيكل حامل العصا بثلاث زوايا

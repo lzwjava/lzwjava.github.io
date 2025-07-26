@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ja
 layout: post
 title: AIコーディングツールに関する選びにくいエンジニアの意見

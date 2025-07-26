@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: ja
 layout: post
 title: iOSショートカットの習得

@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: en
 layout: post
 title: 'DeepSeek V3: Multi-Head Latent Attention and Multi-Token Prediction'

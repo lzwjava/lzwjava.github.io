@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: साप्ताहिक स्टॉक निवेश टाइगरओपन एपीआई के साथ

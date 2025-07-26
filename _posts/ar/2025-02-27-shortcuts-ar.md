@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: ar
 layout: post
 title: إتقان اختصارات iOS

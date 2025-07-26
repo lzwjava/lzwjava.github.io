@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: Einführung in Cloud Computing und Big Data

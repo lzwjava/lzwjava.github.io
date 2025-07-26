@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hant
 layout: post
 title: 學習日語的技巧

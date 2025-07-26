@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: ChatGPT sollte die Erstellung von GPTs aus dem Gesprächsverlauf ermöglichen

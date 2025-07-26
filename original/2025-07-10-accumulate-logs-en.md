@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Benefits of Accumulating Logs
 translated: false
-generated: false
 ---
 
 When I worked as a contractor for a bank before, we used a multi-cloud application platform to serve the microservices. At that time, I started to accumulate logs when working in the company.

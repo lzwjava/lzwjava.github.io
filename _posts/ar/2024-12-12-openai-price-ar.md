@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: لماذا يجب أن يتفوق ChatGPT Plus على تكلفة الاستخدام بالرمز

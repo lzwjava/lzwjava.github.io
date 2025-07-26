@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: ja
 layout: post
 title: ポータブルホットスポット 尚山Wi-Fi

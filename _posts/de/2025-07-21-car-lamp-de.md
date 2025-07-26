@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: Helle und praktische USB-betriebene Lampe für den Autogebrauch

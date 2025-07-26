@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Innovation Tips
 translated: false
-generated: false
 ---
 
 - Innovation means trying new things.

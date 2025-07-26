@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: en
 layout: post
 title: New Quora or TikTok Fully Powered by AI Translation

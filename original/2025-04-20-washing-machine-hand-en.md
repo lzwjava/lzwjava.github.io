@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Washing Hands in a Washing Machine
 translated: false
-generated: false
 ---
 
 When my mother is cleaning the toilet, I can’t use the sink. Instead, I use the washing machine to wash my hands by opening it, starting a program, washing my hands, and then closing it.

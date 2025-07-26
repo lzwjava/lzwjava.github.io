@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: zh
 layout: post
 title: 云服务器选择中的长期思维

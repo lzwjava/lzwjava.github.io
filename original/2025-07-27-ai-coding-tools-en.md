@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: A Picky Engineer's Take on AI Coding Tools
 translated: false
-generated: false
 ---
 
 Recently, I successfully ran Claude Code, so I want to share my tool selection journey. I have also collected some [AI tool tips](ai-tips-en) along the way.

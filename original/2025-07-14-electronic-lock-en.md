@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: Cracking a Password on an Electronic Lock
 translated: false
-generated: false
 ---
 
 {: .centered }  

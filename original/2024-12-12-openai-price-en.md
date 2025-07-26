@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: en
 layout: post
 title: Why ChatGPT Plus Should Charge by Token Usage

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: 'Myopie : Une Maladie Moderne mais Réversible — Todd Becker'

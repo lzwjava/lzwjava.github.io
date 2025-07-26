@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Kampf mit Ladeproblemen bei meinem Elektroauto

@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: Using WhatsApp Web
 translated: false
-generated: false
 ---
 
 I am happy to use WhatsApp Web today. It provided a completely new experience. I first registered for the WhatsApp app in 2019 when I needed to communicate with a software client from Glassdoor. I earned 450 euros for that project.

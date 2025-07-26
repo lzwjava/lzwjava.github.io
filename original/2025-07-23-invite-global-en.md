@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Inviting Global Colleagues to Chinese Apps
 translated: false
-generated: false
 ---
 
 When I began working as a contractor for a Singaporean bank, I started using LinkedIn and posting some blogs there. I also began using WhatsApp and YouTube more frequently.

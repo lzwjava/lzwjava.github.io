@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: fr
 layout: post
 title: Le Journal des Mises à Jour de Brew

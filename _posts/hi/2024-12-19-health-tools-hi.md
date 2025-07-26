@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: ब्लड प्रेशर मॉनिटर, स्टेथोस्कोप, और विजन चार्ट

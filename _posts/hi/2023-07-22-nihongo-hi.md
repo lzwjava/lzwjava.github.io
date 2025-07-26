@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: ChatGPT मुझे जापानी सीखने में मदद करता है

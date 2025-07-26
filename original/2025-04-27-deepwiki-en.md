@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: DeepWiki Trial
 translated: false
-generated: false
 ---
 
 Try the DeepWiki: [https://deepwiki.com/lzwjava/lzwjava.github.io](https://deepwiki.com/lzwjava/lzwjava.github.io).

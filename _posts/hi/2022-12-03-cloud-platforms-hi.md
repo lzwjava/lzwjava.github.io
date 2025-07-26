@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: कुछ वैश्विक क्लाउड प्लेटफॉर्म

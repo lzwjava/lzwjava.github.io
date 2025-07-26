@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: 'DeepSeek V3: Mehrköpfige latente Aufmerksamkeit und Multi-Token-Vorhersage'

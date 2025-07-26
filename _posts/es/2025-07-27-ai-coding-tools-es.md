@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Un ingeniero exigente sobre las herramientas de codificación de IA

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: ChatGPT Plus Token Usage पर शुल्क क्यों लेना चाहिए

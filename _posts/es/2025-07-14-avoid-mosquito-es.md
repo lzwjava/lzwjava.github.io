@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: ¿Podemos evitar que los mosquitos entren en el coche?

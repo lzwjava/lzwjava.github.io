@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Talking to AI Companion
 translated: false
-generated: false
 ---
 
 I recently added a point to the summary of my resume:

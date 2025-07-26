@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Registrierung auf jeder Plattform unabhängig von der Identität

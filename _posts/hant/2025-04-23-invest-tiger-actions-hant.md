@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hant
 layout: post
 title: 每週股票投資與TigerOpen API

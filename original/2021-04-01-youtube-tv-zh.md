@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: zh
 layout: post
 title: 如何在电视上看 Youtube

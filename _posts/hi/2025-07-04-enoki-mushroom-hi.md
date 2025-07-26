@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: एनोकी मशरूम जल्दी खराब हो जाते हैं

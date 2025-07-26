@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: de
 layout: post
 title: Mit einer Auto-Lüftung Haare trocknen

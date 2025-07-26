@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: The Retained Story of My HK Debit Card
 translated: false
-generated: false
 ---
 
 I got my HSBC Debit card in May 2023 at the Sha Tin branch in Hong Kong. Unfortunately, just at the ATM outside the branch, my card was retained.

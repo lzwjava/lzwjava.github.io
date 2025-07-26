@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: zh
 layout: post
 title: 掌握iOS快捷指令

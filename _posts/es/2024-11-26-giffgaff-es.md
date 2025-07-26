@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: 'Tarjeta SIM del Reino Unido en China: Una experiencia con Giffgaff'

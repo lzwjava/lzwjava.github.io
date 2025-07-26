@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: ركز على الحكم بدلاً من القلق بشأن الغش باستخدام الذكاء الاصطناعي

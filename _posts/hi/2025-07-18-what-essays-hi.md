@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: मुझे लिखने के लिए जो लेख नहीं लिखे

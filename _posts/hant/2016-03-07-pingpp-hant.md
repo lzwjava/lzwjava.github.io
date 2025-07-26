@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 整合 Ping++ SDK 至 CodeIgniter 框架

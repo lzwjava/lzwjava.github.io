@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: NYTimes News (CN) Articles Update Trigger
 translated: false
-generated: false
 ---
 
 Click the button below to update the [NYTimes CN articles](./notes/2025-03-14-nytimes-en).

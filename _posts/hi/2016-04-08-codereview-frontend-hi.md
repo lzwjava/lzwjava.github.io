@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: एक व्यू.जे.एस. के साथ प्रभावी कोड रिव्यू प्लेटफॉर्म बनाना

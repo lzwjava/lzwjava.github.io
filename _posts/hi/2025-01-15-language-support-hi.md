@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: 'भाषा सहायता: फॉन्ट्स और टेक्स्ट-टू-स्पीच'

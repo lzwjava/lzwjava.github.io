@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: ¿Puede el peróxido de hidrógeno curar el pie de atleta?

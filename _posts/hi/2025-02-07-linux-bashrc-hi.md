@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: लिनक्स Bashrc कॉन्फ़िगरेशन

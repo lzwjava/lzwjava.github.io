@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 毛茸茸的排氣管之謎：汽車維修奇案

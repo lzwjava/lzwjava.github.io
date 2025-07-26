@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hant
 layout: post
 title: 追求網絡自由之路

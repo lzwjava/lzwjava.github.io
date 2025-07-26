@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP

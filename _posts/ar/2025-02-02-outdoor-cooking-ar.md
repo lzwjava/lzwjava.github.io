@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: ar
 layout: post
 title: طهي في الهواء الطلق

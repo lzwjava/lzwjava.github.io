@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: Childhood Memories
 translated: false
-generated: false
 ---
 
 This post was written in July 2025.

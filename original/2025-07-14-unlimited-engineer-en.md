@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Become an Unlimited Engineer
 translated: false
-generated: false
 ---
 
 - Big companies enforce strict data security policies where employees or contractors receive laptops in the first week and return them upon leaving.

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: de
 layout: post
 title: mathjax2mobi：将MathJax HTML转换为电子书

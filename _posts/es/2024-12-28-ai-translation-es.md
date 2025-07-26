@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Nuevo Quora o TikTok Totalmente Impulsado por Traducción de IA

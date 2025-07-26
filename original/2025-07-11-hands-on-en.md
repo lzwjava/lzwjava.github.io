@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: It's Easy to Make Mistakes Without Hands-On
 translated: false
-generated: false
 ---
 
 After Yin Wang proposed the myopia reversal method in his [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), there have been some opposing views on this. I happened to read some.

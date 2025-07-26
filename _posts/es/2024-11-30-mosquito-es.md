@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Los Mosquitos Desaparecen Cuando Baja la Temperatura

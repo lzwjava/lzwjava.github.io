@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: zh
 layout: post
 title: 禅与机器学习的艺术

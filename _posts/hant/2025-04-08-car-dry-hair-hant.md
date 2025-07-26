@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: hant
 layout: post
 title: 用車內通風口吹乾頭髮

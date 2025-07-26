@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: zh
 layout: post
 title: 推荐给有经验的后端工程师的博客文章

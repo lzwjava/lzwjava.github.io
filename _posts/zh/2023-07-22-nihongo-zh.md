@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: zh
 layout: post
 title: ChatGPT帮助我学习日语

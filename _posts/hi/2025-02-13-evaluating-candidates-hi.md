@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: इंटरव्यू उम्मीदवारों का मूल्यांकन

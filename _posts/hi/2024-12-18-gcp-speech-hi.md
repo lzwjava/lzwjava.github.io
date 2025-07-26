@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: Google Text-to-Speech API के साथ शुरुआत करना

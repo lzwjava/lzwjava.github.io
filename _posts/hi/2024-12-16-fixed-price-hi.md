@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: मूल्य निर्धारित सदस्यता पुरानी है

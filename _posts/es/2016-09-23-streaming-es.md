@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Configuración de transmisión en vivo con OBS, SRS y FFmpeg

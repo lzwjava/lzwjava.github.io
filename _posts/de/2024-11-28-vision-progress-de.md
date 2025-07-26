@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Fortschritte bei der natürlichen Wiederherstellung der Sehkraft

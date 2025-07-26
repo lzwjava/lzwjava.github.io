@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
-title: Sleeping Socks 
+title: Sleeping Socks
 translated: false
-generated: false
 ---
 
 I have been using sleeping socks for months. They are great. I regret not thinking of this idea and trying it sooner.

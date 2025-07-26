@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: ブログ管理のためのVSCode再起動による自動ドラフト

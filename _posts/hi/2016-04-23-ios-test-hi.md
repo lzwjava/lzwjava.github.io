@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: iOS विकास को स्वचालित परीक्षण और उपकरणों के माध्यम से बेहतर बनाना

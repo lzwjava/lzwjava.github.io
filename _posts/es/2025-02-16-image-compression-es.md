@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: es
 layout: post
 title: Compresión de Imágenes usando Álgebra Lineal

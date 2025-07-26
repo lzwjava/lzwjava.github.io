@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: إعداد البث المباشر باستخدام OBS و SRS و FFmpeg

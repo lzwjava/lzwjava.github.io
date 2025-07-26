@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 layout: post
 title: macOS Shell Commands
 ---

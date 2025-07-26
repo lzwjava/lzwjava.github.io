@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Monitor de Presión Arterial, Estetoscopio y Tabla de Agudeza Visual

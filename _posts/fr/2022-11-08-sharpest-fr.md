@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: 'Maîtriser l''anglais : Au travail et en dehors'

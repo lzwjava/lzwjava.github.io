@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: उत्तर ग्वांगडोंग की रोड ट्रिप

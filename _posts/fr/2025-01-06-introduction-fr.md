@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 prompt: Do not translate specific items such as project names, company names, or school

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: उद्यमिता पर विचार (Thoughts on Entrepreneurship)

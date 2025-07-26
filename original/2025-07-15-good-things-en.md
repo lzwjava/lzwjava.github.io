@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: We Can't Bear Less Good Things
 translated: false
-generated: false
 ---
 
 - Once we have experienced the latest iPhone, it is hard to use an iPhone from a few years ago.

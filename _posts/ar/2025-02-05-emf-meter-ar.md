@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: ar
 layout: post
 title: عداد مجال كهرومغناطيسي متعدد

@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: en
 layout: post
 title: Blood Pressure Monitor, Stethoscope, and Vision Chart

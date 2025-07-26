@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
-title: Optimizing Translation Costs with Paragraph-Based Markdown 
+title: Optimizing Translation Costs with Paragraph-Based Markdown
 translated: false
-generated: false
 ---
 
 My Jekyll blog uses Markdown to write paragraphs. After writing in English, I use AI tools like DeepSeek or Mistral to translate into eight other languages. Although they are already inexpensive, there is still room for improvement.

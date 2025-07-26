@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Avoid Seeking Validation
 translated: false
-generated: false
 ---
 
 Seeking validation is probably common for most people. You need validation from parents, teachers, bosses, and others to survive or thrive in society.

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Automatizando tu tarjeta perforada con un bot de ubicación de Telegram

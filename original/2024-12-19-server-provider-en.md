@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: en
 layout: post
 title: Long-Term Thinking in Cloud Server Selection

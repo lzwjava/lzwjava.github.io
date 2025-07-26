@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: क्या हम मच्छरों को कार में आने से रोक सकते हैं?

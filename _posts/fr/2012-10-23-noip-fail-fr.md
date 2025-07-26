@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Concentrez-vous sur le Gaokao, utilisez les compétences d'apprentissage acquises

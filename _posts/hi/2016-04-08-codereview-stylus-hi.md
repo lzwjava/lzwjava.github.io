@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: स्टाइलिंग एक कोड रिव्यू प्लेटफॉर्म स्टाइलस के साथ

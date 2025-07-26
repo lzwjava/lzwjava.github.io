@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: Bright and Convenient USB-Powered Lamp for Car Use
 translated: false
-generated: false
 ---
 
 Using a lamp in my car makes the interior bright, so the brightness inside and outside is approximately the same. This helps my eyes feel more comfortable while driving. I chose a USB-powered lamp without a battery. This means the socket connected to the cigarette lighter in my EV car can power the lamp. When I lock the car, the lamp automatically turns off.

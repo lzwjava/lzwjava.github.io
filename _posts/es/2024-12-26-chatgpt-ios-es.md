@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Análisis de la Detección de VPN en ChatGPT para iOS

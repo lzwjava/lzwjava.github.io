@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: fr
 layout: post
 title: Séchant les cheveux avec une aération de voiture

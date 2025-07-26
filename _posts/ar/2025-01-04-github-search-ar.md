@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: الحالات التي ما زلنا بحاجة فيها إلى مربع البحث في GitHub

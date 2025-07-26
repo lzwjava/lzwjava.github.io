@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप

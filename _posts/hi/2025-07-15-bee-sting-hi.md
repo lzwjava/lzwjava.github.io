@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: '"एक मधुमक्खी के काटने की घटना और ठीक होना"'

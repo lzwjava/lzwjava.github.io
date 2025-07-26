@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: 'DeepSeek V3: マルチヘッド潜在注意とマルチトークン予測'

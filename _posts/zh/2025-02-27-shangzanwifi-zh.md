@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: zh
 layout: post
 title: 便携热点尚赞WiFi

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: en
 layout: post
 title: 'The Case of the Hairy Tailpipe: A Car Repair Mystery'

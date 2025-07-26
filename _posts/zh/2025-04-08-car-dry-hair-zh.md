@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: zh
 layout: post
 title: 吹头发用车内通风口

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Le workflow est en BFS (Breadth-First Search), l'agent est en DFS (Depth-First

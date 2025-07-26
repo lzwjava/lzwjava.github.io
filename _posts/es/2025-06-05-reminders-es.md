@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: es
 layout: post
 title: Optimiza Recordatorios a través de Telegram

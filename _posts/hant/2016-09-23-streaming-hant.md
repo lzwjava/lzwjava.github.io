@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 使用 OBS、SRS 和 FFmpeg 進行直播設置

@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Be Specific
 translated: false
-generated: false
 ---
 
 - Be specific in everything and every matter.

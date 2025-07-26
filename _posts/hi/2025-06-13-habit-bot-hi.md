@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: मिस्ट्रल के साथ एक आदत बॉट बनाना

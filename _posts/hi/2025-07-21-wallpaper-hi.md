@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: वॉलपेपर बदलने का शॉर्टकट iOS के लिए

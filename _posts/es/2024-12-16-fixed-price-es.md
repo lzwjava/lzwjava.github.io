@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Suscripciones de Precio Fijo Están Pasadas de Moda

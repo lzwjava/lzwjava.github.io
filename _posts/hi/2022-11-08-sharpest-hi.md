@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: 'अंग्रेजी में महारत हासिल करना: काम पर और काम से दूर'

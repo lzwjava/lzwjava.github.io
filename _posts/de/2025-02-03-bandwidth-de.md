@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: de
 layout: post
 title: Untersuchung der 200-MBit/s-Bandbreitenbeschränkung

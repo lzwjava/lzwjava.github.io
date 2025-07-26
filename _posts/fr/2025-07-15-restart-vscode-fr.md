@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Gestion automatisée des brouillons de blog avec redémarrage de VSCode

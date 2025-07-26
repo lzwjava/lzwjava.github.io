@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: What Essays I Have Not Written About
 translated: false
-generated: false
 ---
 
 I have covered a lot of things in my blog. Compared to [Yin Wang's Blog](https://www.yinwang.org), there is still much I have not yet written about, or like He Han's blog, [Hankcs](https://www.hankcs.com).

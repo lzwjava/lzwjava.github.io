@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Enfatiza el Juicio sobre Preocuparte por el Engaño de la IA

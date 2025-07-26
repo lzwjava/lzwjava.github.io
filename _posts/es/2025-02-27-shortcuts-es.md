@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: es
 layout: post
 title: Dominando los atajos de iOS

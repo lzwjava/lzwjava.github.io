@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js

@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Bathe More Often To Embrace Sweating In The Summer
 translated: false
-generated: false
 ---
 
 Nowadays, many people like to enjoy air conditioning instead of going outside in summer, myself included. However, sweating may actually be a good thing.

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: GitHub Actions Job का अधिकतम निष्पादन समय

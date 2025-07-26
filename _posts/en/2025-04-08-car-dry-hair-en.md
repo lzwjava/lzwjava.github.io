@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: en
 layout: post
 title: Using a Car Vent to Dry Hair

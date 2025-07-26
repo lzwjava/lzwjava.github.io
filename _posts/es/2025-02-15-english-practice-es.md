@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: es
 layout: post
 title: Práctica de inglés asequible con hablantes nativos

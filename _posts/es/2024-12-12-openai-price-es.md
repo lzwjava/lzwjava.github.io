@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: ¿Por qué ChatGPT Plus debería cobrar por el uso de tokens?

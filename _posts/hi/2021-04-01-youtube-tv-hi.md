@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: टेलीविजन पर YouTube देखने के कई तरीके हैं।

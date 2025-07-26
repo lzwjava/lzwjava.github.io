@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: 翻訳コストを最適化するパラグラフベースのMarkdown

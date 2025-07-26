@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ja
 layout: post
 title: 毛むくじゃらのテールパイプの事件：車修理の謎

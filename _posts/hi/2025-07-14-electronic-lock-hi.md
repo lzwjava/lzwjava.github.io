@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: पासवर्ड को एक इलेक्ट्रॉनिक लॉक पर तोड़ना

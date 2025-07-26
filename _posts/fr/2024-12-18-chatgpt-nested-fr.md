@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Le bug de ChatGPT avec les blocs de code imbriqués

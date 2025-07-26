@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: hi
 layout: post
 title: न्यूज़ आर्टिकल्स अपडेट ट्रिगर

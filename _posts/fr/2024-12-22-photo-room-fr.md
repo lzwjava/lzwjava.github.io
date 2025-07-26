@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: 'Photoroom : Application de Suppression d''Arrière-plan'

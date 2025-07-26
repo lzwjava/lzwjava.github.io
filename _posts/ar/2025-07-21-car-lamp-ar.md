@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: مصباح USB مريح ومريح للاستخدام في السيارة

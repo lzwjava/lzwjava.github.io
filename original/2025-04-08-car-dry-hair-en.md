@@ -1,10 +1,11 @@
 ---
-title: Using a Car Vent to Dry Hair
+audio: false
+generated: true
+image: false
 lang: en
 layout: post
-audio: false
+title: Using a Car Vent to Dry Hair
 translated: false
-generated: true
 ---
 
 When I was recently traveling, I forgot to dry my hair before leaving the hotel one day. It was a rainy day, and even after a few hours, my hair was still wet. I felt uncomfortable.  

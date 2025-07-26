@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Optimisation des coûts de traduction avec le Markdown par paragraphe

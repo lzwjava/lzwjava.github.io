@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: पावर बैंक चार्ज करने के बारे में भूल जाना

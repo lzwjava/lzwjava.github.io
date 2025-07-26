@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: إصلاح التعليمات البرمجية أو السياق بدلاً من مخرجات الذكاء الاصطناعي

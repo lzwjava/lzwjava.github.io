@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: es
 layout: post
 title: Inversiones Semanales en Acciones con la API de TigerOpen

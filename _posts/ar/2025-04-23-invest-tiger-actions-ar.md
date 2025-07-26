@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: ar
 layout: post
 title: استثمارات الأسهم الأسبوعية مع واجهة برمجة التطبيقات TigerOpen

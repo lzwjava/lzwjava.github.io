@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: 'Yin Wang: La Respuesta Definitiva a la Vida, el Universo y Todo lo Demás'

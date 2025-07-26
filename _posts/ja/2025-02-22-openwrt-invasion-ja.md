@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: false
 lang: ja
 layout: post
 title: OpenWrt Xiaomi Mi Router 4C 侵入

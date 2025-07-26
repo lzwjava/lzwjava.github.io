@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Lutte contre les problèmes de recharge de ma voiture électrique

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Personalisieren Sie Ihren USB-Stick mit einem Hintergrund und einem Icon

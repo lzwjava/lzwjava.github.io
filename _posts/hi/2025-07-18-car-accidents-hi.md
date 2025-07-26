@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: कार दुर्घटनाएँ मेरी जिंदगी में

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: अधिक बार स्नान करें गर्मियों में पसीने को अपनाने के लिए

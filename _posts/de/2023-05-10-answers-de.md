@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: 'Yin Wang: Die ultimative Antwort auf das Leben, das Universum und den ganzen

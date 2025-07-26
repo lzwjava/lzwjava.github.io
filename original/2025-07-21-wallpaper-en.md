@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: Wallpaper Changer Shortcut for iOS
 translated: false
-generated: false
 ---
 
 [https://www.icloud.com/shortcuts/f972a5bc6f9c43109f7461465b4be2ee](https://www.icloud.com/shortcuts/f972a5bc6f9c43109f7461465b4be2ee)

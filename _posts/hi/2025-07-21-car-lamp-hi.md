@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: ब्राइट और सुविधाजनक यूएसबी-पावरड लैम्प कार उपयोग के लिए

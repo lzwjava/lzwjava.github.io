@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: التحقق التجريبي من طريقة استعادة الرؤية الطبيعية

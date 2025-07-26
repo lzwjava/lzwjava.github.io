@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: fr
 layout: post
 title: Vérification Expérimentale de la Méthode Naturelle de Restauration de la Vision

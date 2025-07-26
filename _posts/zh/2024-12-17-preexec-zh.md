@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: zh
 layout: post
 title: 运行命令前显示代理设置

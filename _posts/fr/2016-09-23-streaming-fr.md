@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Configuration de streaming en direct avec OBS, SRS et FFmpeg

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: hant
 layout: post
 title: 便攜式熱點尚善網

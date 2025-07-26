@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: नया क्वोरा या टिकटॉक पूरी तरह से एआई द्वारा संचालित अनुवाद

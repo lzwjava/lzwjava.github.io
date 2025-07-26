@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: लार्ज लैंग्वेज मॉडल्स की अधिकतम संदर्भ लंबाई (Maximum Context Length)

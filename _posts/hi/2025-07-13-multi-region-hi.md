@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: बहु-क्षेत्रीय सॉफ्टवेयर विकास पर

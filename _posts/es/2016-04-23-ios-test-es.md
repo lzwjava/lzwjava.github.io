@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Mejorando el desarrollo de iOS con pruebas automatizadas y herramientas

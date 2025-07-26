@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: Gestión automatizada de borradores de blogs con reinicio de VSCode

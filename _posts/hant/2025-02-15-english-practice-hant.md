@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: hant
 layout: post
 title: 免費與母語者練習英文

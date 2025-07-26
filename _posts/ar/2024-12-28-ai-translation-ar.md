@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: كوورا الجديدة أو تيك توك مدعوم بالكامل بترجمة الذكاء الاصطناعي

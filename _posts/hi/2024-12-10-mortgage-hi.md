@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: आंशिक समय से पहले मॉर्गेज भुगतान के लाभ

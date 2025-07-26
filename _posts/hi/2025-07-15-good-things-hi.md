@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: हम कम अच्छी चीजों को सहन नहीं कर सकते

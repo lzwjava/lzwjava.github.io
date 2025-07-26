@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: de
 layout: post
 title: NYTimes Nachrichten (CN) Artikelaktualisierung Auslöser

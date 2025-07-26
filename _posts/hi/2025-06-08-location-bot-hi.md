@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: टेलीग्राम लोकेशन बॉट के साथ अपने पंच कार्ड को ऑटोमेट करने

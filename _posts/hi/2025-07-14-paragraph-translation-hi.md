@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: अनुवाद लागत को अनुकूलित करना पैराग्राफ-आधारित मार्कडाउन के साथ

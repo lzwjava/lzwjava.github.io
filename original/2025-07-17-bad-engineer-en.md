@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Bad Engineer
 translated: false
-generated: false
 ---
 
 - Communicates only through screenshots, using phrases like *"why not ok?"* or *"has question"*—extremely basic English.  

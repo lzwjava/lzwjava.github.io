@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: مهندس متقن يعلق على أدوات برمجة الذكاء الاصطناعي

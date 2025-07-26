@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: zh
 layout: post
 title: ChatGPT iOS VPN 检测分析

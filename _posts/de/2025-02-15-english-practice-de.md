@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: de
 layout: post
 title: Günstige Englischübungen mit Muttersprachlern

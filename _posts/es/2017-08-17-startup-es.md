@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: es
 layout: post
 title: Compartiendo experiencias sobre el emprendimiento en Quzhibo (趣直播)

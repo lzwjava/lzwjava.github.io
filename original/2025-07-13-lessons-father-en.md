@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Lessons from Living with My Strict Father
 translated: false
-generated: false
 ---
 
 Disclaimer: This is my personal reflection on our differences, written with a desire to understand each other better.

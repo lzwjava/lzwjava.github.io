@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: How I Learned the KQV Mechanism in Transformers
 translated: false
-generated: false
 ---
 
 After reading [K, Q, V Mechanism in Transformers](https://lzwjava.github.io/notes/2025-06-02-attention-kqv-en), I somehow understood how K, Q, and V work.

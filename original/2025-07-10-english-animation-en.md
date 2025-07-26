@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: English Animation Journey of My Daughter
 translated: false
-generated: false
 ---
 
 I have lived in Guangzhou, China in recent years. When I was working in Tianhe CBD in 2022, one day, I went to the office building and parked in a nearby parking spot that was part of a residential community. I saw a father using an iPad to help his son enter the elevator while quizzing him. His son answered in English. His son was quite young, like 4 or 5 years old. I was quite impressed at that time.

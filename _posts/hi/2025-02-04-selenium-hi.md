@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: सेलेनियम के साथ वेब ब्राउज़र स्वचालन

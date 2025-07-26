@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: ChatGPT 應允許從對話歷史中創建 GPTs

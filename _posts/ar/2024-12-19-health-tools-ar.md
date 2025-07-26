@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: ar
 layout: post
 title: جهاز قياس ضغط الدم، السماعة الطبية، ومخطط فحص النظر

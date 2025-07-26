@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: 'मार्कडेन समस्याएँ: Kramdown और XeLaTeX'

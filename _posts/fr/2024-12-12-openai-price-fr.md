@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Pourquoi ChatGPT Plus devrait facturer par utilisation de jetons

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: पृष्ठभूमि में ध्वनि पसंद करें

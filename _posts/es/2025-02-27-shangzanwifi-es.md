@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: es
 layout: post
 title: Punto de acceso portátil Shangzanwifi

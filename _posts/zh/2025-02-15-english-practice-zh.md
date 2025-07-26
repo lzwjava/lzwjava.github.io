@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: false
+image: true
 lang: zh
 layout: post
 title: 免费与母语者练习英语

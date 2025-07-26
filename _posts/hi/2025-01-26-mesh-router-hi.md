@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: Mesh Router एक प्रकार का नेटवर्किंग

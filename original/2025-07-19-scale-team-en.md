@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: How to Scale a Team
 translated: false
-generated: false
 ---
 
 - Think about it for the long term. Do you have enough budget? How long can your team survive? What if there is no gain after scaling the team?

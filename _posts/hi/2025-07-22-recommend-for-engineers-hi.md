@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: hi
 layout: post
 title: सुझाए गए ब्लॉग पोस्ट्स अनुभवी बैकएंड इंजीनियरों के लिए

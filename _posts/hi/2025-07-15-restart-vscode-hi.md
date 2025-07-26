@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: ब्लॉग प्रबंधन के लिए VSCode रीस्टार्ट के साथ स्वचालित ड्राफ्ट

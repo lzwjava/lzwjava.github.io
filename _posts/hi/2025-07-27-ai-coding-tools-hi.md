@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: एआई कोडिंग टूल्स पर एक चयनात्मक इंजीनियर का दृष्टिकोण

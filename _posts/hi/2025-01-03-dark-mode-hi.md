@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: वेबसाइट डार्क मोड कार्यान्वयन

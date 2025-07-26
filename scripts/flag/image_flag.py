@@ -1,7 +1,6 @@
 import os
 import re
 import yaml
-import sys
 
 def update_front_matter(file_path):
     try:
@@ -29,13 +28,13 @@ def update_front_matter(file_path):
     except Exception as e:
         print(f"Error processing {file_path}: {e}")
 
-def process_file_name(file_name_base):
+def process_all_files():
     original_dir = "original"
     posts_dir = "_posts"
 
     # Process files in original directory
     for filename in os.listdir(original_dir):
-        if filename.startswith(file_name_base) and filename.endswith(".md"):
+        if filename.endswith(".md"):
             file_path = os.path.join(original_dir, filename)
             update_front_matter(file_path)
 
@@ -44,17 +43,12 @@ def process_file_name(file_name_base):
         lang_dir_path = os.path.join(posts_dir, lang_dir)
         if os.path.isdir(lang_dir_path):
             for filename in os.listdir(lang_dir_path):
-                if filename.startswith(file_name_base) and filename.endswith(".md"):
+                if filename.endswith(".md"):
                     file_path = os.path.join(lang_dir_path, filename)
                     update_front_matter(file_path)
 
 def main():
-    if len(sys.argv) != 2:
-        print("Usage: script.py <file_name_base>")
-        return
-
-    file_name_base = sys.argv[1]
-    process_file_name(file_name_base)
+    process_all_files()
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Inviter les collègues du monde entier à utiliser les applications chinoises

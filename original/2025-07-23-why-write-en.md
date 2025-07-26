@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Why We Write in the AI Era
 translated: false
-generated: false
 ---
 
 The most important reason we still need to write in the AI era is that it helps us think better. It is easy to use AI to help expand ideas or thoughts, but AI can't help you think.

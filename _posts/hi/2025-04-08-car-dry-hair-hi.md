@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: hi
 layout: post
 title: बाल सुखाने के लिए कार की वेंट का उपयोग

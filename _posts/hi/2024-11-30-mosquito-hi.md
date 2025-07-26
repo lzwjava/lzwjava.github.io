@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: जब तापमान गिरता है तो मच्छर गायब हो जाते हैं

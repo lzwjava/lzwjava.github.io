@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: ar
 layout: post
 title: يجب على الشركات توفير سياق الذكاء الاصطناعي أو الوكلاء لتسهيل التكامل

@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Wie ich in der Ära von KI und Blockchain gut lebe

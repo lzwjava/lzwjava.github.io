@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: false
 lang: en
 layout: post
 title: Weekly Stock Investments with TigerOpen API
 translated: false
-generated: false
 ---
 
 I developed a Python script and a GitHub Actions workflow to automate my weekly investment strategy, purchasing one NVIDIA stock every Wednesday at 10:35 PM China Standard Time (CST). I chose Wednesdays because, in 2025, there are no holidays on that day, ensuring consistent execution.

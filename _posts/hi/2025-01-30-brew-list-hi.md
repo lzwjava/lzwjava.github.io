@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: घर-से बना पैकेज जो मैं इंस्टॉल करता हूँ

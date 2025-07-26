@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Longueur de Contexte Maximale des Modèles de Langue à Grande Échelle

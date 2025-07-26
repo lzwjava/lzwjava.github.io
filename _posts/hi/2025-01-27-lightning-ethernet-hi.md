@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hi
 layout: post
 title: लाइटनिंग टू इथर्नेट एडाप्टर

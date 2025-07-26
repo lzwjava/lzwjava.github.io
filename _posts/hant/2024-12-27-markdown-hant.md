@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: true
 lang: hant
 layout: post
 title: Markdown 問題：Kramdown 與 XeLaTeX

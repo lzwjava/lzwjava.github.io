@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: 'मायोपिया: एक आधुनिक लेकिन प्रतिवर्ती रोग — टॉड बेकर'

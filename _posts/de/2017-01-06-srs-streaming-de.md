@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: de
 layout: post
 title: Einfacher Echtzeit-Server (SRS) für RTMP-Streaming

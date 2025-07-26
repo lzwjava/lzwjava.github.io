@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: ja
 layout: post
 title: 車の換気口で髪を乾かす

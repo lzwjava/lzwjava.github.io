@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: प्रोजेक्ट किसे सौंपा जाए, पैसा किसे मिले

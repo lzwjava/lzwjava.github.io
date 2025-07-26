@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hi
 layout: post
 title: अंतर्राष्ट्रीय सहकर्मियों को चीनी ऐप्स में आमंत्रित करना

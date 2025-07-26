@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: fr
 layout: post
 title: Analyse du système de connexion de l'Université Forestière de Pékin

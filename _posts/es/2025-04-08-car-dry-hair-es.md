@@ -1,6 +1,7 @@
 ---
 audio: true
 generated: true
+image: false
 lang: es
 layout: post
 title: Secándose el Cabello con la Ventilación del Coche

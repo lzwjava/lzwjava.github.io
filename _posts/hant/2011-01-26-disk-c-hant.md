@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: hant
 layout: post
 title: 怕C磁碟空間不足及卡頓？簡單易行！

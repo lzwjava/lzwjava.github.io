@@ -1,10 +1,11 @@
 ---
 audio: false
+generated: false
+image: true
 lang: en
 layout: post
 title: My Primary School Memory
 translated: false
-generated: false
 ---
 
 This post was written in July 2025.

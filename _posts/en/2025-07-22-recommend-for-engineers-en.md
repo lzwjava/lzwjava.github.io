@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: true
+image: false
 lang: en
 layout: post
 title: Recommended Blog Posts for Experienced Backend Engineers

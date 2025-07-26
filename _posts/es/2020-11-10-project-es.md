@@ -1,6 +1,7 @@
 ---
 audio: false
 generated: false
+image: false
 lang: es
 layout: post
 title: ¿A quién se le asigna el proyecto y quién se lleva el dinero?
