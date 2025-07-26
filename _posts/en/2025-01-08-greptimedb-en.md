@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Companies Should Provide AI Context or Agents to Facilitate Integration
+title: Companies Should Provide AI Context to Facilitate Integration
 translated: false
 ---
 
@@ -78,4 +78,3 @@ greptimedb-agent
 `greptimedb-agent` would intelligently gather information about the current system, such as the machine details and the existing code, in order to understand the context and decide how best to integrate Greptime DB.
 
 This command would automatically update your code to integrate Greptime DB, seamlessly replacing your current database with Greptime DB in just a few steps.
-
