@@ -39,3 +39,7 @@ Generally, it takes within a week to mail to a Hong Kong address, and for overse
 ---
 
 I hope this time we can do it. Let's wait for the new card.
+
+{: .centered }
+![](assets/images/hsbc/h1.jpg)
+*Source: Self-screenshot*{: .caption }
