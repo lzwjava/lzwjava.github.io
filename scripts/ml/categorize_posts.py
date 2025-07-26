@@ -76,4 +76,4 @@ def classify_post(text):
     return pred  # Map back to category name
 
 # Save model
-torch.save(model.state_dict(), 'classifier.pth')
+torch.save(model.state_dict(), 'test/classifier.pth')
