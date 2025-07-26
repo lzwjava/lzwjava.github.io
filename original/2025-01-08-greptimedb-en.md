@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Companies Should Provide AI Context or Agents to Facilitate Integration
+title: Companies Should Provide AI Context to Facilitate Integration
 ---
 
 I have a friend who works at Greptime DB, and I’ve been thinking about how to quickly integrate their product into existing systems.
