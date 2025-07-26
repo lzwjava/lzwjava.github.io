@@ -9,7 +9,7 @@ import torch.optim as optim
 from pyvirtualdisplay import Display
 import numpy as np
 
-import utils
+import utils_torch
 
 Display(visible=0, size=(840, 480)).start()
 
