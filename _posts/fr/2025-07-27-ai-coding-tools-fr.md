@@ -3,30 +3,38 @@ audio: false
 generated: false
 lang: fr
 layout: post
-title: Un ingénieur exigeant sur les outils de codage IA
+title: Un ingénieur exigeant sur les outils de codage en IA
 translated: true
 ---
 
-Récemment, j'ai réussi à exécuter Claude Code, alors je veux partager mes choix d'outils dans ce parcours. Et j'ai collecté quelques [conseils sur les outils IA](ai-tips-en) en cours de route.
+Récemment, j'ai réussi à exécuter Claude Code, alors je veux partager mon parcours de sélection d'outils. J'ai également collecté quelques [conseils sur les outils IA](ai-tips-en) en cours de route.
 
-Je dois dire que j'ai été assez en retard sur Claude Code.
+J'ai été assez en retard à adopter Claude Code.
 
-[Claude 3.5 Sonnet](https://www.anthropic.com/news/claude-3-5-sonnet) a été lancé vers la fin de février 2025.
+[Claude Code](https://www.anthropic.com/news/claude-3-5-sonnet) a été lancé vers la fin de février 2025.
 
-Je dois dire que je n'ai pas réussi à l'essayer jusqu'à récemment. Une raison est qu'il nécessite l'API Anthropic, qui ne prend pas en charge les cartes Visa chinoises.
+Je n'ai pas réussi à l'essayer avant récemment. Une des raisons est qu'il nécessite l'API d'Anthropic, qui ne prend pas en charge les cartes Visa chinoises.
 
-Une autre raison est que [Claude Code Router](https://github.com/musistudio/claude-code-router) est sorti. Cela a donc rendu ma récente tentative réussie.
+Une autre raison est que [Claude Code Router](https://github.com/musistudio/claude-code-router) est devenu disponible, ce qui a rendu ma récente tentative réussie.
 
-J'entends souvent dire à quel point c'est bien. J'ai essayé le CLI Gemini en juillet 2025. Après plusieurs conversations pour lui demander de corriger mon code, je ne l'ai plus jamais utilisé.
+J'entends souvent des éloges à son sujet. J'ai essayé le CLI Gemini en juillet 2025 mais j'ai abandonné après plusieurs tentatives infructueuses pour le faire corriger mon code.
 
-J'ai également essayé un autre agent logiciel, Aider. Je n'ai pas beaucoup utilisé Cursor après environ six mois, car j'ai constaté que de nombreux plugins dans Cursor ne fonctionnent pas puisqu'il est construit sur la base de VSCode. J'ai expérimenté Cline pendant un certain temps, mais je ne l'ai pas utilisé de manière extensive.
+J'ai également essayé Aider, un autre agent logiciel. J'ai arrêté d'utiliser Cursor après environ six mois car de nombreux plugins basés sur VSCode ne fonctionnaient pas correctement. J'ai brièvement expérimenté Cline mais ne l'ai pas adopté.
 
-J'utilise le modèle bêta Grok 3 dans un plugin VSCode, en utilisant le plugin Copilot avec un modèle personnalisé. C'est génial.
+J'utilise le plugin Copilot dans VSCode avec un modèle personnalisé, Grok 3 beta via OpenRouter, ce qui fonctionne bien.
 
-Je ne pense pas que Claude Code puisse changer mes habitudes. Mais comme je peux l'exécuter avec succès et que j'ai la patience de le faire quelques fois de plus, voyons comment je me sentirai dans les prochaines semaines.
+Je ne pense pas que Claude Code changera mes habitudes, mais puisque je peux l'exécuter avec succès et que j'ai la patience d'essayer quelques fois de plus, je verrai comment je me sentirai dans les semaines à venir.
 
-Je suis un utilisateur exigeant avec 10 ans d'expérience en ingénierie logicielle. Donc j'espère que les outils soient excellents dans l'utilisation réelle. Je ne me fie pas à la marque. Je me soucie seulement de son utilité quotidienne réelle.
+Je suis un utilisateur exigeant avec 10 ans d'expérience en ingénierie logicielle. J'espère que les outils sont excellents dans la pratique. Je ne me fie pas à la marque – je me soucie seulement de l'utilité quotidienne.
+
+Après avoir utilisé Claude Code pour corriger la grammaire de ce post, j'ai constaté qu'il fonctionne bien dans certains scénarios. Bien que j'apprécie l'IA pour l'aide grammaticale (j'ai même écrit un script Python pour appeler les API LLM à cette fin), j'ai remarqué un schéma frustrant - même lorsque je demande des corrections minimales, les outils continuent de proposer de nombreuses suggestions grammaticales à examiner. Ce processus de vérification manuelle contredit le but de l'automatisation. En compromis, je laisse maintenant l'IA s'occuper de l'ensemble des essais, bien que cette approche limite mes opportunités d'apprentissage puisque je ne vois pas les corrections spécifiques apportées.
+
+Ce qui m'a le plus impressionné, c'est la façon dont Claude Code affiche les modifications - en montrant des comparaisons avant/après similaires aux diffs git, ce qui rend la révision des modifications beaucoup plus facile.
 
 {: .centered }
 ![](assets/images/claude/claude-code.jpg){: .responsive }
+*Source : Capture d'écran personnelle*{: .caption }
+
+{: .centered }
+![](assets/images/claude/claude-fix.jpg){: .responsive }
 *Source : Capture d'écran personnelle*{: .caption }
