@@ -2,46 +2,45 @@
 audio: false
 lang: en
 layout: post
-title: Sea is better than space
+title: Sea is Better Than Space
 translated: false
 generated: false
 image: false
 ---
 
-Sea is better than space. Elon Musk's SpaceX never go out of earth to enter space. The space photo doesn't have stars.
+Sea is better than space. Elon Musk's SpaceX has never truly left Earth to enter space. Space photos often lack visible stars.
 
-So from this point, human better develop the sea instead of space. I recently swim for some times in summer of 2025.
+From this perspective, humans should focus on developing the sea rather than space. I recently swam several times in the summer of 2025.
 
-Some American people claimed that the astronauts go to the moon in 1969. That's fake. I talked to some friends of mine. Half of them believe that they are fake. 
+Some Americans claim that astronauts went to the moon in 1969. I believe that's fake. I discussed this with some friends, and half of them agree it's not true.
 
-One major concern is that if human are so powerful at that time to go to moon. Why after 50 years, they don't go to moon for the second time.
+One major concern is that if humans were so advanced in 1969 to go to the moon, why haven't they returned in over 50 years?
 
-I was born in 1995. I remember at the end of 1990s, in my hometown, a viliage in China. There is a fews years people have electricity. And there is black and while TV. There are xiaobawang learning machines.
+I was born in 1995. I remember at the end of the 1990s, in my hometown, a village in China, electricity was scarce for a few years. We had black-and-white TVs and Xiaobawang learning machines.
 
-I belived they are cutting-edge technology in the world. The first version of iPod was released on November, 2021. The initial release of Linux came out in August 1991.
+I believed they represented cutting-edge technology at the time. The first version of the iPod was released in November 2001, and the initial release of Linux came out in September 1991.
 
-The technology company, startup that is business to provide to majority people typcially shows most advanced technology. If there is some new technology, why people don't use it to earn money and make profit. Some people and some countries will do it at the end, so why don't the people who invented or saw at the first go to business world to provide to the majority?
+Technology companies and startups that provide products to the majority often showcase the most advanced technology. If new technology exists, why isn't it used to make money and profit? Eventually, some people or countries will commercialize it, so why don't the original inventors or discoverers bring it to the business world for the masses?
 
-Do Nasa or American military has some powerful technology that is not applied to consumer part? I suspect that it is very hard to do so. 
+Does NASA or the American military possess powerful technology that hasn't been applied to consumer products? I suspect it's very difficult to do so.
 
-I don't believe things that didn't come into my hand. I need to see it for my eyes. I just believe things that can happen again and again. As this world has so many things to do and learn, why we want to do or learn things that we don't even have chance to touch.
+I don't believe in things I haven't seen with my own eyes. I need to witness them personally. I only trust things that can be repeated consistently. With so many things to do and learn in this world, why focus on things we can't even touch?
 
-Human never go to the space. If we start from this point, we better develop the sea. I talked to some security guy in the swimming pool. 
+Humans have never truly gone to space. Starting from this point, we should develop the sea instead. I spoke with a security guard at a swimming pool.
 
-I said that we one day can read or play mobile phone or computer under sea. He said that it will be very far. I said no far. 
+I suggested that one day, we could read or use mobile phones or computers underwater. He said that seems far-fetched. I disagreed.
 
-People should develop the oceans. There are so much opportunities. We probably hard to make mobile phones under water and still function. 
+People should develop the oceans; there are so many opportunities. It might be challenging to make mobile phones function underwater, but it's not impossible.
 
-The water has refraction to make it hard to see things clearly. But it doesn't mean we can't use water wisely. We can make coffee pool. That means people can drink coffee and play phones in a water pool. Of couse, people can swim for sometime. So there is a place that the merchants sell cover and let users pick up. And there are a lot of digital devices hang on there. People can use them to read or watch. 
+Water causes refraction, making it hard to see clearly, but that doesn't mean we can't use water wisely. We could create a "coffee pool," where people can drink coffee and use their phones in a pool. Of course, people can also swim for a while. There could be a place where merchants sell covers for devices, and users can pick them up. Many digital devices could be hung there for people to read or watch content.
 
-The digital places probably hold in a transparent box. They can't be esaily damaged if water droped on them. And there are places people can use laptop.
+These digital devices could be held in transparent, waterproof boxes, so they aren't easily damaged if water splashes on them. There could also be areas where people can use laptops.
 
-Why people like that? I think human generally like water, like to stay in the water. Human stay in the water for 6 hours without problems just like those professional swimmers.
+Why would people like this? I think humans generally enjoy water and like staying in it. Humans can stay in water for 6 hours without issues, just like professional swimmers.
 
-By doing so, people can have more time to spend with nature. There are rivers, pools and oceans in the nature. We probably need to use some steel place on top of water to let them hold the digital devices. And then people can spend tons of time in the nature. 
+By doing so, people can spend more time with nature. Rivers, pools, and oceans are part of nature. We might need to use steel platforms on top of water to hold digital devices, allowing people to spend significant time in natural settings.
 
-AI can help a large part of work now. Probably people need to go back the nature again. Sea is better than space.
-
+AI can handle a large part of work now. Perhaps people need to return to nature. Sea is better than space.
 
 References:
 
