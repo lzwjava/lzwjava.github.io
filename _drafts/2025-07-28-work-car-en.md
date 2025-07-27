@@ -8,21 +8,21 @@ generated: false
 image: false
 ---
 
-Recently, I tried ways to work in the EV again. I have tried that before using the below the portable desk in the car. But the problem is that it is still inconvenient. I need to use in the back seat instead of main seat.
+Recently, I tried working in my EV again. I had previously used a portable desk in the car, but it was still inconvenient. I needed to use it in the back seat instead of the main seat.
 
-And recently, I bought another kind of large portable foldable car desk. It was larger. Originally, they designed for Tesla. So installing them in the Tesla car will be a perfect match. However, For another kind of electric vechicle, we still have ways to install them, like using a packet of paper to fill up the empty space to support one side of desk.
+Recently, I bought another type of large, portable, foldable car desk. It was larger and originally designed for Tesla, making it a perfect match for Tesla cars. However, for other types of electric vehicles, there are still ways to install it, such as using a packet of paper to fill up the empty space and support one side of the desk.
 
-In the actual use, I found that in the front, my leg support them instead of imagainable the paper packet. And my mobile phone can place on the desk perfectly. They have made specific hole to hold the mobile phones without making them slip.
+In actual use, I found that in the front, my legs supported it instead of the imagined paper packet. Additionally, my mobile phone fits perfectly on the desk. There is a specific slot to hold mobile phones without letting them slip.
 
-My mobile phone is iPhone 14 Pro max, which screen size is 6.7 inch. The mobile phone slot is just that size.
+My mobile phone is an iPhone 14 Pro Max, with a screen size of 6.7 inches. The mobile phone slot is just the right size.
 
-And about electric lamp, I have shared them in another [essay](car-lamp-en). 
+Regarding the electric lamp, I have shared details in another [essay](car-lamp-en).
 
-I have bought my EV around September 2022. And its running distance reached around 56000 km as of July 2025. I have used that fully.
+I bought my EV around September 2022, and its running distance has reached approximately 56,000 km as of July 2025. I have used it extensively.
 
-I have found that in life, there are many products we don't actually use that much potential or functionality. They have a lot of possiblitly. We need to learn how to use them wisely and get most benifits from them. It is not about money. We already spent some money to have them. The most important thing is to learn and think. 
+I have realized that in life, there are many products whose full potential or functionality we don't utilize. They have a lot of possibilities. We need to learn how to use them wisely and derive the most benefits from them. It's not about the money; we have already spent some to acquire them. The most important thing is to learn and think.
 
-When I select the title of this essay. I think whether I should put EV in the title. Yes, I should. Because in the oil car, it is not easy to work in the car because the bust engine are loud. And it costs oil. But EV is perfect for working in the car.
+When selecting the title of this essay, I considered whether I should include "EV" in it. Yes, I should. In a gas-powered car, it is not easy to work inside due to the loud engine noise and fuel costs. However, an EV is perfect for working in the car.
 
 
 {: .centered }
