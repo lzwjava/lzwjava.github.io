@@ -4,6 +4,7 @@ import subprocess
 from dotenv import load_dotenv
 import concurrent.futures
 import frontmatter
+from frontmatter import Post
 import hashlib
 import json
 import openai
@@ -154,7 +155,8 @@ def translate_markdown_file(input_file, output_file, target_lang, model_provider
     # Update frontmatter
     fm['title'] = translated_title
     
-    output_content = frontmatter.dumps(fm) + '\n' + translated_md
+    post = Post(translated_md, **fm)
+    output_content = frontmatter.dumps(post)
     with open(output_file, 'w', encoding='utf-8') as out:
         out.write(output_content)
     
