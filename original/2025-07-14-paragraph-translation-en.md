@@ -1,5 +1,4 @@
 ---
----
 audio: false
 generated: false
 image: false
@@ -9,13 +8,13 @@ title: Optimizing Translation Costs with Paragraph-Based Markdown
 translated: false
 ---
 
-My Jekyll blog uses Markdown to write paragraphs. After writing in English, I use AI tools like DeepSeek or Mistral to translate into eight other languages. Although these tools are already inexpensive, there is still room for improvement.
+My Jekyll blog uses Markdown to write paragraphs. After writing in English, I use AI tools like DeepSeek or Mistral to translate into eight other languages. Although they are already inexpensive, there is still room for improvement.
 
-Sometimes, I edit just a word or a paragraph, and then the entire text of a post is translated into the other eight languages. In this case, token usage is high. If I only translate the edited paragraph again, token usage will be lower, especially for long posts.
+Sometimes, I just edit a word or a paragraph, and then the entire text of a post is translated into the other eight languages. In this case, token usage is high. If I only translate the edited paragraph again, token usage will be lower, especially for long posts.
 
 However, I still want to use Markdown to record my ideas. Using a database to maintain and update posts is not convenient. Using YAML or JSON might be too cumbersome as well.
 
-The key is to identify the differences between the text before and after editing. If we use a paragraph-based approach, this means splitting the text using the newline character "\n".
+The key is to identify the differences between the text before and after editing. If we use a paragraph-based approach, that means splitting the text using the newline character "\n".
 
 I need to know which paragraphs have changed and which have not after editing. We need to establish one-to-one paragraph mappings between the text before and after editing.
 
