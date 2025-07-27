@@ -20,7 +20,7 @@ Necesito saber qué párrafos han cambiado y cuáles no después de la edición.
 
 Usamos un enfoque basado en párrafos porque queremos actualizar las traducciones realizadas por modelos de IA. Si usamos oraciones, puede que no sea tan preciso.
 
-Para Markdown, puede que sea más importante usar el análisis de Markdown para sincronizar las traducciones en función de los elementos de Markdown.
+Para Markdown, puede que sea más importante usar un análisis de Markdown para sincronizar las traducciones en función de los elementos de Markdown.
 
 Pero si no hay bloques de código ni sintaxis especial de Markdown, podemos usar un enfoque basado en párrafos.
 
@@ -34,4 +34,4 @@ Para Markdown, es un poco más complicado. No quiero traducir bloques de código
 
 En unas semanas, voy a implementar esto con Python y Grok porque es un problema real. Necesito abordarlo.
 
-Un diseño se refiere a los archivos de caché. Guardo la caché en un directorio de caché con archivos como `lang.json`, como `zh.json`, etc.
+Un diseño es sobre archivos de caché. Guardo la caché en un directorio de caché con archivos como `lang.json`, como `zh.json`, etc.
