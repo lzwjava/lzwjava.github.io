@@ -40,6 +40,15 @@ But one problem is that if you want to change several files of code together, it
 
 Possibly, we don't need to use number of lines to separate functions or logic. But we better do it to seprate logic to small functions. We do it by naturally sperate them with kind of logic , so they can appear shorter. 
 
+Why we want Software Engineering Optimized For AI? Because AI is powerful, we better do everything optimized for AI , and then let AI to help software engineering as much.
 
+It is possibly not just for code, but for any text too. Suppose we are very peakcy editor, we don't want AI to edit our large of text at once. We want check paragraph by paragraph. But that code is important that we can tolerate minor errors or bugs. For text, we can tolerate because most readers are not so picky.
 
+But code is different for that sometimes, even there is a minor code, it will lead to whole malfunction of the a large project.
+
+For those XML or YAML files, we probably don't need to separate so. Because they are already high structured. 
+
+And for html files. we better do some speratation. Instead of writing hundreds javascript file , and together with hundresds of html, to make it easily exceed 1000 lines of code. We better use import js to do so. And for javascript code, we can use above ways to seprate. 
+
+We want to structure code in some ways to let AI help us easily add , edit, delete and run code. This is the begining. Think of one day, all code can be generated or help fixed by AI easily. The world will be highly digitalized.
 
