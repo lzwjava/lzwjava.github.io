@@ -2,19 +2,19 @@
 audio: false
 lang: en
 layout: post
-title: Basic Electronics I Knew
+title: Basic Electronics I Know
 translated: false
 generated: false
 image: false
 ---
 
-I knew some basic electronics. The `V=IR` means that the voltage equals the current mulitply the resistor. 
+I know some basic electronics. The formula `V=IR` means that voltage equals current multiplied by resistance.
 
-I recently learn stuff like rectifier. What rectifier do is turning the Alternating current to direct current. Alternating current is good for transportation to reduce electricty loss. 
+I recently learned about rectifiers. A rectifier converts Alternating Current (AC) to Direct Current (DC). Alternating Current is preferred for transportation to reduce electricity loss.
 
-the Q = I * r^2, means that as current is large , the Q will be generating a lot of heat.
+The formula Q = I * R^2 means that as current increases, Q will generate a lot of heat.
 
-So why we would have encoder and decoder. Encoder is turning the mulitple input to one input. Decoder is turning one input to multiple output.
+So, why do we have encoders and decoders? An encoder converts multiple inputs into a single output. A decoder converts a single input into multiple outputs.
 
-There is analog curcit and digital curcits. I read the stories about that and how people invented them.
+There are analog circuits and digital circuits. I have read stories about them and how people invented them.
 
