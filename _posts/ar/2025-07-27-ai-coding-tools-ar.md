@@ -4,7 +4,7 @@ generated: false
 image: true
 lang: ar
 layout: post
-title: أراء مهندس متقن حول أدوات برمجة الذكاء الاصطناعي
+title: مهندس متقن يتناول أدوات البرمجة الذكائية
 translated: true
 ---
 
@@ -21,6 +21,8 @@ Another reason is that [Claude Code Router](https://github.com/musistudio/claude
 I keep hearing praise for it. I tried the Gemini CLI in July 2025 but abandoned it after several failed attempts to get it to fix my code.
 
 I also tried Aider, another software agent. I stopped using Cursor after about six months because many of its VSCode-based plugins malfunctioned. Additionally, I don't want to give Cursor much credit since it is built on top of VSCode. As the Copilot plugin in VSCode has recently improved and doesn't lag far behind, I prefer to use it more often.
+
+However, VSCode is built on Electron, an open-source technology. It's challenging to attribute credit to the right team or individual. Considering that many large companies and startups profit from open-source projects, I must focus on my budget and what suits me best. I shouldn't worry too much about giving credit. I prefer using affordable and effective tools.
 
 I briefly experimented with Cline but didn't adopt it.
 
