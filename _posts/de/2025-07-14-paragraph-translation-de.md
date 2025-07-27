@@ -12,9 +12,9 @@ Mein Jekyll-Blog verwendet Markdown, um Absätze zu schreiben. Nach dem Schreibe
 
 Manchmal bearbeite ich nur ein Wort oder einen Absatz, und dann wird der gesamte Text eines Beitrags in die anderen acht Sprachen übersetzt. In diesem Fall ist der Token-Verbrauch hoch. Wenn ich nur den bearbeiteten Absatz erneut übersetze, ist der Token-Verbrauch geringer, insbesondere bei langen Beiträgen.
 
-Ich möchte jedoch weiterhin Markdown verwenden, um meine Ideen festzuhalten. Die Verwendung einer Datenbank zur Pflege und Aktualisierung von Beiträgen ist nicht praktisch. YAML oder JSON könnten ebenfalls zu umständlich sein.
+Ich möchte jedoch weiterhin Markdown verwenden, um meine Ideen festzuhalten. Die Verwendung einer Datenbank zur Pflege und Aktualisierung von Beiträgen ist nicht praktisch. Die Verwendung von YAML oder JSON könnte ebenfalls umständlich sein.
 
-Der Schlüssel liegt darin, die Unterschiede zwischen dem Text vor und nach der Bearbeitung zu identifizieren. Wenn wir einen absatzbasierten Ansatz verwenden, bedeutet dies, den Text mit dem Zeilenumbruch-Charakter "\n" zu teilen.
+Der Schlüssel liegt darin, die Unterschiede zwischen dem Text vor und nach der Bearbeitung zu identifizieren. Wenn wir einen absatzbasierten Ansatz verwenden, bedeutet dies, den Text mit dem Zeilenumbruch-Charakter "\n" zu trennen.
 
 Ich muss wissen, welche Absätze sich nach der Bearbeitung geändert haben und welche nicht. Wir müssen eine eins-zu-eins-Absatzzuordnung zwischen dem Text vor und nach der Bearbeitung herstellen.
 
@@ -28,10 +28,10 @@ Für einen einfachen absatzbasierten Ansatz haben wir zwei Arrays von Absätzen 
 
 Beim Vergleichen eines beliebigen Absatzes in diesen beiden Arrays gibt es zwei mögliche Ergebnisse: Sie sind entweder gleich oder unterschiedlich. Wenn sie unterschiedlich sind, gibt es mehrere Fälle: Beide sind neu hinzugefügt, der linke ist neu hinzugefügt oder der rechte ist neu hinzugefügt.
 
-Ich möchte nur Kosten sparen, daher ziele ich darauf ab, den Token-Verbrauch zu reduzieren. Ich brauche nichts anderes. Ich muss jeden Absatz übersetzen, das Ergebnis zwischenspeichern und beim nächsten Mal für jeden Absatz zuerst nach dem Übersetzungsergebnis suchen. Wenn es nicht existiert, muss ich es erneut übersetzen.
+Ich möchte nur Kosten sparen, daher strebe ich eine Reduzierung des Token-Verbrauchs an. Ich brauche nichts anderes. Ich muss jeden Absatz übersetzen, das Ergebnis zwischenspeichern und beim nächsten Mal für jeden Absatz zuerst nach dem Übersetzungsresultat suchen. Wenn es nicht existiert, muss ich ihn erneut übersetzen.
 
 Für Markdown ist es etwas komplizierter. Ich möchte keine Code-Blöcke übersetzen. Daher können wir eine Markdown-Analysebibliothek verwenden, um Code-Blöcke und normalen Text unterschiedlich zu behandeln.
 
-In ein paar Wochen werde ich dies mit Python und Grok umsetzen, weil es ein reales Problem ist. Ich muss es angehen.
+In ein paar Wochen werde ich dies mit Python und Grok umsetzen, weil es ein echtes Problem ist. Ich muss es angehen.
 
-Eine Gestaltung betrifft Cache-Dateien. Ich speichere den Cache in einem Cache-Verzeichnis mit Dateien wie `lang.json`, z. B. `zh.json` usw.
+Eine Designüberlegung betrifft Cache-Dateien. Ich speichere den Cache in einem Cache-Verzeichnis mit Dateien wie `lang.json`, z. B. `zh.json`, usw.

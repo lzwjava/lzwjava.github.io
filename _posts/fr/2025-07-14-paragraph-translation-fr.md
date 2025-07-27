@@ -12,15 +12,15 @@ Mon blog Jekyll utilise Markdown pour rédiger des paragraphes. Après avoir éc
 
 Parfois, j'édite seulement un mot ou un paragraphe, et ensuite tout le texte d'un article est traduit dans les huit autres langues. Dans ce cas, l'utilisation de tokens est élevée. Si je ne traduis que le paragraphe édité à nouveau, l'utilisation de tokens sera plus faible, surtout pour les longs articles.
 
-Cependant, je veux toujours utiliser Markdown pour enregistrer mes idées. Utiliser une base de données pour maintenir et mettre à jour les articles n'est pas pratique. Utiliser YAML ou JSON pourrait être trop fastidieux également.
+Cependant, je veux toujours utiliser Markdown pour enregistrer mes idées. Utiliser une base de données pour maintenir et mettre à jour les articles n'est pas pratique. Utiliser YAML ou JSON pourrait être trop fastidieux.
 
-La clé est d'identifier les différences entre le texte avant et après l'édition. Si nous utilisons une approche par paragraphe, cela signifie diviser le texte en utilisant le caractère de nouvelle ligne "\n".
+Le point clé est d'identifier les différences entre le texte avant et après l'édition. Si nous utilisons une approche par paragraphe, cela signifie diviser le texte en utilisant le caractère de nouvelle ligne "\n".
 
 Je dois savoir quels paragraphes ont changé et lesquels n'ont pas changé après l'édition. Nous devons établir des correspondances un à un entre les paragraphes du texte avant et après l'édition.
 
-Nous utilisons une approche par paragraphe car nous voulons mettre à jour les traductions faites par les modèles d'IA. Si nous utilisons des phrases, cela pourrait ne pas être aussi précis.
+Nous utilisons une approche par paragraphe car nous voulons mettre à jour les traductions réalisées par les modèles d'IA. Si nous utilisons des phrases, cela pourrait ne pas être aussi précis.
 
-Pour Markdown, il pourrait être plus important d'utiliser un parsing Markdown pour synchroniser les traductions en fonction des éléments Markdown.
+Pour Markdown, il pourrait être plus important d'utiliser un analyseur Markdown pour synchroniser les traductions en fonction des éléments Markdown.
 
 Mais si aucun bloc de code ou syntaxe Markdown spéciale n'est présent, nous pouvons utiliser une approche par paragraphe.
 
@@ -28,9 +28,9 @@ Pour une approche simple par paragraphe, nous avons deux tableaux de paragraphes
 
 Lors de la comparaison de n'importe quel paragraphe dans ces deux tableaux, il y a deux résultats possibles : ils sont identiques ou différents. S'ils sont différents, il y a plusieurs cas : les deux sont nouvellement ajoutés, le gauche est nouvellement ajouté, ou le droit est nouvellement ajouté.
 
-Je veux simplement économiser des coûts, donc je vise à réduire l'utilisation des tokens. Je n'ai besoin de rien d'autre. Je dois simplement traduire chaque paragraphe, mettre en cache le résultat, et la prochaine fois, pour chaque paragraphe, je chercherai d'abord le résultat de la traduction. S'il n'existe pas, alors je devrai le traduire à nouveau.
+Je veux simplement économiser des coûts, donc je vise à réduire l'utilisation des tokens. Je n'ai besoin de rien d'autre. Je dois simplement traduire chaque paragraphe, mettre en cache le résultat, et la prochaine fois, pour chaque paragraphe, je vais d'abord rechercher le résultat de la traduction. Si elle n'existe pas, alors je dois la traduire à nouveau.
 
-Pour Markdown, c'est un peu plus compliqué. Je ne veux pas traduire les blocs de code. Donc, nous pouvons utiliser une bibliothèque de parsing Markdown pour traiter les blocs de code et le texte normal différemment.
+Pour Markdown, c'est un peu plus compliqué. Je ne veux pas traduire les blocs de code. Donc, nous pouvons utiliser une bibliothèque d'analyse Markdown pour traiter les blocs de code et le texte normal différemment.
 
 Dans quelques semaines, je vais implémenter cela avec Python et Grok car c'est un problème réel. Je dois le résoudre.
 
