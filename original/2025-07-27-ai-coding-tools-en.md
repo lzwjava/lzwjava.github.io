@@ -8,7 +8,7 @@ title: A Picky Engineer's Take on AI Coding Tools
 translated: false
 ---
 
-Recently, I successfully ran Claude Code, so I want to share my tool selection journey. I have also collected some [AI tool tips](ai-tips-en) along the way.
+Recently, I successfully ran Claude Code, so I want to share my tool selection journey. I have also collected some [AI Tool Tips](ai-tips-en.md) along the way.
 
 I was quite late to adopt Claude Code.
 
@@ -43,3 +43,6 @@ After a day, I used Claude to fix some code as well. However, I continue to use 
 ![](assets/images/claude/claude-fix.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
 
+{: .centered }
+![](assets/images/claude/vscode-fix.jpg){: .responsive }
+*Source: Self-screenshot*{: .caption }
