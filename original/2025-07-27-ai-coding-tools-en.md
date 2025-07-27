@@ -32,6 +32,8 @@ After using Claude Code to fix this post's grammar, I've found it works well in 
 
 What impressed me most was how Claude Code displays changes - showing before-and-after comparisons similar to git diffs, which makes reviewing edits much easier.
 
+After a day, I used Claude to fix some code as well. However, I continue to use the Copilot plugin with the Grok 3 beta model, as it is simple and easy for me.
+
 {: .centered }
 ![](assets/images/claude/claude-code.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
