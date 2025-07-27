@@ -4,25 +4,25 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Kostenoptimierung bei Übersetzungen mit Absatz-basiertem Markdown
+title: Kostenoptimierung für Übersetzungen mit Absatz-basiertem Markdown
 translated: true
 ---
 
-Mein Jekyll-Blog verwendet Markdown, um Absätze zu schreiben. Nach dem Schreiben auf Englisch verwende ich KI-Tools wie DeepSeek oder Mistral, um in acht weitere Sprachen zu übersetzen. Obwohl diese Tools bereits günstig sind, gibt es noch Verbesserungspotenzial.
+Mein Jekyll-Blog verwendet Markdown, um Absätze zu schreiben. Nach dem Schreiben auf Englisch verwende ich KI-Tools wie DeepSeek oder Mistral, um in acht weitere Sprachen zu übersetzen. Obwohl sie bereits günstig sind, gibt es noch Verbesserungspotenzial.
 
-Manchmal bearbeite ich nur ein Wort oder einen Absatz, und dann wird der gesamte Text eines Beitrags in die anderen acht Sprachen übersetzt. In diesem Fall ist der Token-Verbrauch hoch. Wenn ich nur den bearbeiteten Absatz erneut übersetze, ist der Token-Verbrauch geringer, insbesondere bei langen Beiträgen.
+Manchmal bearbeite ich nur ein Wort oder einen Absatz, und dann wird der gesamte Text eines Beitrags in die anderen acht Sprachen übersetzt. In diesem Fall ist der Token-Verbrauch hoch. Wenn ich nur den bearbeiteten Absatz erneut übersetze, ist der Token-Verbrauch geringer, besonders bei langen Beiträgen.
 
-Ich möchte jedoch weiterhin Markdown verwenden, um meine Ideen festzuhalten. Die Verwendung einer Datenbank zur Pflege und Aktualisierung von Beiträgen ist nicht praktisch. Die Verwendung von YAML oder JSON könnte ebenfalls zu umständlich sein.
+Ich möchte jedoch weiterhin Markdown verwenden, um meine Ideen festzuhalten. Die Verwendung einer Datenbank zur Pflege und Aktualisierung von Beiträgen ist nicht praktisch. YAML oder JSON könnten ebenfalls zu umständlich sein.
 
-Der Schlüssel liegt darin, die Unterschiede zwischen dem Text vor und nach der Bearbeitung zu identifizieren. Wenn wir einen absatzbasierten Ansatz verwenden, bedeutet dies, den Text mit dem Zeilenumbruch-Charakter "\n" zu teilen.
+Der Schlüssel liegt darin, die Unterschiede zwischen dem Text vor und nach der Bearbeitung zu identifizieren. Wenn wir einen absatzbasierten Ansatz verwenden, bedeutet das, den Text mit dem Zeilenumbruch-Character "\n" zu teilen.
 
-Ich muss wissen, welche Absätze sich nach der Bearbeitung geändert haben und welche nicht. Wir müssen eine eins-zu-eins-Abbildung der Absätze zwischen dem Text vor und nach der Bearbeitung herstellen.
+Ich muss wissen, welche Absätze sich nach der Bearbeitung geändert haben und welche nicht. Wir müssen eine eins-zu-eins-Absatzzuordnung zwischen dem Text vor und nach der Bearbeitung herstellen.
 
-Wir verwenden einen absatzbasierten Ansatz, weil wir die von KI-Modellen erstellten Übersetzungen aktualisieren möchten. Wenn wir Sätze verwenden, könnte dies möglicherweise nicht so genau sein.
+Wir verwenden einen absatzbasierten Ansatz, weil wir die von KI-Modellen erstellten Übersetzungen aktualisieren möchten. Wenn wir Sätze verwenden, könnte das möglicherweise nicht so genau sein.
 
 Für Markdown könnte es wichtiger sein, eine Markdown-Analyse zu verwenden, um Übersetzungen basierend auf Markdown-Elementen zu synchronisieren.
 
-Wenn es jedoch keine Code-Blöcke oder spezielle Markdown-Syntax gibt, können wir einen absatzbasierten Ansatz verwenden.
+Aber wenn keine Code-Blöcke oder spezielle Markdown-Syntax vorhanden sind, können wir einen absatzbasierten Ansatz verwenden.
 
 Für einen einfachen absatzbasierten Ansatz haben wir zwei Arrays von Absätzen und müssen wissen, wie sie übereinstimmen.
 
@@ -34,4 +34,4 @@ Für Markdown ist es etwas komplizierter. Ich möchte keine Code-Blöcke überse
 
 In ein paar Wochen werde ich dies mit Python und Grok umsetzen, weil es ein echtes Problem ist. Ich muss es angehen.
 
-Ein Design betrifft Cache-Dateien. Ich speichere den Cache in einem Cache-Verzeichnis mit Dateien wie `lang.json`, z. B. `zh.json` usw.
+Eine Gestaltung betrifft Cache-Dateien. Ich speichere den Cache in einem Cache-Verzeichnis mit Dateien wie `lang.json`, zum Beispiel `zh.json` usw.
