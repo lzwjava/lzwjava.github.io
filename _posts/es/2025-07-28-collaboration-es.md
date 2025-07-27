@@ -18,16 +18,22 @@ En proyectos personales, uno posee y maneja todo sin necesidad de colaboración.
 
 En un equipo pequeño de pocas personas, las responsabilidades se dividen. Por ejemplo, una persona podría encargarse del diseño mientras otra se enfoca en el desarrollo. Alternativamente, una podría ser responsable del backend y otra del frontend.
 
-En grandes empresas, a menudo hay preocupación por la salida de empleados, lo que crea vacíos de conocimiento en los proyectos. Una persona nueva que asume responsabilidades puede necesitar meses o incluso un año para ponerse al día, ralentizando o estancando el proyecto.
+En grandes empresas, a menudo hay preocupación por la salida de empleados, lo que crea vacíos de conocimiento en los proyectos. Una persona nueva que asume responsabilidades puede necesitar meses o incluso un año para ponerse al día, lo que ralentiza o detiene el proyecto.
 
 Sin embargo, en la era de la IA, creo que deberíamos adaptar nuestro enfoque. El concepto del "mito del hombre-mes" sigue siendo válido.
 
-Abogo fuertemente por la colaboración natural. Para beneficio del equipo, a medida que avanza un proyecto, ciertos hábitos de colaboración se forman naturalmente dentro del equipo.
+Abogo fuertemente por la colaboración natural. Para beneficio del equipo, a medida que avanza el proyecto, ciertos hábitos de colaboración se forman naturalmente dentro del equipo.
 
 Esto es similar a la modularización natural del código. Después de cierto desarrollo, podríamos tener 50 clases de Java, que luego organizamos en paquetes. De manera similar, con 100 archivos de Python, usamos módulos para gestionarlos.
 
 La separación de tareas debe considerar las fortalezas de cada persona. En la era de la IA, los individuos pueden destacar en múltiples áreas. Por lo tanto, deberíamos replantearnos cómo dividir grandes tareas entre los miembros del equipo.
 
-Creo que cada miembro del equipo debería ser responsable de una tarea relativamente grande a la vez. Este enfoque minimiza la necesidad de comunicación frecuente o alineación con otros. La tarea grande debe ser relativamente independiente, permitiendo que las personas busquen ayuda de miembros senior del equipo con más experiencia cuando sea necesario. De esta manera, más personas pueden estar involucradas, pero la tarea sigue siendo principalmente propiedad de la persona asignada.
+Creo que cada miembro del equipo debería ser responsable de una tarea relativamente grande a la vez. Este enfoque minimiza la necesidad de comunicación o alineación frecuente con otros. La tarea grande debe ser relativamente independiente, permitiendo que las personas busquen ayuda de miembros senior del equipo que tengan más experiencia cuando sea necesario. De esta manera, más personas pueden estar involucradas, pero la tarea sigue siendo principalmente propiedad de la persona asignada.
 
-Si dos personas colaboran para editar cada línea de código o trabajar en cada detalle juntas, puede ser engorroso. Necesitarían alinear sus acciones en cada paso, lo cual es un desafío. En informática, hay numerosas formas de alcanzar un objetivo. Siempre que el resultado sea de buena calidad y cumpla con el objetivo, deberíamos aceptar diferentes métodos o herramientas, ya sea un IDE específico, cliente SQL, scripts de Python o procesos manuales.
+Si dos personas colaboran para editar cada línea de código o trabajar en cada detalle juntas, puede ser engorroso. Necesitarían alinear sus acciones en cada paso, lo cual es desafiante. En informática, hay numerosas formas de alcanzar un objetivo. Siempre que el resultado sea de buena calidad y cumpla con el objetivo, deberíamos aceptar diferentes métodos o herramientas, ya sea un IDE específico, un cliente SQL, scripts de Python o procesos manuales.
+
+Otra mejora en la colaboración es asegurar que los registros de trabajo sean lo más transparentes posible. En mi trabajo reciente, compartí mis scripts, registros y notas con los miembros del equipo. Puedo compartir las consultas que he realizado a Copilot, los problemas que he encontrado en el camino y los registros relevantes. Esta transparencia facilita la comunicación con los miembros del equipo.
+
+Al hacer esto, es similar a grabar mi pantalla de computadora mientras realizo tareas. Aunque estamos utilizando texto aquí para compartir información, se logra el objetivo de una mejor comunicación.
+
+¿Por qué falla la colaboración? ¿Qué tipos de escenarios llevan a que la colaboración no funcione? Una razón es la expectativa desajustada entre los miembros del equipo. El posible resultado es que el proyecto se retrase o el trabajo no cumpla con los requisitos de calidad.
