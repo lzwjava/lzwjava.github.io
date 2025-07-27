@@ -25,7 +25,7 @@ I have realized that in life, there are many products whose full potential or fu
 When selecting the title of this essay, I considered whether I should include "EV" in it. Yes, I should. In a gas-powered car, it is not easy to work inside due to the loud engine noise and fuel costs. However, an EV is perfect for working in the car.
 
 {: .centered }
-![](assets/images/car/car.jpg)
+![](assets/images/car/car.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
 
 {: .centered }
