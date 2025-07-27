@@ -26,7 +26,7 @@ When selecting the title of this essay, I considered whether I should include "E
 
 
 {: .centered }
-![](assets/images/car/car.jpg)
+![](assets/images/car/car.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
 
 {: .centered }
