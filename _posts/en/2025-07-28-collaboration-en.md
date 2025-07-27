@@ -27,3 +27,7 @@ I strongly advocate for natural collaboration. For the team's benefit, as a proj
 This is akin to the natural modularization of code. After some development, we might have 50 Java classes, which we then organize into packages. Similarly, with 100 Python files, we use modules to manage them.
 
 Task separation should consider each person's strengths. In the AI era, individuals can excel in multiple areas. Therefore, we should rethink how to divide large tasks among team members.
+
+I believe that each team member should be responsible for a relatively large task at a time. This approach minimizes the need for frequent communication or alignment with others. The large task should be relatively independent, allowing individuals to seek help from senior team members who have more expertise when needed. This way, more people can be involved, but the task remains primarily owned by the assigned person.
+
+If two people collaborate to edit every line of code or work on every detail together, it can be cumbersome. They would need to align their actions at every step, which is challenging. In computing, there are numerous ways to achieve a goal. As long as the result is of good quality and meets the objective, we should accept different methods or tools, whether it's a specific IDE, SQL client, Python scripts, or manual processes.
