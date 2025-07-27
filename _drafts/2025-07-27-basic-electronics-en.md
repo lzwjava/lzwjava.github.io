@@ -18,3 +18,5 @@ So, why do we have encoders and decoders? An encoder converts multiple inputs in
 
 There are analog circuits and digital circuits. I have read stories about them and how people invented them.
 
+Analog circuits is about turning continuous singal. Digital curcuits are using the discrete singal to indicate. 
+
