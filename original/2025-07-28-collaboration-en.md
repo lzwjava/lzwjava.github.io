@@ -32,3 +32,8 @@ I believe that each team member should be responsible for a relatively large tas
 
 If two people collaborate to edit every line of code or work on every detail together, it can be cumbersome. They would need to align their actions at every step, which is challenging. In computing, there are numerous ways to achieve a goal. As long as the result is of good quality and meets the objective, we should accept different methods or tools, whether it's a specific IDE, SQL client, Python scripts, or manual processes.
 
+Another improvement in collaboration is ensuring that work records are as transparent as possible. In my recent work, I shared my scripts, logs, and notes with team members. I can share the queries I have asked Copilot, the problems I encountered along the way, and the relevant logs. This transparency makes it easier to communicate with team members.
+
+By doing this, it is akin to recording my computer screen while performing tasks. Though we are using text here to share information, the goal of better communication is achieved.
+
+Why does collaboration fail? What kinds of scenarios lead to collaboration not working? One reason is mismatched expectations among team members. The possible result is that the project gets delayed or the work fails to meet quality requirements.
