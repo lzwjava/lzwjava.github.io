@@ -80,6 +80,19 @@ def translate_text(text, target_lang, model_provider, is_title=False):
     )
     return response.choices[0].message.content.strip() if is_title else response.choices[0].message.content
 
+def load_cache_for_lang(target_lang):
+    os.makedirs(CACHE_DIR, exist_ok=True)
+    cache_file = os.path.join(CACHE_DIR, f"{target_lang}.json")
+    cache = {}
+    if os.path.exists(cache_file):
+        with open(cache_file, 'r', encoding='utf-8') as cf:
+            cache = json.load(cf)
+    return cache, cache_file
+
+def save_cache_for_lang(cache, cache_file):
+    with open(cache_file, 'w', encoding='utf-8') as cf:
+        json.dump(cache, cf, ensure_ascii=False, indent=4)
+
 def translate_markdown_file(input_file, output_file, target_lang, model_provider):
     with open(input_file, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -100,23 +113,16 @@ def translate_markdown_file(input_file, output_file, target_lang, model_provider
             out.write(content)
         return
     
-    os.makedirs(CACHE_DIR, exist_ok=True)
-    cache_filename = basename.replace(f"-{orig_lang}.md", ".json")
-    cache_file = os.path.join(CACHE_DIR, cache_filename)
-    
-    cache = {}
-    if os.path.exists(cache_file):
-        with open(cache_file, 'r', encoding='utf-8') as cf:
-            cache = json.load(cf)
+    # Load language-specific cache
+    cache, cache_file = load_cache_for_lang(target_lang)
     
     # Translate title
     original_title = fm.get('title', '')
-    title_hash = hashlib.sha256(original_title.encode('utf-8')).hexdigest()
-    if title_hash in cache and target_lang in cache[title_hash]:
-        translated_title = cache[title_hash][target_lang]
+    if original_title in cache:
+        translated_title = cache[original_title]
     else:
         translated_title = translate_text(original_title, target_lang, model_provider, is_title=True)
-        cache.setdefault(title_hash, {})[target_lang] = translated_title
+        cache[original_title] = translated_title
     
     # Translate content blocks using thread pool
     blocks = get_blocks(md_content)
@@ -128,27 +134,26 @@ def translate_markdown_file(input_file, output_file, target_lang, model_provider
         if block_type in ('code', 'empty'):
             translated_blocks.append(block_content)
         elif block_type == 'text':
-            block_hash = hashlib.sha256(block_content.encode('utf-8')).hexdigest()
-            if block_hash in cache and target_lang in cache[block_hash]:
-                translated_blocks.append(cache[block_hash][target_lang])
+            if block_content in cache:
+                translated_blocks.append(cache[block_content])
             else:
-                text_blocks_to_translate.append((block_content, block_hash))
+                text_blocks_to_translate.append(block_content)
                 block_indices.append(idx)
                 translated_blocks.append(None)  # Placeholder
     
     if text_blocks_to_translate:
         with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
-            futures = {executor.submit(translate_text, content, target_lang, model_provider): (idx, hash_val) 
-                       for idx, (content, hash_val) in zip(block_indices, text_blocks_to_translate)}
+            futures = {executor.submit(translate_text, content, target_lang, model_provider): (idx, content) 
+                       for idx, content in zip(block_indices, text_blocks_to_translate)}
             for future in concurrent.futures.as_completed(futures):
-                idx, hash_val = futures[future]
+                idx, original_content = futures[future]
                 try:
                     translated = future.result()
                     translated_blocks[idx] = translated
-                    cache.setdefault(hash_val, {})[target_lang] = translated
+                    cache[original_content] = translated
                 except Exception as e:
                     print(f"Translation failed for block at index {idx}: {e}")
-                    translated_blocks[idx] = text_blocks_to_translate[block_indices.index(idx)][0]  # Fallback to original
+                    translated_blocks[idx] = text_blocks_to_translate[block_indices.index(idx)]  # Fallback to original
     
     translated_md = ''.join(translated_blocks)
     
@@ -160,9 +165,8 @@ def translate_markdown_file(input_file, output_file, target_lang, model_provider
     with open(output_file, 'w', encoding='utf-8') as out:
         out.write(output_content)
     
-    # Save cache
-    with open(cache_file, 'w', encoding='utf-8') as cf:
-        json.dump(cache, cf, ensure_ascii=False, indent=4)
+    # Save cache for this language
+    save_cache_for_lang(cache, cache_file)
 
 def get_output_filename(filename, target_lang):
     orig_langs = ['en', 'zh', 'ja']
