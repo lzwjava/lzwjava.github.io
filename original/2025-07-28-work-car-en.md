@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Working in a EV Car
+title: Working in an EV Car
 translated: false
 generated: false
 image: false
