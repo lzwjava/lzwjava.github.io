@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Hard to Change Habit
+title: Hard to Change a Habit
 translated: false
 generated: false
 image: false
