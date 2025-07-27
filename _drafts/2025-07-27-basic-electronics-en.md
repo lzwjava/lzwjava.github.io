@@ -20,3 +20,4 @@ There are analog circuits and digital circuits. I have read stories about them a
 
 Analog circuits is about turning continuous singal. Digital curcuits are using the discrete singal to indicate. 
 
+There is BJT , bipolar junction transistor. bipolor means N and P, Negative and Positive. Transistor works like a switch.
