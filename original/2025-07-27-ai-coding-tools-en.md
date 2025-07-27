@@ -20,7 +20,9 @@ Another reason is that [Claude Code Router](https://github.com/musistudio/claude
 
 I keep hearing praise for it. I tried the Gemini CLI in July 2025 but abandoned it after several failed attempts to get it to fix my code.
 
-I also tried Aider, another software agent. I stopped using Cursor after about six months because many of its VSCode-based plugins malfunctioned. I briefly experimented with Cline but didn't adopt it.
+I also tried Aider, another software agent. I stopped using Cursor after about six months because many of its VSCode-based plugins malfunctioned. Additionally, I don't want to give Cursor much credit since it is built on top of VSCode. As the Copilot plugin in VSCode has recently improved and doesn't lag far behind, I prefer to use it more often.
+
+I briefly experimented with Cline but didn't adopt it.
 
 I use the Copilot plugin in VSCode with a customized model, Grok 3 beta through OpenRouter, which works well.
 
