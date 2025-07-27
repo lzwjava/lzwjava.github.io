@@ -117,20 +117,37 @@ def translate_markdown_file(input_file, output_file, target_lang, model_provider
         translated_title = translate_text(original_title, target_lang, model_provider, is_title=True)
         cache.setdefault(title_hash, {})[target_lang] = translated_title
     
-    # Translate content blocks
+    # Translate content blocks using thread pool
     blocks = get_blocks(md_content)
     translated_blocks = []
-    for block_type, block_content in blocks:
+    text_blocks_to_translate = []
+    block_indices = []
+    
+    for idx, (block_type, block_content) in enumerate(blocks):
         if block_type in ('code', 'empty'):
             translated_blocks.append(block_content)
         elif block_type == 'text':
             block_hash = hashlib.sha256(block_content.encode('utf-8')).hexdigest()
             if block_hash in cache and target_lang in cache[block_hash]:
-                translated = cache[block_hash][target_lang]
+                translated_blocks.append(cache[block_hash][target_lang])
             else:
-                translated = translate_text(block_content, target_lang, model_provider)
-                cache.setdefault(block_hash, {})[target_lang] = translated
-            translated_blocks.append(translated)
+                text_blocks_to_translate.append((block_content, block_hash))
+                block_indices.append(idx)
+                translated_blocks.append(None)  # Placeholder
+    
+    if text_blocks_to_translate:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
+            futures = {executor.submit(translate_text, content, target_lang, model_provider): (idx, hash_val) 
+                       for idx, (content, hash_val) in zip(block_indices, text_blocks_to_translate)}
+            for future in concurrent.futures.as_completed(futures):
+                idx, hash_val = futures[future]
+                try:
+                    translated = future.result()
+                    translated_blocks[idx] = translated
+                    cache.setdefault(hash_val, {})[target_lang] = translated
+                except Exception as e:
+                    print(f"Translation failed for block at index {idx}: {e}")
+                    translated_blocks[idx] = text_blocks_to_translate[block_indices.index(idx)][0]  # Fallback to original
     
     translated_md = ''.join(translated_blocks)
     
@@ -257,23 +274,19 @@ def main():
         print(f"Total Markdown files to process: {total_files_to_process}")
         return
     
-    with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
-        futures = []
-        for filename, lang in changed_files:
-            input_file = filename
-            output_dir = f"_posts/{lang}"
-            os.makedirs(output_dir, exist_ok=True)
-            output_filename = get_output_filename(os.path.basename(filename), lang)
-            output_file = os.path.join(output_dir, output_filename)
-            print(f"Submitting translation job for {filename} to {lang}...")
-            future = executor.submit(translate_markdown_file, input_file, output_file, lang, model)
-            futures.append(future)
-        for future in concurrent.futures.as_completed(futures):
-            try:
-                future.result()
-            except Exception as e:
-                print(f"A thread failed: {e}")
-    print(f"Total Markdown files to process: {total_files_to_process}")
+    for filename, lang in changed_files:
+        input_file = filename
+        output_dir = f"_posts/{lang}"
+        os.makedirs(output_dir, exist_ok=True)
+        output_filename = get_output_filename(os.path.basename(filename), lang)
+        output_file = os.path.join(output_dir, output_filename)
+        print(f"Translating {filename} to {lang}...")
+        try:
+            translate_markdown_file(input_file, output_file, lang, model)
+        except Exception as e:
+            print(f"Failed to translate {filename} to {lang}: {e}")
+    
+    print(f"Total Markdown files processed: {total_files_to_process}")
 
 if __name__ == "__main__":
     main()
