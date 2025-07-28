@@ -1,12 +1,17 @@
 import os
 import subprocess
+import platform
 
 from create_note_from_clipboard import create_note
 
 def gpa():
     # Determine the shell command based on the operating system
-    if os.name != "nt":
-        # For Linux/macOS, use zsh with login shell to load environment variables
+    system = platform.system()
+    if system == "Linux":
+        # For Linux, use bash with login shell to load environment variables
+        shell_command = "bash -l -c 'python ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
+    elif system == "Darwin":
+        # For macOS, use zsh with login shell to load environment variables
         shell_command = "zsh -l -c 'python ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
     else:
         # For Windows, use cmd.exe to run the Python script
