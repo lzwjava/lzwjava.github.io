@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Programming Langauge in AI Era
+title: Programming Langauges in AI Era
 translated: false
 generated: false
 ---
@@ -53,5 +53,19 @@ There will a lot of startup due to AI. And startup itself like to do new things.
 
 In algoritm competition, will the programming language faviourite change? The C++ has dominated in this sector for decades. And in the actual algorithm competiition, you can't use AI. But I think that for AI era, there will be les people do that. 
 
-As those people are very good at programming, and there are so many opportunities due to AI, why won't more people do the actual prodcuts for users intead of practicing algorithm problems?
+As those people are very good at programming, and there are so many opportunities due to AI, why won't more people do the actual prodcuts for users intead of practicing algorithm problems? Even the GOAT of algoritm competiion, Gennedy Korovitch choosed to join Devin. 
+
+But algorithm competion can be relex or a retiring hobby for those smart programmers. IT is just like chess or basketball. People do it because they like it or need it instead of other reasons. A lot of people play basketball in their 30s, 40s. They probably want to it do health reason. They probably want to do it to make life more fun.
+
+And for iOS and Android section, it is Java, Kotlin, Swift, Objective-C. They won't have significant change due to AI. Because there are limited choices. And in the end user side, the performance requirement is not so high. And due to reason Google and Apple have a very high control about that, if Google and Apple doesn't change, the programmers won't change. 
+
+But for servers, there are just too many of choices. Those languages that are more AI friendly will win. 
+
+The procedure programming langugaes will win more than the object orientied languages. Procedure are direct and easily to be generetd by AI while OOP langauges have many nested level or design patterns.
+
+Will there more programming langauges because of AI? I think it will. The Zed lang and Ocaml will have more users. LLM/AI is very easy to learn patterns. So it is easy to rewritten projects with another languages. 
+
+So programming languages will have more comnpete in the future. Those actually good at performance, syntax, compiler quality itself will inherently become more popular. The compeition is just like LLMs. Those are inherently good like Claude and DeepSeek become popular. 
+
+
 
