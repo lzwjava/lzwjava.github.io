@@ -40,3 +40,4 @@ If they are very useful, big companies will adopt them just like AI chatbots. Ot
 
 Working as manual AI agents is sometimes unavoidable. The job has other benefits besides lacking advanced AI technology. It is not easy to find good jobs, too. So in this case, it happens to give us space to use our traditional wisdom to make the most use of AI chatbots.
 
+And it means that we can organize and accumulate our prompts, to make it like system prompt for AI chatbots, like those prompts of Claude or Grok that has been hacked to see. 
