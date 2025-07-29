@@ -67,5 +67,7 @@ Will there more programming langauges because of AI? I think it will. The Zed la
 
 So programming languages will have more comnpete in the future. Those actually good at performance, syntax, compiler quality itself will inherently become more popular. The compeition is just like LLMs. Those are inherently good like Claude and DeepSeek become popular. 
 
+What if AI become very and very powerful, we don't need to learn programming any more. That have long ways to go. Suppose what if we have very big projects that have 1000 java files. AI probably need 10 years to perform tasks on that easily.
+
 
 
