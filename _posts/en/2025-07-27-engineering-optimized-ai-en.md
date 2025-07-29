@@ -12,9 +12,9 @@ In this blog, I utilized hundreds of scripts to assist with translation, playgro
 
 I don't rely much on Python module functionality, nor do I want to structure code like a large Java Spring project.
 
-I worked as a contractor for several banking projects in recent years. I have observed impressive banking architecture, microservices, effective multi-country design to eliminate duplication as much as possible, a robust fundamental framework built on top of Spring, and strong governance with centralized configuration.
+I have worked on many software projects throughout my career. I have observed impressive banking architectures, microservices, effective multi-country designs that minimize duplication, robust foundational frameworks built on top of Spring, and strong governance with centralized configuration.
 
-While their banking architecture is impressive, if we were to start today, I would consider optimizing for LLM/AI. This would involve better context engineering, improved separation of contexts, and prioritizing AI-first thinking over human-centric design. Although Spring offers multiple levels and good abstraction, it can be challenging for LLM/AI to navigate.
+While these banking architectures are impressive, if we were to start today, I would consider optimizing for LLMs and AI. This would involve better context engineering, improved separation of concerns, and prioritizing AI-first thinking over human-centric design. Although Spring offers multiple layers and good abstraction, it can be challenging for LLMs and AI to navigate.
 
 I believe we should aim for flatter structures, similar to a flat organization. This means using just two levels: the first level calls the second level. In a function, it's better to call another 50 functions directly rather than having 50 nested levels or stacks. AI/LLM struggle to judge or infer overly complex, nested structures, but they excel at handling smaller functions of 100 to 200 lines of code. Python is well-suited for calling and importing from other files.
 
