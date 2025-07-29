@@ -10,15 +10,15 @@ translated: true
 
 Les agents IA doivent être exécutés automatiquement avec du code. Maintenant, le titre de cet essai est "Agent IA manuel". Vous pourriez penser que je plaisante, mais ce n'est pas le cas.
 
-La raison pour laquelle je parle d'"agents IA manuels" est que pour les grandes entreprises, l'adoption de la technologie est lente en raison des préoccupations liées à la sécurité des données et des considérations à long terme.
+La raison pour laquelle je dis "agent IA manuel" est que pour les grandes entreprises, l'adoption de la technologie est lente en raison des préoccupations de sécurité des données et des considérations à long terme.
 
-Il existe beaucoup de nouvelles technologies sur le marché ; qui sait ce qui va durer ou ce qui va disparaître rapidement.
+Il y a beaucoup de nouvelles technologies sur le marché ; qui sait ce qui va durer ou ce qui va disparaître rapidement.
 
-Elles ont également des préoccupations en matière de sécurité des données. Typiquement, elles veulent s'associer avec de grandes marques dont les politiques de données sont strictes et surveillées par le public. C'est pourquoi Microsoft est devenu un partenaire de premier plan parmi les entreprises du Fortune 500. D'autres entreprises utilisent leurs outils Teams, Microsoft Office 365, Azure et Copilot.
+Elles ont également des préoccupations de sécurité des données. Typiquement, elles veulent s'associer avec de grandes marques dont les politiques de données sont strictes et surveillées par le public. C'est pourquoi Microsoft est devenu un partenaire de premier plan parmi les entreprises du Fortune 500. D'autres entreprises utilisent leurs outils Teams, Microsoft Office 365, Azure et Copilot.
 
-Cependant, que se passe-t-il si les grandes entreprises ne fournissent pas à leurs employés des API de LLM à utiliser ? Nous devons réfléchir à la manière de travailler en tant qu'agents IA manuels.
+Cependant, que se passe-t-il si les grandes entreprises ne fournissent pas à leurs employés des API de LLM à utiliser ? Nous devons réfléchir à la manière de travailler comme des agents IA manuels.
 
-Cela signifie que nous allons utiliser beaucoup d'outils pour travailler, de manière similaire à l'utilisation d'outils ou à l'appel de fonctions dans ces API. Nous ferons notre propre ingénierie de prompts ou d'ingénierie de contexte.
+Cela signifie que nous utiliserons beaucoup d'outils pour travailler, similaires à l'utilisation d'outils ou à l'appel de fonctions dans ces API. Nous ferons notre propre ingénierie de prompts ou d'ingénierie de contexte.
 
 Au lieu d'utiliser Claude Code ou Manus pour effectuer une tâche complexe, nous pouvons effectuer nous-mêmes des tâches avec un simple chatbot IA.
 
@@ -39,3 +39,5 @@ Travailler comme un agent IA manuel a donc ses avantages. Cependant, la technolo
 Si elles sont très utiles, les grandes entreprises les adopteront, tout comme les chatbots IA. Sinon, elles ne pourront pas rivaliser avec les entreprises qui les ont adoptées, pas seulement les autres grandes entreprises, mais aussi les petites startups. Parce que l'IA est si puissante maintenant, une startup avec une dizaine d'employés peut battre celles qui en ont 1 000.
 
 Travailler comme des agents IA manuels est parfois inévitable. Le travail a d'autres avantages en plus de l'absence de technologie IA avancée. Ce n'est pas facile de trouver de bons emplois non plus. Donc, dans ce cas, cela nous donne l'espace d'utiliser notre sagesse traditionnelle pour tirer le meilleur parti des chatbots IA.
+
+Et cela signifie que nous pouvons organiser et accumuler nos prompts, pour les rendre comme des prompts système pour les chatbots IA, comme ceux de Claude ou Grok qui ont été piratés pour être vus.
