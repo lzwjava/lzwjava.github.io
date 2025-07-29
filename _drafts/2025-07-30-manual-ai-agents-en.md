@@ -24,7 +24,17 @@ Instead of using Claude Code or Manus to do a complex task, we may perform tasks
 
 AspectJ is good for that it uses AOP programming to intercept methods. Filter in Spring is also good for that capture the logs of HTTP Requests. Logger in Log4j is good to redirect some specific logs to a file. The Intellij IDEA is good to have function to export objects as text. 
 
+The SQL clients is good for that it can easily export cvs or excel of rows. The git diff is good for that it can give you comparision text.
+
 They all help you provide better context for AI chatbots. And AI chatbots also can help a lot of python scripts to perform tasks.
 
+For being an effective AI agent, it means it will use a lot of effective tools to help to do tasks, no matter simple or complex.
 
+Without APIs of LLM/AI chatbots, that means you need to copy text into the chatbots. It is a little tedious than directly calling for AI. But good news is that you can select context or prompt more carefully. 
+
+So you don't need to ask AI chatbots for many times like those automatical AI agents. You can carefully select the tools that you will use .
+
+So working like a maunal AI agent has its benifit. However, AI agents technology evovles fast and show its potential to the world. 
+
+If they are very useful, big companies will adopt them just like AI Chatbots. Otherwise, they can't compete with other companies that have adopted, not just other big , but that other small startup. Because AI is so powerful now. A startup with tens of employees may beat those with 1000 employees.
 
