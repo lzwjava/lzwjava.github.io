@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: Beyond Expectation
+title: Beyond Expectations
 translated: false
 generated: false
 image: false
