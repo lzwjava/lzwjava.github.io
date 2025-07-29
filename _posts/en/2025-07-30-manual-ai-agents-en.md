@@ -10,7 +10,7 @@ translated: false
 
 AI Agents should be automatically run with code. Now, the title of this essay is "Manual AI Agent." You might think I am kidding, but I am not.
 
-The reason I say "manual AI agents" is that for big companies, technology adoption is slow due to security data concerns and long-term considerations.
+The reason I say "manual AI agent" is that for big companies, technology adoption is slow due to security data concerns and long-term considerations.
 
 There are a lot of new technologies in the market; who knows what will last or what will disappear quickly.
 
