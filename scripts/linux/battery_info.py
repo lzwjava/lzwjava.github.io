@@ -1,6 +1,13 @@
 import psutil
 import os
-import time
+import glob
+
+def find_battery_path():
+    """Find the battery directory in /sys/class/power_supply."""
+    battery_paths = glob.glob('/sys/class/power_supply/BAT*')
+    if not battery_paths:
+        return None
+    return battery_paths[0]  # Return the first battery found (e.g., BAT0 or BAT1)
 
 def get_battery_info():
     try:
@@ -13,7 +20,7 @@ def get_battery_info():
 
         # Battery percentage
         percent = battery.percent
-        print(f"Battery Percentage: {percent}%")
+        print(f"Battery Percentage: {percent:.2f}%")
 
         # Check if battery is charging
         is_charging = battery.power_plugged
@@ -28,13 +35,34 @@ def get_battery_info():
             print(f"Estimated Time Remaining: {hours} hours, {minutes} minutes")
         elif is_charging:
             # Try to estimate time to full charge using sysfs
+            battery_path = find_battery_path()
+            if not battery_path:
+                print("Cannot estimate time to full charge (no battery found in sysfs).")
+                return
+
             try:
-                # Read battery info from sysfs
-                with open('/sys/class/power_supply/BAT0/charge_now', 'r') as f:
+                # Check for charge or energy-based files
+                charge_now_file = os.path.join(battery_path, 'charge_now')
+                energy_now_file = os.path.join(battery_path, 'energy_now')
+                charge_full_file = os.path.join(battery_path, 'charge_full')
+                energy_full_file = os.path.join(battery_path, 'charge_full_design')
+                current_now_file = os.path.join(battery_path, 'current_now')
+
+                # Determine which files to use (charge or energy)
+                if os.path.exists(charge_now_file) and os.path.exists(charge_full_file):
+                    now_file, full_file = charge_now_file, charge_full_file
+                elif os.path.exists(energy_now_file) and os.path.exists(energy_full_file):
+                    now_file, full_file = energy_now_file, energy_full_file
+                else:
+                    print("Cannot estimate time to full charge (charge/energy files not found).")
+                    return
+
+                # Read battery data
+                with open(now_file, 'r') as f:
                     charge_now = int(f.read().strip())
-                with open('/sys/class/power_supply/BAT0/charge_full', 'r') as f:
+                with open(full_file, 'r') as f:
                     charge_full = int(f.read().strip())
-                with open('/sys/class/power_supply/BAT0/current_now', 'r') as f:
+                with open(current_now_file, 'r') as f:
                     current_now = int(f.read().strip())
 
                 if current_now > 0:
@@ -45,8 +73,10 @@ def get_battery_info():
                     print(f"Estimated Time to Full Charge: {hours} hours, {minutes} minutes")
                 else:
                     print("Cannot estimate time to full charge (current_now is 0).")
+            except PermissionError:
+                print("Cannot estimate time to full charge (permission denied). Try running with sudo.")
             except FileNotFoundError:
-                print("Cannot estimate time to full charge (sysfs files not found).")
+                print(f"Cannot estimate time to full charge (sysfs files not found in {battery_path}).")
             except Exception as e:
                 print(f"Error estimating time to full charge: {e}")
         else:
