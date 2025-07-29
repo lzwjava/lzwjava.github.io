@@ -41,49 +41,33 @@ def get_battery_info():
                 return
 
             try:
-                # Check for charge or energy-based files
-                now_file = None
-                full_file = None
-                current_file = os.path.join(battery_path, 'current_now')
-
-                # Try charge-based files
-                charge_now_file = os.path.join(battery_path, 'charge_now')
-                charge_full_file = os.path.join(battery_path, 'charge_full')
-                if os.path.exists(charge_now_file) and os.path.exists(charge_full_file):
-                    now_file, full_file = charge_now_file, charge_full_file
-
-                # Fallback to energy-based files
+                # Use energy-based files
                 energy_now_file = os.path.join(battery_path, 'energy_now')
                 energy_full_file = os.path.join(battery_path, 'energy_full')
-                if os.path.exists(energy_now_file) and os.path.exists(energy_full_file):
-                    now_file, full_file = energy_now_file, energy_full_file
+                power_now_file = os.path.join(battery_path, 'power_now')
 
-                # Fallback to design capacity if energy_full is missing
-                energy_full_design_file = os.path.join(battery_path, 'energy_full_design')
-                if now_file == energy_now_file and os.path.exists(energy_full_design_file):
-                    full_file = energy_full_design_file
-
-                if not (now_file and full_file and os.path.exists(current_file)):
+                # Verify required files exist
+                if not (os.path.exists(energy_now_file) and os.path.exists(energy_full_file) and os.path.exists(power_now_file)):
                     print(f"Cannot estimate time to full charge (required files not found in {battery_path}).")
                     print(f"Available files: {', '.join(os.listdir(battery_path))}")
                     return
 
                 # Read battery data
-                with open(now_file, 'r') as f:
-                    charge_now = int(f.read().strip())
-                with open(full_file, 'r') as f:
-                    charge_full = int(f.read().strip())
-                with open(current_file, 'r') as f:
-                    current_now = int(f.read().strip())
+                with open(energy_now_file, 'r') as f:
+                    energy_now = int(f.read().strip())  # in µWh
+                with open(energy_full_file, 'r') as f:
+                    energy_full = int(f.read().strip())  # in µWh
+                with open(power_now_file, 'r') as f:
+                    power_now = int(f.read().strip())  # in µW
 
-                if current_now > 0:
-                    charge_remaining = charge_full - charge_now
-                    seconds_to_full = (charge_remaining / current_now) * 3600
+                if power_now > 0:
+                    energy_remaining = energy_full - energy_now  # in µWh
+                    seconds_to_full = (energy_remaining / power_now) * 3600  # µWh / (µW) = hours, then * 3600 to seconds
                     hours = int(seconds_to_full // 3600)
                     minutes = int((seconds_to_full % 3600) // 60)
                     print(f"Estimated Time to Full Charge: {hours} hours, {minutes} minutes")
                 else:
-                    print("Cannot estimate time to full charge (current_now is 0).")
+                    print("Cannot estimate time to full charge (power_now is 0 or negative).")
             except PermissionError:
                 print("Cannot estimate time to full charge (permission denied). Try running with sudo.")
             except FileNotFoundError:
