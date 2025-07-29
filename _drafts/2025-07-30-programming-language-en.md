@@ -51,5 +51,7 @@ But often, rational people in big compaines won't consider change the major prog
 
 There will a lot of startup due to AI. And startup itself like to do new things. So they will try to use new programming languages to do things. So in AI era, those agile programming langauges will win in small and middle enterprise. 
 
+In algoritm competition, will the programming language faviourite change? The C++ has dominated in this sector for decades. And in the actual algorithm competiition, you can't use AI. But I think that for AI era, there will be les people do that. 
 
+As those people are very good at programming, and there are so many opportunities due to AI, why won't more people do the actual prodcuts for users intead of practicing algorithm problems?
 
