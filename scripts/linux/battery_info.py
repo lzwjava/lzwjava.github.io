@@ -7,7 +7,7 @@ def find_battery_path():
     battery_paths = glob.glob('/sys/class/power_supply/BAT*')
     if not battery_paths:
         return None
-    return battery_paths[0]  # Return the first battery found (e.g., BAT0 or BAT1)
+    return battery_paths[0]  # Return the first battery found (e.g., BAT1)
 
 def get_battery_info():
     try:
@@ -42,19 +42,30 @@ def get_battery_info():
 
             try:
                 # Check for charge or energy-based files
-                charge_now_file = os.path.join(battery_path, 'charge_now')
-                energy_now_file = os.path.join(battery_path, 'energy_now')
-                charge_full_file = os.path.join(battery_path, 'charge_full')
-                energy_full_file = os.path.join(battery_path, 'charge_full_design')
-                current_now_file = os.path.join(battery_path, 'current_now')
+                now_file = None
+                full_file = None
+                current_file = os.path.join(battery_path, 'current_now')
 
-                # Determine which files to use (charge or energy)
+                # Try charge-based files
+                charge_now_file = os.path.join(battery_path, 'charge_now')
+                charge_full_file = os.path.join(battery_path, 'charge_full')
                 if os.path.exists(charge_now_file) and os.path.exists(charge_full_file):
                     now_file, full_file = charge_now_file, charge_full_file
-                elif os.path.exists(energy_now_file) and os.path.exists(energy_full_file):
+
+                # Fallback to energy-based files
+                energy_now_file = os.path.join(battery_path, 'energy_now')
+                energy_full_file = os.path.join(battery_path, 'energy_full')
+                if os.path.exists(energy_now_file) and os.path.exists(energy_full_file):
                     now_file, full_file = energy_now_file, energy_full_file
-                else:
-                    print("Cannot estimate time to full charge (charge/energy files not found).")
+
+                # Fallback to design capacity if energy_full is missing
+                energy_full_design_file = os.path.join(battery_path, 'energy_full_design')
+                if now_file == energy_now_file and os.path.exists(energy_full_design_file):
+                    full_file = energy_full_design_file
+
+                if not (now_file and full_file and os.path.exists(current_file)):
+                    print(f"Cannot estimate time to full charge (required files not found in {battery_path}).")
+                    print(f"Available files: {', '.join(os.listdir(battery_path))}")
                     return
 
                 # Read battery data
@@ -62,7 +73,7 @@ def get_battery_info():
                     charge_now = int(f.read().strip())
                 with open(full_file, 'r') as f:
                     charge_full = int(f.read().strip())
-                with open(current_now_file, 'r') as f:
+                with open(current_file, 'r') as f:
                     current_now = int(f.read().strip())
 
                 if current_now > 0:
@@ -77,6 +88,7 @@ def get_battery_info():
                 print("Cannot estimate time to full charge (permission denied). Try running with sudo.")
             except FileNotFoundError:
                 print(f"Cannot estimate time to full charge (sysfs files not found in {battery_path}).")
+                print(f"Available files: {', '.join(os.listdir(battery_path))}")
             except Exception as e:
                 print(f"Error estimating time to full charge: {e}")
         else:
