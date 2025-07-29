@@ -40,4 +40,6 @@ If they are very useful, big companies will adopt them just like AI chatbots. Ot
 
 Working as manual AI agents is sometimes unavoidable. The job has other benefits besides lacking advanced AI technology. It is not easy to find good jobs, too. So in this case, it happens to give us space to use our traditional wisdom to make the most use of AI chatbots.
 
-And it means that we can organize and accumulate our prompts, to make it like system prompt for AI chatbots, like those prompts of Claude or Grok that has been hacked to see.
+And it means that we can organize and accumulate our prompts to create system prompts for AI chatbots, similar to those used by Claude or Grok that have been exposed. This way, we don't need to write prompts repeatedly. We can use Python scripts to assist us in writing prompts. We can obtain the logs of HTTP requests and write prompts to generate API test cases.
+
+The magic of programming lies in its unlimited levels of abstraction. It's akin to functions where you can have 100 levels of function calls. For instance, WeChat is built on top of iOS, and WeChat Mini Programs are built on top of WeChat. iOS itself is built on top of Objective-C or Swift, which in turn are built on top of LLVM and the instruction set of Apple's ARM chips.
