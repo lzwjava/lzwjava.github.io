@@ -38,3 +38,5 @@ So working like a maunal AI agent has its benifit. However, AI agents technology
 
 If they are very useful, big companies will adopt them just like AI Chatbots. Otherwise, they can't compete with other companies that have adopted, not just other big , but that other small startup. Because AI is so powerful now. A startup with tens of employees may beat those with 1000 employees.
 
+Working as manual AI agents is sometimes unavoidable. The job has other benifits besides lackign advanced AI technology. It is not easy to find good jobs too. So in this case, it happen to give our space to use our traditional wisdom to use max use of AI chatbots.
+
