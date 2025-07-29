@@ -29,3 +29,7 @@ How to Learn Easier? One has to be slow at the start to figure out the basics. A
 Every time I make mistakes or don't understand something, it is because I don't try to figure out the reason and learn from it. So I keep making mistakes or remain clueless about something.
 
 This is probably one of the big lessons of my life. Nowadays, learning is so important. The world is becoming more complicated. This is about how to learn easier, and this is probably equivalent to how to live better.
+
+When it comes to programming, learning easier means reducing repetitive tasks. You can't expect to keep writing simple algorithms like bubble sort and hope to outperform quick sort. Similarly, you can't just build simple APIs with easy tasks and expect to one day create complex systems like LLM APIs.
+
+To learn more effectively, you need to tackle difficult problems or materials as they arise. If you avoid solving them now, the same challenges will appear again in the future. Before quick sort was invented, most people could only sort with algorithms of O(n²) complexity.
