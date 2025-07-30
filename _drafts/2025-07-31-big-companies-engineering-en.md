@@ -28,3 +28,5 @@ Why I want to discuss about this? Because it means that our value lies in these 
 
 Why I mention Engineering in big companies instead of engineering in companies? Actualy, it is not just about big companies or small startups. They are formed with people, just the number of employees has some difference.
 
+Engineering in big companies is less diverse than startups. 
+
