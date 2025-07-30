@@ -1,3 +1,5 @@
+mod simple;
+
 fn quick_sort(arr: &mut [i32]) {
     if arr.len() <= 1 {
         return;
@@ -22,9 +24,14 @@ fn partition(arr: &mut [i32]) -> usize {
     i
 }
 
-fn main() {
+fn quick_sort_interact() {
     let mut arr = [3, 6, 8, 10, 1, 2, 1];
     println!("Before: {:?}", arr);
     quick_sort(&mut arr);
     println!("After: {:?}", arr);
 }
+
+fn main() {
+    simple::run_simple();
+}
+
