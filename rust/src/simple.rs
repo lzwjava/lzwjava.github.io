@@ -44,7 +44,7 @@ fn describe_shape(shape: &Shape) -> String {
     }
 }
 
-fn run_simple() {
+pub fn run_simple() {
     // Mutable variable binding
     let mut point = Point { x: 3, y: 4 };
     
