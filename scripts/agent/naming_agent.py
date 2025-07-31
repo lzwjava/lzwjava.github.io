@@ -18,13 +18,22 @@ def get_name_suggestions(file_path):
     suggestions = response.strip().split('\n')
     return suggestions[:5]  # Ensure we only get 5 names
 
+def is_text_file(file_path):
+    try:
+        with open(file_path, 'r') as f:
+            f.read(1024)
+        return True
+    except UnicodeDecodeError:
+        return False
+
 def rename_file(file_path):
     suggestions = get_name_suggestions(file_path)
     
-    print("\nSuggested names:")
+    print(f"\nFile: {file_path}")
+    print("Suggested names:")
     for i, name in enumerate(suggestions, 1):
         print(f"{i}. {name}")
-    print("0. Cancel")
+    print("0. Skip/Cancel")
     
     while True:
         choice = input("\nEnter your choice (0-5): ")
@@ -34,7 +43,7 @@ def rename_file(file_path):
     
     choice = int(choice)
     if choice == 0:
-        print("Operation cancelled.")
+        print("Skipped.")
         return None
     
     new_name = suggestions[choice - 1]
@@ -44,11 +53,25 @@ def rename_file(file_path):
     os.rename(file_path, new_path)
     return new_path
 
+def process_directory(dir_path):
+    for root, _, files in os.walk(dir_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            if is_text_file(file_path):
+                print(f"\n{'='*50}")
+                new_path = rename_file(file_path)
+                if new_path:
+                    print(f"Renamed to: {new_path}")
+                print(f"{'='*50}")
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Rename file based on its content.")
-    parser.add_argument("file_path", type=str, help="Path to the file")
+    parser = argparse.ArgumentParser(description="Rename files based on their content.")
+    parser.add_argument("path", type=str, help="Path to file or directory")
     args = parser.parse_args()
     
-    new_path = rename_file(args.file_path)
-    if new_path:
-        print(f"\nFile renamed to: {new_path}")
+    if os.path.isdir(args.path):
+        process_directory(args.path)
+    else:
+        new_path = rename_file(args.path)
+        if new_path:
+            print(f"\nFile renamed to: {new_path}")
