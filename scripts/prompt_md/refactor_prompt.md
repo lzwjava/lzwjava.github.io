@@ -1,3 +1,8 @@
+Refactor below Python code:
+
+<currentDocument>
+I have the following code in a file called `scripts/prompt/refactor_prompt.py`:
+<selection>
 import argparse
 import os
 
@@ -51,3 +56,6 @@ if __name__ == "__main__":
     prompt = generate_refactor_prompt(args.file_path)
     print(prompt)
     print(save_prompt_to_md(prompt, args.file_path))
+
+</selection>
+</currentDocument>
