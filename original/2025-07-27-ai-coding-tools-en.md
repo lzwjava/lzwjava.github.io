@@ -38,6 +38,8 @@ What impressed me most was how Claude Code displays changes - showing before-and
 
 After a day, I used Claude to fix some code as well. However, I continue to use the Copilot plugin with the Grok 3 beta model, as it is simple and easy for me.
 
+After using Claude Code for several days, I have to say it's very impressive. I really like how it fixes my code.
+
 {: .centered }
 ![](assets/images/claude/claude-code.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
