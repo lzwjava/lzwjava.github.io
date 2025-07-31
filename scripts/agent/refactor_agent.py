@@ -1,20 +1,10 @@
 import os
 import sys
-
-# Add the project root to the Python path
-project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(project_root)
-
-# Import using direct file paths
-script_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Import refactor_prompt from current directory
-from refactor_prompt import generate_refactor_prompt
-
-# Import openrouter_client from translation directory
-sys.path.append(os.path.join(script_dir, "..", "translation"))
-from openrouter_client import call_openrouter_api
 import argparse
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))) 
+from scripts.translation.openrouter_client import call_openrouter_api
+from refactor_prompt import generate_refactor_prompt
 
 
 def refactor_python_code(file_path):
