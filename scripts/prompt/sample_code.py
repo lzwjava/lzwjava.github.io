@@ -1,4 +1,4 @@
-def sample_refactor_code():
+def sample_code():
     """
     A function to demonstrate refactoring by reading content from a file.
     Returns the content of the specified file.
@@ -14,4 +14,4 @@ def sample_refactor_code():
         return f"An error occurred: {str(e)}"
 
 if __name__ == "__main__":
-    print(sample_refactor_code())
+    print(sample_code())
