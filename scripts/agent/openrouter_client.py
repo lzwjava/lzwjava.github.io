@@ -4,7 +4,7 @@ import os
 # Get the API key from environment variable or replace with your key  
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")  
   
-def call_openrouter_api(prompt, model):  
+def call_openrouter_api(prompt, model="moonshotai/kimi-k2:free"):  
     url = "https://openrouter.ai/api/v1/chat/completions"  
     headers = {  
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",  
