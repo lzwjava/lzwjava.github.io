@@ -10,18 +10,23 @@ def generate_refactor_prompt(file_path):
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
         
-        prompt = f"""Refactor below Python code:    
+        prompt = f"""```python
+Refactor the Python code below, focusing on:
+- Improving readability
+- Enhancing maintainability
+- Following Python best practices
 
 I have the following code in a file called `{file_path}`:
 
-Code:
-
+```python
 {content}
+```
 
-Sample code:
+Sample code (for reference):
 
+```python
 {sample}
-
+```
 """
         return prompt
     except FileNotFoundError:
