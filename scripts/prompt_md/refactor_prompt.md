@@ -5,6 +5,8 @@ Refactor the Python code below, focusing on:
 - Improving readability
 - Enhancing maintainability
 - Following Python best practices
+- Use if __name__ == "__main__" to do testing
+- if there is missing param, use arg.parse
 
 ## Target File
 `scripts/prompt/refactor_prompt.py`
@@ -13,6 +15,7 @@ Refactor the Python code below, focusing on:
 ```python
 import argparse
 import os
+import sys
 from sample_code import sample_code  # Importing the sample code function
 
 def generate_refactor_prompt(file_path):
@@ -30,6 +33,8 @@ Refactor the Python code below, focusing on:
 - Improving readability
 - Enhancing maintainability
 - Following Python best practices
+- Use if __name__ == "__main__" to do testing
+- if there is missing param, use arg.parse
 
 ## Target File
 `{file_path}`
@@ -74,76 +79,77 @@ def save_prompt_to_md(prompt, original_path):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate a refactor prompt for a Python file and save it as markdown.")
     parser.add_argument("file_path", help="Path to the Python file to refactor")
+    
+    # Add test mode flag
+    parser.add_argument("--test", action="store_true", help="Run in test mode with sample input")
+    
     args = parser.parse_args()
     
-    prompt = generate_refactor_prompt(args.file_path)
-    print(prompt)
-    print(save_prompt_to_md(prompt, args.file_path))
+    if args.test:
+        # Test mode - use the script itself as sample input
+        test_file = os.path.abspath(__file__)
+        prompt = generate_refactor_prompt(test_file)
+        print("=== TEST MODE ===")
+        print(prompt)
+        print(save_prompt_to_md(prompt, test_file))
+    elif not args.file_path:
+        parser.print_help()
+        print("\nError: file_path argument is required")
+        sys.exit(1)
+    else:
+        # Normal mode
+        prompt = generate_refactor_prompt(args.file_path)
+        print(prompt)
+        print(save_prompt_to_md(prompt, args.file_path))
 
 ```
 
 ## Sample Reference Code
 ```python
-from gemini_client import call_gemini_api
-from deepseek_client import call_deepseek_api
-from mistral_client import call_mistral_api
+import os
+import requests
 
-def create_translation_prompt(target_language, type="content", front_matter_prompt=None):
-    if type == "title":
-        base_prompt = "Translate the following title into {target_language}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {target_language}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
-    else:
-        base_prompt = "Translate the following markdown text into {target_language}. Return only the translated content without any additional notes or explanations. If the text is already in {target_language}, return it unchanged.\n"
-        if front_matter_prompt:
-            base_prompt += f"{front_matter_prompt}\n"
-    if target_language == 'ja':
-        return base_prompt.format(target_language="Japanese")
-    elif target_language == 'es':
-        return base_prompt.format(target_language="Spanish")
-    elif target_language == 'hi':
-        return base_prompt.format(target_language="Hindi")
-    elif target_language == 'fr':
-        return base_prompt.format(target_language="French")
-    elif target_language == 'zh':
-        return base_prompt.format(target_language="Simplified Chinese")
-    elif target_language == 'hant':
-        return base_prompt.format(target_language="Traditional Chinese (Hong Kong)")
-    elif target_language == 'en':
-        return base_prompt.format(target_language="English")
-    elif target_language == 'de':
-        return base_prompt.format(target_language="German")
-    elif target_language == 'ar':
-        return base_prompt.format(target_language="Arabic")
-    else:
-        return base_prompt.format(target_language=target_language)
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
+MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
 
-
-def translate_text(text, target_language, type="content", model="deepseek", front_matter_prompt=None, original_lang=None):
-    print(f"Debug: Starting translation process for text: {text[:50]}...")
-    print(f"Debug: Target language: {target_language}")
-    print(f"Debug: Model used: {model}")
-    
-    if target_language == original_lang:
-        print(f"Debug: Target language matches original language, returning unchanged text")
-        return text
-    
-    prompt = create_translation_prompt(target_language, type, front_matter_prompt) + "\n\n" + text
-    
-    if model == "deepseek":
-        translated_text = call_deepseek_api(prompt)
-        return translated_text
-    elif model == "mistral":
-        translated_text = call_mistral_api(prompt)
-        return translated_text
-    elif model == "gemini":
-        translated_text = call_gemini_api(prompt)
-        return translated_text
-    else:
-        print(f"Error: Invalid model specified: {model}")
+def call_mistral_api(prompt):
+    api_key = MISTRAL_API_KEY
+    if not api_key:
+        print("Error: MISTRAL_API_KEY environment variable not set.")
         return None
     
-if __name__ == "__main__":
-    print("Debug: Running main test translation")
-    text = translate_text('Hi, it is sunny today. Hahaa...', 'ja', model='mistral', original_lang='en')
-    print(f"Debug: Final translated text: {text}")
+    url = MISTRAL_API_URL
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": f"Bearer {api_key}"
+    }
+    data = {
+        "model": "mistral-small-latest",
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt
+            }
+        ]
+    }
+    try:
+        response = requests.post(url, headers=headers, json=data)
+        response.raise_for_status()
+        response_json = response.json()
+        if response_json and response_json['choices']:
+            content = response_json['choices'][0]['message']['content']
+            return content
+        else:
+            print(f"Mistral API Error: Invalid response format: {response_json}")
+            return None
+    except requests.exceptions.RequestException as e:
+        print(f"Mistral API Error: {e}")
+        if e.response:
+            print(f"Response status code: {e.response.status_code}")
+            print(f"Response content: {e.response.text}")
+        return None
 
+if __name__ == "__main__":
+    print(call_mistral_api('hi'))    
 ```

@@ -17,6 +17,14 @@ Refactor the Python code below, focusing on:
 - Improving readability
 - Enhancing maintainability
 - Following Python best practices
+- Added if __name__ == "__main__": to ensure that the script can be both imported as a module and run as a standalone script.
+- Do not use main() function, use other meaningful function names to let it import from other scripts.
+- Used argparse to allow for flexible input of the params.
+- Do not need docstring in each function.
+- The code is divided into smaller, reusable functions, each with a single responsibility.
+- Improved variable names and overall structure for better readability.
+- Although not explicitly added, the structure now makes it easier to add error handling where necessary.
+- Only output the refactored code without any additional comments or explanations.
 
 ## Target File
 `{file_path}`
