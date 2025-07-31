@@ -4,8 +4,14 @@ import pyperclip
 # Get the current directory of the script
 script_dir = os.path.dirname(os.path.abspath(__file__))
 
+# Navigate to the scripts/prompt_md/ directory
+prompt_dir = os.path.join(os.path.dirname(script_dir), 'prompt_md')
+
+# Create the directory if it doesn't exist
+os.makedirs(prompt_dir, exist_ok=True)
+
 # Path to the prompt.md file
-prompt_file = os.path.join(script_dir, 'prompt.md')
+prompt_file = os.path.join(prompt_dir, 'prompt.md')
 
 # Get the prompt from clipboard
 new_prompt = pyperclip.paste().strip()
