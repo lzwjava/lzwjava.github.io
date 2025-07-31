@@ -3,27 +3,30 @@ import os
 from sample_code import sample_code  # Importing the sample code function
 
 def generate_refactor_prompt(file_path):
-    """Generate a refactor prompt for the given Python file."""
+    """Generate a refactor prompt for the given Python file with proper markdown formatting."""
     
     sample = sample_code()
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
         
-        prompt = f"""```python
+        prompt = f"""# Refactor Prompt
+
+## Instructions
 Refactor the Python code below, focusing on:
 - Improving readability
 - Enhancing maintainability
 - Following Python best practices
 
-I have the following code in a file called `{file_path}`:
+## Target File
+`{file_path}`
 
+## Code to Refactor
 ```python
 {content}
 ```
 
-Sample code (for reference):
-
+## Sample Reference Code
 ```python
 {sample}
 ```
