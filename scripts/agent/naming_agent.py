@@ -1,11 +1,9 @@
 import os
-import argparse
-import os
 import sys
+import argparse
 
-script_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(os.path.join(script_dir, "..", "translation"))
-from openrouter_client import call_openrouter_api
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))) 
+from scripts.translation.openrouter_client import call_openrouter_api
 
 def get_name_suggestions(file_path):
     with open(file_path, 'r') as file:
