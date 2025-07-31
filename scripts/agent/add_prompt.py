@@ -1,27 +1,41 @@
+import argparse
 import os
 import pyperclip
 
-# Get the current directory of the script
-script_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Navigate to the scripts/prompt_md/ directory
-prompt_dir = os.path.join(os.path.dirname(script_dir), 'prompt_md')
+def derive_script_paths() -> tuple[str, str]:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    prompt_dir = os.path.join(os.path.dirname(script_dir), "prompt_md")
+    prompt_file = os.path.join(prompt_dir, "prompt.md")
+    return prompt_dir, prompt_file
 
-# Create the directory if it doesn't exist
-os.makedirs(prompt_dir, exist_ok=True)
 
-# Path to the prompt.md file
-prompt_file = os.path.join(prompt_dir, 'prompt.md')
+def create_directory(target_dir: str) -> None:
+    os.makedirs(target_dir, exist_ok=True)
 
-# Get the prompt from clipboard
-new_prompt = pyperclip.paste().strip()
 
-# Check if the file exists and has content
-if os.path.exists(prompt_file) and os.path.getsize(prompt_file) > 0:
-    separator = '\n---\n'
-else:
-    separator = ''
+def read_clipboard() -> str:
+    return pyperclip.paste().strip()
 
-# Append the new prompt
-with open(prompt_file, 'a') as f:
-    f.write(separator + new_prompt)
+
+def determine_file_separator(prompt_file: str) -> str:
+    if os.path.exists(prompt_file) and os.path.getsize(prompt_file) > 0:
+        return "\n---\n"
+    return ""
+
+
+def append_prompt_to_file(prompt_file: str, content: str, separator: str) -> None:
+    with open(prompt_file, "a", encoding="utf-8") as f:
+        f.write(separator + content)
+
+
+def save_clipboard_prompt() -> None:
+    prompt_dir, prompt_file = derive_script_paths()
+    create_directory(prompt_dir)
+    new_prompt = read_clipboard()
+    separator = determine_file_separator(prompt_file)
+    append_prompt_to_file(prompt_file, new_prompt, separator)
+
+
+if __name__ == "__main__":
+    save_clipboard_prompt()

@@ -20,6 +20,7 @@ import argparse
 def refactor_python_code(file_path):
     """
     Generate a refactor prompt and get AI suggestions for improving Python code.
+    The resulting code is written directly back to the original file.
     """
     try:
         # Generate the refactor prompt
@@ -31,7 +32,14 @@ def refactor_python_code(file_path):
             model="moonshotai/kimi-k2:free"
         )
         
-        return response
+        # Write the refactored code back to the original file
+        if not response.startswith("Error"):
+            with open(file_path, 'w', encoding='utf-8') as file:
+                file.write(response)
+            return f"Successfully refactored {file_path}"
+        else:
+            return response
+            
     except Exception as e:
         return f"Error during refactoring: {str(e)}"
 
