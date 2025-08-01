@@ -76,3 +76,12 @@ async fn call_mistral_api(prompt: &str, model: &str) -> Option<String> {
             None
         })
 }
+
+pub fn main() {
+    let response = call_mistral_api("Hello", "mistral-tiny").await;
+    
+    match response {
+        Some(content) => println!("Response: {}", content),
+        None => println!("Failed to get response from Mistral API"),
+    }
+}
