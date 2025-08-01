@@ -4,7 +4,7 @@
 
 Welcome to my personal blog! Here, I share my thoughts, experiences, and knowledge on various topics.
 
-## Metrics
+## Statistics
 
 - **[Notes](notes):** 1,908 entries
 - **[Python Scripts](scripts):** 533 files in scripts directory  
