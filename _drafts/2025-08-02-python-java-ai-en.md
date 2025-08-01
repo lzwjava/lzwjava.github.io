@@ -24,3 +24,13 @@ So in the future, there will be a lot of surrouding projects around the big proj
 
 Use python code can connect java agent too.
 
+It means that I need to learn Python and Java well, so that I know how to use one help another.
+
+And I can use Python with the help of AI to create a lot of things for myself and in corporate projects too. Java seems no a obstacle. The Java, with Spring , and database, and with Angualr, Vue or React serve as frontend shouldn't be a obstacle to have Python to help a lot.
+
+Programming is so flexaible things. The limit is our imagniation. 
+
+So AI is growing fast. We can measure by AI's progress is that with AI help to code and learn, how many and how easily can we use code to achieve. 
+
+Could we one day we write some AI agents, and then these agents help create entire TikTok, including its lots of microservices and big iOS or Android projects?
+
