@@ -4,6 +4,13 @@
 
 Welcome to my personal blog! Here, I share my thoughts, experiences, and knowledge on various topics.
 
+## Metrics
+
+- **[Notes](notes):** 1,908 entries
+- **[Python Scripts](scripts):** 533 files in scripts directory  
+- **[Original Posts](original):** 530 markdown files
+
+
 ## Key Improvements
 
 This blog incorporates several enhancements compared to a standard Jekyll blog using the jekyll-theme-cayman:
