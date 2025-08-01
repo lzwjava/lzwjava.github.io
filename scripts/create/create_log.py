@@ -1,7 +1,10 @@
 from create_note_utils import get_clipboard_content, generate_title, clean_content
 import os
 from datetime import datetime
+from gpa import gpa
 
+    # Create file path in logs directory
+logs_dir = "../logs"
 
 def create_log():
     # Get and validate clipboard content
@@ -13,8 +16,7 @@ def create_log():
     
     filename = f"{ai_filename}"
 
-    # Create file path in logs directory
-    logs_dir = "../logs"
+
     os.makedirs(logs_dir, exist_ok=True)
     file_path = os.path.join(logs_dir, f"{filename}.log")
 
@@ -27,3 +29,7 @@ def create_log():
 
 if __name__ == "__main__":
     create_log()
+    # Change to logs directory
+    os.chdir(logs_dir)
+    gpa()
+    print(f"Changed working directory to: {os.getcwd()}")
