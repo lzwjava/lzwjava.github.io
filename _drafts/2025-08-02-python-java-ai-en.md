@@ -46,4 +46,8 @@ AI is about prompt engineering and context engineering. Prompt and context helps
 
 Python can help with context, Python can help generating promtps. 
 
+So this is not about java. But other every other programming languages. Python can help them deeply. So why we still need to use other programming lanague. 
+
+It is Python's intrinci design that make it performing poor than other programming lanaguages, like C, C++ or Rust.
+
 
