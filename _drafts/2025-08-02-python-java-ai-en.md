@@ -42,4 +42,8 @@ AI is comming out like other technologies to bring us freedom. But that it seems
 
 Come back to the topic. So python can help write java code too. You can use python to get the context for the writing code and let Copilt to write for you to do it right at the first shot.
 
+AI is about prompt engineering and context engineering. Prompt and context helps the response of AI chatbots. 
+
+Python can help with context, Python can help generating promtps. 
+
 
