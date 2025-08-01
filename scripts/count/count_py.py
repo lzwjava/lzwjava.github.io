@@ -13,6 +13,10 @@ def count_py_files(directory):
         pass
     return count
 
-scripts_dir = '../'  # Go up one level from count/ to scripts/
-py_count = count_py_files(scripts_dir)
-print(f"Number of .py files in scripts directory: {py_count}")
+def count_py_in_script():
+    scripts_dir = '../'  # Go up one level from count/ to scripts/
+    py_count = count_py_files(scripts_dir)
+    print(f"Number of .py files in scripts directory: {py_count}")
+
+if __name__ == "__main__":
+    count_py_in_script()
