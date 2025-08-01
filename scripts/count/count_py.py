@@ -2,13 +2,17 @@ import os
 
 def count_py_files(directory):
     count = 0
-    for root, dirs, files in os.walk(directory):
-        for file in files:
-            if file.endswith('.py'):
+    try:
+        for item in os.listdir(directory):
+            item_path = os.path.join(directory, item)
+            if os.path.isfile(item_path) and item.endswith('.py'):
                 count += 1
+            elif os.path.isdir(item_path):
+                count += count_py_files(item_path)
+    except PermissionError:
+        pass
     return count
 
 scripts_dir = '../'  # Go up one level from count/ to scripts/
 py_count = count_py_files(scripts_dir)
 print(f"Number of .py files in scripts directory: {py_count}")
-
