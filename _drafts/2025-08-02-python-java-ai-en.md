@@ -34,3 +34,12 @@ So AI is growing fast. We can measure by AI's progress is that with AI help to c
 
 Could we one day we write some AI agents, and then these agents help create entire TikTok, including its lots of microservices and big iOS or Android projects?
 
+If AI is so powerful, what should we do today? Probably nothing, as what we do today will be easily to implement with the AI. In 2025, our 1 years' work with the help of AI probably can be done by 1 month in 2030's AI ability. 
+
+This brings our essance question? What's our life purpose? What's all this about? How to live out a good life?
+
+AI is comming out like other technologies to bring us freedom. But that it seems everyone is busy like a machine in this capital society. 
+
+Come back to the topic. So python can help write java code too. You can use python to get the context for the writing code and let Copilt to write for you to do it right at the first shot.
+
+
