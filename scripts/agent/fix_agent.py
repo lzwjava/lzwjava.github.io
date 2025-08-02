@@ -7,6 +7,8 @@ import subprocess
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 from scripts.translation.openrouter_client import call_openrouter_api
+from scripts.translation.openrouter_client import MODEL_MAPPING
+
 
 def run_script(script_path):
     """Run a Python or Rust script and capture its output."""
