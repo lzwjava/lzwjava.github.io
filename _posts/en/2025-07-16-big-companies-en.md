@@ -8,6 +8,8 @@ title: On Big Companies
 translated: false
 ---
 
+### On Big Companies
+
 Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 150,000 methods.
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
@@ -104,3 +106,58 @@ The second thing is to follow what others do; it is safe. Becoming an average en
 
 I have to say there are many big companies. Some have more than 200,000 employees, while others have around 20,000. There are also good big companies and poor-performing ones. Appearance or market cap sometimes doesn't reveal much. They can rise significantly in a few years, as Nvidia has recently, or they can suddenly collapse, like Credit Suisse.
 
+### Engineering in Big Companies
+
+Big companies are good at their strict policy control and management. Big companies are good at performing careful checking and thorough software release evaluation.
+
+But a lot of engineering can't be settled down into plain rules. The simplicity of design and optimization for every method or every Java class are not easy to check by rules.
+
+SonarQube Scan is a good thing, and high testing coverage is a good thing. But a lot of software design or engineering can't be that simply measured. 
+
+The quality of APIs and the ease of use of functionalities can't be easily evaluated. 
+
+The parameters of methods can't be easily evaluated. The design of functions, branch strategy, development strategy are not easily measured, and neither is the naming. 
+
+Alibaba has its Java guide, and Google and Plantier have their Java formats. It is good. But not all things in a Java project can be automatically checked by code.
+
+About testing, it is true. There are a lot of auto testing tools. But not all test strategies, designs, philosophies, or techniques have fixed rules. 
+
+About products, it is true. There are a lot of A/B testing and data-driven product development. But not all product tech, skills, or insights can be measured by fixed rules. 
+
+Why do I want to discuss this? Because it means that our value lies in these sectors. What things are big companies not good at? So we can help them do those.
+
+Why do I mention engineering in big companies instead of engineering in companies? Actually, it is not just about big companies or small startups. They are formed with people; just the number of employees has some difference.
+
+Engineering in big companies is less diverse than in startups. 
+
+## On Collaboration
+
+Collaboration is challenging. It involves working together to achieve common goals. Let's consider this from a coding perspective.
+
+In essence, every individual is like a complex program, constructed from life experiences, work history, worldviews, close relationships, upbringing, and digital interactions.
+
+The challenge lies in achieving a goal as a team. How should a group collaborate effectively? How can microservices work together to run harmoniously?
+
+For personal projects, one owns and handles everything without the need for collaboration. Nowadays, individuals often use numerous AI tools to achieve their goals.
+
+In a small team of a few people, responsibilities are divided. For instance, one person might handle design while another focuses on development. Alternatively, one could be responsible for the backend, and another for the frontend.
+
+In large companies, there is often concern about employees leaving, which creates knowledge gaps in projects. A new person taking over responsibilities may need months or even a year to catch up, slowing down or stalling the project.
+
+However, in the AI era, I believe we should adapt our approach. The concept of the "man-month myth" holds true.
+
+I strongly advocate for natural collaboration. For the team's benefit, as a project progresses, certain collaboration habits naturally form within the team.
+
+This is akin to the natural modularization of code. After some development, we might have 50 Java classes, which we then organize into packages. Similarly, with 100 Python files, we use modules to manage them.
+
+Task separation should consider each person's strengths. In the AI era, individuals can excel in multiple areas. Therefore, we should rethink how to divide large tasks among team members.
+
+I believe that each team member should be responsible for a relatively large task at a time. This approach minimizes the need for frequent communication or alignment with others. The large task should be relatively independent, allowing individuals to seek help from senior team members who have more expertise when needed. This way, more people can be involved, but the task remains primarily owned by the assigned person.
+
+If two people collaborate to edit every line of code or work on every detail together, it can be cumbersome. They would need to align their actions at every step, which is challenging. In computing, there are numerous ways to achieve a goal. As long as the result is of good quality and meets the objective, we should accept different methods or tools, whether it's a specific IDE, SQL client, Python scripts, or manual processes.
+
+Another improvement in collaboration is ensuring that work records are as transparent as possible. In my recent work, I shared my scripts, logs, and notes with team members. I can share the queries I have asked Copilot, the problems I encountered along the way, and the relevant logs. This transparency makes it easier to communicate with team members.
+
+By doing this, it is akin to recording my computer screen while performing tasks. Though we are using text here to share information, the goal of better communication is achieved.
+
+Why does collaboration fail? What kinds of scenarios lead to collaboration not working? One reason is mismatched expectations among team members. The possible result is that the project gets delayed or the work fails to meet quality requirements.

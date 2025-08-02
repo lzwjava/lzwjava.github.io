@@ -8,42 +8,58 @@ title: عمل في سيارة كهربائية
 translated: true
 ---
 
-لately, I tried working in my EV again. I had previously used a portable desk in the car, but it was still inconvenient. I needed to use it in the back seat instead of the main seat.
+## العمل في سيارة كهربائية
 
-lately, I bought another type of large, portable, foldable car desk. It was larger and originally designed for Tesla, making it a perfect match for Tesla cars. However, for other types of electric vehicles, there are still ways to install it, such as using a packet of paper to fill up the empty space and support one side of the desk.
+أحدثًا، حاولت العمل في سيارتي الكهربائية مرة أخرى. كنت قد استخدمتُ منضدة محمولة في السيارة من قبل، لكن كانت لا تزال غير مريحة. كنت بحاجة إلى استخدامها في المقعد الخلفي بدلاً من المقعد الرئيسي.
 
-In actual use, I found that in the front, my legs supported it instead of the imagined paper packet. Additionally, my mobile phone fits perfectly on the desk. There is a specific slot to hold mobile phones without letting them slip.
+أحدثًا، اشتريت نوعًا آخر من المناضد المحمولة القابلة للطي الكبيرة. كانت أكبر حجمًا ومصممة أصلًا لسيارات تيسلا، مما جعلها مثالية لسيارات تيسلا. ومع ذلك، بالنسبة لسيارات كهربائية أخرى، هناك طرق لتثبيتها، مثل استخدام حزمة من الورق لتعبئة الفراغ ودعم جانب واحد من المنضدة.
 
-My mobile phone is an iPhone 14 Pro Max, with a screen size of 6.7 inches. The mobile phone slot is just the right size.
+في الاستخدام الفعلي، وجدت أن في المقدمة، كانت ركبتي تدعمها بدلاً من حزمة الورق التي تخيلتها. بالإضافة إلى ذلك، تناسب هاتفي المحمول بشكل مثالي على المنضدة. هناك فتحة محددة لحمل الهاتف المحمول دون السماح له بالزلق.
 
-Regarding the electric lamp, I have shared details in another [essay](car-lamp-en).
+هاتفي المحمول هو آيفون 14 برو ماكس، بحجم شاشة يبلغ 6.7 بوصة. فتحة الهاتف المحمول هي بالضبط الحجم المناسب.
 
-I bought my EV around September 2022, and its running distance has reached approximately 56,000 km as of July 2025. I have used it extensively.
+بالنسبة إلى المصباح الكهربائي، قد قمت بمشاركة التفاصيل في مقال آخر [مصباح السيارة - إنجليزي].
 
-I have realized that in life, there are many products whose full potential or functionality we don't utilize. They have a lot of possibilities. We need to learn how to use them wisely and derive the most benefits from them. It's not about the money; we have already spent some to acquire them. The most important thing is to learn and think.
+اشتريت سيارتي الكهربائية حوالي سبتمبر 2022، ووصلت مسافتها إلى حوالي 56,000 كيلومتر حتى يوليو 2025. لقد استخدمتها بشكل مكثف.
 
-When selecting the title of this essay, I considered whether I should include "EV" in it. Yes, I should. In a gas-powered car, it is not easy to work inside due to the loud engine noise and fuel costs. However, an EV is perfect for working in the car.
+لقد أدركت أن في الحياة هناك العديد من المنتجات التي لا نستغل كامل إمكانياتها أو وظيفتها. لديهم الكثير من الاحتمالات. نحن بحاجة إلى تعلم كيفية استخدامها بحكمة واستخلاص أكبر فائدة منها. الأمر ليس عن المال؛ فقد أنفقنا بعضه بالفعل للحصول عليها. أهم شيء هو التعلم والتفكير.
 
-Another thing to think about is where should I go. What's beautiful scene I want to view from my car? What's good places will I want to go? Human are still poor at this. Urbanizaion just happen in recent decades in China. People will go to tourism spot or shopping mall in weekened. Basically, in Earch, there are mountains and rivers. There is a chinese idom syaing like this, travel bewteen mountain and play with water.
+عندما اخترت عنوان هذا المقال، فكرت في ما إذا كنت يجب أن أدرج "EV" فيه. نعم، يجب أن أفعل ذلك. في سيارة تعمل بالبنزين، من الصعب العمل داخلها بسبب ضجيج المحرك الصاخب وتكاليف الوقود. ومع ذلك، فإن سيارة كهربائية مثالية للعمل داخلها.
 
-I have a DJI drone DJI mini 2. One way to find spot is through DJI community. There are recommmend DJI shooting places there. Another ways is to recall my memory, in Guangzhou, go to Changlong, some carniva, Beijing Street, Upside and down nine road, and Guangzhou tower, Baiyun mountain.
+شيء آخر يجب التفكير فيه هو إلى أين يجب أن أذهب. ما هي المناظر الجميلة التي أريد مشاهدتها من سيارتي؟ ما هي الأماكن الجيدة التي أريد الذهاب إليها؟ نحن ما زلنا ضعفاء في هذا. التعمير حدث فقط في العقود الأخيرة في الصين. الناس يذهبون إلى مواقع السياحة أو المراكز التجارية في نهاية الأسبوع. بشكل أساسي، في الأرض، هناك جبال وأنهار. هناك مقولة صينية تقول: "السفر بين الجبال والعبور على الماء".
 
-I think travel is like anythine else, you need to do a lot and then you will more places or tourisum spot to visit. It is software or programming. YOu know more then you know more that you don't know.
+لدي كاميرا طيران من شركة DJI، DJI Mini 2. أحد طرق العثور على مكان هو عبر مجتمع DJI. هناك مواضع تصوير DJI موصى بها هناك. طريقة أخرى هي استدعاء ذاكرتي، في قوانغتشو، الذهاب إلى تشانغلونغ، بعض الكرنفالات، شارع بكين، شارع أوبسايد وداون، وبرج قوانغتشو، جبل باييون.
 
-The liuxi river in Guangzhou is good. I want to approach them in different places. It is just like ocean. You can see them in differnt beaches with different feelings. I like ocean and beach a lot. It is probably when I grown up, I didn't see that much. I still remember the first time I see the beach, the dameisha beach in Shenzhen.
+أعتقد أن السفر مثل أي شيء آخر، تحتاج إلى القيام بالكثير ثم ستعرف أكثر من الأماكن أو مواقع السياحة التي تريد زيارتها. إنه برنامج أو برمجة. كلما عرفت أكثر، عرفت أكثر مما لا تعرفه.
 
-I have two foldable chair in my car. I can use them but that for outside, it doesn't have air conditioner. So probably , in the season when I don't need air conditioner, I probably go out more like the winter or early Spring or late fall.
+نهر ليوشي في قوانغتشو جيد. أريد الاقتراب منهم من أماكن مختلفة. إنه مثل المحيط. يمكنك رؤيته في شواطئ مختلفة مع مشاعر مختلفة. أنا أحب المحيط والشاطئ كثيرًا. ربما عندما كنت أكبر، لم أر الكثير. لا زلت أتذكر المرة الأولى التي رأيت فيها الشاطئ، شاطئ دامياشا في شينزين.
 
-I am sure I live in the future with this way. I live in Guangzhou for around 15 years as of 2025. But there are still a lot of places I didn't go, especailly for those office buildings or department community. Besides my home or my employer's office, why will I go to another office building.
+لدي كرسيان قابلان للطي في سيارتي. يمكنني استخدامهما ولكن ذلك من أجل الخارج، لا يوجد فيه تكييف هوائي. لذا، ربما في الموسم الذي لا أحتاج فيه إلى تكييف هوائي، ربما أخرج أكثر مثل الشتاء أو أوائل الربيع أو أواخر الخريف.
 
-It can be understood that If I am startup founder and go to other office building to meet people to discuss about business things.
+أنا متأكد أنني أعيش في المستقبل بهذه الطريقة. أعيش في قوانغتشو لمدة حوالي 15 عامًا حتى عام 2025. لكن هناك ما زلنا العديد من الأماكن التي لم أذهب إليها، خاصة تلك المباني المكاتب أو المجتمعات التجارية. بالإضافة إلى منزلي أو مكتب صاحب العمل، لماذا سأذهب إلى مبنى مكتب آخر؟
 
-I seldom do it. I just sometimes go to department buildings where my relatives live in there.
+يمكن فهم ذلك إذا كنت مؤسسًا لمشروع جديد وأذهب إلى مبنى مكتب آخر للقاء الناس لمناقشة الأمور التجارية.
+
+أقل ما أفعل ذلك. أحيانًا فقط أذهب إلى المباني التجارية حيث يعيش أقاربي هناك.
 
 {: .centered }
 ![](assets/images/car/car.jpg){: .responsive }
-*Source: Self-screenshot*{: .caption }
+*المصدر: لقطات ذاتية*{: .caption }
 
 {: .centered }
 ![](assets/images/car/car2.jpg){: .responsive }
-*Source: pinduoduo.com*{: .caption }
+*المصدر: pinduoduo.com*{: .caption }
+
+## مصباح كهربائي مريح ومريح يعمل بالUSB للاستخدام في السيارة
+
+استخدام مصباح في سيارتي يجعل الداخلية مضيئة، لذا فإن السطوع داخل وخارج السيارة تقريبًا متساويان. هذا يساعد عيني على الشعور بالارتياح أكثر أثناء القيادة. اخترت مصباحًا يعمل بالUSB دون بطارية. وهذا يعني أن المقبس المتصل بمقبس السجائر في سيارتي الكهربائية يمكن أن يمد المصباح بالتيار الكهربائي. عندما أقفل السيارة، يتوقف المصباح تلقائيًا عن العمل.
+
+سابقًا، كنت أستخدم مصباحًا يحتوي على بطارية. لأن هذا النوع من المصابيح غالبًا ما يستخدم في المنزل للدراسة، إلخ، فإن وجود بطارية يجعلها سهلة الحركة دون الحاجة إلى توصيلها بمقبس. لذا، مع مصباح يحتوي على بطارية، كنت بحاجة إلى لمس قاعدة المصباح لإطفائه.
+
+الآن، أستخدم مصباحًا يعمل بالUSB دون بطارية، لذا لا أحتاج إلى إطفائه يدويًا عندما أغادر وأقفل السيارة.
+
+في الصورة، يمكنك ملاحظة المفتاح الذكي في المقبس. وضعته هناك دون معرفة كيفية استخدامه. رأيت هذا في منزلي وفكرت أن يمكنني استخدامه في السيارة يومًا ما. في المنزل، أستخدم المفتاح الذكي للتحكم في آلة تصفية المياه، والتي يمكن أن تكون مزعجة عندما تصدر صوتًا أثناء نومي.
+
+{: .centered }
+![](assets/images/car-lamp/c1.jpg){: .responsive }
+*المصدر: لقطات ذاتية*{: .caption }
