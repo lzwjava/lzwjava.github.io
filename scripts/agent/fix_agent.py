@@ -29,25 +29,31 @@ def fix_script(script_path, error_message, model):
         return f"Applied fix to {script_path}"
     except Exception as e:
         return f"Failed to apply fix: {str(e)}"
-    
+
+# Model mapping for user-friendly names
+MODEL_MAPPING = {
+    'claude-opus': 'anthropic/claude-opus-4',
+    'claude-sonnet': 'anthropic/claude-sonnet-4',
+    'gemini-flash': 'google/gemini-2.5-flash',
+    'deepseek-v3': 'deepseek/deepseek-chat-v3-0324:free',
+    'gemini-pro': 'google/gemini-2.5-pro'
+}
+
 def main():
     parser = argparse.ArgumentParser(description="Run and fix Python scripts.")
     parser.add_argument('script', type=str, help="Path to the Python script to run and fix.")
-    parser.add_argument('--model', type=str, default='deepseek/deepseek-chat-v3-0324:free',
-                        choices=[
-                            'anthropic/claude-opus-4',
-                            'anthropic/claude-sonnet-4',
-                            'google/gemini-2.5-flash',
-                            'deepseek/deepseek-chat-v3-0324:free',
-                            'google/gemini-2.5-pro'
-                        ],
-                        help="Model to use for OpenRouter API.")
+    parser.add_argument('--model', type=str, default='deepseek-v3',
+                        choices=list(MODEL_MAPPING.keys()),
+                        help="Model to use for OpenRouter API (e.g., claude-opus, gemini-pro).")
     args = parser.parse_args()
     
     script_path = Path(args.script)
     if not script_path.exists():
         print(f"Script {script_path} does not exist.")
         sys.exit(1)
+    
+    # Get the actual model name from the mapping
+    selected_model = MODEL_MAPPING[args.model]
     
     # Run the script initially to capture output
     print("Running script for the first time...")
@@ -57,7 +63,7 @@ def main():
     
     if "Traceback" in output or "Error" in output:
         print("Error detected, attempting to fix...")
-        fix_result = fix_script(script_path, output, args.model)
+        fix_result = fix_script(script_path, output, selected_model)
         print("Fix Result:")
         print(fix_result)
         # Re-run the script after applying the fix
