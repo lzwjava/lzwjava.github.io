@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import argparse
 
 def run_vscode_command(prompt: str = "") -> bool:
     """
@@ -36,13 +37,17 @@ def run_vscode_command(prompt: str = "") -> bool:
         return False
 
 def main():
-    # The extension command to trigger
-    # Run the command
-    success = run_vscode_command()
+    
+    parser = argparse.ArgumentParser(description="Run a VS Code command with a prompt.")
+    parser.add_argument("--prompt", type=str, default="", help="The prompt or argument for the VS Code command.")
+    args = parser.parse_args()
+    
+    # Run the command with the provided prompt
+    success = run_vscode_command(args.prompt)
     if success:
-        print(f"Successfully triggered  with prompt: {prompt}")
+        print(f"Successfully triggered with prompt: {args.prompt}")
     else:
-        print(f"Failed to trigger")
+        print("Failed to trigger")
 
 if __name__ == "__main__":
     main()
