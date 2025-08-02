@@ -1,13 +1,13 @@
 import subprocess
 import sys
 
-def run_vscode_command(command: str, prompt: str = "") -> bool:
+def run_vscode_command(prompt: str = "") -> bool:
     """
     Execute a VS Code command using the 'code' CLI.
     
     Args:
         command (str): The VS Code command to execute (e.g., 'workbench.action.chat.open').
-        prompt (str): Optional prompt or argument for the command (note: CLI may not support this directly).
+        prompt (str): Optional prompt or argument for the command.
     
     Returns:
         bool: True if the command was executed successfully, False otherwise.
@@ -15,8 +15,8 @@ def run_vscode_command(command: str, prompt: str = "") -> bool:
     try:
         # Construct the VS Code CLI command
         # Assumes 'code' is in the system PATH
-        cmd = ['code', '--command', command]
-        
+        cmd = ['code', 'chat', prompt]
+
         # Run the command
         result = subprocess.run(
             cmd,
@@ -37,15 +37,12 @@ def run_vscode_command(command: str, prompt: str = "") -> bool:
 
 def main():
     # The extension command to trigger
-    extension_command = 'workbench.action.chat.open'
-    prompt = "Your prompt here"  # Replace with the desired prompt
-    
     # Run the command
-    success = run_vscode_command(extension_command, prompt)
+    success = run_vscode_command()
     if success:
-        print(f"Successfully triggered '{extension_command}'")
+        print(f"Successfully triggered  with prompt: {prompt}")
     else:
-        print(f"Failed to trigger '{extension_command}'")
+        print(f"Failed to trigger")
 
 if __name__ == "__main__":
     main()
