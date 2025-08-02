@@ -2,12 +2,14 @@ import sys
 import shutil
 import subprocess
 from pathlib import Path
+import frontmatter
 
 #!/usr/bin/env python3
 
 def move_original_to_notes(filename):
     """
     Delete file from _posts/ using delete script and move from original/ to notes/
+    Also updates the front matter to set generated: true
     """
     # Define paths
     original_dir = Path("original")
@@ -49,14 +51,26 @@ def move_original_to_notes(filename):
     except Exception as e:
         print(f"Error running delete script: {e}")
     
-    # Move from original to notes
+    # Move from original to notes and update front matter
     if original_file.exists():
         # Create notes directory if it doesn't exist
         notes_dir.mkdir(exist_ok=True)
         
-        # Move file
-        shutil.move(str(original_file), str(notes_file))
-        print(f"Moved: {original_file} -> {notes_file}")
+        # Read the file with frontmatter
+        with open(original_file, 'r', encoding='utf-8') as f:
+            post = frontmatter.load(f)
+        
+        # Update the front matter to set generated: true
+        post.metadata['generated'] = True
+        
+        # Write to the new location
+        with open(notes_file, 'w', encoding='utf-8') as f:
+            frontmatter.dump(post, f)
+        
+        # Remove the original file
+        original_file.unlink()
+        
+        print(f"Moved and updated: {original_file} -> {notes_file}")
     else:
         print(f"File not found in original: {original_file}")
 
