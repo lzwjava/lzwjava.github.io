@@ -8,6 +8,8 @@ title: On Big Companies
 translated: false
 ---
 
+### On Big Companies
+
 Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 150,000 methods.
 
 Dario Amodei said that talent density is much more important than the number of talents. Two hundred very talented people can beat 1,000 talented people with 800 ordinary people.
@@ -103,4 +105,28 @@ How to surive in big companies? One is that do more, less talk. This is my deliv
 The second thing is to follow what others do; it is safe. Becoming an average engineer on the team is safe, just like being an average person on the street—neither too outstanding nor too neglected, but right in the middle.
 
 I have to say there are many big companies. Some have more than 200,000 employees, while others have around 20,000. There are also good big companies and poor-performing ones. Appearance or market cap sometimes doesn't reveal much. They can rise significantly in a few years, as Nvidia has recently, or they can suddenly collapse, like Credit Suisse.
+
+### Engineering in Big Companies
+
+Big companies are good at their strict policy control and management. Big companies are good at performing careful checking and thorough software release evaluation.
+
+But a lot of engineering can't be settled down into plain rules. The simplicity of design and optimization for every method or every Java class are not easy to check by rules.
+
+SonarQube Scan is a good thing, and high testing coverage is a good thing. But a lot of software design or engineering can't be that simply measured. 
+
+The quality of APIs and the ease of use of functionalities can't be easily evaluated. 
+
+The parameters of methods can't be easily evaluated. The design of functions, branch strategy, development strategy are not easily measured, and neither is the naming. 
+
+Alibaba has its Java guide, and Google and Plantier have their Java formats. It is good. But not all things in a Java project can be automatically checked by code.
+
+About testing, it is true. There are a lot of auto testing tools. But not all test strategies, designs, philosophies, or techniques have fixed rules. 
+
+About products, it is true. There are a lot of A/B testing and data-driven product development. But not all product tech, skills, or insights can be measured by fixed rules. 
+
+Why do I want to discuss this? Because it means that our value lies in these sectors. What things are big companies not good at? So we can help them do those.
+
+Why do I mention engineering in big companies instead of engineering in companies? Actually, it is not just about big companies or small startups. They are formed with people; just the number of employees has some difference.
+
+Engineering in big companies is less diverse than in startups. 
 
