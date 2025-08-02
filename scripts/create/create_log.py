@@ -21,7 +21,6 @@ def create_log():
     # Detect if content is sensitive
     if is_sensitive_content(content):
         print("Error: Sensitive content detected. Please remove passwords, keys, or personal data and try again.")
-        create_sensitive_log()
         return
     
     create_normal_log()
