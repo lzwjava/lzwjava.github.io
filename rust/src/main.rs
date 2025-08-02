@@ -1,87 +1,61 @@
-use reqwest::{Client, StatusCode};
-use serde_json::{json, Value};
+use reqwest::Client;
+use serde::{Deserialize, Serialize};
 use std::env;
 
-async fn call_mistral_api(prompt: &str, model: &str) -> Option<String> {
-    // Get API key from environment variable
-    let api_key = match env::var("MISTRAL_API_KEY") {
-        Ok(key) => key,
-        Err(_) => {
-            eprintln!("Error: MISTRAL_API_KEY environment variable not set");
-            return None;
-        }
-    };
-
-    let url = "https://api.mistral.ai/v1/chat/completions";
-    let client = Client::new();
-
-    // Construct request payload
-    let data = json!({
-        "model": model,
-        "messages": [{
-            "role": "user",
-            "content": prompt
-        }]
-    });
-
-    // Log request details (truncate long prompts for logging)
-    println!("Calling Mistral API with model: {}", model);
-    println!("Prompt being sent: {}...", &prompt[..prompt.len().min(1000)]);
-
-    // Send request and handle response
-    let response = match client
-        .post(url)
-        .header("Content-Type", "application/json")
-        .header("Accept", "application/json")
-        .header("Authorization", format!("Bearer {}", api_key))
-        .json(&data)
-        .send()
-        .await
-    {
-        Ok(resp) => resp,
-        Err(e) => {
-            eprintln!("Mistral API request failed: {}", e);
-            return None;
-        }
-    };
-
-    // Check response status
-    if !response.status().is_success() {
-        eprintln!("Mistral API error: Status {}", response.status());
-        return None;
-    }
-
-    // Parse response JSON
-    let response_json = match response.json::<Value>().await {
-        Ok(json) => json,
-        Err(e) => {
-            eprintln!("Mistral API error parsing JSON: {}", e);
-            return None;
-        }
-    };
-
-    // Extract content from response
-    response_json
-        .get("choices")
-        .and_then(|choices| choices.get(0))
-        .and_then(|choice| choice.get("message"))
-        .and_then(|message| message.get("content"))
-        .and_then(|content| content.as_str())
-        .map(|content| {
-            println!("Mistral API response received");
-            content.to_string()
-        })
-        .or_else(|| {
-            eprintln!("Mistral API error: Invalid response format");
-            None
-        })
+#[derive(Debug, Serialize)]
+struct ChatRequest {
+    model: String,
+    messages: Vec<Message>,
 }
 
-pub fn main() {
-    let response = call_mistral_api("Hello", "mistral-tiny").await;
-    
-    match response {
-        Some(content) => println!("Response: {}", content),
-        None => println!("Failed to get response from Mistral API"),
-    }
+#[derive(Debug, Serialize, Deserialize)]
+struct Message {
+    role: String,
+    content: String,
+}
+
+#[derive(Debug, Deserialize)]
+struct ChatResponse {
+    choices: Vec<Choice>,
+}
+
+#[derive(Debug, Deserialize)]
+struct Choice {
+    message: Message,
+}
+
+async fn call_mistral_api(prompt: &str, model: &str) -> Result<String, reqwest::Error> {
+    let api_key = env::var("MISTRAL_API_KEY").expect("MISTRAL_API_KEY must be set");
+    let client = Client::new();
+    let url = "https://api.mistral.ai/v1/chat/completions";
+
+    let messages = vec![Message {
+        role: "user".to_string(),
+        content: prompt.to_string(),
+    }];
+
+    let request_body = ChatRequest {
+        model: model.to_string(),
+        messages,
+    };
+
+    let response = client
+        .post(url)
+        .header("Authorization", format!("Bearer {}", api_key))
+        .header("Content-Type", "application/json")
+        .json(&request_body)
+        .send()
+        .await?;
+
+    let response_body: ChatResponse = response.json().await?;
+    let content = response_body.choices[0].message.content.clone();
+
+    Ok(content)
+}
+
+#[tokio::main]
+async fn main() -> Result<(), reqwest::Error> {
+    let response = call_mistral_api("Hello", "mistral-tiny").await?;
+    println!("Response: {}", response);
+    Ok(())
 }
