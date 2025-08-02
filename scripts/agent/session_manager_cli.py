@@ -1,12 +1,26 @@
 import sys
 import os
+import threading
+import queue
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.translation.openrouter_client import call_openrouter_api_with_messages
 
-# Dictionary to store sessions, each with a name and conversation history
+# Dictionary to store sessions, each with a name, conversation history, and status
 sessions = {}
 current_session = None
+# Queue to handle responses from background threads
+response_queue = queue.Queue()
+
+
+def call_api_in_background(session_name, conversation):
+    try:
+        answer = call_openrouter_api_with_messages(conversation)
+        response_queue.put((session_name, answer))
+    except Exception as e:
+        response_queue.put((session_name, str(e)))
+    finally:
+        sessions[session_name]["status"] = "idle"
 
 
 def main():
@@ -20,6 +34,22 @@ def main():
 
     global current_session
     while True:
+        # Check for responses from background threads
+        while not response_queue.empty():
+            session_name, result = response_queue.get()
+            if isinstance(result, str) and result.startswith("Error"):
+                print(f"Error for session {session_name}: {result}")
+            else:
+                if result:
+                    sessions[session_name]["history"].append(
+                        {"role": "assistant", "content": result}
+                    )
+                    if session_name == current_session:
+                        print(f"**AI Response for {session_name}:**\n{result}")
+                else:
+                    print(f"No response received for session {session_name}.")
+            response_queue.task_done()
+
         session_info = (
             f"Current Session: {current_session if current_session else 'None'}"
         )
@@ -32,7 +62,7 @@ def main():
             name = user_input[4:].strip()
             if name:
                 if name not in sessions:
-                    sessions[name] = []
+                    sessions[name] = {"history": [], "status": "idle"}
                     print(f"Created session: {name}")
                 else:
                     print(f"Session {name} already exists")
@@ -43,8 +73,13 @@ def main():
             if sessions:
                 print("Sessions:")
                 for name in sessions:
-                    status = "Attached" if name == current_session else ""
-                    print(f"- {name} {status}")
+                    status = (
+                        f"Status: {sessions[name]['status']}"
+                        if name == current_session
+                        else ""
+                    )
+                    attached = "Attached" if name == current_session else ""
+                    print(f"- {name} {attached} {status}")
             else:
                 print("No sessions available")
 
@@ -60,26 +95,20 @@ def main():
             if current_session:
                 message = user_input[4:].strip()
                 if message:
-                    # Ensure the message is not empty or just whitespace
-                    if len(message.strip()) > 0:
-                        sessions[current_session].append(
+                    if sessions[current_session]["status"] == "busy":
+                        print(f"Session {current_session} is currently busy. Try again later.")
+                    else:
+                        sessions[current_session]["history"].append(
                             {"role": "user", "content": message}
                         )
-                        print(f"Sending message to AI for session {current_session}...")
-                        try:
-                            conversation = sessions[current_session]
-                            answer = call_openrouter_api_with_messages(conversation)
-                            if answer:
-                                sessions[current_session].append(
-                                    {"role": "assistant", "content": answer}
-                                )
-                                print(f"**AI Response:**\n{answer}")
-                            else:
-                                print("No response received from AI.")
-                        except Exception as e:
-                            print(f"Error calling AI API: {e}")
-                    else:
-                        print("Message is empty or contains only whitespace.")
+                        sessions[current_session]["status"] = "busy"
+                        print(f"Sending message to AI for session {current_session} in background...")
+                        thread = threading.Thread(
+                            target=call_api_in_background,
+                            args=(current_session, sessions[current_session]["history"])
+                        )
+                        thread.daemon = True
+                        thread.start()
                 else:
                     print("Please provide a message to send.")
             else:
