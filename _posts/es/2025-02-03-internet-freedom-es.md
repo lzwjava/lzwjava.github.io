@@ -1,81 +1,91 @@
 ---
-audio: true
+audio: false
 generated: false
 image: false
 lang: es
 layout: post
-title: El viaje para perseguir la libertad en internet
+title: El viaje hacia la libertad en internet
 translated: true
 ---
 
-## Trayectoria
+Este post se actualizó en agosto de 2025.
 
-De 2010 a 2013, usé Goagent y la herramienta proxy SwitchyOmega para eludir la GFW.
+---
 
-Entre 2014 y 2015, usé Qujing (曲径) para la conexión proxy y seguí a su autor en Twitter, quien ahora vive en Japón.
+## Viaje
 
-De junio de 2016 a julio de 2018, usé Digital Ocean para alojar mi servidor proxy shadowsocks.
+De 2010 a 2013, utilicé Goagent y la herramienta de proxy SwitchyOmega para sortear el GFW.
+
+Entre 2014 y 2015, utilicé Qujing (曲径) para proxy y seguí a su autor en Twitter, quien ahora vive en Japón.
+
+De junio de 2016 a julio de 2018, utilicé Digital Ocean para alojar mi servidor proxy de shadowsocks.
 
 A partir de 2019, comencé a usar https://zhs.cloud.
 
-En marzo de 2023, comencé a usar una tarjeta SIM de Macao en mi teléfono móvil para acceder a internet sin proxy ni VPN. Esto costaba alrededor de 150 CNY al mes por 20 GB de datos móviles, y usé este método durante aproximadamente un año.
+En marzo de 2023, comencé a usar una tarjeta SIM de Macao en mi teléfono móvil para acceder a Internet sin proxy o VPN. Esto costaba alrededor de 150 CNY al mes por 20 GB de datos móviles, y utilicé este método durante aproximadamente un año.
 
-En 2024, comencé a usar Outline Manager nuevamente con mi servidor proxy shadowsocks, experimentando con varios proveedores de la nube.
+En 2024, volví a usar Outline Manager con mi servidor proxy de shadowsocks, experimentando con varios proveedores de cloud.
 
-Actualmente, mi configuración preferida es Outline Manager con un servidor Aliyun de Hong Kong para el uso diario y un servidor fuera de Hong Kong (como Singapur o Japón) para herramientas de IA. Mantengo la misma configuración de reglas de proxy utilizada en Shadowrocket o Clash.
+En febrero de 2025, mi configuración preferida es Outline Manager con un servidor de Aliyun Hong Kong para uso diario y un servidor no Hong Kong (como Singapur o Japón) para herramientas de IA. Mantengo la misma configuración de reglas de proxy utilizada en Shadowrocket o Clash.
 
-## La diferencia en comparación con revertir la miopía
+A partir de junio de 2025, comencé a usar un script de Python en mi computadora portátil para seleccionar automáticamente un servidor proxy cada 10 minutos según los resultados de las pruebas de velocidad. El script prioriza los servidores de Singapur sobre los de Hong Kong para usar herramientas de IA. Para más detalles, consulte [Automatización de la gestión de proxy Clash](/clash-en). Para el proveedor de cloud VPN, seguí usando https://zhs.cloud.
 
-Un desafío es luchar contra la GFW, que es de origen humano. El otro es abordar los principios de la función muscular del ojo.
+Además, en iOS, volví a usar una tarjeta SIM de Macao, costando 150 CNY al mes por 20 GB de datos. También compré 5 GB adicionales de datos tres veces por 20 MOP cada uno, totalizando alrededor de 200 CNY por 35 GB de datos en mi teléfono móvil.
 
-Es fácil medir la efectividad de una solución proxy. Sin embargo, revertir la miopía requiere tiempo para determinar si el globo ocular está cambiando.
+Ha funcionado muy bien durante los últimos 2 meses. Espero poder seguir usando este método para navegar por Internet hasta que me vaya de China para trabajar en el extranjero.
 
-## Similitudes con revertir la miopía
+## La Diferencia Comparada con la Reversión de la Miopía
 
-Una similitud es que tanto una solución proxy como las gafas con una reducción de 200 grados a menudo funcionan bien. Una implica acceder a internet, y la otra implica mejorar la vista. Ambas abordan problemas muy importantes.
+Un desafío es luchar contra el GFW, que es hecho por humanos. El otro es abordar los principios del funcionamiento del músculo ocular.
 
-El principio subyacente es que si entendemos cómo funciona la GFW y encontramos una manera de eludirla, la solución debería ser sencilla.
+Es fácil medir la efectividad de una solución de proxy. Sin embargo, revertir la miopía requiere tiempo para determinar si el globo ocular está cambiando.
 
-## Razonamiento y matices
+## Similitudes con la Reversión de la Miopía
 
-Todavía no entiendo completamente cómo funciona la GFW. Cuando la IP de mi servidor proxy se bloquea, ahora tengo más formas de investigar la causa.
+Una similitud es que tanto una solución de proxy como los anteojos con una reducción de 200 grados suelen funcionar bien. Una implica acceder a Internet, y la otra implica mejorar la visión. Ambas abordan problemas muy importantes.
 
-Puedo comprobar si el bloqueo se produce en la red móvil o en la banda ancha doméstica. Si es la red móvil, puedo comprobar si es en 4G o 5G.
+El principio subyacente es que si entendemos cómo funciona el GFW y encontramos una manera de sortearlo, la solución debería ser sencilla.
 
-Del mismo modo, si mi miopía no mejora después de seis meses o un año, necesito investigar si hay diferencias entre mis ojos. También necesito considerar si he estado viendo las cosas con apenas claridad sin forzar la vista durante la mayor parte del año.
+## Razonamiento y Matices
 
-## Estado actual
+Todavía no entiendo completamente cómo funciona el GFW. Cuando la IP de mi servidor proxy es bloqueada, ahora tengo más formas de investigar la causa.
 
-Mi servidor proxy actualmente funciona muy bien. Las velocidades de descarga en mi teléfono alcanzan los 80 Mbps, y las velocidades de subida alcanzan los 50 Mbps al conectarme al servidor proxy de Hong Kong. Lo mismo ocurre en mi portátil.
+Puedo verificar si el bloqueo ocurre en la red celular o en el ancho de banda doméstico. Si es la red celular, puedo verificar si es en 4G o 5G.
 
-Utilizo las mismas configuraciones de proxy en mi portátil y teléfonos, y funcionan perfectamente. Normalmente, utilizo un servidor proxy para visitar sitios fuera de China, y utilizo un servidor que no sea de Hong Kong para las herramientas de IA.
+De manera similar, si mi miopía no mejora después de seis meses o un año, necesito investigar si hay diferencias entre mis ojos. También necesito considerar si he estado viendo las cosas apenas con claridad sin forzar mis ojos durante la mayor parte del año.
+
+## Estado Actual
+
+Mi servidor proxy funciona actualmente muy bien. Las velocidades de descarga en mi teléfono alcanzan los 80 Mbps, y las velocidades de subida alcanzan los 50 Mbps al conectarme al servidor proxy de Hong Kong. Lo mismo ocurre en mi computadora portátil.
+
+Utilizo las mismas configuraciones de proxy en mi computadora portátil y teléfonos, y funcionan perfectamente. Normalmente, uso un servidor proxy para visitar sitios fuera de China, y uso un servidor no HK para herramientas de IA.
 
 ## Recuperación
 
-Si algo se rompe, mi método de recuperación es simple. Solo necesito cambiar la IP elástica de mi servidor proxy Aliyun de Hong Kong y cargar la nueva URL del proxy en el almacenamiento en la nube. Esto significa que necesito ejecutar dos scripts, lo que lleva aproximadamente 1 minuto, y mi portátil y teléfonos pueden actualizar la dirección del servidor proxy.
+Si las cosas se rompen, mi método de recuperación es simple. Solo necesito cambiar la IP elástica de mi servidor proxy de Aliyun Hong Kong y subir la nueva URL del proxy al almacenamiento en la nube. Esto significa que necesito ejecutar dos scripts, lo que tarda aproximadamente 1 minuto, y mi computadora portátil y teléfonos pueden actualizar la dirección del servidor proxy.
 
-## Arrepentimientos
+## Arrepentimiento
 
-Luché contra la GFW demasiadas veces y durante demasiado tiempo. Probé muchos protocolos proxy, sabiendo que serían detectados por la GFW y prohibidos. Sin un servidor proxy confiable, es difícil configurar un proxy en un router OpenWrt.
+Luché con el GFW demasiadas veces y durante demasiado tiempo. Probé muchos protocolos de proxy, sabiendo que serían detectados por el GFW y bloqueados. Sin un servidor proxy confiable, es difícil configurar un proxy en un router OpenWrt.
 
-Una cosa que lamento es no haber aprendido antes las técnicas de los proveedores de proxy, como [zhs.cloud](https://zhs.cloud). Ahora conozco la mayoría de sus secretos.
+Una cosa de la que me arrepiento es no haber aprendido las técnicas de los proveedores de proxy antes, como [zhs.cloud](https://zhs.cloud). Ahora conozco la mayoría de sus secretos.
 
-La otra cosa es que cada vez que mi servidor proxy era bloqueado, no lo pensaba demasiado. Parecía que solo necesitabas configurar un nuevo servidor proxy para obtener una nueva dirección IP que no hubiera sido bloqueada. Pero ese era un pensamiento superficial.
+Lo otro es que cada vez que mi servidor proxy era bloqueado, no pensaba demasiado al respecto. Parecía que solo necesitabas configurar un nuevo servidor proxy para obtener una nueva IP que no hubiera sido bloqueada. Pero eso era un pensamiento superficial.
 
 ## Métricas
 
-Lamento no haber usado Speedtest antes. Conocía el nombre de la herramienta desde hace mucho tiempo, pero no aprendí a usarla cuidadosamente.
+Me arrepiento de no haber usado Speedtest antes. Conocía el nombre de la herramienta hace mucho tiempo, pero no aprendí a usarla cuidadosamente.
 
-Es bueno usar Speedtest a menudo cuando te conectas a estaciones de señal móvil 5G o 4G o a una red de banda ancha doméstica.
+Es bueno usar Speedtest a menudo al conectarse a estaciones de señal móvil 5G o 4G o a una red de banda ancha doméstica.
 
-Para revertir la miopía, es lo mismo. Compré una tabla de optometría en forma de C y una tabla de optometría estándar.
+Para revertir la miopía, es lo mismo. Compré un gráfico ocular en forma de C y un gráfico ocular estándar.
 
-Sin mediciones, no hay mejoras. Medir las cosas ayuda a aprender. Usar Speedtest a menudo me ayuda a descubrir que en una red 5G, es fácil superar los 100 Mbps, mientras que en una red de banda ancha doméstica, es difícil superar los 100 Mbps.
+Sin medición, no hay mejora. Medir las cosas te ayuda a aprender. Usar Speedtest a menudo me ayuda a descubrir que en una red 5G, es fácil superar los 100 Mbps, mientras que en una red de banda ancha doméstica, es difícil superar los 100 Mbps.
 
-## Todavía es temprano
+## Todavía es Temprano
 
-¿Caerá el muro de la GFW en los próximos años? Es difícil de decir.
+¿Caerá el muro del GFW en los próximos años? Es difícil decirlo.
 
-Cuando, después de revertir la miopía durante dos años, le dije a mi amigo que mi método de reversión necesitaba ser mejorado y que necesitaba usar gafas con 200 grados menos que mi prescripción real en lugar de 150 grados menos.
+Cuando, después de revertir mi miopía durante dos años, le dije a mi amigo que mi método de reversión necesitaba ser mejorado y que necesitaba usar anteojos con 200 grados menos que mi receta real en lugar de 150 grados menos.
 
-Él dijo que no había problema, que estaba bien, que no era una pérdida de tiempo, y que todavía era pronto. Sí. Estas cosas son fundamentales. Al igual que la miopía, la gente debería descubrirlo antes. Todd Becker compartió este descubrimiento en YouTube en 2014, y los videos obtuvieron más de 1 millón de visitas. Y ahora es 2025, ¿cuántas personas realmente lo saben en el mundo? Supongo que serán menos de 10.000.
+Él dijo que no había problema, que estaba bien, que no era una pérdida de tiempo, y que todavía era temprano. Sí. Estas cosas son fundamentales. Como la miopía, las personas deberían descubrirlo antes. Todd Becker compartió este descubrimiento en YouTube en 2014, y los videos obtuvieron más de 1 millón de visitas. Y ahora es 2025, ¿cuántas personas realmente lo conocen en el mundo? Supongo que serán menos de 10 mil.

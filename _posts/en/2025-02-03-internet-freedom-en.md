@@ -1,11 +1,15 @@
 ---
-audio: true
+audio: false
 generated: false
 image: false
 lang: en
 layout: post
 title: The Journey to Pursue Internet Freedom
 translated: false
+---
+
+This post was updated in August 2025.
+
 ---
 
 ## Journey
@@ -22,7 +26,14 @@ In March 2023, I started using a Macao SIM card in my mobile phone for internet 
 
 In 2024, I began using Outline Manager again with my shadowsocks proxy server, experimenting with various cloud providers.
 
-Currently, my preferred setup is Outline Manager with an Aliyun Hong Kong server for daily use and a non-Hong Kong server (like Singapore or Japan) for AI tools. I maintain the same proxy rules configuration used in Shadowrocket or Clash.
+In Feb 2025, my preferred setup is Outline Manager with an Aliyun Hong Kong server for daily use and a non-Hong Kong server (like Singapore or Japan) for AI tools. I maintain the same proxy rules configuration used in Shadowrocket or Clash.
+
+From June 2025, I started using a Python script on my laptop to automatically select a proxy server every 10 minutes based on speed test results. The script prioritizes Singapore servers over Hong Kong servers for using AI tools. For more details, please check [Automating Clash Proxy Management](/clash-en). For the VPN cloud provider, I still used https://zhs.cloud.
+
+Additionally, on iOS, I switched back to using a Macao SIM card, costing 150 CNY per month for 20GB of data. I also purchased an extra 5GB of data three times for 20 MOP each, totaling around 200 CNY for 35GB of data on my mobile phone.
+
+It has been working great for the past 2 months. I hope I can continue using this method to surf the Internet until I leave China to work abroad.
+
 
 ## The Difference Compared to Reversing Myopia
 
