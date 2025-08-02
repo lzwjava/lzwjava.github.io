@@ -1,8 +1,6 @@
 import sys
-import shutil
 import subprocess
 from pathlib import Path
-import frontmatter
 
 #!/usr/bin/env python3
 
@@ -56,16 +54,34 @@ def move_original_to_notes(filename):
         # Create notes directory if it doesn't exist
         notes_dir.mkdir(exist_ok=True)
         
-        # Read the file with frontmatter
+        # Read the file content
         with open(original_file, 'r', encoding='utf-8') as f:
-            post = frontmatter.load(f)
+            content = f.read()
         
-        # Update the front matter to set generated: true
-        post.metadata['generated'] = True
+        # Check if front matter exists
+        if not content.lstrip().startswith('---'):
+            raise Exception(f"No front matter found in markdown file: {original_file}")
+        
+        # Parse front matter manually
+        parts = content.split('---', 2)
+        if len(parts) < 3:
+            raise Exception(f"Invalid front matter format in: {original_file}")
+        
+        front_matter_content = parts[1].strip()
+        content_without_front_matter = parts[2]
+        
+        # Add generated: true to front matter
+        if front_matter_content:
+            front_matter_content += '\ngenerated: true'
+        else:
+            front_matter_content = 'generated: true'
+        
+        # Reconstruct the file content
+        new_content = f"---\n{front_matter_content}\n---{content_without_front_matter}"
         
         # Write to the new location
         with open(notes_file, 'w', encoding='utf-8') as f:
-            frontmatter.dump(post, f)
+            f.write(new_content)
         
         # Remove the original file
         original_file.unlink()

@@ -1,11 +1,12 @@
 ---
-audio: true
+audio: false
 generated: false
 image: false
 lang: en
 layout: post
 title: Configuring OpenWRT as a Wireless Bridge
 translated: false
+generated: true
 ---
 
 With the help of Grok, I am still trying to work on the following.
