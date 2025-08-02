@@ -98,7 +98,6 @@ The magic of programming lies in its unlimited levels of abstraction. It's akin 
 
 ### Leveraging Python for Java Development
 
-
 How to use Python to help Java development in the AI era? I like Python. I have worked with Python the most in the last around 3 years, since ChatGPT was released at the end of November 2022.
 
 One way to help is using Python to write SQL helper scripts, test scripts, and log searching scripts for Java projects.
