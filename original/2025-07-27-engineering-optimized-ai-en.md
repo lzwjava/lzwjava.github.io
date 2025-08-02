@@ -8,6 +8,29 @@ generated: false
 image: false
 ---
 
+## Table of Contents
+
+1. [Optimizing Software Engineering for AI](#optimizing-software-engineering-for-ai)
+    - Flat Architecture for AI-First Development
+    - Python's Advantages in AI-Driven Workflows
+    - Context Engineering and Token Optimization
+    - Structuring Code for AI Assistance
+
+2. [Thriving as a Manual AI Agent](#thriving-as-a-manual-ai-agent)
+    - Working with AI Tools in Enterprise Environments
+    - Tool Selection and Context Management
+    - Building Reusable Prompt Systems
+
+3. [Leveraging Python for Java Development](#leveraging-python-for-java-development)
+    - Python Scripts for Java Project Support
+    - Cross-Language Development Strategies
+    - AI-Assisted Code Generation
+
+4. [Programming Languages in the AI Era](#programming-languages-in-the-ai-era)
+    - Future of Python, Rust, and Java
+    - Performance vs. Simplicity Trade-offs
+    - Language Evolution and AI Integration
+
 ### Optimizing Software Engineering for AI
 
 In this blog, I utilized hundreds of scripts to assist with translation, playground, frontmatter maintenance, and Telegram bots. I believe this development approach might represent the future of software engineering optimized for AI.
