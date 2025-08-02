@@ -19,7 +19,7 @@ def refactor_python_code(file_path):
         # Call the AI API for refactoring suggestions
         response = call_openrouter_api(
             prompt=prompt,
-            model="moonshotai/kimi-k2:free"
+            model="kimi-k2"
         )
         
         # Write the refactored code back to the original file

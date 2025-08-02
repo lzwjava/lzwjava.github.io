@@ -13,7 +13,7 @@ def get_name_suggestions(file_path):
     
     prompt = f"Suggest 5 concise and descriptive file names based on the following content and its original name '{original_name}'. Respond with only the names, one per line:\n\n{content}"
     
-    response = call_openrouter_api(prompt, model="anthropic/claude-3.5-sonnet")
+    response = call_openrouter_api(prompt, model="claude-sonnet")
     suggestions = response.strip().split('\n')
     return suggestions[:5]  # Ensure we only get 5 names
 
