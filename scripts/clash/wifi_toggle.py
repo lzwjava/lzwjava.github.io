@@ -1,9 +1,10 @@
 import subprocess
 
+
 def turn_off_wifi():
     """Turns off Wi-Fi on macOS."""
     command = ["networksetup", "-setairportpower", "Wi-Fi", "off"]
-    
+
     try:
         # run the command, capture output and check for errors
         result = subprocess.run(command, capture_output=True, text=True, check=True)
@@ -20,10 +21,11 @@ def turn_off_wifi():
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+
 def turn_on_wifi():
     """Turns on Wi-Fi on macOS."""
     command = ["sudo", "networksetup", "-setairportpower", "Wi-Fi", "on"]
-    
+
     try:
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         print("Wi-Fi successfully turned on.")
@@ -37,13 +39,14 @@ def turn_on_wifi():
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
 
+
 if __name__ == "__main__":
     print("Attempting to turn off Wi-Fi...")
     turn_off_wifi()
 
     # You can add a delay here if you want to see the effect before turning it back on
     # import time
-    # time.sleep(5) 
+    # time.sleep(5)
 
     # print("\nAttempting to turn on Wi-Fi...")
     # turn_on_wifi()

@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 
+
 def main():
     # Parse the username from command-line arguments
     parser = argparse.ArgumentParser(description="GitHub repository cleanup script")
@@ -30,7 +31,9 @@ def main():
                 EC.presence_of_element_located((By.ID, "user-repositories-list"))
             )
             # Find all repository entries
-            repos = driver.find_elements(By.CSS_SELECTOR, "#user-repositories-list ul li")
+            repos = driver.find_elements(
+                By.CSS_SELECTOR, "#user-repositories-list ul li"
+            )
             for repo in repos:
                 try:
                     # Check if the repository is a fork
@@ -46,7 +49,9 @@ def main():
 
             # Check for a 'Next' page button
             try:
-                next_button = driver.find_element(By.CSS_SELECTOR, ".paginate-container a[rel='next']")
+                next_button = driver.find_element(
+                    By.CSS_SELECTOR, ".paginate-container a[rel='next']"
+                )
                 next_button.click()
                 # Wait for the page to refresh
                 WebDriverWait(driver, 10).until(EC.staleness_of(repos[0]))
@@ -62,7 +67,9 @@ def main():
             try:
                 # Wait for the content to load
                 WebDriverWait(driver, 10).until(
-                    EC.presence_of_element_located((By.CSS_SELECTOR, ".repository-content"))
+                    EC.presence_of_element_located(
+                        (By.CSS_SELECTOR, ".repository-content")
+                    )
                 )
                 # Check if there are no commits by the user
                 no_commits = driver.find_element(By.CSS_SELECTOR, ".blankslate h3")
@@ -83,6 +90,7 @@ def main():
     finally:
         # Clean up by closing the browser
         driver.quit()
+
 
 if __name__ == "__main__":
     main()

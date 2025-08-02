@@ -4,6 +4,7 @@ from datetime import datetime
 import argparse
 import re
 
+
 def get_first_commit_date(repo_path):
     try:
         result = subprocess.run(
@@ -11,13 +12,18 @@ def get_first_commit_date(repo_path):
             cwd=repo_path,
             capture_output=True,
             text=True,
-            check=False
+            check=False,
         )
         if result.returncode != 0:
-            print(f"Git command failed with return code {result.returncode} for {repo_path}")
+            print(
+                f"Git command failed with return code {result.returncode} for {repo_path}"
+            )
             return None
         date_str = result.stdout.strip()
-        match = re.search(r'Date:\s*(\w{3}\s+\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\s+\d{4}\s+[\+\-]\d{4})', date_str)
+        match = re.search(
+            r"Date:\s*(\w{3}\s+\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}\s+\d{4}\s+[\+\-]\d{4})",
+            date_str,
+        )
         if match:
             date_str = match.group(1)
             date_obj = datetime.strptime(date_str, "%a %b %d %H:%M:%S %Y %z")
@@ -28,6 +34,7 @@ def get_first_commit_date(repo_path):
     except Exception as e:
         print(f"Error getting commit date for {repo_path}: {e}")
         return None
+
 
 projects = [
     ("algorithm-solutions", "algorithm-solutions-en.md"),
@@ -54,10 +61,13 @@ projects = [
     ("TabsKiller", "tabskiller-en.md"),
 ]
 
+
 def main():
     parser = argparse.ArgumentParser(description="Create posts from README files.")
     parser.add_argument(
-        "--dry-run", action="store_true", help="Perform a dry run without creating posts."
+        "--dry-run",
+        action="store_true",
+        help="Perform a dry run without creating posts.",
     )
     args = parser.parse_args()
 
@@ -67,7 +77,12 @@ def main():
             first_commit_date = get_first_commit_date(project_path)
             if first_commit_date:
                 target_post = f"{first_commit_date}-{target_post_suffix}"
-                command = ["python3", "scripts/readme_to_post.py", project_path, target_post]
+                command = [
+                    "python3",
+                    "scripts/readme_to_post.py",
+                    project_path,
+                    target_post,
+                ]
                 if args.dry_run:
                     print(f"[Dry Run] Would run: {' '.join(command)}")
                 else:
@@ -76,6 +91,7 @@ def main():
                 print(f"Could not get first commit date for {project}")
         else:
             print(f"Project {project} not found in ~/projects")
+
 
 if __name__ == "__main__":
     main()

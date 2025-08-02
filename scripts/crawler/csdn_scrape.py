@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 import time
 
+
 def scrape_csdn_blog(url):
     """
     Scrapes a CSDN blog and extracts all the links (a tags) from the page source using Selenium,
@@ -16,9 +17,13 @@ def scrape_csdn_blog(url):
         # Set up Chrome options for headless browsing
         chrome_options = Options()
         chrome_options.add_argument("--headless")  # Run Chrome in headless mode
-        chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (recommended for headless)
+        chrome_options.add_argument(
+            "--disable-gpu"
+        )  # Disable GPU acceleration (recommended for headless)
         chrome_options.add_argument("--no-sandbox")  # Bypass OS security model
-        chrome_options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
+        chrome_options.add_argument(
+            "--disable-dev-shm-usage"
+        )  # overcome limited resource problems
 
         # Initialize the Chrome driver
         driver = webdriver.Chrome(options=chrome_options)
@@ -27,7 +32,7 @@ def scrape_csdn_blog(url):
         driver.get(url)
 
         # Find all 'a' tag elements
-        links = driver.find_elements(By.TAG_NAME, 'a')
+        links = driver.find_elements(By.TAG_NAME, "a")
 
         if not links:
             print("No links found on the page.")
@@ -36,7 +41,7 @@ def scrape_csdn_blog(url):
 
         for link in links:
             try:
-                href = link.get_attribute('href')
+                href = link.get_attribute("href")
                 if href and href.startswith("https://blog.csdn.net/lzw_java/article"):
                     text = link.text.strip()
 
@@ -52,8 +57,9 @@ def scrape_csdn_blog(url):
         print(f"An error occurred: {e}")
     finally:
         # Close the browser
-        if 'driver' in locals():
+        if "driver" in locals():
             driver.quit()
+
 
 if __name__ == "__main__":
     blog_url = "https://blog.csdn.net/lzw_java?type=blog"  # Replace with the actual URL

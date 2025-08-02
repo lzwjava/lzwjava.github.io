@@ -19,21 +19,25 @@ CLASH_API_BASE_URL = f"http://{CLASH_CONTROLLER_HOST}:{CLASH_CONTROLLER_PORT}"
 # Make sure this group exists in your Clash configuration.
 TARGET_PROXY_GROUP = "🚧Proxy"
 
+
 def setup_logging():
     """Configures basic logging for the script. Clears previous log."""
-    if os.path.exists('clash.log'):
-        with open('clash.log', 'w'):  # clears the log file
+    if os.path.exists("clash.log"):
+        with open("clash.log", "w"):  # clears the log file
             pass
     logging.basicConfig(
-        filename='clash.log',
+        filename="clash.log",
         level=logging.INFO,
-        format='%(asctime)s - %(message)s',
-        datefmt='%Y-%m-%d %H:%M:%S'
+        format="%(asctime)s - %(message)s",
+        datefmt="%Y-%m-%d %H:%M:%S",
     )
+
 
 def start_system_proxy(global_proxy_address):
     """Sets system-wide proxy environment variables."""
-    os.environ["GLOBAL_PROXY"] = global_proxy_address  # Set for consistency if needed elsewhere
+    os.environ["GLOBAL_PROXY"] = (
+        global_proxy_address  # Set for consistency if needed elsewhere
+    )
     os.environ["HTTP_PROXY"] = f"http://{global_proxy_address}"
     os.environ["HTTPS_PROXY"] = f"http://{global_proxy_address}"
     os.environ["http_proxy"] = f"http://{global_proxy_address}"
@@ -44,6 +48,7 @@ def start_system_proxy(global_proxy_address):
     os.environ["HTTPS_PROXY_REQUEST_FULLURI"] = "false"
     os.environ["ALL_PROXY"] = os.environ["http_proxy"]
     logging.info(f"System-wide proxy set to: {global_proxy_address}")
+
 
 def stop_system_proxy():
     """Clears system-wide proxy environment variables."""
@@ -56,6 +61,7 @@ def stop_system_proxy():
     os.environ["ALL_PROXY"] = ""
     logging.info("System-wide proxy stopped (environment variables cleared).")
 
+
 def switch_clash_proxy_group(group_name, proxy_name):
     """
     Switches the active proxy in a specified Clash proxy group to a new proxy.
@@ -66,38 +72,58 @@ def switch_clash_proxy_group(group_name, proxy_name):
     payload = {"name": proxy_name}
 
     try:
-        response = requests.put(url, headers=headers, data=json.dumps(payload), timeout=5)
+        response = requests.put(
+            url, headers=headers, data=json.dumps(payload), timeout=5
+        )
         response.raise_for_status()
         logging.info(f"Successfully switched '{group_name}' to '{proxy_name}'.")
         return True
     except requests.exceptions.ConnectionError:
-        logging.error(f"Error: Could not connect to Clash API at {CLASH_API_BASE_URL} to switch proxy.")
-        logging.error("Ensure Clash is running and its external-controller is configured.")
+        logging.error(
+            f"Error: Could not connect to Clash API at {CLASH_API_BASE_URL} to switch proxy."
+        )
+        logging.error(
+            "Ensure Clash is running and its external-controller is configured."
+        )
         return False
     except requests.exceptions.Timeout:
-        logging.error(f"Error: Connection to Clash API timed out while switching proxy for '{group_name}'.")
+        logging.error(
+            f"Error: Connection to Clash API timed out while switching proxy for '{group_name}'."
+        )
         return False
     except requests.exceptions.RequestException as e:
-        logging.error(f"An unexpected error occurred while switching proxy for '{group_name}': {e}")
+        logging.error(
+            f"An unexpected error occurred while switching proxy for '{group_name}': {e}"
+        )
         return False
+
 
 def main():
     """Main function to start Clash, then periodically select and switch to best proxy."""
     setup_logging()
 
-    parser = argparse.ArgumentParser(description="Clash management script for periodic proxy switching.")
-    parser.add_argument("--minutes", type=int, default=10, help="Minutes between updates (default: 10)")
-    parser.add_argument("--iterations", type=int, default=1000, help="Number of iterations (default: 1000)")
+    parser = argparse.ArgumentParser(
+        description="Clash management script for periodic proxy switching."
+    )
+    parser.add_argument(
+        "--minutes", type=int, default=10, help="Minutes between updates (default: 10)"
+    )
+    parser.add_argument(
+        "--iterations",
+        type=int,
+        default=1000,
+        help="Number of iterations (default: 1000)",
+    )
     parser.add_argument(
         "--clash-executable",
         type=str,
         default=os.getenv("CLASH_EXECUTABLE"),
-        help="Path to the Clash executable. Defaults to CLASH_EXECUTABLE environment variable if set."
+        help="Path to the Clash executable. Defaults to CLASH_EXECUTABLE environment variable if set.",
     )
     parser.add_argument(
         "--hk",
         action="store_true",
-        help="Include HK proxies in selection (not just SG/TW)"
+        help="Include HK proxies in selection (not just SG/TW)",
     )
     args = parser.parse_args()
 
@@ -106,7 +132,9 @@ def main():
     clash_executable_path = args.clash_executable
 
     if not clash_executable_path:
-        logging.critical("Error: No Clash executable path provided. Please set CLASH_EXECUTABLE environment variable or use --clash-executable argument.")
+        logging.critical(
+            "Error: No Clash executable path provided. Please set CLASH_EXECUTABLE environment variable or use --clash-executable argument."
+        )
         return  # Exit if no executable path is available
 
     # Step 1: Stop any existing system proxy settings
@@ -117,20 +145,26 @@ def main():
     try:
         # Start Clash and redirect its output to a logging function instead of a file
         def log_clash_output(pipe, level=logging.INFO):
-            for line in iter(pipe.readline, b''):
+            for line in iter(pipe.readline, b""):
                 logging.log(level, f"[Clash] {line.decode(errors='replace').rstrip()}")
             pipe.close()
 
         clash_process = subprocess.Popen(
-            [clash_executable_path],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            [clash_executable_path], stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )
         logging.info(f"Clash started with PID {clash_process.pid}")
 
         # Start threads to capture and log stdout and stderr
-        threading.Thread(target=log_clash_output, args=(clash_process.stdout, logging.INFO), daemon=True).start()
-        threading.Thread(target=log_clash_output, args=(clash_process.stderr, logging.ERROR), daemon=True).start()
+        threading.Thread(
+            target=log_clash_output,
+            args=(clash_process.stdout, logging.INFO),
+            daemon=True,
+        ).start()
+        threading.Thread(
+            target=log_clash_output,
+            args=(clash_process.stderr, logging.ERROR),
+            daemon=True,
+        ).start()
 
         # Give Clash a moment to fully initialize and open its API port
         time.sleep(5)
@@ -144,7 +178,9 @@ def main():
 
     # Set the system-wide proxy to point to Clash's local HTTP proxy.
     # Clash typically runs its HTTP proxy on port 7890 (or similar, check your config).
-    clash_local_proxy_address = f"{CLASH_CONTROLLER_HOST}:7890"  # Adjust if your Clash HTTP port is different
+    clash_local_proxy_address = (
+        f"{CLASH_CONTROLLER_HOST}:7890"  # Adjust if your Clash HTTP port is different
+    )
     start_system_proxy(clash_local_proxy_address)
 
     for i in range(1, ITERATIONS + 1):
@@ -158,32 +194,44 @@ def main():
             if top_proxies:
                 # Check for SG or TW in proxy names (or HK if --hk is set)
                 for proxy in top_proxies:
-                    proxy_name = proxy['name']
+                    proxy_name = proxy["name"]
                     if args.hk:
-                        if any(x in proxy_name for x in ['HK', 'SG', 'TW']):
+                        if any(x in proxy_name for x in ["HK", "SG", "TW"]):
                             best_proxy_name = proxy_name
-                            logging.info(f"Selected proxy '{best_proxy_name}' (contains HK/SG/TW) with latency {proxy['latency']}ms")
+                            logging.info(
+                                f"Selected proxy '{best_proxy_name}' (contains HK/SG/TW) with latency {proxy['latency']}ms"
+                            )
                             break
                     else:
-                        if any(x in proxy_name for x in ['SG', 'TW']):
+                        if any(x in proxy_name for x in ["SG", "TW"]):
                             best_proxy_name = proxy_name
-                            logging.info(f"Selected proxy '{best_proxy_name}' (contains SG/TW) with latency {proxy['latency']}ms")
+                            logging.info(
+                                f"Selected proxy '{best_proxy_name}' (contains SG/TW) with latency {proxy['latency']}ms"
+                            )
                             break
                 # If no matching proxy is found, use the first one
                 if not best_proxy_name:
-                    best_proxy_name = top_proxies[0]['name']
-                    logging.info(f"No preferred proxy found. Selected first proxy '{best_proxy_name}' with latency {top_proxies[0]['latency']}ms")
+                    best_proxy_name = top_proxies[0]["name"]
+                    logging.info(
+                        f"No preferred proxy found. Selected first proxy '{best_proxy_name}' with latency {top_proxies[0]['latency']}ms"
+                    )
             else:
-                logging.warning("No successful proxy tests. Cannot select a best proxy for this iteration.")
+                logging.warning(
+                    "No successful proxy tests. Cannot select a best proxy for this iteration."
+                )
         except Exception as e:
             logging.error(f"Error during proxy speed testing: {e}")
 
         # Step 4: Switch Clash's proxy group to the best proxy (if found)
         if best_proxy_name:
             if not switch_clash_proxy_group(TARGET_PROXY_GROUP, best_proxy_name):
-                logging.error(f"Failed to switch Clash group '{TARGET_PROXY_GROUP}' to '{best_proxy_name}'.")
+                logging.error(
+                    f"Failed to switch Clash group '{TARGET_PROXY_GROUP}' to '{best_proxy_name}'."
+                )
         else:
-            logging.warning("No best proxy found, skipping proxy group switch for this iteration.")
+            logging.warning(
+                "No best proxy found, skipping proxy group switch for this iteration."
+            )
 
         # Step 5: Wait for the specified duration
         logging.info(f"Waiting for {args.minutes} minutes before next iteration...")
@@ -197,7 +245,9 @@ def main():
         logging.info("Terminating Clash process...")
         clash_process.terminate()
         try:
-            clash_process.wait(timeout=10)  # Give Clash a bit more time to shut down gracefully
+            clash_process.wait(
+                timeout=10
+            )  # Give Clash a bit more time to shut down gracefully
             logging.info("Clash stopped successfully.")
         except subprocess.TimeoutExpired:
             logging.warning("Clash did not terminate gracefully, killing process.")
@@ -209,6 +259,7 @@ def main():
     stop_system_proxy()
 
     logging.info(f"Completed {ITERATIONS} iterations. Script finished.")
+
 
 if __name__ == "__main__":
     main()

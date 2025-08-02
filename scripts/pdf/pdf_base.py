@@ -2,6 +2,7 @@ import os
 import subprocess
 import platform
 
+
 def text_to_pdf_from_markdown(input_markdown_path, output_pdf_path, dry_run=False):
     if dry_run:
         print(f"Dry run: Would generate PDF from: {input_markdown_path}")
@@ -14,9 +15,9 @@ def text_to_pdf_from_markdown(input_markdown_path, output_pdf_path, dry_run=Fals
 
     if not os.path.exists(input_markdown_path):
         raise Exception(f"Input file does not exist: {input_markdown_path}")
-    
-    lang = os.path.basename(input_markdown_path).split('-')[-1].split('.')[0]
-    
+
+    lang = os.path.basename(input_markdown_path).split("-")[-1].split(".")[0]
+
     if platform.system() == "Darwin":
         if lang == "hi":
             CJK_FONT = "Kohinoor Devanagari"
@@ -48,20 +49,32 @@ def text_to_pdf_from_markdown(input_markdown_path, output_pdf_path, dry_run=Fals
         else:
             CJK_FONT = "Noto Sans"
     command = [
-        'pandoc',
+        "pandoc",
         input_markdown_path,
-        '-o', output_pdf_path,
-        '-f', 'markdown',
-        '--pdf-engine', 'xelatex',
-        '-V', f'romanfont={CJK_FONT}',
-        '-V', f'mainfont={CJK_FONT}',
-        '-V', f'CJKmainfont={CJK_FONT}',
-        '-V', f'CJKsansfont={CJK_FONT}',
-        '-V', f'CJKmonofont={CJK_FONT}',
-        '-V', f'geometry:{GEOMETRY}',
-        '-V', 'classoption=16pt',
-        '-V', 'CJKoptions=Scale=1.1',
-        '-V', 'linestretch=1.5'
+        "-o",
+        output_pdf_path,
+        "-f",
+        "markdown",
+        "--pdf-engine",
+        "xelatex",
+        "-V",
+        f"romanfont={CJK_FONT}",
+        "-V",
+        f"mainfont={CJK_FONT}",
+        "-V",
+        f"CJKmainfont={CJK_FONT}",
+        "-V",
+        f"CJKsansfont={CJK_FONT}",
+        "-V",
+        f"CJKmonofont={CJK_FONT}",
+        "-V",
+        f"geometry:{GEOMETRY}",
+        "-V",
+        "classoption=16pt",
+        "-V",
+        "CJKoptions=Scale=1.1",
+        "-V",
+        "linestretch=1.5",
     ]
 
     result = subprocess.run(command, capture_output=True, text=True)

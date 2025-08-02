@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def multiply_matrices(matrix1, matrix2):
     try:
         result = np.dot(matrix1, matrix2)
@@ -7,6 +8,7 @@ def multiply_matrices(matrix1, matrix2):
     except ValueError:
         print("Error: Matrices cannot be multiplied due to incompatible dimensions.")
         return None
+
 
 def add_matrices(matrix1, matrix2):
     try:
@@ -16,6 +18,7 @@ def add_matrices(matrix1, matrix2):
         print("Error: Matrices cannot be added due to incompatible dimensions.")
         return None
 
+
 def subtract_matrices(matrix1, matrix2):
     try:
         result = np.subtract(matrix1, matrix2)
@@ -24,8 +27,10 @@ def subtract_matrices(matrix1, matrix2):
         print("Error: Matrices cannot be subtracted due to incompatible dimensions.")
         return None
 
+
 def transpose_matrix(matrix):
     return np.transpose(matrix)
+
 
 def inverse_matrix(matrix):
     try:
@@ -35,6 +40,7 @@ def inverse_matrix(matrix):
         print("Error: Matrix is not invertible.")
         return None
 
+
 def qr_decomposition(matrix):
     try:
         q, r = np.linalg.qr(matrix)
@@ -43,13 +49,14 @@ def qr_decomposition(matrix):
         print("Error: QR decomposition failed.")
         return None, None
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     matrix1 = np.array([[1, 2], [3, 4]])
     matrix2 = np.array([[5, 6], [7, 8]])
 
     print("Matrix 1:")
     print(matrix1)
-    
+
     print("\nMatrix 2:")
     print(matrix2)
 
@@ -86,12 +93,14 @@ if __name__ == '__main__':
     eigenvalues, eigenvectors = np.linalg.eig(matrix3)
     print("\nEigenvalues:")
     print(eigenvalues)
-    
+
     print("\nEigenvectors:")
     print(eigenvectors)
-    
-    reconstructed_matrix = eigenvectors @ np.diag(eigenvalues) @ np.linalg.inv(eigenvectors)
-    print("\nReconstructed Matrix:")    
+
+    reconstructed_matrix = (
+        eigenvectors @ np.diag(eigenvalues) @ np.linalg.inv(eigenvectors)
+    )
+    print("\nReconstructed Matrix:")
     print(reconstructed_matrix)
 
     # Example of QR Decomposition

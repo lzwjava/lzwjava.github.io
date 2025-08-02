@@ -1,10 +1,11 @@
 import yaml
 import os
 
+
 def convert_clash_rules_to_shadowrocket(clash_rules):
     shadowrocket_rules = []
     for rule in clash_rules:
-        parts = rule.split(',')
+        parts = rule.split(",")
         if len(parts) < 3:
             continue
 
@@ -25,18 +26,20 @@ def convert_clash_rules_to_shadowrocket(clash_rules):
             shadowrocket_rules.append(f"MATCH,{rule_policy}")
     return shadowrocket_rules
 
+
 def main():
-    file_path = os.path.join(os.path.dirname(__file__), 'clash_config_tmp.yaml')
-    with open(file_path, 'r') as file:
+    file_path = os.path.join(os.path.dirname(__file__), "clash_config_tmp.yaml")
+    with open(file_path, "r") as file:
         config = yaml.safe_load(file)
-    
-    clash_rules = config.get('rules', [])
+
+    clash_rules = config.get("rules", [])
 
     shadowrocket_rules = convert_clash_rules_to_shadowrocket(clash_rules)
 
     print("[Rule]")
     for rule in shadowrocket_rules:
         print(rule)
+
 
 if __name__ == "__main__":
     main()

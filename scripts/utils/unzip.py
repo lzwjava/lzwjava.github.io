@@ -3,8 +3,10 @@ import os
 import argparse
 
 # Set up argument parsing
-parser = argparse.ArgumentParser(description="Unzip a file to the same directory with the same name.")
-parser.add_argument('zip_file', help="Path to the zip file")
+parser = argparse.ArgumentParser(
+    description="Unzip a file to the same directory with the same name."
+)
+parser.add_argument("zip_file", help="Path to the zip file")
 
 # Parse the command-line arguments
 args = parser.parse_args()
@@ -21,7 +23,7 @@ destination_folder = os.path.join(directory, folder_name)
 os.makedirs(destination_folder, exist_ok=True)
 
 # Unzip the file
-with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
     zip_ref.extractall(destination_folder)
 
-print(f'Contents extracted to {destination_folder}')
+print(f"Contents extracted to {destination_folder}")

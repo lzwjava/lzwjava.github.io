@@ -54,7 +54,7 @@ def process_audio_file(input_file, output_dir):
     os.makedirs(output_dir, exist_ok=True)
 
     filename = os.path.basename(input_file)
-    if not filename.endswith('.m4a'):
+    if not filename.endswith(".m4a"):
         print(f"Error: {filename} is not a .m4a file.")
         return
 
@@ -66,7 +66,7 @@ def process_audio_file(input_file, output_dir):
     print(f"Processing: {filename}")
     try:
         # Determine language based on filename suffix
-        if filename.endswith('-zh.m4a'):
+        if filename.endswith("-zh.m4a"):
             language_code = "cmn-CN"
         else:
             language_code = "en-US"
@@ -74,7 +74,7 @@ def process_audio_file(input_file, output_dir):
         # Construct GCS URIs
         gcs_audio_uri = f"gs://test2x/audio-files/{filename}"
         gcs_output_uri = f"gs://test2x/transcripts/{os.path.splitext(filename)[0]}"
-        
+
         # Upload the file to GCS if it doesn't exist
         storage_client = storage.Client()
         bucket = storage_client.bucket("test2x")
@@ -88,16 +88,20 @@ def process_audio_file(input_file, output_dir):
         run_batch_recognize(
             audio_gcs_uri=gcs_audio_uri,
             output_gcs_folder=gcs_output_uri,
-            language_code=language_code
+            language_code=language_code,
         )
         print(f"File {filename} processed.\n")
 
         # Download the transcription
-        blobs = storage_client.list_blobs("test2x", prefix=f"transcripts/{os.path.splitext(filename)[0]}")
-        
+        blobs = storage_client.list_blobs(
+            "test2x", prefix=f"transcripts/{os.path.splitext(filename)[0]}"
+        )
+
         for blob in blobs:
             if blob.name.endswith(".json"):
-                local_output_path = os.path.join(output_dir, os.path.basename(blob.name))
+                local_output_path = os.path.join(
+                    output_dir, os.path.basename(blob.name)
+                )
                 blob.download_to_filename(local_output_path)
                 print(f"Downloaded {blob.name} to {local_output_path}")
 
@@ -108,8 +112,15 @@ def process_audio_file(input_file, output_dir):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Process a single Voice Memo (.m4a) file to generate transcription.")
-    parser.add_argument('--input_file', type=str, required=True, help="Input path for the Voice Memo file.")
+    parser = argparse.ArgumentParser(
+        description="Process a single Voice Memo (.m4a) file to generate transcription."
+    )
+    parser.add_argument(
+        "--input_file",
+        type=str,
+        required=True,
+        help="Input path for the Voice Memo file.",
+    )
 
     args = parser.parse_args()
 

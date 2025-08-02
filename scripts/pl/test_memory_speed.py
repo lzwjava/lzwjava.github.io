@@ -1,6 +1,7 @@
 import time
 import numpy as np
 
+
 def test_memory_speed(size_mb):
     # Convert size from MB to bytes
     size_bytes = size_mb * 1024 * 1024
@@ -19,6 +20,7 @@ def test_memory_speed(size_mb):
     read_time = time.time() - start_time
 
     return read_time, write_time
+
 
 # Test with 100 MB of data
 read_time, write_time = test_memory_speed(2000)

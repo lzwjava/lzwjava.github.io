@@ -11,7 +11,7 @@ def text_to_speech(text, output_filename):
     # Choose the voice parameters, using 'en-US-Journey-D'
     voice = texttospeech.VoiceSelectionParams(
         language_code="en-US",  # English (United States)
-        name="en-US-Journey-F"  # Specific voice name (Journey voice model)
+        name="en-US-Journey-F",  # Specific voice name (Journey voice model)
     )
 
     # Set audio configuration as per provided parameters, with MP3 encoding
@@ -21,7 +21,7 @@ def text_to_speech(text, output_filename):
         effects_profile_id=["small-bluetooth-speaker-class-device"],
         pitch=0.0,  # No pitch modification
         speaking_rate=0.0,  # Slow speech rate (adjust as needed)
-        volume_gain_db=5.0  # Louder volume (can be adjusted)
+        volume_gain_db=5.0,  # Louder volume (can be adjusted)
     )
 
     # Perform the text-to-speech request

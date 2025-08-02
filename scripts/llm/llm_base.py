@@ -5,6 +5,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 import time
 
+
 # Initialize DeepSeek client if needed
 def initialize_deepseek_client():
     api_key = os.environ.get("DEEPSEEK_API_KEY")
@@ -13,6 +14,7 @@ def initialize_deepseek_client():
         exit()
     return OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
 
+
 def call_deepseek_api():
     api_key = os.environ.get("DEEPSEEK_API_KEY")
     if not api_key:
@@ -20,6 +22,7 @@ def call_deepseek_api():
         exit()
     client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
     return client
+
 
 def call_gemini_api(prompt, retries=3, backoff_factor=1):
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -43,10 +46,11 @@ def call_gemini_api(prompt, retries=3, backoff_factor=1):
             response_json = e.response.json() if e.response else None
             print(f"Gemini API Error: {e} - {response_json}")
             if e.response and e.response.status_code == 429:
-                time.sleep(backoff_factor * (2 ** attempt))  # Exponential backoff
+                time.sleep(backoff_factor * (2**attempt))  # Exponential backoff
             else:
                 raise Exception(f"Gemini API Error: {e} - {response_json}")
     return None
+
 
 def call_mistral_api(prompt, model="mistral-small-2501", process_response=True):
     api_key = os.environ.get("MISTRAL_API_KEY")
@@ -57,18 +61,10 @@ def call_mistral_api(prompt, model="mistral-small-2501", process_response=True):
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer {api_key}"
+        "Authorization": f"Bearer {api_key}",
     }
     url = base_url
-    data = {
-        "model": model,
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    }
+    data = {"model": model, "messages": [{"role": "user", "content": prompt}]}
     print(f"Input to Mistral API: {data}")
     print(f"Mistral API URL: {url}")
     print(f"Mistral API Headers: {headers}")
@@ -77,30 +73,28 @@ def call_mistral_api(prompt, model="mistral-small-2501", process_response=True):
         response.raise_for_status()
         response_json = response.json()
         print(response_json)
-        #if response_json and response_json['choices']:
+        # if response_json and response_json['choices']:
         #    content = response_json['choices'][0]['message']['content']
         #    return content
-        #else:
+        # else:
         #    print(f"Mistral API Error: Invalid response format: {response_json}")
         return response_json
     except requests.exceptions.RequestException as e:
         print(f"Mistral API Error: {e}")
         stre = f"{e}"
-        if '429' in stre:
+        if "429" in stre:
             print("Too many requests, sleeping for 10 seconds and retrying")
             time.sleep(10)
             return call_mistral_api(prompt, model, process_response)
 
         raise e
 
+
 def call_ollama_api(prompt, model):
     base_url = "http://localhost:11434/v1/chat/completions"
     headers = {"Content-Type": "application/json"}
     url = base_url
-    data = {
-        "messages": [{"role": "user", "content": prompt}],
-        "model": model
-    }
+    data = {"messages": [{"role": "user", "content": prompt}], "model": model}
     print(f"Input to API: {data}")
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -113,13 +107,12 @@ def call_ollama_api(prompt, model):
         print(f"Error decoding JSON response: {e}")
         return None
 
+
 def call_llama_api(prompt):
     base_url = "http://localhost:8080/v1/chat/completions"
     headers = {"Content-Type": "application/json"}
     url = base_url
-    data = {
-        "messages": [{"role": "user", "content": prompt}]
-    }
+    data = {"messages": [{"role": "user", "content": prompt}]}
     print(f"Input to API: {data}")
     try:
         response = requests.post(url, headers=headers, data=json.dumps(data))
@@ -132,26 +125,16 @@ def call_llama_api(prompt):
         print(f"Error decoding JSON response: {e}")
         return None
 
+
 def call_grok_api(prompt):
     api_key = os.environ.get("GROK_API_KEY")
     if not api_key:
         print("Error: GROK_API_KEY environment variable not set.")
         return None
     base_url = "https://api.x.ai/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {api_key}"
-    }
+    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
     url = base_url
-    data = {
-        "model": "grok-2-latest",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
-    }
+    data = {"model": "grok-2-latest", "messages": [{"role": "user", "content": prompt}]}
     print(f"Input to Grok API: {data}")
     try:
         response = requests.post(url, headers=headers, json=data)
@@ -167,4 +150,3 @@ def call_grok_api(prompt):
     except json.JSONDecodeError as e:
         print(f"Error decoding JSON response: {e}")
         return None
-

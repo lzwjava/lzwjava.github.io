@@ -12,6 +12,7 @@ OUTPUT_DIR = "latex"
 
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
+
 def create_translation_prompt(target_language):
     if target_language == "zh":
         return f"""You are a professional translator. You are translating a LaTeX file from English to Chinese. Translate the following text to Chinese. Translate Zhiwei Li to 李智维. Translate Meitai Technology Services to 美钛技术服务. Translate Neusiri to 思芮 instead of 纽思瑞. Translate Chongding Conference to 冲顶大会. Translate Fun Live to 趣直播. Translate MianbaoLive to 面包Live. Translate Beijing Dami Entertainment Co. to 北京大米互娱有限公司. Translate Guangzhou Yuyan Middle School to 广州玉岩中学. Do not translate English names or LaTeX commands. Be careful about code blocks, if not sure, just do not change."""
@@ -28,16 +29,20 @@ def create_translation_prompt(target_language):
     else:
         return f"You are a professional translator. You are translating a LaTeX file. Translate the following text to {target_language}. Translate Zhiwei Li to 李智维 as chinese translation. Do not translate English names or LaTeX commands. Be careful about code blocks, if not sure, just do not change."
 
+
 def translate_text(text, target_language):
     print(f"  Translating text: {text[:50]}...")
     try:
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
-                {"role": "system", "content": create_translation_prompt(target_language)},
-                {"role": "user", "content": text}
+                {
+                    "role": "system",
+                    "content": create_translation_prompt(target_language),
+                },
+                {"role": "user", "content": text},
             ],
-            stream=False
+            stream=False,
         )
         if response and response.choices:
             print(f"  Translation successful.")
@@ -49,17 +54,18 @@ def translate_text(text, target_language):
         print(f"  Translation failed with error: {e}")
         return None
 
+
 def translate_latex_file(input_file, output_file, target_language):
     print(f"  Processing file: {input_file}")
     try:
-        with open(input_file, 'r', encoding='utf-8') as infile:
+        with open(input_file, "r", encoding="utf-8") as infile:
             content = infile.read()
 
         translated_content = translate_text(content, target_language)
 
         if translated_content:
             os.makedirs(os.path.dirname(output_file), exist_ok=True)
-            with open(output_file, 'w', encoding='utf-8') as outfile:
+            with open(output_file, "w", encoding="utf-8") as outfile:
                 outfile.write(translated_content)
             print(f"  Replaced file: {output_file}")
         else:
@@ -67,23 +73,43 @@ def translate_latex_file(input_file, output_file, target_language):
     except Exception as e:
         print(f"  Error processing file {input_file}: {e}")
 
+
 def main():
     if not DEEPSEEK_API_KEY:
         print("Error: DEEPSEEK_API_KEY is not set in .env file.")
         return
 
-    parser = argparse.ArgumentParser(description="Translate a specific LaTeX resume section.")
-    parser.add_argument("--section", type=str, required=True, help="Section file to translate (e.g., blogposts.tex).")
-    parser.add_argument("--lang", type=str, default="zh", help="Target language for translation (e.g., ja, es, hi, zh, en, fr).")
-    parser.add_argument("--kind", type=str, default="resume", help="Kind of document to translate (resume only).")
+    parser = argparse.ArgumentParser(
+        description="Translate a specific LaTeX resume section."
+    )
+    parser.add_argument(
+        "--section",
+        type=str,
+        required=True,
+        help="Section file to translate (e.g., blogposts.tex).",
+    )
+    parser.add_argument(
+        "--lang",
+        type=str,
+        default="zh",
+        help="Target language for translation (e.g., ja, es, hi, zh, en, fr).",
+    )
+    parser.add_argument(
+        "--kind",
+        type=str,
+        default="resume",
+        help="Kind of document to translate (resume only).",
+    )
     args = parser.parse_args()
     target_language = args.lang
     section_to_translate = args.section
     kind = args.kind
 
-    languages = ['ja', 'es', 'hi', 'zh', 'en', 'fr']
+    languages = ["ja", "es", "hi", "zh", "en", "fr"]
     if target_language not in languages:
-        print(f"Error: Invalid target language: {target_language}. Please choose from {languages}")
+        print(
+            f"Error: Invalid target language: {target_language}. Please choose from {languages}"
+        )
         return
 
     if kind != "resume":
@@ -105,8 +131,8 @@ def main():
     print(f"Submitting translation job for section {section_to_translate}...")
     translate_latex_file(input_file, output_file, target_language)
 
+
 if __name__ == "__main__":
     main()
-    
-# python scripts/translation/translate_resume_latex.py --section corporateprojects.tex --lang zh --kind resume
 
+# python scripts/translation/translate_resume_latex.py --section corporateprojects.tex --lang zh --kind resume

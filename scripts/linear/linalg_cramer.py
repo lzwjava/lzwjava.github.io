@@ -1,9 +1,7 @@
 import numpy as np
 
 # Define the system of linear equations
-A = np.array([[2, 1, -1],
-              [-3, -1, 2],
-              [-2, 1, 2]])
+A = np.array([[2, 1, -1], [-3, -1, 2], [-2, 1, 2]])
 
 b = np.array([8, -11, -3])
 

@@ -8,6 +8,7 @@ NS = "{http://maven.apache.org/POM/4.0.0}"
 # Cache for groupId to avoid redundant parsing
 group_id_cache = {}
 
+
 def get_group_id(pom_path, pom_map):
     """
     Extract the groupId from a pom.xml file, considering inheritance from parent.
@@ -24,35 +25,40 @@ def get_group_id(pom_path, pom_map):
 
     tree = ET.parse(pom_path)
     root = tree.getroot()
-    group_id_elem = root.find(NS + 'groupId')
+    group_id_elem = root.find(NS + "groupId")
 
     if group_id_elem is not None:
         group_id = group_id_elem.text.strip()
     else:
         # Check for parent declaration
-        parent = root.find(NS + 'parent')
+        parent = root.find(NS + "parent")
         if parent is not None:
-            parent_group_id = parent.find(NS + 'groupId').text.strip()
-            parent_artifact_id = parent.find(NS + 'artifactId').text.strip()
-            parent_relative_path = parent.find(NS + 'relativePath')
+            parent_group_id = parent.find(NS + "groupId").text.strip()
+            parent_artifact_id = parent.find(NS + "artifactId").text.strip()
+            parent_relative_path = parent.find(NS + "relativePath")
             if parent_relative_path is not None and parent_relative_path.text:
                 parent_pom_path = os.path.normpath(
                     os.path.join(os.path.dirname(pom_path), parent_relative_path.text)
                 )
             else:
                 # Default to parent directory if relativePath is omitted
-                parent_pom_path = os.path.join(os.path.dirname(pom_path), '..', 'pom.xml')
+                parent_pom_path = os.path.join(
+                    os.path.dirname(pom_path), "..", "pom.xml"
+                )
                 parent_pom_path = os.path.normpath(parent_pom_path)
 
             if parent_pom_path in pom_map:
                 group_id = get_group_id(parent_pom_path, pom_map)
             else:
-                raise ValueError(f"Parent POM not found for {pom_path}: {parent_pom_path}")
+                raise ValueError(
+                    f"Parent POM not found for {pom_path}: {parent_pom_path}"
+                )
         else:
             raise ValueError(f"No groupId or parent specified in {pom_path}")
 
     group_id_cache[pom_path] = group_id
     return group_id
+
 
 def get_artifact_id(pom_path):
     """
@@ -66,12 +72,13 @@ def get_artifact_id(pom_path):
     """
     tree = ET.parse(pom_path)
     root = tree.getroot()
-    artifact_id_elem = root.find(NS + 'artifactId')
+    artifact_id_elem = root.find(NS + "artifactId")
 
     if artifact_id_elem is None:
         raise ValueError(f"pom.xml must specify artifactId: {pom_path}")
 
     return artifact_id_elem.text.strip()
+
 
 def get_dependencies(pom_path):
     """
@@ -87,9 +94,9 @@ def get_dependencies(pom_path):
     root = tree.getroot()
     dependencies = []
 
-    for dep in root.findall(NS + 'dependencies/' + NS + 'dependency'):
-        dep_group_id_elem = dep.find(NS + 'groupId')
-        dep_artifact_id_elem = dep.find(NS + 'artifactId')
+    for dep in root.findall(NS + "dependencies/" + NS + "dependency"):
+        dep_group_id_elem = dep.find(NS + "groupId")
+        dep_artifact_id_elem = dep.find(NS + "artifactId")
         if dep_group_id_elem is not None and dep_artifact_id_elem is not None:
             dep_group_id = dep_group_id_elem.text.strip()
             dep_artifact_id = dep_artifact_id_elem.text.strip()
@@ -97,7 +104,8 @@ def get_dependencies(pom_path):
 
     return dependencies
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Check command-line arguments
     if len(sys.argv) != 2:
         print("Usage: python script.py <root_directory>")
@@ -112,7 +120,8 @@ if __name__ == '__main__':
     pom_files = [
         os.path.join(root, file)
         for root, _, files in os.walk(root_dir)
-        for file in files if file == 'pom.xml'
+        for file in files
+        if file == "pom.xml"
     ]
 
     if not pom_files:
@@ -151,7 +160,7 @@ if __name__ == '__main__':
             continue
 
     # Step 5: Output in DOT format
-    print('digraph G {')
+    print("digraph G {")
     for from_module, to_module in sorted(dependencies):
         print(f'  "{from_module}" -> "{to_module}";')
-    print('}')
+    print("}")

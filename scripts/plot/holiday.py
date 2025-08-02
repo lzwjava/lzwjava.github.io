@@ -35,47 +35,59 @@ holidays_cn = [
 total_days_hk = sum(holiday["duration"] for holiday in holidays_hk)
 labels_hk = []
 for holiday in holidays_hk:
-    start_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
-    end_date = start_date + timedelta(days=holiday['duration'] - 1)
-    end_date_str = end_date.strftime('%m-%d')
-    start_date_str = start_date.strftime('%m-%d')
+    start_date = datetime.strptime(holiday["date"], "%Y-%m-%d")
+    end_date = start_date + timedelta(days=holiday["duration"] - 1)
+    end_date_str = end_date.strftime("%m-%d")
+    start_date_str = start_date.strftime("%m-%d")
     labels_hk.append(f"{holiday['name']} ({start_date_str} to {end_date_str})")
 sizes_hk = [holiday["duration"] for holiday in holidays_hk]
 
 
 # Create the pie chart for Hong Kong
 fig1, ax1 = plt.subplots(figsize=(10, 10))
-wedges, texts, autotexts = ax1.pie(sizes_hk, labels=labels_hk, autopct='%1.1f%%', startangle=90, textprops={'color': "black"})
-ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+wedges, texts, autotexts = ax1.pie(
+    sizes_hk,
+    labels=labels_hk,
+    autopct="%1.1f%%",
+    startangle=90,
+    textprops={"color": "black"},
+)
+ax1.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax1.set_title(f"2025 Holiday Schedule (Hong Kong) - Total Days: {total_days_hk}")
 plt.setp(autotexts, size=8, weight="bold")
 plt.tight_layout()
 
 # Save the first plot
-plt.savefig(os.path.join(os.path.dirname(__file__), 'holiday_schedule_hk.jpg'))
+plt.savefig(os.path.join(os.path.dirname(__file__), "holiday_schedule_hk.jpg"))
 
 
 # Calculate total holiday days for China
 total_days_cn = sum(holiday["duration"] for holiday in holidays_cn)
 labels_cn = []
 for holiday in holidays_cn:
-    start_date = datetime.strptime(holiday['date'], '%Y-%m-%d')
-    end_date = start_date + timedelta(days=holiday['duration'] - 1)
-    end_date_str = end_date.strftime('%m-%d')
-    start_date_str = start_date.strftime('%m-%d')
+    start_date = datetime.strptime(holiday["date"], "%Y-%m-%d")
+    end_date = start_date + timedelta(days=holiday["duration"] - 1)
+    end_date_str = end_date.strftime("%m-%d")
+    start_date_str = start_date.strftime("%m-%d")
     labels_cn.append(f"{holiday['name']} ({start_date_str} to {end_date_str})")
 sizes_cn = [holiday["duration"] for holiday in holidays_cn]
 
 # Create the pie chart for China
 fig2, ax2 = plt.subplots(figsize=(10, 10))
-wedges, texts, autotexts = ax2.pie(sizes_cn, labels=labels_cn, autopct='%1.1f%%', startangle=90, textprops={'color': "black"})
-ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+wedges, texts, autotexts = ax2.pie(
+    sizes_cn,
+    labels=labels_cn,
+    autopct="%1.1f%%",
+    startangle=90,
+    textprops={"color": "black"},
+)
+ax2.axis("equal")  # Equal aspect ratio ensures that pie is drawn as a circle.
 ax2.set_title(f"2025 Holiday Schedule (China) - Total Days: {total_days_cn}")
 plt.setp(autotexts, size=8, weight="bold")
 plt.tight_layout()
 
 
 # Save the second plot
-plt.savefig(os.path.join(os.path.dirname(__file__), 'holiday_schedule_cn.jpg'))
+plt.savefig(os.path.join(os.path.dirname(__file__), "holiday_schedule_cn.jpg"))
 
 plt.show()

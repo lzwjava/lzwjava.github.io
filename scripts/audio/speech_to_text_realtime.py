@@ -17,6 +17,7 @@ CHUNK = int(RATE / 10)  # 100ms
 
 class MicrophoneStream(object):
     """Opens a recording stream as a generator yielding the audio chunks."""
+
     def __init__(self, rate, chunk):
         self._rate = rate
         self._chunk = chunk
@@ -27,8 +28,10 @@ class MicrophoneStream(object):
             format=pyaudio.paInt16,
             # The API currently only supports 1-channel (mono) audio
             # https://goo.gl/z726ff
-            channels=1, rate=self._rate,
-            input=True, frames_per_buffer=self._chunk,
+            channels=1,
+            rate=self._rate,
+            input=True,
+            frames_per_buffer=self._chunk,
             # Run the audio stream asynchronously to fill the buffer object.
             # This is necessary so that the input device's buffer doesn't
             # overflow while the calling thread makes network requests, etc.
@@ -63,7 +66,7 @@ class MicrophoneStream(object):
                 except queue.Empty:
                     break
 
-            yield b''.join(data)
+            yield b"".join(data)
 
     def close(self):
         self.closed = True
@@ -80,7 +83,7 @@ class MicrophoneStream(object):
         self.close()
 
 
-def main(record_seconds=10, language_code='en-US'):
+def main(record_seconds=10, language_code="en-US"):
     # See http://g.co/cloud/speech/docs/languages
     # for a list of supported languages.
     # language_code = 'en-US'  # a BCP-47 language tag
@@ -94,33 +97,43 @@ def main(record_seconds=10, language_code='en-US'):
     )
 
     streaming_config = speech.StreamingRecognitionConfig(
-        config=config,
-        interim_results=True)
+        config=config, interim_results=True
+    )
 
     with MicrophoneStream(RATE, CHUNK) as stream:
         audio_generator = stream.generator(record_seconds)
-        requests = (speech.StreamingRecognizeRequest(audio_content=content)
-                    for content in audio_generator)
+        requests = (
+            speech.StreamingRecognizeRequest(audio_content=content)
+            for content in audio_generator
+        )
 
         responses = client.streaming_recognize(streaming_config, requests)
-        
 
         # Now, put the transcription responses to use.
         transcript = ""
-        for response in responses:            
+        for response in responses:
             print(response)
             # Once the transcription is done, print the result.
             for result in response.results:
                 if result.is_final:
                     alternative = result.alternatives[0]
                     transcript += alternative.transcript + " "
-        print(u'Transcript: {}'.format(transcript))
+        print("Transcript: {}".format(transcript))
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description="Real-time speech recognition with adjustable duration.")
-    parser.add_argument('--duration', type=int, default=10, help="Duration of recording in seconds.")
-    parser.add_argument('--language_code', type=str, default='en-US', help="Language code for transcription.")
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        description="Real-time speech recognition with adjustable duration."
+    )
+    parser.add_argument(
+        "--duration", type=int, default=10, help="Duration of recording in seconds."
+    )
+    parser.add_argument(
+        "--language_code",
+        type=str,
+        default="en-US",
+        help="Language code for transcription.",
+    )
     args = parser.parse_args()
     print("Please speak...")
     main(record_seconds=args.duration, language_code=args.language_code)

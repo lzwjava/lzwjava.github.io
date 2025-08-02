@@ -1,25 +1,33 @@
 import os
 import struct
 
+
 def read_mp3_info(filename):
     """Reads MP3 file and prints media info using os and struct."""
     print(f"Attempting to read MP3 info from: {filename}")
     try:
-        with open(filename, 'rb') as f:
+        with open(filename, "rb") as f:
             print("File opened successfully.")
             # Read the first 10 bytes to check for ID3 tag
             header = f.read(10)
             print(f"Read header: {header}")
-            if header[:3] == b'ID3':
+            if header[:3] == b"ID3":
                 # ID3 tag found, skip it
                 print("ID3 tag found.")
                 id3_version = header[3:5]
                 id3_flags = header[5]
                 id3_size_bytes = header[6:10]
-                id3_size = struct.unpack('>I', id3_size_bytes)[0]
+                id3_size = struct.unpack(">I", id3_size_bytes)[0]
                 # The size is encoded with synchsafe integers, so we need to decode it
-                id3_size = (id3_size & 0x7F) | ((id3_size >> 8) & 0x3F80) | ((id3_size >> 16) & 0x1FC000) | ((id3_size >> 24) & 0xFE00000)
-                print(f"ID3 version: {id3_version}, flags: {id3_flags}, size: {id3_size}")
+                id3_size = (
+                    (id3_size & 0x7F)
+                    | ((id3_size >> 8) & 0x3F80)
+                    | ((id3_size >> 16) & 0x1FC000)
+                    | ((id3_size >> 24) & 0xFE00000)
+                )
+                print(
+                    f"ID3 version: {id3_version}, flags: {id3_flags}, size: {id3_size}"
+                )
                 f.seek(id3_size, os.SEEK_CUR)  # Skip the ID3 tag
                 print(f"Skipped ID3 tag, current position: {f.tell()}")
 
@@ -33,7 +41,7 @@ def read_mp3_info(filename):
             # Parse the frame header
             syncword = frame_header[0:2]
             print(f"Syncword: {syncword}")
-            if syncword != b'\xff\xfb' and syncword != b'\xff\xfa':
+            if syncword != b"\xff\xfb" and syncword != b"\xff\xfa":
                 print("Not a valid MP3 frame.")
                 return
 
@@ -46,7 +54,7 @@ def read_mp3_info(filename):
             layer = (version_layer_byte >> 1) & 0x03
             protection_bit = (version_layer_byte >> 0) & 0x01
 
-            bitrate_index = (bitrate_sampling_byte >> 4) & 0x0f
+            bitrate_index = (bitrate_sampling_byte >> 4) & 0x0F
             sampling_rate_index = (bitrate_sampling_byte >> 2) & 0x03
             padding_bit = (bitrate_sampling_byte >> 1) & 0x01
             private_bit = (bitrate_sampling_byte >> 0) & 0x01
@@ -76,6 +84,7 @@ def read_mp3_info(filename):
         print(f"File not found: {filename}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
 
 if __name__ == "__main__":
     dir_path = os.path.dirname(os.path.realpath(__file__))

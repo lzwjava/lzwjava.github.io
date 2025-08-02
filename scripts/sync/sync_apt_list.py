@@ -1,8 +1,8 @@
 import os
 import shutil
 
-src_dir = '/etc/apt/sources.list.d/'
-dst_dir = 'scripts/apt-sources'
+src_dir = "/etc/apt/sources.list.d/"
+dst_dir = "scripts/apt-sources"
 
 os.makedirs(dst_dir, exist_ok=True)
 

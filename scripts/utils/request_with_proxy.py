@@ -1,6 +1,7 @@
 import requests
 import argparse
 
+
 def request_url_with_proxy(url, proxy):
     try:
         response = requests.get(url, proxies=proxy, timeout=10)
@@ -10,11 +11,12 @@ def request_url_with_proxy(url, proxy):
         print(f"An error occurred: {e}")
         return None
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("url")
     parser.add_argument("--proxy")
-    
+
     args = parser.parse_args()
 
     proxy = {"http": args.proxy, "https": args.proxy} if args.proxy else {}

@@ -16,6 +16,7 @@ MAX_THREADS = 10
 
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
+
 def create_x_post_prompt():
     return f"""You are a professional social media content creator. You are creating a short post or a thread of posts for X (formerly Twitter) based on a blog post written in English. Each post should be no more than 140 characters. Be concise and engaging. If the content is long, create a thread."""
 
@@ -29,13 +30,15 @@ def generate_x_posts(text):
             model=MODEL_NAME,
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": text}
+                {"role": "user", "content": text},
             ],
-            stream=False
+            stream=False,
         )
         if response and response.choices:
             print(f"  X post(s) generated successfully.")
-            return response.choices[0].message.content.split('\n\n') # Split into multiple posts
+            return response.choices[0].message.content.split(
+                "\n\n"
+            )  # Split into multiple posts
         else:
             print(f"  X post(s) generation failed.")
             return None
@@ -50,21 +53,25 @@ def generate_x_posts(text):
 def generate_x_post_from_markdown_file(input_file, output_file):
     print(f"  Processing file: {input_file}")
     try:
-        with open(input_file, 'r', encoding='utf-8') as infile:
+        with open(input_file, "r", encoding="utf-8") as infile:
             content = infile.read()
 
         # Extract front matter
-        front_matter_match = re.match(r'---\n(.*?)\n---', content, re.DOTALL)
-        content_without_front_matter = content[len(front_matter_match.group(0)):] if front_matter_match else content
+        front_matter_match = re.match(r"---\n(.*?)\n---", content, re.DOTALL)
+        content_without_front_matter = (
+            content[len(front_matter_match.group(0)) :]
+            if front_matter_match
+            else content
+        )
         print(f"  Content: {content_without_front_matter[:50]}...")
 
         x_posts = generate_x_posts(content_without_front_matter)
         if x_posts:
-            with open(output_file, 'w', encoding='utf-8') as outfile:
+            with open(output_file, "w", encoding="utf-8") as outfile:
                 for idx, post in enumerate(x_posts):
                     outfile.write(f"{post.strip()}\n")
                     if idx < len(x_posts) - 1:
-                        outfile.write("---\n") # Add separator for thread
+                        outfile.write("---\n")  # Add separator for thread
             print(f"  Finished processing file: {output_file}")
         else:
             print(f"  X post(s) generation failed for {input_file}")
@@ -77,8 +84,12 @@ def main():
         print("Error: DEEPSEEK_API_KEY is not set in .env file.")
         return
 
-    parser = argparse.ArgumentParser(description="Generate X posts from markdown files.")
-    parser.add_argument("--n", type=int, default=None, help="Maximum number of files to process.")
+    parser = argparse.ArgumentParser(
+        description="Generate X posts from markdown files."
+    )
+    parser.add_argument(
+        "--n", type=int, default=None, help="Maximum number of files to process."
+    )
     args = parser.parse_args()
     max_files = args.n
 
@@ -91,7 +102,9 @@ def main():
         futures = []
         for filename in os.listdir(INPUT_DIR):
             if max_files is not None and processed_count >= max_files:
-                print(f"Reached max files limit: {max_files}. Stopping X post generation.")
+                print(
+                    f"Reached max files limit: {max_files}. Stopping X post generation."
+                )
                 break
             if filename.endswith(".md"):
                 input_file = os.path.join(INPUT_DIR, filename)
@@ -100,7 +113,9 @@ def main():
                 output_file = os.path.join(output_dir, output_filename)
                 if not os.path.exists(output_file):
                     print(f"Submitting X post generation job for {filename}...")
-                    future = executor.submit(generate_x_post_from_markdown_file, input_file, output_file)
+                    future = executor.submit(
+                        generate_x_post_from_markdown_file, input_file, output_file
+                    )
                     futures.append(future)
                     processed_count += 1
                 else:
@@ -111,6 +126,7 @@ def main():
                 future.result()
             except Exception as e:
                 print(f"A thread failed: {e}")
+
 
 if __name__ == "__main__":
     main()

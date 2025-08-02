@@ -10,6 +10,7 @@ class FlipFlop:
     def tick(self):
         self.Q = self.Q_next  # Update state on clock tick
 
+
 # RS Flip-Flop
 class RSFlipFlop(FlipFlop):
     def update(self, S, R):
@@ -22,10 +23,12 @@ class RSFlipFlop(FlipFlop):
             self.Q_next = 0  # Reset
         # If S=0, R=0, maintain previous state (no change to Q_next)
 
+
 # D Flip-Flop
 class DFlipFlop(FlipFlop):
     def update(self, D):
         self.Q_next = D  # Output will become D on next clock tick
+
 
 # JK Flip-Flop
 class JKFlipFlop(FlipFlop):
@@ -39,6 +42,7 @@ class JKFlipFlop(FlipFlop):
         elif J == 1 and K == 1:
             self.Q_next = 1 - self.Q  # Toggle
 
+
 # T Flip-Flop
 class TFlipFlop(FlipFlop):
     def update(self, T):
@@ -46,6 +50,7 @@ class TFlipFlop(FlipFlop):
             pass  # No change
         elif T == 1:
             self.Q_next = 1 - self.Q  # Toggle
+
 
 # Function to get valid binary input (0 or 1)
 def get_binary_input(prompt):
@@ -57,6 +62,7 @@ def get_binary_input(prompt):
             print("Please enter 0 or 1.")
         except ValueError:
             print("Invalid input. Please enter 0 or 1.")
+
 
 # Main simulation function
 def simulate_flip_flop():
@@ -83,7 +89,7 @@ def simulate_flip_flop():
             ff.update(S, R)
             ff.tick()
             print(f"Output Q: {ff.get_output()}")
-            if input("Continue? (y/n): ").lower() != 'y':
+            if input("Continue? (y/n): ").lower() != "y":
                 break
 
     elif choice == "2":
@@ -94,7 +100,7 @@ def simulate_flip_flop():
             ff.update(D)
             ff.tick()
             print(f"Output Q: {ff.get_output()}")
-            if input("Continue? (y/n): ").lower() != 'y':
+            if input("Continue? (y/n): ").lower() != "y":
                 break
 
     elif choice == "3":
@@ -106,7 +112,7 @@ def simulate_flip_flop():
             ff.update(J, K)
             ff.tick()
             print(f"Output Q: {ff.get_output()}")
-            if input("Continue? (y/n): ").lower() != 'y':
+            if input("Continue? (y/n): ").lower() != "y":
                 break
 
     elif choice == "4":
@@ -117,13 +123,14 @@ def simulate_flip_flop():
             ff.update(T)
             ff.tick()
             print(f"Output Q: {ff.get_output()}")
-            if input("Continue? (y/n): ").lower() != 'y':
+            if input("Continue? (y/n): ").lower() != "y":
                 break
 
     else:
         print("Invalid choice. Try again.")
-    
+
     simulate_flip_flop()  # Restart the menu
+
 
 # Run the simulator
 if __name__ == "__main__":

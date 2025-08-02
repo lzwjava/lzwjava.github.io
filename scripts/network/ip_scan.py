@@ -7,6 +7,7 @@ import argparse
 
 MAX_THREADS = 50  # Maximum number of threads to use
 
+
 def is_host_up(host, port=None):
     """
     Checks if a host is up using ping or telnet.
@@ -38,6 +39,7 @@ def is_host_up(host, port=None):
         except subprocess.TimeoutExpired:
             return False
 
+
 def scan_ip(ip_str, up_ips, port=None):
     """
     Scans a single IP address and prints its status.
@@ -48,13 +50,16 @@ def scan_ip(ip_str, up_ips, port=None):
     else:
         print(f"{ip_str} is down")
 
+
 def scan_network(network, port=None):
     """
     Scans a network for live hosts using threads, limiting the number of concurrent threads.
     """
     print(f"Scanning network: {network}")
     threads = []
-    semaphore = threading.Semaphore(MAX_THREADS)  # Limit the number of concurrent threads
+    semaphore = threading.Semaphore(
+        MAX_THREADS
+    )  # Limit the number of concurrent threads
     up_ips = []
 
     def scan_ip_with_semaphore(ip_str):
@@ -72,12 +77,18 @@ def scan_network(network, port=None):
 
     for thread in threads:
         thread.join()
-    
+
     return up_ips
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Scan a network for live hosts.")
-    parser.add_argument("network", nargs='?', default="192.168.1.0/24", help="The network to scan (e.g., 192.168.1.0/24)")
+    parser.add_argument(
+        "network",
+        nargs="?",
+        default="192.168.1.0/24",
+        help="The network to scan (e.g., 192.168.1.0/24)",
+    )
     parser.add_argument("-p", "--port", type=int, help="The port to check (optional)")
     args = parser.parse_args()
 

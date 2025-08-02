@@ -17,11 +17,14 @@ tools = [
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "location": {"type": "string", "description": "The city, e.g., San Francisco"}
+                    "location": {
+                        "type": "string",
+                        "description": "The city, e.g., San Francisco",
+                    }
                 },
-                "required": ["location"]
-            }
-        }
+                "required": ["location"],
+            },
+        },
     }
 ]
 
@@ -35,7 +38,7 @@ response = client.chat.complete(
     model=model,
     messages=messages,
     tools=tools,
-    tool_choice="auto"  # Auto-decides tool use
+    tool_choice="auto",  # Auto-decides tool use
 )
 print("First API response received:", response.choices[0].message)
 
@@ -46,23 +49,25 @@ if tool_calls:
     # Append the model's response to messages
     messages.append(response.choices[0].message)
     print("Updated messages with model response:", messages)
-    
+
     # Simulate executing the tool (in real code, call an actual API)
     tool_call = tool_calls[0]
     if tool_call.function.name == "get_weather":
         location = eval(tool_call.function.arguments)["location"]
         weather_result = "24°C and sunny"  # Replace with real function call
         print(f"Simulated weather result for {location}: {weather_result}")
-        
+
         # Append tool result
-        messages.append({
-            "role": "tool",
-            "tool_call_id": tool_call.id,
-            "name": tool_call.function.name,
-            "content": weather_result
-        })
+        messages.append(
+            {
+                "role": "tool",
+                "tool_call_id": tool_call.id,
+                "name": tool_call.function.name,
+                "content": weather_result,
+            }
+        )
         print("Updated messages with tool result:", messages)
-    
+
     # Second API call: Model generates final response
     print("Making second API call for final response...")
     final_response = client.chat.complete(model=model, messages=messages)

@@ -1,6 +1,7 @@
 import os
 import shutil
 
+
 def convert_files_to_txt(source_dir, dest_dir):
     """
     Lists all files except this script in the source directory, copies them to the destination directory,
@@ -25,8 +26,11 @@ def convert_files_to_txt(source_dir, dest_dir):
             except Exception as e:
                 print(f"Error processing {item}: {e}")
 
+
 if __name__ == "__main__":
     source_directory = os.path.dirname(__file__)  # Current directory
-    destination_directory = os.path.join(os.path.dirname(__file__), "txt")  # Directory to store txt files, using absolute path
+    destination_directory = os.path.join(
+        os.path.dirname(__file__), "txt"
+    )  # Directory to store txt files, using absolute path
 
     convert_files_to_txt(source_directory, destination_directory)

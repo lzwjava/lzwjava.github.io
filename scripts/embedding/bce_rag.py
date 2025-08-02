@@ -12,14 +12,14 @@ from langchain.retrievers import ContextualCompressionRetriever
 
 
 # init embedding model
-embedding_model_name = 'maidalun1020/bce-embedding-base_v1'
-embedding_model_kwargs = {'device': 'cpu'}
-embedding_encode_kwargs = {'batch_size': 32, 'normalize_embeddings': True}
+embedding_model_name = "maidalun1020/bce-embedding-base_v1"
+embedding_model_kwargs = {"device": "cpu"}
+embedding_encode_kwargs = {"batch_size": 32, "normalize_embeddings": True}
 
 embed_model = HuggingFaceEmbeddings(
-  model_name=embedding_model_name,
-  model_kwargs=embedding_model_kwargs,
-  encode_kwargs=embedding_encode_kwargs
+    model_name=embedding_model_name,
+    model_kwargs=embedding_model_kwargs,
+    encode_kwargs=embedding_encode_kwargs,
 )
 
 reranker_model_name = "maidalun1020/bce-reranker-base_v1"
@@ -31,7 +31,11 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=20
 texts = text_splitter.split_documents(documents)
 
 # example 1. retrieval with embedding and reranker
-retriever = FAISS.from_documents(texts, embed_model, distance_strategy=DistanceStrategy.MAX_INNER_PRODUCT).as_retriever(search_type="similarity", search_kwargs={"score_threshold": 0.3, "k": 10})
+retriever = FAISS.from_documents(
+    texts, embed_model, distance_strategy=DistanceStrategy.MAX_INNER_PRODUCT
+).as_retriever(
+    search_type="similarity", search_kwargs={"score_threshold": 0.3, "k": 10}
+)
 
 reranker = BCERerank()
 

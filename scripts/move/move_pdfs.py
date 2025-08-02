@@ -5,6 +5,7 @@ import shutil
 
 OUTPUT_DIRECTORY = "assets/pdfs"
 
+
 def move_pdfs():
     for lang in LANGUAGES:
         lang_dir = os.path.join(OUTPUT_DIRECTORY, lang)
@@ -19,6 +20,7 @@ def move_pdfs():
                     shutil.move(source_path, dest_path)
                     print(f"Moved {filename} to {lang_dir}")
                     break
+
 
 if __name__ == "__main__":
     move_pdfs()

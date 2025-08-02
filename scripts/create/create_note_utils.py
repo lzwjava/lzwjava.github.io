@@ -3,20 +3,23 @@ import sys
 import re
 import datetime
 import pyperclip
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.llm.test_mistral import call_mistral_api
 
 
 def get_first_n_words(text, n=500):
     words = text.split()
-    return ' '.join(words[:n])
+    return " ".join(words[:n])
+
 
 def process_title_for_filename(title):
     title = title.strip()
-    title = re.sub(r'\s+', '-', title) 
-    title = re.sub(r'[^a-zA-Z0-9-]', '', title)  # Remove special characters
+    title = re.sub(r"\s+", "-", title)
+    title = re.sub(r"[^a-zA-Z0-9-]", "", title)  # Remove special characters
     title = title.lower()
     return title
+
 
 def clean_grok_tags(content):
     if "<grok:render" in content:
@@ -29,7 +32,8 @@ def clean_grok_tags(content):
             return content
         return cleaned_content.strip()
     return content
-    
+
+
 def get_clipboard_content():
     content = pyperclip.paste()
     if len(content.strip()) < 100:
@@ -48,14 +52,14 @@ def generate_title(content, max_words, format_prompt):
     if not title:
         print(f"Failed to generate title with max {max_words} words. Exit.")
         sys.exit(1)
-    title = re.sub(r'\*', ' ', title).strip()
+    title = re.sub(r"\*", " ", title).strip()
     return title
 
 
 def create_filename(short_title):
     today = datetime.date.today()
-    date_str = today.strftime('%Y-%m-%d')
-    notes_dir = 'notes'
+    date_str = today.strftime("%Y-%m-%d")
+    notes_dir = "notes"
     if not os.path.exists(notes_dir):
         os.makedirs(notes_dir)
     base_file_name = f"{date_str}-{short_title}-en.md"
@@ -83,12 +87,12 @@ image: false
 
 def clean_content(content):
     lines = content.splitlines()
-    if lines and lines[0].startswith('# '):
-        content = '\n'.join(lines[1:])
+    if lines and lines[0].startswith("# "):
+        content = "\n".join(lines[1:])
     return content.strip()
 
 
 def write_note(file_path, front_matter, content):
-    with open(file_path, 'w', encoding='utf-8') as file:
-        file.write(front_matter + '\n\n' + content)
+    with open(file_path, "w", encoding="utf-8") as file:
+        file.write(front_matter + "\n\n" + content)
     print(f"Created note: {file_path}")

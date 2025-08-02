@@ -19,25 +19,25 @@ def validate_front_matter(file_path):
     if not front_matter:
         print(f"No front matter found in {file_path}")
         return False
-    
+
     if "layout" not in front_matter:
         print(f"Layout key not found in {file_path}")
         return False
-    
+
     if "title" not in front_matter:
         print(f"Title key not found in {file_path}")
         return False
-    
+
     if "lang" not in front_matter:
         print(f"Lang key not found in {file_path}")
         return False
-    
+
     print(f"Front matter is valid for {file_path}")
     return True
 
 
 def update_front_matter(file_path, translated_flag, lang=None):
-        
+
     print(f"Starting to process file: {file_path}")
     if not os.path.exists(file_path):
         print(f"File not found: {file_path}")
@@ -52,25 +52,25 @@ def update_front_matter(file_path, translated_flag, lang=None):
     front_matter_match = re.match(r"---(.*?)---", content, re.DOTALL)
     front_matter = front_matter_match.group(1) if front_matter_match else None
     print(front_matter)
-            
+
     if not front_matter:
         print(f"No front matter found in {file_path}")
-        raise Exception('No front matter found in {file_path}')
-    
+        raise Exception("No front matter found in {file_path}")
+
     if "layout" not in front_matter:
         print(f"Layout key not found in {file_path}")
         raise Exception(f"Layout key not found in {file_path}")
-    
+
     if "title" not in front_matter:
         print(f"Title key not found in {file_path}")
         raise Exception(f"Title key not found in {file_path}")
-    
+
     if "lang" in front_matter:
         print(f"Lang key found in {file_path}")
     else:
         print(f"Lang key not found in {file_path}")
         raise Exception(f"Lang key not found in {file_path}")
-        
+
     print(f"Front matter found in {file_path}")
 
     print(f"Loading front matter YAML for {file_path}")
@@ -105,7 +105,6 @@ def update_front_matter(file_path, translated_flag, lang=None):
     )
 
 
-
 def main():
     posts_dir = "_posts"
     languages = ["ja", "es", "hi", "zh", "en", "fr", "de", "ar", "hant"]
@@ -131,7 +130,7 @@ def main():
                     invalid_files.append(file_path)
                 else:
                     files_to_process.append((file_path, True, lang_dir))
-    
+
     print(f"Checking files in {original_dir}")
     for filename in os.listdir(original_dir):
         if filename.endswith(".md"):
@@ -151,13 +150,13 @@ def main():
                 print(
                     f"  Skipping file {filename} as it does not end with -en.md or -zh.md"
                 )
-    
+
     if invalid_files:
         print("The following files have invalid front matter:")
         for file_path in invalid_files:
             print(f"  - {file_path}")
         raise Exception("Front matter validation failed for one or more files.")
-    
+
     # Now, process the files
     for file_path, translated_flag, lang in files_to_process:
         update_front_matter(file_path, translated_flag, lang)

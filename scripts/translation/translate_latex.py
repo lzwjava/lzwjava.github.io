@@ -35,16 +35,20 @@ def create_translation_prompt(target_language):
     else:
         return f"You are a professional translator. You are translating a LaTeX file. Translate the following text to {target_language}. Translate Zhiwei Li to 李智维 as chinese translation. Do not translate English names or LaTeX commands. Be careful about code blocks, if not sure, just do not change."
 
+
 def translate_text(text, target_language):
     print(f"  Translating text: {text[:50]}...")
     try:
         response = client.chat.completions.create(
             model=MODEL_NAME,
             messages=[
-                {"role": "system", "content": create_translation_prompt(target_language)},
-                {"role": "user", "content": text}
+                {
+                    "role": "system",
+                    "content": create_translation_prompt(target_language),
+                },
+                {"role": "user", "content": text},
             ],
-            stream=False
+            stream=False,
         )
         if response and response.choices:
             print(f"  Translation successful.")
@@ -60,13 +64,13 @@ def translate_text(text, target_language):
 def translate_latex_file(input_file, output_file, target_language):
     print(f"  Processing file: {input_file}")
     try:
-        with open(input_file, 'r', encoding='utf-8') as infile:
+        with open(input_file, "r", encoding="utf-8") as infile:
             content = infile.read()
 
         translated_content = translate_text(content, target_language)
 
         if translated_content:
-            with open(output_file, 'w', encoding='utf-8') as outfile:
+            with open(output_file, "w", encoding="utf-8") as outfile:
                 outfile.write(translated_content)
             print(f"  Finished processing file: {output_file}")
         else:
@@ -82,52 +86,74 @@ def main():
 
     parser = argparse.ArgumentParser(description="Translate LaTeX files.")
     parser.add_argument("--file", type=str, help="Path to the LaTeX file to translate.")
-    parser.add_argument("--lang", type=str, default="zh", help="Target language for translation (e.g., ja, es, all).")
-    parser.add_argument("--kind", type=str, default="resume", help="Kind of document to translate (resume, coverletter, introduction).")
+    parser.add_argument(
+        "--lang",
+        type=str,
+        default="zh",
+        help="Target language for translation (e.g., ja, es, all).",
+    )
+    parser.add_argument(
+        "--kind",
+        type=str,
+        default="resume",
+        help="Kind of document to translate (resume, coverletter, introduction).",
+    )
     args = parser.parse_args()
     target_language = args.lang
     kind = args.kind
-    
-    languages = ['ja', 'es', 'hi', 'zh', 'en', 'fr']
+
+    languages = ["ja", "es", "hi", "zh", "en", "fr"]
     if target_language not in languages:
-        print(f"Error: Invalid target language: {target_language}. Please choose from {languages}")
+        print(
+            f"Error: Invalid target language: {target_language}. Please choose from {languages}"
+        )
         return
 
     if args.file:
         if not os.path.exists(args.file):
             print(f"Error: File not found: {args.file}")
             return
-        
+
         filename = args.file
         output_dir = os.path.dirname(filename)
         output_filename = os.path.basename(filename)
-        
-        base_name = os.path.basename(filename).replace('.tex', '')
-        
+
+        base_name = os.path.basename(filename).replace(".tex", "")
+
         if kind == "resume":
             if "awesome-cv/en/resume-en/resume-en.tex" in filename:
-                output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language, "resume-"+target_language)
+                output_dir = os.path.join(
+                    os.path.dirname(os.path.dirname(filename)),
+                    target_language,
+                    "resume-" + target_language,
+                )
                 output_filename = f"resume-{target_language}.tex"
         elif kind == "coverletter":
             if "awesome-cv/en/coverletter-en.tex" in filename:
-                output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language)
+                output_dir = os.path.join(
+                    os.path.dirname(os.path.dirname(filename)), target_language
+                )
                 output_filename = f"coverletter-{target_language}.tex"
         elif kind == "introduction":
             if "awesome-cv/en/introduction-en.tex" in filename:
-                output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language)
+                output_dir = os.path.join(
+                    os.path.dirname(os.path.dirname(filename)), target_language
+                )
                 output_filename = f"introduction-{target_language}.tex"
         else:
-            print(f"Error: Invalid kind: {kind}. Please choose from resume, coverletter, or introduction")
+            print(
+                f"Error: Invalid kind: {kind}. Please choose from resume, coverletter, or introduction"
+            )
             return
-        
+
         os.makedirs(output_dir, exist_ok=True)
         output_file = os.path.join(output_dir, output_filename)
-        
+
         print(f"Submitting translation job for {filename}...")
-        translate_latex_file(filename, output_file, target_language)    
-    
+        translate_latex_file(filename, output_file, target_language)
+
     input_dir = "."
-            
+
     files_to_translate = []
     for root, _, files in os.walk(input_dir):
         if "_site" in root:
@@ -135,53 +161,71 @@ def main():
         for file in files:
             full_path = os.path.join(root, file)
             if file.endswith(".tex") and (
-                (kind == "resume" and "awesome-cv/en/resume-en/resume-en.tex" in full_path) or
-                (kind == "coverletter" and "awesome-cv/en/coverletter-en.tex" in full_path) or
-                (kind == "introduction" and "awesome-cv/en/introduction-en.tex" in full_path)
+                (
+                    kind == "resume"
+                    and "awesome-cv/en/resume-en/resume-en.tex" in full_path
+                )
+                or (
+                    kind == "coverletter"
+                    and "awesome-cv/en/coverletter-en.tex" in full_path
+                )
+                or (
+                    kind == "introduction"
+                    and "awesome-cv/en/introduction-en.tex" in full_path
+                )
             ):
                 files_to_translate.append(full_path)
-    
+
     if not files_to_translate:
         print(f"No .tex files found in specified locations in {input_dir}")
         return
-    
+
     with concurrent.futures.ThreadPoolExecutor(max_workers=MAX_THREADS) as executor:
         futures = []
         for filename in files_to_translate:
             if os.path.exists(filename):
                 output_dir = os.path.dirname(filename)
                 output_filename = os.path.basename(filename)
-                
-                base_name = os.path.basename(filename).replace('.tex', '')
-                
+
+                base_name = os.path.basename(filename).replace(".tex", "")
+
                 if kind == "resume":
                     if "awesome-cv/en/resume-en/resume-en.tex" in filename:
-                        output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language, "resume-"+target_language)
+                        output_dir = os.path.join(
+                            os.path.dirname(os.path.dirname(filename)),
+                            target_language,
+                            "resume-" + target_language,
+                        )
                         output_filename = f"resume-{target_language}.tex"
                 elif kind == "coverletter":
                     if "awesome-cv/en/coverletter-en.tex" in filename:
-                        output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language)
+                        output_dir = os.path.join(
+                            os.path.dirname(os.path.dirname(filename)), target_language
+                        )
                         output_filename = f"coverletter-{target_language}.tex"
                 elif kind == "introduction":
                     if "awesome-cv/en/introduction-en.tex" in filename:
-                        output_dir = os.path.join(os.path.dirname(os.path.dirname(filename)), target_language)
+                        output_dir = os.path.join(
+                            os.path.dirname(os.path.dirname(filename)), target_language
+                        )
                         output_filename = f"introduction-{target_language}.tex"
-                
+
                 os.makedirs(output_dir, exist_ok=True)
                 output_file = os.path.join(output_dir, output_filename)
-                
+
                 print(f"Submitting translation job for {filename}...")
-                future = executor.submit(translate_latex_file, filename, output_file, target_language)
+                future = executor.submit(
+                    translate_latex_file, filename, output_file, target_language
+                )
                 futures.append(future)
             else:
                 print(f"Skipping {filename} because it does not exist.")
-        
+
         for future in concurrent.futures.as_completed(futures):
             try:
                 future.result()
             except Exception as e:
                 print(f"A thread failed: {e}")
-    
 
 
 if __name__ == "__main__":

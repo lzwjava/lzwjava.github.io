@@ -1,5 +1,6 @@
 import os
 
+
 def find_translated_files():
     original_dir = "original"
     posts_dir = "_posts"
@@ -13,7 +14,7 @@ def find_translated_files():
         if filename.endswith(".md"):
             original_files.add(filename)
             file_base = filename[:-5]  # Remove ".md"
-            
+
             if filename.endswith("-en.md"):
                 target_lang = "en"
             elif filename.endswith("-zh.md"):
@@ -25,11 +26,12 @@ def find_translated_files():
             target_file = f"{file_base}{target_lang}.md"
             target_path = os.path.join(target_dir, target_file)
             # print(f"{filename}  Checking: target_dir={target_dir}, target_file={target_file}, target_path={target_path}")
-            
+
             if not os.path.exists(target_path):
-                 print(f"  {filename} does not exist in {target_dir}/{target_path}")
+                print(f"  {filename} does not exist in {target_dir}/{target_path}")
         else:
             print(filename)
+
 
 if __name__ == "__main__":
     find_translated_files()

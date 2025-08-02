@@ -10,9 +10,9 @@ for directory in directories:
         # Loop through all the files in the directory
         for filename in os.listdir(directory):
             # Check if the file ends with '-cn.md'
-            if filename.endswith('-cn.md'):
+            if filename.endswith("-cn.md"):
                 # Create the new filename by replacing '-cn.md' with '-zh.md'
-                new_filename = filename.replace('-cn.md', '-zh.md')
+                new_filename = filename.replace("-cn.md", "-zh.md")
 
                 # Get the full path for the old and new filenames
                 old_file = os.path.join(directory, filename)

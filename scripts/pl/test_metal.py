@@ -3,7 +3,13 @@ import argparse
 import time
 
 parser = argparse.ArgumentParser(description="Test torch with MPS, CUDA, or CPU.")
-parser.add_argument("--device", type=str, default="mps", choices=["mps", "cuda", "cpu"], help="Device to use (mps, cuda, or cpu)")
+parser.add_argument(
+    "--device",
+    type=str,
+    default="mps",
+    choices=["mps", "cuda", "cpu"],
+    help="Device to use (mps, cuda, or cpu)",
+)
 args = parser.parse_args()
 
 if args.device == "mps":

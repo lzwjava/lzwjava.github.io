@@ -2,11 +2,13 @@ import torch
 import time
 import os
 
+
 def parallel_sort_gpu(arr):
     # Move data to GPU, sort, then move back to CPU
-    arr_gpu = arr.to('cuda')
+    arr_gpu = arr.to("cuda")
     sorted_arr_gpu = torch.sort(arr_gpu).values
     return sorted_arr_gpu.cpu()
+
 
 def benchmark(list_size):
     arr = torch.randint(0, 1_000_001, (list_size,), dtype=torch.int32)
@@ -14,6 +16,7 @@ def benchmark(list_size):
     sorted_arr = parallel_sort_gpu(arr)
     end = time.time()
     return sorted_arr, end - start
+
 
 def main():
     if not torch.cuda.is_available():
@@ -33,6 +36,7 @@ def main():
     print("\nTimeTakenSeconds")
     for t in times:
         print(f"{t:.6f}")
+
 
 if __name__ == "__main__":
     main()

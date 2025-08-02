@@ -26,16 +26,18 @@ lyrics = [
     ("ゼロになるからだ 充たされてゆけ", "Zero ni naru karada mitasarete yuke"),
     ("海の彼方には もう探さない", "Umi no kanata ni wa mou sagasanai"),
     ("輝くものは いつもここに", "Kagayaku mono wa itsumo koko ni"),
-    ("わたしのなかに 見つけられたから", "Watashi no naka ni mitsukerareta kara")
+    ("わたしのなかに 見つけられたから", "Watashi no naka ni mitsukerareta kara"),
 ]
+
 
 def split_japanese(line):
     # Split Japanese line into words/phrases based on spaces or natural breaks
-    return re.split(r'\s+', line.strip())
+    return re.split(r"\s+", line.strip())
+
 
 def split_romaji(line, jap_segments):
     # Split romaji to match Japanese segments
-    romaji_words = re.split(r'\s+', line.strip())
+    romaji_words = re.split(r"\s+", line.strip())
     # Ensure romaji segments match Japanese segments in number
     if len(romaji_words) != len(jap_segments):
         # Adjust romaji to match Japanese segmentation
@@ -51,6 +53,7 @@ def split_romaji(line, jap_segments):
             romaji_words.append(temp.strip())
     return romaji_words
 
+
 def align_segments(jap_segments, romaji_segments):
     aligned_pairs = []
     for jap, rom in zip(jap_segments, romaji_segments):
@@ -58,9 +61,10 @@ def align_segments(jap_segments, romaji_segments):
         jap_width = len(jap) * 2.5
         rom_width = len(rom)
         # Pad romaji with spaces to match Japanese width
-        padding = ' ' * max(0, int(jap_width - rom_width))
+        padding = " " * max(0, int(jap_width - rom_width))
         aligned_pairs.append((jap, rom + padding))
     return aligned_pairs
+
 
 def format_lyrics(lyrics):
     output = []
@@ -68,21 +72,22 @@ def format_lyrics(lyrics):
         jap_segments = split_japanese(jap_line)
         rom_segments = split_romaji(rom_line, jap_segments)
         aligned_pairs = align_segments(jap_segments, rom_segments)
-        
+
         # Format Japanese and romaji lines
-        jap_formatted = ' '.join(jap for jap, _ in aligned_pairs)
-        rom_formatted = ' '.join(rom for _, rom in aligned_pairs)
-        
+        jap_formatted = " ".join(jap for jap, _ in aligned_pairs)
+        rom_formatted = " ".join(rom for _, rom in aligned_pairs)
+
         output.append(jap_formatted)
         output.append(rom_formatted)
-        output.append('')  # Blank line for readability
-    
-    return '\n'.join(output)
+        output.append("")  # Blank line for readability
+
+    return "\n".join(output)
+
 
 # Generate and print the aligned lyrics
 aligned_text = format_lyrics(lyrics)
 print(aligned_text)
 
 # Optionally, save to a file
-with open('aligned_lyrics.txt', 'w', encoding='utf-8') as f:
+with open("aligned_lyrics.txt", "w", encoding="utf-8") as f:
     f.write(aligned_text)

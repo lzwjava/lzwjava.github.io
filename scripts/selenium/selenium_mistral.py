@@ -17,7 +17,9 @@ firefox_profile = FirefoxProfile(profile_path)
 firefox_options.profile = firefox_profile
 
 # Set up geckodriver service
-service = Service(executable_path="/home/lzw/bin/geckodriver")  # Adjust if geckodriver is elsewhere
+service = Service(
+    executable_path="/home/lzw/bin/geckodriver"
+)  # Adjust if geckodriver is elsewhere
 driver = webdriver.Firefox(service=service, options=firefox_options)
 
 # Open a new tab
@@ -29,11 +31,13 @@ driver.switch_to.window(driver.window_handles[1])
 # Wait for the "Accept and continue" button to be clickable and then click it
 try:
     accept_button = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Accept and continue')]"))
+        EC.element_to_be_clickable(
+            (By.XPATH, "//button[contains(text(), 'Accept and continue')]")
+        )
     )
     accept_button.click()
 except Exception as e:
-    print(f"Error clicking 'Accept and continue' button: {e}")    
+    print(f"Error clicking 'Accept and continue' button: {e}")
 
 # Wait for the chat input element to be present
 chat_input = WebDriverWait(driver, 20).until(
@@ -43,7 +47,7 @@ chat_input = WebDriverWait(driver, 20).until(
 # Type "hi" into the chat input
 chat_input.send_keys("hi")
 # Send the message by pressing Enter
-chat_input.send_keys(u'\ue007')
+chat_input.send_keys("\ue007")
 
 time.sleep(60)
 

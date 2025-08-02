@@ -5,6 +5,7 @@ from datetime import date
 CONVERSATION_DIR = "scripts/conversation"
 NOTES_DIR = "notes"
 
+
 def convert_conversation_to_notes():
     print("Starting conversation to notes conversion...")
     os.makedirs(NOTES_DIR, exist_ok=True)
@@ -13,7 +14,7 @@ def convert_conversation_to_notes():
         if filename.endswith(".json"):
             print(f"Processing file: {filename}")
             filepath = os.path.join(CONVERSATION_DIR, filename)
-            with open(filepath, 'r') as f:
+            with open(filepath, "r") as f:
                 try:
                     conversation = json.load(f)
                     print(f"Successfully loaded JSON from {filename}")
@@ -31,22 +32,33 @@ def convert_conversation_to_notes():
             print(f"Creating notes file: {notes_filepath} with title: {title}")
 
             # Check if a file with the same base filename already exists
-            existing_files = [f for f in os.listdir(NOTES_DIR) if f.endswith("-conv-en.md") and base_filename in f]
+            existing_files = [
+                f
+                for f in os.listdir(NOTES_DIR)
+                if f.endswith("-conv-en.md") and base_filename in f
+            ]
             if existing_files:
-                print(f"Notes file with base filename {base_filename} already exists. Skipping.")
+                print(
+                    f"Notes file with base filename {base_filename} already exists. Skipping."
+                )
                 continue
 
-            with open(notes_filepath, 'w') as outfile:
-                outfile.write(f"---\nlayout: post\ntitle: \"{title}\"\naudio: true\n---\n\n")
+            with open(notes_filepath, "w") as outfile:
+                outfile.write(
+                    f'---\nlayout: post\ntitle: "{title}"\naudio: true\n---\n\n'
+                )
                 for item in conversation:
                     speaker = item.get("speaker")
                     line = item.get("line")
                     if speaker and line:
                         outfile.write(f"{speaker}: {line}\n\n")
                     else:
-                        print(f"Skipping item with missing speaker or line in {filename}: {item}")
+                        print(
+                            f"Skipping item with missing speaker or line in {filename}: {item}"
+                        )
             print(f"Successfully wrote notes to {notes_filepath}")
     print("Finished conversation to notes conversion.")
+
 
 if __name__ == "__main__":
     convert_conversation_to_notes()

@@ -16,7 +16,9 @@ profile_path = "/home/lzw/.mozilla/firefox/stp0k50c.default-release"  # Adjust b
 firefox_profile = FirefoxProfile(profile_path)
 firefox_options.profile = firefox_profile
 # Set up geckodriver service
-service = Service(executable_path="/home/lzw/bin/geckodriver")  # Adjust if geckodriver is elsewhere
+service = Service(
+    executable_path="/home/lzw/bin/geckodriver"
+)  # Adjust if geckodriver is elsewhere
 driver = webdriver.Firefox(service=service, options=firefox_options)
 
 driver.get("https://chat.qwen.ai")
@@ -35,7 +37,9 @@ except Exception as e:
 
     # Locate the submit button using XPath and click it
 submit_button = WebDriverWait(driver, 10).until(
-    EC.element_to_be_clickable((By.CSS_SELECTOR, 'button#send-message-button[type="submit"]'))
+    EC.element_to_be_clickable(
+        (By.CSS_SELECTOR, 'button#send-message-button[type="submit"]')
+    )
 )
 submit_button.click()
 

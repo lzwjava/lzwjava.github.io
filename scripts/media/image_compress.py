@@ -3,6 +3,7 @@ from PIL import Image
 import argparse
 import os
 
+
 def compress_image(image_path, compression_factor=0.1):
     img = Image.open(image_path)
     img_array = np.array(img, dtype=float)
@@ -27,7 +28,9 @@ def compress_image(image_path, compression_factor=0.1):
             U_compressed = U[:, :k]
             Vt_compressed = Vt[:k, :]
 
-            img_compressed[:, :, i] = np.dot(U_compressed, np.dot(S_compressed, Vt_compressed))
+            img_compressed[:, :, i] = np.dot(
+                U_compressed, np.dot(S_compressed, Vt_compressed)
+            )
 
     img_compressed = np.clip(img_compressed, 0, 255).astype(np.uint8)
 
@@ -39,10 +42,16 @@ def compress_image(image_path, compression_factor=0.1):
 
     return output_path
 
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Compress an image using SVD.")
     parser.add_argument("input_file", help="Path to the input image file")
-    parser.add_argument("--compression_factor", type=float, default=0.1, help="Compression factor (default: 0.1)")
+    parser.add_argument(
+        "--compression_factor",
+        type=float,
+        default=0.1,
+        help="Compression factor (default: 0.1)",
+    )
     args = parser.parse_args()
 
     output_file = compress_image(args.input_file, args.compression_factor)

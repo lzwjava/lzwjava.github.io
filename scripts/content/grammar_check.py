@@ -10,33 +10,29 @@ from datetime import datetime
 
 load_dotenv()
 
+
 def call_mistral_api(prompt):
     api_key = os.environ.get("MISTRAL_API_KEY")
     if not api_key:
         print("Error: MISTRAL_API_KEY environment variable not set.")
         return None
-    
+
     url = "https://api.mistral.ai/v1/chat/completions"
     headers = {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        "Authorization": f"Bearer {api_key}"
+        "Authorization": f"Bearer {api_key}",
     }
     data = {
         "model": "mistral-small-latest",
-        "messages": [
-            {
-                "role": "user",
-                "content": prompt
-            }
-        ]
+        "messages": [{"role": "user", "content": prompt}],
     }
     try:
         response = requests.post(url, headers=headers, json=data)
         response.raise_for_status()
         response_json = response.json()
-        if response_json and response_json['choices']:
-            content = response_json['choices'][0]['message']['content']
+        if response_json and response_json["choices"]:
+            content = response_json["choices"][0]["message"]["content"]
             return content
         else:
             print(f"Mistral API Error: Invalid response format: {response_json}")
@@ -48,17 +44,26 @@ def call_mistral_api(prompt):
             print(f"Response content: {e.response.text}")
         return None
 
+
 def main():
-    parser = argparse.ArgumentParser(description="English grammar 'compiler' for Markdown files using Mistral API. Reports one error at a time.")
+    parser = argparse.ArgumentParser(
+        description="English grammar 'compiler' for Markdown files using Mistral API. Reports one error at a time."
+    )
     parser.add_argument("file", help="The Markdown file to check for grammar errors.")
-    parser.add_argument("--skip-lines", nargs='+', type=int, default=[], help="Line numbers to skip checking for errors.")
+    parser.add_argument(
+        "--skip-lines",
+        nargs="+",
+        type=int,
+        default=[],
+        help="Line numbers to skip checking for errors.",
+    )
     args = parser.parse_args()
 
     if not os.path.exists(args.file):
         print(f"Error: File '{args.file}' not found.")
         return
 
-    with open(args.file, 'r', encoding='utf-8') as f:
+    with open(args.file, "r", encoding="utf-8") as f:
         lines = f.readlines()
 
     # Prepare numbered lines for the prompt
@@ -90,23 +95,24 @@ Text to check:
     response = call_mistral_api(prompt)
     if response:
         response = response.strip()
-        if response == 'No grammar errors found.':
+        if response == "No grammar errors found.":
             print(response)
         else:
-            lines = response.split('\n')
+            lines = response.split("\n")
             if len(lines) == 3:
                 processed_lines = []
                 for line in lines:
-                    if ':' in line:
-                        left, right = line.split(':', 1)
+                    if ":" in line:
+                        left, right = line.split(":", 1)
                         left = left.strip()
                         right = right.strip()
                         processed_lines.append(f"{left.ljust(30)}:{right}")
-                print('\n'.join(processed_lines))
+                print("\n".join(processed_lines))
             else:
                 print(response)
     else:
         print("Failed to get a response from the Mistral API.")
+
 
 if __name__ == "__main__":
     main()

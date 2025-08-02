@@ -2,7 +2,7 @@ import os
 
 
 def move_footer_to_top(file_path):
-    with open(file_path, 'r') as file:
+    with open(file_path, "r") as file:
         lines = file.readlines()
 
     english_footer = "*This blog post was written with the assistance of mistral*"
@@ -43,21 +43,24 @@ def move_footer_to_top(file_path):
         # Insert the footer below the YAML front matter
         if yaml_end_index is not None:
             footer_text = f"\n{footer}\n\n---\n"
-            lines = lines[:yaml_end_index + 1] + \
-                [footer_text] + lines[yaml_end_index + 1:]
+            lines = (
+                lines[: yaml_end_index + 1]
+                + [footer_text]
+                + lines[yaml_end_index + 1 :]
+            )
 
         # Write the updated content back to the file
-        with open(file_path, 'w') as file:
+        with open(file_path, "w") as file:
             file.writelines(lines)
         print(f"Moved footer to top in {file_path}")
 
 
 def process_files_in_directory(directory):
     for filename in os.listdir(directory):
-        if filename.endswith('.md'):
+        if filename.endswith(".md"):
             file_path = os.path.join(directory, filename)
             move_footer_to_top(file_path)
 
 
-directory = '_posts'
+directory = "_posts"
 process_files_in_directory(directory)

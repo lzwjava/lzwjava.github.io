@@ -7,25 +7,21 @@ if not GEMINI_API_KEY:
     raise ValueError("GEMINI_API_KEY environment variable not set")
 
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
-headers = {'Content-Type': 'application/json'}
-data = {
-  "contents": [{
-    "parts":[{"text": "Explain how AI works"}]
-    }]
-   }
+headers = {"Content-Type": "application/json"}
+data = {"contents": [{"parts": [{"text": "Explain how AI works"}]}]}
 
 try:
     response = requests.post(url, headers=headers, data=json.dumps(data))
     response.raise_for_status()  # Raise an exception for bad status codes
-    
+
     json_response = response.json()
-    
-    if 'candidates' in json_response and json_response['candidates']:
-        first_candidate = json_response['candidates'][0]
-        if 'content' in first_candidate and 'parts' in first_candidate['content']:
-            first_part = first_candidate['content']['parts'][0]
-            if 'text' in first_part:
-                print(first_part['text'])
+
+    if "candidates" in json_response and json_response["candidates"]:
+        first_candidate = json_response["candidates"][0]
+        if "content" in first_candidate and "parts" in first_candidate["content"]:
+            first_part = first_candidate["content"]["parts"][0]
+            if "text" in first_part:
+                print(first_part["text"])
             else:
                 print("No text found in the response")
         else:

@@ -2,11 +2,13 @@ import os
 import re
 import yaml
 
+
 def check_audio_file_exists(file_path):
     """Check if corresponding audio file exists in assets/audios"""
-    file_name = os.path.basename(file_path).replace('.md', '')
-    audio_file = os.path.join('assets', 'audios', f'{file_name}.mp3')
+    file_name = os.path.basename(file_path).replace(".md", "")
+    audio_file = os.path.join("assets", "audios", f"{file_name}.mp3")
     return os.path.exists(audio_file)
+
 
 def update_front_matter(file_path):
     if not os.path.exists(file_path):
@@ -17,10 +19,10 @@ def update_front_matter(file_path):
 
     front_matter_match = re.match(r"\n*---(.*?)---", content, re.DOTALL)
     front_matter = front_matter_match.group(1) if front_matter_match else None
-            
+
     if not front_matter:
-        raise Exception(f'No front matter found in {file_path}')
-        
+        raise Exception(f"No front matter found in {file_path}")
+
     front_matter_dict = yaml.safe_load(front_matter) if front_matter else {}
 
     has_audio = check_audio_file_exists(file_path)
@@ -39,6 +41,7 @@ def update_front_matter(file_path):
     with open(file_path, "w", encoding="utf-8") as outfile:
         outfile.write(updated_content)
 
+
 def main():
     posts_dir = "_posts"
     languages = ["ja", "es", "hi", "zh", "en", "fr", "de", "ar", "hant"]
@@ -55,5 +58,6 @@ def main():
             if filename.endswith(".md"):
                 file_path = os.path.join(target_dir, filename)
                 update_front_matter(file_path)
+
 
 main()

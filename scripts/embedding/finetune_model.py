@@ -2,18 +2,28 @@ import os
 import glob
 import json
 from dotenv import load_dotenv
-from transformers import AutoTokenizer, AutoModelForCausalLM, Trainer, TrainingArguments, DataCollatorForLanguageModeling, LlamaTokenizerFast
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    Trainer,
+    TrainingArguments,
+    DataCollatorForLanguageModeling,
+    LlamaTokenizerFast,
+)
 from datasets import Dataset, load_dataset
 import torch
 
 load_dotenv()
 
-MODEL_NAME = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # Changed to the specified model
+MODEL_NAME = (
+    "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"  # Changed to the specified model
+)
 OUTPUT_DIR = "trained_model"
 TRAIN_FILE = "train.jsonl"
 MAX_LENGTH = 512
 BATCH_SIZE = 8
 EPOCHS = 3
+
 
 def create_training_data(posts_dir):
     all_texts = []
@@ -23,7 +33,7 @@ def create_training_data(posts_dir):
             continue
         for file_path in glob.glob(os.path.join(lang_path, "*.md")):
             try:
-                with open(file_path, 'r', encoding='utf-8') as f:
+                with open(file_path, "r", encoding="utf-8") as f:
                     content = f.read()
                     # Remove front matter
                     content = content.split("---", 2)[-1].strip()
@@ -32,9 +42,13 @@ def create_training_data(posts_dir):
                 print(f"Error reading file {file_path}: {e}")
     return all_texts
 
+
 def prepare_dataset(texts, tokenizer):
-    encodings = tokenizer(texts, truncation=True, padding=True, max_length=MAX_LENGTH, return_tensors="pt")
+    encodings = tokenizer(
+        texts, truncation=True, padding=True, max_length=MAX_LENGTH, return_tensors="pt"
+    )
     return Dataset.from_dict(encodings)
+
 
 def train_model(dataset, tokenizer):
     training_args = TrainingArguments(
@@ -58,13 +72,17 @@ def train_model(dataset, tokenizer):
     trainer.train()
     trainer.save_model(OUTPUT_DIR)
 
+
 def main():
     posts_dir = "_posts"
     texts = create_training_data(posts_dir)
-    tokenizer = LlamaTokenizerFast.from_pretrained(MODEL_NAME, trust_remote_code=True, use_fast=True)
+    tokenizer = LlamaTokenizerFast.from_pretrained(
+        MODEL_NAME, trust_remote_code=True, use_fast=True
+    )
     tokenizer.pad_token = tokenizer.eos_token
     dataset = prepare_dataset(texts, tokenizer)
     train_model(dataset, tokenizer)
+
 
 if __name__ == "__main__":
     main()

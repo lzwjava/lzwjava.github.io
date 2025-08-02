@@ -6,9 +6,10 @@ import platform
 
 GEOMETRY = "margin=1in"
 input_markdown_base = "_posts"  # Base path for input Markdown file
-output_pdf_base = "test/test"    # Base path for output PDF file
+output_pdf_base = "test/test"  # Base path for output PDF file
 languages = ["en", "zh", "ja", "es", "hi", "fr", "de", "ar", "hant"]
 post_name = "2025-01-13-gitmessageai"
+
 
 def generate_pdfs():
     for lang in languages:
@@ -19,7 +20,6 @@ def generate_pdfs():
         output_dir = os.path.dirname(output_pdf_path)
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
-
 
         # Check if input file exists
         if not os.path.exists(input_markdown_path):
@@ -57,24 +57,35 @@ def generate_pdfs():
             else:
                 CJK_FONT = "Noto Sans"
         command = [
-            'pandoc',
+            "pandoc",
             input_markdown_path,
-            '-o', output_pdf_path,
-            '-f', 'markdown',
-            '--pdf-engine', 'xelatex',
-            '-V', f'romanfont={CJK_FONT}',
-            '-V', f'mainfont={CJK_FONT}',
-            '-V', f'CJKmainfont={CJK_FONT}',
-            '-V', f'CJKsansfont={CJK_FONT}',
-            '-V', f'CJKmonofont={CJK_FONT}',
-            '-V', f'geometry:{GEOMETRY}',
-            '-V', 'classoption=16pt',
-            '-V', 'CJKoptions=Scale=1.1',
-            '-V', 'linestretch=1.5'
+            "-o",
+            output_pdf_path,
+            "-f",
+            "markdown",
+            "--pdf-engine",
+            "xelatex",
+            "-V",
+            f"romanfont={CJK_FONT}",
+            "-V",
+            f"mainfont={CJK_FONT}",
+            "-V",
+            f"CJKmainfont={CJK_FONT}",
+            "-V",
+            f"CJKsansfont={CJK_FONT}",
+            "-V",
+            f"CJKmonofont={CJK_FONT}",
+            "-V",
+            f"geometry:{GEOMETRY}",
+            "-V",
+            "classoption=16pt",
+            "-V",
+            "CJKoptions=Scale=1.1",
+            "-V",
+            "linestretch=1.5",
         ]
 
         print(command)
-
 
         # Run the Pandoc command
         try:
@@ -82,6 +93,7 @@ def generate_pdfs():
             print(f"PDF successfully generated: {output_pdf_path}")
         except subprocess.CalledProcessError as e:
             print(f"Error generating PDF: {e}")
+
 
 if __name__ == "__main__":
     generate_pdfs()

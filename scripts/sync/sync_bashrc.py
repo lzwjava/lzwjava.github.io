@@ -8,12 +8,16 @@ dir = os.path.dirname(os.path.abspath(__file__))
 script_dir = os.path.join(dir, "config")
 
 # Set up argument parser
-parser = argparse.ArgumentParser(description='Sync .bashrc between local and remote')
-parser.add_argument('direction', choices=['back', 'forth'], help='Direction of sync: back (remote to local) or forth (local to remote)')
+parser = argparse.ArgumentParser(description="Sync .bashrc between local and remote")
+parser.add_argument(
+    "direction",
+    choices=["back", "forth"],
+    help="Direction of sync: back (remote to local) or forth (local to remote)",
+)
 args = parser.parse_args()
 
 # Define commands based on direction
-if args.direction == 'back':
+if args.direction == "back":
     command = "scp lzw@192.168.1.3:~/.bashrc {}".format(script_dir)
     action = "Copying .bashrc from remote to local"
 else:

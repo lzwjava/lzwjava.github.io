@@ -16,25 +16,27 @@ MAX_THREADS = 10
 
 client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
+
 def create_translation_prompt(target_language):
     if target_language == "zh":
         return f"""You are a professional translator. You are translating a markdown file for a Jekyll blog post from English to Chinese. Translate the following text to Chinese. Translate Zhiwei Li to 李智维. Translate Meitai Technology Services to 美钛技术服务. Translate Neusiri to 思芮 instead of 纽思瑞. Translate Chongding Conference to 冲顶大会. Translate Fun Live to 趣直播. Translate MianbaoLive to 面包Live. Translate Beijing Dami Entertainment Co. to 北京大米互娱有限公司. Translate Guangzhou Yuyan Middle School to 广州玉岩中学. Be careful about code blocks, if not sure, just do not change."""
     elif target_language == "hant":
         return f"Translate the following text to Traditional Chinese (Hong Kong)."
-    elif target_language == 'ja':
+    elif target_language == "ja":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to Japanese. Be careful about code blocks, if not sure, just do not change."
-    elif target_language == 'es':
+    elif target_language == "es":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to Spanish. Be careful about code blocks, if not sure, just do not change."
-    elif target_language == 'hi':
+    elif target_language == "hi":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to Hindi. Be careful about code blocks, if not sure, just do not change."
-    elif target_language == 'fr':
+    elif target_language == "fr":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to French. Be careful about code blocks, if not sure, just do not change."
-    elif target_language == 'de':
+    elif target_language == "de":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to German. Be careful about code blocks, if not sure, just do not change."
-    elif target_language == 'ar':
+    elif target_language == "ar":
         return "You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to Arabic. Be careful about code blocks, if not sure, just do not change."
     else:
         return f"You are a professional translator. You are translating a markdown file for a Jekyll blog post. Translate the following text to {target_language}. Be careful about code blocks, if not sure, just do not change."
+
 
 def translate_text(text, target_language):
     print(f"  Translating text: {text[:50]}...")
@@ -45,9 +47,9 @@ def translate_text(text, target_language):
             model=MODEL_NAME,
             messages=[
                 {"role": "system", "content": prompt},
-                {"role": "user", "content": text}
+                {"role": "user", "content": text},
             ],
-            stream=False
+            stream=False,
         )
         if response and response.choices:
             print(f"  Translation successful.")
@@ -62,6 +64,7 @@ def translate_text(text, target_language):
             return None
         return None
 
+
 def translate_front_matter(front_matter, target_language, input_file):
     print(f"  Translating front matter for: {input_file}")
     if not front_matter:
@@ -72,23 +75,25 @@ def translate_front_matter(front_matter, target_language, input_file):
         if front_matter:
             front_matter_dict = yaml.safe_load(front_matter)
             print(f"  Front matter after safe_load: {front_matter_dict}")
-        
+
         front_matter_dict_copy = front_matter_dict.copy()
-        
-        if 'title' in front_matter_dict_copy:
+
+        if "title" in front_matter_dict_copy:
             print(f"  Translating title: {front_matter_dict_copy['title']}")
-            translated_title = translate_text(front_matter_dict_copy['title'], target_language)
+            translated_title = translate_text(
+                front_matter_dict_copy["title"], target_language
+            )
             if translated_title:
                 translated_title = translated_title.strip()
                 if len(translated_title) > 300:
-                    translated_title = translated_title.split('\n')[0]
-                front_matter_dict_copy['title'] = translated_title
+                    translated_title = translated_title.split("\n")[0]
+                front_matter_dict_copy["title"] = translated_title
                 print(f"  Translated title to: {translated_title}")
             else:
                 print(f"  Title translation failed for: {input_file}")
         # Always set lang to target_language
-        front_matter_dict_copy['lang'] = target_language
-        front_matter_dict_copy['translated'] = True
+        front_matter_dict_copy["lang"] = target_language
+        front_matter_dict_copy["translated"] = True
 
         result = "---\n" + yaml.dump(front_matter_dict_copy, allow_unicode=True) + "---"
         print(f"  Front matter translation complete for: {input_file}")
@@ -97,46 +102,63 @@ def translate_front_matter(front_matter, target_language, input_file):
         print(f"  Error parsing front matter: {e}")
         return front_matter
 
+
 def translate_markdown_file(input_file, output_file, target_language):
     print(f"  Processing file: {input_file}")
     try:
-        with open(input_file, 'r', encoding='utf-8') as infile:
+        with open(input_file, "r", encoding="utf-8") as infile:
             content = infile.read()
 
         # Extract front matter
-        front_matter_match = re.match(r'---\n(.*?)\n---', content, re.DOTALL)
+        front_matter_match = re.match(r"---\n(.*?)\n---", content, re.DOTALL)
         front_matter = front_matter_match.group(1) if front_matter_match else ""
-        content_without_front_matter = content[len(front_matter_match.group(0)):] if front_matter_match else content
+        content_without_front_matter = (
+            content[len(front_matter_match.group(0)) :]
+            if front_matter_match
+            else content
+        )
         print(f"  Front matter: {front_matter[:50]}...")
 
         translated_front_matter = translate_front_matter(front_matter, target_language)
-        
-        translated_content = translate_text(content_without_front_matter, target_language)
+
+        translated_content = translate_text(
+            content_without_front_matter, target_language
+        )
         if translated_content:
             translated_content = translated_front_matter + "\n\n" + translated_content
         else:
             translated_content = content
 
-        with open(output_file, 'w', encoding='utf-8') as outfile:
+        with open(output_file, "w", encoding="utf-8") as outfile:
             outfile.write(translated_content)
         print(f"  Finished processing file: {output_file}")
     except Exception as e:
         print(f"  Error processing file {input_file}: {e}")
+
 
 def main():
     if not DEEPSEEK_API_KEY:
         print("Error: DEEPSEEK_API_KEY is not set in .env file.")
         return
 
-    parser = argparse.ArgumentParser(description="Translate markdown files to a specified language.")
-    parser.add_argument("--n", type=int, default=None, help="Maximum number of files to translate.")
-    parser.add_argument("--lang", type=str, default="ja", help="Target language for translation (e.g., ja, es).")
+    parser = argparse.ArgumentParser(
+        description="Translate markdown files to a specified language."
+    )
+    parser.add_argument(
+        "--n", type=int, default=None, help="Maximum number of files to translate."
+    )
+    parser.add_argument(
+        "--lang",
+        type=str,
+        default="ja",
+        help="Target language for translation (e.g., ja, es).",
+    )
     args = parser.parse_args()
     max_files = args.n
     target_language = args.lang
 
     output_dir = f"_posts/{target_language}"
-    if target_language == 'hi':
+    if target_language == "hi":
         output_dir = "_posts/hi"
     os.makedirs(output_dir, exist_ok=True)
     print(f"Created directory {output_dir}")
@@ -154,12 +176,19 @@ def main():
 
                 # Check if the original file is named with "-en.md" or "-zh.md"
                 if filename.endswith("-en.md") or filename.endswith("-zh.md"):
-                    output_filename = filename.replace("-en.md", f"-{target_language}.md").replace("-zh.md", f"-{target_language}.md")
+                    output_filename = filename.replace(
+                        "-en.md", f"-{target_language}.md"
+                    ).replace("-zh.md", f"-{target_language}.md")
 
                 output_file = os.path.join(output_dir, output_filename)
                 if not os.path.exists(output_file):
                     print(f"Submitting translation job for {filename}...")
-                    future = executor.submit(translate_markdown_file, input_file, output_file, target_language)
+                    future = executor.submit(
+                        translate_markdown_file,
+                        input_file,
+                        output_file,
+                        target_language,
+                    )
                     futures.append(future)
                     translated_count += 1
                 else:
@@ -170,6 +199,7 @@ def main():
                 future.result()
             except Exception as e:
                 print(f"A thread failed: {e}")
+
 
 if __name__ == "__main__":
     main()

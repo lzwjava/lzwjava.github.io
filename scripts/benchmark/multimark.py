@@ -5,11 +5,13 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 def sort_chunk(arr, start, end, conn):
     chunk = arr[start:end]
     chunk.sort()
     conn.send(chunk)
     conn.close()
+
 
 def merge(left, right):
     result = []
@@ -26,6 +28,7 @@ def merge(left, right):
     result.extend(right[j:])
     return result
 
+
 def parallel_sort(arr, process_count):
     n = len(arr)
     chunk_size = (n + process_count - 1) // process_count
@@ -37,7 +40,9 @@ def parallel_sort(arr, process_count):
         start = i * chunk_size
         end = min(start + chunk_size, n)
         parent_conn, child_conn = multiprocessing.Pipe()
-        p = multiprocessing.Process(target=sort_chunk, args=(arr, start, end, child_conn))
+        p = multiprocessing.Process(
+            target=sort_chunk, args=(arr, start, end, child_conn)
+        )
         processes.append(p)
         parent_conns.append(parent_conn)
         p.start()
@@ -51,7 +56,7 @@ def parallel_sort(arr, process_count):
         merged_chunks = []
         for i in range(0, len(sorted_chunks), 2):
             if i + 1 < len(sorted_chunks):
-                merged = merge(sorted_chunks[i], sorted_chunks[i+1])
+                merged = merge(sorted_chunks[i], sorted_chunks[i + 1])
                 merged_chunks.append(merged)
             else:
                 merged_chunks.append(sorted_chunks[i])
@@ -59,12 +64,14 @@ def parallel_sort(arr, process_count):
 
     return sorted_chunks[0] if sorted_chunks else []
 
+
 def benchmark(process_count=1, list_size=1000000):
     arr = [random.randint(0, 1000000) for _ in range(list_size)]
     start = time.time()
     parallel_sort(arr, process_count)
     end = time.time()
     return end - start
+
 
 if __name__ == "__main__":
     print(f"CPU cores: {os.cpu_count()}")
@@ -83,9 +90,9 @@ if __name__ == "__main__":
         print(f"{process_counts[i]},{times[i]:.6f}")
 
     plt.figure()
-    plt.plot(process_counts, times, marker='o')
-    plt.xlabel('Number of Processes')
-    plt.ylabel('Time Taken (seconds)')
-    plt.title('Process Count vs Time Taken')
+    plt.plot(process_counts, times, marker="o")
+    plt.xlabel("Number of Processes")
+    plt.ylabel("Time Taken (seconds)")
+    plt.title("Process Count vs Time Taken")
     plt.grid(True)
-    plt.savefig('test/process.png')
+    plt.savefig("test/process.png")

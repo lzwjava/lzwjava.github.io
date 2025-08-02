@@ -1,11 +1,13 @@
 import numpy as np
 
+
 def main():
     print("Running Systems of Equations examples...")
     learn_systems_of_equations()
     print("\nRunning Matrices and Operations examples...")
     learn_matrices_and_operations()
     print("\nProgram completed.")
+
 
 def learn_systems_of_equations():
     # Example 1: Unique Solution
@@ -35,16 +37,17 @@ def learn_systems_of_equations():
     except np.linalg.LinAlgError:
         print("No Solution Example: No solution")
 
+
 def learn_matrices_and_operations():
     A = np.array([[1, 2], [3, 4]])
     B = np.array([[5, 6], [7, 8]])
-    
+
     addition = A + B
     subtraction = A - B
     scalar_mult = 2 * A
     matrix_mult = A @ B
     transpose = A.T
-    
+
     print("Matrix Addition (A + B):")
     print(addition)
     print("Matrix Subtraction (A - B):")
@@ -55,7 +58,7 @@ def learn_matrices_and_operations():
     print(matrix_mult)
     print("Transpose of A:")
     print(transpose)
-    
+
     try:
         A_inv = np.linalg.inv(A)
         check = A @ A_inv
@@ -65,6 +68,7 @@ def learn_matrices_and_operations():
         print(check)
     except np.linalg.LinAlgError:
         print("Inverse of A: Does not exist")
+
 
 if __name__ == "__main__":
     main()

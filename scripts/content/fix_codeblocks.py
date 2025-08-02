@@ -1,6 +1,7 @@
 import os
 import argparse
 
+
 def fix_code_blocks_in_file(filepath):
     """
     Adds newlines before specific code blocks (Java and XML) in a markdown file,
@@ -10,13 +11,15 @@ def fix_code_blocks_in_file(filepath):
         filepath (str): The path to the markdown file to process.
     """
     try:
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.readlines()
 
         updated_content = []
         for line in content:
             stripped_line = line.strip()
-            if stripped_line.startswith("```java") or stripped_line.startswith("```xml"):
+            if stripped_line.startswith("```java") or stripped_line.startswith(
+                "```xml"
+            ):
                 # Add a newline before the code block if it's not already there
                 if updated_content and not updated_content[-1].strip() == "":
                     updated_content.append("\n")
@@ -30,7 +33,7 @@ def fix_code_blocks_in_file(filepath):
 
         # Write updated content only if replacements were made
         if replacements_made:
-            with open(filepath, 'w', encoding='utf-8') as f:
+            with open(filepath, "w", encoding="utf-8") as f:
                 f.writelines(updated_content)
             print(f"Added newlines to Java and XML code blocks in {filepath}")
         else:
@@ -41,6 +44,7 @@ def fix_code_blocks_in_file(filepath):
     except Exception as e:
         print(f"Error processing {filepath}: {e}")
         return False
+
 
 def process_markdown_files(directory, max_files=None):
     """
@@ -63,13 +67,20 @@ def process_markdown_files(directory, max_files=None):
                     print(f"Maximum files processed ({max_files}). Exiting directory.")
                     return
 
+
 def main():
     """
     Main function to process either a single file or directories.
     """
-    parser = argparse.ArgumentParser(description="Add newlines before specific code blocks in Markdown files.")
-    parser.add_argument("--maxfiles", type=int, help="Maximum number of files to process.")
-    parser.add_argument("--file", type=str, help="Path to a specific markdown file to process.")
+    parser = argparse.ArgumentParser(
+        description="Add newlines before specific code blocks in Markdown files."
+    )
+    parser.add_argument(
+        "--maxfiles", type=int, help="Maximum number of files to process."
+    )
+    parser.add_argument(
+        "--file", type=str, help="Path to a specific markdown file to process."
+    )
     args = parser.parse_args()
 
     if args.file:
@@ -86,6 +97,7 @@ def main():
                 process_markdown_files(directory, max_files=args.maxfiles)
             else:
                 print(f"Directory not found: {directory}")
+
 
 if __name__ == "__main__":
     main()

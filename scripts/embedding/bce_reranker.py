@@ -4,8 +4,8 @@ import logging
 logging.basicConfig(level=logging.INFO)
 
 # your query and corresponding passages
-query = 'input_query'
-passages = ['passage_0', 'passage_1']
+query = "input_query"
+passages = ["passage_0", "passage_1"]
 
 # construct sentence pairs
 sentence_pairs = [[query, passage] for passage in passages]

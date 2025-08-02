@@ -5,19 +5,21 @@ conn = psycopg2.connect(
     dbname="mydatabase",
     user="lzw",
     password="lzwpassword",  # Replace with your actual password
-    host="localhost"
+    host="localhost",
 )
 
 cur = conn.cursor()
 
 # Example: Create a simple table named 'example_table'
-cur.execute("""
+cur.execute(
+    """
     CREATE TABLE IF NOT EXISTS example_table (
         id SERIAL PRIMARY KEY,
         name VARCHAR(100),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
-""")
+"""
+)
 
 conn.commit()
 cur.close()
@@ -28,7 +30,7 @@ print("Table created successfully.")
 cur = conn.cursor()
 cur.execute(
     "INSERT INTO example_table (name) VALUES (%s), (%s), (%s);",
-    ("Alice", "Bob", "Charlie")
+    ("Alice", "Bob", "Charlie"),
 )
 conn.commit()
 cur.close()
@@ -42,4 +44,3 @@ for row in rows:
     print(row)
 cur.close()
 conn.close()
-

@@ -4,17 +4,19 @@ from PIL import Image
 
 DPI = 72
 
+
 def get_image_dimensions(image_path):
     """Gets image dimensions in pixels and points."""
     try:
         image = Image.open(image_path)
         width, height = image.size
-        dpi = image.info.get('dpi', (DPI, DPI))
+        dpi = image.info.get("dpi", (DPI, DPI))
         print(f"  Image dimensions: width={width}, height={height}, dpi={dpi}")
         return width, height, dpi
     except Exception as e:
         print(f"Error opening or processing image: {e}")
         sys.exit(1)
+
 
 file_path = sys.argv[1]
 print(f"Processing image: {file_path}.jpg")

@@ -1,8 +1,9 @@
 import os
 import argparse
 
+
 def update_file_names(old_name, new_name):
-    directories = ['_posts', 'assets/pdfs', 'assets/audios']
+    directories = ["_posts", "assets/pdfs", "assets/audios"]
 
     for directory in directories:
         full_directory_path = os.path.join(os.getcwd(), directory)
@@ -24,10 +25,15 @@ def update_file_names(old_name, new_name):
                 except Exception as e:
                     print(f"Error renaming {old_file_path} to {new_file_path}: {e}")
 
+
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Update file names in specified directories.")
-    parser.add_argument('old_name', type=str, help="The old file name to be replaced.")
-    parser.add_argument('new_name', type=str, help="The new file name to replace the old one.")
+    parser = argparse.ArgumentParser(
+        description="Update file names in specified directories."
+    )
+    parser.add_argument("old_name", type=str, help="The old file name to be replaced.")
+    parser.add_argument(
+        "new_name", type=str, help="The new file name to replace the old one."
+    )
     args = parser.parse_args()
 
     update_file_names(args.old_name, args.new_name)

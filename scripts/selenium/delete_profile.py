@@ -4,8 +4,12 @@ import argparse
 from pathlib import Path
 
 # Set up argument parser for dry run option
-parser = argparse.ArgumentParser(description="Delete files in a directory created within a specific time range.")
-parser.add_argument("--dry-run", action="store_true", help="Perform a dry run without deleting files")
+parser = argparse.ArgumentParser(
+    description="Delete files in a directory created within a specific time range."
+)
+parser.add_argument(
+    "--dry-run", action="store_true", help="Perform a dry run without deleting files"
+)
 args = parser.parse_args()
 
 # Define the directory path
@@ -15,6 +19,7 @@ directory = "/home/lzw/Downloads"
 start_time = datetime.datetime(2025, 6, 21, 0, 51, 0)
 end_time = datetime.datetime(2025, 6, 21, 0, 52, 59)
 
+
 # Function to check if file was created within the specified time range
 def is_file_in_time_range(file_path, start, end):
     try:
@@ -22,6 +27,7 @@ def is_file_in_time_range(file_path, start, end):
         return start <= ctime <= end
     except OSError:
         return False
+
 
 # Iterate through files in the directory
 for item in Path(directory).iterdir():

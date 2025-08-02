@@ -5,10 +5,12 @@ import time
 import os
 import matplotlib.pyplot as plt
 
+
 def sort_chunk(arr, start, end, result, idx):
     chunk = arr[start:end]
     chunk.sort()
     result[idx] = chunk
+
 
 def merge(left, right):
     result = []
@@ -24,6 +26,7 @@ def merge(left, right):
     result.extend(left[i:])
     result.extend(right[j:])
     return result
+
 
 def parallel_sort(arr, thread_count):
     n = len(arr)
@@ -49,7 +52,7 @@ def parallel_sort(arr, thread_count):
         merged_chunks = []
         for i in range(0, len(sorted_chunks), 2):
             if i + 1 < len(sorted_chunks):
-                merged = merge(sorted_chunks[i], sorted_chunks[i+1])
+                merged = merge(sorted_chunks[i], sorted_chunks[i + 1])
                 merged_chunks.append(merged)
             else:
                 merged_chunks.append(sorted_chunks[i])
@@ -57,12 +60,14 @@ def parallel_sort(arr, thread_count):
 
     return sorted_chunks[0] if sorted_chunks else []
 
+
 def benchmark(thread_count=1, list_size=1000000):
     arr = [random.randint(0, 1000000) for _ in range(list_size)]
     start = time.time()
     parallel_sort(arr, thread_count)
     end = time.time()
     return end - start
+
 
 if __name__ == "__main__":
     print(f"CPU cores: {os.cpu_count()}")
@@ -81,9 +86,9 @@ if __name__ == "__main__":
         print(f"{thread_counts[i]},{times[i]:.6f}")
 
     plt.figure()
-    plt.plot(thread_counts, times, marker='o')
-    plt.xlabel('Number of Threads')
-    plt.ylabel('Time Taken (seconds)')
-    plt.title('Thread Count vs Time Taken')
+    plt.plot(thread_counts, times, marker="o")
+    plt.xlabel("Number of Threads")
+    plt.ylabel("Time Taken (seconds)")
+    plt.title("Thread Count vs Time Taken")
     plt.grid(True)
-    plt.savefig('test/thread.png')
+    plt.savefig("test/thread.png")
