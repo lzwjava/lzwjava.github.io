@@ -70,6 +70,11 @@ def move_original_to_notes(filename):
         front_matter_content = parts[1].strip()
         content_without_front_matter = parts[2]
         
+        # Remove any existing 'generated' field
+        front_matter_lines = front_matter_content.split('\n')
+        front_matter_lines = [line for line in front_matter_lines if not line.startswith('generated:')]
+        front_matter_content = '\n'.join(front_matter_lines)
+        
         # Add generated: true to front matter
         if front_matter_content:
             front_matter_content += '\ngenerated: true'
