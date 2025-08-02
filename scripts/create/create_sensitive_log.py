@@ -4,7 +4,7 @@ from datetime import datetime
 from gpa import gpa
 
     # Create file path in logs directory
-logs_dir = "./logs"
+logs_dir = "../logs"
 
 def create_log():
     # Get and validate clipboard content
