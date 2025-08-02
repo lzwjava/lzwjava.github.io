@@ -1,11 +1,11 @@
 ---
-audio: true
-generated: false
+audio: false
 image: false
-lang: hant
+lang: en
 layout: post
-title: Java位元組碼
-translated: true
+title: Java Bytecode
+translated: false
+generated: true
 ---
 
 ```bash
