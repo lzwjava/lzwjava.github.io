@@ -2,11 +2,7 @@ import sys
 import os
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
-from scripts.translation.openrouter_client import call_openrouter_api
-
-def save_to_file(content, filename="answer.md"):
-    with open(filename, "a") as f:
-        f.write(content + "\n\n")
+from scripts.translation.openrouter_client import call_openrouter_api_with_messages
 
 # Dictionary to store sessions, each with a name and conversation history
 sessions = {}
@@ -67,12 +63,10 @@ def main():
                         print(f"Sending message to AI for session {current_session}...")
                         try:
                             conversation = sessions[current_session]
-                            answer = call_openrouter_api(conversation)
+                            answer = call_openrouter_api_with_messages(conversation)
                             if answer:
                                 sessions[current_session].append({"role": "assistant", "content": answer})
-                                interaction = f"**Session {current_session} User Input:**\n{message}\n\n**AI Response:**\n{answer}\n{'-'*50}"
-                                save_to_file(interaction)
-                                print("Received response from AI and saved to answer.md.")
+                                print(f"**AI Response:**\n{answer}")
                             else:
                                 print("No response received from AI.")
                         except Exception as e:
