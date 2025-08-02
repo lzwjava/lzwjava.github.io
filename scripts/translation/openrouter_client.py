@@ -40,8 +40,7 @@ def call_openrouter_api_with_messages(messages, model="deepseek-v3"):
   
 def call_openrouter_api(prompt, model="deepseek-v3"): 
     messages = [{"role": "user", "content": prompt}]
-    return call_openrouter_api_with_messages(messages, model)
-    
+    return call_openrouter_api_with_messages(messages, model)    
     
     
 if __name__ == "__main__":  
