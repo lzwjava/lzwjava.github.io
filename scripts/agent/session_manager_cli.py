@@ -1,12 +1,13 @@
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.translation.openrouter_client import call_openrouter_api_with_messages
 
 # Dictionary to store sessions, each with a name and conversation history
 sessions = {}
 current_session = None
+
 
 def main():
     print("Hello! I'm GitHub Copilot. Manage multiple AI chat sessions.")
@@ -19,7 +20,9 @@ def main():
 
     global current_session
     while True:
-        session_info = f"Current Session: {current_session if current_session else 'None'}"
+        session_info = (
+            f"Current Session: {current_session if current_session else 'None'}"
+        )
         user_input = input(f"{session_info} You: ")
         if user_input.lower() in ["exit", "quit"]:
             print("Goodbye!")
@@ -59,13 +62,17 @@ def main():
                 if message:
                     # Ensure the message is not empty or just whitespace
                     if len(message.strip()) > 0:
-                        sessions[current_session].append({"role": "user", "content": message})
+                        sessions[current_session].append(
+                            {"role": "user", "content": message}
+                        )
                         print(f"Sending message to AI for session {current_session}...")
                         try:
                             conversation = sessions[current_session]
                             answer = call_openrouter_api_with_messages(conversation)
                             if answer:
-                                sessions[current_session].append({"role": "assistant", "content": answer})
+                                sessions[current_session].append(
+                                    {"role": "assistant", "content": answer}
+                                )
                                 print(f"**AI Response:**\n{answer}")
                             else:
                                 print("No response received from AI.")
@@ -80,6 +87,7 @@ def main():
 
         else:
             print("Unknown command. Use new, list, a, ask, exit")
+
 
 if __name__ == "__main__":
     main()
