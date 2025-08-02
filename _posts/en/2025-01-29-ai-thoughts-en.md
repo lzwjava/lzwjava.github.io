@@ -72,6 +72,8 @@ translated: false
 
 - Websites with a lot of interaction are unlikely to be significantly changed by AI, such as web games, Google Docs, Google Sheets, and collaboration tools like Zoom or Slack. They are code-centric and not just focused on text.
 
+- It is easy to make typos or it requires effort to craft prompts for AI chatbots. That's why a fully AI-driven digital bank, digital trading app, or AI social media with a simple chat box often doesn't work. Traditional click buttons, page navigation, and layouts in mobile apps are more convenient.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
