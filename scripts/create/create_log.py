@@ -1,35 +1,33 @@
-from create_note_utils import get_clipboard_content, generate_title, clean_content
-import os
-from datetime import datetime
-from gpa import gpa
+from create_normal_log import create_normal_log
+from create_sensitive_log import create_sensitive_log
+from create_note_utils import get_clipboard_content, generate_title
 
-    # Create file path in logs directory
-logs_dir = "./logs"
+# Define logs directory
+logs_dir = "logs"
+
+def is_sensitive_content(content):
+    """Use AI to detect if content contains sensitive information like passwords or keys."""
+    sensitivity_prompt = lambda c: f"Does the following text contain sensitive information such as passwords, API keys, or personal data? Respond with 'yes' or 'no' only: {c}"
+    response = generate_title(content, 1, sensitivity_prompt).lower()
+    return response == 'yes'
 
 def create_log():
+    """Create a log entry based on clipboard content, checking for sensitivity and length."""
     # Get and validate clipboard content
     content = get_clipboard_content()
-
-    # Generate AI-suggested filename
-    filename_prompt = lambda c: f"Generate a short filename (maximum 4 words, all lowercase, use only letters, numbers, or hyphens, no spaces or special characters, suitable for a log file) for the following text and respond with only the filename: {c}"
-    ai_filename = generate_title(content, 4, filename_prompt).lower()
     
-    filename = f"{ai_filename}"
-
-
-    os.makedirs(logs_dir, exist_ok=True)
-    file_path = os.path.join(logs_dir, f"{filename}.log")
-
-    # Write to file
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write(content)
+    # Check character limit
+    if len(content) > 4096:
+        print("Error: Content exceeds 4096 characters. Please shorten the log and try again.")
+        return
     
-    print(f"Log created: {file_path}")
-
+    # Detect if content is sensitive
+    if is_sensitive_content(content):
+        print("Error: Sensitive content detected. Please remove passwords, keys, or personal data and try again.")
+        create_sensitive_log()
+        return
+    
+    create_normal_log()
 
 if __name__ == "__main__":
     create_log()
-    # Change to logs directory
-    os.chdir(logs_dir)
-    gpa()
-    print(f"Changed working directory to: {os.getcwd()}")

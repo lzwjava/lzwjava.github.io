@@ -3,10 +3,10 @@ import os
 from datetime import datetime
 from gpa import gpa
 
-    # Create file path in logs directory
-logs_dir = "../logs"
+# Create file path in logs directory
+logs_dir = "./logs"
 
-def create_sensitive_log():
+def create_normal_log():
     # Get and validate clipboard content
     content = get_clipboard_content()
 
@@ -15,7 +15,6 @@ def create_sensitive_log():
     ai_filename = generate_title(content, 4, filename_prompt).lower()
     
     filename = f"{ai_filename}"
-
 
     os.makedirs(logs_dir, exist_ok=True)
     file_path = os.path.join(logs_dir, f"{filename}.log")
@@ -28,9 +27,8 @@ def create_sensitive_log():
     
     os.chdir(logs_dir)
     gpa()
-    print(f"Changed working directory to: {os.getcwd()}")    
-
+    print(f"Changed working directory to: {os.getcwd()}")
+    
 
 if __name__ == "__main__":
-    create_sensitive_log()
-
+    create_normal_log()
