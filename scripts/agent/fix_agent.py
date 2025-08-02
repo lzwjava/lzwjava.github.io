@@ -45,13 +45,6 @@ def fix_script(script_path, error_message, model):
         return f"Failed to apply fix: {str(e)}"
 
 # Model mapping for user-friendly names
-MODEL_MAPPING = {
-    'claude-opus': 'anthropic/claude-opus-4',
-    'claude-sonnet': 'anthropic/claude-sonnet-4',
-    'gemini-flash': 'google/gemini-2.5-flash',
-    'deepseek-v3': 'deepseek/deepseek-chat-v3-0324:free',
-    'gemini-pro': 'google/gemini-2.5-pro'
-}
 
 def main():
     parser = argparse.ArgumentParser(description="Run and fix Python or Rust scripts.")
