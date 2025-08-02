@@ -68,6 +68,10 @@ translated: false
 
 - People tend to read everything from AI chatbots because it is easy to learn, they can ask questions about any aspect, the format is consistent, and the quality is often among the best found on the Internet.
 
+- But information is not just about text, you can read most text information from AI chatbots, but you loose the original website and its layout and form, its explaination images and website design.
+
+- Websites with a lot of interaction are unlikely to be significantly changed by AI, such as web games, Google Docs, Google Sheets, and collaboration tools like Zoom or Slack. They are code-centric and not just focused on text.
+
 - [New Platforms Powered by AI Workflows](./ai-workflow-en)
 
 - [The Next Direction of AI Code Editors](./ai-code-en)
