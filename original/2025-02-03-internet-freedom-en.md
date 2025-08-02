@@ -8,7 +8,7 @@ title: The Journey to Pursue Internet Freedom
 translated: false
 ---
 
-This post was updated in August 2025.
+This post was last updated in August 2025.
 
 ---
 
