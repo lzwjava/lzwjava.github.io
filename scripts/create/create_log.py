@@ -2,9 +2,6 @@ from create_normal_log import create_normal_log
 from create_sensitive_log import create_sensitive_log
 from create_note_utils import get_clipboard_content, generate_title
 
-# Define logs directory
-logs_dir = "logs"
-
 def is_sensitive_content(content):
     """Use AI to detect if content contains sensitive information like passwords or keys."""
     sensitivity_prompt = lambda c: f"Does the following text contain sensitive information such as passwords, API keys, or personal data? Respond with 'yes' or 'no' only: {c}"
