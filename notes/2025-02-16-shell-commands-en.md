@@ -1,11 +1,9 @@
 ---
-audio: false
-generated: false
+audio: true
+generated: true
 image: false
-lang: en
 layout: post
 title: macOS Shell Commands
-translated: false
 ---
 
 Here are 200 commonly used macOS shell commands, categorized for easier reference. These commands are useful for navigating the file system, managing files, system monitoring, and more.
