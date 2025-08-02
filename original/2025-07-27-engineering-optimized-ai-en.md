@@ -8,7 +8,7 @@ generated: false
 image: false
 ---
 
-## Table of Contents
+### Table of Contents
 
 1. [Optimizing Software Engineering for AI](#optimizing-software-engineering-for-ai)
     - Flat Architecture for AI-First Development
