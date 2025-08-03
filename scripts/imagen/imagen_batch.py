@@ -6,6 +6,7 @@ Generates OG images for the latest 10 blog posts.
 
 import os
 import sys
+import argparse
 from pathlib import Path
 from imagen_prompt import imagen_prompt
 from imagen_og import generate_image_with_imagen
@@ -76,11 +77,28 @@ def imagen_og_files_custom(files, output_dir="assets/images/og", debug=False):
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Generate OG images for latest blog posts"
+    )
+    parser.add_argument(
+        "-n", "--number",
+        type=int,
+        default=10,
+        help="Number of latest files to process (default: 10)"
+    )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable debug output"
+    )
+    
+    args = parser.parse_args()
+    
     print("Batch OG Image Generator")
     print("========================")
     
-    # Find latest 10 markdown files in original directory
-    print("Finding latest 10 markdown files...")
+    # Find latest n markdown files in original directory
+    print(f"Finding latest {args.number} markdown files...")
     original_dir = Path("original")
     
     if not original_dir.exists():
@@ -94,8 +112,8 @@ def main():
         print("❌ No markdown files found in original directory!")
         sys.exit(1)
     
-    # Take latest 10 files
-    latest_files = md_files[:10]
+    # Take latest n files
+    latest_files = md_files[:args.number]
     
     print(f"Found {len(md_files)} total files, processing latest {len(latest_files)}")
     for i, file_path in enumerate(latest_files, 1):
@@ -105,7 +123,7 @@ def main():
     success_count = imagen_og_files_custom(
         files=[str(f) for f in latest_files],
         output_dir="assets/images/og",
-        debug=False
+        debug=args.debug
     )
     
     if success_count == len(latest_files):
