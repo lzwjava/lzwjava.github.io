@@ -8,7 +8,7 @@ Welcome to my personal blog! Here, I share my thoughts, experiences, and knowled
 
 - **[Notes](notes):** 1,908 entries
 - **[Python Scripts](scripts):** 533 files in scripts directory  
-- **[Python Machine Learning Scripts](ml):** Number of .py files in ml directory: 190
+- **[Machine Learning Scripts](ml):** 190 Python scripts dedicated to machine learning projects and experiments
 - **[Original Posts](original):** 530 markdown files
 
 
