@@ -16,6 +16,11 @@ def process_file_custom(file_path, output_path, debug=False):
     """Process a single Jekyll post file with custom output path."""
     print(f"\n=== Processing file: {file_path} ===")
     
+    # Check if output file already exists
+    if Path(output_path).exists():
+        print(f"⏭️  Skipping - image already exists: {output_path}")
+        return "skipped"
+    
     try:
         print("Generating image prompt from content...")
         # Get image prompt using the imported function
@@ -60,18 +65,22 @@ def imagen_og_files_custom(files, output_dir="assets/images/og", debug=False):
     print(f"\nProcessing {len(files)} files...")
     print(f"Output directory: {output_dir}")
     success_count = 0
+    skipped_count = 0
     
     for i, file_path in enumerate(files, 1):
         print(f"\n[{i}/{len(files)}] Processing: {file_path}")
-        output_path = f"{output_dir}/og{i}.png"
+        output_path = f"{output_dir}/og{i}.jpg"
         result = process_file_custom(file_path, output_path, debug)
-        if result:
+        if result == "skipped":
+            skipped_count += 1
+        elif result:
             success_count += 1
     
     print(f"\n=== Summary ===")
     print(f"Processed: {len(files)} files")
     print(f"Successful: {success_count} files")
-    print(f"Failed: {len(files) - success_count} files")
+    print(f"Skipped: {skipped_count} files")
+    print(f"Failed: {len(files) - success_count - skipped_count} files")
     
     return success_count
 
