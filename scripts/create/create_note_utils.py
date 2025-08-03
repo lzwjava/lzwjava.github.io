@@ -5,7 +5,7 @@ import datetime
 import pyperclip
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from scripts.llm.test_mistral import call_mistral_api
+from scripts.llmtest.test_mistral import call_mistral_api
 
 
 def get_first_n_words(text, n=500):
