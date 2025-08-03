@@ -37,7 +37,7 @@ Return only the image prompt:"""
         return None
 
 
-def imagen_prompt(file_path, output_only=False):
+def imagen_prompt(file_path, debug=False):
     """Process a single Jekyll post file."""
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -48,13 +48,7 @@ def imagen_prompt(file_path, output_only=False):
         if image_prompt is None:
             return None
 
-        # Create output filename
-        file_stem = Path(file_path).stem
-        output_path = f"test/{file_stem}.png"
-        
-        if output_only:
-            print(image_prompt)
-        else:
+        if debug:
             print(f"Image prompt for {file_path}:")
             print(image_prompt)
             print()
@@ -70,15 +64,11 @@ def main():
         description="Generate images for Jekyll posts using AI"
     )
     parser.add_argument("file", help="Markdown file to process")
-    parser.add_argument(
-        "--output-only",
-        action="store_true",
-        help="Output only image prompt without file info",
-    )
+    parser.add_argument("--debug", action="store_true", help="Enable debug output")
 
     args = parser.parse_args()
 
-    imagen_prompt(args.file, args.output_only)
+    imagen_prompt(args.file, debug=args.debug)
 
 
 if __name__ == "__main__":
