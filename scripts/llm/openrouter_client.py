@@ -37,7 +37,7 @@ def call_openrouter_api_with_messages(messages, model="deepseek-v3"):
         raise Exception(f"An error occurred: {str(e)}")
 
 
-def call_openrouter_api(prompt, model="deepseek-v3"):
+def call_openrouter_api(prompt, model="mistral-nemo"):
     messages = [{"role": "user", "content": prompt}]
     return call_openrouter_api_with_messages(messages, model)
 
