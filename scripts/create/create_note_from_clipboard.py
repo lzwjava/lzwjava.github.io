@@ -23,7 +23,7 @@ def create_note():
     )
     full_title = generate_title(content, 6, full_title_prompt)
     
-    short_title_prompt = f"Generate a very short title (maximum three words, all lowercase, use only letters, numbers, or hyphens, no spaces or special characters, do not have single quote or underscore, use hyphen to concatenate words) for the following text and respond with only the title: {full_title}"
+    short_title_prompt = f"Generate a concise title for file naming (max 3 words, lowercase, letters/numbers/hyphens only, no spaces or special characters, no single quotes or underscores, use hyphens to join words) based on this title: {full_title}. Respond with just the title:"
     
     short_title = generate_short_title(short_title_prompt).lower()
     
