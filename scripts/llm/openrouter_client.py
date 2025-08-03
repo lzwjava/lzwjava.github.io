@@ -48,7 +48,7 @@ if __name__ == "__main__":
     for model_name in MODEL_MAPPING.keys():
         try:
             result = call_openrouter_api(
-                "Hello, can you help me with a simple query?", model_name
+                "Hello, 9.11 or 9.9, which one is bigger? ", model_name
             )
             print(f"Response from {model_name}:")
             print(result)
