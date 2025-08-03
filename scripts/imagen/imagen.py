@@ -23,7 +23,7 @@ image = client.models.generate_images(
     ),
 )
 
-image.generated_images[0].image.save("output-image.png")
+image.generated_images[0].image.save("test/output-image.png")
 print(
     f"Created image using {len(image.generated_images[0].image.image_bytes)} bytes"
 )
