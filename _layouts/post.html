@@ -127,17 +127,20 @@ layout: default
         {% assign date_components = date_segment | split: '-' %}
 
         {% if date_components.size >= 3 %}
-          {% assign file_date = date_components[0] | append: '.' | append: date_components[1] | append: '.' | append:
-          date_components[2] %}
+          {% assign file_date = date_components[0] | append: '.' | append: date_components[1] %}
           <a href="#" class="button">{{ file_date }}</a>
         {% else %}
-          <a href="#" class="button">{{ 'now' | date: "%Y.%m.%d"}}</a>
+          <a href="#" class="button">{{ 'now' | date: "%Y.%m"}}</a>
         {% endif %}
 
       {% else %}
-        <a href="#" class="button">{{ 'now' | date: "%Y.%m.%d"}}</a>
+        <a href="#" class="button">{{ 'now' | date: "%Y.%m"}}</a>
       {% endif %}
     {% endif %}
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      {% include theme-icons.html %}
+    </button>    
 
     <!-- Language Select Section -->
     {% assign current_lang = page.path | split: '-' | last | split: '.' | first %}
@@ -151,6 +154,7 @@ layout: default
       {% assign length_to_slice = base_name_length | minus: 3 %}
     {% endif %}
     {% assign base_name = base_name | slice: 0, length_to_slice %}
+
     
     <select id="languageSelect" class="button right-button">
         
@@ -183,10 +187,6 @@ layout: default
   <div class="button-container">
     <a href="/" class="button left-button">Back</a>
 
-
-    <button id="themeTogglePost" class="icon-button" aria-label="Toggle Theme">
-      {% include theme-icons.html %}
-    </button>
 
     {% assign donate_url = "/donate-en" %}
     {% if page.lang %}
