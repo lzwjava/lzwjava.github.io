@@ -15,7 +15,7 @@ MODEL_MAPPING = {
 }
 
 
-def call_openrouter_api_with_messages(messages, model="deepseek-v3"):
+def call_openrouter_api_with_messages(messages, model="mistral-nemo"):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
