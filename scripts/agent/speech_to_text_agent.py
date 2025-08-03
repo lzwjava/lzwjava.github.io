@@ -3,7 +3,7 @@ import argparse
 from google.cloud import storage
 from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
-from scripts.translation.openrouter_client import call_openrouter_api
+from scripts.llm.openrouter_client import call_openrouter_api
 
 
 MAX_AUDIO_LENGTH_SECS = 20 * 60 * 60

@@ -2,7 +2,7 @@ import re
 import sys
 import argparse
 from pathlib import Path
-from scripts.translation.openrouter_client import call_openrouter_api
+from scripts.llm.openrouter_client import call_openrouter_api
 
 #!/usr/bin/env python3
 """
