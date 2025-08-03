@@ -5,8 +5,12 @@ from PIL import Image
 from io import BytesIO
 import os
 
-# Set your API key using the environment variable GEMINI_API_KEY
-client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+# Set up Vertex AI client
+client = genai.Client(
+    vertexai=True,
+    project=os.getenv('GOOGLE_CLOUD_PROJECT'),
+    location=os.getenv('GOOGLE_CLOUD_LOCATION')
+)
 
 image = client.models.generate_images(
     model="imagen-4.0-generate-preview-06-06",
