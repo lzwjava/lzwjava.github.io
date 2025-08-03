@@ -1,37 +1,37 @@
-import vertexai
-from vertexai.generative_models import Image, GenerativeModel
 import os
+from google import genai
+from google.genai import types
+from PIL import Image as PILImage
+from io import BytesIO
 
-# Initialize Vertex AI
-import google.generativeai as genai
-
+# 1. Init GenAI client (Vertex AI / ADC)
 client = genai.Client(
     vertexai=True,
-    project=os.getenv('GOOGLE_CLOUD_PROJECT'),
-    location=os.getenv('GOOGLE_CLOUD_LOCATION')
+    project=os.getenv("GOOGLE_CLOUD_PROJECT"),
+    location=os.getenv("GOOGLE_CLOUD_LOCATION")
 )
 
-# Load the base image
+# 2. Load your base avatar
 base_image_path = "assets/images/avatar/avatar.jpg"
-base_image = Image.load_from_file(base_image_path)
+input_img = PILImage.open(base_image_path)
 
-# Define the editing prompt
-prompt = """
-Transform this image into the style of a Studio Ghibli film. 
-Use a hand-painted watercolor aesthetic with a soft, vibrant color palette. 
-The lighting should be warm and golden, creating a nostalgic and whimsical atmosphere.
-"""
-
-# Get the Imagen model for image editing
-model = GenerativeModel(model_name="imagen-4-edit") # This model name is an example; check docs for the latest one
-
-# Generate the new image
-edited_images = model.generate_images(
-    base_image=base_image,
-    prompt=prompt,
-    number_of_images=1
+# 3. Define your edit prompt
+prompt = (
+    "Transform this image into the style of a Studio Ghibli film. "
+    "Use a hand-painted watercolor aesthetic with a soft, vibrant palette. "
+    "Lighting should be warm and golden, creating a nostalgic, whimsical atmosphere."
 )
 
-# Save the output
-edited_images[0].save("ghibli_style_output.png")
-print("Ghibli-style image saved as ghibli_style_output.png")
+# 4. Call the Imagen edit model (mask-free)
+response = client.models.generate_content(
+    model="imagen-3-edit-preview",
+    contents=[prompt, input_img],
+    config=types.GenerateContentConfig(response_modalities=["IMAGE"])
+)
+
+# 5. Pull out the edited image and save
+for part in response.candidates[0].content.parts:
+    if part.inline_data:
+        edited = PILImage.open(BytesIO(part.inline_data.data))
+        edited.save("ghibli_style_output.png")
+        print("✅ Saved Ghibli-style output to ghibli_style_output.png")
