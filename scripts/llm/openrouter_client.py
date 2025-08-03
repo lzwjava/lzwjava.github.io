@@ -45,8 +45,14 @@ def call_openrouter_api(prompt, model="mistral-nemo"):
 
 if __name__ == "__main__":
     # Example usage
-    result = call_openrouter_api(
-        "Hello, can you help me with a simple query?", "deepseek-v3"
-    )
-    print("Response from OpenRouter:")
-    print(result)
+    for model_name in MODEL_MAPPING.keys():
+        try:
+            result = call_openrouter_api(
+                "Hello, can you help me with a simple query?", model_name
+            )
+            print(f"Response from {model_name}:")
+            print(result)
+            print("-" * 50)
+        except Exception as e:
+            print(f"Error with {model_name}: {str(e)}")
+            print("-" * 50)
