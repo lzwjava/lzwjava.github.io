@@ -1,5 +1,5 @@
 ---
-title: "Update Safety Filter Level"
+title: "Use 'BLOCK_LOW_AND_ABOVE' Only"
 lang: en
 layout: post
 audio: false
