@@ -1,6 +1,4 @@
-from gemini_client import call_gemini_api
-from deepseek_client import call_deepseek_api
-from mistral_client import call_mistral_api
+from scripts.llm.openrouter_client import call_openrouter_api
 
 
 def create_translation_prompt(
@@ -59,13 +57,13 @@ def translate_text(
     )
 
     if model == "deepseek":
-        translated_text = call_deepseek_api(prompt)
+        translated_text = call_openrouter_api(prompt, "deepseek-v3")
         return translated_text
     elif model == "mistral":
-        translated_text = call_mistral_api(prompt)
+        translated_text = call_openrouter_api(prompt, "mistral-nemo")
         return translated_text
     elif model == "gemini":
-        translated_text = call_gemini_api(prompt)
+        translated_text = call_openrouter_api(prompt, "gemini-flash")
         return translated_text
     else:
         print(f"Error: Invalid model specified: {model}")
