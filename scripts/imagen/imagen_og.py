@@ -5,37 +5,7 @@ import os
 import sys
 import argparse
 from pathlib import Path
-from scripts.llm.openrouter_client import call_openrouter_api
-
-#!/usr/bin/env python3
-"""
-Image Generator for Jekyll Posts
-Generates images for Jekyll post files using AI.
-"""
-
-
-def generate_image_prompt_with_ai(content):
-    """Generate image prompt using AI."""
-    prompt = f"""Please generate a detailed image prompt for the following markdown content. 
-Follow these rules:
-1. Create a vivid, descriptive prompt for image generation (1-2 sentences)
-2. Focus on visual elements that represent the main topic
-3. Include artistic style suggestions (e.g., "digital art", "illustration", "photorealistic")
-4. Avoid text or words in the image description
-5. Make it suitable for creating an engaging blog post header image
-
-Markdown content:
-{content}
-
-Return only the image prompt:"""
-
-    try:
-        response = call_openrouter_api(prompt)
-        return response.strip()
-    except Exception as e:
-        print(f"Error calling AI API: {e}", file=sys.stderr)
-        return None
-
+from imagen_prompt import imagen_prompt
 
 def generate_image_with_imagen(prompt, output_path):
     """Generate image using Imagen model."""
@@ -67,15 +37,13 @@ def generate_image_with_imagen(prompt, output_path):
         return False
 
 
-def process_file(file_path, output_only=False):
+def process_file(file_path, debug=False):
     """Process a single Jekyll post file."""
     try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        image_prompt = generate_image_prompt_with_ai(content)
-
-        if image_prompt is None:
+        # Get image prompt using the imported function
+        prompt = imagen_prompt(file_path, debug=debug)
+        
+        if prompt is None:
             return None
 
         # Create output filename
@@ -85,17 +53,10 @@ def process_file(file_path, output_only=False):
         # Ensure test directory exists
         Path("test").mkdir(exist_ok=True)
 
-        if output_only:
-            print(image_prompt)
-        else:
-            print(f"Image prompt for {file_path}:")
-            print(image_prompt)
-            print()
-
         # Generate image
-        success = generate_image_with_imagen(image_prompt, output_path)
+        success = generate_image_with_imagen(prompt, output_path)
         
-        return image_prompt if success else None
+        return prompt if success else None
 
     except Exception as e:
         print(f"Error processing {file_path}: {e}", file=sys.stderr)
@@ -108,9 +69,9 @@ def main():
     )
     parser.add_argument("files", nargs="*", help="Markdown files to process")
     parser.add_argument(
-        "--output-only",
+        "--debug",
         action="store_true",
-        help="Output only image prompt without file info",
+        help="Enable debug output",
     )
 
     args = parser.parse_args()
@@ -124,7 +85,7 @@ def main():
         args.files = md_files
 
     for file_path in args.files:
-        process_file(file_path, args.output_only)
+        process_file(file_path, args.debug)
 
 
 if __name__ == "__main__":
