@@ -16,7 +16,7 @@ MODEL_MAPPING = {
 }
 
 
-def call_openrouter_api_with_messages(messages, model="mistral-nemo"):
+def call_openrouter_api_with_messages(messages, model="mistral-nemo", debug=False):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -28,8 +28,17 @@ def call_openrouter_api_with_messages(messages, model="mistral-nemo"):
         raise Exception(f"Model '{model}' not found in MODEL_MAPPING")
 
     data = {"model": MODEL_MAPPING[model], "messages": messages}
+    
+    if debug:
+        print(f"Request URL: {url}")
+        print(f"Request Data: {data}")
+    
     try:
         response = requests.post(url, headers=headers, json=data)
+        if debug:
+            print(f"Response Status Code: {response.status_code}")
+            print(f"Response Text: {response.text}")
+        
         if response.status_code == 200:
             return response.json()["choices"][0]["message"]["content"]
         else:
@@ -38,9 +47,9 @@ def call_openrouter_api_with_messages(messages, model="mistral-nemo"):
         raise Exception(f"An error occurred: {str(e)}")
 
 
-def call_openrouter_api(prompt, model="mistral-nemo"):
+def call_openrouter_api(prompt, model="mistral-nemo", debug=False):
     messages = [{"role": "user", "content": prompt}]
-    return call_openrouter_api_with_messages(messages, model)
+    return call_openrouter_api_with_messages(messages, model, debug)
 
 
 if __name__ == "__main__":
@@ -48,7 +57,7 @@ if __name__ == "__main__":
     for model_name in MODEL_MAPPING.keys():
         try:
             result = call_openrouter_api(
-                "Hello, 9.11 or 9.9, which one is bigger? ", model_name
+                "Hello, 9.11 or 9.9, which one is bigger? ", model_name, debug=True
             )
             print(f"Response from {model_name}:\n")
             print(result)
