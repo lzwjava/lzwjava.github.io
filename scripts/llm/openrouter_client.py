@@ -50,7 +50,7 @@ if __name__ == "__main__":
             result = call_openrouter_api(
                 "Hello, 9.11 or 9.9, which one is bigger? ", model_name
             )
-            print(f"Response from {model_name}:")
+            print(f"Response from {model_name}:\n")
             print(result)
             print("-" * 50)
         except Exception as e:
