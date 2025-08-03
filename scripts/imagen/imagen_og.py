@@ -26,7 +26,10 @@ def generate_image_with_imagen(prompt, output_path):
             model="imagen-4.0-generate-preview-06-06",
             prompt=prompt,
             config=GenerateImagesConfig(
-                image_size="2K",
+                aspect_ratio = "16:9",
+                image_size="1K",
+                output_compression_quality=90,
+                output_mime_type="image/jpeg",
                 number_of_images=1,
                 safety_filter_level="BLOCK_LOW_AND_ABOVE",
                 person_generation="ALLOW_ADULT",
@@ -60,7 +63,7 @@ def process_file(file_path, debug=False):
         
         # Create output filename
         file_stem = Path(file_path).stem
-        output_path = f"test/{file_stem}.png"
+        output_path = f"test/{file_stem}.jpg"
         
         print(f"Creating output directory: test/")
         # Ensure test directory exists
