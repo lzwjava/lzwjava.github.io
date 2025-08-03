@@ -2,6 +2,7 @@ from create_note_utils import (
     get_clipboard_content,
     clean_grok_tags,
     generate_title,
+    generate_short_title,
     create_filename,
     format_front_matter,
     clean_content,
@@ -18,14 +19,13 @@ def create_note():
 
     # Generate titles
     full_title_prompt = (
-        lambda c: f"Generate a very short title (maximum six words) for the following text and respond with only the title: {c}"
+        lambda c: f"Generate a very short title (maximum six words, do not have single quote) for the following text and respond with only the title: {c}"
     )
     full_title = generate_title(content, 6, full_title_prompt)
-
-    short_title_prompt = (
-        lambda c: f"Generate a very short title (maximum three words, all lowercase, use only letters, numbers, or hyphens, no spaces or special characters, do not have single quote or underscore, use hyphen to concatenate words) for the following text and respond with only the title: {c}"
-    )
-    short_title = generate_title(content, 3, short_title_prompt).lower()
+    
+    short_title_prompt = f"Generate a very short title (maximum three words, all lowercase, use only letters, numbers, or hyphens, no spaces or special characters, do not have single quote or underscore, use hyphen to concatenate words) for the following text and respond with only the title: {full_title}"
+    
+    short_title = generate_short_title(short_title_prompt).lower()
     
     # Check if short_title contains underscore
     if '_' in short_title:

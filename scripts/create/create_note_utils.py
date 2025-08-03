@@ -55,6 +55,12 @@ def generate_title(content, max_words, format_prompt):
     title = re.sub(r"\*", " ", title).strip()
     return title
 
+def generate_short_title(prompt):
+    title = call_openrouter_api(prompt)
+    if not title:
+        print(f"Failed to generate short title. Exit.")
+        sys.exit(1)
+    return title
 
 def create_filename(short_title):
     today = datetime.date.today()
