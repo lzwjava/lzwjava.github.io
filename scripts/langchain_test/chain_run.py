@@ -46,7 +46,7 @@ output = {
 }
 
 # Save to file with nice formatting
-with open('test/langchain_run.json', 'w') as f:
+with open('text_test/langchain_run.json', 'w') as f:
     json.dump(output, f, indent=2)
 
 print("Result saved to test/langchain_run.json")
