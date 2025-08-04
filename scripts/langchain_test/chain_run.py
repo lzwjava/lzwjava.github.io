@@ -1,18 +1,25 @@
 import os
-from langchain import OpenAI, LLMChain, PromptTemplate
+from langchain_core.prompts import PromptTemplate
+from langchain.chains import LLMChain
+from langchain_openai import ChatOpenAI
 
 # 1. (Optionally) set your OpenRouter key in env
-os.environ["OPENAI_API_KEY"] = "pk-OPENROUTER_YOUR_KEY_HERE"
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+if not OPENROUTER_API_KEY:
+    raise Exception("OPENROUTER_API_KEY environment variable is not set or is empty")
+
+os.environ["OPENAI_API_KEY"] = OPENROUTER_API_KEY
 # and the base URL:
 os.environ["OPENAI_API_BASE"] = "https://openrouter.ai/api/v1"
 
 # 2. Initialize the LLM to use OpenRouter
-llm = OpenAI(
-    model_name="gpt-4o",                # or "gpt-3.5-turbo" etc.
+llm = ChatOpenAI(
+    model="gpt-4",
     temperature=0.7,
     openai_api_key=os.getenv("OPENAI_API_KEY"),
-    openai_api_base=os.getenv("OPENAI_API_BASE"),
-    openai_api_type="open_router"       # tell LangChain it’s OpenRouter
+    base_url=os.getenv("OPENAI_API_BASE"),
+    default_headers={"HTTP-Referer": "https://github.com/anthropics/claude-code"}
 )
 
 # 3. Create your prompt template
@@ -22,6 +29,6 @@ template = PromptTemplate(
 )
 
 # 4. Build and run the chain
-chain = LLMChain(llm=llm, prompt=template)
-result = chain.run({"product": "wireless noise-cancelling headphones"})
+chain = template | llm
+result = chain.invoke({"product": "wireless noise-cancelling headphones"})
 print(result)
