@@ -12,8 +12,6 @@ I got my HSBC Debit card in May 2023 at the Sha Tin branch in Hong Kong. Unfortu
 
 After learning some basic operations, I was going to take back my card from the machine. However, my daughter was playing and wanting to touch that card. Suddenly, the card was retained.
 
-In the summer of 2024, an HSBC Guangzhou client manager invited me to the Guangzhou office and wanted to help me. I was grateful for their tea box gift. But unfortunately, at that time, the subsequent progress was unknown. I didn't receive my card in the following months.
-
 So this is in July 2025. I used WhatsApp to chat with HSBC first. Later, I was told to use the HSBC HK app to talk with them.
 
 They told me something like:
