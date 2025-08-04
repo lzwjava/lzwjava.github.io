@@ -1,4 +1,5 @@
 import os
+import json
 from langchain_core.prompts import PromptTemplate
 from langchain.chains import LLMChain
 from langchain_openai import ChatOpenAI
@@ -31,4 +32,21 @@ template = PromptTemplate(
 # 4. Build and run the chain
 chain = template | llm
 result = chain.invoke({"product": "wireless noise-cancelling headphones"})
-print(result)
+
+# Create test directory if it doesn't exist
+os.makedirs('test', exist_ok=True)
+
+# Format the result as a dictionary
+output = {
+    'content': result.content,
+    'metadata': {
+        'usage': result.response_metadata['token_usage'],
+        'model': result.response_metadata['model_name']
+    }
+}
+
+# Save to file with nice formatting
+with open('test/langchain_run.json', 'w') as f:
+    json.dump(output, f, indent=2)
+
+print("Result saved to test/langchain_run.json")
