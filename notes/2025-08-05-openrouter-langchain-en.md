@@ -1,3 +1,16 @@
+---
+title: "Use OpenRouter with LangChain"
+lang: en
+layout: post
+audio: false
+translated: false
+generated: true
+image: false
+---
+
+You can point LangChain at OpenRouter by specifying its base URL and your OpenRouter key when you instantiate the LLM. For example:
+
+```python
 import os
 from langchain import OpenAI, LLMChain, PromptTemplate
 
@@ -25,3 +38,12 @@ template = PromptTemplate(
 chain = LLMChain(llm=llm, prompt=template)
 result = chain.run({"product": "wireless noise-cancelling headphones"})
 print(result)
+```
+
+**Key points**
+
+* **`openai_api_base`** must point to OpenRouter’s API endpoint.
+* **`openai_api_type="open_router"`** tells LangChain to speak OpenRouter’s protocol.
+* Supply your OpenRouter key via `openai_api_key` (or `OPENAI_API_KEY` env).
+
+That will replace the default OpenAI.com endpoint with OpenRouter.
