@@ -4,6 +4,10 @@ import os
 # Get the API key from environment variable or replace with your key
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
+if not OPENROUTER_API_KEY:
+    raise Exception("OPENROUTER_API_KEY environment variable is not set or is empty")
+
+
 MODEL_MAPPING = {
     "claude-opus": "anthropic/claude-opus-4",
     "claude-sonnet": "anthropic/claude-sonnet-4",
