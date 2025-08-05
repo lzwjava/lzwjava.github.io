@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: General Agents vs Customized Agents
+title: General Agents vs Vertical Agents
 translated: false
 ---
 
@@ -12,7 +12,7 @@ translated: false
 
 One reason is that it is very slow, doing a lot of unnecessary work and being inefficient. Another reason is that if it encounters a complex problem or hits a weak spot, you are likely to fail at your task.
 
-Customized agents work great because they are highly specialized. They are tailored for very specific tasks. There are dozens of databases and over a hundred web development frameworks like Spring. There are also numerous web frameworks, such as Vue or React.
+Vertical agents work great because they are highly specialized. They are tailored for very specific tasks. There are dozens of databases and over a hundred web development frameworks like Spring. There are also numerous web frameworks, such as Vue or React.
 
 [Dify](https://dify.ai) focuses on using AI to connect workflows, employing a drag-and-connect method to define AI workflows. They need to do a lot to connect information, data, and platforms.
 
@@ -34,7 +34,7 @@ Manus can handle a lot of simple tasks. However, for some tasks, especially thos
 
 Also, many programs or services take time to set up. In Manus's approach, this process is slow.
 
-As a programmer, I use AI with Python to build my customized agents. This is the simplest approach for me. I can also set up prompts and contexts to ensure relatively stable output from LLM APIs.
+As a programmer, I use AI with Python to build my vertical agents. This is the simplest approach for me. I can also set up prompts and contexts to ensure relatively stable output from LLM APIs.
 
 Manus and Dify are also built with these LLM APIs. Their advantage is that they already have a lot of tools or code ready to use.
 
