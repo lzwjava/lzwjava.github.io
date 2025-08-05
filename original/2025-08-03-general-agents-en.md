@@ -2,7 +2,7 @@
 audio: false
 lang: en
 layout: post
-title: General Agents vs Customized Agents
+title: General Agents vs Vertical Agents
 translated: false
 generated: false
 image: false
