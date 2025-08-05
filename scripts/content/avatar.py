@@ -42,5 +42,5 @@ if __name__ == "__main__":
     
     input_path = sys.argv[1]
     top_percent = float(sys.argv[2]) if len(sys.argv) == 3 else 0
-    output_dir = "assets/images/avatar"
+    output_dir = "assets/images/"
     process_avatar(input_path, output_dir, top_percent)
