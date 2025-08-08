@@ -25,11 +25,21 @@ Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
 
 Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
+#### WhatsApp
+
+Add me on WhatsApp:
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+Add me on WeChat:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
+
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
-
-Or ping [@lzwjava](https://t.me/lzwjava).
+Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
 
 #### Email
 
