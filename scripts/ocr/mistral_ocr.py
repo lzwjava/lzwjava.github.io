@@ -1,6 +1,9 @@
+import os
 import requests
 import base64
-import json
+import argparse
+
+MISTRAL_API_KEY = os.getenv("MISTRAL_API_KEY")
 
 def encode_image_to_base64(image_path):
     """Encode image to base64 string"""
@@ -57,14 +60,17 @@ def mistral_ocr(image_path, api_key):
 
 # Example usage
 if __name__ == "__main__":
-    # Replace with your actual API key
-    API_KEY = "your_mistral_api_key_here"
+    parser = argparse.ArgumentParser(description="Extract text from image using Mistral OCR")
+    parser.add_argument("image_path", help="Path to the image file")
+    args = parser.parse_args()
     
-    # Replace with your image path
-    image_path = "example_image.jpg"
+    # Use environment variable
+    if not MISTRAL_API_KEY:
+        print("Error: MISTRAL_API_KEY environment variable not set")
+        exit(1)
     
     try:
-        extracted_text = mistral_ocr(image_path, API_KEY)
+        extracted_text = mistral_ocr(args.image_path, MISTRAL_API_KEY)
         print("Extracted text:")
         print(extracted_text)
     except Exception as e:
