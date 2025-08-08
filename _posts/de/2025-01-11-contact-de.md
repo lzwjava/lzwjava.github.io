@@ -8,30 +8,40 @@ title: Kontakt
 translated: true
 ---
 
-Hallo, ich bin Zhiwei Li. Eine kurze Vorstellung findest du [hier](/introduction-en). Die acht Buttons auf meiner Website zeigen, wofür ich mich am meisten begeistere; ich lade dich ein, sie zu erkunden.
+Hi, I'm Zhiwei Li. You can find a brief introduction [here](/introduction-de). The eight buttons on my site highlight what I'm most passionate about; I encourage you to explore them.
 
-Besonders möchte ich dich auf meine drei [Arbeiten](/papers-en) zur Umkehrung von Kurzsichtigkeit aufmerksam machen. Diese Essays kannst du leicht über den "select"-Button auf der Startseite finden.
+In particular, I'd like to draw your attention to my three [papers](/papers-de) on reversing myopia. You can easily find these featured essays using the "select" button on the home page..
 
-Melde dich gerne, wenn du interessiert bist! Du kannst mich auf X oder Telegram begrüßen, einen Kommentar hinterlassen, mir eine Direktnachricht schicken oder mir eine E-Mail senden.
+Feel free to reach out if you’re interested! You can say hi to me on X, or Telegram, leave a comment, send me a direct message, or drop me an email.
 
 #### X(Twitter)
 
-Mein X-Account ist hier: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
+My X account is here: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
 #### GitHub
 
-Verbinde dich mit mir auf GitHub: [github.com/lzwjava](https://github.com/lzwjava)
+Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
 
 #### LinkedIn
 
-Finde mich auf LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+#### WhatsApp
+
+Add me on WhatsApp:
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+Add me on WeChat:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
 
-Oder schreib [@lzwjava](https://t.me/lzwjava) an.
-
-#### E-Mail
+#### Email
 
 lzwjava@gmail.com

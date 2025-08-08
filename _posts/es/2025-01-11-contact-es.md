@@ -8,13 +8,13 @@ title: Contacto
 translated: true
 ---
 
-Hola, soy Zhiwei Li. Puedes encontrar una breve introducción [aquí](/introduction-en). Los ocho botones en mi sitio destacan lo que más me apasiona; te animo a explorarlos.
+¡Hola, soy Zhiwei Li! Puede encontrar una breve introducción [aquí](/introducción-en). Los ocho botones de mi sitio destacan en qué estoy más apasionado; te animo a explorarlos.
 
-En particular, me gustaría llamar tu atención sobre mis tres [artículos](/papers-en) sobre revertir la miopía. Puedes encontrar fácilmente estos ensayos destacados usando el botón "select" en la página principal.
+En particular, me gustaría llamar su atención sobre mis tres [artículos](/artículos-en) sobre la inversión de miopía. Puede encontrar fácilmente estos ensayos destacados utilizando el botón "seleccionar" en la página principal.
 
-¡No dudes en contactarme si estás interesado! Puedes saludarme en X, o Telegram, dejar un comentario, enviarme un mensaje directo o escribirme un correo electrónico.
+No dudes en ponerte en contacto si estás interesado. Puedes saludarme en X, o Telegram, dejar un comentario, enviarme un mensaje directo o enviarme un correo electrónico.
 
-#### X(Twitter)
+#### X (Twitter)
 
 Mi cuenta de X está aquí: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
@@ -26,12 +26,22 @@ Conéctate conmigo en GitHub: [github.com/lzwjava](https://github.com/lzwjava)
 
 Encuéntrame en LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
+#### WhatsApp
+
+Agregarme a WhatsApp:
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+Agregarme a WeChat:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
+
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+Enviarme un mensaje en Telegram: [@lzwjava](https://t.me/lzwjava).
 
-O escribe a [@lzwjava](https://t.me/lzwjava).
-
-#### Email
+#### Correo electrónico
 
 lzwjava@gmail.com

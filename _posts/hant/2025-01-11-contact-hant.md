@@ -8,30 +8,40 @@ title: 聯絡
 translated: true
 ---
 
-你好，我是李志偉。你可以在[這裡](/introduction-en)找到我的簡介。網站上的八個按鈕展示了我最熱衷的事物，歡迎你逐一探索。
+嗨，我是李志維。你可以在這裡找到我的簡介[這裡](/introduction-en)。我的網站上的八個按鈕突出了我最感興趣的東西； ich encourage you to explore them.
 
-特別想向你推薦我關於逆轉近視的三篇[論文](/papers-en)。你只需點擊首頁的「精選」按鈕，就能輕鬆找到這些重點文章。
+ particularly, I'd like to draw your attention to my three [papers](/papers-en) on reversing myopia. You can easily find these featured essays using the "select" button on the home page..
 
-若有興趣，隨時歡迎聯絡！你可以在X或Telegram上打招呼，留言、私訊，或直接發送電郵給我。
+如果您有興趣，請自由聯繫我！您可以在X或Telegram上跟我 Say hi, 留下評論，發送直接消息，或寄送email。
 
-#### X（推特）
+#### X(Twitter)
 
-我的X帳號在此：[https://twitter.com/lzwjava](https://twitter.com/lzwjava)
+我的X帳戶在此：[https://twitter.com/lzwjava](https://twitter.com/lzwjava)。
 
 #### GitHub
 
-在GitHub上與我聯繫：[github.com/lzwjava](https://github.com/lzwjava)
+在GitHub上連接我：[github.com/lzwjava](https://github.com/lzwjava)
 
 #### LinkedIn
 
-在LinkedIn找到我：[linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+在LinkedIn上找到我：[linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+#### WhatsApp
+
+加我WhatsApp：
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+加我WeChat：
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+在Telegram上跟我發消息：[@lzwjava](https://t.me/lzwjava)。
 
-或直接聯絡[@lzwjava](https://t.me/lzwjava)。
-
-#### 電郵
+#### Email
 
 lzwjava@gmail.com

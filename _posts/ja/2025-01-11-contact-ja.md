@@ -4,33 +4,43 @@ generated: false
 image: true
 lang: ja
 layout: post
-title: コンタクト
+title: 連絡
 translated: true
 ---
 
-こんにちは、李志偉（Zhiwei Li）と申します。簡単な自己紹介は[こちら](/introduction-en)でご覧いただけます。私のサイトにある8つのボタンは、私が最も情熱を注いでいることを示していますので、ぜひ探索してみてください。
+こんにちは、李智威です。私の簡単な自己紹介は[ここ](/introduction-ja)で見つけられます。私のサイトの8つのボタンは、私の最も関心のあることに関するものです。ぜひ探ってください。
 
-特に、私が執筆した近視回復に関する3つの[論文](/papers-en)に注目していただきたいです。ホームページの「select」ボタンを使えば、これらの注目記事を簡単に見つけることができます。
+特に、私の三つの近視の逆行についての[論文](/papers-ja)にご注目ください。ホームページの「選択」ボタンを使用して、これらの特徴的なエッセーを簡単に見つけることができます。
 
-興味があれば、ぜひご連絡ください！X（旧Twitter）やTelegramで挨拶をしたり、コメントを残したり、ダイレクトメッセージを送る、またはメールを送ることもできます。
+興味がある場合は、お気軽にお問い合わせください。X（Twitter）で挨拶をしたり、Telegramにメッセージを送信したり、コメントを残したり、直接メッセージを送信したり、メールを送信することができます。
 
-#### X（Twitter）
+#### X(Twitter)
 
-私のXアカウントはこちらです: [https://twitter.com/lzwjava](https://twitter.com/lzwjava)
+私のXアカウントは以下にあります: [https://twitter.com/lzwjava](https://twitter.com/lzwjava)。
 
 #### GitHub
 
-GitHubでつながりましょう: [github.com/lzwjava](https://github.com/lzwjava)
+GitHubで私と接続: [github.com/lzwjava](https://github.com/lzwjava)
 
 #### LinkedIn
 
-LinkedInで私を見つけてください: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+LinkedInで私を探す: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+#### WhatsApp
+
+WhatsAppで追加:
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+WeChatで追加:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
-
-または、[@lzwjava](https://t.me/lzwjava)にメッセージを送ってください。
+Telegramで私にメッセージを送信: [@lzwjava](https://t.me/lzwjava)。
 
 #### メール
 

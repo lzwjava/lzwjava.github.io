@@ -8,29 +8,39 @@ title: संपर्क
 translated: true
 ---
 
-हाय, मैं झीवेई ली हूँ। आप मेरा संक्षिप्त परिचय [यहाँ](/introduction-en) पा सकते हैं। मेरी साइट पर मौजूद आठ बटन उन चीज़ों को उजागर करते हैं जिनमें मेरी सबसे ज़्यादा दिलचस्पी है; मैं आपको उन्हें एक्सप्लोर करने के लिए प्रोत्साहित करता हूँ।
+namaste, main Zhiwei Li hoon. Meri parichay [yaahan](/) dekh sakte ho. Meri website par ekat labh hai jo meri shakti ke baare me jaankari deti hai; isko dekhkar koshish karo.
 
-खास तौर पर, मैं आपका ध्यान मायोपिया को उलटने पर मेरे तीन [पेपर्स](/papers-en) की ओर दिलाना चाहूँगा। आप होम पेज पर "सेलेक्ट" बटन का इस्तेमाल करके इन फीचर्ड निबंधों को आसानी से ढूँढ सकते हैं।
+Khusus meri myopia reverter karne ki teen [kahan](/) par janiye. "tan" button ko use karke home page par usko easily mil sakta hai.
 
-अगर आपकी रुचि हो तो बेझिझक संपर्क करें! आप मुझे X या टेलीग्राम पर हाय कह सकते हैं, एक कमेंट छोड़ सकते हैं, मुझे डायरेक्ट मैसेज भेज सकते हैं या मुझे ईमेल कर सकते हैं।
+Kisi bhi prashna ke liye meri sarthak rahen. X (Twitter) ke live hi meri shakti hai, ya Telegram par message kar sakte ho, comment kar sakte ho, direct message bhej sakte ho, ya bhi meri email bhej sakte ho.
 
-#### X (ट्विटर)
+#### X (Twitter)
 
-मेरा X अकाउंट यहाँ है: [https://twitter.com/lzwjava](https://twitter.com/lzwjava)।
+Meru X account yahan hai: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
 #### GitHub
 
-GitHub पर मुझसे जुड़ें: [github.com/lzwjava](https://github.com/lzwjava)
+Meru sath GitHub par Connect karo: [github.com/lzwjava](https://github.com/lzwjava)
 
 #### LinkedIn
 
-LinkedIn पर मुझे ढूँढें: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+Meru LinkedIn par mil sakte ho: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+#### WhatsApp
+
+Meru WhatsApp par add karo:
+
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
+
+#### WeChat
+
+Meru WeChat par add karo:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
 #### Telegram
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
-
-या [@lzwjava](https://t.me/lzwjava) पर मैसेज करें।
+Meru Telegram par message karo: [@lzwjava](https://t.me/lzwjava).
 
 #### Email
 

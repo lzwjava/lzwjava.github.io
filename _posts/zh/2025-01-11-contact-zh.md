@@ -8,30 +8,40 @@ title: 联系
 translated: true
 ---
 
-你好，我是李志伟。这里可以查看我的[个人简介](/introduction-en)。网站上的八个按钮展示了我最热衷的领域，欢迎逐一探索。
+嗨，我是李智伟。您可以在[这里](/introduction)找到我的简介。网站上有八个按钮，它们突出显示了我最热衷的东西；我鼓励您探索它们。
 
-特别想向您推荐我关于逆转近视的三篇[研究论文](/papers-en)。在主页点击"精选"按钮即可快速找到这些重点文章。
+特别是，我希望引起您对我的三篇反近视论文的注意。您可以使用主页上的“选择”按钮轻松找到这些精选文章。
 
-如有兴趣，欢迎随时联系！您可以通过X（原推特）、Telegram留言评论，发送私信，或直接给我写邮件。
+如有意向，请随时联系我！您可以在X或Telegram上对我说嗨，留下评论，或发送直接消息，也可以发送电子邮件。
 
-#### X(推特)
+#### X（推特）
 
-我的X账号：[https://twitter.com/lzwjava](https://twitter.com/lzwjava)
+我的X账号在这里：<https://twitter.com/lzwjava>。
 
 #### GitHub
 
-GitHub代码仓库：[github.com/lzwjava](https://github.com/lzwjava)
+在GitHub上连接我：<https://github.com/lzwjava>
 
-#### LinkedIn
+####LinkedIn
 
-领英职场档案：[linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+在 LinkedIn 上找到我：<https://www.linkedin.com/in/lzwjava>
 
-#### Telegram
+####WhatsApp
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+添加我到WhatsApp：
 
-或直接联系[@lzwjava](https://t.me/lzwjava)
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
-#### 电子邮箱
+####WeChat
+
+添加我到微信：
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
+
+####Telegram
+
+在Telegram上给我发消息：[@lzwjava](https://t.me/lzwjava)。
+
+####电子邮件
 
 lzwjava@gmail.com

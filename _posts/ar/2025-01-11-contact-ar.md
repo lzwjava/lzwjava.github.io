@@ -4,34 +4,44 @@ generated: false
 image: true
 lang: ar
 layout: post
-title: اتصال
+title: الاتصال
 translated: true
 ---
 
-مرحبًا، أنا زهيوي لي. يمكنك العثور على مقدمة مختصرة [هنا](/introduction-en). الأزرار الثمانية على موقعي تُبرز ما أهتم به بشدة؛ أشجعك على استكشافها.
+مرحبا، أنا لي زيهاي. يمكنك العثور على مقدمة موجزة [هنا](/introduction-en). الثمانيةزرار على موقعي تثير ما أنا أكثر شغفه فيه؛ أنا أنصحك بالتجول بينهم.
 
-على وجه الخصوص، أود لفت انتباهك إلى أوراقي البحثية الثلاث [هنا](/papers-en) حول عكس قصر النظر. يمكنك بسهولة العثور على هذه المقالات المميزة باستخدام زر "تحديد" في الصفحة الرئيسية.
+ especialment، أحب أن أؤكد على ثلاثة [مقالات](/papers-en) حول عكس الحول. يمكنك العثور بسهولة على هذه المقالات المميزة باستخدام الزر "تحديد" على الصفحة الرئيسية.
 
-لا تتردد في التواصل إذا كنت مهتمًا! يمكنك تحيتي على X، أو Telegram، أو ترك تعليق، أو إرسال رسالة مباشرة، أو مراسلتي عبر البريد الإلكتروني.
+لا تتردد في التواصل إذا كنت مهتمًّا! يمكنك التحية لي على X، أو تليجرام، أو ترك تعليق، أو رسالة مباشرة، أو بريد إلكتروني.
 
 #### X (تويتر)
 
-حسابي على X هنا: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
+حسابي على X موجود هنا: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
-#### GitHub
+#### جت هاب
 
-تواصل معي على GitHub: [github.com/lzwjava](https://github.com/lzwjava)
+اتصل بي على جت هاب: [github.com/lzwjava](https://github.com/lzwjava)
 
 #### لينكدإن
 
-يمكنك إيجادي على لينكدإن: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+عثروا علىَّ على لينكدإن: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
 
-#### Telegram
+#### واتسأب
 
-<div align="center"><img src="/assets/images/contact/t_me-lzwjava.jpg" width="250px" /><img/></div>
+أضفوني على واتسأب:
 
-أو راسل [@lzwjava](https://t.me/lzwjava).
+<div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
-#### البريد الإلكتروني
+#### فيسيرب
+
+أضفوني على فيسيرب:
+
+<div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
+
+#### تليجرام
+
+أرسلي رسالة على تليجرام: [@lzwjava](https://t.me/lzwjava).
+
+#### بريد إلكتروني
 
 lzwjava@gmail.com
