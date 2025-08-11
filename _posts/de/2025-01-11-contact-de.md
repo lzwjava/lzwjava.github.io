@@ -8,40 +8,40 @@ title: Kontakt
 translated: true
 ---
 
-Hi, I'm Zhiwei Li. You can find a brief introduction [here](/introduction-de). The eight buttons on my site highlight what I'm most passionate about; I encourage you to explore them.
+Guten Tag, ich bin Zhiwei Li. Sie können eine kurze Einführung [hier](/introduction-de) finden. Die acht Schaltflächen auf meiner Website betonen, wofür ich mich am meisten begeistere; ich ermutige Sie, sie zu erkunden.
 
-In particular, I'd like to draw your attention to my three [papers](/papers-de) on reversing myopia. You can easily find these featured essays using the "select" button on the home page..
+Insbesondere möchte ich Ihre Aufmerksamkeit auf meine drei [Abhandlungen](/papers-de) zur Umkehrung von Myopie lenken. Sie können diese hervorgehobenen Essays leicht mit der "Auswahltaste" auf der Startseite finden.
 
-Feel free to reach out if you’re interested! You can say hi to me on X, or Telegram, leave a comment, send me a direct message, or drop me an email.
+Fühlen Sie sich frei, sich zu melden, wenn Sie interessiert sind. Sie können mit mir auf X oder Telegram chatten, einen Kommentar hinterlassen, mir eine direkte Nachricht senden oder mir eine E-Mail senden.
 
-#### X(Twitter)
+### X(Twitter)
 
-My X account is here: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
+Mein X-Konto befindet sich hier: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
-#### GitHub
+### WhatsApp
 
-Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
-
-#### LinkedIn
-
-Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
-
-#### WhatsApp
-
-Add me on WhatsApp:
+Fügen Sie mich auf WhatsApp hinzu:
 
 <div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
-#### WeChat
+### WeChat
 
-Add me on WeChat:
+Fügen Sie mich auf WeChat hinzu:
 
 <div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
-#### Telegram
+### GitHub
 
-Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
+Verbindet mit mir auf GitHub: [github.com/lzwjava](https://github.com/lzwjava)
 
-#### Email
+### LinkedIn
 
-lzwjava@gmail.com
+Finden Sie mich auf LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+### Telegram
+
+Schicken Sie mir eine Nachricht auf Telegram: [@lzwjava](https://t.me/lzwjava).
+
+### E-Mail
+
+Senden Sie mir eine E-Mail an: [lzwjava@gmail.com](mailto:lzwjava@gmail.com)

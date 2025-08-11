@@ -4,44 +4,44 @@ generated: false
 image: true
 lang: hant
 layout: post
-title: 聯絡
+title: 連繫
 translated: true
 ---
 
-嗨，我是李志維。你可以在這裡找到我的簡介[這裡](/introduction-en)。我的網站上的八個按鈕突出了我最感興趣的東西； ich encourage you to explore them.
+嗨，我是李志偉。你可以在[這裡](/introduction-en)找到我的簡介。我的網站上有八個按鈕，突出展示了我最感興趣的事情；我鼓勵你去探索它们。
 
- particularly, I'd like to draw your attention to my three [papers](/papers-en) on reversing myopia. You can easily find these featured essays using the "select" button on the home page..
+特別地，我要推薦我的三篇[論文](/papers-en)關於矯正近視。您可以在首頁使用“選擇”按鈕輕鬆找到這些國際odem思考。
 
-如果您有興趣，請自由聯繫我！您可以在X或Telegram上跟我 Say hi, 留下評論，發送直接消息，或寄送email。
+如果您有興趣，請自由聯繫我！您可以在 Tweeter say hi 給我，或在 Telegram、留言、發送直接訊息，或發送電子郵件。
 
-#### X(Twitter)
+#### X (Twitter)
 
-我的X帳戶在此：[https://twitter.com/lzwjava](https://twitter.com/lzwjava)。
-
-#### GitHub
-
-在GitHub上連接我：[github.com/lzwjava](https://github.com/lzwjava)
-
-#### LinkedIn
-
-在LinkedIn上找到我：[linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+我的 Tweeter帳號在此：<https://twitter.com/lzwjava>
 
 #### WhatsApp
 
-加我WhatsApp：
+加入我的WhatsApp：
 
 <div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
 #### WeChat
 
-加我WeChat：
+加入我的微信：
 
 <div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
+#### GitHub
+
+在GitHub上和我連接：<https://github.com/lzwjava>
+
+#### LinkedIn
+
+在LinkedIn找到我：<https://www.linkedin.com/in/lzwjava>
+
 #### Telegram
 
-在Telegram上跟我發消息：[@lzwjava](https://t.me/lzwjava)。
+在Telegram上和我發訊息：<https://t.me/lzwjava>
 
 #### Email
 
-lzwjava@gmail.com
+發送電子郵件給我：[lzwjava@gmail.com](mailto:lzwjava@gmail.com)

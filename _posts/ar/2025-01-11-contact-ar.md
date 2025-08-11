@@ -4,44 +4,44 @@ generated: false
 image: true
 lang: ar
 layout: post
-title: الاتصال
+title: اتّصال
 translated: true
 ---
 
-مرحبا، أنا لي زيهاي. يمكنك العثور على مقدمة موجزة [هنا](/introduction-en). الثمانيةزرار على موقعي تثير ما أنا أكثر شغفه فيه؛ أنا أنصحك بالتجول بينهم.
+Hi, I'm Zhiwei Li. You can find a brief introduction [here](/introduction-en). The eight buttons on my site highlight what I'm most passionate about; I encourage you to explore them.
 
- especialment، أحب أن أؤكد على ثلاثة [مقالات](/papers-en) حول عكس الحول. يمكنك العثور بسهولة على هذه المقالات المميزة باستخدام الزر "تحديد" على الصفحة الرئيسية.
+In particular, I'd like to draw your attention to my three [papers](/papers-en) on reversing myopia. You can easily find these featured essays using the "select" button on the home page.
 
-لا تتردد في التواصل إذا كنت مهتمًّا! يمكنك التحية لي على X، أو تليجرام، أو ترك تعليق، أو رسالة مباشرة، أو بريد إلكتروني.
+Feel free to reach out if you’re interested! You can say hi to me on X, or Telegram, leave a comment, send me a direct message, or drop me an email.
 
-#### X (تويتر)
+#### X(Twitter)
 
-حسابي على X موجود هنا: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
+My X account is here: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
-#### جت هاب
+#### WhatsApp
 
-اتصل بي على جت هاب: [github.com/lzwjava](https://github.com/lzwjava)
-
-#### لينكدإن
-
-عثروا علىَّ على لينكدإن: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
-
-#### واتسأب
-
-أضفوني على واتسأب:
+Add me on WhatsApp:
 
 <div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
-#### فيسيرب
+#### WeChat
 
-أضفوني على فيسيرب:
+Add me on WeChat:
 
 <div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
-#### تليجرام
+#### GitHub
 
-أرسلي رسالة على تليجرام: [@lzwjava](https://t.me/lzwjava).
+Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
 
-#### بريد إلكتروني
+#### LinkedIn
 
-lzwjava@gmail.com
+Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
+#### Telegram
+
+Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
+
+#### Email
+
+Email me at: [lzwjava@gmail.com](mailto:lzwjava@gmail.com)

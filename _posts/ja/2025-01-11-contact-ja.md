@@ -8,40 +8,40 @@ title: 連絡
 translated: true
 ---
 
-こんにちは、李智威です。私の簡単な自己紹介は[ここ](/introduction-ja)で見つけられます。私のサイトの8つのボタンは、私の最も関心のあることに関するものです。ぜひ探ってください。
+こんにちは、私は李智-------------------------------------------------------------------------です。私の簡単な自己紹介をご覧ください:[こちら](/introduction-en)。私のウェブサイトの8つのボタンは、私の情熱を反映しており、ぜひ探ってください。
 
-特に、私の三つの近視の逆行についての[論文](/papers-ja)にご注目ください。ホームページの「選択」ボタンを使用して、これらの特徴的なエッセーを簡単に見つけることができます。
+特に、私の verstärken の3つの[論文](/papers-en)についてご注意ください。ホームページの「選択」ボタンを使用すると、これらの машиныのエッセイを簡単に見つけられます。
 
-興味がある場合は、お気軽にお問い合わせください。X（Twitter）で挨拶をしたり、Telegramにメッセージを送信したり、コメントを残したり、直接メッセージを送信したり、メールを送信することができます。
+興味がありましたら、お気軽におしらせください。X(シ	NodeTwitter) に Hi をいうか、Telegramでメッセージを送信するか、コメントを残してください、直接メッセージを送るか、メールをお送りください。
 
 #### X(Twitter)
 
-私のXアカウントは以下にあります: [https://twitter.com/lzwjava](https://twitter.com/lzwjava)。
-
-#### GitHub
-
-GitHubで私と接続: [github.com/lzwjava](https://github.com/lzwjava)
-
-#### LinkedIn
-
-LinkedInで私を探す: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+私の Xアカウントは以下です: <https://twitter.com/lzwjava>.
 
 #### WhatsApp
 
-WhatsAppで追加:
+LINEに追加してください:
 
 <div align="center"><img src="/assets/images/contact/whatsapp.jpg" width="250px" /></div>
 
 #### WeChat
 
-WeChatで追加:
+WeChatに追加してください:
 
 <div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
+#### GitHub
+
+GitHubで conmigoを接続してください: <https://github.com/lzwjava>
+
+#### LinkedIn
+
+LinkedInでみてください: <https://www.linkedin.com/in/lzwjava>
+
 #### Telegram
 
-Telegramで私にメッセージを送信: [@lzwjava](https://t.me/lzwjava)。
+Telegramでメッセージを送信してください: <https://t.me/lzwjava>.
 
-#### メール
+#### Email
 
-lzwjava@gmail.com
+メールを送信してください: <lzwjava@gmail.com>

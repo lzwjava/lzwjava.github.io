@@ -18,14 +18,6 @@ Feel free to reach out if you’re interested! You can say hi to me on X, or Tel
 
 My X account is here: [https://twitter.com/lzwjava](https://twitter.com/lzwjava).
 
-#### GitHub
-
-Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
-
-#### LinkedIn
-
-Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
-
 #### WhatsApp
 
 Add me on WhatsApp:
@@ -38,10 +30,18 @@ Add me on WeChat:
 
 <div align="center"><img src="/assets/images/contact/wechat.jpg" width="250px" /></div>
 
+#### GitHub
+
+Connect with me on GitHub: [github.com/lzwjava](https://github.com/lzwjava)
+
+#### LinkedIn
+
+Find me on LinkedIn: [linkedin.com/in/lzwjava](https://www.linkedin.com/in/lzwjava)
+
 #### Telegram
 
 Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
 
 #### Email
 
-lzwjava@gmail.com
+Email me at: [lzwjava@gmail.com](mailto:lzwjava@gmail.com)
