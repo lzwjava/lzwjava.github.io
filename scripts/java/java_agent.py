@@ -1,71 +1,67 @@
-import socket
-import struct
-import json
-import time
+from jpype import startJVM, JVMNotFoundException, isJVMStarted, JClass
+import jpype.imports
 
 class JavaAgentConnector:
-    def __init__(self, host='localhost', port=8888):
-        self.host = host
-        self.port = port
-        self.socket = None
+    def __init__(self, jar_path='/path/to/java-agent.jar', agent_class='com.example.Agent'):
+        self.jar_path = jar_path
+        self.agent_class = agent_class
+        self.agent_instance = None
     
     def connect(self):
-        """Connect to Java agent"""
+        """Start JVM and load Java agent"""
         try:
-            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.socket.connect((self.host, self.port))
-            print(f"Connected to Java agent at {self.host}:{self.port}")
+            if not isJVMStarted():
+                startJVM(f"-Djava.class.path={self.jar_path}", "-ea")
+            
+            # Load the agent class
+            AgentClass = JClass(self.agent_class)
+            self.agent_instance = AgentClass()
+            print(f"Connected to Java agent: {self.agent_class}")
             return True
+        except JVMNotFoundException:
+            print("JVM not found. Ensure Java is installed.")
+            return False
         except Exception as e:
             print(f"Failed to connect: {e}")
             return False
     
-    def send_command(self, command, data=None):
-        """Send command to Java agent"""
-        if not self.socket:
-            print("Not connected to agent")
-            return None
-        
-        try:
-            message = {
-                'command': command,
-                'data': data or {},
-                'timestamp': int(time.time())
-            }
-            
-            json_data = json.dumps(message).encode('utf-8')
-            length = struct.pack('!I', len(json_data))
-            
-            self.socket.send(length + json_data)
-            
-            # Read response
-            response_length = struct.unpack('!I', self.socket.recv(4))[0]
-            response_data = self.socket.recv(response_length)
-            
-            return json.loads(response_data.decode('utf-8'))
-        
-        except Exception as e:
-            print(f"Error sending command: {e}")
-            return None
-    
     def get_jvm_info(self):
         """Get JVM information"""
-        return self.send_command('jvm_info')
+        if not self.agent_instance:
+            print("Not connected to agent")
+            return None
+        try:
+            return self.agent_instance.getJVMInfo()
+        except Exception as e:
+            print(f"Error getting JVM info: {e}")
+            return None
     
     def get_memory_usage(self):
         """Get memory usage statistics"""
-        return self.send_command('memory_usage')
+        if not self.agent_instance:
+            print("Not connected to agent")
+            return None
+        try:
+            return self.agent_instance.getMemoryUsage()
+        except Exception as e:
+            print(f"Error getting memory usage: {e}")
+            return None
     
     def get_thread_info(self):
         """Get thread information"""
-        return self.send_command('thread_info')
+        if not self.agent_instance:
+            print("Not connected to agent")
+            return None
+        try:
+            return self.agent_instance.getThreadInfo()
+        except Exception as e:
+            print(f"Error getting thread info: {e}")
+            return None
     
     def disconnect(self):
         """Disconnect from agent"""
-        if self.socket:
-            self.socket.close()
-            self.socket = None
-            print("Disconnected from Java agent")
+        self.agent_instance = None
+        print("Disconnected from Java agent")
 
 # Usage example
 if __name__ == "__main__":
