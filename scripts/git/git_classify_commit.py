@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
 git_commit_type.py
-Count commits by type: code (py, html, js, etc.) vs markdown (md).
-If a commit touches both, count it for the more-popular type
-(based on number of files touched for that type).
+Count commits by type: code (py, html, js, etc.), markdown (md), or others.
+If multiple types are present, the one with the most files wins.
 """
 
 import argparse
@@ -23,8 +22,8 @@ MD_EXTS = {"md", "markdown"}
 
 def classify_commit(repo: Path, commit: str) -> str | None:
     """
-    Return 'code', 'md', or None depending on the files changed in the commit.
-    If both types are present, the one with more files wins.
+    Return 'code', 'md', 'others', or None depending on the files changed in the commit.
+    If multiple types are present, the one with the most files wins.
     """
     cmd = [
         "git",
@@ -52,6 +51,8 @@ def classify_commit(repo: Path, commit: str) -> str | None:
             counts["code"] += 1
         elif ext in MD_EXTS:
             counts["md"] += 1
+        else:
+            counts["others"] += 1
 
     if not counts:
         return None
@@ -71,7 +72,7 @@ def list_commits(repo: Path, rev_range: str) -> list[str]:
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Count commits by type: code vs markdown."
+        description="Count commits by type: code vs markdown vs others."
     )
     parser.add_argument("repo", type=Path, help="Path to the git repository.")
     parser.add_argument(
@@ -102,7 +103,7 @@ def main() -> None:
             print(f"[{idx:>{len(str(total))}}/{total}] {commit[:8]} -> {ctype or 'skip'}")
 
     print("\nCommit type counts:")
-    for t in ("code", "md"):
+    for t in ("code", "md", "others"):
         print(f"{t}: {stats[t]}")
 
 
