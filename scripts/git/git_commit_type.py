@@ -89,13 +89,19 @@ def main() -> None:
         print(e)
         return
 
+    total = len(commits)
+    print(f"Found {total} commits to analyze.\n")
+
     stats = Counter()
-    for commit in commits:
+    for idx, commit in enumerate(commits, 1):
         ctype = classify_commit(args.repo, commit)
         if ctype:
             stats[ctype] += 1
+        # Print progress every 10% or every commit if < 50
+        if total < 50 or idx % max(1, total // 10) == 0 or idx == total:
+            print(f"[{idx:>{len(str(total))}}/{total}] {commit[:8]} -> {ctype or 'skip'}")
 
-    print("Commit type counts:")
+    print("\nCommit type counts:")
     for t in ("code", "md"):
         print(f"{t}: {stats[t]}")
 
