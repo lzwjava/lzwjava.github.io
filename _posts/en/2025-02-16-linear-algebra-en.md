@@ -31,3 +31,7 @@ What is the use of the rank concept? It tells us how many rows retain informatio
 What is the difference between a matrix and a plain array of numbers? An array has no inherent direction, whereas a matrix does.  
 
 What is the difference between a matrix and a vector? A vector is a one-dimensional column of numbers and has a direction.
+
+Matrix multiplication follows a fixed rule: the number of columns in the first matrix must equal the number of rows in the second matrix. A 2×3 matrix multiplied by a 3×4 matrix yields a 2×4 matrix. In the resulting matrix, the value at position (i, j) is the dot product of the i-th row of matrix A and the j-th column of matrix B.
+
+The determinant of a matrix carries meaning: if it is not equal to 0, the matrix is invertible.
