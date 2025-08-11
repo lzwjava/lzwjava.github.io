@@ -43,4 +43,4 @@ Message me on Telegram: [@lzwjava](https://t.me/lzwjava).
 
 #### Email
 
-lzwjava@gmail.com
+Email me at: [lzwjava@gmail.com](mailto:lzwjava@gmail.com)
