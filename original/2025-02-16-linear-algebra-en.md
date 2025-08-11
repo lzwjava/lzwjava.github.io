@@ -10,24 +10,24 @@ translated: false
 
 - Singular Value Decomposition can be used for image compression.
 
-- The determinant of a matrix indicates how much the area would change if the matrix were applied to a shape.
+- The determinant of a matrix indicates how much the area changes when the matrix is applied to a shape.
 
 - The eigenvalues are defined by the equation \\[ \det(\lambda I - A) = 0 \\].
 
-- NumPy's `linalg` package can be used to study and solve problems in linear algebra.  
+- NumPy's `linalg` package can be used to study and solve problems in linear algebra.
 
-- Use linear algebra transforms in n-dimensional **space** to understand matrices.  
+- Use linear-algebra transforms in n-dimensional **space** to understand matrices.
 
-- A matrix is a group of numbers arranged in rows and columns.  
+- A matrix is a group of numbers arranged in rows and columns.
 
-- The equation \\[ Ax = B \\] has a solution when \\[ \text{rank}(A) = \text{rank}(B) \\].  
+- The equation \\[ Ax = B \\] has a solution when \\[ \text{rank}(A) = \text{rank}([A|B]) \\].
 
-- The rank of a matrix is the number of linearly independent rows (or columns) in its **echelon form**.  
+- The rank of a matrix is the number of linearly independent rows (or columns) in its **echelon form**.
 
 ---
 
-What's the use of the rank concept? It shows that the rank number of rows that will keep the information when doing linear transformation. However, for the degree of null spaces, the number or rows will turn to zero when applying linear transformartions.
+What is the use of the rank concept? It tells us how many rows retain information during a linear transformation. In contrast, the nullity (dimension of the null space) counts how many rows are mapped to zero.
 
-what's difference between matrix and plain array of numbers. Array of numbers doesn't have sepcific directions while matrix has. What's difference between matrix and vector? Vector is a group of number, vector just has one dimension, vector is a column of numbers.
+What is the difference between a matrix and a plain array of numbers? An array has no inherent direction, whereas a matrix does.  
 
-Vector has direction. 
+What is the difference between a matrix and a vector? A vector is a one-dimensional column of numbers and has a direction.
