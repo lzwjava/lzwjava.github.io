@@ -24,3 +24,10 @@ translated: false
 
 - The rank of a matrix is the number of linearly independent rows (or columns) in its **echelon form**.  
 
+---
+
+What's the use of the rank concept? It shows that the rank number of rows that will keep the information when doing linear transformation. However, for the degree of null spaces, the number or rows will turn to zero when applying linear transformartions.
+
+what's difference between matrix and plain array of numbers. Array of numbers doesn't have sepcific directions while matrix has. What's difference between matrix and vector? Vector is a group of number, vector just has one dimension, vector is a column of numbers.
+
+Vector has direction. 
