@@ -81,42 +81,13 @@ def delete_md(name_or_path, include_original=False):
 
     # Delete original file if include_original is True
     if include_original:
-        # Look for original file in various possible locations
-        original_patterns = [
-            os.path.join(posts_dir, f"{name}.md"),
-            os.path.join("original", f"{name}.md"),
-            f"{name}.md"
-        ]
-        
-        for pattern in original_patterns:
-            for original_file in glob.glob(pattern):
-                if os.path.exists(original_file):
-                    os.remove(original_file)
-                    print(f"Deleted original file: {original_file}")
-        
-        # Also check for original PDF and audio files
-        original_pdf_patterns = [
-            os.path.join(pdfs_dir, f"{name}.pdf"),
-            os.path.join("original", f"{name}.pdf"),
-            f"{name}.pdf"
-        ]
-        
-        for pattern in original_pdf_patterns:
-            for original_pdf in glob.glob(pattern):
-                if os.path.exists(original_pdf):
-                    os.remove(original_pdf)
-                    print(f"Deleted original PDF: {original_pdf}")
-        
-        original_audio_patterns = [
-            os.path.join(audios_dir, f"{name}.mp3"),
-            f"{name}.mp3"
-        ]
-        
-        for pattern in original_audio_patterns:
-            for original_audio in glob.glob(pattern):
-                if os.path.exists(original_audio):
-                    os.remove(original_audio)
-                    print(f"Deleted original audio: {original_audio}")
+        # Only check for 'original/{name}-en.md'
+        original_md = os.path.join("original", f"{name}-en.md")
+        if os.path.exists(original_md):
+            os.remove(original_md)
+            print(f"Deleted original file: {original_md}")
+        else:
+            print(f"File not found: {original_md}")
 
 
 if __name__ == "__main__":
