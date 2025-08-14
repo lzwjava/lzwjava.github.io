@@ -46,3 +46,7 @@ I hope this time we can do it. Let's wait for the new card.
 ---
 
 I received the card around August 14, 2025. It was great. I tried two HSBC ATM machines in Guangzhou: one at Taikoo Hui and one at Tianhe City. I started learning the details of the product and how to use it effectively to help my life. I also tried to apply for the HSBC World Debit Card.
+
+{: .centered }
+![](assets/images/hsbc/hsbc1.jpg){: .responsive }
+*Source: Self-screenshot*{: .caption }
