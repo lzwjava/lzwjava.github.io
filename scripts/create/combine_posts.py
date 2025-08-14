@@ -5,27 +5,6 @@ import argparse
 from delete import delete_md
 
 
-def extract_post_name_from_path(file_path):
-    """Extract post name from file path, handling both relative and absolute paths."""
-    # Get the filename from the path
-    filename = os.path.basename(file_path)
-
-    # Remove the .md extension
-    if filename.endswith(".md"):
-        filename = filename[:-3]
-
-    # Extract the post name by removing date and language suffix
-    # Pattern: YYYY-MM-DD-postname-lang.md -> postname
-    parts = filename.split("-")
-    if len(parts) >= 4:
-        # Remove date (first 3 parts) and language (last part)
-        post_name = "-".join(parts[3:-1])
-        return post_name
-    else:
-        # Fallback: assume the whole filename is the post name
-        return filename
-
-
 def combine_posts(main_post_path, sub_post_path):
     """Combine two posts: append sub-post content to main post and delete sub-post files."""
 
@@ -46,10 +25,6 @@ def combine_posts(main_post_path, sub_post_path):
     if not os.path.exists(sub_post_path):
         print(f"Error: Sub post file not found: {sub_post_path}")
         return
-
-    # Extract post name from sub-post path for deletion
-    sub_post_name = extract_post_name_from_path(sub_post_path)
-    print(f"Extracted sub-post name: {sub_post_name}")
 
     # Read content from both files
     try:
@@ -88,8 +63,8 @@ def combine_posts(main_post_path, sub_post_path):
         return
 
     # Delete sub-post and its translations, PDFs, audio files
-    print(f"Deleting sub-post files for: {sub_post_name}")
-    delete_md(sub_post_name)
+    print(f"Deleting sub-post files for: {sub_post_path}")
+    delete_md(sub_post_path)
 
     print("Combine operation completed successfully!")
 
