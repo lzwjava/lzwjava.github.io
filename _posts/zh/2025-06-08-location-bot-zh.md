@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: zh
 layout: post
-title: 自动化 Telegram 位置机器人来管理您的打卡
+title: 自动化您的打卡机器人Telegram定位
 translated: true
 ---
 
