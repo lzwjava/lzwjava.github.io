@@ -1,6 +1,7 @@
 import pyperclip
 import time
 import sys
+import argparse
 
 def copy_prompt_to_clipboard(prompt):
     """Copy the prompt to clipboard for pasting into Copilot chat"""
@@ -77,5 +78,11 @@ def paperclip_workflow(prompt):
 
 
 if __name__ == "__main__":
-    prompt = " ".join(sys.argv[1:])
-    paperclip_workflow(prompt)
+
+    parser = argparse.ArgumentParser(description="Copy prompt to clipboard for Copilot Chat workflow.")
+    parser.add_argument("prompt", nargs="+", help="Prompt to send to Copilot Chat")
+    parser.add_argument("--debug", action="store_true", help="Enable debug output")
+    args = parser.parse_args()
+
+    prompt = " ".join(args.prompt)
+    call_clipboard_api(prompt, debug=args.debug)
