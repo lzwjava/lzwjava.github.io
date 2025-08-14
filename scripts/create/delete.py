@@ -3,13 +3,45 @@ import glob
 import sys
 
 
-def delete_md(name):
-    """Delete Markdown files and associated assets for the given name across languages."""
+def extract_name_from_path_or_name(input_str):
+    """Extract the base name from either a file path or a simple name.
+
+    Args:
+        input_str: Either a file path (e.g., '_posts/en/example-en.md') or a name (e.g., 'example')
+
+    Returns:
+        The base name without language suffix and extension
+    """
+    # If it's a path, get the filename
+    if os.path.sep in input_str or '/' in input_str:
+        filename = os.path.basename(input_str)
+        # Remove extension if present
+        name_with_lang = os.path.splitext(filename)[0]
+    else:
+        name_with_lang = input_str
+
+    # Remove language suffix if present (e.g., 'example-en' -> 'example')
+    langs = ["en", "zh", "es", "fr", "de", "ja", "hi", "ar", "hant"]
+    for lang in langs:
+        if name_with_lang.endswith(f"-{lang}"):
+            return name_with_lang[:-len(f"-{lang}")]
+
+    # If no language suffix found, return as is
+    return name_with_lang
+
+
+def delete_md(name_or_path):
+    """Delete Markdown files and associated assets for the given name or path across languages."""
+    # Extract the base name from either path or name
+    name = extract_name_from_path_or_name(name_or_path)
+
     posts_dir = "_posts"
     pdfs_dir = "assets/pdfs"
     audios_dir = "assets/audios"
 
     langs = ["en", "zh", "es", "fr", "de", "ja", "hi", "ar", "hant"]
+
+    print(f"Deleting files for base name: {name}")
 
     for lang in langs:
         # Construct the file name pattern
@@ -34,18 +66,22 @@ def delete_md(name):
                 print(f"File not found: {pdf_file_path}")
 
         # Delete associated audio files
-        if os.path.exists(audio_file_pattern):
-            os.remove(audio_file_pattern)
-            print(f"Deleted file: {audio_file_pattern}")
+        audio_file_path = audio_file_pattern
+        if os.path.exists(audio_file_path):
+            os.remove(audio_file_path)
+            print(f"Deleted file: {audio_file_path}")
         else:
-            print(f"File not found: {audio_file_pattern}")
+            print(f"File not found: {audio_file_path}")
 
 
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
     if len(sys.argv) < 2:
-        print("Usage: python delete.py <name>")
+        print("Usage: python delete.py <name_or_path>")
+        print("Examples:")
+        print("  python delete.py example")
+        print("  python delete.py _posts/en/example-en.md")
         sys.exit(1)
 
-    name = sys.argv[1]
-    delete_md(name)
+    name_or_path = sys.argv[1]
+    delete_md(name_or_path)
