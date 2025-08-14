@@ -1,6 +1,7 @@
 import os
 import glob
 import sys
+import argparse
 
 
 def extract_name_from_path_or_name(input_str):
@@ -30,8 +31,13 @@ def extract_name_from_path_or_name(input_str):
     return name_with_lang
 
 
-def delete_md(name_or_path):
-    """Delete Markdown files and associated assets for the given name or path across languages."""
+def delete_md(name_or_path, include_original=False):
+    """Delete Markdown files and associated assets for the given name or path across languages.
+    
+    Args:
+        name_or_path: Either a file path or a simple name
+        include_original: If True, also delete the original file (without language suffix)
+    """
     # Extract the base name from either path or name
     name = extract_name_from_path_or_name(name_or_path)
 
@@ -73,15 +79,53 @@ def delete_md(name_or_path):
         else:
             print(f"File not found: {audio_file_path}")
 
+    # Delete original file if include_original is True
+    if include_original:
+        # Look for original file in various possible locations
+        original_patterns = [
+            os.path.join(posts_dir, f"{name}.md"),
+            os.path.join("original", f"{name}.md"),
+            f"{name}.md"
+        ]
+        
+        for pattern in original_patterns:
+            for original_file in glob.glob(pattern):
+                if os.path.exists(original_file):
+                    os.remove(original_file)
+                    print(f"Deleted original file: {original_file}")
+        
+        # Also check for original PDF and audio files
+        original_pdf_patterns = [
+            os.path.join(pdfs_dir, f"{name}.pdf"),
+            os.path.join("original", f"{name}.pdf"),
+            f"{name}.pdf"
+        ]
+        
+        for pattern in original_pdf_patterns:
+            for original_pdf in glob.glob(pattern):
+                if os.path.exists(original_pdf):
+                    os.remove(original_pdf)
+                    print(f"Deleted original PDF: {original_pdf}")
+        
+        original_audio_patterns = [
+            os.path.join(audios_dir, f"{name}.mp3"),
+            f"{name}.mp3"
+        ]
+        
+        for pattern in original_audio_patterns:
+            for original_audio in glob.glob(pattern):
+                if os.path.exists(original_audio):
+                    os.remove(original_audio)
+                    print(f"Deleted original audio: {original_audio}")
+
 
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
-    if len(sys.argv) < 2:
-        print("Usage: python delete.py <name_or_path>")
-        print("Examples:")
-        print("  python delete.py example")
-        print("  python delete.py _posts/en/example-en.md")
-        sys.exit(1)
-
-    name_or_path = sys.argv[1]
-    delete_md(name_or_path)
+    parser = argparse.ArgumentParser(description="Delete Markdown files and associated assets")
+    parser.add_argument("name_or_path", help="Name or path of the file to delete")
+    parser.add_argument("--include-original", action="store_true", 
+                       help="Also delete the original file (without language suffix)")
+    
+    args = parser.parse_args()
+    
+    delete_md(args.name_or_path, args.include_original)
