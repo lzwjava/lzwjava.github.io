@@ -75,63 +75,7 @@ def paperclip_workflow(prompt):
         print("\n❌ Workflow failed. Please try again.")
         return None
 
-def interactive_mode():
-    """Interactive mode for continuous prompt-answer workflow"""
-    print("🤖 GitHub Copilot Paperclip Assistant")
-    print("Type 'quit' or 'exit' to stop")
-    print("=" * 50)
-    
-    while True:
-        try:
-            prompt = input("\n💭 Enter your prompt: ").strip()
-            
-            if prompt.lower() in ['quit', 'exit', 'q']:
-                print("👋 Goodbye!")
-                break
-            
-            if not prompt:
-                print("❌ Please enter a valid prompt.")
-                continue
-            
-            answer = paperclip_workflow(prompt)
-            
-            if answer:
-                # Ask if user wants to save the answer somewhere
-                save_choice = input("\n💾 Would you like to copy the answer back to clipboard? (y/n): ").strip().lower()
-                if save_choice in ['y', 'yes']:
-                    pyperclip.copy(answer)
-                    print("✅ Answer copied to clipboard!")
-            
-        except KeyboardInterrupt:
-            print("\n\n👋 Goodbye!")
-            break
-        except Exception as e:
-            print(f"❌ An error occurred: {str(e)}")
-
-def batch_prompts(prompts):
-    """Process multiple prompts in batch"""
-    results = []
-    
-    for i, prompt in enumerate(prompts, 1):
-        print(f"\n🔄 Processing prompt {i}/{len(prompts)}")
-        answer = paperclip_workflow(prompt)
-        results.append({
-            'prompt': prompt,
-            'answer': answer
-        })
-        
-        if i < len(prompts):
-            continue_choice = input("\n➡️  Continue to next prompt? (y/n): ").strip().lower()
-            if continue_choice not in ['y', 'yes']:
-                break
-    
-    return results
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        # Command line mode with prompt as argument
-        prompt = " ".join(sys.argv[1:])
-        paperclip_workflow(prompt)
-    else:
-        # Interactive mode
-        interactive_mode()
+    prompt = " ".join(sys.argv[1:])
+    paperclip_workflow(prompt)
