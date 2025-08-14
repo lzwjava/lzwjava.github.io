@@ -1,6 +1,11 @@
 import pyperclip
 import argparse
 
+MODEL_MAPPING = {
+    "gpt-4o": "openai/gpt-4o",
+    "gpt-4.1": "openai/gpt-4.1",
+}
+
 def call_pyperclip_api(prompt, model=None):
     messages = [{"role": "user", "content": prompt}]
     return call_clipboard_api_with_messages(messages, model)
@@ -13,15 +18,16 @@ def call_clipboard_api_with_messages(messages, model=None):
             break
     if not user_message:
         raise Exception("No user message found in messages")
-    # Use call_pyperclip_api to handle the clipboard interaction
     pyperclip.copy(user_message)
-    input("Press Enter after you've copied the answer from Copilot Chat...")
+    input(f"Using model: {model}\nPress Enter after you've copied the answer from Copilot Chat...")
     answer = pyperclip.paste()
     return answer if answer else None
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Copy prompt to clipboard for Copilot Chat workflow.")
     parser.add_argument("prompt", nargs="+", help="Prompt to send to Copilot Chat")
+    parser.add_argument("--model", choices=MODEL_MAPPING.keys(), required=True, help="Model to use")
     args = parser.parse_args()
     prompt = " ".join(args.prompt)
-    call_pyperclip_api(prompt)
+    model = MODEL_MAPPING[args.model]
+    call_pyperclip_api(prompt, model)
