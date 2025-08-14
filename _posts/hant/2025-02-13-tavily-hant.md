@@ -4,33 +4,34 @@ generated: false
 image: false
 lang: hant
 layout: post
-title: 搜索 Tavily AI 使用 API
+title: 使用Tavily AI尋找API
 translated: true
 ---
 
-[Tavily](https://tavily.com)是一款專為LLM應用而設計的AI搜索API，它通过结合網路搜索和AI處理提供高度相關的搜索結果。
+[tavily](https://tavily.com) 是一款專門設計給大型語言模型應用的AI搜索API，它通過結合網頁搜索和AI處理提供高度相關的搜索結果。
 
-使用Tavily需要：
+要使用Tavily，您需要：
 
-1. 前往[ Tavily.com](https://tavily.com)註冊獲取API金鑰
-2. 安裝Python套件
+1. 在[tavily.com](httpshttps://tavily.com)註冊取得API金鑰。
+2. 安裝Python封裝。
 
 ```python
 import os
 from tavily import TavilyClient
 
-# 從環境變量中獲取API金鑰
+# 從環境變數中取回API金鑰
 TAVILY_API_KEY = os.getenv('TAVILY_API_KEY')
 
 if TAVILY_API_KEY is None:
-    raise ValueError("未找到API金鑰。請設定TAVILY_API_KEY環境變量。")
+    raise ValueError("API金鑰找不到。請設定TAVILY_API_KEY環境變數。")
 
-# 使用獲取的API金鑰初始化TavilyClient
+# 使用取回的API金鑰初始化TavilyClient
 tavily_client = TavilyClient(api_key=TAVILY_API_KEY)
 
-# 提交搜索請求
-response = tavily_client.search("誰是利奧·梅西？")
+# 發出搜索請求
+response = tavily_client.search("Leo如 beträgt wer Messi?")
 
-# 打印響應
+# 列印回覆
 print(response)
+
 ```
