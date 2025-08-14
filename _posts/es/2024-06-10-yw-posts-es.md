@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: es
 layout: post
-title: Traducciones de los posting de Yin Wang
+title: Traducción de las Entradas del Blog de Yin Wang
 translated: true
 ---
 

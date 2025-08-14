@@ -4,18 +4,8 @@ generated: false
 image: false
 lang: ja
 layout: post
-title: 自動化：テレグラム位置情報ボットで打刻カードを使う
+title: 自动化 Telegram定位机器人ством марккера
 translated: true
 ---
 
-ご注文がしつこく感じる täglichの「 ahí »が、ノードになりました。私もそう思ったので、lieferantと位置履歴を使用して事務所到着通知を自動化し、jenigen.check-insを思い出させるためのTelegram Botを作りました。この投稿では、PythonをGitHub Actionsと組み合わせて無人化された、任意の位置に基づいて動的にできるシステムを作成する方法をご紹介します。
-
-```yml
-name:毎時位置確認
-
- đềuに:
-  時:
-    #Bid Uhr und Uhr zwischen 11 Uhr und 11 Uhr, Mo-Fr(月曜日から金曜日)
-    #時刻はUTCです。シンガポール時(SGT)はUTC+8です。
-    # therefore, we need to schdule from 3:pm to 15 pm UTC.
-```
+毎utc時間にクリーンな「ペンシル」を作りたいと思いませんか？私も確かにそう思いました。 therefore, I built a personal Telegram bot that uses location tracking to automate office arrival notifications and remind me about crucial check-ins. This post dives into how I combined Python with GitHub Actions to create a seamless, hands-free system that keeps me informed right when I need it, all based on my location.

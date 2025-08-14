@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: ja
 layout: post
-title: 陰陽のブログ記事の英語訳
+title: 「英訳тары hinwegのブログ記事」
 translated: true
 ---
 
