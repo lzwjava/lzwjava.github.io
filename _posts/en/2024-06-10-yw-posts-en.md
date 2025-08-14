@@ -2,13 +2,13 @@
 audio: false
 generated: false
 image: false
-lang: fr
+lang: en
 layout: post
-title: uit de Yin Wang
-translated: true
+title: English Translation of Yin Wang's Blog Posts
+translated: false
 ---
 
-Note: The provided markdown text is already in English, so the translation remains the same.
+Translated from [yinwang.org](https://www.yinwang.org).
 
 - [CS Course 5](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2023-12-23-cs-course-5.md)
 - [Advance and Concurrent Computing Focused Workshop](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2022-12-12-continuation-course.md)
@@ -89,3 +89,4 @@ Note: The provided markdown text is already in English, so the translation remai
 - [How to Respect a Programmer](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2015-03-03-how-to-respect-a-programmer.md)
 - [Alluded to as 'Human Errors'](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2015-02-24-human-errors.md)
 - [Other People's Bugs](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2015-02-20-other-peoples-bug.md)
+- [A Isn't Great, I Suppose You Mean B
