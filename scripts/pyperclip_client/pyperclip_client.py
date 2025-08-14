@@ -30,4 +30,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
     prompt = " ".join(args.prompt)
     model = MODEL_MAPPING[args.model]
-    call_pyperclip_api(prompt, model)
+    response = call_pyperclip_api(prompt, model)
+    print(response)
