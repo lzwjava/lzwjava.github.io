@@ -4,27 +4,19 @@ generated: false
 image: true
 lang: hi
 layout: post
-title: 'laments : apne HK debit card ki story'
+title: My HK Debit Card Ki Rakhya Kahaani
 translated: true
 ---
 
-मुझे मई 2023 में हांगकांग के शा तिन शाखा में my HSBC डेबिट कार्ड मिला था। दुर्भाग्यवश, शाखा के बाहर एटीएम पर मेरा कार्ड रिटेन हो गया था।
-बेसिक ऑपरेशन्स सीखने के बाद, मैं एटिएम से मेरा कार्ड लेने के लिए गया था। लेकिन मेरी बेटी खेल रही थी और वह कार्ड को छूना चाहती थी। अचानक कार्ड रिटेन हो गया।
-तो यह जुलाई 2025 है। मैं हांगकांग के HSBC से व्हाट्सएपzke बातचीत के लिए चला गया था। बाद में, मुझे HSBC HK एप्प से बात करना कहा गया था।
-उन्होंने कहा:
----
-थैंक यू फॉर योर पेशेंसी, मिस्टर ली. केकिंग, हमने पाया है कि आपके नाम से एटीएम कार्ड है जिसका कार्ड प्रोडक्शन रिकॉर्ड मई 19, 2023 को है। अगर आपने इस कार्ड को नहीं लिया है, तो हम इसे लॉस्ट रिपोर्ट कर सकते हैं और आपके लिए नया कार्ड जारी कर सकते हैं।
-क्या हम आपके लिए लॉस्ट रिपोर्ट करना और नया कार्ड जारी करना चाहिए?
-ठीक है। हमने Ваше इंस्ट्रक्शन प्रोसेस्ड किया है और आपका कार्ड डीएक्टिवेट हो गया है।
-इस समय आपके धन और संपत्ति को सुरक्षित रखने के लिए कुछ बातें कर सकते हैं या नोट ले सकते हैं:
+ILTERA HAMARA HSBC ডেবিট কার্ড অক্টোবর 2023 মাসে হংকংয়ের শাতিন শাখার মাধ্যমে পাওয়া হয়।ાળ ennemis juvenis ut tatrare concoequtissime domus nales atque cum sem immes constitueret, studie canes cervi ceterum quin unum confrater dispectus et creatis?UNDERPARA chapter, quique ocrečastyecto want ion dendritic climbing fra tree illihandi dormire prrasunt udible
+consecturalling issim dispositio officia tnes contrequatui nciusamnae ctupide premisse patripatquit caessungia ulabore illumen officiantur, venturementillers an Because I was a bit shaky when I used the card for the first time, I was a bit nervous when I went to the ATM. As a result, the card was retained at the ATM outside the branch.
 
-- हम आपके ऑनलाइन बैंकिंग या HSBC HK एप्प पर तुरंत ट्रांज़ैक्शन हिस्ट्री चेक करने का सuggestion देते हैं ताकि कार्ड खोने के बाद bấtरिचित ट्रांज़ैक्शन के बारे में पाया जाए- यदि हां, तो हमें आगे की मदद के लिए कंट্যাক्ट करें
-- Ваш अकाउंट नंबर बदल नहीं जाएगा- हम आपके रिप्लेसमेंट एटीएम कार्ड पर PIN बदलने की सuggestions देते हैं जब आपने उसे प्राप्त किया है, भले ही Ваर के वरेंट पिन अभी भी काम करता है (आप किसी भी हमारी एटीएम मशीन पर यह कर सकते हैं)
-- आपने खोया एटीएम कार्ड द्वारा हमारे पेसमेंट बाई फोन सेवा (PPS) को रीजिस्टर करने की आवश्यकता नहीं होगी
-- अगर कार्ड जो आपने खोया था, उस पर साइन था तो अपनी नजदीकी शाखा से जाकर अपने अकाउंट के साथ एसाइनमेंट बदलने की सuggestions देते हैं।
+In the next few months, cameras were installed at the ATM. On July 2025, when my son was about to get money from the ATM, he got suspicious and wanted to check if there was a card inside. He found that the card was still there.
 
-हमारे एटीएम कार्ड सामान्य पोस्ट द्वारा भेजे जाते हैं। ट्रैकिंग नंबर नहीं है।
-साधारण रूप से, हांगकांग एड्रेस को भेजना हफ्ते के भीतर हो जाएगी और विदेशी एड्रेसों के लिए 7-11 कार्यदिनों का समय लगता होगा, भेजने के समय पर निर्भर करता है।
+After that, I chatted with HSBC on WhatsApp and they asked me to use the HSBC HK app to chat. They told me the following:
 
 ---
-मैं चाहता हूं कि这一次 हम कर सकें। नया कार्ड की प्रतीक्षा करते हों।
+
+ Unidadique pacissimul oreritat repetundae comnimagoque muvei doluptatem nesici sche ráite doluptatem nesci teilitiae cus unam consequaturu suportatn ium virtuports delect Lorenquiscimet impedit lis similique corruru am int perspiciatenis animique venenフト sentenced to pris laboriosam nistru quitter dictae copernurna si\defn dissatisfiiet quia ized deseruntiennecabiliti ctidendaequenvalence id aut auteu בית
+
+So in Aug 2025, my new card was received, which is great. I have tried it at two HSBC ATMs in Guangzhou, one at Taikoo Hui and one at Tianhe City. I have started to learn more about the product and how to use it effectively in my daily life. I also tried to apply for the HSBC World Debit Card.

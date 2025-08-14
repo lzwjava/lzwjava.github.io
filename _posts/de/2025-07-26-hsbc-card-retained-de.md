@@ -4,37 +4,45 @@ generated: false
 image: true
 lang: de
 layout: post
-title: Meine behalten Geschichte meiner HK-Debitkarte
+title: Meine aufbewahrte Geschichte meiner HK-Debitkarte
 translated: true
 ---
 
-Meine HSBC-Debitkarte erhielt ich im Mai 2023 an der Filiale in Sha Tin in Hongkong. Leider wurde sie direkt an einem Geldautomaten außerhalb der Filiale einbehalten.
+Im Mai 2023 habe ich meine HSBC Debitkarte in der Filiale Sha Tin in Hong Kong erhalten. Leider wurde meine Karte gleich an dem Geldautomaten außerhalb der Filiale einbehalten.
 
-Nachdem ich einige grundlegende Bedienungen gelernt hatte, wollte ich die Karte wieder aus dem Automaten holen. Doch meine Tochter spielte und wollte die Karte berühren. Plötzlich wurde die Karte einbehalten.
+Als ich einige grundlegende Bedienungen gelernt hatte, wollte ich meine Karte aus dem Automaten zurückholen. Doch meine Tochter spielte und wollte die Karte anfassen. Plötzlich wurde die Karte einbehalten.
 
-Jetzt ist es Juli 2025. Ich nutzte WhatsApp für eine Chat-Nachricht an HSBC und wurde später angewiesen, die HSBC HK-App zu verwenden.
+So ist es nun Juli 2025. Ich habe initially über WhatsApp mit HSBC chatten. Später wurde mir gesagt, dass ich die HSBC HK-App verwenden sollte.
 
-Sie teilten mir Folgendes mit:
-
----
-
-Vielen Dank für Ihre Geduld, Herr Li. Wir haben festgestellt, dass es eine ATM-Karte mit Ihrem Namen gibt, die am 19. Mai 2023 hergestellt wurde. Wenn Sie diese Karte nicht erhalten haben, können wir sie als verloren melden und Ihnen eine neue ausstellen.
-
-Möchten wir Ihre Karte als verloren melden und eine neue ausstellen?
-
-Okay. Wir haben Ihre Anweisung verarbeitet und Ihre Karte ist deaktiviert.
-
-In der Zwischenzeit können Sie einige Dinge tun oder beachten, um Ihr Geld und Ihre Vermögenswerte zu sichern:
-
-- Wir empfehlen Ihnen, die Transaktionshistorie über die Online-Banking-Funktion oder die HSBC HK-App sofort zu überprüfen, um festzustellen, ob es nach dem Verlust der Karte unerlaubte Transaktionen gibt - wenn ja, kontaktieren Sie uns bitte für weitere Hilfe.
-- Ihre Kontonummer bleibt unverändert - wir empfehlen Ihnen, den PIN-Code Ihrer Ersatz-ATM-Karte zu ändern, sobald Sie sie erhalten haben, sogar wenn Ihr derzeitiger PIN-Code immer noch funktioniert (Sie können dies an einem unserer Geldautomaten tun).
-- Sie brauchen die Payment by Phone Service (PPS)-Registrierung nicht erneut zu absolvieren, falls Ihre verlorene ATM-Karte dies bereits getan hat.
-- Wenn die verlorene Karte unterschrieben war, besuchen Sie bitte die nächste Filiale, um die mit Ihrem Konto verbundene Unterschrift zu ändern
-
-Unsere ATM-Karten werden per normaler Post versendet, und es gibt keine Sendungsnummer.
-
-Im Allgemeinen dauert es innerhalb einer Woche, bis eine Karte an eine Hongkonger Adresse versendet wird, und für ausländische Adressen dauert es 7-11 Arbeitstage, je nach Postzeit.
+Von dort erhielt ich folgende Informationen:
 
 ---
 
-Ich hoffe, dass es dieses Mal klappt. Warten wir auf die neue Karte.
+Vielen Dank für Ihre Geduld, Herr Li. Nach Überprüfung haben wir festgestellt, dass es eine Geldkarte mit Ihrem Namen gibt, die am 19. Mai 2023 hergestellt wurde. Wenn Sie diese Karte nicht erhalten haben, können wir sie als verloren melden und eine neue für Sie ausstellen.
+
+Möchten wir Ihre Karte als verloren melden und eine neue für Sie ausstellen?
+
+Ok, wir haben Ihren Wunsch bearbeitet und Ihre Karte ist deaktiviert.
+
+In der Zwischenzeit gibt es einige Dinge, die Sie tun oder beachten können, um Ihr Geld und Ihre Vermögenswerte zu sichern:
+
+- Überprüfen Sie die Transaktionshistorie über das Online-Banking oder die HSBC HK-App, um festzustellen, ob es nach dem Verlust der Karte unautorisierte Transaktionen gab - falls ja, kontaktieren Sie uns für weitere Hilfe.
+- Ihre Kontonummer bleibt unverändert - wir empfehlen, den PIN für Ihre Ersatz-ATM-Karte zu ändern, sobald Sie sie erhalten haben, selbst wenn Ihr aktueller PIN noch funktioniert (das können Sie an jedem unserer Geldautomaten tun).
+- Sie müssen den Payment by Phone Service (PPS) nicht erneut registrieren, wenn Ihre verlorene ATM-Karte dies bereits getan hat.
+- Wenn die verlorene Karte eine Unterschrift trug, besuchen Sie bitte Ihre nächste Filiale, um die mit Ihrem Konto verbundene Unterschrift zu ändern.
+
+Unsere ATM-Karten werden mit normaler Post versandt und es gibt keine Tracking-Nummer.
+
+In der Regel dauert es innerhalb einer Woche, um an eine Hongkonger Adresse zu senden, und für Auslandadressen dauert es 7 bis 11 Werktage, je nach Versandzeit.
+
+---
+
+Ich hoffe, dass dieses Mal alles glattläuft. Warten wir auf die neue Karte.
+
+{: .centered }
+![](assets/images/hsbc/h1.jpg){: .responsive }
+Quelle: EigenesScreenshot
+
+---
+
+Ich erhielt die Karte etwa am 14. August 2025. Es war großartig. Ich probierte zwei HSBC-Geldautomaten in Guangzhou aus: einen im Taikoo Hui und einen im Tianhe City. Ich fing an, die Einzelheiten des Produkts und die effektive Nutzung desselben für mein Leben zu lernen. Ich versuchte auch, mich für die HSBC World Debitkarte zu bewerben.
