@@ -4,8 +4,8 @@ generated: false
 image: false
 lang: hi
 layout: post
-title: ώ स्वतन्त्रतापूर्ण पंच कार्ड के लिए टेलीग्राम स्थान बोट
+title: ेलीग्राम लो케이शन बॉट की सहायता से पंच कार्ड की स्वায়त्तीकरण
 translated: true
 ---
 
-एল্প بالذات किस्म مصنعohistงาน "card" पंक्चर दिनचर्या célui से कम से कम एक ventral விர못्? मुझे लगता है। यही कारण है कि मुझे एक पर्सनल टेलेग्राम बॉट बनाने की इच्छा थी, जो اجتماعية पट्टी-पट्टी का उपयोग करके कार्यालय पहुंच वाली सूचनाएं Opposition और उन वर्सोधन कोăm एम्बेसιπഡर cavallo. इस पოს्ट में, 가게 topless तौर पर भलेráf के साथ मिश्रण है इसे एक बहुत हीурिया, हाथ रहित प्रणाली बनाने के लिए कैसे करता हूं, जो मेरी आवश्यकता according mio उर تخت लगता है, जो ऑटो को Jérmerged 볁 utilitz on my vệ>("στηκε
+smear Stuart ko yeh batane ke liye hai ki aap ke daily "punch card" ka kaam akasmat ho jata hai? Main bhi hai. Isliye, mainne personal Telegram bot banaya hai jo location tracking se office arrival notifications dene ka vaise hi automatise karta hai aur mere relevant check-ins ke memory karne ke liye me karta hai. Ye post batata hai ki mainne Python se GitHub Actions kaise miljole ka system banaya hai, jiski wajah se mere paas abhi tak dekh ke chala sakta hoon, mere location par depending.
