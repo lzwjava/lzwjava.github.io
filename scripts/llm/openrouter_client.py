@@ -15,12 +15,13 @@ MODEL_MAPPING = {
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
     "gemini-pro": "google/gemini-2.5-pro",
     "kimi-k2": "moonshotai/kimi-k2:free",
-    "mistral-nemo": "mistralai/mistral-nemo",
+    "deepseek-v3": "mistralai/mistral-nemo",
+    "mistral-medium": "mistralai/mistral-medium-3.1",
     "qwen-coder":"qwen/qwen3-coder:free"
 }
 
 
-def call_openrouter_api_with_messages(messages, model="mistral-nemo", debug=False):
+def call_openrouter_api_with_messages(messages, model="deepseek-v3", debug=False):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -51,7 +52,7 @@ def call_openrouter_api_with_messages(messages, model="mistral-nemo", debug=Fals
         raise Exception(f"An error occurred: {str(e)}")
 
 
-def call_openrouter_api(prompt, model="mistral-nemo", debug=False):
+def call_openrouter_api(prompt, model="deepseek-v3", debug=False):
     messages = [{"role": "user", "content": prompt}]
     return call_openrouter_api_with_messages(messages, model, debug)
 

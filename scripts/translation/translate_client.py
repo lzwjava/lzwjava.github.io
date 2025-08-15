@@ -65,7 +65,7 @@ def translate_text(
         translated_text = call_openrouter_api(prompt, "deepseek-v3")
         return translated_text
     elif model == "mistral":
-        translated_text = call_openrouter_api(prompt, "mistral-nemo")
+        translated_text = call_openrouter_api(prompt, "mistral-medium")
         return translated_text
     elif model == "gemini":
         translated_text = call_openrouter_api(prompt, "gemini-flash")
@@ -78,6 +78,6 @@ def translate_text(
 if __name__ == "__main__":
     print("Debug: Running main test translation")
     text = translate_text(
-        "Hi, it is sunny today. Hahaa...", "ja", model="mistral", original_lang="en"
+        "Hi, it is sunny today. Hahaa...", "zh", model="mistral", original_lang="en"
     )
     print(f"Debug: Final translated text: {text}")
