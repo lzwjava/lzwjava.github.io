@@ -47,6 +47,8 @@ I hope this time we can do it. Let's wait for the new card.
 
 I received the card around August 14, 2025. It was great. I tried two HSBC ATM machines in Guangzhou: one at Taikoo Hui and one at Tianhe City. I started learning the details of the product and how to use it effectively to help my life. I also tried to apply for the HSBC World Debit Card.
 
+The card I received is called the HSBC UnionPay Debit Card. However, when I went to a 7-Eleven store to buy a drink, I tried several times with the help of the staff, but we couldn't successfully use my HSBC UnionPay Debit Card. I still don't know the reason. Later, I increased the limits in the app. I will try again at another time.
+
 {: .centered }
 ![](assets/images/hsbc/hsbc1.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
