@@ -5,4 +5,4 @@ parser = argparse.ArgumentParser(description='Install Python packages with --bre
 parser.add_argument('package', help='Package name to install')
 args = parser.parse_args()
 
-subprocess.run(['pip', 'install', args.package, '--break-system-packages'])
+subprocess.run(['python', '-m', 'pip', 'install', args.package, '--break-system-packages'])
