@@ -38,4 +38,4 @@ As a programmer, I use AI with Python to build my vertical agents. This is the s
 
 Manus and Dify are also built with these LLM APIs. Their advantage is that they already have a lot of tools or code ready to use.
 
-If I want to build a Twitter bot agent, using Dify might be more convenient than building it myself with open-source technologies.
+If I want to build a Twitter bot agent, using Dify may be more convenient than building one myself with open-source technologies.
