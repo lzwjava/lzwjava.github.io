@@ -1,5 +1,5 @@
 import MeCab
 
-t = MeCab.Tagger("-d /opt/homebrew/lib/mecab/dic/ipadic")
+t = MeCab.Tagger("-r /opt/homebrew/etc/mecabrc")
 sentence = "太郎はこの本を女性に渡した。"
 print(t.parse(sentence))
