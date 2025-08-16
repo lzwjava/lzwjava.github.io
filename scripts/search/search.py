@@ -32,8 +32,12 @@ def search_posts(query, ignore_case=False):
         # Add search pattern
         cmd.append(query)
         
-        # Search in markdown files
-        cmd.extend(['--type', 'md'])
+        # Search in specific directories
+        cmd.extend([
+            '_posts/en',
+            'original',
+            'notes'
+        ])
         
         # Execute search
         result = subprocess.run(cmd, capture_output=True, text=True)
