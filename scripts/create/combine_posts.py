@@ -37,11 +37,23 @@ def combine_posts(main_post_path, sub_post_path):
         print(f"Error reading files: {e}")
         return
 
-    # Extract content after front matter from sub-post
+    # Extract content and title from front matter from sub-post
     # Split by --- to separate front matter from content
     sub_parts = sub_content.split("---", 2)
     if len(sub_parts) >= 3:
+        front_matter = sub_parts[1]
         sub_body = sub_parts[2].strip()
+        
+        # Try to extract title from front matter
+        title = None
+        for line in front_matter.split('\n'):
+            if line.startswith('title:'):
+                title = line.split(':', 1)[1].strip().strip('"\'')
+                break
+                
+        # Add title as header if found
+        if title:
+            sub_body = f"## {title}\n\n{sub_body}"
     else:
         # No front matter found, use entire content
         sub_body = sub_content.strip()
