@@ -51,7 +51,43 @@ def search_posts(query, ignore_case=False):
             return
             
         if result.stdout:
-            print(result.stdout)
+            # Process output to show file:line_range format
+            lines = result.stdout.strip().split('\n')
+            
+            for line in lines:
+                if line.startswith('--'):
+                    print()  # Add blank line for separators
+                    continue
+                
+                # Check if line has file:line_number: or file-line_number- format
+                if ':' in line:
+                    parts = line.split(':', 1)
+                    if len(parts) >= 2:
+                        file_part = parts[0]
+                        content = parts[1]
+                        
+                        # Extract line number from file-line_number format
+                        if '-' in file_part and file_part.split('-')[-1].isdigit():
+                            file_name = '-'.join(file_part.split('-')[:-1])
+                            line_num = file_part.split('-')[-1]
+                            print(f"{file_name}:{line_num}:{content}")
+                        else:
+                            print(line)
+                    else:
+                        print(line)
+                elif '-' in line and not line.startswith('-'):
+                    # Handle context lines like file-line_number-content
+                    parts = line.split('-')
+                    if len(parts) >= 3 and parts[-2].isdigit():
+                        file_name = '-'.join(parts[:-2])
+                        line_num = parts[-2]
+                        content = parts[-1]
+                        print(f"{file_name}:{line_num}:{content}")
+                    else:
+                        print(line)
+                else:
+                    print(line)
+            
             print()  # Add newline after output
         else:
             print("No matches found")
