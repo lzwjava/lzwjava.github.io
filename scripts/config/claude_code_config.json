@@ -1,0 +1,49 @@
+{
+  "PROXY_URL": "http://127.0.0.1:7890",
+  "LOG": true,
+  "Providers": [
+    {
+      "name": "openrouter",
+      "api_base_url": "https://openrouter.ai/api/v1/chat/completions",
+      "api_key": "",
+      "models": [
+        "moonshotai/kimi-k2",
+        "anthropic/claude-sonnet-4",
+        "anthropic/claude-3.5-sonnet",
+        "anthropic/claude-3.7-sonnet:thinking"
+      ],
+      "transformer": {
+        "use": [
+          "openrouter"
+        ]
+      }
+    },
+    {
+      "name": "deepseek",
+      "api_base_url": "https://api.deepseek.com/chat/completions",
+      "api_key": "",
+      "models": [
+        "deepseek-chat",
+        "deepseek-reasoner"
+      ],
+      "transformer": {
+        "use": [
+          "deepseek"
+        ],
+        "deepseek-chat": {
+          "use": [
+            "tooluse"
+          ]
+        }
+      }
+    }
+  ],
+  "Router": {
+    "default": "openrouter,anthropic/claude-sonnet-4",
+    "background": "openrouter,anthropic/claude-sonnet-4",
+    "think": "openrouter,anthropic/claude-sonnet-4",
+    "longContext": "openrouter,anthropic/claude-sonnet-4",
+    "longContextThreshold": 60000,
+    "webSearch": "openrouter,anthropic/claude-sonnet-4"
+  }
+}
