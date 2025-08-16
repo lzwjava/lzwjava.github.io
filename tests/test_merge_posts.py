@@ -5,7 +5,7 @@ import tempfile
 import shutil
 from pathlib import Path
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts.merge.merge_posts import get_post_date, merge_post_contents, process_post_content
 
 class TestMergePosts(unittest.TestCase):
