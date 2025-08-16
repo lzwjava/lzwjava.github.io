@@ -4,7 +4,6 @@ import glob
 import argparse
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from scripts.create.delete import delete_md
 
 
 def get_post_date(content):
@@ -97,11 +96,6 @@ def combine_posts(posts):
     except Exception as e:
         print(f"Error writing combined content: {e}")
         return
-
-    # Delete sub-posts and their translations, PDFs, audio files
-    for post in post_data[1:]:
-        print(f"Deleting sub-post files for: {post['path']}")
-        delete_md(post['path'])
 
     print("Combine operation completed successfully!")
 

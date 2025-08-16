@@ -6,7 +6,7 @@ import shutil
 from pathlib import Path
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from scripts.organize.combine_posts import combine_posts, get_post_date
+from scripts.merge.merge_posts import combine_posts, get_post_date
 
 class TestCombinePosts(unittest.TestCase):
     def setUp(self):
