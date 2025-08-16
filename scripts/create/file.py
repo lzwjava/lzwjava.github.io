@@ -87,6 +87,7 @@ layout: post
 title: {name}
 translated: false
 generated: false
+image: false
 ---"""
 
     # Create the markdown file
