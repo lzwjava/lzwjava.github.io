@@ -15,7 +15,7 @@ MODEL_MAPPING = {
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
     "gemini-pro": "google/gemini-2.5-pro",
     "kimi-k2": "moonshotai/kimi-k2:free",
-    "deepseek-v3": "mistralai/mistral-nemo",
+    "deepseek-v3": "deepseek/deepseek-chat-v3-0324",
     "mistral-medium": "mistralai/mistral-medium-3.1",
     "qwen-coder":"qwen/qwen3-coder:free"
 }

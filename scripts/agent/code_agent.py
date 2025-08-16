@@ -2,6 +2,8 @@ import os
 import sys
 import tempfile
 import subprocess
+import argparse
+import pyperclip
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
@@ -68,6 +70,19 @@ def solve_and_run(problem, attempted_solutions=None, depth=0):
     return solve_and_run(problem, attempted_solutions + [solution], depth + 1)
 
 if __name__ == "__main__":
-    question = "Write a function that returns the sum of first n natural numbers"
+    parser = argparse.ArgumentParser(description='Generate and run Python code to solve a problem')
+    parser.add_argument('question', type=str, nargs='?', help='The coding problem to solve')
+    parser.add_argument('--clipboard', '-c', action='store_true', help='Read problem from clipboard')
+    args = parser.parse_args()
+    
+    if args.clipboard:
+        question = pyperclip.paste()
+    else:
+        question = args.question if args.question else input("Enter your coding problem: ")
+    
     answer = solve_and_run(question)
+    print(f"\nQuestion: {question}")
     print(f"\nFinal solution:\n{answer}")
+    
+    # Copy solution to clipboard
+    pyperclip.copy(answer)
