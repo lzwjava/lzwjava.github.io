@@ -9,7 +9,7 @@ import random
 
 # Add the scripts directory to the path to import openrouter_client
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'llm'))
-from openrouter_client import call_openrouter_api
+from openrouter_client import call_openrouter_api, MODEL_MAPPING
 
 # Load environment variables from .env file
 load_dotenv()
@@ -60,13 +60,17 @@ def send_telegram_message(bot_token, chat_id, message):
 def generate_copilot_message():
     """Generates a technical prompt sentence encouraging Copilot use via OpenRouter API."""
     prompt = "Provide a concise daily tip related to one of the following technologies: machine learning, backend engineering, Java, or Python. Only the tip content is needed."
+    
+    # Randomly select a model from all available models
+    selected_model = random.choice(list(MODEL_MAPPING.keys()))
+    
     try:
-        print("Calling OpenRouter API for daily tech tip...")
-        message = call_openrouter_api(prompt, model="gemini-flash")
+        print(f"Calling OpenRouter API with model: {selected_model}")
+        message = call_openrouter_api(prompt, model=selected_model)
         if message:
             return message.strip()[:300]
     except Exception as e:
-        print(f"OpenRouter API Error: {e}")
+        print(f"OpenRouter API Error with {selected_model}: {e}")
     
     # Fallback message if API call fails
     return "Stuck on configuring Control-M order date? Ask Copilot!"
