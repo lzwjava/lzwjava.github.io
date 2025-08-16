@@ -4,13 +4,15 @@ import os
 def count_files(directory, extensions):
     count = 0
     try:
+        if not os.path.exists(directory):
+            return 0
         for item in os.listdir(directory):
             item_path = os.path.join(directory, item)
             if os.path.isfile(item_path) and any(item.endswith(ext) for ext in extensions):
                 count += 1
             elif os.path.isdir(item_path):
                 count += count_files(item_path, extensions)
-    except PermissionError:
+    except (PermissionError, FileNotFoundError):
         pass
     return count
 
@@ -23,10 +25,10 @@ def count_lang_files():
     py_count = count_files(scripts_dir, [".py"])
     print(f"Number of .py files in scripts directory: {py_count}")
     
-    # Count Python files in ml directory
-    ml_dir = os.path.join(base_dir, "ml")
+    # Count Python files in scripts/ml directory
+    ml_dir = os.path.join(base_dir, "scripts", "ml")
     ml_count = count_files(ml_dir, [".py"])
-    print(f"Number of .py files in ml directory: {ml_count}")
+    print(f"Number of .py files in scripts/ml directory: {ml_count}")
     
     # Count C files in c directory
     c_dir = os.path.join(base_dir, "c")
