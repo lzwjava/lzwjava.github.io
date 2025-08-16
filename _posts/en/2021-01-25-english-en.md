@@ -6,12 +6,13 @@ lang: en
 layout: post
 title: Improving English with Extensive Input
 top: 20
-translated: true
+translated: false
 ---
 
-Translated by ChatGPT.
+This post was originally written in Chinese. It has been translated to English to facilitate further translations into other languages.
 
 ---
+
 
 In 2014, when I encountered programming problems, I would search for English web pages on Google. However, I found it difficult to continue because I read slowly and frequently needed to refer to a dictionary. I felt lost in the clouds and decided to turn to Chinese web pages instead. At that time, I preferred reading in Chinese whenever possible. However, over the past six years, my approach has reversed, and I now only read content in Chinese when it is not available in English. I spend my leisure time in the English-speaking world, watching American TV shows without subtitles and browsing TikTok videos. Despite my efforts, my English proficiency is still not as good as my Chinese, maybe only half as good.
 
