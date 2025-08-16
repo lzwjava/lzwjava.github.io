@@ -34,7 +34,7 @@ def search_filenames(query, ignore_case=False):
         cmd.append(query)
         
         # Specify directories to search
-        cmd.extend(['_posts/en', 'original', 'notes'])
+        cmd.append('original')
         
         # Execute search
         result = subprocess.run(cmd, capture_output=True, text=True)
