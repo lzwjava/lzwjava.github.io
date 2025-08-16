@@ -1,16 +1,35 @@
-# screenshot_full_pillow.py
-import datetime
+import Quartz
 from PIL import ImageGrab
+import datetime
 
 ts = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 path = f"screenshot-{ts}.png"
 
-# On macOS, this grabs the full virtual desktop by default.
-# If you're on multiple monitors and want everything, try all_screens=True (Pillow ≥10.1).
-try:
-    img = ImageGrab.grab(all_screens=True)   # falls back to full desktop if unsupported
-except TypeError:
-    img = ImageGrab.grab()                   # for older Pillow versions
+# Get all windows
+windows = Quartz.CGWindowListCopyWindowInfo(
+    Quartz.kCGWindowListOptionOnScreenOnly,
+    Quartz.kCGNullWindowID
+)
 
-img.save(path)
-print(f"Saved {path}  size={img.size}")
+# Find Safari window
+safari_window = None
+for window in windows:
+    owner = window.get(Quartz.kCGWindowOwnerName, '')
+    if owner == 'Safari':
+        safari_window = window
+        title = window.get(Quartz.kCGWindowName, '')
+        print(f"Found Safari window: {title}")
+        break
+
+if safari_window:
+    bounds = safari_window.get('kCGWindowBounds')
+    if bounds:
+        x = int(bounds.get('X', 0))
+        y = int(bounds.get('Y', 0))
+        w = int(bounds.get('Width', 0))
+        h = int(bounds.get('Height', 0))
+        img = ImageGrab.grab(bbox=(x, y, x + w, y + h))
+        img.save(path)
+        print(f"Saved {path} size={img.size}")
+else:
+    print("Safari window not found")
