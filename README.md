@@ -7,7 +7,7 @@ Welcome to my personal blog! Here, I share my thoughts, experiences, and knowled
 ## Statistics
 
 - **[Notes](notes):** 1,908 entries
-- **[Python Scripts](scripts):** 533 files in scripts directory  
+- **[Python Scripts](scripts):** 314 files in scripts directory  
 - **[Machine Learning Scripts](ml):** 190 Python scripts dedicated to machine learning projects and experiments
 - **[Original Posts](original):** 530 markdown files
 
