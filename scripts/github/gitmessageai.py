@@ -147,6 +147,8 @@ def gitmessageai(
         capture_output=True,
         text=True,
         check=True,
+        encoding='utf-8',
+        errors='replace',
     )
     diff_output = diff_process.stdout
 
@@ -203,7 +205,7 @@ Changed files:
     elif type == "content":
         # Get a detailed summary of the changes
         diff_process = subprocess.run(
-            ["git", "diff", "--staged"], capture_output=True, text=True, check=True
+            ["git", "diff", "--staged"], capture_output=True, text=True, check=True, encoding='utf-8', errors='replace'
         )
         diff_output = diff_process.stdout
 
