@@ -1,5 +1,6 @@
 import os
 import sys
+import argparse
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
@@ -29,23 +30,14 @@ def solve_complex(problem, attempted_solutions=None, depth=0):
             attempted_solutions + [solution],
             depth + 1
         )
-        
-    print("\nVerifying solution...")
-    verification = call_openrouter_api(
-        f"You are a solution verifier. Verify if this solution is correct. Respond with 'CORRECT' or explain why it's wrong.\n\nProblem: {problem}\nProposed solution: {solution}\nIs this correct?"
-    )
     
-    print(f"Verification result: {verification}")
-    
-    if "CORRECT" in verification:
-        print("Solution verified as CORRECT!")
-        return solution
-        
-    print("Solution not verified, trying again...")
-    return solve_complex(problem, attempted_solutions + [solution], depth + 1)
+    return solution
 
 if __name__ == "__main__":
-    question = "If the universe is destined to end—whether by heat death, collapse, or some other fate—can humanity (or any form of intelligence we create) find a way to preserve meaning, life, or consciousness beyond the death of the cosmos?"
-    answer = solve_complex(question)
-    print(f"Question: {question}")
+    parser = argparse.ArgumentParser(description='Solve a problem recursively')
+    parser.add_argument('question', type=str, help='The question to solve')
+    args = parser.parse_args()
+    
+    answer = solve_complex(args.question)
+    print(f"\nQuestion: {args.question}")
     print(f"Answer: {answer}")
