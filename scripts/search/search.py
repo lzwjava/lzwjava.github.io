@@ -27,7 +27,12 @@ def search_posts(query, ignore_case=False):
         cmd.extend(['--context=2'])
         
         # Only search markdown files
-        cmd.append('--type=md')
+        cmd.append('--type-add=md=.md,.markdown')
+        cmd.append('--md')
+        
+        # Enable color output
+        cmd.append('--color')
+        cmd.append('--color-match=red')
         
         # Add search pattern
         cmd.append(query)
@@ -35,8 +40,10 @@ def search_posts(query, ignore_case=False):
         # Specify directories to search
         cmd.extend(['_posts/en', 'original', 'notes'])
         
-        # Execute search
-        result = subprocess.run(cmd, capture_output=True, text=True)
+        # Execute search with environment variable to force color output
+        env = os.environ.copy()
+        env['CLICOLOR_FORCE'] = '1'
+        result = subprocess.run(cmd, capture_output=True, text=True, env=env)
         
         if result.returncode not in [0, 1]:  # 1 means no matches found
             print("Error executing search command")
@@ -45,6 +52,7 @@ def search_posts(query, ignore_case=False):
             
         if result.stdout:
             print(result.stdout)
+            print()  # Add newline after output
         else:
             print("No matches found")
             
