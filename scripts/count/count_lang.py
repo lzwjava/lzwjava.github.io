@@ -1,8 +1,10 @@
 import os
 
 
-def count_files(directory, extensions):
+def count_files(directory, extensions, exclude_dirs=None):
     count = 0
+    if exclude_dirs is None:
+        exclude_dirs = []
     try:
         if not os.path.exists(directory):
             return 0
@@ -10,8 +12,8 @@ def count_files(directory, extensions):
             item_path = os.path.join(directory, item)
             if os.path.isfile(item_path) and any(item.endswith(ext) for ext in extensions):
                 count += 1
-            elif os.path.isdir(item_path):
-                count += count_files(item_path, extensions)
+            elif os.path.isdir(item_path) and item not in exclude_dirs:
+                count += count_files(item_path, extensions, exclude_dirs)
     except (PermissionError, FileNotFoundError):
         pass
     return count
@@ -20,10 +22,10 @@ def count_files(directory, extensions):
 def count_lang_files():
     base_dir = "./"  # Go up one level from count/ to the root of the repo
     
-    # Count Python files in scripts directory
+    # Count Python files in scripts directory (excluding ml subdirectory)
     scripts_dir = os.path.join(base_dir, "scripts")
-    py_count = count_files(scripts_dir, [".py"])
-    print(f"Number of .py files in scripts directory: {py_count}")
+    py_count = count_files(scripts_dir, [".py"], exclude_dirs=["ml"])
+    print(f"Number of .py files in scripts directory (excluding ml): {py_count}")
     
     # Count Python files in scripts/ml directory
     ml_dir = os.path.join(base_dir, "scripts", "ml")
