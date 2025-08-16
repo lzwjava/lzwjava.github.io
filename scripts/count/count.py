@@ -25,6 +25,11 @@ def get_file_counts():
     ml_count = count_files(ml_dir, [".py"])
     counts.append(("Python files ([scripts/ml](scripts/ml))", ml_count))
     
+    # Count Python test files in tests directory
+    tests_dir = os.path.join(base_dir, "tests")
+    tests_count = count_files(tests_dir, [".py"])
+    counts.append(("Python test files ([tests](tests))", tests_count))
+    
     # Count C files
     c_dir = os.path.join(base_dir, "c")
     c_count = count_files(c_dir, [".c", ".h"])

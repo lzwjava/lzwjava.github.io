@@ -10,6 +10,7 @@ Welcome to my personal blog! Here, I share my thoughts, experiences, and knowled
 |-----------|-------|
 | Python files ([scripts](scripts), excluding ml) | 323 |
 | Python files ([scripts/ml](scripts/ml)) | 191 |
+| Python test files ([tests](tests)) | 23 |
 | C files ([c](c)) | 1 |
 | Rust files ([rust](rust)) | 3 |
 | C++ files ([cpp](cpp)) | 2 |
