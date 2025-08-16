@@ -1,8 +1,8 @@
-from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Dense, Reshape
-from tensorflow.keras.layers import Embedding
-from tensorflow.keras.preprocessing.sequence import skipgrams
-from tensorflow.keras.preprocessing import sequence
+import torch
+import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torch.utils.data import Dataset, DataLoader
 
 import urllib.request
 import collections
@@ -10,7 +10,6 @@ import os
 import zipfile
 
 import numpy as np
-import tensorflow as tf
 
 window_size = 3
 vector_dim = 300
@@ -36,7 +35,7 @@ def maybe_download(filename, url, expected_bytes):
 
 def read_data(filename):
     with zipfile.ZipFile(filename) as f:
-        data = tf.compat.as_str(f.read(f.namelist()[0])).split()
+        data = f.read(f.namelist()[0]).decode('utf-8').split()
     return data
 
 
@@ -71,34 +70,70 @@ def collect_data(vocabulary_size=10000):
     return data, count, dictionary, reverse_dictionary
 
 
-class SimilarityCallback:
-    def run_sim(self):
-        for i in range(valid_size):
-            valid_word = reverse_dictionary[valid_examples[i]]
-            top_k = 8
-            sim = self._get_sim(valid_examples[i])
-            nearest = (-sim).argsort()[1:top_k + 1]
-            log_str = 'Nearest to %s:' % valid_word
-            for k in range(top_k):
-                close_word = reverse_dictionary[nearest[k]]
-                log_str = '%s %s,' % (log_str, close_word)
-            print(log_str)
+class Word2VecModel(nn.Module):
+    def __init__(self, vocab_size, embedding_dim):
+        super(Word2VecModel, self).__init__()
+        self.vocab_size = vocab_size
+        self.embedding_dim = embedding_dim
+        
+        # Input and output embeddings
+        self.in_embeddings = nn.Embedding(vocab_size, embedding_dim)
+        self.out_embeddings = nn.Embedding(vocab_size, embedding_dim)
+        
+        # Initialize embeddings with small random values
+        self.in_embeddings.weight.data.uniform_(-0.5/embedding_dim, 0.5/embedding_dim)
+        self.out_embeddings.weight.data.uniform_(-0.5/embedding_dim, 0.5/embedding_dim)
+    
+    def forward(self, center_word, context_words):
+        # Get embeddings
+        center_embed = self.in_embeddings(center_word)  # [batch_size, embedding_dim]
+        context_embed = self.out_embeddings(context_words)  # [batch_size, embedding_dim]
+        
+        # Compute dot product
+        score = torch.sum(center_embed * context_embed, dim=1)  # [batch_size]
+        return score
 
-    @staticmethod
-    def _get_sim(valid_word_idx):
+
+class SimilarityCallback:
+    def __init__(self, model, reverse_dictionary, device):
+        self.model = model
+        self.reverse_dictionary = reverse_dictionary
+        self.device = device
+    
+    def run_sim(self):
+        self.model.eval()
+        with torch.no_grad():
+            for i in range(valid_size):
+                valid_word = self.reverse_dictionary[valid_examples[i]]
+                top_k = 8
+                sim = self._get_sim(valid_examples[i])
+                nearest = (-sim).argsort()[1:top_k + 1]
+                log_str = 'Nearest to %s:' % valid_word
+                for k in range(top_k):
+                    close_word = self.reverse_dictionary[nearest[k]]
+                    log_str = '%s %s,' % (log_str, close_word)
+                print(log_str)
+    
+    def _get_sim(self, valid_word_idx):
+        vocab_size = len(self.reverse_dictionary)
         sim = np.zeros((vocab_size,))
-        in_arr1 = np.zeros((1,))
-        in_arr2 = np.zeros((1,))
-        in_arr1[0,] = valid_word_idx
+        
+        valid_word_tensor = torch.tensor([valid_word_idx], device=self.device)
+        valid_embed = self.model.in_embeddings(valid_word_tensor)
+        
         for i in range(vocab_size):
-            in_arr2[0,] = i
-            out = validation_model.predict_on_batch([in_arr1, in_arr2])
-            sim[i] = out
+            word_tensor = torch.tensor([i], device=self.device)
+            word_embed = self.model.in_embeddings(word_tensor)
+            
+            # Compute cosine similarity
+            cosine_sim = F.cosine_similarity(valid_embed, word_embed, dim=1)
+            sim[i] = cosine_sim.cpu().numpy()[0]
+        
         return sim
 
 
 def read_glove_vecs(glove_file):
-    with open(glove_file, 'r') as f:
+    with open(glove_file, 'r', encoding='utf-8') as f:
         words = set()
         word_to_vec_map = {}
 
@@ -112,23 +147,88 @@ def read_glove_vecs(glove_file):
 
 
 def relu(x):
-    s = np.maximum(0, x)
-
-    return s
+    return torch.relu(x)
 
 
 def initialize_parameters(vocab_size, n_h):
-    np.random.seed(3)
+    torch.manual_seed(3)
     parameters = {}
 
-    parameters['W1'] = np.random.randn(n_h, vocab_size) / np.sqrt(vocab_size)
-    parameters['b1'] = np.zeros((n_h, 1))
-    parameters['W2'] = np.random.randn(vocab_size, n_h) / np.sqrt(n_h)
-    parameters['b2'] = np.zeros((vocab_size, 1))
+    parameters['W1'] = torch.randn(n_h, vocab_size) / np.sqrt(vocab_size)
+    parameters['b1'] = torch.zeros(n_h, 1)
+    parameters['W2'] = torch.randn(vocab_size, n_h) / np.sqrt(n_h)
+    parameters['b2'] = torch.zeros(vocab_size, 1)
 
     return parameters
 
 
 def softmax(x):
-    e_x = np.exp(x - np.max(x))
-    return e_x / e_x.sum()
+    return F.softmax(x, dim=-1)
+
+
+class SkipGramDataset(Dataset):
+    def __init__(self, data, window_size=2):
+        self.data = data
+        self.window_size = window_size
+        self.pairs = self._generate_pairs()
+    
+    def _generate_pairs(self):
+        pairs = []
+        for i, center_word in enumerate(self.data):
+            for j in range(max(0, i - self.window_size), 
+                          min(len(self.data), i + self.window_size + 1)):
+                if i != j:
+                    pairs.append((center_word, self.data[j]))
+        return pairs
+    
+    def __len__(self):
+        return len(self.pairs)
+    
+    def __getitem__(self, idx):
+        center_word, context_word = self.pairs[idx]
+        return torch.tensor(center_word), torch.tensor(context_word)
+
+
+def train_word2vec(data, vocab_size, embedding_dim=300, epochs=1000, learning_rate=0.01):
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    
+    # Create dataset and dataloader
+    dataset = SkipGramDataset(data, window_size=window_size)
+    dataloader = DataLoader(dataset, batch_size=128, shuffle=True)
+    
+    # Initialize model
+    model = Word2VecModel(vocab_size, embedding_dim).to(device)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+    
+    # Training loop
+    model.train()
+    for epoch in range(epochs):
+        total_loss = 0
+        for center_words, context_words in dataloader:
+            center_words = center_words.to(device)
+            context_words = context_words.to(device)
+            
+            optimizer.zero_grad()
+            
+            # Forward pass
+            positive_score = model(center_words, context_words)
+            
+            # Negative sampling (simplified)
+            negative_words = torch.randint(0, vocab_size, (center_words.size(0),), device=device)
+            negative_score = model(center_words, negative_words)
+            
+            # Loss computation (simplified skip-gram loss)
+            positive_loss = -F.logsigmoid(positive_score).mean()
+            negative_loss = -F.logsigmoid(-negative_score).mean()
+            loss = positive_loss + negative_loss
+            
+            # Backward pass
+            loss.backward()
+            optimizer.step()
+            
+            total_loss += loss.item()
+        
+        if epoch % 100 == 0:
+            print(f'Epoch {epoch}, Loss: {total_loss/len(dataloader):.4f}')
+    
+    return model
