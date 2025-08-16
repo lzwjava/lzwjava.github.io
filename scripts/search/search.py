@@ -4,40 +4,36 @@ import sys
 import os
 import shutil
 
-def check_ripgrep():
-    """Check if ripgrep is installed."""
-    if not shutil.which('rg'):
-        print("Error: ripgrep (rg) is not installed.")
+def check_ack():
+    """Check if ack is installed."""
+    if not shutil.which('ack'):
+        print("Error: ack is not installed.")
         print("Please install it first:")
-        print("  macOS: brew install ripgrep")
-        print("  Ubuntu/Debian: sudo apt-get install ripgrep")
-        print("  Windows: scoop install ripgrep")
+        print("  macOS: brew install ack")
+        print("  Ubuntu/Debian: sudo apt-get install ack")
+        print("  Windows: scoop install ack")
         sys.exit(1)
 
 def search_posts(query, ignore_case=False):
-    """Search posts using ripgrep."""
+    """Search posts using ack."""
     try:
-        check_ripgrep()
+        check_ack()
         
-        cmd = [shutil.which('rg')]
+        cmd = [shutil.which('ack')]
         if ignore_case:
             cmd.append('-i')
         
         # Add context lines around matches
-        cmd.extend(['-C', '2'])
+        cmd.extend(['--context=2'])
         
-        # Show line numbers
-        cmd.append('-n')
+        # Only search markdown files
+        cmd.append('--type=md')
         
         # Add search pattern
         cmd.append(query)
         
-        # Search in specific directories
-        cmd.extend([
-            '_posts/en',
-            'original',
-            'notes'
-        ])
+        # Specify directories to search
+        cmd.extend(['_posts/en', 'original', 'notes'])
         
         # Execute search
         result = subprocess.run(cmd, capture_output=True, text=True)
