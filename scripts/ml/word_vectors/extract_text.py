@@ -3,10 +3,24 @@ import glob
 import frontmatter
 from datetime import datetime
 import argparse
+import re
+
+
+def extract_date_from_filename(filename):
+    """Extract date from filename in format YYYY-MM-DD"""
+    basename = os.path.basename(filename)
+    # Look for date pattern YYYY-MM-DD at the beginning of filename
+    match = re.match(r'^(\d{4}-\d{2}-\d{2})', basename)
+    if match:
+        try:
+            return datetime.strptime(match.group(1), '%Y-%m-%d')
+        except ValueError:
+            pass
+    return None
 
 
 def get_recent_posts(directory, num_posts=10):
-    """Get the most recent markdown posts from a directory"""
+    """Get the most recent markdown posts from a directory, sorted by date in filename"""
     # Get all .md files in the directory
     pattern = os.path.join(directory, "*.md")
     md_files = glob.glob(pattern)
@@ -15,11 +29,28 @@ def get_recent_posts(directory, num_posts=10):
         print(f"No markdown files found in {directory}")
         return []
     
-    # Sort by modification time (most recent first)
-    md_files.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+    # Filter files that have valid dates in filename and sort by date
+    files_with_dates = []
+    files_without_dates = []
+    
+    for file_path in md_files:
+        date = extract_date_from_filename(file_path)
+        if date:
+            files_with_dates.append((file_path, date))
+        else:
+            files_without_dates.append(file_path)
+    
+    # Sort files with dates by date (most recent first)
+    files_with_dates.sort(key=lambda x: x[1], reverse=True)
+    
+    # Sort files without dates by modification time (fallback)
+    files_without_dates.sort(key=lambda x: os.path.getmtime(x), reverse=True)
+    
+    # Combine: prioritize files with dates, then files without dates
+    sorted_files = [file_path for file_path, _ in files_with_dates] + files_without_dates
     
     # Return the most recent num_posts files
-    return md_files[:num_posts]
+    return sorted_files[:num_posts]
 
 
 def extract_text_from_post(file_path):
