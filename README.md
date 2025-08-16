@@ -6,11 +6,15 @@ Welcome to my personal blog! Here, I share my thoughts, experiences, and knowled
 
 ## Statistics
 
-- **[Notes](notes):** 1,908 entries
-- **[Python Scripts](scripts):** 314 files in scripts directory  
-- **[Machine Learning Scripts](ml):** 190 Python scripts dedicated to machine learning projects and experiments
-- **[Original Posts](original):** 530 markdown files
-
+| File Type | Count |
+|-----------|-------|
+| Python files ([scripts](scripts), excluding ml) | 323 |
+| Python files ([scripts/ml](scripts/ml)) | 191 |
+| C files ([c](c)) | 1 |
+| Rust files ([rust](rust)) | 3 |
+| C++ files ([cpp](cpp)) | 2 |
+| Markdown files ([original](original)) | 515 |
+| Notes files ([notes](notes)) | 1992 |
 
 ## Key Improvements
 
