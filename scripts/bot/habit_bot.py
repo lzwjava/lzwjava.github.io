@@ -1,4 +1,5 @@
 import os
+import sys
 import requests
 import argparse
 import re
@@ -6,13 +7,16 @@ import datetime
 from dotenv import load_dotenv
 import random
 
+# Add the scripts directory to the path to import openrouter_client
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'llm'))
+from openrouter_client import call_openrouter_api
+
 # Load environment variables from .env file
 load_dotenv()
 
 # Environment variables
 TELEGRAM_HABIT_BOT_API_KEY = os.environ.get("TELEGRAM_HABIT_BOT_API_KEY")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
-MISTRAL_API_KEY = os.environ.get("MISTRAL_API_KEY")
 
 # Telegram message length limit
 TELEGRAM_MAX_LENGTH = 4096
@@ -51,45 +55,20 @@ def send_telegram_message(bot_token, chat_id, message):
     return success
 
 
-def call_mistral_api(prompt, model="mistral-large-latest"):
-    """Calls the Mistral API to generate a response."""
-    if not MISTRAL_API_KEY:
-        print("Error: MISTRAL_API_KEY environment variable not set.")
-        return None
-    url = "https://api.mistral.ai/v1/chat/completions"
-    headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": f"Bearer {MISTRAL_API_KEY}",
-    }
-    data = {
-        "model": model,
-        "messages": [{"role": "user", "content": prompt}],
-        "temperature": 0.7,  # Adjust temperature for creativity
-        "max_tokens": 300,  # Limit response length
-    }
-    try:
-        print(f"Calling Mistral API with model: {model}")
-        response = requests.post(url, headers=headers, json=data)
-        response.raise_for_status()
-        response_json = response.json()
-        if response_json.get("choices"):
-            content = response_json["choices"][0]["message"]["content"]
-            print(f"Mistral API Content: {content}")
-            return content
-        print(f"Mistral API Error: Invalid response format: {response_json}")
-        return None
-    except requests.exceptions.RequestException as e:
-        print(f"Mistral API Error: {e}")
-        return None
 
 
 def generate_copilot_message():
-    """Generates a technical prompt sentence encouraging Copilot use via Mistral API."""
-    prompt = f"Provide a concise daily tip related to one of the following technologies: machine learning, backend engineering, Java, or Python. Only the tip content is needed."
-    message = call_mistral_api(prompt)
-    if message:
-        return message.strip()[:300]
+    """Generates a technical prompt sentence encouraging Copilot use via OpenRouter API."""
+    prompt = "Provide a concise daily tip related to one of the following technologies: machine learning, backend engineering, Java, or Python. Only the tip content is needed."
+    try:
+        print("Calling OpenRouter API for daily tech tip...")
+        message = call_openrouter_api(prompt, model="gemini-flash")
+        if message:
+            return message.strip()[:300]
+    except Exception as e:
+        print(f"OpenRouter API Error: {e}")
+    
+    # Fallback message if API call fails
     return "Stuck on configuring Control-M order date? Ask Copilot!"
 
 
