@@ -1,28 +1,30 @@
 ---
-audio: true
+audio: false
 generated: false
 image: true
 lang: de
 layout: post
-title: Günstige Englischübungen mit Muttersprachlern
+title: Bezahlbare Englischpraxis mit Muttersprachlern
 translated: true
 ---
 
-Vor Kurzem habe ich eine Englisch-Sprachübungssitzung mit einem Muttersprachler von Pinduoduo.com gemacht.
+### Günstige Englisch-Praxis mit Muttersprachlern
 
-Der Assistent wird Sie über Ihre Mobiltelefonnummer per WeChat hinzufügen und Ihnen bei der Kursplanung helfen.
+Kürzlich habe ich eine Englisch-Konversationsübung mit einem Muttersprachler von Pinduoduo.com ausprobiert.
 
-Es ist günstig, nur 18 CNY pro Kurs für etwa 25 Minuten. Die Lehrer kommen aus den Philippinen. Übrigens habe ich gerade das Wort "Philippinos" aus diesem Chat gelernt.
+Der Assistent fügt dich über deine Handynummer auf WeChat hinzu und hilft dir, den Kurs zu organisieren.
 
-Ich habe diesen Kurs durch einen Beitrag auf X entdeckt und wurde von seiner Erschwinglichkeit angezogen. Trotz eines IELTS-Ergebnisses von 6 vor zwei Jahren ist mein Ziel, dieses Jahr 7,5 zu erreichen, was eine erhöhte Englischpraxis, insbesondere im Sprechen und Schreiben, erfordert.
+Es ist sehr preiswert – nur 18 CNY pro Kurs für etwa 25 Minuten. Die Lehrer kommen von den Philippinen. Übrigens habe ich bei diesem Chat gerade das Wort *„Philippiner“* (Philippinos) gelernt.
 
-Wir sprachen über einige IELTS-Sprechübungen. Der Englischlehrer stellte mir Prüfungsfragen zu Themen wie Reisen, Fotografiegewohnheiten und Verkehrsstaus.
+Ich habe diesen Kurs über einen Beitrag auf X entdeckt und war von dem günstigen Preis angelockt. Obwohl ich vor zwei Jahren ein IELTS-Ergebnis von 6 erreicht habe, ist mein Ziel dieses Jahr 7,5 zu schaffen. Dafür brauche ich mehr Englischübung, besonders im Sprechen und Schreiben.
 
-Eine andere berühmte Plattform, VIPKID, berechnete vor Jahren 150 CNY pro Kurs für 25 Minuten.
+Wir haben einige IELTS-Sprechübungen gemacht. Die Englischlehrerin hat mir Prüfungsfragen zu Themen wie Reisen, Fotos machen und Staus gestellt.
 
-Der Preis ist hier jetzt wirklich günstig.
+Eine andere bekannte Plattform, VIPKID, hat vor Jahren 150 CNY pro 25-minütigem Kurs verlangt.
 
-Ich habe nach Japanisch-Sprachübungen auf Pinduoduo.com gesucht. Leider bietet derzeit kein Händler einen solchen Service an.
+Der Preis hier ist also wirklich sehr günstig.
+
+Ich habe nach japanischen Konversationskursen auf Pinduoduo.com gesucht. Leider gibt es derzeit keine Anbieter für einen solchen Service.
 
 Ich würde gerne mehr Englischkurse belegen.
 
@@ -32,4 +34,4 @@ Ich würde gerne mehr Englischkurse belegen.
 
 ---
 
-Ich habe 10 Kurse für 180 CNY gekauft und einen anderen Händler auf Pinduoduo.com ausprobiert. Ich ziehe es vor, Produkte oder Dienstleistungen auf Pinduoduo zu kaufen und zu vergleichen.
+Ich habe 10 Kurse für 180 CNY gekauft und einen anderen Anbieter auf Pinduoduo.com ausprobiert. Ich bevorzuge es, Produkte oder Dienstleistungen auf Pinduoduo zu kaufen und zu vergleichen.
