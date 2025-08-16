@@ -46,16 +46,21 @@ def combine_posts(main_post_path, sub_post_path):
         front_matter = sub_parts[1]
         sub_body = sub_parts[2].strip()
         
-        # Try to extract title from front matter
+        # Try to extract title and date from front matter
         title = None
+        date = None
         for line in front_matter.split('\n'):
             if line.startswith('title:'):
                 title = line.split(':', 1)[1].strip().strip('"\'')
-                break
+            elif line.startswith('date:'):
+                date = line.split(':', 1)[1].strip().strip('"\'')
                 
-        # Add title as header if found
+        # Add title and date as header if found
         if title:
-            sub_body = f"## {title}\n\n{sub_body}"
+            header = f"## {title}"
+            if date:
+                header += f", {date}"
+            sub_body = f"{header}\n\n{sub_body}"
     else:
         # No front matter found, use entire content
         sub_body = sub_content.strip()
