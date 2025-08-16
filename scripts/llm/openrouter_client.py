@@ -17,7 +17,9 @@ MODEL_MAPPING = {
     "kimi-k2": "moonshotai/kimi-k2:free",
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324",
     "mistral-medium": "mistralai/mistral-medium-3.1",
-    "qwen-coder":"qwen/qwen3-coder:free"
+    "qwen-coder":"qwen/qwen3-coder",
+    "gpt-oss": "openai/gpt-oss-120b",
+    "gpt-5": "openai/gpt-5"
 }
 
 
