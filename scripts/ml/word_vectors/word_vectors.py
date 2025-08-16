@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 import torch.nn.functional as F
+import re
 from w2v_utils import *
 
 # Load or create word vectors
@@ -23,7 +24,6 @@ def load_or_create_word_vectors(file_path):
                 text = f.read().lower()
             
             # Simple tokenization and vocabulary creation
-            import re
             words_list = re.findall(r'\b[a-zA-Z]+\b', text)
             unique_words = list(set(words_list))[:1000]  # Limit to 1000 most common words
             
