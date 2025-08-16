@@ -94,13 +94,7 @@ def extract_and_save_posts(original_dir="original", output_file="tmp/posts.txt",
             title, content = extract_text_from_post(post_file)
             
             if title and content:
-                # Write separator and title
-                f.write(f"\n{'='*80}\n")
-                f.write(f"POST {i}: {title}\n")
-                f.write(f"FILE: {os.path.basename(post_file)}\n")
-                f.write(f"{'='*80}\n\n")
-                
-                # Write content
+                # Write content directly without headers
                 f.write(content.strip())
                 f.write("\n\n")
     
