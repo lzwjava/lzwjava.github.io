@@ -2,7 +2,9 @@ import os
 import sys
 import glob
 import argparse
-from delete import delete_md
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+from scripts.create.delete import delete_md
 
 
 def combine_posts(main_post_path, sub_post_path):
