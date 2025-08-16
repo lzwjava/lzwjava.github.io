@@ -1,142 +1,79 @@
 import subprocess
 import os
-from openai import OpenAI
-from dotenv import load_dotenv
 import argparse
 import requests
-import re
 import json
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
 
-def call_mistral_api(prompt):
-    api_key = os.environ.get("MISTRAL_API_KEY")
-    if not api_key:
-        print("Error: MISTRAL_API_KEY environment variable not set.")
-        return None
+# OpenRouter API client code (self-contained)
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-    url = "https://api.mistral.ai/v1/chat/completions"
+MODEL_MAPPING = {
+    "claude-opus": "anthropic/claude-opus-4",
+    "claude-sonnet": "anthropic/claude-sonnet-4",
+    "gemini-flash": "google/gemini-2.5-flash",
+    "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
+    "gemini-pro": "google/gemini-2.5-pro",
+    "kimi-k2": "moonshotai/kimi-k2:free",
+    "deepseek-v3-paid": "deepseek/deepseek-chat-v3-0324",
+    "mistral-medium": "mistralai/mistral-medium-3.1",
+    "qwen-coder": "qwen/qwen3-coder",
+    "gpt-oss": "openai/gpt-oss-120b",
+    "gpt-5": "openai/gpt-5"
+}
+
+
+def call_openrouter_api(prompt, model="mistral-medium", debug=False):
+    if not OPENROUTER_API_KEY:
+        print("Error: OPENROUTER_API_KEY environment variable not set.")
+        return None
+    
+    url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
+        "Authorization": f"Bearer {OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": f"Bearer {api_key}",
     }
-    data = {
-        "model": "mistral-small-latest",
-        "messages": [{"role": "user", "content": prompt}],
-    }
+
+    # Check if the model exists in the mapping
+    if model not in MODEL_MAPPING:
+        print(f"Error: Model '{model}' not found in MODEL_MAPPING")
+        return None
+
+    messages = [{"role": "user", "content": prompt}]
+    data = {"model": MODEL_MAPPING[model], "messages": messages}
+    
+    if debug:
+        print(f"Request URL: {url}")
+        print(f"Request Data: {data}")
+    
     try:
         response = requests.post(url, headers=headers, json=data)
-        response.raise_for_status()
-        response_json = response.json()
-        if response_json and response_json["choices"]:
-            content = response_json["choices"][0]["message"]["content"]
-            return content
-        else:
-            print(f"Mistral API Error: Invalid response format: {response_json}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Mistral API Error: {e}")
-        if e.response:
-            print(f"Response status code: {e.response.status_code}")
-            print(f"Response content: {e.response.text}")
-        return None
-
-
-def call_gemini_api(prompt):
-    gemini_api_key = os.environ.get("GEMINI_API_KEY")
-    if not gemini_api_key:
-        print("Error: GEMINI_API_KEY environment variable not set.")
-        return None
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
-    params = {"key": gemini_api_key}
-    payload = {"contents": [{"parts": [{"text": prompt}]}]}
-    try:
-        response = requests.post(url, json=payload, params=params)
-        response.raise_for_status()  # Raise an exception for bad status codes
-        response_json = response.json()
-        if (
-            response_json
-            and "candidates" in response_json
-            and response_json["candidates"]
-        ):
-            return response_json["candidates"][0]["content"]["parts"][0]["text"]
-        else:
-            print(f"Gemini API Error: Invalid response format: {response_json}")
-            return None
-    except requests.exceptions.RequestException as e:
-        print(f"Gemini API Error: {e}")
-        if e.response:
-            print(f"Response status code: {e.response.status_code}")
-            print(f"Response content: {e.response.text}")
-        return None
-
-
-def call_deepseek_api(prompt):
-    api_key = os.environ.get("DEEPSEEK_API_KEY")
-    if not api_key:
-        print("Error: DEEPSEEK_API_KEY environment variable not set.")
-        return None
-
-    client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
-
-    try:
-        response = client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=100,
-        )
-        if response and response.choices:
-            commit_message = response.choices[0].message.content.strip()
-            commit_message = commit_message.replace("`", "")
-            return commit_message
-        else:
-            print("Error: No response from the API.")
-            return None
-    except Exception as e:
-        print(f"Error during API call: {e}")
-        print(e)
-        return None
-
-
-def call_grok_api(prompt):
-    api_key = os.environ.get("GROK_API_KEY")
-    if not api_key:
-        print("Error: GROK_API_KEY environment variable not set.")
-        return None
-
-    url = "https://api.x.ai/v1/chat/completions"
-    headers = {"Content-Type": "application/json", "Authorization": f"Bearer {api_key}"}
-    data = {"model": "grok-2-latest", "messages": [{"role": "user", "content": prompt}]}
-
-    try:
-        response = requests.post(url, headers=headers, json=data)
-        response.raise_for_status()
-        json_response = response.json()
-        if "choices" in json_response and json_response["choices"]:
-            first_choice = json_response["choices"][0]
-            if "message" in first_choice and "content" in first_choice["message"]:
-                return first_choice["message"]["content"]
+        if debug:
+            print(f"Response Status Code: {response.status_code}")
+            print(f"Response Text: {response.text}")
+        
+        if response.status_code == 200:
+            response_json = response.json()
+            if response_json and "choices" in response_json and response_json["choices"]:
+                content = response_json["choices"][0]["message"]["content"]
+                return content.strip()
             else:
-                print("Unexpected response format: message or content missing")
+                print(f"OpenRouter API Error: Invalid response format: {response_json}")
                 return None
         else:
-            print("No choices found in the response")
+            print(f"OpenRouter API Error: {response.status_code} - {response.text}")
             return None
-    except requests.exceptions.RequestException as e:
-        print(f"Error during API request: {e}")
-        if e.response:
-            print(f"Response status code: {e.response.status_code}")
-            print(f"Response content: {e.response.text}")
-        return None
-    except json.JSONDecodeError as e:
-        print(f"Error decoding JSON response: {e}")
+    except Exception as e:
+        print(f"OpenRouter API Error: {str(e)}")
         return None
 
 
 def gitmessageai(
-    push=True, only_message=False, api="deepseek", allow_pull_push=False, type="file"
+    push=True, only_message=False, model="mistral-medium", allow_pull_push=False, type="file"
 ):
     # Stage all changes
     subprocess.run(["git", "add", "-A"], check=True)
@@ -231,29 +168,13 @@ Code changes:
         print(f"Error: Invalid type specified: {type}")
         return
 
-    if api == "deepseek":
-        commit_message = call_deepseek_api(prompt)
-        if not commit_message:
-            return
-    elif api == "gemini":
-        commit_message = call_gemini_api(prompt)
-        if not commit_message:
-            print("Error: No response from Gemini API.")
-            return
-    elif api == "mistral":
-        commit_message = call_mistral_api(prompt)
-        if not commit_message:
-            print("Error: No response from Mistral API.")
-            return
-    elif api == "grok":
-        commit_message = call_grok_api(prompt)
-        if not commit_message:
-            print("Error: No response from Grok API.")
-            return
-    else:
-        print(f"Error: Invalid API specified: {api}")
+    # Call OpenRouter API
+    commit_message = call_openrouter_api(prompt, model=model)
+    if not commit_message:
+        print("Error: No response from OpenRouter API.")
         return
-
+    
+    # Clean up the commit message
     if commit_message and "```" in commit_message:
         commit_message = commit_message.replace("```", "")
 
@@ -302,11 +223,11 @@ if __name__ == "__main__":
         help="Only print the AI generated commit message.",
     )
     parser.add_argument(
-        "--api",
+        "--model",
         type=str,
-        default="mistral",
-        choices=["deepseek", "gemini", "mistral", "grok"],
-        help="API to use for commit message generation (deepseek, gemini, mistral, grok).",
+        default="mistral-medium",
+        choices=list(MODEL_MAPPING.keys()),
+        help="Model to use for commit message generation via OpenRouter.",
     )
     parser.add_argument(
         "--allow-pull-push",
@@ -326,7 +247,7 @@ if __name__ == "__main__":
     gitmessageai(
         push=args.push,
         only_message=args.only_message,
-        api=args.api,
+        model=args.model,
         allow_pull_push=args.allow_pull_push,
         type=args.type,
     )
