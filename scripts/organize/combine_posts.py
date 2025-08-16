@@ -91,16 +91,8 @@ def combine_posts(main_post_path, sub_post_path):
 if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
     parser = argparse.ArgumentParser(description="Combine two blog posts")
-    parser.add_argument(
-        "--main-post",
-        required=True,
-        help="Path to the main post file (relative or absolute)",
-    )
-    parser.add_argument(
-        "--sub-post",
-        required=True,
-        help="Path to the sub post file (relative or absolute)",
-    )
+    parser.add_argument("main_post", help="Path to the main post file")
+    parser.add_argument("sub_post", help="Path to the sub post file")
 
     args = parser.parse_args()
     combine_posts(args.main_post, args.sub_post)
