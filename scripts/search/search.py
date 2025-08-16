@@ -23,8 +23,7 @@ def search_posts(query, ignore_case=False):
         if ignore_case:
             cmd.append('-i')
         
-        # Add context lines around matches
-        cmd.extend(['--context=2'])
+        # No context lines, only show matching lines
         
         # Only search markdown files
         cmd.append('--type-add=md=.md,.markdown')
@@ -55,6 +54,7 @@ def search_posts(query, ignore_case=False):
             lines = result.stdout.strip().split('\n')
             
             for line in lines:
+                print()
                 if line.startswith('--'):
                     print()  # Add blank line for separators
                     continue
