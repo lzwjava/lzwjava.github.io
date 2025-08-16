@@ -13,21 +13,13 @@ load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
 MODEL_MAPPING = {
-    "claude-opus": "anthropic/claude-opus-4",
-    "claude-sonnet": "anthropic/claude-sonnet-4",
     "gemini-flash": "google/gemini-2.5-flash",
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
-    "gemini-pro": "google/gemini-2.5-pro",
-    "kimi-k2": "moonshotai/kimi-k2:free",
-    "deepseek-v3-paid": "deepseek/deepseek-chat-v3-0324",
-    "mistral-medium": "mistralai/mistral-medium-3.1",
-    "qwen-coder": "qwen/qwen3-coder",
-    "gpt-oss": "openai/gpt-oss-120b",
-    "gpt-5": "openai/gpt-5"
+    "kimi-k2": "moonshotai/kimi-k2:free"
 }
 
 
-def call_openrouter_api(prompt, model="mistral-medium", debug=False):
+def call_openrouter_api(prompt, model="gemini-flash", debug=False):
     if not OPENROUTER_API_KEY:
         print("Error: OPENROUTER_API_KEY environment variable not set.")
         return None
@@ -73,7 +65,7 @@ def call_openrouter_api(prompt, model="mistral-medium", debug=False):
 
 
 def gitmessageai(
-    push=True, only_message=False, model="mistral-medium", allow_pull_push=False, type="file"
+    push=True, only_message=False, model="gemini-flash", allow_pull_push=False, type="file"
 ):
     # Stage all changes
     subprocess.run(["git", "add", "-A"], check=True)
@@ -225,7 +217,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--model",
         type=str,
-        default="mistral-medium",
+        default="gemini-flash",
         choices=list(MODEL_MAPPING.keys()),
         help="Model to use for commit message generation via OpenRouter.",
     )
