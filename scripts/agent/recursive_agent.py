@@ -16,7 +16,7 @@ def solve_complex(problem, attempted_solutions=None, depth=0):
         f"You are a problem solver. Solve this problem or say 'WRONG' if your solution might be incorrect.\n\nProblem: {problem}\nPrevious attempts: {attempted_solutions}\nProvide a solution."
     )
     
-    print(f"Got solution: {solution[:100]}...")
+    print(f"Got solution: {solution}")
     
     if "WRONG" in solution:
         print("Solution marked as WRONG, trying again...")
@@ -45,7 +45,7 @@ def solve_complex(problem, attempted_solutions=None, depth=0):
     return solve_complex(problem, attempted_solutions + [solution], depth + 1)
 
 if __name__ == "__main__":
-    question = "What is a minimal example of dependency injection in Python?"
+    question = "If the universe is destined to end—whether by heat death, collapse, or some other fate—can humanity (or any form of intelligence we create) find a way to preserve meaning, life, or consciousness beyond the death of the cosmos?"
     answer = solve_complex(question)
     print(f"Question: {question}")
     print(f"Answer: {answer}")
