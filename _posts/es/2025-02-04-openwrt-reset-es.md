@@ -10,7 +10,7 @@ translated: true
 
 ## Restablecer mediante la Interfaz Web
 
-Se recomienda conectarse al router mediante un cable ethernet. Después de un restablecimiento, el SSID de Wi-Fi volverá a su configuración predeterminada, lo que puede no ser lo que esperas.
+Se recomienda conectarse al router mediante un cable Ethernet. Después de un restablecimiento, el SSID del Wi-Fi volverá a su configuración predeterminada, lo que puede no ser lo que esperas.
 
 ## Restablecer mediante Línea de Comandos (SSH)
 
@@ -30,5 +30,5 @@ Puedes restablecer OpenWrt a su configuración predeterminada usando la interfaz
 
 **Explicación de los comandos:**
 
-* `firstboot`: Este comando inicia el proceso de restablecimiento, borrando todas las configuraciones y paquetes instalados.
-* `reboot`: Este comando reinicia el router, aplicando el restablecimiento.
+*   `firstboot`: Este comando inicia el proceso de restablecimiento, borrando todas las configuraciones y paquetes instalados.
+*   `reboot`: Este comando reinicia el router, aplicando el restablecimiento.
