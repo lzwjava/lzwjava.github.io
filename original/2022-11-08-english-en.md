@@ -8,7 +8,32 @@ title: 'Mastering English'
 top: 10
 ---
 
-## Mastering English - 2022.11.08
+### Table of Contents
+
+1. [Mastering English](#mastering-english)
+   - My English Learning Journey and Career Success
+   - Intensive Learning Methods (16 hours daily)
+   - Tools and Techniques for Continuous Learning
+   - Becoming the Sharpest Person in the World
+   - Dedication to My Daughter
+
+2. [The Recipe to Learn English](#the-recipe-to-learn-english)
+   - Total Learning Effort Summary (7 years)
+   - Work Environment and Rapid Progress
+   - Brain Changes Through English Immersion
+   - Learning Methods That Don't Feel Like Work
+   - Finding Ways to Work Hard Without Pain
+
+3. [Improving English with Extensive Input](#improving-english-with-extensive-input)
+   - From Chinese to English Preference Shift
+   - Learning Through Enjoyable Content Methods
+   - Statistics and Time Investment Details
+   - Making Learning Like a Game
+   - Advice for Students and Self-Learners
+
+## Mastering English
+
+*2022.11.08*
 
 One year ago, regarding my English ability, my reading was good, my listening was not so good, and my writing and speaking were poor. After working in a Singaporean company, four aspects of my English level are proficiency. 
 
@@ -64,7 +89,9 @@ One generation beats one generation. Humans are wonderful.
 
 ---
 
-## The Recipe to Learn English - 2022.09.30
+## The Recipe to Learn English
+
+*2022.09.30*
 
 Recently, I shared my job change with my friends. To their surprise, the big change in me maybe my English skill improved a lot in a year.
 
@@ -108,9 +135,9 @@ And, friends, long time no see, hope you guys all doing well.
 
 ---
 
-## Improving English with Extensive Input - 2021.01.25
+## Improving English with Extensive Input
 
-*This post was originally written in Chinese. It has been translated to English to facilitate further translations into other languages.*
+*2021.01.25. This post was originally written in Chinese. It has been translated to English to facilitate further translations into other languages.*
 
 In 2014, when I encountered programming problems, I would search for English web pages on Google. However, I found it difficult to continue because I read slowly and frequently needed to refer to a dictionary. I felt lost in the clouds and decided to turn to Chinese web pages instead. At that time, I preferred reading in Chinese whenever possible. However, over the past six years, my approach has reversed, and I now only read content in Chinese when it is not available in English. I spend my leisure time in the English-speaking world, watching American TV shows without subtitles and browsing TikTok videos. Despite my efforts, my English proficiency is still not as good as my Chinese, maybe only half as good.
 
