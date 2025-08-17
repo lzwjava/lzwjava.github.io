@@ -24,7 +24,7 @@ translated: true
 
 3. [Macao-SIM-Karten](#macao-sim-karten)
    - Details zur China Telecom Easy+ SIM-Karte
-   - Blue Macau SIM-Karten-Optionen
+   - Optionen für Blue Macau SIM-Karten
    - Preise und Datentarife
    - Gerätekompatibilität
 
@@ -40,115 +40,105 @@ translated: true
 
 *29.12.2024*
 
-- Die beste Methode ist der Erwerb einer **China-Macao-SIM-Karte**, um bei Bedarf direkt mobiles Internet zu nutzen. Besuchen Sie [https://www.1888.com.mo](https://www.1888.com.mo). Eine Karte mit **10 GB mobilen Daten** kostet etwa **80 CNY** und bietet eine schnelle, unkomplizierte Nutzung.
+- Die beste Lösung ist der Kauf einer China-Macao-SIM-Karte, um bei Bedarf direkt mobiles Internet zu nutzen. Besuchen Sie [https://www.1888.com.mo](https://www.1888.com.mo). Die Kosten betragen etwa 80 CNY für 10 GB mobiles Datenvolumen und bieten ein schnelles und problemloses Erlebnis.
 
-- **China Telecom Macao-SIM-Karten** gibt es in zwei Varianten: **rot** und **blau**.
-  - **Rote Karten** bieten Tagespakete (z. B. **2, 3 oder 5 Macao-Dollar/Tag**).
-  - **Blaue Karten** bieten Datentarife wie **10 GB für 98 Macao-Dollar** oder **20 GB für 198 Macao-Dollar** ohne monatliche Grundgebühr.
+- China Telecom Macao SIM-Karten gibt es in zwei Varianten: rot und blau. Rote Karten bieten Tagespläne, die typischerweise 2, 3 oder 5 Macao-Patacas pro Tag kosten. Blaue Karten bieten Datentarife wie 10 GB für 98 Macao-Patacas oder 20 GB für 198 Macao-Patacas ohne monatliche Gebühren.
 
-- Falls Sie mehr Daten benötigen oder häufig einen Laptop nutzen, empfehle ich [zhs.cloud](https://zhs.cloud). Für **30 CNY/Monat** erhalten Sie Zugang zu etwa **15 globalen Proxy-Servern**.
+- Falls Sie mehr Datenvolumen benötigen oder häufig einen Laptop nutzen, sollten Sie [zhs.cloud](https://zhs.cloud) in Betracht ziehen. Es bietet Zugang zu etwa 15 globalen Proxy-Servern für nur 30 CNY pro Monat.
 
-- **Auf iOS**: Nutzen Sie **Shadowrocket** mit Shadowsocks-Regeln:
-  [https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever).
-  Konfigurieren Sie **globale Routing-Regeln**, um den Datenverkehr zwischen China und dem Ausland zu trennen.
+- Auf iOS verwenden Sie Shadowrocket mit Shadowsocks-Regeln: [https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever](https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever). Konfigurieren Sie die globale Weiterleitung, um den Datenverkehr aus China von dem aus dem Ausland zu trennen.
 
-- **Auf Android**: Verwenden Sie **V2Ray**.
-  - **Fire TV**: V2Ray-App.
-  - **Apple TV**: Shadowrocket-App.
-  - **Mac**: ShadowsocksX-NG oder ClashX.
+- Auf Android verwenden Sie V2Ray. Auf Fire TV nutzen Sie die V2Ray-App. Auf Apple TV verwenden Sie die Shadowrocket-App. Auf dem Mac nutzen Sie die Apps ShadowsocksX-NG oder ClashX.
 
-- **Eigenen Proxy-Server einrichten wird nicht empfohlen**. Protokolle wie **Shadowsocks, VMess oder Trojan** werden schnell blockiert – unabhängig vom Server.
+- Es wird nicht empfohlen, einen eigenen Proxy-Server einzurichten. Protokolle wie Shadowsocks, VMess oder Trojan werden leicht blockiert, unabhängig vom verwendeten Server.
 
-- **App Store auf USA-Regional umstellen**:
-  Aktivieren Sie einen **globalen Proxy (USA)**, dann erscheint die Zahlungsoption *„Keine“*, sodass Sie die Region problemlos wechseln können.
+- Um den App Store auf die USA-Region umzustellen, aktivieren Sie einen globalen Proxy (USA), und es wird die Zahlungsoption „Keine“ angezeigt, sodass Sie die Region problemlos wechseln können.
 
-- **Guthabenkarten kaufen**:
-  Nutzen Sie eine **Visa-Karte**, um Amazon-Guthaben oder Apple-Guthabenkarten über das Apple-Portal zu erwerben.
+- Verwenden Sie eine Visa-Karte, um Geschenkkarten von Amazon zu kaufen, oder nutzen Sie das Apple-Geschenkkarten-Portal, um Ihr App-Store-Konto aufzuladen.
 
 ---
 
 ## Der Weg zur Internetfreiheit
 
-*03.02.2025, letzter Update: August 2025*
+*03.02.2025, Dieser Beitrag wurde zuletzt im August 2025 aktualisiert.*
 
-### Meine Reise
+#### Der Weg
 
-- **2010–2013**: Nutzung von **Goagent** und **SwitchyOmega**, um die GFW zu umgehen.
-- **2014–2015**: Proxy mit **Qujing (曲径)**; der Autor lebt mittlerweile in Japan.
-- **Juni 2016–Juli 2018**: Eigenen **Shadowsocks-Proxy-Server** auf **Digital Ocean** gehostet.
-- **Ab 2019**: Wechsel zu [zhs.cloud](https://zhs.cloud).
-- **März 2023**: Nutzung einer **Macao-SIM-Karte** im Handy für **internet ohne Proxy/VPN** (ca. **150 CNY/Monat** für **20 GB**; etwa ein Jahr lang genutzt).
-- **2024**: Rückkehr zu **Outline Manager** mit eigenem Shadowsocks-Server; Tests mit verschiedenen Cloud-Anbietern.
-- **Februar 2025**: Aktuelle Lösung:
-  - **Outline Manager** mit **Aliyun-Hongkong-Server** für den täglichen Gebrauch.
-  - **Nicht-Hongkong-Server** (z. B. Singapur/Japan) für **KI-Tools**.
-  - Gleiche Proxy-Regeln wie in **Shadowrocket/Clash**.
-- **Ab Juni 2025**:
-  - **Python-Skript** auf dem Laptop, das alle **10 Minuten** automatisch den schnellsten Proxy-Server basierend auf Geschwindigkeitstests auswählt (Priorität: **Singapur > Hongkong** für KI-Tools).
-  - Details: [Automatisierung von Clash-Proxy-Management](/clash-en).
-  - Cloud-Anbieter bleibt [zhs.cloud](https://zhs.cloud).
-  - **Auf iOS**: Rückkehr zur **Macao-SIM-Karte** (**150 CNY/Monat** für **20 GB** + **3x 5 GB Nachkauf** à **20 MOP**, Gesamt: **~200 CNY** für **35 GB**).
+Von 2010 bis 2013 nutzte ich Goagent und das Proxy-Tool SwitchyOmega, um die GFW zu umgehen.
 
-  Die letzten **2 Monate** funktioniert dies einwandfrei. Ich hoffe, diese Methode bis zu meinem Auslandsaufenthalt nutzen zu können.
+Zwischen 2014 und 2015 verwendete ich Qujing (曲径) für Proxy-Zwecke und folgte dessen Autor auf Twitter, der heute in Japan lebt.
 
-### Unterschiede im Vergleich zur Kurzsichtigkeits-Behandlung
+Von Juni 2016 bis Juli 2018 nutzte ich Digital Ocean, um meinen Shadowsocks-Proxy-Server zu hosten.
 
-- **GFW** ist **menschengemacht** – **Proxy-Lösungen** lassen sich leicht messen.
-- **Kurzsichtigkeit** erfordert **Zeit**, um Veränderungen der Augapfelform zu erkennen.
+Ab 2019 begann ich, [zhs.cloud](https://zhs.cloud) zu verwenden.
 
-### Gemeinsamkeiten
+Im März 2023 begann ich, eine Macao-SIM-Karte in meinem Handy für den Internetzugang ohne Proxy oder VPN zu nutzen. Dies kostete etwa 150 CNY pro Monat für 20 GB mobiles Datenvolumen, und ich nutzte diese Methode etwa ein Jahr lang.
 
-- Beide Lösungen (**Proxy & Brille mit -200 Dioptrien**) funktionieren oft gut.
-- **Internetzugang** vs. **Sehverbesserung** – beides löst **grundlegende Probleme**.
-- **Prinzip**: Versteht man die **Funktionsweise der GFW**, findet man leicht eine Umgehung.
+2024 begann ich erneut, Outline Manager mit meinem Shadowsocks-Proxy-Server zu verwenden und experimentierte mit verschiedenen Cloud-Anbietern.
 
-### Reflexionen und Nuancen
+Im Februar 2025 besteht meine bevorzugte Einrichtung aus Outline Manager mit einem Aliyun-Hongkong-Server für den täglichen Gebrauch und einem Nicht-Hongkong-Server (z. B. Singapur oder Japan) für KI-Tools. Ich behalte dieselbe Proxy-Regelkonfiguration bei, die in Shadowrocket oder Clash verwendet wird.
 
-- Ich verstehe die **GFW nicht vollständig**. Wenn mein Proxy-Server blockiert wird, habe ich nun mehr Möglichkeiten, die Ursache zu analysieren:
-  - **Mobiles Netz oder Festnetz?** → **4G oder 5G?**
-  - Bei **Kurzsichtigkeit**: Nach **6–12 Monaten** prüfen, ob sich Unterschiede zwischen den Augen zeigen oder ob ich die meiste Zeit nur „gerade so scharf“ sehe, ohne die Augen zu überanstrengen.
+Ab Juni 2025 nutze ich ein Python-Skript auf meinem Laptop, das alle 10 Minuten automatisch einen Proxy-Server basierend auf Geschwindigkeitstestergebnissen auswählt. Das Skript priorisiert Singapur-Server gegenüber Hongkong-Servern für die Nutzung von KI-Tools. Weitere Details finden Sie unter [Automatisierung der Clash-Proxy-Verwaltung](/clash-en). Als VPN-Cloud-Anbieter nutze ich weiterhin [zhs.cloud](https://zhs.cloud).
 
-### Aktueller Status
+Zusätzlich wechselte ich auf iOS zurück zur Nutzung einer Macao-SIM-Karte, die 150 CNY pro Monat für 20 GB Datenvolumen kostet. Ich kauft zusätzlich dreimal 5 GB Datenvolumen für jeweils 20 MOP, was insgesamt etwa 200 CNY für 35 GB Daten auf meinem Handy ergibt.
 
-- Mein Proxy-Server läuft **einwandfrei**:
-  - **Handy**: **80 Mbit/s Download**, **50 Mbit/s Upload** (Hongkong-Server).
-  - **Laptop**: Gleiche Leistung.
-- **Konfiguration**: Gleiche Proxy-Einstellungen auf allen Geräten.
-  - **Standard**: Proxy für **ausländische Websites**.
-  - **KI-Tools**: **Nicht-Hongkong-Server** (z. B. Singapur).
+Diese Methode funktioniert seit den letzten 2 Monaten hervorragend. Ich hoffe, dass ich diese Methode weiterhin nutzen kann, um das Internet zu nutzen, bis ich China verlasse, um im Ausland zu arbeiten.
 
-### Wiederherstellung
+#### Der Unterschied im Vergleich zur Korrektur von Kurzsichtigkeit
 
-Falls etwas nicht funktioniert:
-1. **Elastische IP** des **Aliyun-Hongkong-Servers** ändern.
-2. Neue Proxy-URL in die **Cloud speichern**.
-3. **Zwei Skripte ausführen** (~1 Minute) → Laptop/Handy aktualisieren die Serveradresse automatisch.
+Eine Herausforderung besteht darin, gegen die GFW zu kämpfen, die vom Menschen gemacht ist. Die andere besteht darin, die Prinzipien der Augenmuskelfunktion zu adressieren.
 
-### Bedauern
+Die Wirksamkeit einer Proxy-Lösung lässt sich leicht messen. Die Korrektur von Kurzsichtigkeit erfordert jedoch Zeit, um festzustellen, ob sich der Augapfel verändert.
 
-- Ich habe **zu viel Zeit** mit dem **Kampf gegen die GFW** verschwendet und viele Protokolle ausprobiert, obwohl ich wusste, dass sie erkannt und blockiert werden.
-- **Ohne zuverlässigen Proxy-Server** ist die Einrichtung auf einem **OpenWrt-Router** schwierig.
-- **Was ich bereue**:
-  - **Techniken von Anbietern wie [zhs.cloud](https://zhs.cloud)** nicht früher gelernt zu haben – jetzt kenne ich die meisten ihrer Geheimnisse.
-  - **Oberflächliche Analyse**: Bei Blockaden dachte ich nur: *„Neuen Server aufsetzen = neue IP“*, ohne tiefer nach Ursachen zu forschen.
+#### Gemeinsamkeiten mit der Korrektur von Kurzsichtigkeit
 
-### Metriken
+Eine Gemeinsamkeit besteht darin, dass sowohl eine Proxy-Lösung als auch eine Brille mit einer Reduktion von 200 Dioptrien oft gut funktionieren. Eine betrifft den Internetzugang, die andere die Verbesserung der Sehkraft. Beide lösen sehr wichtige Probleme.
 
-- **Speedtest hätte ich früher nutzen sollen** – ich kannte das Tool lange, aber nicht seine volle Anwendung.
-- **Regelmäßige Tests** helfen:
-  - **5G**: Oft **>100 Mbit/s**.
-  - **Festnetz**: Selten **>100 Mbit/s**.
-- **Kurzsichtigkeit**:
-  - Ich besorgte mir eine **C-förmige Sehtafel** und eine **Standard-Sehtesttafel**.
-  - **Ohne Messung keine Verbesserung** – regelmäßige Tests zeigen Fortschritte.
+Das zugrundeliegende Prinzip ist, dass wir, wenn wir verstehen, wie die GFW funktioniert und einen Weg finden, sie zu umgehen, die Lösung einfach sein sollte.
 
-### Es ist noch früh
+#### Überlegungen und Nuancen
 
-- **Wird die GFW in den nächsten Jahren fallen?** Ungewiss.
-- Als ich nach **2 Jahren Kurzsichtigkeits-Behandlung** einem Freund sagte, meine Methode müsse verbessert werden (Brille mit **-200 statt -150 Dioptrien**), antwortete er:
-  *„Kein Problem, es ist nicht verschwendete Zeit – es ist noch früh.“*
-  - **Grundlegende Dinge** wie Kurzsichtigkeit sollten **früher entdeckt** werden.
-  - **Todd Becker** teilte seine Erkenntnisse **2014 auf YouTube** (über 1 Mio. Aufrufe) – doch **2025** wissen **weniger als 10.000 Menschen** weltweit davon. Wie viele werden es in 10 Jahren sein?
+Ich verstehe immer noch nicht vollständig, wie die GFW funktioniert. Wenn die IP meines Proxy-Servers blockiert wird, habe ich jetzt mehr Möglichkeiten, die Ursache zu untersuchen.
+
+Ich kann überprüfen, ob die Blockade im Mobilfunknetz oder im heimischen Breitbandnetz auftritt. Falls es das Mobilfunknetz betrifft, kann ich prüfen, ob es sich um 4G oder 5G handelt.
+
+Ähnlich verhält es sich mit meiner Kurzsichtigkeit: Wenn sich nach sechs Monaten oder einem Jahr keine Verbesserung zeigt, muss ich untersuchen, ob es Unterschiede zwischen meinen Augen gibt. Ich muss auch bedenken, ob ich die meiste Zeit über Dinge nur gerade so klar gesehen habe, ohne meine Augen zu überanstrengen.
+
+#### Aktueller Stand
+
+Mein Proxy-Server funktioniert derzeit sehr gut. Die Download-Geschwindigkeit auf meinem Handy erreicht 80 Mbit/s, und die Upload-Geschwindigkeit liegt bei 50 Mbit/s, wenn ich mit dem Hongkong-Proxy-Server verbunden bin. Das Gleiche gilt für meinen Laptop.
+
+Ich verwende dieselben Proxy-Konfigurationen auf meinem Laptop und meinen Handys, und sie funktionieren einwandfrei. Normalerweise nutze ich einen Proxy-Server, um Websites außerhalb Chinas zu besuchen, und einen Nicht-HK-Server für KI-Tools.
+
+#### Wiederherstellung
+
+Falls etwas nicht funktioniert, ist meine Wiederherstellungsmethode einfach. Ich muss nur die elastische IP meines Aliyun-Hongkong-Proxy-Servers ändern und die neue Proxy-URL in der Cloud speichern. Das bedeutet, ich muss zwei Skripte ausführen, was etwa 1 Minute dauert, und mein Laptop und meine Handys können die Proxy-Server-Adresse aktualisieren.
+
+#### Bedauern
+
+Ich habe zu oft und zu lange gegen die GFW gekämpft. Ich habe viele Proxy-Protokolle ausprobiert, obwohl ich wusste, dass sie von der GFW erkannt und blockiert werden würden. Ohne einen zuverlässigen Proxy-Server ist es schwierig, einen Proxy auf einem OpenWrt-Router einzurichten.
+
+Eine Sache, die ich bereue, ist, dass ich die Techniken von Proxy-Anbietern wie [zhs.cloud](https://zhs.cloud) nicht früher gelernt habe. Jetzt kenne ich die meisten ihrer Geheimnisse.
+
+Das andere ist, dass ich, wenn mein Proxy-Server blockiert wurde, nicht tief genug nachdachte. Es schien, als bräuchte man nur einen neuen Proxy-Server mit einer neuen IP-Adresse, die noch nicht blockiert war. Doch das war oberflächliches Denken.
+
+#### Metriken
+
+Ich bereue, Speedtest nicht früher genutzt zu haben. Ich kannte den Namen des Tools schon lange, aber ich habe nicht gelernt, es sorgfältig zu verwenden.
+
+Es ist gut, Speedtest häufig zu nutzen, wenn man mit 5G- oder 4G-Mobilfunkstationen oder einem heimischen Breitbandnetz verbunden ist.
+
+Bei der Korrektur von Kurzsichtigkeit ist es ähnlich. Ich habe eine C-förmige Sehprobentafel und eine Standard-Sehprobentafel gekauft.
+
+Keine Messung, keine Verbesserung. Das Messen von Dingen hilft beim Lernen. Die häufige Nutzung von Speedtest zeigt mir, dass es im 5G-Netz leicht ist, 100 Mbit/s zu überschreiten, während es im heimischen Breitbandnetz schwer ist, 100 Mbit/s zu erreichen.
+
+#### Es ist noch früh
+
+Wird die GFW in den nächsten Jahren fallen? Das ist schwer zu sagen.
+
+Als ich nach zwei Jahren der Korrektur meiner Kurzsichtigkeit einem Freund sagte, dass meine Methode verbessert werden müsse und ich eine Brille mit 200 Dioptrien weniger als meine tatsächliche Sehstärke tragen sollte, statt 150 Dioptrien weniger,
+
+sagte er, das sei kein Problem, es sei in Ordnung, keine Zeitverschwendung, und es sei noch früh. Ja. Diese Dinge sind grundlegend. Wie bei der Kurzsichtigkeit sollten die Menschen sie früher entdecken. Todd Becker teilte diese Entdeckung 2014 auf YouTube, und die Videos erreichten über eine Million Aufrufe. Und jetzt ist es 2025 – wie viele Menschen wissen wirklich davon auf der Welt? Ich schätze, es sind weniger als 10.000.
 
 ---
 
@@ -156,48 +146,45 @@ Falls etwas nicht funktioniert:
 
 *20.04.2023*
 
-### Meine Erfahrungen mit Macao-SIM-Karten
+#### Meine Erfahrungen mit Macao-SIM-Karten
 
-Bei einem Wochenendbesuch in Macao **2023** kaufte ich eine **China Telecom Easy+ SIM-Karte**. Zurück in **Guangzhou** funktionierte sie **einwandfrei** – ich konnte **Englisch lernen** und **ausländische Apps herunterladen**, als wäre ich noch in Macao. **Absolut empfehlenswert!**
-Später testete ich die **Blue Macau SIM-Karte**, die ebenfalls gut war. Hier ein kurzer Überblick:
+Während meines Wochenendbesuchs in Macao im Jahr 2023 kauft ich eine China Telecom Easy+ SIM-Karte für Macao. Nach meiner Ankunft in Guangzhou stellte ich fest, dass sie immer noch perfekt funktionierte und mir half, Englisch zu lernen und viele ausländische Apps herunterzuladen. Es fühlte sich an, als wäre ich noch in Macao. Ich empfehle sie sehr. Später probierte ich die Blue Macau SIM-Karte aus, die ebenfalls gut war. Hier ein kurzer Überblick über beide:
 
-#### **China Telecom Easy+ SIM-Karte**
+#### China Telecom Easy+ SIM-Karte
 
-**Einfach zu nutzen – jederzeit!**
+Einfach zu jeder Zeit nutzbar!
 
 ### Wichtige Punkte
-- **Keine Kaution**; automatische Aktivierung für **Festlandchina, Macao und Hongkong**.
-- **Kein Vertrag, keine Kündigungsgebühr**; sofort einsatzbereit nach Kauf.
-- **Macao-Nummer inklusive**; optionale **Festlandchina-Nummer** für Dual-Number-Nutzung.
-- **Online oder per Wertkarte aufladbar**.
+- Keine Kaution; automatische Aktivierung für Festlandchina, Macao und Hongkong.
+- Kein Vertrag oder Kündigungsgebühr; sofort einsatzbereit nach dem Kauf.
+- Enthält eine Macao-Nummer; optionale Festlandchina-Nummer für Dual-Nummer-Nutzung.
+- Aufladung online oder mit Wertkarten möglich.
 
 ### Tagesgebühren-Optionen
-- **2 MOP/Tag**: **4 GB Hochgeschwindigkeitsdaten**, dann unbegrenztes Datenvolumen mit reduzierter Geschwindigkeit; **5.000 Minuten** lokale Gespräche.
-- **3 MOP/Tag**: **10 GB Hochgeschwindigkeitsdaten**, dann unbegrenzt reduziert; **5.000 Minuten** lokale Gespräche.
-- **5 MOP/Tag**: **20 GB Hochgeschwindigkeitsdaten**, dann unbegrenzt reduziert; **5.000 Minuten** lokale Gespräche.
+- 2 MOP/Tag: 4 GB Hochgeschwindigkeitsdaten, danach unbegrenzt mit reduzierter Geschwindigkeit; 5.000 Minuten lokale Anrufe.
+- 3 MOP/Tag: 10 GB Hochgeschwindigkeitsdaten, danach unbegrenzt mit reduzierter Geschwindigkeit; 5.000 Minuten lokale Anrufe.
+- 5 MOP/Tag: 20 GB Hochgeschwindigkeitsdaten, danach unbegrenzt mit reduzierter Geschwindigkeit; 5.000 Minuten lokale Anrufe.
 
-### Extras
-- **Datenverbrauch in Hongkong**: **0,1 MOP/MB**.
-- **Tarifwechsel jederzeit per SMS möglich**.
+### Zusätzliche Optionen
+- Datennutzung in Hongkong: 0,1 MOP/MB.
+- Tarifwechsel jederzeit per SMS möglich.
 
-#### **Blue Macau SIM-Karte**
+#### Blue Macau SIM-Karte
 
 ### Wichtige Punkte
-- **Keine monatliche Grundgebühr**; Nutzung nach Verbrauch.
-- **Lokale Gespräche**: **0,39 MOP/Minute**; **Internet**: **0,1 MOP/MB**; **SMS**: **1 MOP/Nachricht**.
-- **Optionale Datenpakete ohne Ablauf**:
-  - **10 GB für 98 MOP**
-  - **20 GB für 188 MOP**
-  - **40 GB für 288 MOP**
-- **Alle 180 Tage aufladen**, um aktiv zu bleiben.
+- Keine monatliche Grundgebühr; Nutzung nach Verbrauch.
+- Lokale Anrufe: 0,39 MOP/Minute; Internet: 0,1 MOP/MB; SMS: 1 MOP/Nachricht.
+- Optionale Datenpakete ohne Ablaufdatum: 10 GB für 98 MOP, 20 GB für 188 MOP, 40 GB für 288 MOP.
+- Aufladung alle 180 Tage erforderlich, um aktiv zu bleiben.
 
-#### **Kompatible Geräte**
-- Erfordert ein **4G-fähiges Gerät** oder ein **China-Telecom-kompatibles Handy**.
+#### Kompatible Geräte
+- Erfordert ein 4G-Vollnetz- oder China-Telecom-kompatibles Telefon.
 
-Weitere Infos: [China Telecom Macau](https://www.1888.com.mo/).
+Weitere Informationen finden Sie unter [China Telecom Macau](https://www.1888.com.mo/).
 
 ---
-Auf **Taobao** finden Sie diese Karten auch:
+
+Diese Karten finden Sie auch auf Taobao:
 
 <div align="center"><img src="/assets/images/macao/easy.jpg" width="300px" /><img/></div>
 
@@ -207,55 +194,58 @@ Auf **Taobao** finden Sie diese Karten auch:
 
 *03.01.2025*
 
-**Zhiwei:**
-Ich war mit einem Freund grillieren und nutzte **Shadowsocks mit einem Singapur-Server**, um die GFW zu umgehen. **Auf 5G draußen** konnte ich mich **nicht verbinden** – YouTube ließ sich nicht aufrufen (Timeout). **Zu Hause mit 4G oder China-Telecom-Festnetz** funktioniert Shadowsocks jedoch problemlos. Warum?
+Zhiwei:
 
-**Mistral:**
-Das klingt nach **netzwerkspezifischen Verbindungsproblemen** mit Shadowsocks auf **5G im Freien**, nicht aber auf **4G oder im heimischen Netzwerk**. Mögliche Gründe:
+Ich war mit einem Freund grillieren und nutzte Shadowsocks mit einem Server in Singapur als Proxy, um die Great Firewall (GFW) zu umgehen. Während ich draußen 5G nutzte, konnte ich keine Verbindung herstellen, und der Test zeitete aus, als ich versuchte, auf YouTube zuzugreifen. Zu Hause funktioniert Shadowsocks jedoch einwandfrei, wenn ich 4G oder mein China-Telecom-Heimnetzwerk nutze. Warum ist das so?
 
-1. **Unterschiede in der Netzwerkkonfiguration**:
-   - **5G-Netzwerk**: Strengere **Firewall-Regeln** oder **andere Routing-Pfade** als 4G. Manche Anbieter blockieren oder drosseln **VPN/Proxy-Verkehr** auf 5G.
-   - **4G-Netzwerk**: Lockerere Einstellungen oder bessere Kompatibilität mit Shadowsocks.
+Mistral:
 
-2. **Einschränkungen des Internetdienstanbieters (ISP)**:
-   - **Mobilfunkanbieter-Politik**: Unterschiedliche Regeln für **VPN-Nutzung**. Ihr 5G-Anbieter könnte **Shadowsocks aktiv blockieren**.
-   - **Heimnetzwerk (China Telecom)**: Weniger Restriktionen → Shadowsocks läuft ohne Probleme.
+Es scheint, als hätten Sie Verbindungsprobleme mit Ihrem Shadowsocks-Proxy, wenn Sie draußen 5G nutzen, aber nicht bei 4G oder Ihrem Heimnetzwerk. Dafür könnte es mehrere Gründe geben:
 
-3. **Signalstärke und Stabilität**:
-   - **5G-Signal**: In Außenbereichen oft **instabil** – schwache Verbindung → Zeitüberschreitungen.
-   - **4G-Signal**: **Stabiler** und konsistenter → bessere Proxy-Leistung.
+1. Unterschiede in der Netzwerkkonfiguration:
+   - **5G-Netzwerk**: Das 5G-Netzwerk könnte andere Konfigurationen oder Einschränkungen als 4G aufweisen. Einige Anbieter könnten strengere Firewall-Regeln oder andere Netzwerkrouten für 5G haben, die die Leistung Ihres Shadowsocks-Proxy beeinträchtigen.
+   - **4G-Netzwerk**: Das 4G-Netzwerk könnte entspanntere Einstellungen oder bessere Routen aufweisen, die es Ihrem Shadowsocks-Proxy ermöglichen, korrekt zu funktionieren.
 
-4. **Standort des Proxy-Servers**:
-   - **Singapur-Server**: **Latenz und Routing** könnten auf 5G schlechter sein als auf 4G oder im Festnetz.
+2. Einschränkungen des Internetdienstanbieters (ISP):
+   - **Richtlinien der Anbieter**: Verschiedene Anbieter könnten unterschiedliche Richtlinien bezüglich der Nutzung von VPNs oder Proxys haben. Ihr 5G-Anbieter könnte strengere Richtlinien haben, die VPN-Datenverkehr, einschließlich Shadowsocks, blockieren oder drosseln.
+   - **Heimnetzwerk**: Ihr Heimnetzwerk, das von China Telecom bereitgestellt wird, könnte weniger Einschränkungen aufweisen, sodass Shadowsocks ohne Probleme funktioniert.
 
-5. **Geräteeinstellungen**:
-   - **Konfiguration prüfen**: Stellen Sie sicher, dass Shadowsocks für **alle Netzwerke** (5G/4G/WLAN) korrekt eingerichtet ist.
-   - **App-Berechtigungen**: Shadowsocks benötigt **Volle Netzwerkzugriffsrechte**.
+3. Signalstärke und -stabilität:
+   - **5G-Signal**: Die Stabilität und Stärke des 5G-Signals kann variieren, insbesondere in Außenbereichen. Schwache oder instabile Signale können Verbindungsprobleme verursachen, einschließlich Zeitüberschreitungen.
+   - **4G-Signal**: Das 4G-Signal könnte stabiler und konsistenter sein und eine bessere Verbindung für Ihren Shadowsocks-Proxy bieten.
 
-### **Fehlerbehebung:**
+4. Standort des Proxy-Servers:
+   - **Singapur-Server**: Der Standort Ihres Shadowsocks-Servers in Singapur könnte Latenz und Konnektivität beeinflussen. Das 5G-Netzwerk könnte eine höhere Latenz oder weniger optimale Routen zum Singapur-Server aufweisen als das 4G-Netzwerk oder Ihr Heimnetzwerk.
 
-1. **Netzwerkeinstellungen prüfen**:
-   - Shadowsocks-Konfiguration für **5G und 4G** überprüfen.
-   - Gibt es **spezifische Blockaden** im 5G-Netz?
+5. Geräteeinstellungen:
+   - **Konfiguration**: Stellen Sie sicher, dass die Einstellungen Ihres Geräts für die Nutzung von Shadowsocks korrekt konfiguriert sind. Manchmal kann das Wechseln zwischen Netzwerken (von 5G zu 4G oder Heim-WLAN) dazu führen, dass Einstellungen zurückgesetzt oder geändert werden.
+   - **App-Berechtigungen**: Stellen Sie sicher, dass die Shadowsocks-App die notwendigen Berechtigungen hat, um in verschiedenen Netzwerken zu arbeiten.
 
-2. **Andere Server testen**:
-   - Verbindung zu **alternativen Shadowsocks-Servern** herstellen (z. B. Hongkong/Japan).
-   - **Latenz und Stabilität** der Server vergleichen.
+### Schritte zur Fehlerbehebung:
 
-3. **Mobilfunkanbieter kontaktieren**:
-   - Nachfragen, ob **5G-Netzwerk VPN/Proxy-Verkehr einschränkt**.
+1. **Netzwerkeinstellungen überprüfen**:
+   - Stellen Sie sicher, dass Ihre Shadowsocks-Einstellungen sowohl für 5G- als auch für 4G-Netzwerke korrekt konfiguriert sind.
+   - Überprüfen Sie, ob es spezifische Einschränkungen oder Einstellungen in Ihrem 5G-Netzwerk gibt, die den Proxy blockieren könnten.
+
+2. **Verschiedene Server testen**:
+   - Versuchen Sie, eine Verbindung zu verschiedenen Shadowsocks-Servern herzustellen, um zu prüfen, ob das Problem spezifisch für den Singapur-Server ist.
+   - Überprüfen Sie die Latenz und Stabilität der Verbindung zum Server.
+
+3. **Kontaktieren Sie Ihren Anbieter**:
+   - Falls das Problem weiterhin besteht, wenden Sie sich an Ihren 5G-Anbieter, um nach Einschränkungen oder Einstellungen zu fragen, die Ihre Shadowsocks-Verbindung beeinträchtigen könnten.
 
 4. **Software aktualisieren**:
-   - **Shadowsocks-App und Gerätesoftware** auf dem neuesten Stand halten.
+   - Stellen Sie sicher, dass Ihre Shadowsocks-App und die Gerätesoftware auf dem neuesten Stand sind. Manchmal können Updates Verbindungsprobleme beheben.
 
-5. **Alternative Proxys/VPNs ausprobieren**:
-   - Manche Dienste (z. B. **V2Ray, Trojan**) könnten **bessere 5G-Kompatibilität** bieten.
+5. **Alternative Proxys nutzen**:
+   - Erwägen Sie die Verwendung alternativer Proxy-Dienste oder VPNs, die möglicherweise eine bessere Kompatibilität mit Ihrem 5G-Netzwerk aufweisen.
+
+Durch systematisches Überprüfen dieser Faktoren sollten Sie die Ursache des Verbindungsproblems identifizieren und eine passende Lösung finden können.
 
 ---
-**Aktualisierung:**
 
-Tatsächlich nutze ich zu Hause **China Mobile** (IP-Bereich: **120.235.8.xx**).
-**Interessanterweise**:
-- Proxy funktioniert **normal auf mobilen Daten und China-Telecom-Netzen**, scheitert aber **gelegentlich auf meinem heimischen WLAN**.
+**Aktualisierung**:
 
-**Systematische Überprüfung** dieser Faktoren sollte die Ursache eingrenzen.
+Tatsächlich nutze ich zu Hause WLAN von China Mobile Communications Corporation, und die IP-Adresse sieht aus wie 120.235.8.xx.
+
+Interessanterweise habe ich inkonsistente Verbindungsmuster beobachtet – während mein Proxy-Server auf mobilen Daten und China-Telecom-Netzwerken normal funktioniert, scheitert die Verbindung gelegentlich, wenn ich mein Heim-WLAN-Netzwerk nutze.
