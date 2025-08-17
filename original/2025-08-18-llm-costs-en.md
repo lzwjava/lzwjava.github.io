@@ -30,7 +30,7 @@ While optimizing token usage, it's advisable to start with more cost-effective m
 
 In my recent experience, I incurred significant costs due to neglecting this principle. I was trying to reach my maximum usage to determine the cost, which isn't a rational approach; it's a simple calculation. For instance, do I truly need Sonnet 4? Not necessarily. Although I perceive it as a more advanced model from Anthropic and it ranks highly on OpenRouter, I'm unclear about the differences between Sonnet 4 and Sonnet 3.5.
 
-I learned something valuable from a recent [interview](https://www.vanta.com/resources/replit-future-of-code) with Replit founder, Amjad Masad: for many tasks, highly advanced models aren't necessary. Ideally, if we can avoid using the LLM API altogether, that's perfect. Certain NLP libraries are effective for simpler tasks; for example, [HanLP](https://github.com/hankcs/HanLP) excels at handling Chinese language tasks.
+I learned something valuable from a recent [interview](https://www.vanta.com/resources/replit-future-of-code) with Replit founder, Amjad Masad. And for many tasks, highly advanced models aren't necessary. Ideally, if we can avoid using the LLM API altogether, that's perfect. Certain NLP libraries are effective for simpler tasks; for example, [HanLP](https://github.com/hankcs/HanLP) excels at handling Chinese language tasks.
 
 Furthermore, we can develop custom or specialized agents to handle tasks efficiently from the outset. Claude Code might not always be the best or most cost-effective solution for every task. 
 
