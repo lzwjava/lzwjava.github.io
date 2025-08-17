@@ -7,6 +7,8 @@ layout: post
 title: Lightning to Ethernet Adapter
 ---
 
+## Lightning to Ethernet Adapter
+
 I recently tried a new product that I had never used before. It cost me about 44 CNY on JD.com. Similar products cost around 15 USD on Walmart.com.
 
 It works perfectly, and no extra settings are needed. An "Ethernet" menu item appears after plugging in the adapter.
@@ -49,7 +51,7 @@ The interesting thing is that if you connect both Wi-Fi and Ethernet, there is n
 
 ## Wi-Fi Signal Strength
 
-## system_profiler
+### system_profiler
 
 To check your Wi-Fi signal strength, use the command below. The output will include a line similar to this: `Signal / Noise: -47 dBm / -90 dBm`.
 
@@ -91,7 +93,7 @@ IO80211_driverkit-1345.8 "IO80211_driverkit-1345.8" Nov  9 2024 17:02:32
               MCS Index: 9
 ```              
 
-## Signal/Noise
+### Signal/Noise
 
 Signal-to-Noise Ratio (SNR) helps determine signal quality. Higher SNR is better.
 
@@ -115,13 +117,13 @@ Pair 1 (50 dB) is better due to higher SNR and stronger signal.
 
 ## Mesh Router
 
-## TP-Link AX3000 - TL-XDR 3050
+### TP-Link AX3000 - TL-XDR 3050
 
 I started using a mesh router in 2023. I purchased a TP-Link AX3000 system consisting of two mesh routers: a primary unit and a satellite unit. It cost me around 484 CNY at that time, but now it only costs 395 CNY on JD.com.
 
 I initially used this system in my large house but later moved it to my parents' house.
 
-## ZTE AC1200
+### ZTE AC1200
 
 During some days of the 2025 Spring Festival, my family stayed in my large house and experienced poor WiFi network quality again. To address this, I purchased another mesh router, the ZTE AC1200, which costs around 108 CNY.
 
@@ -143,7 +145,7 @@ After using it for several days, I find that it is a little poor. The speed or s
 ![](assets/images/cable-tester/netgear.jpg){: .responsive }
 *Source: Walmart.com*{: .caption }
 
-## 12V Power for Routers
+### 12V Power for Routers
 
 A USB voltage step-up cable can be used to power routers using a power bank.
 
@@ -153,7 +155,7 @@ However, in some cases, the step-up cable from a power bank may not be able to s
 ![](assets/images/cable-tester/12v.jpg){: .responsive }
 *Source: JD.com*{: .caption }
 
-## Two Ways to Help a Sub-Router Find the Main Router
+### Two Ways to Help a Sub-Router Find the Main Router
 
 Sometimes, a sub-router cannot easily find the main router when the signal is weak.
 
