@@ -1,11 +1,10 @@
 ---
-title: "Scaling a Team the Right Way"
+title: "How to Build and Scale a High-Performance Team"
 audio: false
 generated: false
 image: false
 lang: en
 layout: post
-title: How to Scale a Team
 translated: false
 ---
 

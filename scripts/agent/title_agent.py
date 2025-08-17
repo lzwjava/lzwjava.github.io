@@ -36,7 +36,8 @@ def process_file(file_path, output_only=False):
     print(f"Processing file: {file_path}")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
+            post = frontmatter.load(f)
+            content = post.content
 
         title = generate_title_with_ai(content)
 
@@ -50,65 +51,24 @@ def process_file(file_path, output_only=False):
             print(title)
             print()
             
-            # Update title in frontmatter
-            lines = content.split('\n')
-            in_frontmatter = False
-            frontmatter_start_idx = -1
-            frontmatter_end_idx = -1
+            # Update title in frontmatter using frontmatter library
+            # Clean the title by removing markdown formatting and extra text
+            clean_title = title.strip()
+            # Remove common markdown formatting
+            clean_title = re.sub(r'^[*#]+|[*#]+$', '', clean_title).strip()
+            # Remove quotes
+            clean_title = clean_title.strip('"\'')
             
-            # Find frontmatter boundaries
-            for i, line in enumerate(lines):
-                if line.strip() == '---':
-                    if frontmatter_start_idx == -1:
-                        frontmatter_start_idx = i
-                        in_frontmatter = True
-                    elif in_frontmatter:
-                        frontmatter_end_idx = i
-                        break
+            # Remove any existing title metadata and set the new one
+            post.metadata.pop('title', None)  # Remove existing title if it exists
+            post.metadata['title'] = clean_title
             
-            if frontmatter_start_idx != -1 and frontmatter_end_idx != -1:
-                # Extract frontmatter
-                frontmatter_lines = lines[frontmatter_start_idx+1:frontmatter_end_idx]
-                frontmatter_content = '\n'.join(frontmatter_lines)
-                
-                # Replace or add title in frontmatter
-                # Clean the title by removing markdown formatting and extra text
-                clean_title = title.strip()
-                # Remove common markdown formatting
-                clean_title = re.sub(r'^[*#]+|[*#]+$', '', clean_title).strip()
-                # Remove quotes
-                clean_title = clean_title.strip('"\'')
-                title_pattern = r'^title:\s*".*?"$'
-                
-                # Split frontmatter into lines for processing
-                frontmatter_lines = frontmatter_content.split('\n')
-                title_found = False
-                
-                # Process each line to replace or add title
-                updated_lines = []
-                for line in frontmatter_lines:
-                    if re.match(title_pattern, line):
-                        updated_lines.append(f'title: "{clean_title}"')
-                        title_found = True
-                    else:
-                        updated_lines.append(line)
-                
-                # If title was not found, add it at the beginning
-                if not title_found:
-                    updated_lines.insert(0, f'title: "{clean_title}"')
-                
-                updated_frontmatter = '\n'.join(updated_lines)
-                
-                # Reconstruct content with updated frontmatter
-                before_frontmatter = '\n'.join(lines[:frontmatter_start_idx+1])  # Include opening ---
-                after_frontmatter = '\n'.join(lines[frontmatter_end_idx:])  # Include closing ---
-                updated_content = f"{before_frontmatter}\n{updated_frontmatter}\n{after_frontmatter}"
-                
-                # Write updated content back to file
-                with open(file_path, "w", encoding="utf-8") as f:
-                    f.write(updated_content)
-            else:
-                print("Error: Could not find frontmatter boundaries", file=sys.stderr)
+            # Serialize the post back to string format
+            updated_content = frontmatter.dumps(post)
+            
+            # Write updated content back to file
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(updated_content)
 
         return title
 
