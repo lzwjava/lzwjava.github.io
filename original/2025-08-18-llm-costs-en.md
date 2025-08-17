@@ -34,6 +34,8 @@ I learned something valuable from a recent [interview](https://www.vanta.com/res
 
 Furthermore, we can develop custom or specialized agents to handle tasks efficiently from the outset. Claude Code might not always be the best or most cost-effective solution for every task. 
 
+One way to discern the differences between models is to use them extensively and compare their performance. After some time using Gemini 2.5 Flash, I find it to be less capable than Sonnet 4.
+
 ```json
 {
   "Router": {
