@@ -94,9 +94,9 @@ if __name__ == "__main__":
     """Main entry point to handle command-line arguments."""
     parser = argparse.ArgumentParser(description="Delete Markdown files and associated assets")
     parser.add_argument("name_or_path", help="Name or path of the file to delete")
-    parser.add_argument("--include-original", action="store_true", 
+    parser.add_argument("--original", action="store_true", 
                        help="Also delete the original file (without language suffix)")
     
     args = parser.parse_args()
     
-    delete_md(args.name_or_path, args.include_original)
+    delete_md(args.name_or_path, args.original)
