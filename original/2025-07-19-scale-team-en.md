@@ -8,6 +8,23 @@ title: How to Scale a Team
 translated: false
 ---
 
+### Table of Contents
+
+1. [How to Scale a Team](#how-to-scale-a-team)
+   - Secure long-term financial sustainability first
+   - Hire only top-tier talent rigorously
+   - Terminate poor fits swiftly
+   - Compensate above market standards
+   - Simplify structure to avoid bureaucracy
+
+2. [Evaluating Interview Candidates](#evaluating-interview-candidates)
+   - Test English and technical proficiency
+   - Review standardized test performance
+   - Assess long-term trustworthiness evidence
+   - Gauge curiosity and problem-solving drive
+   - Probe for unique, contrarian insights
+
+
 ## How to Scale a Team
 
 - Think about it for the long term. Do you have enough budget? How long can your team survive? What if there is no gain after scaling the team?

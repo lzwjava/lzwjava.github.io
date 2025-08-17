@@ -1,7 +1,11 @@
 import re
 import sys
+import os
 import argparse
 from pathlib import Path
+
+# Add parent directories to path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.llm.openrouter_client import call_openrouter_api
 
 #!/usr/bin/env python3
@@ -14,22 +18,40 @@ Generates TOC from markdown headers in Jekyll post files using AI.
 def generate_toc_with_ai(content):
     """Generate table of contents using AI."""
     print("Generating TOC with AI...")
-    prompt = f"""Please generate a table of contents for the following markdown content. 
-Follow these rules:
-1. Only include headers from level 2 (##) to level 6 (######)
-2. Create Jekyll-compatible anchor links (lowercase, hyphens for spaces, no special chars)
-3. Use proper indentation (4 spaces per level)
-4. Start with "### Table of Contents" as the title
-5. Format as: `- [Header Title](#anchor-link)`
+    prompt = f"""Generate a concise table of contents for this markdown following STRICT rules:
+
+1. List main headers (##) as numbered points (1., 2.)
+2. For each main header, extract 3-5 key summarized points from section content
+   - Summarize core ideas, NOT subheaders (5-7 words max per point)
+   - Exclude redundant points
+3. Format:
+### Table of Contents
+
+1. [Main Topic](#anchor)
+   - Key insight 1
+   - Key insight 2
+   - Key insight 3
+
+4. Never include subheaders as bullet points
+5. Never exceed 5 points per section
+6. Never use markdown code blocks
+
+Example Output:
+1. [Team Scaling](#team-scaling)
+   - Plan long-term financial runway
+   - Maintain elite hiring standards
+   - Remove poor performers quickly
 
 Markdown content:
-{content}
-
-Generate only the table of contents in markdown format:"""
+{content}"""
 
     try:
         response = call_openrouter_api(prompt)
-        return response.strip()
+        stripped = response.strip()
+        # Raise exception if markdown code blocks still appear despite prompt instruction
+        if stripped.startswith('```') and stripped.endswith('```'):
+            raise ValueError("TOC contains markdown code blocks despite prompt instructions")
+        return stripped
     except Exception as e:
         print(f"Error calling AI API: {e}", file=sys.stderr)
         return None
@@ -53,6 +75,13 @@ def process_file(file_path, output_only=False):
             print(f"Generated TOC for {file_path}:")
             print(toc)
             print()
+            
+            # Insert TOC into the file after frontmatter
+            frontmatter_end = content.find("---\n", 3) + 4  # Find second ---\n
+            updated_content = content[:frontmatter_end] + "\n" + toc + "\n\n" + content[frontmatter_end:]
+            
+            with open(file_path, "w", encoding="utf-8") as f:
+                f.write(updated_content)
 
         return toc
 
