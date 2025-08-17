@@ -4,10 +4,43 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Natural Vision Restoration Tips
+title: Complete Natural Vision Restoration Guide
 top: 10
 translated: false
 ---
+
+### Table of Contents
+
+1. [Reversing Myopia](#reversing-myopia)
+   - Key Research and Resources
+   - Todd Becker and Yin Wang's Methods
+   - Related Articles and Papers
+   - Multifocal and Progressive Lens Solutions
+
+2. [Natural Vision Restoration Tips](#natural-vision-restoration-tips)
+   - Understanding Myopia Causes
+   - The "Just Barely Clear" Principle
+   - Prescription Reduction Guidelines
+   - Daily Usage Recommendations
+   - Progressive Improvement Expectations
+
+3. [Natural Vision Restoration Progress](#natural-vision-restoration-progress)
+   - 3-Year Personal Experiment Data
+   - Detailed Prescription History
+   - Measurement Tracking Methods
+   - Mobile-Optimized Progress Tables
+
+4. [Myopia: A Modern Yet Reversible Disease — Todd Becker](#myopia-a-modern-yet-reversible-disease--todd-becker)
+   - Foundation Research Videos
+   - Todd Becker's Scientific Presentations
+   - Historical Context and Discovery
+
+5. [It's Easy to Make Mistakes Without Hands-On](#its-easy-to-make-mistakes-without-hands-on)
+   - Responding to Critics and Skeptics
+   - Importance of Experimental Evidence
+   - Personal Family History Analysis
+   - Hands-On vs Theoretical Approaches
+   - Corporate World Parallels
 
 ## Reversing Myopia
 
@@ -82,21 +115,51 @@ translated: false
 
 ### Whole Number Format
 
-Time | Left Eye Myopia | Left Eye Astigmatism | Right Eye Myopia | Right Eye Astigmatism| Correct Vision
-2022.03.05 | 350 | 225 | 575 | 175| 1.0
-2022.11.13 | 325 | 200 | 550 | 175| 0.9
-2023.04.20 | 300 | 125 | 500 | 125| 1.0
-2024.01.07 | 300 | 100 | 475 | 125| 0.9
-2024.11.28 | 250 | 100 | 425 | 125| 0.9
+| Time | Eye | Myopia | Astigmatism | Vision |
+|------|-----|--------|-------------|--------|
+| 2022.03.05 | Left | 350 | 225 | 1.0 |
+| | Right | 575 | 175 | |
+| 2022.11.13 | Left | 325 | 200 | 0.9 |
+| | Right | 550 | 175 | |
+| 2023.04.20 | Left | 300 | 125 | 1.0 |
+| | Right | 500 | 125 | |
+| 2024.01.07 | Left | 300 | 100 | 0.9 |
+| | Right | 475 | 125 | |
+| 2024.11.28 | Left | 250 | 100 | 0.9 |
+| | Right | 425 | 125 | |
 
 ### Decimal Format
 
-Time | Left Eye Myopia | Left Eye Astigmatism | Right Eye Myopia | Right Eye Astigmatism| Correct Vision
-2022.03.05 | -3.50 | -2.25 | -5.75 | -1.75| 1.0
-2022.11.13 | -3.25 | -2.00 | -5.50 | -1.75| 0.9
-2023.04.20 | -3.00 | -1.25 | -5.00 | -1.25| 1.0
-2024.01.07 | -3.00 | -1.00 | -4.75 | -1.25| 0.9
-2024.11.28 | -2.50 | -1.00 | -4.25 | -1.25| 0.9
+| Time | Eye | Myopia | Astigmatism | Vision |
+|------|-----|--------|-------------|--------|
+| 2022.03.05 | Left | -3.50 | -2.25 | 1.0 |
+| | Right | -5.75 | -1.75 | |
+| 2022.11.13 | Left | -3.25 | -2.00 | 0.9 |
+| | Right | -5.50 | -1.75 | |
+| 2023.04.20 | Left | -3.00 | -1.25 | 1.0 |
+| | Right | -5.00 | -1.25 | |
+| 2024.01.07 | Left | -3.00 | -1.00 | 0.9 |
+| | Right | -4.75 | -1.25 | |
+| 2024.11.28 | Left | -2.50 | -1.00 | 0.9 |
+| | Right | -4.25 | -1.25 | |
+
+---
+
+## Myopia: A Modern Yet Reversible Disease — Todd Becker
+
+I discovered Todd Becker's video in the footnotes of Yin Wang's article on the [Natural Vision Improvement Method](https://www.yinwang.org/blog-cn/2022/02/22/myopia). The video, uploaded in 2014, has garnered over 1.2 million views.
+
+Myopia: A Modern Yet Reversible Disease — Todd Becker, M.S. (AHS14)
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/x5Efg42-Qn0?si=P9-BqyesxMtirwCx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+How to Reverse Myopia With Todd Becker (Ancestral Health Today Episode 021)
+
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/iIrg6Q0s754?si=DprrreN9WqnGi7dJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 ---
 
