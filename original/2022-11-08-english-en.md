@@ -8,6 +8,8 @@ title: 'Mastering English'
 top: 10
 ---
 
+## Mastering English - 2022.11.08
+
 One year ago, regarding my English ability, my reading was good, my listening was not so good, and my writing and speaking were poor. After working in a Singaporean company, four aspects of my English level are proficiency. 
 
 I passed a lot of interview rounds recently, and got several offers from big outsourcing companies whose clients are big banks. Though I will work still as a contractor for a big bank, I am still proud of what I achieved regarding that I was a dropout student.
