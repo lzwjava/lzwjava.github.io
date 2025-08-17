@@ -50,17 +50,44 @@ def process_file(file_path, output_only=False):
             print()
             
             # Update title in frontmatter
-            frontmatter_start = content.find("---\n") + 4
-            frontmatter_end = content.find("---\n", frontmatter_start)
-            frontmatter = content[frontmatter_start:frontmatter_end]
+            lines = content.split('\n')
+            in_frontmatter = False
+            frontmatter_start_idx = -1
+            frontmatter_end_idx = -1
             
-            # Replace title in frontmatter
-            updated_frontmatter = re.sub(r'title: ".*?"', f'title: "{title}"', frontmatter)
+            # Find frontmatter boundaries
+            for i, line in enumerate(lines):
+                if line.strip() == '---':
+                    if frontmatter_start_idx == -1:
+                        frontmatter_start_idx = i
+                        in_frontmatter = True
+                    elif in_frontmatter:
+                        frontmatter_end_idx = i
+                        break
             
-            updated_content = content[:frontmatter_start] + updated_frontmatter + content[frontmatter_end:]
-            
-            with open(file_path, "w", encoding="utf-8") as f:
-                f.write(updated_content)
+            if frontmatter_start_idx != -1 and frontmatter_end_idx != -1:
+                # Extract frontmatter
+                frontmatter_lines = lines[frontmatter_start_idx+1:frontmatter_end_idx]
+                frontmatter_content = '\n'.join(frontmatter_lines)
+                
+                # Replace or add title in frontmatter
+                title_pattern = r'title:\s*".*?"'
+                if re.search(title_pattern, frontmatter_content):
+                    updated_frontmatter = re.sub(title_pattern, f'title: "{title}"', frontmatter_content)
+                else:
+                    # Add title if not present
+                    updated_frontmatter = f'title: "{title}"\n{frontmatter_content}'
+                
+                # Reconstruct content with updated frontmatter
+                before_frontmatter = '\n'.join(lines[:frontmatter_start_idx+1])
+                after_frontmatter = '\n'.join(lines[frontmatter_end_idx:])
+                updated_content = f"{before_frontmatter}\n{updated_frontmatter}\n{after_frontmatter}"
+                
+                # Write updated content back to file
+                with open(file_path, "w", encoding="utf-8") as f:
+                    f.write(updated_content)
+            else:
+                print("Error: Could not find frontmatter boundaries", file=sys.stderr)
 
         return title
 

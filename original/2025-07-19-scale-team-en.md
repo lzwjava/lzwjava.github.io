@@ -1,4 +1,5 @@
 ---
+title: "**"Scaling a Team: Hiring Elite Talent, Cutting Bureaucracy, and Building for the Long Term"**"
 audio: false
 generated: false
 image: false
