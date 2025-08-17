@@ -8,6 +8,46 @@ title: Floating IPs and Network Interface Management
 translated: false
 ---
 
+### Table of Contents
+
+1. [Floating IPs in Hetzner Cloud](#floating-ips-in-hetzner-cloud)
+   - IP Configuration Commands
+   - Netplan Configuration Setup
+   - Network Configuration Files
+
+2. [Network Interface Management](#network-interface-management)
+   - Deleting TUN Interfaces
+   - Interface Status Monitoring
+   - Network Troubleshooting
+
+3. [LAN IP Scanner](#lan-ip-scanner)
+   - Python Network Scanning Script
+   - Multithreaded Host Discovery
+   - Port Scanning Capabilities
+   - Device Identification on Local Networks
+
+4. [Bypassing Local IPs](#bypassing-local-ips)
+   - Proxy Configuration for Local Networks
+   - Subnet Mask Calculations
+   - Network Range Planning
+
+5. [SSH Connection using IPv6 Address](#ssh-connection-using-ipv6-address)
+   - IPv6 SSH Configuration
+   - SSH Config File Management
+   - Proxy Command Setup for Different Address Types
+   - Performance Optimization
+
+6. [Improving Wifi Speed](#improving-wifi-speed)
+   - Old vs New Modem Performance
+   - Network Setup Configurations
+   - Wired vs Wireless Bridge Modes
+   - Troubleshooting Network Bottlenecks
+
+7. [OpenWrt Reset](#openwrt-reset)
+   - Web Interface Reset Methods
+   - Command Line Reset Procedures
+   - Factory Default Restoration
+
 ## Floating IPs in Hetzner Cloud
 
 ### IP
@@ -60,8 +100,6 @@ $ sudo ip link delete outline-tun0
 ```
 
 ---
-
-## LAN IP Scanner
 
 ## LAN IP Scanner
 
@@ -271,7 +309,7 @@ Host *
 
 ## Improving Wifi Speed
 
-## Old Modem Issues
+### Old Modem Issues
 
 In my parent's house, the modem is quite old, likely around 10 years old. The initial network setup was:
 
@@ -285,7 +323,7 @@ modem -> 2m cable -> TP-Link AX3000 (wired bridge mode) -> 4m wireless, a wall -
 
 This improved the download speed to up to 90 Mbps.
 
-## New Modem Performance
+### New Modem Performance
 
 In my own house, the modem is new, and the TP-Link router performs well in wireless bridge mode. The network setup is:
 
@@ -294,7 +332,7 @@ modem -> 4m wireless -> TP-Link AX3000 (wireless bridge mode) -> 2m wireless -> 
 The network quality is good.
 
 
-## Troubleshooting Tips
+### Troubleshooting Tips
 
 There isn't a single solution to improve Wi-Fi speed. A good approach is to use a cable to test each part of your network to identify bottlenecks. Compare speeds when using a wired connection versus Wi-Fi. Also, try connecting devices directly with a cable to see if that improves performance.
 
@@ -302,11 +340,11 @@ There isn't a single solution to improve Wi-Fi speed. A good approach is to use 
 
 ## OpenWrt Reset
 
-## Resetting via the Web Interface
+### Resetting via the Web Interface
 
 It's recommended to connect to the router via an ethernet cable. After a reset, the Wi-Fi SSID will revert to its default settings, which may not be what you expect.
 
-## Resetting via Command Line (SSH)
+### Resetting via Command Line (SSH)
 
 You can reset OpenWrt to its default settings using the command line interface (SSH). Here's how:
 
