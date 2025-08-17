@@ -10,7 +10,7 @@ translated: false
 
 ### Table of Contents
 
-1. [Proxy Solutions in China - 2025](#proxy-solutions-in-china---2025)
+1. [Proxy Solutions in China](#proxy-solutions-in-china)
    - Macao SIM Card Solutions (Best Option)
    - Proxy Server Recommendations
    - App Configuration and Setup
@@ -34,7 +34,7 @@ translated: false
    - Troubleshooting Steps and Solutions
    - ISP and Carrier Policy Impact
 
-## Proxy Solutions in China - 2025
+## Proxy Solutions in China
 
 *2024.12.29*
 
