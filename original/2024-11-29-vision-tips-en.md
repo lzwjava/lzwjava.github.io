@@ -79,6 +79,8 @@ Time | Left Eye Myopia | Left Eye Astigmatism | Right Eye Myopia | Right Eye Ast
 
 ## It's Easy to Make Mistakes Without Hands-On
 
+*2025.07.11*
+
 After Yin Wang proposed the myopia reversal method in his [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), there have been some opposing views on this. I happened to read some views.
 
 Since 2022, I have been conducting the experiment just as this [paper](http://localhost:4000/vision-restoration-en) describes.
