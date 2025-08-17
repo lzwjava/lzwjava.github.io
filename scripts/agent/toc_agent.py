@@ -15,6 +15,55 @@ Generates TOC from markdown headers in Jekyll post files using AI.
 """
 
 
+def validate_toc(toc):
+    """Validate the generated TOC for format, numbering, links, etc."""
+    if not toc:
+        raise ValueError("TOC is empty or None")
+    
+    lines = toc.strip().split('\n')
+    
+    # Check if first line is "### Table of Contents"
+    if not lines or lines[0].strip() != "### Table of Contents":
+        raise ValueError("TOC must start with '### Table of Contents'")
+    
+    # Check numbering and format
+    item_count = 0
+    for line in lines[1:]:  # Skip the first line
+        line = line.rstrip()
+        if not line:  # Skip empty lines
+            continue
+            
+        # Check for numbered items like "1. [Title](#anchor)"
+        if re.match(r'^\d+\.\s+\[.*\]\(#.*\)$', line.strip()):
+            item_count += 1
+            # Extract the link text and anchor
+            match = re.match(r'^\d+\.\s+\[(.*)\]\((#.*)\)$', line.strip())
+            if match:
+                link_text, anchor = match.groups()
+                # Check if anchor starts with #
+                if not anchor.startswith('#'):
+                    raise ValueError(f"Anchor '{anchor}' must start with '#' in line: {line}")
+                # Basic check for valid anchor characters (alphanumeric, dash, underscore)
+                anchor_name = anchor[1:]  # Remove the #
+                if not re.match(r'^[a-zA-Z0-9\-_]+$', anchor_name):
+                    raise ValueError(f"Invalid characters in anchor '{anchor_name}' in line: {line}")
+        # Check for bullet points under numbered items
+        elif re.match(r'^\s+-\s+.*$', line):
+            # Check if this is a valid bullet point (indented with hyphen)
+            if len(line) > 50:  # Arbitrary limit for bullet point length
+                raise ValueError(f"Bullet point too long in line: {line}")
+        else:
+            # Non-empty line that doesn't match expected patterns
+            if line.strip() and not re.match(r'^\d+\.\s+\[.*\]\(#.*\)$', line.strip()) and not re.match(r'^\s+-\s+.*$', line):
+                raise ValueError(f"Invalid TOC line format: {line}")
+    
+    # Check if we have at least one numbered item
+    if item_count == 0:
+        raise ValueError("TOC must contain at least one numbered item")
+    
+    return True
+
+
 def generate_toc_with_ai(content):
     """Generate table of contents using AI."""
     print("Generating TOC with AI...")
@@ -90,6 +139,13 @@ def process_file(file_path, output_only=False, update=False):
         toc = generate_toc_with_ai(content)
 
         if toc is None:
+            return None
+
+        # Validate the TOC
+        try:
+            validate_toc(toc)
+        except ValueError as e:
+            print(f"TOC validation failed: {e}", file=sys.stderr)
             return None
 
         if output_only:
