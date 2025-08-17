@@ -8,11 +8,9 @@ title: The Journey to Pursue Internet Freedom
 translated: false
 ---
 
-This post was last updated in August 2025.
+## The Journey to Pursue Internet Freedom
 
----
-
-## Journey
+*2025.02.03, This post was last updated in August 2025.*
 
 From 2010 to 2013, I used Goagent and the SwitchyOmega proxy tool to bypass the GFW.
 
