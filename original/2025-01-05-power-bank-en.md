@@ -7,6 +7,8 @@ layout: post
 title: Forgetfulness about Charging Power Banks
 ---
 
+## Forgetfulness about Charging Power Banks
+
 The problem of often forgetting to charge power banks has been frustrating me.
 
 I have two small electric lamps that I've been using recently. I had two power banks a week ago and I have three mobile phones. I was frustrated to find that both of my power banks were out of electricity, so I bought a third one.
