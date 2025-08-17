@@ -13,6 +13,7 @@ Generates TOC from markdown headers in Jekyll post files using AI.
 
 def generate_toc_with_ai(content):
     """Generate table of contents using AI."""
+    print("Generating TOC with AI...")
     prompt = f"""Please generate a table of contents for the following markdown content. 
 Follow these rules:
 1. Only include headers from level 2 (##) to level 6 (######)
@@ -36,6 +37,7 @@ Generate only the table of contents in markdown format:"""
 
 def process_file(file_path, output_only=False):
     """Process a single Jekyll post file."""
+    print(f"Processing file: {file_path}")
     try:
         with open(file_path, "r", encoding="utf-8") as f:
             content = f.read()
@@ -57,6 +59,8 @@ def process_file(file_path, output_only=False):
     except Exception as e:
         print(f"Error processing {file_path}: {e}", file=sys.stderr)
         return None
+    finally:
+        print(f"Finished processing: {file_path}")
 
 
 def main():
