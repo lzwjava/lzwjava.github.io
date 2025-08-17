@@ -15,6 +15,8 @@ title: 'Complete Programming Philosophy: Principles, Practices, and Professional
    - Technology Trends and Curiosity-Driven Learning
    - Debugging and Problem-Solving Philosophy
    - User-Focused Development
+   - Code Quality and Simplicity
+   - AI Integration and Automation
 
 2. [Become an Unlimited Engineer](#become-an-unlimited-engineer)
    - Working Within Corporate Constraints
@@ -22,6 +24,14 @@ title: 'Complete Programming Philosophy: Principles, Practices, and Professional
    - AI-Era Tool Building
    - Mindset Transformation
    - Breaking Perceived Limitations
+
+3. [Benefits of Accumulating Logs](#benefits-of-accumulating-logs)
+   - Log Management in Corporate Environments
+   - Historical Context and Problem-Solving
+   - Log File Organization Strategies
+   - Long-term Project Maintenance
+   - Knowledge Preservation and Sharing
+   - Automated Log Collection Methods
 
 ## Programming
 
@@ -137,8 +147,6 @@ title: 'Complete Programming Philosophy: Principles, Practices, and Professional
 - In life, perceived limitations often arise from not thinking deeply enough; trying more can lead to unique ideas.
 
 - Becoming an unlimited engineer in big companies means becoming an unlimited person overall.
-
----
 
 ---
 
