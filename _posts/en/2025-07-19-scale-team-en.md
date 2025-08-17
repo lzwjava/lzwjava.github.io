@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: How to Scale a Team
+title: How to Build and Scale a High-Performance Team
 translated: false
 ---
 
