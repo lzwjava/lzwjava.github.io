@@ -4,14 +4,14 @@ generated: false
 image: false
 lang: hant
 layout: post
-title: 浮動 IP 及網絡介面管理
+title: 雲端 IP、網絡介面與 WiFi 優化
 translated: true
 ---
 
 ### 目錄
 
 1. [Hetzner Cloud 中的浮動 IP](#floating-ips-in-hetzner-cloud)
-   - IP 配置指令
+   - IP 配置命令
    - Netplan 配置設定
    - 網絡配置檔案
 
@@ -22,31 +22,31 @@ translated: true
 
 3. [區域網路 IP 掃描器](#lan-ip-scanner)
    - Python 網絡掃描腳本
-   - 多執行緒主機探測
+   - 多線程主機發現
    - 端口掃描功能
    - 本地網絡設備識別
 
 4. [繞過本地 IP](#bypassing-local-ips)
-   - 本地網絡的代理配置
+   - 本地網絡代理配置
    - 子網掩碼計算
    - 網絡範圍規劃
 
 5. [使用 IPv6 地址進行 SSH 連接](#ssh-connection-using-ipv6-address)
    - IPv6 SSH 配置
    - SSH 配置檔案管理
-   - 不同地址類型的代理指令設定
+   - 不同地址類型的代理命令設定
    - 效能優化
 
 6. [提升 WiFi 速度](#improving-wifi-speed)
-   - 舊款與新款調製解調器效能比較
+   - 舊款與新款調制解調器效能比較
    - 網絡設定配置
    - 有線與無線橋接模式
    - 網絡瓶頸故障排除
 
 7. [OpenWrt 重置](#openwrt-reset)
    - 網頁介面重置方法
-   - 命令列重置流程
-   - 恢復出廠默認設定
+   - 命令列重置程序
+   - 恢復出廠預設設定
 
 ---
 
@@ -103,9 +103,9 @@ $ sudo ip link delete outline-tun0
 
 ##區域網路 IP 掃描器
 
-此 Python 腳本用於掃描本地網絡中的活躍 IP 地址。它使用 `ping` 指令檢查主機是否可達，並採用多執行緒加速掃描過程。信號量限制並發執行緒數量，以避免系統過載。腳本接受網絡地址（例如「192.168.1.0/24」）作為輸入，並列印網絡中每個 IP 地址的上線或離線狀態。
+此 Python 腳本用於掃描本地網絡中的活躍 IP 地址。它使用 `ping` 命令檢查主機是否可達，並採用多線程加速掃描過程。信號量限制並發線程數量，以避免系統過載。腳本接受網絡地址（例如「192.168.1.0/24」）作為輸入，並列印網絡中每個 IP 地址的狀態（啟用或關閉）。
 
-此腳本可幫助識別網絡中的設備，例如以有線橋接模式運行的 TP-LINK Mesh 路由器，透過掃描活躍 IP 地址實現。
+此腳本有助於識別網絡中的設備，例如以有線橋接模式運作的 TP-LINK 網狀路由器，透過掃描活躍 IP 地址實現。
 
 ```python
 import subprocess
@@ -115,14 +115,14 @@ import os
 import socket
 import argparse
 
-MAX_THREADS = 50  # 最大執行緒數量
+MAX_THREADS = 50  # 最大線程數量
 
 def is_host_up(host, port=None):
     """
-    使用 ping 或 telnet 檢查主機是否上線。
-    若指定端口，則使用 telnet 檢查該端口是否開放。
+    使用 ping 或 telnet 檢查主機是否啟用。
+    若指定端口，則使用 telnet 檢查該端口是否開啟。
     否則使用 ping。
-    若主機上線則返回 True，否則返回 False。
+    如果主機啟用則返回 True，否則返回 False。
     """
     if port:
         try:
@@ -139,7 +139,7 @@ def is_host_up(host, port=None):
             sock.close()
     else:
         try:
-            # -c 1: 僅發送 1 個封包
+            # -c 1: 只發送 1 個封包
             # -W 1: 等待 1 秒響應
             subprocess.check_output(["ping", "-c", "1", "-W", "1", host], timeout=1)
             return True
@@ -153,18 +153,18 @@ def scan_ip(ip_str, up_ips, port=None):
     掃描單個 IP 地址並列印其狀態。
     """
     if is_host_up(ip_str, port):
-        print(f"{ip_str} 已上線")
+        print(f"{ip_str} 已啟用")
         up_ips.append(ip_str)
     else:
-        print(f"{ip_str} 離線")
+        print(f"{ip_str} 未啟用")
 
 def scan_network(network, port=None):
     """
-    使用執行緒掃描網絡中的活躍主機，並限制並發執行緒數量。
+    使用線程掃描網絡中的活躍主機，並限制並發線程數量。
     """
     print(f"正在掃描網絡：{network}")
     threads = []
-    semaphore = threading.Semaphore(MAX_THREADS)  # 限制並發執行緒數量
+    semaphore = threading.Semaphore(MAX_THREADS)  # 限制並發線程數量
     up_ips = []
 
     def scan_ip_with_semaphore(ip_str):
@@ -187,7 +187,7 @@ def scan_network(network, port=None):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="掃描網絡中的活躍主機。")
-    parser.add_argument("network", nargs='?', default="192.168.1.0/24", help="要掃描的網絡（例如 192.168.1.0/24）")
+    parser.add_argument("network", nargs='?', default="192.168.1.0/24", help="要掃描的網絡（例如：192.168.1.0/24）")
     parser.add_argument("-p", "--port", type=int, help="要檢查的端口（可選）")
     args = parser.parse_args()
 
@@ -195,7 +195,7 @@ if __name__ == "__main__":
     port_to_scan = args.port
 
     up_ips = scan_network(network_to_scan, port_to_scan)
-    print("\n活躍 IP：")
+    print("\n活躍的 IP：")
     for ip in up_ips:
         print(ip)
 ```
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
 ## 繞過本地 IP
 
-此腳本識別活躍 IP 地址。為確保網絡通信正常，請確認代理設定已配置為繞過這些本地 IP。
+此腳本識別活躍 IP 地址。為確保網絡通訊正常，請驗證代理設定是否配置為繞過這些本地 IP。
 
 ```bash
 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,127.0.0.1,localhost,*.local,timestamp.apple.com,sequoia.apple.com,seed-sequoia.siri.apple.com, 192.168.1.0/16
@@ -214,27 +214,27 @@ if __name__ == "__main__":
 
 ## 子網掩碼
 
-第二台機器通常位於 192.168.1.16。
+我的第二台機器通常位於 192.168.1.16。
 
-因此，以下指令有效：
+因此，以下命令有效：
 
 ```bash
 python scripts/ip_scan.py 192.168.1.0/27 -p 22
 ```
 
-因為 32 - 27 = 5，2^5 = 32，所以會嘗試 `192.168.1.0` 至 `192.168.1.31`。
+因為 32 - 27 = 5，2^5 = 32，所以它會嘗試從 `192.168.1.0` 到 `192.168.1.31`。
 
-但使用 `192.168.1.0/28` 時則無效，因為 2^4 = 16，所以只會嘗試 `192.168.1.0` 至 `192.168.1.15`，不包含 `192.168.1.16`。
+但使用 `192.168.1.0/28` 時則無效，因為 2^4 = 16，所以它只會嘗試從 `192.168.1.0` 到 `192.168.1.15`，不包含 `192.168.1.16`。
 
 ---
 
 ## 使用 IPv6 地址進行 SSH 連接
 
-我嘗試使用 IPv6 連接 Hetzner Cloud 中的機器。`ssh 2a01:4f8:c17:2000::/64` 無效，但 `ssh root@2a01:4f8:c17:2000::1` 有效。
+我嘗試使用 IPv6 地址連接到 Hetzner Cloud 中的機器。`ssh 2a01:4f8:c17:2000::/64` 無效，但 `ssh root@2a01:4f8:c17:2000::1` 有效。
 
-IPv6 地址從 Hetzner Cloud 控制台複製。
+該 IPv6 地址從 Hetzner Cloud 控制台複製而來。
 
-`~/.ssh/config` 檔案可配置為針對 IPv4 和 IPv6 地址應用不同的代理規則。此設定允許為 IPv4 地址指定代理指令，同時以不同方式處理 IPv6 地址。
+`~/.ssh/config` 檔案可配置為對 IPv4 和 IPv6 地址應用不同的代理規則。此設定允許為 IPv4 地址指定代理命令，而對 IPv6 地址採用不同的處理方式。
 
 ```bash
 Host 192.168.1.*
@@ -272,7 +272,7 @@ debug3: channel_clear_timeouts: clearing
 debug1: Executing proxy command: exec corkscrew localhost 7890 192.168.1.3 22
 ```
 
-SSH 連接速度明顯變慢，因此我回退至以下簡化配置：
+SSH 連接速度明顯較慢，因此我恢復為以下較簡單的配置：
 
 ```bash
 Host 192.168.1.*
@@ -286,9 +286,9 @@ Host *
     ProxyCommand corkscrew localhost 7890 %h %p
 ```
 
-使用 `ProxyCommand corkscrew localhost 7890 %h %p` 指令時，IPv6 地址可能無法被正確處理。
+使用 `ProxyCommand corkscrew localhost 7890 %h %p` 指令時，若涉及 IPv6 地址，則可能無法正確處理。
 
-上述配置仍然無效，但以下配置正常：
+上述配置仍不生效，但以下配置可行：
 
 ```bash
 Host 192.168.1.*
@@ -310,31 +310,31 @@ Host *
 
 ## 提升 WiFi 速度
 
-### 舊款調製解調器問題
+### 舊款調制解調器問題
 
-我父母家中的調製解調器相當陳舊，估計已使用約 10 年。初始網絡設定如下：
+在父母家中，調制解調器相當陳舊，可能已有 10 年歷史。初始網絡設定如下：
 
-調製解調器 → 3 米無線 → TP-Link AX3000（無線橋接模式） → 2 米、一面牆、無線 → 筆記本電腦
+調制解調器 -> 3 米無線 -> TP-Link AX3000（無線橋接模式） -> 2 米、一面牆、無線 -> 筆記本電腦
 
-下載速度極低，Speedtest 結果僅 10 Mbps。
+此設定下載速度較低，Speedtest 結果僅 10 Mbps。
 
 改進後的設定採用有線連接：
 
-調製解調器 → 2 米網線 → TP-Link AX3000（有線橋接模式） → 4 米無線、一面牆 → 筆記本電腦
+調制解調器 -> 2 米網線 -> TP-Link AX3000（有線橋接模式） -> 4 米無線、一面牆 -> 筆記本電腦
 
-下載速度提升至最多 90 Mbps。
+下載速度提升至 90 Mbps。
 
-### 新款調製解調器效能
+### 新款調制解調器效能
 
-我自己家中的調製解調器是新的，TP-Link 路由器在無線橋接模式下表現良好。網絡設定如下：
+在我的住所，調制解調器是新款，TP-Link 路由器在無線橋接模式下效能良好。網絡設定如下：
 
-調製解調器 → 4 米無線 → TP-Link AX3000（無線橋接模式） → 2 米無線 → 筆記本電腦
+調制解調器 -> 4 米無線 -> TP-Link AX3000（無線橋接模式） -> 2 米無線 -> 筆記本電腦
 
-網絡品質良好。
+網絡品質優良。
 
 ### 故障排除建議
 
-提升 Wi-Fi 速度並無萬能解決方案。建議使用網線逐步測試網絡各部分，以識別瓶頸。比較有線連接與 Wi-Fi 的速度，並嘗試直接用網線連接設備，檢查是否提升效能。
+提升 WiFi 速度並無萬能解決方案。建議使用網線逐段測試網絡，以識別瓶頸。比較有線連接與 WiFi 的速度，並嘗試直接以網線連接設備，檢查效能是否改善。
 
 ---
 
@@ -342,14 +342,14 @@ Host *
 
 ### 透過網頁介面重置
 
-建議使用以太網線連接路由器。重置後，Wi-Fi SSID 將恢復為默認設定，可能與預期不同。
+建議使用以太網線連接路由器。重置後，WiFi SSID 將恢復為預設設定，可能與預期不同。
 
 ### 透過命令列（SSH）重置
 
-可透過命令列介面（SSH）將 OpenWrt 重置為默認設定。步驟如下：
+可透過命令列介面（SSH）將 OpenWrt 重置為預設設定。步驟如下：
 
-1. 透過 SSH 連接 OpenWrt 路由器。
-2. 執行以下指令：
+1. 透過 SSH 連接到 OpenWrt 路由器。
+2. 執行以下命令：
 
 ```bash
 root@OpenWrt:~# firstboot
@@ -358,9 +358,10 @@ y
 /dev/ubi0_1 is mounted as /overlay, only erasing files
 root@OpenWrt:~# reboot
 ```
-3. 路由器將以默認設定重新啟動。
 
-**指令說明：**
+3. 路由器將以預設設定重新啟動。
+
+**命令說明：**
 
 - `firstboot`：啟動重置流程，清除所有配置及已安裝套件。
-- `reboot`：重新啟動路由器，應用重置。
+- `reboot`：重啟路由器，應用重置。

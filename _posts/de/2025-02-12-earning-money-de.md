@@ -1,29 +1,51 @@
 ---
-audio: true
+audio: false
 generated: false
 image: false
 lang: de
 layout: post
-title: Earning Money
+title: Geld verdienen und verlieren
 translated: true
 ---
 
-- Arbeitete als Softwareentwickler für Unternehmen.
+## Geld verdienen
 
-- Erhielt Aktienoptionen von einem Startup und verdiente eine kleine Summe Geld nach dem Verkauf des Startups.
+- Als Softwareingenieur für Unternehmen gearbeitet.
 
-- Gründete ein Startup für eine Wissens-Livestream-Plattform und erzielte Einnahmen durch Live-Teilnahmegebühren.
+- Aktienoptionen von einem Startup erhalten und nach dem Verkauf des Startups eine kleine Summe Geld verdient.
 
-- Entwickelte ein Skript zur Unterstützung bei der Kursanmeldung und verkaufte es an Kommilitonen.
+- Ein Startup für eine Wissens-Live-Streaming-Plattform gegründet und Einnahmen durch Teilnahmegebühren erzielt.
 
-- Investierte regelmäßig langfristig in Aktien oder Bitcoin.
+- Ein Skript zur Unterstützung bei der Kursanmeldung entwickelt und an Kommilitonen verkauft.
 
-- Entdeckte eine Kryptowährungsbörse mit zig CNY darauf, die im Laufe der Jahre auf hunderte CNY anwuchs.
+- Regelmäßig langfristig in Aktien oder Bitcoin investiert.
 
-- Half einem Freund bei der Rekrutierung einer Person und erhielt eine kleine Empfehlungsbonus.
+- Eine Kryptowährungs-Wallet mit einigen Dutzend CNY entdeckt, die über die Jahre auf mehrere hundert CNY angewachsen ist.
 
-- Erledigte Softwareprojekte für Kunden.
+- Einem Freund bei der Personalbeschaffung geholfen und eine kleine Vermittlungsprämie erhalten.
 
-- Tätigte einen Kurshandel mit Trump-Coins und verdiente 600 US-Dollar.
+- Softwareprojekte für Kunden abgeschlossen.
 
-- Half Freunden bei softwarebezogenen Aufgaben und erhielt rote Umschläge als Entschädigung.
+- Einen kurzen Handel mit Trump-Coins getätigt und 600 USD verdient.
+
+- Freunden softwarebezogene Hilfe geleistet und als Bezahlung rote Umschläge erhalten.
+
+---
+
+## Geld verlieren
+
+Dieser Beitrag dokumentiert Fälle von finanziellen Verlusten, die ich und Menschen in meinem Umfeld erlebt haben.
+
+- Ohne langfristigen Plan in eine neue Branche einzusteigen oder ein Unternehmen zu gründen und viele Werbeanzeigen zu schalten, führt zu Verlusten in Höhe von mehreren Millionen CNY.
+
+- Eine Investition erhalten, schnell Mitarbeiter einstellen und sie nach wenigen Monaten wieder entlassen müssen, führt zu einem Verlust von 250.000 CNY.
+
+- Ein Haus in China um das Jahr 2022 zu kaufen, hätte zu einem Verlust von 1 Million CNY geführt.
+
+- Viele Werbeanzeigen für eine App zu schalten, führt zu einem Verlust von einer halben Million CNY.
+
+- Ein Auto oder teure Dinge kaufen, um andere zu beeindrucken.
+
+- Häufiger Handel mit Aktien oder Optionen innerhalb kurzer Zeiträume.
+
+- Unzureichende Vorbereitung auf einen neuen Job oder eine neue Chance kann zum Jobverlust führen.
