@@ -8,14 +8,31 @@ generated: false
 image: false
 ---
 
+## Table of Contents
+1. [Optimizing LLM API Costs](#optimizing-llm-api-costs)
+2. [API Usage of Deepseek and Mistral](#api-usage-of-deepseek-and-mistral)
+   2.1 [DeepSeek](#deepseek)
+   2.2 [Mistral](#mistral)
+   2.3 [Grok](#grok)
+
+
 ## Optimizing LLM API Costs
 
 {: .centered }
 ![](assets/images/tokens/tokens1.png){: .responsive }
 *Source: Self-screenshot*{: .caption }
 
-To optimize token usage, begin with more cost-effective models. If issues arise, consider upgrading to more advanced models. Mistral, Gemini Flash, and DeepSeek are generally economical, while Claude Sonnet is typically more expensive. It's important to understand how Claude Code utilizes the routers shown below. 
+{: .centered }
+![](assets/images/tokens/tokens2.png){: .responsive }
+*Source: Self-screenshot*{: .caption }
 
+While optimizing token usage, it's advisable to start with more cost-effective models. Should issues arise, consider upgrading to more advanced models. Mistral, Gemini Flash, and DeepSeek are typically economical, whereas Claude Sonnet is generally more expensive. It's crucial to understand how Claude Code uses the routers shown below.
+
+In my recent experience, I incurred significant costs due to neglecting this principle. I was trying to reach my maximum usage to determine the cost, which isn't a rational approach; it's a simple calculation. For instance, do I truly need Sonnet 4? Not necessarily. Although I perceive it as a more advanced model from Anthropic and it ranks highly on OpenRouter, I'm unclear about the differences between Sonnet 4 and Sonnet 3.5.
+
+I learned something valuable from a recent [interview](https://www.vanta.com/resources/replit-future-of-code) with Replit founder, Amjad Masad: for many tasks, highly advanced models aren't necessary. Ideally, if we can avoid using the LLM API altogether, that's perfect. Certain NLP libraries are effective for simpler tasks; for example, [HanLP](https://github.com/hankcs/HanLP) excels at handling Chinese language tasks.
+
+Furthermore, we can develop custom or specialized agents to handle tasks efficiently from the outset. Claude Code might not always be the best or most cost-effective solution for every task. 
 
 ```json
 {
