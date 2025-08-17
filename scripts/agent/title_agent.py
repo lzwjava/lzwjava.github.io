@@ -19,7 +19,14 @@ Generates titles for Jekyll post files using AI.
 def generate_title_with_ai(content):
     """Generate a title using AI."""
     print("Generating title with AI...")
-    prompt = f"""Generate a short, simple, and clean title for this content. Output ONLY the title text with no markdown formatting, quotes, or additional text. Keep it concise and straightforward:
+    prompt = f"""Generate a short, simple, and clean title for this content. Output ONLY the title text with no markdown formatting, quotes, or additional text. Keep it concise and straightforward.
+
+PREFERRED FORMATS (in order of preference):
+1. If possible, simplify to a format like "noun, noun, noun" (e.g., "Docker, Kubernetes, AWS")
+2. If that doesn't work, use a clear descriptive title
+3. Keep it under 60 characters if possible
+
+Content:
 {content}"""
 
     try:

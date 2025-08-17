@@ -150,7 +150,7 @@ def main():
         args.files = md_files
 
     for file_path in args.files:
-        process_file(file_path, args.output_only)
+        process_file(file_path, args.output_only, args.update)
 
 
 if __name__ == "__main__":
