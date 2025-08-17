@@ -20,11 +20,11 @@ image: false
 
 {: .centered }
 ![](assets/images/tokens/tokens1.png){: .responsive }
-*Source: Spenrouter.ai*{: .caption }
+*Source: penrouter.ai*{: .caption }
 
 {: .centered }
 ![](assets/images/tokens/tokens2.png){: .responsive }
-*Source: penrouter.ai*{: .caption }
+*Source: openrouter.ai*{: .caption }
 
 While optimizing token usage, it's advisable to start with more cost-effective models. Should issues arise, consider upgrading to more advanced models. Mistral, Gemini Flash, and DeepSeek are typically economical, whereas Claude Sonnet is generally more expensive. It's crucial to understand how Claude Code uses the routers shown below.
 
