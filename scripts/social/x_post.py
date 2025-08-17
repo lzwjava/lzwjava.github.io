@@ -1,20 +1,21 @@
 import os
+import sys
 import re
 import time
 import argparse
 from dotenv import load_dotenv
-from openai import OpenAI
 import yaml
 import concurrent.futures
+import random
+
+# Add the scripts directory to the path to import openrouter_client
+sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'llm'))
+from openrouter_client import call_openrouter_api_with_messages, MODEL_MAPPING
 
 load_dotenv()
 
-DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
-MODEL_NAME = "deepseek-chat"
 INPUT_DIR = "original"
 MAX_THREADS = 10
-
-client = OpenAI(api_key=DEEPSEEK_API_KEY, base_url="https://api.deepseek.com")
 
 
 def create_x_post_prompt():
@@ -25,26 +26,26 @@ def generate_x_posts(text):
     print(f"  Generating X post(s): {text[:50]}...")
     prompt = create_x_post_prompt()
     print(f"  Prompt: {prompt}")
+    
+    # Randomly select a model from all available models
+    selected_model = random.choice(list(MODEL_MAPPING.keys()))
+    print(f"  Using model: {selected_model}")
+    
     try:
-        response = client.chat.completions.create(
-            model=MODEL_NAME,
-            messages=[
-                {"role": "system", "content": prompt},
-                {"role": "user", "content": text},
-            ],
-            stream=False,
-        )
-        if response and response.choices:
+        messages = [
+            {"role": "system", "content": prompt},
+            {"role": "user", "content": text},
+        ]
+        response = call_openrouter_api_with_messages(messages, model=selected_model)
+        if response:
             print(f"  X post(s) generated successfully.")
-            return response.choices[0].message.content.split(
-                "\n\n"
-            )  # Split into multiple posts
+            return response.split("\n\n")  # Split into multiple posts
         else:
             print(f"  X post(s) generation failed.")
             return None
     except Exception as e:
         print(f"  X post(s) generation failed with error: {e}")
-        if "This model's maximum context length is" in str(e):
+        if "This model's maximum context length is" in str(e) or "context length" in str(e).lower():
             print(f"  Skipping X post(s) generation due to context length error.")
             return None
         return None
@@ -80,9 +81,6 @@ def generate_x_post_from_markdown_file(input_file, output_file):
 
 
 def main():
-    if not DEEPSEEK_API_KEY:
-        print("Error: DEEPSEEK_API_KEY is not set in .env file.")
-        return
 
     parser = argparse.ArgumentParser(
         description="Generate X posts from markdown files."
