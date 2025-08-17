@@ -35,10 +35,6 @@ Refactor the Python code below, focusing on:
 {content}
 ```
 
-## Sample Reference Code
-```python
-{sample}
-```
 """
         return prompt
     except FileNotFoundError:
