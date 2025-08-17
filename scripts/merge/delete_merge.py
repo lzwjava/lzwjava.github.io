@@ -5,7 +5,7 @@ import argparse
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 from scripts.create.delete import delete_md
 
-def delete_combine_posts(posts):
+def delete_combine_posts(posts, include_original=False):
     """Delete all posts except the first one (sorted by date)."""
     if len(posts) < 2:
         print("Error: At least 2 posts are required")
@@ -47,13 +47,15 @@ def delete_combine_posts(posts):
     # Delete all posts except the first one
     for post in post_data[1:]:
         print(f"Deleting post: {post['path']}")
-        delete_md(post['path'])
+        delete_md(post['path'], include_original)
 
     print("Delete operation completed successfully!")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Delete all posts except the first one (sorted by date)")
     parser.add_argument("posts", nargs="+", help="Paths to post files. First by date will be kept.")
+    parser.add_argument("--original", action="store_true", 
+                       help="Also delete the original files (without language suffix)")
     
     args = parser.parse_args()
-    delete_combine_posts(args.posts)
+    delete_combine_posts(args.posts, args.original)
