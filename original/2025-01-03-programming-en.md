@@ -4,8 +4,24 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Programming
+title: 'Complete Programming Philosophy: Principles, Practices, and Professional Growth'
 ---
+
+### Table of Contents
+
+1. [Programming](#programming)
+   - Programming as Creative Activity
+   - Personal Project Development
+   - Technology Trends and Curiosity-Driven Learning
+   - Debugging and Problem-Solving Philosophy
+   - User-Focused Development
+
+2. [Become an Unlimited Engineer](#become-an-unlimited-engineer)
+   - Working Within Corporate Constraints
+   - Maximizing Internal Resources
+   - AI-Era Tool Building
+   - Mindset Transformation
+   - Breaking Perceived Limitations
 
 ## Programming
 
@@ -121,3 +137,5 @@ title: Programming
 - In life, perceived limitations often arise from not thinking deeply enough; trying more can lead to unique ideas.
 
 - Becoming an unlimited engineer in big companies means becoming an unlimited person overall.
+
+---

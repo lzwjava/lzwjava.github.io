@@ -4,11 +4,41 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Life Tips
+title: 'Complete Life Philosophy: Practical Tips for Living, Learning, and Innovation'
 prompt: Do not translate specific items such as project names, company names, or school
   names, human names if you are not sure.
 top: 10
 ---
+
+### Table of Contents
+
+1. [Life Tips](#life-tips)
+   - Exploring the World and Expanding Perspectives
+   - Critical Thinking and Authority Questioning
+   - Human Relations and Social Wisdom
+   - Health and Natural Living
+   - Freedom, Security, and Personal Growth
+
+2. [Productivity Tips](#productivity-tips)
+   - Focus and Mental State Management
+   - Learning Through Movement and Activity
+   - Natural Learning Methods
+   - Flow State and Genuine Interest
+   - AI-Assisted Learning Strategies
+
+3. [Money Spending Tips](#money-spending-tips)
+   - Free Resources and Smart Shopping
+   - Quality vs Price Analysis
+   - Long-term Value Thinking
+   - Learning-Oriented Purchasing
+   - Strategic Financial Decisions
+
+4. [Innovation Tips](#innovation-tips)
+   - Understanding Innovation as Trying New Things
+   - Innovation in Different Contexts
+   - Overcoming Resistance to Change
+   - Building Innovation Through Experience
+   - Critical Evaluation of New Approaches
 
 ## Life Tips
 
@@ -250,3 +280,4 @@ top: 10
 - While the majority might notice a few innovations from some people, those individuals have usually already made a lot of innovations.
 
 - Trying new things doesn't always guarantee success. They sometimes show a decline instead of progress. Be critical and observant.
+
