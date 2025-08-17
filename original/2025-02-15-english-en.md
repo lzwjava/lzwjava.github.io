@@ -10,21 +10,27 @@ translated: false
 
 ### Table of Contents
 
-1. [Mastering English](#mastering-english)
+1. [Affordable English Practice with Native Speakers](#affordable-english-practice-with-native-speakers)
+   - Discovering Cheap Online English Courses
+   - IELTS Preparation and Speaking Practice
+   - Comparison with Traditional Platforms
+   - Platform Shopping and Service Selection
+
+2. [Mastering English](#mastering-english)
    - My English Learning Journey and Career Success
    - Intensive Learning Methods (16 hours daily)
    - Tools and Techniques for Continuous Learning
    - Becoming the Sharpest Person in the World
    - Dedication to My Daughter
 
-2. [The Recipe to Learn English](#the-recipe-to-learn-english)
+3. [The Recipe to Learn English](#the-recipe-to-learn-english)
    - Total Learning Effort Summary (7 years)
    - Work Environment and Rapid Progress
    - Brain Changes Through English Immersion
    - Learning Methods That Don't Feel Like Work
    - Finding Ways to Work Hard Without Pain
 
-3. [Improving English with Extensive Input](#improving-english-with-extensive-input)
+4. [Improving English with Extensive Input](#improving-english-with-extensive-input)
    - From Chinese to English Preference Shift
    - Learning Through Enjoyable Content Methods
    - Statistics and Time Investment Details
