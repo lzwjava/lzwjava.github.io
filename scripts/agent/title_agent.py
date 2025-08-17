@@ -3,6 +3,7 @@ import sys
 import os
 import argparse
 from pathlib import Path
+import frontmatter
 
 # Add parent directories to path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
@@ -18,7 +19,7 @@ Generates titles for Jekyll post files using AI.
 def generate_title_with_ai(content):
     """Generate a title using AI."""
     print("Generating title with AI...")
-    prompt = f"""Generate a concise title:
+    prompt = f"""Generate a short, simple, and clean title for this content. Output ONLY the title text with no markdown formatting, quotes, or additional text. Keep it concise and straightforward:
 {content}"""
 
     try:
@@ -71,16 +72,36 @@ def process_file(file_path, output_only=False):
                 frontmatter_content = '\n'.join(frontmatter_lines)
                 
                 # Replace or add title in frontmatter
-                title_pattern = r'title:\s*".*?"'
-                if re.search(title_pattern, frontmatter_content):
-                    updated_frontmatter = re.sub(title_pattern, f'title: "{title}"', frontmatter_content)
-                else:
-                    # Add title if not present
-                    updated_frontmatter = f'title: "{title}"\n{frontmatter_content}'
+                # Clean the title by removing markdown formatting and extra text
+                clean_title = title.strip()
+                # Remove common markdown formatting
+                clean_title = re.sub(r'^[*#]+|[*#]+$', '', clean_title).strip()
+                # Remove quotes
+                clean_title = clean_title.strip('"\'')
+                title_pattern = r'^title:\s*".*?"$'
+                
+                # Split frontmatter into lines for processing
+                frontmatter_lines = frontmatter_content.split('\n')
+                title_found = False
+                
+                # Process each line to replace or add title
+                updated_lines = []
+                for line in frontmatter_lines:
+                    if re.match(title_pattern, line):
+                        updated_lines.append(f'title: "{clean_title}"')
+                        title_found = True
+                    else:
+                        updated_lines.append(line)
+                
+                # If title was not found, add it at the beginning
+                if not title_found:
+                    updated_lines.insert(0, f'title: "{clean_title}"')
+                
+                updated_frontmatter = '\n'.join(updated_lines)
                 
                 # Reconstruct content with updated frontmatter
-                before_frontmatter = '\n'.join(lines[:frontmatter_start_idx+1])
-                after_frontmatter = '\n'.join(lines[frontmatter_end_idx:])
+                before_frontmatter = '\n'.join(lines[:frontmatter_start_idx+1])  # Include opening ---
+                after_frontmatter = '\n'.join(lines[frontmatter_end_idx:])  # Include closing ---
                 updated_content = f"{before_frontmatter}\n{updated_frontmatter}\n{after_frontmatter}"
                 
                 # Write updated content back to file
