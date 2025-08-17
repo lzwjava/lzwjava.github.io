@@ -7,6 +7,23 @@ layout: post
 title: Forgetfulness about Charging Power Banks
 ---
 
+### Table of Contents
+
+1. [Forgetfulness about Charging Power Banks](#forgetfulness-about-charging-power-banks)
+   - The Recurring Problem of Dead Power Banks
+   - Multiple Device Management Challenges
+   - Psychology Behind Charging Forgetfulness
+   - Current Power Bank Collection (30,000 mAh Total)
+   - Practical Solutions and Workarounds
+
+2. [Smart Universal Charger Box](#smart-universal-charger-box)
+   - Concept Design and Visualization
+   - Ultrasonic Cleaner-Inspired Solution
+   - Wireless Charging Protocol Integration
+   - Cloud-Connected Smart Home Vision
+   - Universal Device Compatibility
+   - MagSafe Technology Applications
+
 ## Forgetfulness about Charging Power Banks
 
 The problem of often forgetting to charge power banks has been frustrating me.
