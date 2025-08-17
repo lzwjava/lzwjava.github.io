@@ -4,52 +4,75 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Animationreise meiner Tochter
+title: Die animierte Reise meiner Tochter
 translated: true
 ---
 
-Ich habe in den letzten Jahren in Guangzhou, China, gelebt. Als ich 2022 in Tianhe CBD arbeitete, ging ich eines Tages ins Bürogebäude und parkte auf einem nahegelegenen Parkplatz, der zu einer Wohnanlage gehörte. Ich sah einen Vater, der ein iPad benutzte, um seinem Sohn beim Betreten des Aufzugs zu helfen, während er ihn abfragte. Sein Sohn antwortete auf Englisch. Sein Sohn war noch sehr jung, etwa 4 oder 5 Jahre alt. Ich war damals sehr beeindruckt.
+In den letzten Jahren habe ich in Guangzhou, China, gelebt. Als ich 2022 im Tianhe CBD arbeitete, ging ich eines Tages in ein Bürogebäude und parkte auf einem nahegelegenen Parkplatz, der zu einer Wohnanlage gehörte. Dort sah ich einen Vater, der seinem Sohn mit einem iPad half, in den Aufzug zu steigen, während er ihn abfragte. Sein Sohn antwortete auf Englisch. Der Junge war sehr jung, etwa 4 oder 5 Jahre alt. Damals war ich sehr beeindruckt.
 
-Die Häuser dort waren zu dieser Zeit 6 Millionen oder 10 Millionen CNY wert. Sie waren sehr teuer. Also waren sie irgendwie reich. Und sie kümmerten sich so sehr um die Bildung ihrer Kinder. Ich hatte gehört, dass die Menschen hart arbeiten, um die nächste Generation zum Erfolg zu führen. Ich hatte nur noch nie die tatsächliche Szene im echten Leben gesehen.
+Die Häuser dort kosteten zu dieser Zeit etwa 6 oder 10 Millionen CNY. Sie waren sehr teuer. Die Familie war also recht wohlhabend. Und sie legten großen Wert auf die Bildung ihrer Kinder. Ich hatte zwar gehört, dass Eltern hart arbeiten, um der nächsten Generation zum Erfolg zu verhelfen, aber ich hatte so eine Szene noch nie live miterlebt.
 
-Eine Sache ist, dass ich in meinen 20 bis 25 Jahren nicht viele Kinder in meinem Leben sah. Aber als ich selbst Kinder hatte, bemerkte ich, dass Kinder überall sind.
+Eine Sache ist mir aufgefallen: Als ich zwischen 20 und 25 war, habe ich in meinem Umfeld kaum Kinder gesehen. Doch seit ich selbst Kinder habe, fällt mir auf, dass Kinder überall sind.
 
-Aufgrund meiner letzten Jahre als Auftragnehmer für ausländische Banken hat sich mein Englisch sehr verbessert, und ich verwende es bei der Arbeit oder zum persönlichen Studium.
+Durch meine jüngste Tätigkeit als Auftragnehmer für ausländische Banken hat sich mein Englisch stark verbessert, und ich nutze es sowohl beruflich als auch für persönliche Studien.
 
-Ich betrachte Englischlernen auch als Priorität für meine Tochter. Meine Tochter wurde 2021 geboren. Im Dezember 2023 postete ich ein Video meiner Tochter, das "Baby Shark doo doo", "Finger Family" beim Zählen ihrer Finger und "Happy Birthday to You" sang, auf WeChat Video. Dieses Video erhielt mehr Likes und Aufrufe als meine normalen Videos.
+Auch für meine Tochter lege ich Wert auf Englisch als Priorität. Meine Tochter wurde 2021 geboren. Im Dezember 2023 veröffentlichte ich ein Video auf WeChat, in dem sie „Baby Shark doo doo“, „Finger Family“ (während sie ihre Finger zählt) und „Happy Birthday to You“ singt. Dieses Video erhielt mehr Likes und Aufrufe als meine üblichen Beiträge.
 
-Damals war sie 2 Jahre alt. Und ich denke, sie ist für Kinder in China in ähnlichem Alter sehr inspirierend.
+Damals war sie erst 2 Jahre alt. Ich glaube, sie ist ein Vorbild für gleichaltrige Kinder in China.
 
-So zu singen ist nicht einfach. Es ist nicht einfach, auf YouTube Kids in China zuzugreifen. Sie sind durch die Große Firewall blockiert.
+So etwas zu singen ist nicht einfach. Zudem ist der Zugang zu YouTube Kids in China durch die Great Firewall blockiert.
 
-Also kaufte ich einen Apple TV und einen Fire TV Stick. Die Unfähigkeit, darauf zuzugreifen, führt zu Konflikten zwischen mir und meinen Eltern. Meine Eltern würden meiner Tochter gerne chinesische Animationsfilme zum Anschauen geben. Ich bevorzuge jedoch, dass sie englische Animationsfilme schaut.
+Deshalb habe ich einen Apple TV und einen Fire TV Stick gekauft. Die Unzugänglichkeit führte zu Konflikten mit meinen Eltern. Sie würden meiner Tochter lieber chinesische Zeichentrickfilme zeigen. Ich jedoch bevorzugte englische Inhalte.
 
-Und manchmal, wenn der VPN-Proxy für den Apple TV oder Fire Stick nicht funktioniert, können meine Eltern ihn nicht reparieren. Meine Frau kann es auch nicht. Und wenn meine Tochter dann immer noch englische Animationsfilme schauen möchte und ich nicht verfügbar bin, fängt sie an zu weinen.
+Manchmal, wenn die VPN-Verbindung für Apple TV oder Fire Stick nicht funktioniert, können weder meine Eltern noch meine Frau das Problem beheben. Wenn meine Tochter dann trotzdem englische Zeichentrickfilme sehen möchte und ich nicht da bin, fängt sie an zu weinen.
 
-Anfangs konnten meine Eltern nicht verstehen, warum ich das tue. Sie denken, Chinesisch ist auch in Ordnung. Ich weiß. Aber in dieser Gesellschaft ist der Wettbewerb zu hoch. Sie wächst in China auf, also wird sie Chinesisch sicherlich lernen. Aber Englischunterricht ist das, was ihr fehlt. Ich habe mehrere Jahre in meinen 20ern damit verbracht, diese Sprache zu lernen. Wenn sie also bis 20 diese Vertrautheit erreichen oder einen IELTS 7 erreichen kann, wird sie in der internationalen Geschäftswelt gut abschneiden.
+Anfangs verstanden meine Eltern nicht, warum ich das tue. Sie meinten, Chinesisch sei auch in Ordnung. Das weiß ich. Aber in der heutigen Gesellschaft ist der Wettbewerb extrem hoch. Da sie in China aufwächst, wird sie Chinesisch ohnehin lernen. Doch Englischbildung fehlt ihr. Ich habe mehrere Jahre in meinen Zwanzigern damit verbracht, diese Sprache zu lernen. Wenn sie also vor ihrem 20. Lebensjahr ein ähnliches Sprachniveau (z. B. IELTS 7) erreicht, wird sie in der internationalen Arbeitswelt sehr erfolgreich sein.
 
-Und es gibt viele Streitigkeiten oder Diskussionen mit meiner Frau, dass ich ihr nicht mein zweites Mobiltelefon – ein Google Pixel – zum Anschauen von englischen Animationsfilmen geben sollte. Ich denke, das ist kein Problem, weil ich Kurzsichtigkeit rückgängig machen kann. Bitte schauen Sie sich mein [Paper](https://lzwjava.github.io/vision-restoration-en) an.
+Es gab auch viele Streitigkeiten mit meiner Frau, weil ich unserer Tochter mein zweites Handy – ein Google Pixel – für englische Zeichentrickfilme zur Verfügung stelle. Ich sehe darin kein Problem, da ich Kurzsichtigkeit rückgängig machen kann. Mehr dazu in meinem [Artikel](https://lzwjava.github.io/vision-restoration-en).
 
-Es ist wirklich schwer, die Meinungen anderer, einschließlich Verwandter, zu ändern. Nach dem Sehen des Fortschritts meiner Tochter im Englischunterricht begannen sie jedoch, es zu akzeptieren, dass sie englische Animationsfilme schaut.
+Es ist wirklich schwer, die Meinung anderer zu ändern, auch die von Verwandten. Nachdem sie den Fortschritt unserer Tochter im Englischen sahen, akzeptierten sie jedoch allmählich, dass sie englische Zeichentrickfilme schaut.
 
-Es gibt Leute, die sagen, dass Mobiltelefone das Dopaminsystem der Menschen töten. Wir sollten Kinder in jungen Jahren nicht mit digitalen Geräten in Kontakt bringen.
+Manche sagen, Handys würden das Dopaminsystem der Menschen zerstören, und Kinder sollten in jungen Jahren keine digitalen Geräte nutzen.
 
-Ich denke nicht so. Was ist der Unterschied zwischen englischen Animationsfilmen und einer englischen Umgebung? Eine englische Umgebung ist nur eine physische und reale englische Animation. Die farbenfrohen Szenen können das Gehirn stimulieren. Aber was ist mit dem farbenfrohen Spielplatz?
+Ich sehe das anders. Wo liegt der Unterschied zwischen englischen Zeichentrickfilmen und einer englischen Umgebung? Eine englische Umgebung ist im Grunde nur eine physische, reale Version eines englischen Zeichentrickfilms. Bunte Szenen regen das Gehirn an – aber wie steht es mit bunten Spielplätzen?
 
-Wie Geoffrey Hinton und Elon Musk, die seit mehr als 4 Jahrzehnten mit digitaler Technologie zu tun haben, würden digitale Geräte ihr Gehirn verändern? Sie sind Werkzeuge, um Informationen aufzuzeichnen und zu teilen. Es hängt davon ab, wie man sie verwendet.
+Denken wir an Geoffrey Hinton oder Elon Musk, die seit über vier Jahrzehnten mit digitaler Technologie zu tun haben. Haben digitale Geräte ihr Gehirn verändert? Sie sind Werkzeuge, um Informationen aufzuzeichnen und zu teilen. Es kommt darauf an, wie man sie nutzt.
 
-Und wir geben unserer Tochter englische Animationsfilme zum Anschauen, wenn wir auf Reisen sind. Ich lege mein zweites Mobiltelefon auf die Kopfstütze des Sitzes, stecke es in die leere Lücke, damit es nicht herunterfällt.
+Wenn wir mit unserer Tochter unterwegs sind, zeigen wir ihr englische Zeichentrickfilme. Ich befestige mein zweites Handy an der Kopfstütze des Sitzes, damit es nicht herunterfällt.
 
-Stand Juni 2025 hat meine Tochter wahrscheinlich 500 Stunden Erfahrung mit dem Anschauen von Englisch. Von April 2023 bis jetzt sind zwei Jahre vergangen. Es ist wie eine Stunde am Tag. Obwohl sie immer noch nicht mehr englische Lieder singen kann, üben oder fordern wir das nicht absichtlich. Aber sicherlich hat sich ihr Gehirn sehr verändert.
+Stand Juni 2025 hat meine Tochter wahrscheinlich schon 500 Stunden englische Videos gesehen. Seit April 2023 sind zwei Jahre vergangen – das entspricht etwa einer Stunde pro Tag. Zwar kann sie noch nicht viele englische Lieder singen, aber wir üben das nicht gezielt. Doch ihr Gehirn hat sich definitiv verändert.
 
-Durch englische Animationsfilme weiß sie auch viel. Ich weiß nicht, was sie schaut. Wenn wir fragen, kann sie es uns sagen. Und wenn wir über etwas sprechen, erwähnt sie auch etwas aus einem englischen Animationsfilm.
+Durch englische Zeichentrickfilme lernt sie viel. Ich weiß nicht, was sie schaut, aber wenn wir sie fragen, kann sie es erklären. Und wenn wir über etwas sprechen, erwähnt sie oft Dinge aus diesen Filmen.
 
-Denken Sie daran: Wenn jedes Kind in China auf diese Weise beginnt, wird China in weniger als 20 Jahren wie Singapur. Lee Kuan Yew verwandelte Singapur in ein englischsprachiges Land innerhalb eines halben Jahrhunderts.
+Stellen Sie sich vor: Wenn jedes Kind in China diese Methode anwendet, wird China in weniger als 20 Jahren wie Singapur. Lee Kuan Yew hat Singapur innerhalb eines halben Jahrhunderts zu einem englischsprachigen Land gemacht.
 
-Die gute Nachricht ist, dass es zwar die Große Firewall gibt, die China und die globale Welt trennt, aber fast alle beliebten englischen Videos auf TikTok können wir auch auf chinesischen WeChat-Videos oder Douyin sehen, mit chinesischen Untertiteln. Es gibt Unmengen an Material.
+Die gute Nachricht ist: Trotz der Great Firewall, die China von der globalen Welt trennt, sind fast alle beliebten englischen TikTok-Videos auch auf chinesischen Plattformen wie WeChat oder Douyin zu finden – oft sogar mit chinesischen Untertiteln. Es gibt unzählige Materialien.
 
-Als ich als Auftragnehmer in einer singapurischen Bank arbeitete, hörte ich, dass in unserem Team einige indische Kollegen zu Hause mit ihren Kindern Englisch sprechen. Das war für mich sehr erstaunlich. Denken Sie an China. Menschen, die von der Tsinghua- oder Peking-Universität graduiert sind, haben vielleicht nicht diese Disziplin oder Kultur, um mit ihren Kindern Englisch zu sprechen.
+Als ich als Auftragnehmer in einer singapurischen Bank arbeitete, hörte ich, dass einige indische Kollegen zu Hause Englisch mit ihren Kindern sprechen. Das hat mich sehr überrascht. Denken Sie an China: Selbst Absolventen der Tsinghua- oder Peking-Universität haben nicht unbedingt die Disziplin oder Kultur, mit ihren Kindern Englisch zu sprechen.
 
-Aber ich denke, für einige Teile Indiens und für Singapur ist es normal und natürlich.
+Aber ich glaube, in Teilen Indiens und Singapur ist das normal und selbstverständlich.
 
-Meine Tochter lebt in der Zukunft. Vielleicht werden eines Tages alle Kinder aller Nationen ab zwei Jahren englische Animationsfilme schauen. Und innerhalb weniger Generationen, wie 2050, können 80 % der Bevölkerung Englisch sprechen.
+Meine Tochter lebt in der Zukunft. Vielleicht werden eines Tages alle Kinder weltweit ab dem Alter von zwei Jahren englische Zeichentrickfilme schauen. Und in wenigen Generationen, sagen wir 2050, werden 80 % der Weltbevölkerung Englisch sprechen.
+
+---
+
+## Erziehungstipps
+
+* **Sicherheit ist das Wichtigste.** Leben Sie unauffällig und stellen Sie sicher, dass Kindergärten oder Schulen das Richtige tun.
+* **Erweitern Sie ihren Horizont**, indem Sie ihnen vielfältige Erfahrungen ermöglichen und mit ihnen reisen.
+* **Zwingt sie nicht**, Dinge zu tun, die sie nicht mögen, und minimiert ihre Belastungen.
+* **Fördert Unabhängigkeit** und Freiheit bei Entscheidungen.
+* **Flexible Zeitpläne** für Aktivitäten wie Schlaf sind sinnvoll, besonders bei einem flexiblen Lebensstil.
+* **Weckt die Lust am Lernen** und die Neugier; vermittelt praktische Fähigkeiten.
+* **Lehrt sie, mit potenziell gefährlichen Situationen umzugehen**, ohne sie zu überbehüten.
+* **Statten Sie sie mit praktischen Fähigkeiten aus**, wie dem Umgang mit Werkzeugen und Technologie.
+* **Fördert Selbstvertrauen** und Furchtlosigkeit beim Lernen und Erforschen.
+* **Lehrt sie Respekt** und Höflichkeit im Umgang mit anderen.
+* **Lasst sie früh eigene Entscheidungen treffen.**
+* **Vermeidet Kritik**; ermutigt und bestärkt sie stattdessen.
+* **Führt sie an moderne Technologie heran**, um sie auf die Zukunft vorzubereiten.
+* **Teilt eure Erfahrungen** mit ihnen und seid offen für ihre Meinungen und Ideen.
+* **Lernt von ihnen**, indem ihr sie beobachtet und die Unterschiede zwischen Erwachsenen und Kindern versteht.
+* **Bietet YouTube Kids**, Apple Arcade und Google Play Pass für Spiele und Videos an.
+* **Nutzt YouTube Premium**, um englische Zeichentrickfilme für unterwegs herunterzuladen.
+* **Ab 3 Jahren:** Zeigt ihnen, wie man eine Fernbedienung benutzt, Mobile Games spielt, per Sprache mit ChatGPT interagiert und Pakete auspackt.
