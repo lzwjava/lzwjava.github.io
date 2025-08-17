@@ -26,14 +26,22 @@ top: 10
    - Flow State and Genuine Interest
    - AI-Assisted Learning Strategies
 
-3. [Money Spending Tips](#money-spending-tips)
+3. [Learning Tips](#learning-tips)
+   - Learning as Hobby and Playful Exploration
+   - Practice, Repetition, and Hands-On Experience
+   - AI Tools Integration (ChatGPT, Claude, Gemini)
+   - Multi-Modal Learning (Video, Audio, Text)
+   - Teaching and Content Creation for Learning
+   - Historical Context and Principle-Based Learning
+
+4. [Money Spending Tips](#money-spending-tips)
    - Free Resources and Smart Shopping
    - Quality vs Price Analysis
    - Long-term Value Thinking
    - Learning-Oriented Purchasing
    - Strategic Financial Decisions
 
-4. [Innovation Tips](#innovation-tips)
+5. [Innovation Tips](#innovation-tips)
    - Understanding Innovation as Trying New Things
    - Innovation in Different Contexts
    - Overcoming Resistance to Change
