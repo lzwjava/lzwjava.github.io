@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Schwebende IPs und Verwaltung von Netzwerkschnitstellen
+title: Schwebende IPs und Verwaltung von Netzwerkschnittstellen
 translated: true
 ---
 
@@ -15,7 +15,7 @@ translated: true
    - Netplan-Konfiguration einrichten
    - Netzwerk-Konfigurationsdateien
 
-2. [Netzwerkschnittstellen-Verwaltung](#network-interface-management)
+2. [Netzwerkschnittstellenverwaltung](#network-interface-management)
    - Löschen von TUN-Schnittstellen
    - Überwachung des Schnittstellenstatus
    - Netzwerk-Fehlerbehebung
@@ -33,20 +33,20 @@ translated: true
 
 5. [SSH-Verbindung mit IPv6-Adresse](#ssh-connection-using-ipv6-address)
    - IPv6-SSH-Konfiguration
-   - SSH-Konfigurationsdatei-Verwaltung
-   - ProxyCommand-Einrichtung für verschiedene Adresstypen
+   - SSH-Konfigurationsdateiverwaltung
+   - Proxy-Befehlseinrichtung für verschiedene Adresstypen
    - Leistungsoptimierung
 
 6. [WLAN-Geschwindigkeit verbessern](#improving-wifi-speed)
-   - Leistung: Alt vs. Neues Modem
+   - Alte vs. neue Modem-Leistung
    - Netzwerkeinrichtungskonfigurationen
    - Kabelgebundene vs. drahtlose Bridge-Modi
    - Engpassanalyse im Netzwerk
 
 7. [OpenWrt Zurücksetzen](#openwrt-reset)
    - Zurücksetzen über die Weboberfläche
-   - Zurücksetzen über die Kommandozeile
-   - Werkseinstellungen wiederherstellen
+   - Zurücksetzen über die Befehlszeile (SSH)
+   - Wiederherstellung der Werkseinstellungen
 
 ---
 
@@ -81,9 +81,9 @@ sudo netplan apply
 
 ---
 
-## Netzwerkschnittstellen-Verwaltung
+## Netzwerkschnittstellenverwaltung
 
-Löschen der `tun`-Schnittstelle.
+Lösche die `tun`-Schnittstelle.
 
 ```bash
 $ ipconfig
@@ -103,9 +103,9 @@ $ sudo ip link delete outline-tun0
 
 ## LAN-IP-Scanner
 
-Dieses Python-Skript scannt ein lokales Netzwerk nach aktiven IP-Adressen. Es verwendet den `ping`-Befehl, um zu überprüfen, ob ein Host erreichbar ist, und nutzt Multithreading, um den Scan-Prozess zu beschleunigen. Ein Semaphor begrenzt die Anzahl der gleichzeitigen Threads, um das System nicht zu überlasten. Das Skript nimmt eine Netzwerkadresse (z. B. "192.168.1.0/24") als Eingabe und gibt aus, welche IP-Adressen im Netzwerk aktiv oder inaktiv sind.
+Dieses Python-Skript scannt ein lokales Netzwerk nach aktiven IP-Adressen. Es verwendet den `ping`-Befehl, um zu prüfen, ob ein Host erreichbar ist, und setzt Multithreading ein, um den Scanvorgang zu beschleunigen. Ein Semaphor begrenzt die Anzahl der gleichzeitigen Threads, um das System nicht zu überlasten. Das Skript nimmt eine Netzwerkadresse (z. B. "192.168.1.0/24") als Eingabe und gibt aus, ob jede IP-Adresse im Netzwerk aktiv oder inaktiv ist.
 
-Dieses Skript hilft dabei, Geräte im Netzwerk zu identifizieren, z. B. einen TP-LINK-Mesh-Router, der im kabelgebundenen Bridge-Modus betrieben wird, indem es nach aktiven IP-Adressen scannt.
+Dieses Skript hilft dabei, Geräte im Netzwerk zu identifizieren, wie z. B. einen TP-LINK-Mesh-Router, der im kabelgebundenen Bridge-Modus betrieben wird, indem es nach aktiven IP-Adressen scannt.
 
 ```python
 import subprocess
@@ -119,9 +119,9 @@ MAX_THREADS = 50  # Maximale Anzahl der zu verwendenden Threads
 
 def is_host_up(host, port=None):
     """
-    Überprüft, ob ein Host erreichbar ist, mithilfe von ping oder telnet.
-    Wenn ein Port angegeben ist, wird telnet verwendet, um zu prüfen, ob der Port offen ist.
-    Andernfalls wird ping verwendet.
+    Prüft, ob ein Host erreichbar ist, mithilfe von Ping oder Telnet.
+    Wenn ein Port angegeben ist, wird Telnet verwendet, um zu prüfen, ob der Port offen ist.
+    Andernfalls wird Ping verwendet.
     Gibt True zurück, wenn der Host erreichbar ist, sonst False.
     """
     if port:
@@ -139,8 +139,8 @@ def is_host_up(host, port=None):
             sock.close()
     else:
         try:
-            # -c 1: Nur 1 Paket senden
-            # -W 1: 1 Sekunde auf Antwort warten
+            # -c 1: Sende nur 1 Paket
+            # -W 1: Warte 1 Sekunde auf eine Antwort
             subprocess.check_output(["ping", "-c", "1", "-W", "1", host], timeout=1)
             return True
         except subprocess.CalledProcessError:
@@ -150,7 +150,7 @@ def is_host_up(host, port=None):
 
 def scan_ip(ip_str, up_ips, port=None):
     """
-    Scannt eine einzelne IP-Adresse und gibt deren Status aus.
+    Scannt eine einzelne IP-Adresse und gibt ihren Status aus.
     """
     if is_host_up(ip_str, port):
         print(f"{ip_str} ist aktiv")
@@ -164,7 +164,7 @@ def scan_network(network, port=None):
     """
     print(f"Scanne Netzwerk: {network}")
     threads = []
-    semaphore = threading.Semaphore(MAX_THREADS)  # Begrenzt die Anzahl der gleichzeitigen Threads
+    semaphore = threading.Semaphore(MAX_THREADS)  # Begrenzung der Anzahl der gleichzeitigen Threads
     up_ips = []
 
     def scan_ip_with_semaphore(ip_str):
@@ -204,7 +204,7 @@ if __name__ == "__main__":
 
 ## Umgehen lokaler IPs
 
-Das Skript identifiziert aktive IP-Adressen. Um eine ordnungsgemäße Netzwerkkommunikation sicherzustellen, muss überprüft werden, ob die Proxy-Einstellungen so konfiguriert sind, dass diese lokalen IPs umgangen werden.
+Das Skript identifiziert aktive IP-Adressen. Um eine korrekte Netzwerkkommunikation zu gewährleisten, ist es wichtig, dass die Proxy-Einstellungen so konfiguriert sind, dass sie diese lokalen IPs umgehen.
 
 ```bash
 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,127.0.0.1,localhost,*.local,timestamp.apple.com,sequoia.apple.com,seed-sequoia.siri.apple.com, 192.168.1.0/16
@@ -216,15 +216,15 @@ Das Skript identifiziert aktive IP-Adressen. Um eine ordnungsgemäße Netzwerkko
 
 Mein zweiter Rechner befindet sich normalerweise unter 192.168.1.16.
 
-Daher funktioniert der folgende Befehl:
+Daher funktioniert es mit dem folgenden Befehl:
 
 ```bash
 python scripts/ip_scan.py 192.168.1.0/27 -p 22
 ```
 
-denn 32 - 27 = 5, 2^5 = 32, daher werden die IP-Adressen von `192.168.1.0` bis `192.168.1.31` geprüft.
+Denn 32 - 27 = 5, 2^5 = 32, also werden die IPs von `192.168.1.0` bis `192.168.1.31` überprüft.
 
-Es funktioniert jedoch nicht mit `192.168.1.0/28`, da 2^4 = 16, daher werden nur die IP-Adressen von `192.168.1.0` bis `192.168.1.15` geprüft, was `192.168.1.16` nicht abdeckt.
+Es funktioniert jedoch nicht mit `192.168.1.0/28`, da 2^4 = 16, also werden nur die IPs von `192.168.1.0` bis `192.168.1.15` überprüft, was `192.168.1.16` nicht abdeckt.
 
 ---
 
@@ -234,7 +234,7 @@ Ich versuche, mich mit einer Maschine in der Hetzner Cloud über IPv6 zu verbind
 
 Die IPv6-Adresse wurde aus der Hetzner Cloud-Konsole kopiert.
 
-Die Datei `~/.ssh/config` kann so konfiguriert werden, dass unterschiedliche Proxy-Regeln für IPv4- und IPv6-Adressen gelten. Diese Einrichtung ermöglicht es, für IPv4-Adressen ein Proxy-Kommando zu verwenden, während IPv6-Adressen anders behandelt werden.
+Die Datei `~/.ssh/config` kann so konfiguriert werden, dass unterschiedliche Proxy-Regeln für IPv4- und IPv6-Adressen angewendet werden. Diese Einrichtung ermöglicht es, einen Proxy-Befehl für IPv4-Adressen festzulegen, während IPv6-Adressen anders behandelt werden.
 
 ```bash
 Host 192.168.1.*
@@ -252,24 +252,24 @@ Host *
     IdentityFile ~/.ssh/id_rsa
 ```
 
-Bei der Ausführung von `ssh root@192.168.1.3` zeigt die folgende Ausgabe, dass der SSH-Client Konfigurationsoptionen aus der Datei `~/.ssh/config` anwendet:
+Wenn `ssh root@192.168.1.3` ausgeführt wird, zeigt die folgende Ausgabe, dass der SSH-Client die Konfigurationsoptionen aus der Datei `~/.ssh/config` anwendet:
 
 ```bash
-debug1: Lesen der Konfigurationsdaten aus /Users/lzwjava/.ssh/config
-debug1: /Users/lzwjava/.ssh/config Zeile 1: Optionen für 192.168.1.* anwenden
-debug1: /Users/lzwjava/.ssh/config Zeile 5: Optionen für *.*.*.* anwenden
-debug2: add_identity_file: doppelter Schlüssel ~/.ssh/id_rsa wird ignoriert
-debug1: /Users/lzwjava/.ssh/config Zeile 10: Optionen für * anwenden
-debug2: add_identity_file: doppelter Schlüssel ~/.ssh/id_rsa wird ignoriert
-debug1: Lesen der Konfigurationsdaten aus /etc/ssh/ssh_config
+debug1: Liest Konfigurationsdaten aus /Users/lzwjava/.ssh/config
+debug1: /Users/lzwjava/.ssh/config Zeile 1: Wende Optionen für 192.168.1.* an
+debug1: /Users/lzwjava/.ssh/config Zeile 5: Wende Optionen für *.*.*.* an
+debug2: add_identity_file: ignoriere doppelten Schlüssel ~/.ssh/id_rsa
+debug1: /Users/lzwjava/.ssh/config Zeile 10: Wende Optionen für * an
+debug2: add_identity_file: ignoriere doppelten Schlüssel ~/.ssh/id_rsa
+debug1: Liest Konfigurationsdaten aus /etc/ssh/ssh_config
 debug1: /etc/ssh/ssh_config Zeile 21: include /etc/ssh/ssh_config.d/* keine Dateien gefunden
-debug1: /etc/ssh/ssh_config Zeile 54: Optionen für * anwenden
+debug1: /etc/ssh/ssh_config Zeile 54: Wende Optionen für * an
 debug2: resolve_canonicalize: Hostname 192.168.1.3 ist eine Adresse
-debug3: erweitert UserKnownHostsFile '~/.ssh/known_hosts' zu '/Users/lzwjava/.ssh/known_hosts'
-debug3: erweitert UserKnownHostsFile '~/.ssh/known_hosts2' zu '/Users/lzwjava/.ssh/known_hosts2'
-debug1: Authenticator-Anbieter $SSH_SK_PROVIDER konnte nicht aufgelöst werden; deaktivieren
-debug3: channel_clear_timeouts: Löschen der Timeouts
-debug1: Führe Proxy-Kommando aus: exec corkscrew localhost 7890 192.168.1.3 22
+debug3: erweiterte Datei UserKnownHostsFile '~/.ssh/known_hosts' -> '/Users/lzwjava/.ssh/known_hosts'
+debug3: erweiterte Datei UserKnownHostsFile '~/.ssh/known_hosts2' -> '/Users/lzwjava/.ssh/known_hosts2'
+debug1: Authentifizierungsanbieter $SSH_SK_PROVIDER konnte nicht aufgelöst werden; deaktiviere
+debug3: channel_clear_timeouts: lösche Zeitlimits
+debug1: Führe Proxy-Befehl aus: exec corkscrew localhost 7890 192.168.1.3 22
 ```
 
 Die SSH-Verbindungsgeschwindigkeit war spürbar langsam, daher kehrte ich zur folgenden einfacheren Konfiguration zurück:
@@ -286,9 +286,9 @@ Host *
     ProxyCommand corkscrew localhost 7890 %h %p
 ```
 
-Das Problem tritt auf, wenn IPv6-Adressen mit der `ProxyCommand corkscrew localhost 7890 %h %p`-Direktive verwendet werden, da dieses Proxy-Kommando IPv6-Adressen möglicherweise nicht korrekt verarbeitet.
+Das Problem tritt auf, wenn IPv6-Adressen mit der Anweisung `ProxyCommand corkscrew localhost 7890 %h %p` verwendet werden, da dieser Proxy-Befehl IPv6-Adressen möglicherweise nicht korrekt verarbeitet.
 
-Die obige Konfiguration funktioniert immer noch nicht. Die folgende funktioniert jedoch:
+Die obige Konfiguration funktioniert immer noch nicht. Die folgende funktioniert jedoch einwandfrei:
 
 ```bash
 Host 192.168.1.*
@@ -312,29 +312,29 @@ Host *
 
 ### Probleme mit altem Modem
 
-Bei meinen Eltern zu Hause ist das Modem etwa 10 Jahre alt. Die ursprüngliche Netzwerkeinrichtung sah so aus:
+Bei meinen Eltern zu Hause ist das Modem etwa 10 Jahre alt. Die ursprüngliche Netzwerkeinrichtung war:
 
-Modem -> 3m drahtlos -> TP-Link AX3000 (drahtloser Bridge-Modus) -> 2m, eine Wand, drahtlos -> Laptop
+Modem -> 3m drahtlos -> TP-Link AX3000 (Wireless-Bridge-Modus) -> 2m, eine Wand, drahtlos -> Laptop
 
-Dies ergab eine niedrige Download-Geschwindigkeit mit einem Speedtest-Ergebnis von nur 10 Mbps.
+Dies führte zu einer niedrigen Downloadgeschwindigkeit mit einem Speedtest-Ergebnis von nur 10 Mbps.
 
-Eine verbesserte Einrichtung bestand darin, eine kabelgebundene Verbindung zu verwenden:
+Eine verbesserte Einrichtung umfasste die Verwendung einer kabelgebundenen Verbindung:
 
 Modem -> 2m Kabel -> TP-Link AX3000 (kabelgebundener Bridge-Modus) -> 4m drahtlos, eine Wand -> Laptop
 
-Damit verbesserte sich die Download-Geschwindigkeit auf bis zu 90 Mbps.
+Damit stieg die Downloadgeschwindigkeit auf bis zu 90 Mbps.
 
-### Leistung mit neuem Modem
+### Leistung des neuen Modems
 
-In meinem eigenen Haus ist das Modem neu, und der TP-Link-Router funktioniert im drahtlosen Bridge-Modus gut. Die Netzwerkeinrichtung ist:
+In meinem eigenen Haus ist das Modem neu, und der TP-Link-Router funktioniert im Wireless-Bridge-Modus gut. Die Netzwerkeinrichtung ist:
 
-Modem -> 4m drahtlos -> TP-Link AX3000 (drahtloser Bridge-Modus) -> 2m drahtlos -> Laptop
+Modem -> 4m drahtlos -> TP-Link AX3000 (Wireless-Bridge-Modus) -> 2m drahtlos -> Laptop
 
 Die Netzwerkqualität ist gut.
 
 ### Tipps zur Fehlerbehebung
 
-Es gibt keine universelle Lösung, um die WLAN-Geschwindigkeit zu verbessern. Ein guter Ansatz besteht darin, ein Kabel zu verwenden, um jeden Teil des Netzwerks zu testen und Engpässe zu identifizieren. Vergleichen Sie die Geschwindigkeiten bei kabelgebundener Verbindung und WLAN. Versuchen Sie auch, Geräte direkt mit einem Kabel zu verbinden, um zu sehen, ob sich die Leistung verbessert.
+Es gibt keine universelle Lösung zur Verbesserung der WLAN-Geschwindigkeit. Ein guter Ansatz ist die Verwendung eines Kabels, um jeden Teil des Netzwerks zu testen und Engpässe zu identifizieren. Vergleichen Sie die Geschwindigkeiten bei kabelgebundener Verbindung und WLAN. Versuchen Sie auch, Geräte direkt per Kabel zu verbinden, um zu sehen, ob sich die Leistung verbessert.
 
 ---
 
@@ -342,25 +342,25 @@ Es gibt keine universelle Lösung, um die WLAN-Geschwindigkeit zu verbessern. Ei
 
 ### Zurücksetzen über die Weboberfläche
 
-Es wird empfohlen, den Router über ein Ethernet-Kabel zu verbinden. Nach einem Reset wird die WLAN-SSID auf die Standardwerte zurückgesetzt, was möglicherweise nicht den Erwartungen entspricht.
+Es wird empfohlen, sich über ein Ethernet-Kabel mit dem Router zu verbinden. Nach einem Reset wird die WLAN-SSID auf die Standardwerte zurückgesetzt, was möglicherweise nicht den Erwartungen entspricht.
 
-### Zurücksetzen über die Kommandozeile (SSH)
+### Zurücksetzen über die Befehlszeile (SSH)
 
-OpenWrt kann über die Kommandozeilenschnittstelle (SSH) auf die Werkseinstellungen zurückgesetzt werden. So geht’s:
+OpenWrt kann über die Befehlszeilenschnittstelle (SSH) auf die Werkseinstellungen zurückgesetzt werden. So geht's:
 
 1. Verbinden Sie sich über SSH mit Ihrem OpenWrt-Router.
 2. Führen Sie den folgenden Befehl aus:
 
-    ```bash
-    root@OpenWrt:~# firstboot
-    Dies wird alle Einstellungen löschen und installierte Pakete entfernen. Sind Sie sicher? [N/y]
-    y
-    /dev/ubi0_1 ist als /overlay eingehängt, nur Dateien werden gelöscht
-    root@OpenWrt:~# reboot
-    ```
-3. Der Router startet neu mit den Werkseinstellungen.
+   ```bash
+   root@OpenWrt:~# firstboot
+   Dies wird alle Einstellungen löschen und installierte Pakete entfernen. Sind Sie sicher? [N/y]
+   y
+   /dev/ubi0_1 ist als /overlay eingehängt, nur Dateien werden gelöscht
+   root@OpenWrt:~# reboot
+   ```
+3. Der Router startet mit den Werkseinstellungen neu.
 
 **Erklärung der Befehle:**
 
-* `firstboot`: Dieser Befehl startet den Reset-Prozess und löscht alle Konfigurationen und installierten Pakete.
+* `firstboot`: Dieser Befehl startet den Resetvorgang und löscht alle Konfigurationen und installierten Pakete.
 * `reboot`: Dieser Befehl startet den Router neu und wendet den Reset an.
