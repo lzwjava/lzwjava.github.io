@@ -57,7 +57,30 @@ Markdown content:
         return None
 
 
-def process_file(file_path, output_only=False):
+def find_existing_toc(content):
+    """Find existing TOC in content and return start and end positions."""
+    toc_start = content.find("### Table of Contents")
+    if toc_start == -1:
+        return None, None
+    
+    # Find the end of the TOC (next header or end of content)
+    toc_end_patterns = [
+        "\n### ",  # Next level 3 header
+        "\n## ",   # Next level 2 header
+        "\n# ",    # Next level 1 header
+    ]
+    
+    toc_end = len(content)  # Default to end of content
+    
+    for pattern in toc_end_patterns:
+        pos = content.find(pattern, toc_start)
+        if pos != -1 and pos < toc_end:
+            toc_end = pos
+    
+    return toc_start, toc_end
+
+
+def process_file(file_path, output_only=False, update=False):
     """Process a single Jekyll post file."""
     print(f"Processing file: {file_path}")
     try:
@@ -76,9 +99,21 @@ def process_file(file_path, output_only=False):
             print(toc)
             print()
             
-            # Insert TOC into the file after frontmatter
+            # Insert or update TOC in the file
             frontmatter_end = content.find("---\n", 3) + 4  # Find second ---\n
-            updated_content = content[:frontmatter_end] + "\n" + toc + "\n\n" + content[frontmatter_end:]
+            
+            if update:
+                # Find existing TOC and replace it
+                toc_start, toc_end = find_existing_toc(content)
+                if toc_start is not None and toc_end is not None:
+                    # Replace existing TOC
+                    updated_content = content[:toc_start] + toc + content[toc_end:]
+                else:
+                    # No existing TOC found, insert after frontmatter
+                    updated_content = content[:frontmatter_end] + "\n" + toc + "\n\n" + content[frontmatter_end:]
+            else:
+                # Insert TOC after frontmatter
+                updated_content = content[:frontmatter_end] + "\n" + toc + "\n\n" + content[frontmatter_end:]
             
             with open(file_path, "w", encoding="utf-8") as f:
                 f.write(updated_content)
@@ -99,6 +134,9 @@ def main():
     parser.add_argument("files", nargs="*", help="Markdown files to process")
     parser.add_argument(
         "--output-only", action="store_true", help="Output only TOC without file info"
+    )
+    parser.add_argument(
+        "--update", action="store_true", help="Update existing TOC instead of adding new one"
     )
 
     args = parser.parse_args()
