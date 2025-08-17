@@ -20,7 +20,7 @@ image: false
 
 {: .centered }
 ![](assets/images/tokens/tokens1.png){: .responsive }
-*Source: penrouter.ai*{: .caption }
+*Source: openrouter.ai*{: .caption }
 
 {: .centered }
 ![](assets/images/tokens/tokens2.png){: .responsive }
