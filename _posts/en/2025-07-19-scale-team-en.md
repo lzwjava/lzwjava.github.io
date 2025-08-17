@@ -8,6 +8,8 @@ title: How to Scale a Team
 translated: false
 ---
 
+## How to Scale a Team
+
 - Think about it for the long term. Do you have enough budget? How long can your team survive? What if there is no gain after scaling the team?
 
 - Be cautious about doing it after getting investment. It is easy to burn money but hard to earn it.
@@ -39,3 +41,32 @@ translated: false
 - Having a good attitude is better than current ability.
 
 - Scaling a team is similar to scaling backend services. Certainly, the number or performance of servers is important. However, the code and system design are at least equally important, if not more. Similarly, while the raw headcount or quality of employees is important, the mission, company structure, and product are at least equally important, if not more.
+
+
+---
+
+## Evaluating Interview Candidates
+
+- Evaluate candidates based on their English fluency and technical skills.
+
+- Consider standardized examination scores such as college entrance exams, TOEFL, IELTS, and SAT.
+
+- Assess whether someone who excels in their early twenties is likely to be promising in the future.
+
+- Analyze different aspects of the candidate.
+
+- Look for evidence of trustworthiness based on their long-term work record, such as years of blog posts or open-source project contributions.
+
+- Gather more information about the candidate.
+
+- Observe their reactions and responses to see if they are detailed, careful, and concise.
+
+- Analyze the candidate's drive and curiosity.
+
+- Determine whether candidates will stay in the job for years.
+
+- Challenge candidates with difficult questions.
+
+- Look for evidence of taste in candidates, such as clean, simple, and elegant qualities in their work or speech.
+
+- Peter Thiel's question: "What important truth do very few people agree with you on?"
