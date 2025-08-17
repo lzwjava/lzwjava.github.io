@@ -200,5 +200,3 @@ It is really easy to talk, but harder to perform actual experiments, work out a 
 
 It's easy to make mistakes without hands-on experience. After making tons of mistakes, you will realize that compared to the losses or pain that the mistakes cause us, the trouble of doing a lot of hands-on experiments to get to the truth and avoid mistakes is negligible. That said, like in stock investing, one day you will know that compared to the losses or pain that investing mistakes cause us, the trouble of performing hands-on, thorough experimental efforts to invest successfully is negligible.
 
----
-
