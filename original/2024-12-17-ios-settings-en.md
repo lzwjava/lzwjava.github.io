@@ -4,7 +4,7 @@ generated: false
 image: true
 lang: en
 layout: post
-title: Special Settings in iOS
+title: iOS, Apps and Settings
 ---
 
 ## Special Settings in iOS
