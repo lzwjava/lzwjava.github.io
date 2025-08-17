@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Natural Vision Restoration Tips
+title: 'Complete Natural Vision Restoration Guide'
 top: 10
 ---
 
