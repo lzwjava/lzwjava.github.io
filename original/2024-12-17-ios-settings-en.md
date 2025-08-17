@@ -4,8 +4,22 @@ generated: false
 image: true
 lang: en
 layout: post
-title: iOS, Apps and Tips
+title: 'Complete iOS Power User Guide'
 ---
+
+### Table of Contents
+
+1. [Special Settings in iOS](#special-settings-in-ios)
+   - Per-App Settings and Font Customization
+   - Switch Control and AssistiveTouch Features
+   - TradingView Widget Stability
+   - Slide to Update Interface Design
+
+2. [Left Swipe and Apps](#left-swipe-and-apps)
+   - Left Swipe Gesture Hidden Features
+   - Apple Account App Linking
+   - WhatsApp Message Info Access
+   - Cross-Platform Gesture Differences
 
 ## Special Settings in iOS
 
