@@ -22,8 +22,6 @@ top: 10
 
 * [Natural Vision Restoration: The Principle of "Just Barely Clear"](https://lzwjava.github.io/barely-clear-en), Zhiwei Li
 
-* [Natural Vision Restoration Progress](https://lzwjava.github.io/vision-progress-en), Zhiwei Li
-
 * [Natural Vision Restoration Tips](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
 
 * [Myopia: A Modern Yet Reversible Disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
