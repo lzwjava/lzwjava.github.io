@@ -58,8 +58,6 @@ top: 10
 
 * [Natural Vision Restoration Tips](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
 
-* [Myopia: A Modern Yet Reversible Disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
-
 * [Plan for Multifocal Progressive Lenses](https://lzwjava.github.io/multifocal-en), Zhiwei Li
 
 
