@@ -80,7 +80,7 @@ Here are some AI tools I've used, categorized for clarity:
 
 ## Deepseek, Mistral and Anthropic
 
-## Deepseek
+### Deepseek
 
 - Website: [https://platform.deepseek.com](https://platform.deepseek.com)
 - Payment options:
@@ -88,13 +88,13 @@ Here are some AI tools I've used, categorized for clarity:
   - CNY payments: Supports WeChat Pay and Alipay
 - Offers 5M tokens for usage
 
-## Mistral
+### Mistral
 
 - Website: [https://console.mistral.ai](https://console.mistral.ai)
 - Accepts China-issued Visa cards for Scale plan subscription
 - Simple setup process
 
-## Anthropic
+### Anthropic
 
 - Website: [https://console.anthropic.com](https://console.anthropic.com)
 - Platform registration and login successful
