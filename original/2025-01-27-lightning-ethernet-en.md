@@ -7,6 +7,34 @@ layout: post
 title: Lightning to Ethernet Adapter
 ---
 
+### Table of Contents
+
+1. [Lightning to Ethernet Adapter](#lightning-to-ethernet-adapter)
+   - Product Testing and Price Comparison
+   - Speed Test Results and Performance Analysis
+   - Network Configuration and Setup
+   - Connection Priority and Usage Tips
+
+2. [Wi-Fi Signal Strength](#wi-fi-signal-strength)
+   - Using system_profiler for Signal Analysis
+   - Signal-to-Noise Ratio (SNR) Calculations
+   - Signal Strength Guidelines and Benchmarks
+
+3. [Mesh Router](#mesh-router)
+   - TP-Link AX3000 Experience and Setup
+   - ZTE AC1200 Bridge Mode Configuration
+   - Router Performance Comparison
+   - 12V Power Solutions for Routers
+   - Sub-Router Connection Optimization
+
+4. [Registering on Any Platform Regardless of Identity](#registering-on-any-platform-regardless-of-identity)
+   - Email Account Strategy
+   - Phone Number Solutions and SIM Card Options
+   - Apple Store Region Switching
+   - Payment Method Workarounds
+   - VPN and Proxy Requirements
+   - Identity Document Considerations
+
 ## Lightning to Ethernet Adapter
 
 I recently tried a new product that I had never used before. It cost me about 44 CNY on JD.com. Similar products cost around 15 USD on Walmart.com.
