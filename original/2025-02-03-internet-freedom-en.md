@@ -8,6 +8,32 @@ title: The Journey to Pursue Internet Freedom
 translated: false
 ---
 
+### Table of Contents
+
+1. [Proxy Solutions in China - 2025](#proxy-solutions-in-china---2025)
+   - Macao SIM Card Solutions (Best Option)
+   - Proxy Server Recommendations
+   - App Configuration and Setup
+   - Payment and Regional Settings
+
+2. [The Journey to Pursue Internet Freedom](#the-journey-to-pursue-internet-freedom)
+   - Timeline of Proxy Methods (2010-2025)
+   - Comparing Internet Freedom vs Myopia Solutions
+   - Current Setup and Performance
+   - Recovery Methods and Lessons Learned
+
+3. [Macau SIM Cards](#macau-sim-cards)
+   - China Telecom Easy+ SIM Card Details
+   - Blue Macau SIM Card Options
+   - Pricing and Data Plans
+   - Device Compatibility
+
+4. [Shadowsocks Proxy Issues](#shadowsocks-proxy-issues)
+   - Network-Specific Connectivity Problems
+   - 5G vs 4G Performance Differences
+   - Troubleshooting Steps and Solutions
+   - ISP and Carrier Policy Impact
+
 ## Proxy Solutions in China - 2025
 
 *2024.12.29*
