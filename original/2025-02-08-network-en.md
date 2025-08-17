@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Floating IPs and Network Interface Management
+title: 'From Cloud IPs to WiFi Optimization'
 translated: false
 ---
 
