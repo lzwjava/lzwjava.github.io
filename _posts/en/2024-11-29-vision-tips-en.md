@@ -4,6 +4,8 @@ generated: false
 image: false
 lang: en
 layout: post
+prompt: Do not translate specific human name items such as Yin, Yin Wang, Zhiwei,
+  etc.
 title: Complete Natural Vision Restoration Guide
 top: 10
 translated: false
@@ -60,9 +62,8 @@ translated: false
 
 * [Myopia: A Modern Yet Reversible Disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
 
-* [What Problems Do Bifocals Have](https://lzwjava.github.io/bifocals-en), Zhiwei Li
-
 * [Plan for Multifocal Progressive Lenses](https://lzwjava.github.io/multifocal-en), Zhiwei Li
+
 
 ## Natural Vision Restoration Tips
 
