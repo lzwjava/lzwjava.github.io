@@ -4,7 +4,7 @@ generated: false
 image: true
 lang: en
 layout: post
-title: Using Multifocal Progressive Lenses to Reverse Myopia
+title: Could Multifocal Progressive Lenses Help Reverse Myopia
 translated: false
 ---
 
