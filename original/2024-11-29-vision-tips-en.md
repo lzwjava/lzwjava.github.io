@@ -8,6 +8,8 @@ title: Natural Vision Restoration Tips
 top: 10
 ---
 
+## Natural Vision Restoration Tips
+
 * The reason people worsen their eyesight is that they use glasses with full prescription (which lets them see a blackboard clearly at 5m) to look at phones, computers, or books most of the time. This causes their eyeballs to deform.
 
 * After using glasses with a 150-200 degree reduction for several days, you won't want to go back to full prescription glasses. The latter becomes very uncomfortable.
@@ -52,7 +54,7 @@ top: 10
 
 Last updated: November 28, 2024
 
-## My Eye Prescription History
+### My Eye Prescription History
 
 ### Whole Number Format
 
