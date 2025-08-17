@@ -153,3 +153,7 @@ give 30 single-option multiple-choice quiz questions about sth.
 
 write japanses like primary school kid, use very simple phrase
 
+---
+
+@original/2024-11-29-vision-tips-en.md  here, change the table , prescription , change to two rows or whatever , do not make it too wide, better to read in
+   mobile, do not need to roate
