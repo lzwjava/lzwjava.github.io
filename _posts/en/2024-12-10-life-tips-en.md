@@ -6,10 +6,48 @@ lang: en
 layout: post
 prompt: Do not translate specific items such as project names, company names, or school
   names, human names if you are not sure.
-title: Life Tips
+title: 'Complete Life Philosophy: Practical Tips for Living, Learning, and Innovation'
 top: 10
 translated: false
 ---
+
+### Table of Contents
+
+1. [Life Tips](#life-tips)
+   - Exploring the World and Expanding Perspectives
+   - Critical Thinking and Authority Questioning
+   - Human Relations and Social Wisdom
+   - Health and Natural Living
+   - Freedom, Security, and Personal Growth
+
+2. [Productivity Tips](#productivity-tips)
+   - Focus and Mental State Management
+   - Learning Through Movement and Activity
+   - Natural Learning Methods
+   - Flow State and Genuine Interest
+   - AI-Assisted Learning Strategies
+
+3. [Learning Tips](#learning-tips)
+   - Learning as Hobby and Playful Exploration
+   - Practice, Repetition, and Hands-On Experience
+   - AI Tools Integration (ChatGPT, Claude, Gemini)
+   - Multi-Modal Learning (Video, Audio, Text)
+   - Teaching and Content Creation for Learning
+   - Historical Context and Principle-Based Learning
+
+4. [Money Spending Tips](#money-spending-tips)
+   - Free Resources and Smart Shopping
+   - Quality vs Price Analysis
+   - Long-term Value Thinking
+   - Learning-Oriented Purchasing
+   - Strategic Financial Decisions
+
+5. [Innovation Tips](#innovation-tips)
+   - Understanding Innovation as Trying New Things
+   - Innovation in Different Contexts
+   - Overcoming Resistance to Change
+   - Building Innovation Through Experience
+   - Critical Evaluation of New Approaches
 
 ## Life Tips
 
