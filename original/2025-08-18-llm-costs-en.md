@@ -8,6 +8,8 @@ generated: false
 image: false
 ---
 
+## Optimizing LLM API Costs
+
 {: .centered }
 ![](assets/images/tokens/tokens1.png){: .responsive }
 *Source: Self-screenshot*{: .caption }
@@ -28,14 +30,11 @@ To optimize token usage, begin with more cost-effective models. If issues arise,
 } 
 ```
 
-
-
-
 ---
 
 ## Api Usage Of Deepseek And Mistral
 
-## DeepSeek
+### DeepSeek
 
 In one month, 15 million tokens cost me approximately 23.5 CNY.
 
@@ -61,7 +60,7 @@ This result aligns with the expected cost.
 ![](assets/images/deepseek/d.jpg)
 *Source: Self-Screenshot*{: .caption }
 
-## Mistral
+### Mistral
 
 
 The pricing for Mistral models is as follows:
@@ -90,7 +89,7 @@ Therefore, the total cost is calculated as 340,802 * 0.2 / 1,000,000 + 681,605 *
 
 The Mistral console reports a total usage cost of 0.43 USD, which approximately matches our calculation.
 
-## Grok
+### Grok
 
 | Model         | Input (USD per million tokens) | Output (USD per million tokens) |
 |---------------|------------------------------|---------------------------------|
