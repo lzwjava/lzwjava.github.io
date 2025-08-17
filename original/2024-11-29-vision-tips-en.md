@@ -10,6 +10,8 @@ top: 10
 
 ## Natural Vision Restoration Tips
 
+*2024.11.29*
+
 * The reason people worsen their eyesight is that they use glasses with full prescription (which lets them see a blackboard clearly at 5m) to look at phones, computers, or books most of the time. This causes their eyeballs to deform.
 
 * After using glasses with a 150-200 degree reduction for several days, you won't want to go back to full prescription glasses. The latter becomes very uncomfortable.
@@ -47,12 +49,11 @@ top: 10
 * I recommend multifocal progressive lenses. Based on your prescription, assuming correct vision is 0.9, the suggestion is to make the additional correction for near vision +1.75 D in myopia (with astigmatism remaining unchanged), while the additional correction for far vision is +1.00 D in myopia (with astigmatism remaining unchanged).
 
 
-
 ---
 
 ## Natural Vision Restoration Progress
 
-Last updated: November 28, 2024
+*Last updated: November 28, 2024*
 
 ### My Eye Prescription History
 
