@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 
@@ -29,7 +30,7 @@ def extract_url_from_filename(filename):
         return match.group(1)
     return None
 
-def find_and_replace_hyperlinks(directory, old_url, new_url):
+def find_and_replace_hyperlinks(directory, old_url_slug, old_title, new_title):
     for root, _, files in os.walk(directory):
         for file in files:
             if file.endswith('.md'):
@@ -37,16 +38,23 @@ def find_and_replace_hyperlinks(directory, old_url, new_url):
                 with open(file_path, 'r', encoding='utf-8') as f:
                     content = f.read()
 
-                # Replace URLs in the format [text](old_url)
-                updated_content = re.sub(f'\[(.*?)\]\({re.escape(old_url)}(.*?)\)', r'[\1]({\2})\4'.format(new_url), content)
+                updated_content = content
 
-                # Replace standalone URLs
-                updated_content = updated_content.replace(old_url, new_url)
+                # Regex to find [old_title](old_url_slug) or [old_title](old_url_slug/something)
+                # and replace link text with new_title
+                # updated_content = re.sub(rf'\[{re.escape(old_title)}\]\({re.escape(old_url_slug)}([^)]*?)\)',
+                #                          f'[{new_title}]({old_url_slug}\1)', updated_content)
+
+                # Generic regex for links with 'old_url_slug' in them, to change perceived link text
+                # This regex captures any link text that points to old_url_slug
+                # and replaces it with the new_title
+                updated_content = re.sub(rf'\[(.*?)\]\({re.escape(old_url_slug)}([^)]*?)\)',
+                                         f'[{new_title}]({old_url_slug}\2)', updated_content)
 
                 if updated_content != content:
                     with open(file_path, 'w', encoding='utf-8') as f:
                         f.write(updated_content)
-                    print(f'Updated hyperlinks in: {file_path}')
+                    print(f'Updated link text in: {file_path}')
 
 def change_post_title(file_path, new_title):
     with open(file_path, 'r', encoding='utf-8') as f:
@@ -58,31 +66,18 @@ def change_post_title(file_path, new_title):
         front_matter['title'] = new_title
         updated_content = update_front_matter(content, front_matter)
 
-        # Get old URL slug from filename
+        # Get old URL slug from filename (e.g., "change-habit-en" from "2025-07-28-change-habit-en.md")
         filename = os.path.basename(file_path)
         old_url_slug = extract_url_from_filename(filename)
 
-        # Generate new URL slug from new_title
-        # Remove special characters to create a clean slug
-        clean_new_title = re.sub(r'[^a-zA-Z0-9\s]', '', new_title) 
-        new_url_slug = clean_new_title.lower().replace(' ', '-')
-        
-        # Check if new URL slug is different and rename file
-        if old_url_slug and old_url_slug != new_url_slug:
-            # Construct new filename with the new slug while retaining the date and extension
-            date_part = filename.split('-', 3)[:3] # Extracts 'YYYY', 'MM', 'DD'
-            new_filename = '-'.join(date_part) + '-' + new_url_slug + '.md'
+        # Generate new URL slug from new_title. This is used for updating hyperlinks.
+        # The file itself will NOT be renamed. Its slug will remain old_url_slug.
+new_url_slug = old_url_slug # The slug remains the same as the filename won't change.
 
-            old_file_path = file_path
-            new_file_path = os.path.join(os.path.dirname(file_path), new_filename)
-            
-            os.rename(old_file_path, new_file_path)
-            print(f'Renamed file from {os.path.basename(old_file_path)} to {new_filename}')
-            file_path = new_file_path # Update file_path to new path for writing content
+        # Pass old_title to find_and_replace_hyperlinks to update the link text
+        if old_url_slug: # Ensure we have a valid slug to search for
+            find_and_replace_hyperlinks('original', old_url_slug, old_title, new_title)
 
-            # Update hyperlinks in all markdown files in 'original' and '_posts' directories
-            find_and_replace_hyperlinks('original', old_url_slug, new_url_slug)
-            find_and_replace_hyperlinks('_posts', old_url_slug, new_url_slug)
 
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(updated_content)
@@ -90,13 +85,13 @@ def change_post_title(file_path, new_title):
     else:
         print(f'No title found in front matter of {file_path}')
 
+def main():
+    parser = argparse.ArgumentParser(description="Change the title of a Markdown post and update related files.")
+    parser.add_argument("file_path", help="The path to the Markdown file.")
+    parser.add_argument("new_title", help="The new title for the post.")
 
-# Example Usage:
-# change_post_title('original/2025-07-28-change-habit-en.md', 'New Title for Change Habit Post')
-# change_post_title('_posts/en/2025-08-18-llm-costs-en.md', 'Optimizing LLM API Costs: A Detailed Guide')
+    args = parser.parse_args()
+    change_post_title(args.file_path, args.new_title)
 
 if __name__ == "__main__":
-    # Example usage. Uncomment and modify as needed.
-    # change_post_title('original/2025-07-28-change-habit-en.md', 'New Title for Change Habit Post')
-    # change_post_title('_posts/en/2025-08-18-llm-costs-en.md', 'Optimizing LLM API Costs: A Detailed Guide')
-    pass # Replace with actual calls
+    main()
