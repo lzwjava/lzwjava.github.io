@@ -8,6 +8,39 @@ title: 'Complete Natural Vision Restoration Guide'
 top: 10
 ---
 
+### Table of Contents
+
+1. [Reversing Myopia](#reversing-myopia)
+   - Key Research and Resources
+   - Todd Becker and Yin Wang's Methods
+   - Related Articles and Papers
+   - Multifocal and Progressive Lens Solutions
+
+2. [Natural Vision Restoration Tips](#natural-vision-restoration-tips)
+   - Understanding Myopia Causes
+   - The "Just Barely Clear" Principle
+   - Prescription Reduction Guidelines
+   - Daily Usage Recommendations
+   - Progressive Improvement Expectations
+
+3. [Natural Vision Restoration Progress](#natural-vision-restoration-progress)
+   - 3-Year Personal Experiment Data
+   - Detailed Prescription History
+   - Measurement Tracking Methods
+   - Mobile-Optimized Progress Tables
+
+4. [Myopia: A Modern Yet Reversible Disease — Todd Becker](#myopia-a-modern-yet-reversible-disease--todd-becker)
+   - Foundation Research Videos
+   - Todd Becker's Scientific Presentations
+   - Historical Context and Discovery
+
+5. [It's Easy to Make Mistakes Without Hands-On](#its-easy-to-make-mistakes-without-hands-on)
+   - Responding to Critics and Skeptics
+   - Importance of Experimental Evidence
+   - Personal Family History Analysis
+   - Hands-On vs Theoretical Approaches
+   - Corporate World Parallels
+
 ## Reversing Myopia
 
 *2024.12.12*
@@ -111,7 +144,11 @@ top: 10
 
 ---
 
-## Myopia: A Modern Yet Reversible Disease — Todd Becker, M.S. (AHS14)
+## Myopia: A Modern Yet Reversible Disease — Todd Becker
+
+I discovered Todd Becker's video in the footnotes of Yin Wang's article on the [Natural Vision Improvement Method](https://www.yinwang.org/blog-cn/2022/02/22/myopia). The video, uploaded in 2014, has garnered over 1.2 million views.
+
+Myopia: A Modern Yet Reversible Disease — Todd Becker, M.S. (AHS14)
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/x5Efg42-Qn0?si=P9-BqyesxMtirwCx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -164,12 +201,4 @@ It is really easy to talk, but harder to perform actual experiments, work out a 
 It's easy to make mistakes without hands-on experience. After making tons of mistakes, you will realize that compared to the losses or pain that the mistakes cause us, the trouble of doing a lot of hands-on experiments to get to the truth and avoid mistakes is negligible. That said, like in stock investing, one day you will know that compared to the losses or pain that investing mistakes cause us, the trouble of performing hands-on, thorough experimental efforts to invest successfully is negligible.
 
 ---
-
-
-
----
-
-## Myopia: A Modern Yet Reversible Disease — Todd Becker
-
-I discovered Todd Becker's video in the footnotes of Yin Wang's article on the [Natural Vision Improvement Method](https://www.yinwang.org/blog-cn/2022/02/22/myopia). The video, uploaded in 2014, has garnered over 1.2 million views.
 
