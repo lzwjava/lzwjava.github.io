@@ -12,6 +12,8 @@ translated: false
 
 *2025.02.03, This post was last updated in August 2025.*
 
+#### The Journey
+
 From 2010 to 2013, I used Goagent and the SwitchyOmega proxy tool to bypass the GFW.
 
 Between 2014 and 2015, I used Qujing (曲径) for proxying and followed its author on Twitter, who now lives in Japan.
@@ -33,19 +35,19 @@ Additionally, on iOS, I switched back to using a Macao SIM card, costing 150 CNY
 It has been working great for the past 2 months. I hope I can continue using this method to surf the Internet until I leave China to work abroad.
 
 
-## The Difference Compared to Reversing Myopia
+#### The Difference Compared to Reversing Myopia
 
 One challenge is fighting the GFW, which is human-made. The other is addressing the principles of eye muscle function.
 
 It's easy to measure the effectiveness of a proxy solution. However, reversing myopia requires time to determine if the eyeball is changing.
 
-## Similarities to Reversing Myopia
+#### Similarities to Reversing Myopia
 
 A similarity is that both a proxy solution and eyeglasses with a 200-degree reduction often work well. One involves accessing the internet, and the other involves improving eyesight. Both address very important problems.
 
 The underlying principle is that if we understand how the GFW works and find a way to bypass it, the solution should be straightforward.
 
-## Reasoning and Nuance
+#### Reasoning and Nuance
 
 I still don't fully understand how the GFW works. When my proxy server's IP gets blocked, I now have more ways to investigate the cause.
 
@@ -53,17 +55,17 @@ I can check if the block occurs on the cellular network or home broadband. If it
 
 Similarly, if my myopia doesn't improve after six months or a year, I need to investigate if there are differences between my eyes. I also need to consider if I've been seeing things just barely clearly without straining my eyes for most of the year.
 
-## Current Status
+#### Current Status
 
 My proxy server is currently working very well. Download speeds on my phone reach 80 Mbps, and upload speeds reach 50 Mbps when connecting to the Hong Kong proxy server. The same is true on my laptop.
 
 I use the same proxy configurations on my laptop and phones, and they work perfectly. Normally, I use a proxy server to visit sites outside China, and I use a non-HK server for AI tools.
 
-## Recovery
+#### Recovery
 
 If things are broken, my recovery method is simple. I just need to change the elastic IP of my Aliyun Hong Kong proxy server and upload the new proxy URL to cloud storage. This means I need to run two scripts, which takes about 1 minute, and my laptop and phones can update the proxy server address.
 
-## Regret
+#### Regret
 
 I fought with the GFW too many times and for too much time. I tried many proxy protocols, knowing they would be detected by the GFW and get banned. Without a reliable proxy server, it is hard to set up a proxy on an OpenWrt router.
 
@@ -71,7 +73,7 @@ One thing I regret is not learning the techniques of proxy providers earlier, li
 
 The other thing is that whenever my proxy server got banned, I didn't think too deeply. It seemed that you just needed to set up a new proxy server to get a new IP address that hadn't been banned. But that was shallow thinking.
 
-## Metrics
+#### Metrics
 
 I regret not using Speedtest earlier. I knew the name of the tool a long time ago, but I didn't learn how to use it carefully.
 
@@ -81,10 +83,60 @@ For reversing myopia, it is the same. I bought a C-shape eye chart and a standar
 
 No measuring, no improvement. Measuring things helps you learn. Using Speedtest often helps me find that on a 5G network, it is easy to exceed 100 Mbps, while on a home broadband network, it is hard to exceed 100 Mbps.
 
-## It Is Still Early
+#### It Is Still Early
 
 Will the GFW wall fall down in the next few years? It is hard to say.
 
 When, after reversing myopia for two years, I told my friend that my reversing method needed to be improved and that I needed to wear glasses with 200 degrees less than my actual prescription instead of 150 degrees less.
 
 He said that it was no problem, it was fine, not a waste of time, and that it was still early. Yeah. These things are fundamental. Like myopia, people should discover it earlier. Todd Becker shared this discovery on YouTube in 2014, and the videos gained more than 1 million views. And now it is 2025, how many people really know about it in the world? I guess it will be less than 10 thousand.
+
+
+---
+
+## Macau SIM Cards
+
+*2023.04.20*
+
+#### My Experience with Macau SIM Cards
+
+During my weekend visit to Macau in 2023, I bought a China Telecom Easy+ SIM Macau Card. After arriving in Guangzhou, I found it still worked perfectly, helping me learn English and download many foreign apps. It felt like I was still in Macau. I highly recommend it. Later, I tried the Blue Macau SIM Card, which was also good. Here’s a quick overview of both:
+
+#### China Telecom Easy+ SIM Card
+
+Easy to Use Anytime!
+
+### Key Points
+- No deposit; automatic activation for Mainland China, Macau, and Hong Kong.
+- No contract or termination fee; ready to use upon purchase.
+- Macau number included; optional Mainland China number for dual-number use.
+- Top up online or with value cards.
+
+### Daily Fee Options
+- $2/day: 4GB high-speed, then unlimited at reduced speed; 5,000 minutes local calls.
+- $3/day: 10GB high-speed, then unlimited at reduced speed; 5,000 minutes local calls.
+- $5/day: 20GB high-speed, then unlimited at reduced speed; 5,000 minutes local calls.
+
+### Extras
+- Data usage in Hong Kong: $0.1/MB.
+- Change plans anytime by sending a text message.
+
+#### Blue Macau SIM Card
+
+### Key Points
+- No monthly rent; pay as you use.
+- Local calls: 0.39 MOP/minute; Internet: 0.1 MOP/MB; SMS: 1 MOP/message.
+- Optional no-expiry data packages: 10GB for 98 MOP, 20GB for 188 MOP, 40GB for 288 MOP.
+- Top up every 180 days to keep active.
+
+#### Compatible Devices
+
+- Requires a 4G full network or China Telecom supported phone.
+
+For more information, visit [China Telecom Macau](https://www.1888.com.mo/).
+
+---
+
+You can also find these on Taobao:
+
+<div align="center"><img src="/assets/images/macao/easy.jpg" width="300px" /><img/></div>
