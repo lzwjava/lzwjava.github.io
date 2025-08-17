@@ -5,6 +5,8 @@ image: false
 lang: en
 layout: post
 title: Life Tips
+prompt: Do not translate specific items such as project names, company names, or school
+  names, human names if you are not sure.
 top: 10
 ---
 
