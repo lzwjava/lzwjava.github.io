@@ -12,7 +12,6 @@ MODEL_MAPPING = {
     "claude-opus": "anthropic/claude-opus-4",
     "claude-sonnet": "anthropic/claude-sonnet-4",
     "gemini-flash": "google/gemini-2.5-flash",
-    "deepseek-v3": "deepseek/deepseek-chat-v3-0324:free",
     "gemini-pro": "google/gemini-2.5-pro",
     "kimi-k2": "moonshotai/kimi-k2:free",
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324",
