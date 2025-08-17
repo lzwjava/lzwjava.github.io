@@ -7,6 +7,8 @@ layout: post
 title: Programming
 ---
 
+## Programming
+
 * It is okay to do competitive programming as long as it motivates you.
 
 * Programming is like writing. Programming is a creative activity.
