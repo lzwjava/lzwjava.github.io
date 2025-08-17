@@ -38,6 +38,35 @@ Content:
         return None
 
 
+def validate_title(title):
+    """Validate the generated title for length, special characters, quotes, and markdown syntax."""
+    if not title:
+        raise ValueError("Title is empty or None")
+    
+    # Check length (under 100 characters)
+    if len(title) > 100:
+        raise ValueError(f"Title is too long ({len(title)} characters). Keep it under 100 characters.")
+    
+    # Check for markdown syntax (basic check for common patterns)
+    markdown_patterns = [r'\*\*.*?\*\*', r'\*.*?\*', r'\[.*?\]', r'\(.*?\)', r'#+', r'`.*?`']
+    for pattern in markdown_patterns:
+        if re.search(pattern, title):
+            raise ValueError(f"Title contains markdown syntax: {title}")
+    
+    # Check for quotes at the beginning or end
+    if title.startswith('"') or title.endswith('"') or title.startswith("'") or title.endswith("'"):
+        raise ValueError(f"Title contains quotes at the beginning or end: {title}")
+    
+    # Check for special characters that might cause issues (basic check)
+    # Allow common punctuation but disallow potentially problematic characters
+    problematic_chars = ['<', '>', '{', '}', '[', ']']
+    for char in problematic_chars:
+        if char in title:
+            raise ValueError(f"Title contains problematic character '{char}': {title}")
+    
+    return True
+
+
 def process_file(file_path, output_only=False):
     """Process a single Jekyll post file to update its title."""
     print(f"Processing file: {file_path}")
@@ -49,6 +78,13 @@ def process_file(file_path, output_only=False):
         title = generate_title_with_ai(content)
 
         if title is None:
+            return None
+
+        # Validate the title
+        try:
+            validate_title(title)
+        except ValueError as e:
+            print(f"Title validation failed: {e}", file=sys.stderr)
             return None
 
         if output_only:
