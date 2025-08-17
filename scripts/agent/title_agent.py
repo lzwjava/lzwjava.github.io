@@ -24,7 +24,7 @@ def generate_title_with_ai(content):
 PREFERRED FORMATS (in order of preference):
 1. If possible, simplify to a format like "noun, noun, noun" (e.g., "Docker, Kubernetes, AWS")
 2. If that doesn't work, use a clear descriptive title
-3. Keep it under 60 characters if possible
+3. Keep it under 40 characters if possible
 
 Content:
 {content}"""
