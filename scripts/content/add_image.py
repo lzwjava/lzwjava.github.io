@@ -80,9 +80,8 @@ def parse_arguments():
         help="Directory name under assets/images/ (will be created if it doesn't exist)"
     )
     parser.add_argument(
-        "--source", "-s",
+        "source",
         choices=source_options,
-        required=True,
         help=f"Source attribution for the image. Options: {', '.join(source_options)}"
     )
     
