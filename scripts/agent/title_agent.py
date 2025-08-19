@@ -26,6 +26,11 @@ PREFERRED FORMATS (in order of preference):
 2. If that doesn't work, use a clear descriptive title
 3. Keep it under 40 characters if possible
 
+IMPORTANT INSTRUCTIONS:
+- Use original words from the section titles/content as much as possible
+- Preserve key terms and concepts from the source material
+- Avoid introducing new vocabulary not present in the content
+
 Content:
 {content}"""
 

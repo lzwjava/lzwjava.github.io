@@ -1,12 +1,36 @@
 ---
 audio: false
-lang: en
-layout: post
-title: Beyond Expectations
-translated: false
 generated: false
 image: false
+lang: en
+layout: post
+title: Exceeding Expectations, Avoiding Validation, Staying Humble
+translated: false
 ---
+
+### Table of Contents
+
+1. [Beyond Expectations](#beyond-expectations)
+   - Exceed corporate task quality standards
+   - Surprise others with hidden efforts
+   - Leverage AI for exceptional output
+   - Limit self-disclosure for impact
+   - Rare exceptional results exist
+
+2. [Avoid Seeking Validation](#avoid-seeking-validation)
+   - Validation-seeking stems from insecurity
+   - Reject outdated societal assumptions
+   - Over-sharing creates unnecessary friction
+   - Embrace mortality for confidence
+   - Focus on actions over approval
+
+3. [Avoid Being Proud After Success](#avoid-being-proud-after-success)
+   - Underestimate success to stay sharp
+   - Emotional investing disrupts strategy
+   - Premature scaling destroys startups
+   - Debt assumptions backfire harshly
+   - Recovery demands prolonged discipline
+
 
 ## Beyond Expectations
 

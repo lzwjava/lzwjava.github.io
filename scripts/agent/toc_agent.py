@@ -33,11 +33,11 @@ def validate_toc(toc):
         if not line:  # Skip empty lines
             continue
             
-        # Check for numbered items like "1. [Title](#anchor)"
-        if re.match(r'^\d+\.\s+\[.*\]\(#.*\)$', line.strip()):
+        # Check for numbered items like "1. [Title](#anchor)" or "1. **[Title](#anchor)**"
+        if re.match(r'^\d+\.\s+\**\[.*\]\(#.*\)\**$', line.strip()):
             item_count += 1
             # Extract the link text and anchor
-            match = re.match(r'^\d+\.\s+\[(.*)\]\((#.*)\)$', line.strip())
+            match = re.match(r'^\d+\.\s+\**\[(.*)\]\((#.*)\)\**$', line.strip())
             if match:
                 link_text, anchor = match.groups()
                 # Check if anchor starts with #
@@ -80,6 +80,7 @@ def generate_toc_with_ai(content):
 4. Never include subheaders as bullet points
 5. Never exceed 5 points per section
 6. Never use markdown code blocks
+7. Never use bold formatting (**)
 
 Example Output:
 1. [Team Scaling](#team-scaling)
@@ -92,7 +93,10 @@ Markdown content:
 
     try:
         response = call_openrouter_api(prompt)
+        print(f"AI Response:\n{response}\n---End of AI Response---")  # Log the raw AI response
         stripped = response.strip()
+        # Remove any bold formatting that might have been added despite prompt instruction
+        stripped = stripped.replace('**[', '[').replace(']**', ']')
         # Raise exception if markdown code blocks still appear despite prompt instruction
         if stripped.startswith('```') and stripped.endswith('```'):
             raise ValueError("TOC contains markdown code blocks despite prompt instructions")
