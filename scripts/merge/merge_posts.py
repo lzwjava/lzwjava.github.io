@@ -26,7 +26,7 @@ def extract_date_from_filename(filename):
         return date_str.replace('-', '.')
     return None
 
-def process_post_content(content):
+def process_post_content(content, filename=None):
     """Process a single post's content and extract metadata."""
     sub_parts = content.split("---", 2)
     date = None
@@ -42,6 +42,10 @@ def process_post_content(content):
                 title = line.split(':', 1)[1].strip().strip('"\'')
             elif line.startswith('date:'):
                 date = line.split(':', 1)[1].strip().strip('"\'')
+    
+    # If no date in front matter, try to extract from filename
+    if not date and filename:
+        date = extract_date_from_filename(filename)
     
     return {
         'content': content,
@@ -82,10 +86,50 @@ def merge_post_contents(contents):
 
     return combined_content
 
+def merge_post_contents_with_filenames(post_data):
+    """Merge multiple post contents into one, using filename for date extraction."""
+    contents = [post['content'] for post in post_data]
+    filenames = [post['filename'] for post in post_data]
+    
+    if len(contents) < 2:
+        print("Error: At least 2 posts are required")
+        return None
+    if len(contents) > 10:
+        print("Error: Maximum 10 posts allowed")
+        return None
+
+    # Process and sort posts
+    processed_posts = []
+    for i, content in enumerate(contents):
+        filename = filenames[i] if i < len(filenames) else None
+        processed_posts.append(process_post_content(content, filename))
+    
+    processed_posts.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
+
+    # First post is main post
+    main_content = processed_posts[0]['content']
+    combined_content = main_content
+
+    # Process sub posts - add date in the format *2025.07.12* after the section title
+    for post in processed_posts[1:]:
+        if post['title']:
+            header = f"## {post['title']}"
+            if post['date']:
+                # Date is already in format YYYY.MM.DD from filename extraction
+                header += f"\n\n*{post['date']}*"
+            sub_body = f"{header}\n\n{post['body']}"
+        else:
+            sub_body = post['body'].strip()
+
+        if sub_body:
+            combined_content += "\n\n---\n\n" + sub_body
+
+    return combined_content
+
 def combine_posts(posts):
     """Combine multiple posts from files."""
     # Read contents from files
-    contents = []
+    post_data = []
     for path in posts:
         abs_path = os.path.abspath(path) if not os.path.isabs(path) else path
         if not os.path.exists(abs_path):
@@ -94,13 +138,14 @@ def combine_posts(posts):
         
         try:
             with open(abs_path, "r", encoding="utf-8") as f:
-                contents.append(f.read())
+                content = f.read()
+                post_data.append({'content': content, 'filename': os.path.basename(abs_path)})
         except Exception as e:
             print(f"Error reading file {abs_path}: {e}")
             return
 
     # Merge contents
-    combined_content = merge_post_contents(contents)
+    combined_content = merge_post_contents_with_filenames(post_data)
     if combined_content is None:
         return
 
