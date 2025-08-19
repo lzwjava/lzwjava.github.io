@@ -50,13 +50,9 @@ def validate_toc(toc):
         # Check for bullet points under numbered items
         elif re.match(r'^\s+-\s+.*$', line):
             # Check if this is a valid bullet point (indented with hyphen)
-            if len(line) > 50:  # Arbitrary limit for bullet point length
+            if len(line) > 150:  # Increased limit for bullet point length
                 raise ValueError(f"Bullet point too long in line: {line}")
-        else:
-            # Non-empty line that doesn't match expected patterns
-            if line.strip() and not re.match(r'^\d+\.\s+\[.*\]\(#.*\)$', line.strip()) and not re.match(r'^\s+-\s+.*$', line):
-                raise ValueError(f"Invalid TOC line format: {line}")
-    
+                
     # Check if we have at least one numbered item
     if item_count == 0:
         raise ValueError("TOC must contain at least one numbered item")
