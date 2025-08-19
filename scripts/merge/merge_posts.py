@@ -2,6 +2,7 @@ import os
 import sys
 import glob
 import argparse
+import re
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -13,6 +14,16 @@ def get_post_date(content):
         for line in front_matter.split('\n'):
             if line.startswith('date:'):
                 return line.split(':', 1)[1].strip().strip('"\'')
+    return None
+
+def extract_date_from_filename(filename):
+    """Extract date from filename in format YYYY-MM-DD."""
+    # Match dates in filenames like 2025-07-30-beyond-expectations-en.md
+    match = re.search(r'(\d{4}-\d{2}-\d{2})', filename)
+    if match:
+        date_str = match.group(1)
+        # Convert from YYYY-MM-DD to YYYY.MM.DD format
+        return date_str.replace('-', '.')
     return None
 
 def process_post_content(content):
