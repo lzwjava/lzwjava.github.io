@@ -45,11 +45,23 @@ def copy_to_clipboard(text):
 def get_source_options():
     """Get the list of available source options."""
     return [
-        "Self-screenshot",
-        "walmart.com",
-        "pinduoduo.com", 
-        "amazon.com"
+        "self",
+        "walmart",
+        "pinduoduo", 
+        "amazon",
+        "chatgpt"
     ]
+
+
+def get_source_mapping():
+    """Get the mapping from simplified names to full names."""
+    return {
+        "self": "Self-screenshot",
+        "walmart": "walmart.com",
+        "pinduoduo": "pinduoduo.com",
+        "amazon": "amazon.com",
+        "chatgpt": "chatgpt.com"
+    }
 
 
 def parse_arguments():
@@ -70,8 +82,8 @@ def parse_arguments():
     parser.add_argument(
         "--source", "-s",
         choices=source_options,
-        default="Self-screenshot",
-        help=f"Source attribution for the image (default: Self-screenshot). Options: {', '.join(source_options)}"
+        required=True,
+        help=f"Source attribution for the image. Options: {', '.join(source_options)}"
     )
     
     return parser.parse_args()
@@ -150,6 +162,10 @@ def main():
     # Parse command line arguments
     args = parse_arguments()
     
+    # Get source mapping
+    source_mapping = get_source_mapping()
+    full_source_name = source_mapping.get(args.source, args.source)
+    
     # Validate source image
     source_path, image_ext = validate_source_image(args.image_path)
     
@@ -167,7 +183,7 @@ def main():
     
     # Generate markdown content and handle clipboard
     relative_path = f"assets/images/{args.dir_name}/{target_filename}"
-    markdown_content = generate_markdown_content(relative_path, args.source)
+    markdown_content = generate_markdown_content(relative_path, full_source_name)
     handle_clipboard_and_output(markdown_content, relative_path)
 
 
