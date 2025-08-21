@@ -62,6 +62,8 @@ My daughter is living in the future. Maybe one day all kids from all nations wil
 
 ## Parenting Tips
 
+*2025*
+
 * Safety is the most important thing. Live low-key and ensure that kindergartens or schools do the right thing.
 
 * Broaden their perspectives by exposing them to diverse experiences and traveling.
