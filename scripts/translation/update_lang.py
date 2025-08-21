@@ -178,8 +178,8 @@ def main():
     parser.add_argument(
         "--model",
         type=str,
-        default="deepseek",
-        help="Model to use for translation (deepseek or mistral).",
+        default="deepseek-v3",
+        help="Model to use for translation (e.g., deepseek-v3, mistral-medium, gemini-flash).",
     )
     parser.add_argument(
         "--commits",

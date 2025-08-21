@@ -41,7 +41,7 @@ def translate_text(
     text,
     target_language,
     type="content",
-    model="deepseek",
+    model="deepseek-v3",
     front_matter_prompt=None,
     original_lang=None,
 ):
@@ -61,23 +61,13 @@ def translate_text(
         + text
     )
 
-    if model == "deepseek":
-        translated_text = call_openrouter_api(prompt, "deepseek-v3")
-        return translated_text
-    elif model == "mistral":
-        translated_text = call_openrouter_api(prompt, "mistral-medium")
-        return translated_text
-    elif model == "gemini":
-        translated_text = call_openrouter_api(prompt, "gemini-flash")
-        return translated_text
-    else:
-        print(f"Error: Invalid model specified: {model}")
-        return None
+    translated_text = call_openrouter_api(prompt, model)
+    return translated_text
 
 
 if __name__ == "__main__":
     print("Debug: Running main test translation")
     text = translate_text(
-        "Hi, it is sunny today. Hahaa...", "zh", model="mistral", original_lang="en"
+        "Hi, it is sunny today. Hahaa...", "zh", model="mistral-medium", original_lang="en"
     )
     print(f"Debug: Final translated text: {text}")
