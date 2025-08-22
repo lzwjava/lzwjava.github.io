@@ -18,9 +18,9 @@ def create_log():
     content = get_clipboard_content()
 
     # Check character limit
-    if len(content) > 50000:
+    if len(content) > 1048576:  # 1MB limit
         print(
-            "Error: Content exceeds 4096 characters. Please shorten the log and try again."
+            "Error: Content exceeds 1MB. Please shorten the log and try again."
         )
         return
 
