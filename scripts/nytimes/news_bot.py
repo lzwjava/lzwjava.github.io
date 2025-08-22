@@ -9,7 +9,8 @@ from news_bot_utils import (
     fetch_and_summarize,
     generate_summarized_report,
     extract_nytimes_links,
-    summarize_nytimes_article
+    summarize_nytimes_article,
+    TELEGRAM_MAX_LENGTH
 )
 
 
