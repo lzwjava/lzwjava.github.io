@@ -1,7 +1,9 @@
 import json
 import os
+import subprocess
+import sys
 
-def reverse_sync_config():
+def reverse_sync_config(restart=False):
     print("Starting reverse config sync...")
 
     # Source: sanitized config in your project
@@ -59,6 +61,18 @@ def reverse_sync_config():
     # Print the complete config for verification
     print("\nComplete config:")
     print(json.dumps(config, indent=2))
+    
+    # Restart ccr if requested
+    if restart:
+        print("\nRestarting Claude Code Router...")
+        try:
+            subprocess.run(["ccr", "restart"], check=True)
+            print("Claude Code Router restarted successfully.")
+        except subprocess.CalledProcessError as e:
+            print(f"Failed to restart Claude Code Router: {e}")
+        except FileNotFoundError:
+            print("Warning: 'ccr' command not found. Is Claude Code Router installed and in PATH?")
 
 if __name__ == "__main__":
-    reverse_sync_config()
+    restart_flag = "--restart" in sys.argv
+    reverse_sync_config(restart=restart_flag)
