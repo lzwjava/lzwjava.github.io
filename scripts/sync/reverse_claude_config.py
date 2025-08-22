@@ -55,6 +55,10 @@ def reverse_sync_config():
         json.dump(config, f, indent=2)
 
     print("Reverse config sync completed successfully.")
+    
+    # Print the complete config for verification
+    print("\nComplete config:")
+    print(json.dumps(config, indent=2))
 
 if __name__ == "__main__":
     reverse_sync_config()
