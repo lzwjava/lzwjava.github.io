@@ -82,7 +82,7 @@ def main():
     # Handle Python files
     if commit_info['python_files']:
         first_py = commit_info['python_files'][0]
-        python_cmd = f"python3 {first_py}"
+        python_cmd = f"python {first_py}"
         
         print(f"First Python file: {first_py}")
         
