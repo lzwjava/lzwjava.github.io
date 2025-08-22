@@ -1,24 +1,17 @@
 import os
 import subprocess
 import platform
-
+import sys
 
 def gpa():
-    # Determine the shell command based on the operating system
+    python_exec = sys.executable  # full path to current Python interpreter
+
     system = platform.system()
     if system == "Linux":
-        # For Linux, use bash with login shell to load environment variables
-        shell_command = (
-            "bash -l -c 'python ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
-        )
+        shell_command = f"bash -l -c '{python_exec} ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
     elif system == "Darwin":
-        # For macOS, use zsh with login shell to load environment variables
-        shell_command = (
-            "zsh -l -c 'python ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
-        )
-    else:
-        # For Windows, use cmd.exe to run the Python script
-        shell_command = "cmd.exe /c python %USERPROFILE%\\bin\\gitmessageai.py --api deepseek --allow-pull-push'"
+        shell_command = f"zsh -l -c '{python_exec} ~/bin/gitmessageai.py --api deepseek --allow-pull-push'"
+    else:  # Windows
+        shell_command = f'cmd.exe /c "{python_exec} %USERPROFILE%\\bin\\gitmessageai.py --api deepseek --allow-pull-push"'
 
-    # Execute the shell command
     subprocess.run(shell_command, shell=True)
