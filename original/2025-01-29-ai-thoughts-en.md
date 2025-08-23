@@ -4,9 +4,33 @@ generated: false
 image: false
 lang: en
 layout: post
-title: AI Thoughts
+title: AI Workflows, Code Editors, and Platform Disruption
 translated: false
 ---
+
+### Table of Contents
+
+1. [AI Thoughts](#ai-thoughts)
+   - AI lacks true intelligence or depth
+   - Machine learning is advanced applied calculus
+   - LLMs struggle with structured file formats
+   - Open source eliminates technological secrecy
+   - Text-based tools face AI disruption first
+
+2. [New Platforms Powered by AI Workflows](#new-platforms-powered-by-ai-workflows)
+   - AI workflows automate multilingual content generation
+   - Users submit prompts for format conversion
+   - Platforms enable content refinement and summarization
+   - Customizable AI workflows via keyword settings
+   - AI handles content transformation end-to-end
+
+3. [The Next Direction of AI Code Editors](#the-next-direction-of-ai-code-editors)
+   - Cloud integration critical for CI/CD workflows
+   - A/B testing enhances AI-generated content
+   - RLHF extends to real-world deployment feedback
+   - Human feedback refines imperfect AI outputs
+   - Prompt optimization beats output correction
+
 
 ## AI Thoughts
 
