@@ -5,6 +5,7 @@ import argparse
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.llm.openrouter_client import call_openrouter_api
 from sample_code import sample_code
+from code_validation_utils import validate_code_quality
 
 
 def generate_refactor_prompt(file_path):
@@ -27,6 +28,8 @@ Refactor the Python code below, focusing on:
 - Used argparse to allow for flexible input of the params.
 - Do not need docstring in each function.
 - The code is divided into smaller, reusable functions, each with a single responsibility.
+- Each function should be below 30 lines for better maintainability.
+- Include demo run examples for each function as comments.
 - Improved variable names and overall structure for better readability.
 - Although not explicitly added, the structure now makes it easier to add error handling where necessary.
 - Only output the refactored code without any additional comments or explanations.
@@ -47,25 +50,31 @@ Refactor the Python code below, focusing on:
         return f"Error reading file {file_path}: {str(e)}"
 
 
+
+
 def refactor_python_code(file_path):
     """
     Generate a refactor prompt and get AI suggestions for improving Python code.
     The resulting code is written directly back to the original file.
     """
     try:
-        # Generate the refactor prompt
+        with open(file_path, "r", encoding="utf-8") as file:
+            original_code = file.read()
+        
         prompt = generate_refactor_prompt(file_path)
 
-        # Call the AI API for refactoring suggestions
         response = call_openrouter_api(prompt=prompt, model="kimi-k2")
 
-        # Write the refactored code back to the original file
-        if not response.startswith("Error"):
-            with open(file_path, "w", encoding="utf-8") as file:
-                file.write(response)
-            return f"Successfully refactored {file_path}"
-        else:
+        if response.startswith("Error"):
             return response
+        
+        is_valid, validation_msg = validate_code_quality(original_code, response)
+        if not is_valid:
+            return f"Validation failed: {validation_msg}"
+        
+        with open(file_path, "w", encoding="utf-8") as file:
+            file.write(response)
+        return f"Successfully refactored {file_path}"
 
     except Exception as e:
         return f"Error during refactoring: {str(e)}"
