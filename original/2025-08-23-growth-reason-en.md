@@ -10,7 +10,7 @@ image: false
 
 I have participated in a digital bank project in Singapore or Hong Kong. Singapore has around 5 million people while Hong Kong has 7 million people. 
 
-A digital bank project started around 2016. From 2016 to 2020, this bank app probably grew to 1 million users. And then by late 2023, they grew to 3 million users. They were very happy to hire 200 more engineers and other support employees (including 100 contractor engineers) in the city of the product and a big city in mainland China to support the users. 
+A digital bank project started around 2016. From 2016 to 2020, this bank app probably grew to 1 million users. And then by late 2022, they grew to 3 million users. They were very happy to hire 200 more engineers and other support employees (including 100 contractor engineers) in the city of the product and a big city in mainland China to support the users. 
 
 But after one year, the app product probably just reached 3.2 million users. 80% of new hires were let go. 
 
