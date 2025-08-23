@@ -44,6 +44,11 @@ def delete_combine_posts(posts):
     # Sort posts by date in descending order
     post_data.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
 
+    # Keep the original for the first post, delete others completely
+    if post_data:
+        print(f"Keeping original for: {post_data[0]['path']}")
+        delete_md(post_data[0]['path'], False)
+    
     # Delete all posts except the first one
     for post in post_data[1:]:
         print(f"Deleting post: {post['path']}")
