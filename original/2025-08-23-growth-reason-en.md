@@ -30,7 +30,7 @@ The reason they grew it to half the population of Singapore or Hong Kong is thei
 
 The reason they cannot grow it more is that the regional population has limits. They need some kind of Hong Kong or Singapore phone number to use their applications. This is a huge limitation. 
 
-AlipayHK doesn't need a Hong Kong phone number to use, and it is great. Mainland China has tons of population and they can contribute users easily. If they start to use it, they probably will use it more. 
+AlipayHK doesn't need a Hong Kong phone number to use, and it is great. Mainland China has tons of population and they can contribute users easily. If they start to use it, they probably will use it more. The Shenzhen or Guangdong people can go to Hong Kong easily and use the digital bank app more. And [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) helps to transfer money between Hong Kong and mainland China.
 
 For internet applications, it is better to serve all users - phone numbers or whatever shouldn't be limited. SMS activate (https://sms-activate.io) lets you rent a random number. 
 
