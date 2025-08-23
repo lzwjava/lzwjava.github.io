@@ -4,9 +4,24 @@ generated: false
 image: true
 lang: en
 layout: post
-title: The Retained Story of My HK Debit Card
+title: HSBC, OCBC, Bank Account Experience
 translated: false
 ---
+
+### Table of Contents
+
+1. [HSBC Debit Card Retention Incident](#hsbc-debit-card-retention-incident)
+   - Card retained accidentally at ATM
+   - HSBC support via WhatsApp/app
+   - Replacement card mailed within week
+
+2. [Opening an OCBC Bank Account](#opening-an-ocbc-bank-account)
+   - Requires Chinese passport/ID only
+   - Digital app simplifies verification process
+   - Includes 360 Account with rewards
+   - Card activation requires branch visit
+   - Account risks closure without activity
+
 
 I got my HSBC Debit card in May 2023 at the Sha Tin branch in Hong Kong. Unfortunately, just at the ATM outside the branch, my card was retained.
 
