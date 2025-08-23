@@ -23,8 +23,26 @@ def update_post_to_today(old_path):
         print(f"Error: {old_filename} doesn't follow the expected format (YYYY-MM-DD-title-lang.md)")
         return False
     
-    # Extract the title and language (everything after the date)
-    title_and_lang = '-'.join(parts[3:])
+    # All supported languages from update_lang.py
+    supported_languages = ["ja", "es", "hi", "zh", "en", "fr", "de", "ar", "hant"]
+    
+    # Find the language from the filename
+    language = None
+    for lang in supported_languages:
+        if old_filename.endswith(f"-{lang}.md"):
+            language = lang
+            break
+    
+    if not language:
+        print(f"Error: Could not determine language from {old_filename}. Supported languages: {supported_languages}")
+        return False
+    
+    # Extract the title (everything between date and language)
+    title_parts = parts[3:-1]  # Exclude the last part which is the language
+    title = '-'.join(title_parts)
+    
+    # Reconstruct title and language
+    title_and_lang = f"{title}-{language}"
     
     # Get today's date
     today = datetime.now().strftime('%Y-%m-%d')
