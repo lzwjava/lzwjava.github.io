@@ -9,12 +9,18 @@ import re
 import sys
 
 
-def get_git_diff_lines(file_path):
-    """Get the line numbers that have changes according to git diff."""
+def get_git_diff_lines(file_path, base_range=None):
+    """Get the line numbers that have changes according to git diff.
+    If base_range is provided (e.g., 'HEAD~1..HEAD') it will diff that range; otherwise compares working tree vs HEAD.
+    """
     try:
-        # Get the git diff for the file
+        # Build git command based on provided range
+        if base_range:
+            cmd = ["git", "diff", base_range, "--", file_path]
+        else:
+            cmd = ["git", "diff", "HEAD", "--", file_path]
         result = subprocess.run(
-            ["git", "diff", "HEAD", file_path],
+            cmd,
             capture_output=True,
             text=True,
             cwd=os.path.dirname(os.path.abspath(file_path))
@@ -115,3 +121,22 @@ def apply_grammar_fixes_to_original(original_content, changed_content, fixed_con
         return '\n'.join(new_lines)
     
     return original_content
+
+
+def get_changed_md_files_in_last_n_commits(n):
+    """Return list of changed markdown files under 'original/' in the last n commits."""
+    try:
+        if n <= 0:
+            return []
+        # Use git diff --name-only to list changed files in the range
+        cmd = ["git", "diff", "--name-only", f"HEAD~{n}..HEAD"]
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"Error getting changed files: {result.stderr}", file=sys.stderr)
+            return []
+        files = [f.strip() for f in result.stdout.splitlines() if f.strip()]
+        md_files = [f for f in files if f.endswith('.md') and f.startswith('original/')]
+        return md_files
+    except Exception as e:
+        print(f"Error listing changed files for last {n} commits: {e}", file=sys.stderr)
+        return []
