@@ -36,7 +36,8 @@ For internet applications, it is better to serve all users - phone numbers or wh
 
 Grok and Mistral can be used in Hong Kong, which is good. Why should Hong Kong people suffer restrictions on internet freedom due to security law concerns? In this city, half of the population doesn't like the security law, so why should they suffer because of that? 
 
-The reason I grew to around 20,000 users in a year is that I caught up with the trend that at that time, in China, there was a need for a platform for knowledge workers. The Jike Time from GeekBang showed that we needed a knowledge platform for IT workers. Dedao and Himalaya demonstrated that need as well.
+The reason I grew to around 20,000 users in a year **was** that I caught up with the trend—at that time, in China, there was a need for a platform for knowledge workers. The Jike Time from GeekBang showed that we needed a knowledge platform for IT workers. Dedao and Himalaya demonstrated that need as well.
 
-Another reason is that I worked hard to do software engineering and marketing mostly by myself, marketing frequently on the WeChat platform. Users only care about what the product can bring them. They don't care whether it is made by one person or twenty people. The founders, managers, or investors care about that. Users don't care.
+Another reason is that I worked hard on software engineering and marketing mostly by myself, frequently marketing on the WeChat platform. Users only care about what the product can bring them. They don’t care whether it’s made by one person or twenty. Founders, managers, or investors care about that—users don’t.
 
+We need to try many ways of doing things and verify them. That way, we know what works and what doesn’t. It’s okay to make mistakes, but it’s stupid to make the same mistake again and again. For user growth, there are many ways to achieve it. Users can be acquired offline and online. People hear about things in many ways. They learn actively or passively. They discover things through self-reflection or by being told. They hear about something days, months, or years after it’s created.
