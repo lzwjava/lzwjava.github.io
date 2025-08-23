@@ -3,7 +3,7 @@ import os
 import subprocess
 import sys
 
-def reverse_sync_config(restart=False):
+def reverse_sync_config(restart=True):
     print("Starting reverse config sync...")
 
     # Source: sanitized config in your project
@@ -74,5 +74,6 @@ def reverse_sync_config(restart=False):
             print("Warning: 'ccr' command not found. Is Claude Code Router installed and in PATH?")
 
 if __name__ == "__main__":
-    restart_flag = "--restart" in sys.argv
+    no_restart = "--no-restart" in sys.argv
+    restart_flag = not no_restart
     reverse_sync_config(restart=restart_flag)
