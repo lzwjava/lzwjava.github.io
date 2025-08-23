@@ -22,6 +22,7 @@ translated: false
    - Card activation requires branch visit
    - Account risks closure without activity
 
+## HSBC Debit Card Retention Incident
 
 I got my HSBC Debit card in May 2023 at the Sha Tin branch in Hong Kong. Unfortunately, just at the ATM outside the branch, my card was retained.
 
