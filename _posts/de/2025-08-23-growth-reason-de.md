@@ -8,30 +8,30 @@ title: Der wahre Grund für Wachstum
 translated: true
 ---
 
-Ich habe an einem digitalen Bankprojekt in Singapur oder Hongkong teilgenommen. Singapur hat etwa 5 Millionen Einwohner, während Hongkong 7 Millionen hat.  
+Ich habe an einem Projekt für eine digitale Bank in Singapur oder Hongkong teilgenommen. Singapur hat etwa 5 Millionen Einwohner, während Hongkong 7 Millionen hat.
 
-Ein Digitalbank-Projekt startete um 2016. Von 2016 bis 2020 wuchs diese Bank-App wahrscheinlich auf 1 Million Nutzer. Bis Ende 2023 stieg die Zahl auf 3 Millionen Nutzer. Sie waren sehr erfreut, 200 weitere Ingenieure und Unterstützungsmitarbeiter (darunter 100 vertraglich gebundene Ingenieure) in der Stadt des Produkts und einer großen Stadt in Festlandchina einzustellen, um die Nutzer zu unterstützen.  
+Ein Digitalbank-Projekt wurde um 2016 gestartet. Innerhalb von vier Jahren (2016–2020) wuchs die Banking-App stetig auf 1 Million Nutzer. Ermutigt durch dieses Wachstum erlebte das Unternehmen eine rasche Expansion bis Ende 2022 und erreichte 3 Millionen Nutzer. Zuversichtlich in ihren Kurs traf das Management eine aggressive Einstellungsentscheidung und stellte etwa 200 zusätzliche Mitarbeiter ein – darunter Ingenieure, Support-Mitarbeiter und rund 100 Vertragsingenieure – verteilt auf ihr Hauptbüro und ein großes Entwicklungszentrum in Festlandchina.
 
-Doch nach einem Jahr hatte die App wahrscheinlich nur 3,2 Millionen Nutzer erreicht. 80 % der neu eingestellten Mitarbeiter wurden entlassen.  
+Doch nach einem Jahr hatte die App wahrscheinlich erst 3,2 Millionen Nutzer erreicht. 80 % der neuen Mitarbeiter wurden entlassen.
 
-In meinem früheren Aufsatz [Über große Unternehmen](/big-companies-en) schrieb ich folgende Worte:  
+In meinem vorherigen Aufsatz [Über große Unternehmen](/big-companies-en) habe ich folgende Worte geschrieben:
 
-> Ein Faktor, der zu diesem Ergebnis beiträgt, sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die seit sechs Monaten bis zu einem Jahr im Unternehmen waren, konnten keine bedeutenden Beiträge leisten. Der Zeitplan umfasste typischerweise zwei Monate, um die Grundlagen zu verstehen, drei Monate, um sich mit den Projekten vertraut zu machen, drei Monate, um sich durch langwierige Verfahren oder Tests zu arbeiten, und schließlich zwei Monate produktiver Arbeit, die sich auf die Nutzer auswirkte.  
+> Ein Faktor, der zu diesem Ergebnis beigetragen hat, sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die seit sechs Monaten bis zu einem Jahr im Unternehmen waren, konnten keine wesentlichen Beiträge leisten. Der Zeitplan umfasste typischerweise zwei Monate, um die Grundlagen zu verstehen, drei Monate, um sich mit den Projekten vertraut zu machen, drei Monate für mühsame Verfahren oder Tests und schließlich zwei Monate produktiver Arbeit, die sich auf die Nutzer auswirkte.
 
-Ich selbst habe denselben Fehler gemacht, den ich in meinem Lebenslauf erwähnte:  
+Ich habe denselben Fehler selbst gemacht, wie ich in meinem Lebenslauf erwähnt habe:
 
-> Nach Erhalt der Investition stellte ich 9 Mitarbeiter ein, musste sie aber nach zwei Monaten entlassen, was zu einem meiner schmerzhaftesten Fehler beitrug: kein langfristiger Plan, der Wunsch, andere zu beeindrucken, und der naive Versuch, meine Führungsfähigkeiten zu trainieren. Die gute Nachricht ist, dass wir durch die Einstellung von Teilzeit-Ingenieuren für 50 kleine Softwareprojekte eine halbe Million zurückverdienten und sie dem Investor zurückgaben, als wir das Unternehmen schlossen.  
+> Nach der Kapitalbeschaffung stellte ich 9 Mitarbeiter ein, musste sie jedoch nach zwei Monaten entlassen, was zu einem meiner schmerzhaftesten Fehler beitrug: keinen langfristigen Plan zu haben, andere beeindrucken zu wollen und naiv zu versuchen, meine Führungsfähigkeiten zu trainieren. Die gute Nachricht ist, dass wir durch die Einstellung von Teilzeit-Ingenieuren für 50 kleine Softwareprojekte eine halbe Million zurückverdienten und sie dem Investor zurückgaben, als wir das Unternehmen schlossen.
 
-Warum machen die Manager dieses Bankprojekts diesen Fehler? Weil sie glauben, dass ihre harte Arbeit das Wachstum antreibt. Doch leider ist das nicht der Fall. Es ist zur Hälfte ihre harte Arbeit und ihre Entscheidungen, und die andere Hälfte des Grundes sollte den Nutzern und dem Markt zugeschrieben werden.  
+Warum machen die Manager dieses Bankenprojekts diesen Fehler? Weil sie glauben, dass ihre harte Arbeit das Wachstum antreibt. Doch leider ist das nicht der Fall. Es ist zur Hälfte ihre harte Arbeit und ihre Entscheidungen, und zur anderen Hälfte sollten die Nutzer und der Markt dafür verantwortlich gemacht werden.
 
-Vor zehn Jahren haben sie mit digitalem Banking richtig gewettet. Hongkong und Singapur brauchten um 2015 eine neue Digitalbank-Anwendung.  
+Sie haben vor zehn Jahren richtig auf digitale Banken gesetzt. Hongkong und Singapur brauchten um 2015 eine neue digitale Bankenanwendung.
 
-Der Grund, warum sie die halbe Bevölkerung Singapurs oder Hongkongs erreichten, ist ihre harte Arbeit, ihre digitale Anwendung zu einer der Top-3-Optionen in dieser Region zu machen.  
+Der Grund, warum sie bis zur Hälfte der Bevölkerung von Singapur oder Hongkong wachsen konnten, ist ihre harte Arbeit, ihre digitale Anwendung zu einer der Top 3 in dieser Region zu machen.
 
-Der Grund, warum sie nicht weiter wachsen können, ist die begrenzte Bevölkerungszahl der Region. Sie benötigen eine Art Hongkong- oder Singapur-Telefonnummer, um ihre Anwendungen zu nutzen. Das ist eine große Einschränkung.  
+Der Grund, warum sie nicht weiter wachsen können, ist, dass die regionale Bevölkerung begrenzt ist. Sie benötigen eine Art Hongkong- oder Singapur-Telefonnummer, um ihre Anwendungen zu nutzen. Das ist eine große Einschränkung.
 
-AlipayHK benötigt keine Hongkong-Telefonnummer und das ist großartig. Festlandchina hat eine riesige Bevölkerung, die leicht Nutzer beisteuern kann. Wenn sie damit beginnen, werden sie es wahrscheinlich häufiger nutzen. Die Menschen aus Shenzhen oder Guangdong können leicht nach Hongkong reisen und die Digitalbank-App häufiger verwenden. Und [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) hilft bei der Geldüberweisung zwischen Hongkong und Festlandchina.  
+AlipayHK benötigt keine Hongkong-Telefonnummer zur Nutzung, und das ist großartig. Festlandchina hat eine riesige Bevölkerung, und sie können leicht Nutzer beisteuern. Wenn sie damit beginnen, werden sie es wahrscheinlich häufiger nutzen. Die Menschen in Shenzhen oder Guangdong können leicht nach Hongkong reisen und die Digitalbank-App häufiger verwenden. Und [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) hilft bei Geldtransfers zwischen Hongkong und Festlandchina.
 
-Für Internetanwendungen ist es besser, alle Nutzer zu bedienen – Telefonnummern oder ähnliches sollten nicht eingeschränkt werden. SMS activate (https://sms-activate.io) ermöglicht es, eine zufällige Nummer zu mieten.  
+Für Internetanwendungen ist es besser, alle Nutzer zu bedienen – Telefonnummern oder ähnliches sollten nicht eingeschränkt werden. SMS activate (https://sms-activate.io) ermöglicht es, eine zufällige Nummer zu mieten.
 
 Grok und Mistral können in Hongkong genutzt werden, was gut ist. Warum sollten die Menschen in Hongkong aufgrund von Sicherheitsgesetzen unter Einschränkungen der Internetfreiheit leiden? In dieser Stadt mag die Hälfte der Bevölkerung das Sicherheitsgesetz nicht – warum sollten sie darunter leiden müssen?
