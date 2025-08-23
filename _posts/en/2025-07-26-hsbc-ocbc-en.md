@@ -4,9 +4,25 @@ generated: false
 image: true
 lang: en
 layout: post
-title: The Retained Story of My HK Debit Card
+title: HSBC, OCBC, Bank Account Experience
 translated: false
 ---
+
+### Table of Contents
+
+1. [HSBC Debit Card Retention Incident](#hsbc-debit-card-retention-incident)
+   - Card retained accidentally at ATM
+   - HSBC support via WhatsApp/app
+   - Replacement card mailed within week
+
+2. [Opening an OCBC Bank Account](#opening-an-ocbc-bank-account)
+   - Requires Chinese passport/ID only
+   - Digital app simplifies verification process
+   - Includes 360 Account with rewards
+   - Card activation requires branch visit
+   - Account risks closure without activity
+
+## HSBC Debit Card Retention Incident
 
 I got my HSBC Debit card in May 2023 at the Sha Tin branch in Hong Kong. Unfortunately, just at the ATM outside the branch, my card was retained.
 
@@ -52,3 +68,63 @@ The card I received is called the HSBC UnionPay Debit Card. However, when I went
 {: .centered }
 ![](assets/images/hsbc/hsbc1.jpg){: .responsive }
 *Source: Self-screenshot*{: .caption }
+
+
+
+---
+
+## Opening an OCBC Bank Account in China
+
+*2024.07.12*
+
+*This blog post was written with the assistance of ChatGPT-4o.*
+
+---
+
+In today's digital age, managing finances and accessing cloud services has become more straightforward than ever. If you're a Chinese national with a Chinese passport and Chinese Identity Card, opening a bank account with OCBC Digital and using it to register for Google Cloud Platform is a seamless process. Here’s a step-by-step guide to help you through the process.
+
+<div align="center"><img src="/assets/images/ocbc/ocbc1.jpg" width="300px" /><img/></div>
+
+### Step 1: Open an OCBC Bank Account
+
+#### Requirements:
+1. Chinese Passport
+2. Chinese Identity Card
+
+#### Procedure:
+1. Download the OCBC Digital App:
+   - Head to the App Store or Google Play Store and download the OCBC Digital app.
+
+2. Sign Up:
+   - Open the app and select the option to sign up for a new account. You will be prompted to provide your personal information, including your Chinese passport and Identity Card details.
+
+3. Verification:
+   - OCBC will require you to verify your identity. This might involve taking a photo of your passport and Identity Card, as well as a selfie for facial recognition.
+
+4. Account Selection:
+   - During the registration process, choose to open both a Global Savings Account and a Statement Savings Account. These accounts will help you manage your finances effectively.
+
+5. Opening a 360 Account:
+   - Additionally, opt to open a 360 Account. This account offers various benefits and rewards based on your spending and saving activities. When you open a 360 Account, you will also receive a debit card linked to this account.
+
+6. Complete the Process:
+   - Follow the on-screen instructions to complete the account opening process. You might be required to visit a branch for final verification, depending on your situation.
+
+### Step 2: Activate Your Debit Card
+
+1. Receive and Activate Your Debit Card:
+   - Once your 360 Account is set up, you will receive an OCBC debit card. You can activate it online through the OCBC Digital app or by visiting the OCBC website.
+
+### Conclusion
+
+Opening a bank account with OCBC Digital using a Chinese passport and Identity Card is a straightforward process. By setting up your Global Savings Account, Statement Savings Account, and 360 Account, and obtaining a debit card, you can easily manage your finances. Additionally, using your OCBC debit card to register for Google Cloud Platform provides a smooth gateway to accessing powerful cloud services. Embrace the convenience and start managing your finances and cloud services effortlessly today.
+
+---
+
+### Update - December 2014
+
+I deposited a few hundred SGD into my OCBC account. However, I did not receive the physical card. I received an email from the bank notifying me that I need to visit a Singapore OCBC branch, or they will close my account.
+
+### Update - August 2025
+
+I started to use again in August 2025. I can activate the debit card of OCBC Bank account.
