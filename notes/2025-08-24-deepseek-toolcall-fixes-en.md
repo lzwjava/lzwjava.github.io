@@ -1,3 +1,21 @@
+---
+title: Fix DeepSeek Tool Call Conflicts
+lang: en
+layout: post
+audio: false
+translated: false
+generated: true
+image: false
+---
+
+You’re hitting a **tool-call validation error**. DeepSeek (OpenAI-style) is being used in a Claude Code flow that expects Anthropic-style tool messages. Two safe fixes:
+
+* **Route all Claude Code work to Anthropic (via the proxy)**.
+* **When you *do* use DeepSeek, turn tools off** (so it only returns plain text) and suppress reasoning streams.
+
+Here’s an updated single-file config that does both. Paste it as-is:
+
+```json
 {
   "PROXY_URL": "http://127.0.0.1:7890",
   "LOG": true,
@@ -67,3 +85,12 @@
     }
   }
 }
+```
+
+What this does:
+
+* Claude Code paths (`default/background/think`) go to **Anthropic via `anthropic-proxy`**, so tool use works.
+* DeepSeek stays available, but with `"tool_choice":"none"` and `"reasoning.exclude": true`, so it won’t emit tool calls or thinking chunks that break your IDE agent.
+* You can still pick DeepSeek explicitly (e.g., for plain chat or drafting), and it’ll route through OpenRouter cleanly.
+
+If you still see “Invalid tool parameters,” it means some layer is *still* letting DeepSeek emit a tool call. In that case, make sure your runner actually respects per-model `params`. If it doesn’t, set your DeepSeek usage only in contexts where tools are disabled, or switch `default` back to `openai/gpt-5-mini` and reserve DeepSeek for a manual “no-tools” profile.
