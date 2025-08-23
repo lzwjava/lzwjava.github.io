@@ -41,3 +41,7 @@ The reason I grew to around 20,000 users in a year **was** that I caught up with
 Another reason is that I worked hard on software engineering and marketing mostly by myself, frequently marketing on the WeChat platform. Users only care about what the product can bring them. They don’t care whether it’s made by one person or twenty. Founders, managers, or investors care about that—users don’t.
 
 We need to try many ways of doing things and verify them. That way, we know what works and what doesn’t. It’s okay to make mistakes, but it’s stupid to make the same mistake again and again. For user growth, there are many ways to achieve it. Users can be acquired offline and online. People hear about things in many ways. They learn actively or passively. They discover things through self-reflection or by being told. They hear about something days, months, or years after it’s created.
+
+Not only should we reason about growth, we should figure out the reasons for everything. Why does our relationship with someone have a problem now? Why doesn’t the code work now? If we don’t change, the problem will continue. Why will others appreciate us? What did we do right?
+
+My English became an advantage among candidates in China, which helped me secure job offers for contractor positions from international banks. We should invest in what works to make our lives easier. It is by figuring out the reasons for trouble, unhappiness, and problems that we can avoid them.

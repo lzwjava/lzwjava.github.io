@@ -4,40 +4,44 @@ generated: false
 image: false
 lang: es
 layout: post
-title: El Verdadero Motivo Detrás del Crecimiento
+title: La Verdadera Razón del Crecimiento
 translated: true
 ---
 
 He participado en un proyecto de banco digital en Singapur o Hong Kong. Singapur tiene alrededor de 5 millones de personas, mientras que Hong Kong tiene 7 millones.  
 
-Un proyecto de banco digital se lanzó alrededor de 2016. Durante cuatro años (2016-2020), la aplicación bancaria creció constantemente hasta alcanzar 1 millón de usuarios. Motivados por este crecimiento, la empresa experimentó una rápida expansión a finales de 2022, alcanzando 3 millones de usuarios. Confiados en su trayectoria, la gerencia tomó una decisión agresiva de contratación, incorporando aproximadamente 200 empleados adicionales—incluidos ingenieros, personal de soporte, y alrededor de 100 ingenieros contratados—en su oficina principal y en un importante centro de desarrollo en China continental.  
+Un proyecto de banco digital se lanzó alrededor de 2016. Durante cuatro años (2016-2020), la aplicación bancaria creció constantemente hasta alcanzar 1 millón de usuarios. Motivados por este crecimiento, la empresa experimentó una rápida expansión a finales de 2022, llegando a 3 millones de usuarios. Confiados en su trayectoria, la gerencia tomó una decisión agresiva de contratación, incorporando aproximadamente 200 empleados adicionales—incluyendo ingenieros, personal de soporte y alrededor de 100 ingenieros contratados—en su oficina principal y en un importante centro de desarrollo en China continental.  
 
-Pero después de un año, la aplicación probablemente solo alcanzó 3.2 millones de usuarios. Se despidió al 80% de los nuevos empleados.  
+Pero después de un año, la aplicación probablemente solo alcanzó los 3.2 millones de usuarios. El 80% de los nuevos empleados fueron despedidos.  
 
-En mi ensayo anterior [On Big Companies](/big-companies-en), escribí las siguientes palabras:  
+En mi ensayo anterior [Sobre las grandes empresas](/big-companies-en), escribí lo siguiente:  
 
-> Un factor que contribuyó a este resultado son los procesos engorrosos y numerosos dentro de las grandes empresas. Los ingenieros que habían estado en la empresa entre seis meses y un año no lograron hacer contribuciones significativas. El cronograma típicamente incluía dos meses para comprender lo básico, tres meses para familiarizarse con los proyectos, tres meses navegando por procedimientos tediosos o pruebas, y finalmente dos meses de trabajo productivo que impactaba a los usuarios.  
+> Un factor que contribuyó a este resultado son los procesos engorrosos y numerosos dentro de las grandes empresas. Ingenieros que llevaban de seis meses a un año en la empresa no pudieron hacer contribuciones significativas. La línea de tiempo típica incluía dos meses para entender lo básico, tres meses para familiarizarse con los proyectos, tres meses navegando por procedimientos tediosos o pruebas, y finalmente, dos meses de trabajo productivo que impactaron a los usuarios.  
 
-Yo mismo cometí este mismo error, lo cual mencioné en mi currículo:  
+Yo mismo cometí este mismo error, como mencioné en mi currículum:  
 
-> Luego de conseguir invertión, contraté 9 empleados pero tuve que despedirlos después de dos meses, lo cual contribuyó a uno de mis errores más dolorosos: no contar con un plan a lago plazo, querer impresionar a otros, y entrenar ingenuamente mis habilidades gerenciales. La buena noticia es que por contratar ingenieros a tiempo parcial para hacer 50 pequeños proyectos de software juntos, ganamos medio millón y lo regresamos al invertidor al cerrar la compañía.  
+> Después de obtener inversión, contraté a 9 empleados pero tuve que despedirlos después de dos meses, lo que contribuyó a uno de mis errores más dolorosos: no tener un plan a largo plazo, querer impresionar a otros e intentar ingenuamente entrenar mis habilidades de gestión. La buena noticia es que, al contratar ingenieros por horas para hacer 50 pequeños proyectos de software juntos, ganamos medio millón y se lo devolvimos al inversor al cerrar la empresa.  
 
-¿Por qué los gerentes de este proyecto bancario cometieron este error? Es porque piensan que su trabajo duro impulsa el crecimiento. Pero desafortunadamente, no es así. Es mitad su trabajo duro y sus decisiones, y mitad de la razón debería adjudicársele a los usuarios y el mercado.  
+¿Por qué los gerentes de este proyecto bancario cometen este error? Es porque piensan que es su trabajo duro lo que impulsa el crecimiento. Pero, desafortunadamente, no es así. Es mitad su trabajo duro y sus decisiones, y la otra mitad de la razón debería atribuirse a los usuarios y al mercado.  
 
-Ellos apostaron correctamente en la banca digital hace diez años. Hong Kong y Singapur necessitaron una nueva aplicación de banco digital alrededor de 2015.  
+Apostaron correctamente por la banca digital hace diez años. Hong Kong y Singapur necesitaban una nueva aplicación de banco digital alrededor de 2015.  
 
-La razón por la cual crecieron a mitada población de Singapur o Hong Kong es su esfuerzo para hacer que su aplicación digital sea una de las tre opciones principales en la áera.  
+La razón por la que crecieron hasta la mitad de la población de Singapur o Hong Kong es su esfuerzo por hacer que su aplicación digital fuera una de las 3 principales opciones en esa área.  
 
-La razón por la cual no pueden crecer más es que la población regional tiene límitos. Necesitan algún tipo de número telefónico de Hong Kong o Singapur para utilizar sus aplicaciones. Esto es una grave limitación.  
+La razón por la que no pueden crecer más es que la población regional tiene límites. Necesitan algún tipo de número telefónico de Hong Kong o Singapur para usar sus aplicaciones. Esta es una gran limitación.  
 
-AlipayHK no necesita un número telefónico de Hong Kong para usarse, y es genial. China continental tiene mucha población y pueden contribuir fácilmente usuariós. Si comienzan a usarlo, probablemente lo usarían más. Las personas de Shenzhen o Guangdong pueden viajar a Hong Kong fácilmente y usar la aplicación del banco digital más. Y  [Conecto de Pagos](https://www.hkma.gov.hk/eng/smart-consumers/payment-conect) ayudo a transferir dinero entre Hong Kong y China continental.  
+AlipayHK no necesita un número de Hong Kong para usarse, y es genial. China continental tiene una gran población y puede contribuir fácilmente con usuarios. Si comienzan a usarlo, probablemente lo usen más. La gente de Shenzhen o Guangdong puede ir fácilmente a Hong Kong y usar la aplicación del banco digital con más frecuencia. Y [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) ayuda a transferir dinero entre Hong Kong y China continental.  
 
-Por aplicaciones del interné, es mejor servir a todis los usuariós—los números telefónicos o lo que sea no deberían ser limitados. SMS actívo (https://sms-activate.io) te deja rentar un número aleatorio.  
+Para las aplicaciones de internet, es mejor servir a todos los usuarios—los números telefónicos o cualquier cosa no deberían estar limitados. SMS activate (https://sms-activate.io) te permite alquilar un número aleatorio.  
 
-Grok y Mistral puedo ser usados en Hong Kong, lo cual es bueno. ¿Por qué deberían las personas de Hong Kong sufrir restricciones en la libertad del internét debido a preocupaciones de ley de seguridad? En esta ciudad, mitad de la población no gusta de la ley de seguridad, así que ¿por deberían ellos sufrir por eso?  
+Grok y Mistral se pueden usar en Hong Kong, lo cual es bueno. ¿Por qué la gente de Hong Kong debería sufrir restricciones en la libertad de internet debido a preocupaciones sobre la ley de seguridad? En esta ciudad, a la mitad de la población no le gusta la ley de seguridad, ¿por qué deberían sufrir por eso?  
 
-La razón por la cual crecí a alredededor de 20,000 usuariós en un año **era** que alcancé la moda—en eses tiempos, en China, se necesitaba un plataforma para trabajadores de conocimiento. La Jike Time de GeekBang mostró que necesitábamos un plataforma de conocimiento para trabajadores de TI. Dedao y Himalaya también demostraron esa necesidad.  
+La razón por la que llegué a alrededor de 20,000 usuarios en un año **fue** que me subí a la tendencia—en ese momento, en China, había una necesidad de una plataforma para trabajadores del conocimiento. El Jike Time de GeekBang mostró que necesitábamos una plataforma de conocimiento para trabajadores de TI. Dedao y Himalaya también demostraron esa necesidad.  
 
-Otra razón es que trabajé duramente en la ingeniería software y mercadeo más que todo por mí mismo, mercedando frecuentamente en la plataforma WeChat. Los usuariós solo se preocupan por lo que el producto les puede traer. No se preocupan si está hecho por una persona o veinte. Los fundadores, gerentes, o invertidores se preocupan por eso—los usuariós no.  
+Otra razón es que trabajé duro en ingeniería de software y marketing casi solo, haciendo marketing frecuentemente en la plataforma WeChat. A los usuarios solo les importa lo que el producto puede ofrecerles. No les importa si está hecho por una persona o veinte. A los fundadores, gerentes o inversores les importa—a los usuarios no.  
 
-Necesito probar maneras de hacer cosas y confirmarlas. De esa forma, sabemos quées funciona y qué no. Está bien cometer errores, sin embargo es estúpido cometar el mismo error una y otra vez. Para el crecimiento del usuario, hay muchas maneras de lograrlo. Los usuariós puede ser adquiridos a la ofline y a la online. Las personas oyen cosas en muchas maneras. Aprenden activa o pasiva mente. Descuben cosas por autorreflexión o por seír informados. Oyen de algo días, meses, o años después de su creación.
+Necesitamos probar muchas formas de hacer las cosas y verificarlas. Así sabremos qué funciona y qué no. Está bien cometer errores, pero es estúpido cometer el mismo error una y otra vez. Para el crecimiento de usuarios, hay muchas formas de lograrlo. Los usuarios se pueden adquirir fuera de línea y en línea. La gente se entera de las cosas de muchas maneras. Aprenden activa o pasivamente. Descubren cosas por reflexión propia o porque se les dice. Se enteran de algo días, meses o años después de que se crea.  
+
+No solo deberíamos razonar sobre el crecimiento, deberíamos averiguar las razones de todo. ¿Por qué nuestra relación con alguien tiene un problema ahora? ¿Por qué no funciona el código ahora? Si no cambiamos, el problema continuará. ¿Por qué los demás nos apreciarán? ¿Qué hicimos bien?  
+
+Mi inglés se convirtió en una ventaja entre los candidatos en China, lo que me ayudó a obtener ofertas de trabajo para puestos de contratista en bancos internacionales. Deberíamos invertir en lo que funciona para hacer nuestras vidas más fáciles. Es al descubrir las razones de los problemas, la infelicidad y las dificultades que podemos evitarlos.
