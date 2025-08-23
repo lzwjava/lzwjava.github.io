@@ -4,12 +4,12 @@ generated: false
 image: true
 lang: hant
 layout: post
-title: 對我最有用的連結與應用程式
+title: 我最有用的網站與應用程式
 top: 10
 translated: true
 ---
 
-以下是我每日或每隔幾日會查看的一些連結和應用程式。通常，我會使用應用程式來獲取更新，而在桌面使用時，我則經常依賴AI工具。
+以下係我每日或隔幾日會查看嘅連結同應用程式。通常我會用應用程式嚟更新資訊，而喺桌面使用時，我多數會依賴AI工具。
 
 - [ChatGPT](http://chatgpt.com)
 - [Claude](https://claude.ai)
@@ -20,8 +20,16 @@ translated: true
 - [OKX](https://www.okx.com)
 - [Tiger Trade](https://tigerbrokers.com.sg/activity/forapp/nativeapp)
 - [X](https://x.com)
-- [Yin Wang的Substack](https://yinwang1.substack.com)
+- [王垠嘅Substack](https://yinwang1.substack.com)
 
-在我的主屏幕上，我放置了日常必需使用的應用程式，包括App Store、瀏覽器、新聞、待辦事項列表、代理應用程式、AI聊天機器人、加密貨幣交易，以及銀行和資產管理應用程式。這些工具是我保持更新和有條理的重要依賴。
+我喺主屏幕上擺咗每日必需使用嘅應用程式，包括App Store、瀏覽器、新聞、待辦事項清單、代理應用程式、AI聊天機械人、加密貨幣交易，仲有銀行同資產管理應用程式。呢啲都係我賴以保持更新同有條理嘅工具。
 
 ![img](/assets/images/links/home.jpg)
+
+![img](/assets/images/links/screentime1.jpg)
+
+![img](/assets/images/links/screentime2.jpg)
+
+![img](/assets/images/links/use1.jpg)
+
+![img](/assets/images/links/use2.jpg)
