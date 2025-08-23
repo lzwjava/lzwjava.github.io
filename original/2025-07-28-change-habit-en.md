@@ -37,3 +37,23 @@ But on minus floor 2, I have a parking spot that belongs to me. So I have a fixe
 This means that if the future benefits are significant, we should change our habits. It may be troublesome at first, but it becomes easier in the long term.
 
 One can actually change one's habits. If they think it is important enough and it is the thing we must do, then we have to change our habits, then we adapt fast. The big obstacle is the willingness. If one don't want to change the habit, one never try to adapt or change, so it can't never learn the habit. If one doesn't want to learn a new word, in mother tone or second langauge, one won't know that in later life.
+
+---
+
+## Be Specific
+
+*2025.07.10*
+
+- Be specific in everything and every matter.
+
+- Communication and interaction should be specific, especially in deep interactions such as persuasion and conflict resolution. There is no need to escalate unhappiness, frustration, or anger.
+
+- It is convenient to share posts online. It seems very convenient, but remember to be specific. Remember to address specific groups specifically.
+
+- There are tons of applications in the world; somehow, they are categorizing information and making the world more specific and organized.
+
+- When I was young, I was somewhat lazy about communicating or handling things, so I posted on WeChat a lot. For a period, I was in a low point and shared frequently. That is what I regret doing.
+
+- Handle your unhappiness or struggles silently. Few people will come to save you. Everyone is busy with their life, just like you.
+
+- In the corporate world, it is better to treat things specifically. Every message, request, communication, or task should be handled specifically. It works well, though it requires more effort.
