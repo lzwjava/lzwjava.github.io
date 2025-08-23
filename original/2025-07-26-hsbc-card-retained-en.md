@@ -99,23 +99,6 @@ In today's digital age, managing finances and accessing cloud services has becom
 1. Receive and Activate Your Debit Card:
    - Once your 360 Account is set up, you will receive an OCBC debit card. You can activate it online through the OCBC Digital app or by visiting the OCBC website.
 
-### Step 3: Register for Google Cloud Platform
-
-1. Visit Google Cloud Platform:
-   - Go to the [Google Cloud Platform website](https://cloud.google.com/).
-
-2. Sign Up:
-   - Click on the “Get started for free” button. You will be prompted to create a Google account if you don’t already have one.
-
-3. Billing Information:
-   - During the registration process, you will need to provide billing information. Enter the details of your OCBC debit card when prompted.
-
-4. Verification:
-   - Google will verify your debit card by charging a small temporary amount, which will be refunded. This is to ensure that the card is active and has sufficient funds.
-
-5. Complete Registration:
-   - Follow the remaining steps to complete your Google Cloud Platform registration. You will have access to various cloud services that Google offers.
-
 ### Conclusion
 
 Opening a bank account with OCBC Digital using a Chinese passport and Identity Card is a straightforward process. By setting up your Global Savings Account, Statement Savings Account, and 360 Account, and obtaining a debit card, you can easily manage your finances. Additionally, using your OCBC debit card to register for Google Cloud Platform provides a smooth gateway to accessing powerful cloud services. Embrace the convenience and start managing your finances and cloud services effortlessly today.
@@ -125,3 +108,7 @@ Opening a bank account with OCBC Digital using a Chinese passport and Identity C
 ### Update - December 2014
 
 I deposited a few hundred SGD into my OCBC account. However, I did not receive the physical card. I received an email from the bank notifying me that I need to visit a Singapore OCBC branch, or they will close my account.
+
+### Update - August 2025
+
+I started to use again in August 2025. I can activate the debit card of OCBC Bank account.
