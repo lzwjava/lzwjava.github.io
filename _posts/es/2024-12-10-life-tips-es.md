@@ -6,247 +6,287 @@ lang: es
 layout: post
 prompt: Do not translate specific items such as project names, company names, or school
   names, human names if you are not sure.
-title: Consejos de Vida
+title: Consejos prácticos para vivir, aprender e innovar
 top: 10
 translated: true
 ---
 
-## Consejos para la Vida
+### Tabla de Contenidos
 
-* Explora el mundo temprano, ve a diferentes países y habla con personas distintas.
+1. [Consejos de Vida](#consejos-de-vida)
+   - Explorar el Mundo y Ampliar Perspectivas  
+   - Pensamiento Crítico y Cuestionamiento a la Autoridad  
+   - Relaciones Humanas y Sabiduría Social  
+   - Salud y Vida Natural  
+   - Libertad, Seguridad y Crecimiento Personal  
 
-* Lee muchos libros, especialmente los de no ficción.
+2. [Consejos de Productividad](#consejos-de-productividad)  
+   - Enfoque y Gestión del Estado Mental  
+   - Aprendizaje a través del Movimiento y la Actividad  
+   - Métodos Naturales de Aprendizaje  
+   - Estado de Flujo e Interés Genuino  
+   - Estrategias de Aprendizaje Asistido por IA  
 
-* Siempre piensa en mejores formas de hacer las cosas.
+3. [Consejos de Aprendizaje](#consejos-de-aprendizaje)  
+   - Aprendizaje como Pasatiempo y Exploración Lúdica  
+   - Práctica, Repetición y Experiencia Práctica  
+   - Integración de Herramientas de IA (ChatGPT, Claude, Gemini)  
+   - Aprendizaje Multi-Modal (Video, Audio, Texto)  
+   - Enseñanza y Creación de Contenido para Aprender  
+   - Contexto Histórico y Aprendizaje Basado en Principios  
 
-* Piensa como un genio, cuestiona todo, especialmente a las autoridades.
+4. [Consejos sobre el Gasto de Dinero](#consejos-sobre-el-gasto-de-dinero)  
+   - Recursos Gratuitos y Compras Inteligentes  
+   - Análisis de Calidad vs. Precio  
+   - Pensamiento de Valor a Largo Plazo  
+   - Compras Orientadas al Aprendizaje  
+   - Decisiones Financieras Estratégicas  
 
-* Trata a las personas por igual. Sé amable. No menosprecies a quienes no son mejores que tú en términos de calificaciones o salario. Ellos no te mintieron, engañaron ni robaron tu dinero.
+5. [Consejos sobre Innovación](#consejos-sobre-innovación)  
+   - Entender la Innovación como Probar Cosas Nuevas  
+   - Innovación en Diferentes Contextos  
+   - Superar la Resistencia al Cambio  
+   - Construir Innovación a través de la Experiencia  
+   - Evaluación Crítica de Nuevos Enfoques  
 
-* Ten cuidado con las personas poderosas detrás del gobierno. Algunas pueden lastimarte por la espalda.
+## Consejos de Vida  
 
-* Si algo sucede, generalmente alguien quiere que pase. Piensa detenidamente sobre las cosas que ocurren por coincidencia o intencionalmente.
+* Explora el mundo temprano, visita diferentes países y habla con distintas personas.  
 
-* Reflexiona sobre qué es bueno o malo, y cómo se inventan o desarrollan todas las cosas.
+* Lee muchos libros, especialmente los no ficticios.  
 
-* Piensa en cómo vivir en este mundo de la mejor manera posible.
+* Siempre piensa en formas mejores de hacer las cosas.  
 
-* Obtén muchas cosas gratis, como aplicaciones, libros e información. Disfruta del aire, el sol, los paisajes y el agua.
+* Piensa como un genio, sospecha de todo, especialmente de las autoridades.  
 
-* Piensa profundamente sobre las reglas. Descubre la intención original detrás de ellas. Pregúntate si podrían ser mejores o más detalladas. A veces, debemos seguir las reglas, pero no dejes que limiten tu pensamiento.
+* Trata a las personas por igual. Sé amable. No menosprecies a aquellos que no son mejores que tú en términos de calificaciones o salario. No te mintieron, engañaron ni robaron.  
 
-* Trata todo como una experiencia de aprendizaje. Si es bueno, está bien. Si es malo, evítalo la próxima vez.
+* Ten cuidado con las personas poderosas detrás del gobierno. Algunas pueden lastimarte por detrás.  
 
-* Busca la verdad. Pero ten cuidado con la ciencia. No toda la ciencia es realmente verdadera.
+* Si algo sucede, generalmente alguien quiere que suceda. Reflexiona sobre lo que ocurre por coincidencia o intencionalmente.  
 
-* Sé precavido. La salud es lo más importante. Nuestro cuerpo es realmente asombroso.
+* Piensa detenidamente en qué es bueno o malo, y cómo todo se inventa o desarrolla.  
 
-* Come cosas naturales o frescas siempre que sea posible. Come frutas en lugar de snacks. La sociedad moderna inventa demasiados alimentos. Prefiere los naturales o menos procesados. Vive más tiempo y explora más.
+* Reflexiona sobre cómo vivir en este mundo de la mejor manera.  
 
-* No busques milagros. La vida en sí es un milagro.
+* Consigue muchas cosas gratuitas, como aplicaciones, libros e información. Disfruta del aire, el sol, los paisajes y el agua.  
 
-* No vivas por el reconocimiento o la fama. No necesitamos reconocimiento al nacer. Necesitamos seguridad. Los padres nos castigan cuando no aprueban nuestras conductas. Así, gradualmente, necesitamos reconocimiento para obtener seguridad. Pero son cosas diferentes.
+* Analiza las reglas. Descubre la intención original detrás de ellas. Pregúntate si podrían ser mejores o más detalladas. A veces debemos seguirlas, pero no dejes que limiten tu pensamiento.  
 
-* Está bien hacer cualquier cosa siempre que no involucre o lastime a otros.
+* Trata todo como una experiencia de aprendizaje. Si es bueno, es genial. Si es malo, evítalo la próxima vez.  
 
-* Es mejor aprender la verdad primero. Así no tendrás que cambiar después.
+* Busca la verdad. Pero ten cuidado con la ciencia. No toda la ciencia es realmente cierta.  
 
-* El inglés es el idioma del mundo ahora. Sé bueno en él y úsalo como un hablante nativo.
+* Mantente seguro. La salud es lo más importante. Nuestro cuerpo es increíble.  
 
-* No necesitas cambiar a nadie. Si descubres o creas algo que la gente quiere, ellos vendrán.
+* Come cosas naturales o frescas siempre que sea posible. Elige frutas en lugar de snacks. La sociedad moderna inventa demasiados alimentos. Prefiere los naturales o menos procesados. Vive más y explora más.  
 
-* No te desesperes. La mayoría del mundo está ayudando. Fabrican productos o brindan servicios baratos o gratis.
+* No persigas milagros. La vida misma es un milagro.  
 
-* Cuando se trata de dinero, piensa en cómo lo hacen las personas más ricas o inteligentes.
+* No vivas por reconocimiento o fama. No necesitamos reconocimiento al nacer, necesitamos seguridad. Los padres nos castigan cuando no aprueban nuestro comportamiento, por lo que gradualmente necesitamos reconocimiento para obtener seguridad. Pero son cosas diferentes.  
 
-* Normalmente, no puedes obligar a nadie a hacer algo, y otros no pueden obligarte a ti.
+* Está bien hacer cualquier cosa mientras no involucre o dañe a otros.  
 
-* Sigue tu verdadera pasión. No puedes obligarte a hacer cosas que no te gustan por mucho tiempo.
+* Es mejor aprender la verdad primero, para no tener que cambiar después.  
 
-* Estás molesto porque algo no funciona como esperabas. Simplemente acepta los hechos o cambia tu perspectiva para adaptarte. Aprende de ello.
+* El inglés es el idioma global actual. Domínalo y úsalo como un nativo.  
 
-* Tu bienestar depende de ti mismo, tu familia, tu empresa y tu país. Compáralos sabiamente en el mundo. Si todos son buenos, tendrás una buena vida.
+* No necesitas cambiar a nadie. Si descubres o creas algo que la gente quiere, ellos vendrán.  
 
-* Casi todo puede cambiarse. Piensa en tu nacionalidad. Piensa en dónde naciste. Elimina cada límite y empieza a pensar en cómo tener la mejor vida del mundo. Empieza a notar la gran brecha y trabaja para cerrarla.
+* No desesperes. La mayoría del mundo está ayudando. Ofrecen productos o servicios baratos o gratuitos.  
 
-* Los humanos nacen para aprender. Si cada pieza de conocimiento se enseña correctamente o lo exploras y reflexionas con frecuencia, estarás feliz de obtenerlo.
+* En cuanto al dinero, piensa cómo lo manejan las personas más ricas o inteligentes.  
 
-* Piensa a menudo en lo que dice **Yin Wang** o **Daniel P. Friedman**. Probablemente son de las personas más inteligentes y amables del mundo.
+* Normalmente, no puedes obligar a nadie a hacer algo, ni otros pueden obligarte a ti.  
 
-* El mundo tendrá más libertad. El mundo mejorará a medida que evolucionen el conocimiento y la tecnología.
+* Sigue tu verdadera pasión. No puedes forzarte a hacer cosas que no te gustan por mucho tiempo.  
 
-* Enfócate en aprender Ciencia, Tecnología, Ingeniería y Matemáticas (STEM). Estos campos generalmente se basan en hechos reproducibles y verificables, a diferencia de otras áreas del conocimiento. Prioriza aprender información correcta inicialmente para evitar tener que corregir tu comprensión o hábitos después.
+* Si algo no funciona como esperabas, acepta los hechos o adapta tu visión del mundo. Aprende de ello.  
 
-* Aprender IA/STEM es mejor que aprender idiomas naturales adicionales, ya que son una forma más esencial de entender e interactuar con el mundo.
+* Tu bienestar depende de ti, tu familia, tu empresa y tu país. Compáralos sabiamente en el mundo. Si todos son buenos, tendrás una buena vida.  
 
-* Tu percepción de tu salario importa más que el monto en sí. Si lo comparas con el de otros, probablemente nunca se sentirá suficiente. Además, cómo gastas tu salario importa; si compras lo que necesitas diariamente a bajo costo, es posible que sientas que es adecuado. Por ejemplo, usarlo para comprar comida o un teléfono móvil puede sentirse más justificado, pero usarlo para comprar una casa puede no parecer tan valioso.
+* Casi todo puede cambiar. Piensa en tu nacionalidad. Piensa en dónde naciste. Elimina todos los límites y reflexiona sobre cómo tener la mejor vida posible. Observa la gran brecha y trabaja para cerrarla.  
 
-* Prueba muchos productos o servicios. Prueba muchas opciones, tamaños, marcas y variedades. La gente trabaja duro para fabricarlos o proporcionarlos. Hay muchas cosas valiosas gratuitas o baratas.
+* Los humanos nacen para aprender. Si cada conocimiento se enseña correctamente o lo exploras y reflexionas, estarás feliz de adquirirlo.  
 
-* Al lidiar con seguros de auto, asegúrate de que las reparaciones se hagan de la manera más económica posible para evitar que las tarifas del próximo año aumenten significativamente. Aunque la compañía de seguros cubra actualmente el costo, al final afectará tus primas. Una vez, mi faro estaba ligeramente dañado, pero lo reemplazaron por uno nuevo. La próxima vez, evita hacer esto.
+* Piensa a menudo en lo que dicen Yin Wang o Daniel P. Friedman. Probablemente sean las personas más inteligentes y amables del mundo.  
 
----
+* El mundo tendrá más libertad. Mejorará a medida que evolucionen el conocimiento y la tecnología.  
 
-## Consejos de Productividad
+* Enfócate en aprender Ciencias, Tecnología, Ingeniería y Matemáticas (STEM). Estas áreas se basan en hechos reproducibles y verificables, a diferencia de otros campos. Prioriza aprender información correcta desde el principio para no corregir luego.  
 
-* El enfoque en el trabajo no siempre ocurre como esperas. Sorprendentemente, entornos ruidosos o interrumpidos, como cuando cuidas niños, a veces pueden aumentar la productividad. Tu estado de ánimo y mental influyen significativamente en tu capacidad de concentración, al igual que afectan la calidad del sueño.
+* Aprender IA/STEM es mejor que aprender idiomas adicionales, ya que son formas más esenciales de entender e interactuar con el mundo.  
 
-* El principal dilema del mundo es que el conocimiento y la invención están aumentando, sin embargo, nuestro enfoque y estudio se están volviendo más difíciles. La mayoría de los días, es un desafío sentarse a leer libros o ver cursos. No puedes obligarte a concentrarte, igual que no puedes obligarte a dormirte.
+* Tu percepción de tu salario importa más que el monto en sí. Si lo comparas con otros, nunca parecerá suficiente. También, cómo lo gastas es clave: si compras lo necesario a bajo costo, podrías sentirlo suficiente.  
 
-* Para abordar esto, me gusta caminar y manejar mucho mientras escucho conferencias o veo videos. Recorrer 10,000 kilómetros y caminar 5,000 pasos todos los días me ayudó a dominar el inglés y aprobar el examen IELTS. Ahora, espero que también me ayude a aprender matemáticas e IA. La clave es evitar las distracciones del teléfono móvil y mantener la calma. Animo a otros a probar este método y darme retroalimentación.
+* Prueba muchos productos o servicios. Prueba opciones, tamaños, marcas y variedades. Muchas cosas valiosas son gratuitas o baratas.  
 
-* Diviértete y trabaja en tus propios proyectos a menudo.
+* Con el seguro del auto, haz reparaciones lo más baratas posible para evitar que aumenten las tarifas. Una vez reemplacé un faro ligeramente dañado, pero afectó mi prima. Evita esto.  
 
-* Experimenta con diferentes enfoques para encontrar lo que te sale naturalmente. Presta atención a lo que realmente funciona en la práctica en lugar de deseos. Confía en tus instintos y respuestas físicas como indicadores confiables.
+---  
 
-* Las formas en que las personas leen, escriben o programan varían significativamente. Personalmente, a menudo prefiero imprimir documentos para leerlos.
+## Consejos de Productividad  
 
-* Menos es más. Equipos pequeños y enfocados en las empresas suelen superar a equipos más grandes, incluso cuando estos últimos tienen 10 o 100 veces más personas, debido a una mejor comunicación y coordinación.
+* Enfocarse en el trabajo no siempre ocurre como esperas. Ruidos o interrupciones, como cuidar niños, a veces aumentan la productividad. Tu estado mental influye en la concentración, como en el sueño.  
 
-* Leí partes de *"The Mythical Man-Month"* de **Fred Brooks**. Sus principios sobre la gestión de proyectos de software siguen siendo relevantes a largo plazo.
+* El dilema del mundo es que el conocimiento aumenta, pero enfocarse y estudiar se vuelve más difícil. No puedes forzarte, como no puedes forzar el sueño.  
 
-* Ningún método de productividad funciona automáticamente: debes experimentar y adaptar técnicas para encontrar lo que mejor funcione para tus necesidades específicas.
+* Camino y conduzco mucho mientras escucho conferencias o veo videos. Recorrer 10,000 km y caminar 5,000 pasos diarios me ayudó a dominar el inglés y pasar el IELTS. Ahora lo uso para matemáticas e IA. Evita distracciones del móvil.  
 
-* Usa los impulsos para hacer cosas. No te fuerces. Siempre haz lo que quieras en el momento. Esto es satisfactorio.
+* Diviértete y trabaja en tus proyectos seguido.  
 
-* Usa código u otras herramientas para automatizar tareas, permitiéndote enfocarte en los aspectos más interesantes.
+* Experimenta con enfoques que te resulten naturales. Confía en tus instintos y respuestas físicas.  
 
-* Cuando realmente disfrutas trabajar o aprender, no te preocupas por el progreso ni tienes prisa por alcanzar una meta. Simplemente quieres hacer o aprender cosas por el placer en sí. No te preocupas por cuánto tiempo ha pasado o la dificultad de los materiales. Entras en un estado de flujo.
+* Las formas de leer, escribir o programar varían. Yo prefiero imprimir papeles para leer.  
 
-* A veces es difícil concentrarse, incluso leer un tutorial en la pantalla puede ser complicado. Sin embargo, cuando estás escribiendo código y te quedas atascado en un error, es posible que te encuentres completamente enfocado. Intenta encontrar formas de escribir y ejecutar código como parte de tu proceso de aprendizaje.
+* Menos es más. Equipos pequeños en empresas suelen rendir más que equipos grandes, incluso con 10 o 100 veces más personas.  
 
-* Hay varias formas de aprender algo. Pon manos a la obra y usa IA para ayudarte a aprender o realizar experimentos. También podrías trabajar con un libro o una serie de videos de cursos en un orden fijo, o aprender mediante exámenes o respondiendo preguntas. Básicamente, puedes aprender con un plan o siguiendo tu estado de ánimo. El aprendizaje puede ser impulsado por la curiosidad o por el éxito. Siempre elige aprender según tu estado de ánimo.
+* Leí partes de "The Mythical Man-Month" de Fred Brooks. Sus principios sobre gestión de proyectos de software siguen vigentes.  
 
----
+* Ningún método productivo funciona automáticamente. Experimenta y adapta técnicas.  
 
-## Consejos de Aprendizaje
+* Usa los impulsos para hacer cosas. Haz lo que deseas en el momento. Eso es satisfactorio.  
 
-* Trata el aprendizaje como un hobby, abordándolo con curiosidad y genuino interés.
+* Automatiza tareas con código o herramientas para enfocarte en lo interesante.  
 
-* Aprende mediante la práctica y la repetición hasta alcanzar el dominio a través de la experiencia directa.
+* Cuando disfrutas trabajar o aprender, no te preocupas por el progreso. Entras en un estado de flujo.  
 
-* Usa la inmersión diaria participando regularmente en el tema en contextos naturales.
+* A veces cuesta enfocarse, pero al programar y atascarse en un error, te enfocas más. Escribe y ejecuta código como parte del aprendizaje.  
 
-* Sigue tus intereses genuinos, ya que la pasión lleva a mejores resultados de aprendizaje.
+* Hay varias formas de aprender: práctica con IA, libros, cursos, exámenes o siguiendo tu curiosidad. Elige aprender según tu estado de ánimo.  
 
-* Recurre a múltiples fuentes cuando necesites explicaciones más simples.
+---  
 
-* Persiste a través de las dificultades tomando descansos y buscando inspiración en tus compañeros.
+## Consejos de Aprendizaje  
 
-* Mantén un compromiso constante en lugar de depender de sesiones intensivas de estudio.
+* Trata el aprendizaje como un pasatiempo, con diversión e interés genuino.  
 
-* Crea oportunidades para aplicar activamente lo que aprendes.
+* Aprende con práctica y repetición hasta dominarlo.  
 
-* Haz que el aprendizaje sea práctico conectándolo con aplicaciones de la vida real.
+* Sumérgete diariamente en el tema en contextos naturales.  
 
-* Recuerda que el aprendizaje surge naturalmente a través del juego y la exploración.
+* Sigue tus intereses genuinos; la pasión mejora el aprendizaje.  
 
-* Aprende con herramientas de IA: **ChatGPT**, **Claude** y **Gemini**.
+* Usa múltiples fuentes para explicaciones más simples.  
 
-* Usa varios idiomas para hacer preguntas a las herramientas de IA.
+* Persiste en las dificultades, toma descansos e inspírate en otros.  
 
-* Usa **YouTube**, **YouTube Shorts** o **TikTok** para buscar explicaciones en video.
+* Mantén un compromiso constante, no solo sesiones intensivas.  
 
-* Descarga cursos de YouTube para escucharlos mientras manejas; intenta recordar o imaginar lo que escuchas.
+* Aplica activamente lo que aprendes.  
 
-* Las emociones van y vienen: cuando no puedas concentrarte, prueba otros métodos de aprendizaje o haz otra cosa, luego regresa.
+* Hazlo práctico, relacionándolo con la vida real.  
 
-* Está bien no entender completamente una pregunta o párrafo de inmediato: omítelo y trata de entenderlo la próxima vez, o en la siguiente.
+* El aprendizaje surge naturalmente mediante juego y exploración.  
 
-* En la escuela, aprendí escuchando a los profesores y haciendo ejercicios. Después de dejar la escuela, aprendí trabajando, haciendo proyectos y siguiendo mis pasatiempos. Reflexiona sobre cómo aprendiste en el pasado y usa esos métodos para aprender lo actual.
+* Usa herramientas de IA como ChatGPT, Claude y Gemini.  
 
-* La acción produce información. Simplemente avanza para aprender cosas nuevas.
+* Haz preguntas a las IA en varios idiomas.  
 
-* Toma exámenes, entrevistas, obtén certificados y completa tareas para alcanzar la excelencia.
+* Busca explicaciones en video en YouTube o TikTok.  
 
-* No solo veas videos de los temas fingiendo entender.
+* Descarga cursos para escuchar mientras conduces, recordando lo que oyes.  
 
-* La mayoría de las veces crees que ya estás bien preparado, pero en realidad no lo estás. Apunta alto para lograr resultados medios. Apunta a lo medio para lograr resultados bajos.
+* Las emociones van y vienen. Si no te enfocas, prueba otros métodos o haz otra cosa.  
 
-* Duerme bien. Toma siestas si estás cansado.
+* Está bien no entender algo de inmediato. Omítelo y vuelve después.  
 
-* La actitud o motivación es difícil de engañarte a ti mismo. Sigue tu verdadera pasión.
+* En la escuela, aprendí escuchando profesores y haciendo ejercicios. Después, aprendí trabajando y en proyectos. Reflexiona sobre cómo aprendiste antes y usa esos métodos ahora.  
 
-* El entorno es importante. No necesitas esforzarte por aprender inglés si creces en un país de habla inglesa.
+* La acción genera información. Avanza para aprender.  
 
-* Tu cerebro es poderoso. Piensa las cosas por ti mismo. Piensa una y otra vez, una y otra vez.
+* Haz exámenes, entrevistas o certificaciones para lograr excelencia.  
 
-* Capta la esencia o el principio de las cosas para aprender. Por ejemplo, el aprendizaje automático se trata de cálculo, y las startups se tratan de crear algo que la gente quiera.
+* No solo veas videos pretendiendo entender.  
 
-* No necesitas aprender algo para demostrarle a los demás. Los nuevos descubrimientos tardan en volverse populares. Tus habilidades tardan en ser verdaderamente buenas. Los demás lo notarán después.
+* Muchas veces crees estar preparado, pero no es así. Apunta alto para lograr resultados medios.  
 
-* Aprender es principalmente probar cosas nuevas o pensar de nuevas formas. Sigue explorando.
+* Duerme bien. Si estás cansado, toma siestas.  
 
-* Aprender es disfrutar mejor la vida. Por ejemplo, aprender un nuevo idioma es como abrir un mundo nuevo.
+* La actitud o motivación no se pueden engañar. Sigue tu pasión.  
 
-* Al aprender un tema, abordar directamente los conceptos centrales o hacer los ejercicios del examen final está bien. Puedes aprender hacia atrás, desde lo fundamental. Un comienzo difícil lleva a un final fácil. Supera rápidamente el miedo o incomodidad asociados con el nuevo conocimiento.
+* El ambiente es importante. No necesitas estudiar inglés arduamente si creces en un país angloparlante.  
 
-* Enseña o comparte lo que aprendes con otros, poco a poco. No importa qué tan técnico o sofisticado sea, compártelo con tu pareja, amigos o incluso conocidos.
+* Tu cerebro es poderoso. Reflexiona una y otra vez.  
 
-* Escribe blogs, haz videos o crea otro contenido para compartir. Las personas son narcisistas. Al revisar lo que creas, notarás imperfecciones. Eso te dará el impulso de mejorar.
+* Capta la esencia de las cosas. Por ejemplo, el aprendizaje automático se trata de cálculo, y las startups de crear algo que la gente quiera.  
 
-* Aprende la historia de las cosas, como matemáticas específicas, electricidad o programación. Muestra cómo se desarrollan y las razones sólidas del orden en que aparecen. Estas son las partes que los libros de texto omiten.
+* No aprendas para probar algo a otros. Las habilidades tardan en perfeccionarse.  
 
-* A menudo, si aprendes un tema y encuentras alguna dificultad, simplemente repite ver un video, escucharlo o leer materiales sobre él unas 20 veces: puede tener un efecto mágico. Como dijo **June Huh**, la repetición tiene cierta belleza.
+* Aprender es probar cosas nuevas o pensar diferente. Sigue explorando.  
 
----
+* Aprender mejora la vida. Por ejemplo, un nuevo idioma abre un mundo.  
 
-## Consejos para Gastar Dinero
+* Al aprender, ve al grano. Puedes empezar por lo difícil para terminar fácil. Supera el miedo al conocimiento nuevo.  
 
-* Busca soluciones gratuitas primero: software de código abierto, libros electrónicos gratuitos, artículos, información, etc.
+* Enseña o comparte lo aprendido, aunque sea técnico.  
 
-* Prefiere artículos asequibles. Muchas cosas que cuestan menos de 100 CNY tienen bastante buena calidad. Es menos probable que sufras una pérdida o que te engañen.
+* Crea blogs, videos u otros contenidos. Al revisarlos, verás imperfecciones y mejorarás.  
 
-* Compré un iPhone con 512 GB de almacenamiento, pero 256 GB habría sido suficiente. Las fotos y videos ocupan la mitad de mi espacio. Hay soluciones como sincronizar con la computadora o usar iCloud. Normalmente, una solución moderada funciona bien.
+* Aprende la historia de las cosas, como matemáticas o programación. Los libros suelen omitir su desarrollo.  
 
-* En lugar de comprar cosas solo para usarlas, compra cosas para aprender de ellas. Compra regularmente nuevos artículos asequibles de los que puedas aprender.
+* Repite un video o material unas 20 veces si algo es difícil. Como dijo June Huh, la repetición tiene belleza.  
 
-* Observa cuidadosamente lo que usa la gente. Sé menos influenciado por los medios.
+---  
 
-* Compré algunas herramientas mecánicas, herramientas para reparar teléfonos y de mantenimiento. Son bastante útiles: puedo aprender de ellas y usarlas ocasionalmente.
+## Consejos sobre el Gasto de Dinero  
 
-* Protege tus pertenencias. Usa fundas para proteger tu computadora o iPhone.
+* Busca soluciones gratuitas primero: software de código abierto, libros electrónicos, artículos, etc.  
 
-* Si algo es económico, compra varias unidades, como adaptadores de carga o cables eléctricos.
+* Prefiere artículos económicos. Muchas cosas por debajo de 100 CNY son de buena calidad.  
 
-* Aprendes qué es bueno o malo al usar las cosas, especialmente durante largos periodos. Vigila tus artículos: por ejemplo, es posible que necesites cambiar la batería de un MacBook después de 5 a 8 años.
+* Compré un iPhone de 512GB, pero 256GB habría bastado. Fotos y videos ocupan la mitad. Opciones moderadas funcionan.  
 
-* No compres cosas solo para presumir, como casas o autos. El precio de la vanidad sigue aumentando.
+* Compra para aprender, no solo para usar. Adquiere cosas nuevas y económicas que enseñen algo.  
 
-* Para aprender, lo clave es enfocar tu mente en el tema en lugar de materiales o cursos caros. La mayoría de las cosas se pueden aprender gratis.
+* Observa lo que usa la gente. No te dejes influir mucho por los medios.  
 
-* Analiza por qué no usas los artículos caros que has comprado. A menudo se debe a la falta de tiempo, necesidad real o interés genuino.
+* Compré herramientas mecánicas y de reparación. Son útiles para aprender y usar ocasionalmente.  
 
-* Enfócate en la esencia más que en la apariencia. Las bebidas en bolsa suelen ser más baratas que las en caja. Compara precios por 100 ml para el mismo tipo de jugo: las bebidas en bolsa suelen ser más económicas.
+* Protege tus pertenencias. Usa fundas para tu computadora o iPhone.  
 
-* Aprende más detalles para hacer mejores compras.
+* Si algo es barato, compra varias unidades, como adaptadores o cables.  
 
-* La primera compra es importante, especialmente para artículos caros que requieren préstamos bancarios. Empieza con opciones más baratas para probar, como con la vivienda.
+* Aprendes la calidad con el uso prolongado. Cambia la batería de tu MacBook después de 5-8 años.  
 
-* Considera diferentes soluciones: al jugar baloncesto con gafas, podrías comprar gafas deportivas, usar una correa para sujetar las gafas normales o llevar pares de repuesto. Piensa en los costos y la efectividad a largo plazo. Aplica este pensamiento a otras decisiones de compra.
+* No compres por apariencia, como casas o autos. El precio de la vanidad aumenta.  
 
-* Compra componentes como baterías u otras piezas en una tienda en línea y visita un taller local para la instalación, como reemplazar la batería de un teléfono móvil o una laptop.
+* Para aprender, enfócate en el tema, no en materiales costosos. Mucho es gratuito.  
 
----
+* Analiza por qué no usas artículos caros. A menudo es por falta de tiempo, necesidad o interés.  
 
-## Consejos de Innovación
+* Enfócate en la esencia. Las bebidas en bolsas suelen ser más baratas que en cajas.  
 
-- La innovación significa probar cosas nuevas.
+* Aprende detalles para comprar mejor.  
 
-- El valor de la innovación es asombroso. No importa si hay un millón o mil millones de personas. A veces, nadie puede pensar en algo nuevo.
+* La primera compra es crucial, especialmente para artículos caros. Prueba opciones más baratas primero, como con viviendas.  
 
-- En un grupo de 10 o 20 ingenieros, algunos individuos son capaces de pensar de formas nuevas, usando herramientas diferentes o enfoques distintos para ayudar al proyecto. Los admiro.
+* Piensa en soluciones alternativas. Por ejemplo, para jugar básquet con lentes, usa gafas deportivas o correas. Aplica esto a otras compras.  
 
-- En el mundo actual, esta era de la IA, el poder de la innovación se vuelve cada vez más importante.
+* Compra componentes como baterías en línea y pide instalación en talleres locales.  
 
-- La IA es innovación. El artículo *"Attention Is All You Need"* es innovación. Una forma diferente de consultar una base de datos es innovación. Las formas en que los compañeros cercanos rara vez hacen o piensan, pero que realmente ayudan, son innovaciones. La innovación está en todas partes.
+---  
 
-- A veces, nuevas formas de hacer las cosas son innovaciones para mí, para un grupo de personas, para una pequeña startup, para grandes empresas, para un país grande o para la humanidad.
+## Consejos sobre Innovación  
 
-- La gente no odia inherentemente la innovación, sino la innovación que perjudicará sus intereses. Algunos empleados de **Nokia** odiaban la innovación de **Apple**. En el siglo XVII, figuras influyentes dentro de la Iglesia Católica odiaban la innovación heliocéntrica de **Galileo**.
+* Innovar es probar cosas nuevas.  
 
-- Antes de que los innovadores prueben cosas nuevas, ya han probado muchas cosas antiguas, y algún día, de alguna manera, se les ocurren ideas nuevas.
+* Su valor es sorprendente. No importa si hay millones o miles de millones de personas. A veces, nadie piensa en algo nuevo.  
 
-- Aunque la mayoría pueda notar algunas innovaciones de ciertas personas, esos individuos suelen haber realizado ya muchas innovaciones.
+* En grupos de ingenieros, algunos usan enfoques nuevos, herramientas diferentes o ideas creativas para el proyecto. Los admiro.  
 
-- Probar cosas nuevas no siempre garantiza el éxito. A veces muestran un declive en lugar de progreso. Sé crítico y observador.
+* En esta era de IA, el poder de la innovación es cada vez más importante.  
+
+* IA es innovación. El artículo "Attention Is All You Need" es innovación. Una forma distinta de consultar bases de datos es innovación.  
+
+* Lo que pocos hacen o piensan, pero que ayuda, son innovaciones. Están en todas partes.  
+
+* A veces, nuevas formas son innovaciones para mí, para un grupo, una startup, grandes empresas o la humanidad.  
+
+* La gente no odia la innovación, sino lo que afecta sus intereses. Algunos empleados de Nokia odiaron la innovación de Apple. En el siglo XVII, figuras católicas odiaban la innovación heliocéntrica de Galileo.  
+
+* Antes de innovar, los innovadores ya probaron muchas cosas viejas y, un día, surgieron ideas nuevas.  
+
+* La mayoría nota pocas innovaciones, pero esos innovadores ya hicieron muchas.  
+
+* Probar algo nuevo no siempre garantiza éxito. A veces muestra retroceso. Sé crítico y observador.
