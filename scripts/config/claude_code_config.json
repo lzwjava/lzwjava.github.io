@@ -25,18 +25,34 @@
         "x-ai/grok-3-mini"
       ],
       "transformer": {
-        "use": [
-          "openrouter"
-        ]
+        "use": ["openrouter"]
       }
+    },
+    {
+      "name": "anthropic-proxy",
+      "api_base_url": "http://127.0.0.1:3000/v1/messages",
+      "api_key": "",
+      "models": [
+        "anthropic/claude-sonnet-4",
+        "anthropic/claude-3.5-sonnet",
+        "anthropic/claude-3.7-sonnet:thinking",
+        "anthropic/claude-opus-4"
+      ]
     }
   ],
   "Router": {
-    "default": "openrouter,openai/gpt-5-mini",
+    "default": "openrouter,deepseek/deepseek-chat-v3.1",
     "background": "openrouter,google/gemini-2.5-flash",
     "think": "openrouter,qwen/qwen3-coder",
     "longContext": "openrouter,moonshotai/kimi-k2",
     "longContextThreshold": 2000,
-    "webSearch": "openrouter,mistralai/mistral-medium-3.1"
+    "webSearch": "openrouter,mistralai/mistral-medium-3.1",
+    "overrides": {
+      "anthropic/claude-sonnet-4": "anthropic-proxy,anthropic/claude-sonnet-4",
+      "anthropic/claude-3.5-sonnet": "anthropic-proxy,anthropic/claude-3.5-sonnet",
+      "anthropic/claude-3.7-sonnet:thinking": "anthropic-proxy,anthropic/claude-3.7-sonnet:thinking",
+      "anthropic/claude-opus-4": "anthropic-proxy,anthropic/claude-opus-4",
+      "deepseek/deepseek-chat-v3.1": "openrouter,deepseek/deepseek-chat-v3.1"
+    }
   }
 }
