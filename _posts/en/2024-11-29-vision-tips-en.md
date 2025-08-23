@@ -118,6 +118,7 @@ translated: false
 ### Whole Number Format
 
 #### Left Eye
+
 | Time | Myopia | Astigmatism | Vision |
 |------|--------|-------------|--------|
 | 2022.03.05 | 350 | 225 | 1.0 |
@@ -127,6 +128,7 @@ translated: false
 | 2024.11.28 | 250 | 100 | 0.9 |
 
 #### Right Eye
+
 | Time | Myopia | Astigmatism | Vision |
 |------|--------|-------------|--------|
 | 2022.03.05 | 575 | 175 | |
@@ -138,6 +140,7 @@ translated: false
 ### Decimal Format
 
 #### Left Eye
+
 | Time | Myopia | Astigmatism | Vision |
 |------|--------|-------------|--------|
 | 2022.03.05 | -3.50 | -2.25 | 1.0 |
@@ -147,6 +150,7 @@ translated: false
 | 2024.11.28 | -2.50 | -1.00 | 0.9 |
 
 #### Right Eye
+
 | Time | Myopia | Astigmatism | Vision |
 |------|--------|-------------|--------|
 | 2022.03.05 | -5.75 | -1.75 | |
