@@ -12,7 +12,7 @@ top: 10
 translated: false
 ---
 
-*Updated in August 2025*
+*Last updated in August 2025*
 
 ### Table of Contents
 

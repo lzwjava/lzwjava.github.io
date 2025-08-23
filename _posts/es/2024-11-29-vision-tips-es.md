@@ -6,76 +6,77 @@ lang: es
 layout: post
 prompt: Do not translate specific human name items such as Yin, Yin Wang, Zhiwei,
   etc.
-title: Usar lentes de 1.50 dioptrías o 150 grados por debajo de la receta completa
-  para uso diario
+title: Usar anteojos de 1.50 dioptrías o 150 grados menos que la receta completa para
+  uso diario
 top: 10
 translated: true
 ---
 
-*Actualizado en agosto de 2025*
+*Última actualización en agosto de 2025*
 
-### Tabla de Contenidos
+### Índice de contenidos
 
-1. [Revertir la Miopía](#reversing-myopia)
+1. [Revertir la miopía](#revertir-la-miopía)
    - Investigación clave y recursos
    - Métodos de Todd Becker y Yin Wang
-   - Artículos y documentos relacionados
+   - Artículos y artículos relacionados
    - Soluciones con lentes multifocales y progresivos
 
-2. [Consejos para la Restauración Natural de la Visión](#natural-vision-restoration-tips)
-   - Comprender las causas de la miopía
+2. [Consejos para restaurar la visión de forma natural](#consejos-para-restaurar-la-visión-de-forma-natural)
+   - Entender las causas de la miopía
    - El principio de "justo lo suficientemente claro"
-   - Pautas para la reducción de graduación
+   - Pautas para reducir la graduación
    - Recomendaciones de uso diario
    - Expectativas de mejora progresiva
 
-3. [Progreso en la Restauración Natural de la Visión](#natural-vision-restoration-progress)
+3. [Progreso en la restauración natural de la visión](#progreso-en-la-restauración-natural-de-la-visión)
    - Datos de un experimento personal de 3 años
    - Historial detallado de graduación
    - Métodos de seguimiento de mediciones
-   - Tablas de progreso optimizadas para móviles
+   - Tablas de progreso optimizadas para móvil
 
-4. [Miopía: Una Enfermedad Moderna pero Reversible — Todd Becker](#myopia-a-modern-yet-reversible-disease--todd-becker)
-   - Vídeos de investigación base
+4. [Miopía: una enfermedad moderna pero reversible — Todd Becker](#miopía-una-enfermedad-moderna-pero-reversible--todd-becker)
+   - Videos de investigación fundamentales
    - Presentaciones científicas de Todd Becker
    - Contexto histórico y descubrimiento
 
-5. [Es Fácil Cometer Errores Sin Experimentación Práctica](#its-easy-to-make-mistakes-without-hands-on)
-   - Respuesta a críticos y escépticos
+5. [Es fácil cometer errores sin experiencia práctica](#es-fácil-cometer-errores-sin-experiencia-práctica)
+   - Respondiendo a críticos y escépticos
    - Importancia de la evidencia experimental
-   - Análisis de historia familiar personal
+   - Análisis de historial familiar personal
    - Enfoques prácticos vs teóricos
    - Paralelismos con el mundo corporativo
 
-## Revertir la Miopía
+## Revertir la miopía
 
 *Última actualización en agosto de 2025*
 
-* [Miopía: Una Enfermedad Moderna pero Reversible, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
+* [Miopía: una enfermedad moderna pero reversible, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
 
 * [Miopía: una enfermedad moderna pero reversible](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
 
-* [Verificación Experimental del Método de Restauración Natural de la Visión de Yin Wang](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
+* [Verificación experimental del método de restauración natural de la visión de Yin Wang](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
 
-* [Discusión sobre el Astigmatismo cuando los Globos Oculares Vuelven a su Forma Normal](https://lzwjava.github.io/astigmatism-en), Zhiwei Li
+* [La discusión sobre el astigmatismo cuando los globos oculares vuelven a su forma normal](https://lzwjava.github.io/astigmatism-en), Zhiwei Li
 
-* [Restauración Natural de la Visión: El Principio de "Justo lo Suficientemente Claro"](https://lzwjava.github.io/barely-clear-en), Zhiwei Li
+* [Restauración natural de la visión: el principio de "justo lo suficientemente claro"](https://lzwjava.github.io/barely-clear-en), Zhiwei Li
 
-* [Consejos para la Restauración Natural de la Visión](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
+* [Consejos para restaurar la visión de forma natural](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
 
-* [Uso de Lentes Multifocales Progresivos para Revertir la Miopía](https://lzwjava.github.io/multifocal-en), Zhiwei Li
+* [Uso de lentes multifocales progresivos para revertir la miopía](https://lzwjava.github.io/multifocal-en), Zhiwei Li
 
-## Consejos para la Restauración Natural de la Visión
 
-*29.11.2024*
+## Consejos para restaurar la visión de forma natural
 
-* La razón por la que la gente empeora su visión es que usan gafas con la graduación completa (que les permite ver claramente una pizarra a 5m) para mirar teléfonos, computadoras o libros la mayor parte del tiempo. Esto hace que sus globos oculares se deformen.
+*29 de noviembre de 2024*
 
-* Después de usar gafas con una reducción de 150-200 grados durante varios días, no querrás volver a las gafas con graduación completa. Estas últimas se vuelven muy incómodas.
+* La razón por la que las personas empeoran su visión es que usan gafas con toda la graduación (que les permiten ver una pizarra claramente a 5 m) para mirar teléfonos, computadoras o libros la mayor parte del tiempo. Esto hace que sus globos oculares se deformen.
 
-* Comprender la miopía es clave: está causada por cambios en los músculos oculares, no solo por genética o exposición a la luz.
+* Después de usar gafas con una reducción de 150-200 grados durante varios días, no querrás volver a las gafas con toda la graduación. Estas últimas se vuelven muy incómodas.
 
-* El principio más importante es "justo lo suficientemente claro": usa gafas que hagan que las cosas sean lo suficientemente claras sin forzar la vista.
+* Entender la miopía es clave: está causada por cambios en los músculos oculares, no solo por genética o exposición a la luz.
+
+* El principio más importante es "justo lo suficientemente claro": usa gafas que permitan ver con suficiente claridad sin forzar la visión.
 
 * Para el uso de computadoras o teléfonos, una reducción de 150-200 grados suele funcionar bien.
 
@@ -83,130 +84,135 @@ translated: true
 
 * Espera un progreso lento: una reducción de unos 25 grados cada tres meses es buena.
 
-* No busques claridad perfecta. Una visión ligeramente borrosa es parte del proceso de mejora.
+* No busques una claridad perfecta. Una visión ligeramente borrosa es parte del proceso de mejora.
 
-* Usa la fórmula: Grado de miopía = 100/distancia clara (en metros) para una evaluación aproximada.
+* Usa la fórmula: Grado de miopía = 100/distancia de visión clara (en metros) para una estimación aproximada.
 
-* No te forces a ver claramente: deja que tus ojos se ajusten naturalmente.
+* No forces la vista para ver con claridad: deja que tus ojos se ajusten naturalmente.
 
-* Aprende sobre la mecánica de tus ojos: entender cómo funcionan los músculos oculares externos ayuda a tomar mejores decisiones para la visión.
+* Aprende sobre la mecánica de tus ojos: entender cómo funcionan los músculos externos del ojo ayuda a tomar mejores decisiones sobre la visión.
 
-* La miopía requiere usar gafas, lo que puede ser problemático durante actividades como jugar baloncesto o cuando llevas sombrero. El sombrero no puede extenderse para cubrir más piel y dar calor porque las gafas ocupan espacio. Olvidar usar gafas también afecta la visión.
+* La miopía requiere usar gafas, lo que puede ser incómodo durante actividades como jugar baloncesto o usar un sombrero. El sombrero no puede estirarse para cubrir más piel y proporcionar calor porque las gafas ocupan espacio. Olvidar las gafas también afecta la visión.
 
-* Aunque algunas personas puedan sentirse demasiado mayores o perezosas para abordar su miopía, es crucial tomar acción por el bien de las generaciones futuras para evitar los mismos desafíos.
+* Aunque algunas personas puedan sentirse demasiado mayores o perezosas para abordar su miopía, es crucial tomar medidas por el bien de las generaciones futuras para evitar los mismos desafíos.
 
-* El proceso de mejora lleva tiempo: la miopía que se desarrolló durante años tomará tiempo en mejorar.
+* El proceso de mejora lleva tiempo: la miopía que se desarrolló durante años llevará tiempo mejorar.
 
-* El punto es que, la mayor parte del tiempo, nuestros ojos pueden ver claramente los objetos que queremos mirar. Si alejamos los objetos unos 10 cm, se vuelven borrosos. Esto indica que estamos usando nuestros ojos correctamente.
+* El punto es que la mayor parte del tiempo, nuestros ojos pueden ver claramente los objetos que queremos observar. Si movemos los objetos unos 10 cm más lejos, se vuelven borrosos. Esto indica que estamos usando nuestros ojos correctamente.
 
 * Como usamos teléfonos o computadoras la mayor parte del tiempo, necesitamos reducir la graduación de nuestras gafas para usar nuestros ojos correctamente.
 
 * Considera el caso de las lentes para presbicia. A medida que las personas envejecen, sus músculos oculares cambian de forma en una dirección opuesta a la de la miopía. Podemos aplicar los principios utilizados en las lentes para presbicia a las lentes para miopía.
 
-* Recomiendo lentes multifocales progresivos. Según tu graduación, asumiendo que la visión correcta es 0.9, la sugerencia es hacer la corrección adicional para visión cercana de +1.75 D en miopía (con astigmatismo sin cambios), mientras que la corrección adicional para visión lejana es +1.00 D en miopía (con astigmatismo sin cambios).
+* Recomiendo lentes multifocales progresivos. Según tu graduación, asumiendo que la visión correcta es 0.9, la sugerencia es hacer una corrección adicional para visión cercana de +1.75 D en miopía (con astigmatismo sin cambios), mientras que la corrección adicional para visión lejana es +1.00 D en miopía (con astigmatismo sin cambios).
+
 
 ---
 
-## Progreso en la Restauración Natural de la Visión
+## Progreso en la restauración natural de la visión
 
 *Última actualización: 28 de noviembre de 2024*
 
-### Mi Historial de Graduación Ocular
+### Mi historial de graduación ocular
 
-### Formato en Números Enteros
+### Formato en números enteros
 
-#### Ojo Izquierdo
-| Tiempo | Miopía | Astigmatismo | Visión |
+#### Ojo izquierdo
+
+| Fecha  | Miopía | Astigmatismo | Visión |
 |--------|--------|-------------|--------|
-| 05.03.2022 | 350 | 225 | 1.0 |
-| 13.11.2022 | 325 | 200 | 0.9 |
-| 20.04.2023 | 300 | 125 | 1.0 |
-| 07.01.2024 | 300 | 100 | 0.9 |
-| 28.11.2024 | 250 | 100 | 0.9 |
+| 05/03/2022 | 350 | 225 | 1.0 |
+| 13/11/2022 | 325 | 200 | 0.9 |
+| 20/04/2023 | 300 | 125 | 1.0 |
+| 07/01/2024 | 300 | 100 | 0.9 |
+| 28/11/2024 | 250 | 100 | 0.9 |
 
-#### Ojo Derecho
-| Tiempo | Miopía | Astigmatismo | Visión |
+#### Ojo derecho
+
+| Fecha  | Miopía | Astigmatismo | Visión |
 |--------|--------|-------------|--------|
-| 05.03.2022 | 575 | 175 | |
-| 13.11.2022 | 550 | 175 | |
-| 20.04.2023 | 500 | 125 | |
-| 07.01.2024 | 475 | 125 | |
-| 28.11.2024 | 425 | 125 | |
+| 05/03/2022 | 575 | 175 | |
+| 13/11/2022 | 550 | 175 | |
+| 20/04/2023 | 500 | 125 | |
+| 07/01/2024 | 475 | 125 | |
+| 28/11/2024 | 425 | 125 | |
 
-### Formato Decimal
+### Formato decimal
 
-#### Ojo Izquierdo
-| Tiempo | Miopía | Astigmatismo | Visión |
+#### Ojo izquierdo
+
+| Fecha  | Miopía | Astigmatismo | Visión |
 |--------|--------|-------------|--------|
-| 05.03.2022 | -3.50 | -2.25 | 1.0 |
-| 13.11.2022 | -3.25 | -2.00 | 0.9 |
-| 20.04.2023 | -3.00 | -1.25 | 1.0 |
-| 07.01.2024 | -3.00 | -1.00 | 0.9 |
-| 28.11.2024 | -2.50 | -1.00 | 0.9 |
+| 05/03/2022 | -3.50 | -2.25 | 1.0 |
+| 13/11/2022 | -3.25 | -2.00 | 0.9 |
+| 20/04/2023 | -3.00 | -1.25 | 1.0 |
+| 07/01/2024 | -3.00 | -1.00 | 0.9 |
+| 28/11/2024 | -2.50 | -1.00 | 0.9 |
 
-#### Ojo Derecho
-| Tiempo | Miopía | Astigmatismo | Visión |
+#### Ojo derecho
+
+| Fecha  | Miopía | Astigmatismo | Visión |
 |--------|--------|-------------|--------|
-| 05.03.2022 | -5.75 | -1.75 | |
-| 13.11.2022 | -5.50 | -1.75 | |
-| 20.04.2023 | -5.00 | -1.25 | |
-| 07.01.2024 | -4.75 | -1.25 | |
-| 28.11.2024 | -4.25 | -1.25 | |
+| 05/03/2022 | -5.75 | -1.75 | |
+| 13/11/2022 | -5.50 | -1.75 | |
+| 20/04/2023 | -5.00 | -1.25 | |
+| 07/01/2024 | -4.75 | -1.25 | |
+| 28/11/2024 | -4.25 | -1.25 | |
 
 ---
 
-## Miopía: Una Enfermedad Moderna pero Reversible — Todd Becker
+## Miopía: una enfermedad moderna pero reversible — Todd Becker
 
-Descubrí el vídeo de Todd Becker en las notas al pie del artículo de Yin Wang sobre el [Método de Mejora Natural de la Visión](https://www.yinwang.org/blog-cn/2022/02/22/myopia). El vídeo, subido en 2014, ha superado los 1.2 millones de reproducciones.
+Descubrí el video de Todd Becker en las notas al pie del artículo de Yin Wang sobre el [Método natural para mejorar la visión](https://www.yinwang.org/blog-cn/2022/02/22/myopia). El video, subido en 2014, ha superado 1.2 millones de reproducciones.
 
-Miopía: Una Enfermedad Moderna pero Reversible — Todd Becker, M.S. (AHS14)
+Miopía: una enfermedad moderna pero reversible — Todd Becker, M.S. (AHS14)
 
 <div class="video-container">
-  <iframe src="https://www.youtube.com/embed/x5Efg42-Qn0?si=P9-BqyesxMtirwCx" title="Reproductor de vídeo de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/x5Efg42-Qn0?si=P9-BqyesxMtirwCx" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-Cómo Revertir la Miopía con Todd Becker (Ancestral Health Today Episodio 021)
+Cómo revertir la miopía con Todd Becker (Ancestral Health Today Episodio 021)
 
 <div class="video-container">
-  <iframe src="https://www.youtube.com/embed/iIrg6Q0s754?si=DprrreN9WqnGi7dJ" title="Reproductor de vídeo de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/iIrg6Q0s754?si=DprrreN9WqnGi7dJ" title="Reproductor de video de YouTube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
 ---
 
-## Es Fácil Cometer Errores Sin Experimentación Práctica
+## Es fácil cometer errores sin experiencia práctica
 
-*11.07.2025*
+*11 de julio de 2025*
 
-Después de que Yin Wang propusiera el método de reversión de la miopía en su [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), ha habido algunas opiniones contrarias al respecto. Me encontré con algunas de estas opiniones.
+Después de que Yin Wang propusiera el método para revertir la miopía en su [blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia), ha habido algunas opiniones en contra. Me encontré con algunas de estas opiniones.
 
-Desde 2022, he estado realizando el experimento tal como lo describe este [documento](http://localhost:4000/vision-restoration-en).
+Desde 2022, he estado realizando el experimento tal como lo describe este [artículo](http://localhost:4000/vision-restoration-en).
 
-Es fácil para mí saber qué es correcto o incorrecto. Es incorrecto decir que la herencia es el principal factor de riesgo para la miopía. En el [vídeo](https://www.youtube.com/watch?v=x5Efg42-Qn0) de Todd Becker en YouTube, en la introducción, hay un párrafo:
+Para mí es fácil saber qué es correcto o incorrecto. Es incorrecto decir que la herencia es el principal factor de riesgo para la miopía. En el [video](https://www.youtube.com/watch?v=x5Efg42-Qn0) de Todd Becker en YouTube, en la introducción, hay un párrafo:
 
-> La miopía generalmente se asume como una condición irreversible, determinada genéticamente, que solo puede mejorarse con lentes correctivos o cirugía. Su prevalencia es del 30-40% en EE. UU. y Europa, y más del 50% en algunos países asiáticos, pero es rara en África y en culturas preindustriales. La incidencia de miopía se correlaciona con el coeficiente intelectual, el rendimiento escolar y la industrialización, lo que sugiere que un factor ambiental está en juego: el trabajo cercano.
+> La miopía, o visión corta, generalmente se asume como una condición irreversible y determinada genéticamente que solo puede ser aliviada con lentes correctivos o cirugía. Su prevalencia es del 30-40% en EE. UU. y Europa, y más del 50% en algunos países asiáticos, pero es rara en África y en culturas preindustriales. La incidencia de miopía se correlaciona con el coeficiente intelectual, el rendimiento escolar y la industrialización, lo que sugiere que un factor ambiental está en juego: el trabajo cercano.
 
-Según mi experiencia, puedo decir que esto es correcto. Mi padre tiene 3 hermanos. Tres de los 4 hermanos no tienen miopía, mientras que uno sí. El hermano menor de mi padre tiene miopía y tiene la educación más alta, probablemente un título universitario. Nacieron en las décadas de 1960 y 1970.
+Desde mi experiencia, puedo decir que esto es correcto. Mi padre tiene 3 hermanos. Tres de los 4 hermanos no tienen miopía, mientras que uno sí. El hermano menor de mi padre tiene miopía y es el que tiene el mayor nivel educativo, probablemente una licenciatura. Nacieron en las décadas de 1960 y 1970.
 
-En mi caso, comencé a desarrollar miopía cuando estaba en secundaria alrededor de 2009. En ese momento, probablemente tenía alrededor de -2.00 dioptrías. Recuerdo que me quedaba despierto por la noche y usaba mi teléfono Nokia mientras estaba acostado en la cama con las luces apagadas. Después de un verano así, sentí que mi visión se había deteriorado.
+En mi caso, empecé a desarrollar miopía en la escuela secundaria alrededor de 2009. En ese momento, probablemente tenía alrededor de -2.00 dioptrías. Recuerdo que me quedaba despierto por la noche y usaba mi teléfono Nokia mientras estaba acostado en la cama con las luces apagadas. Después de un verano así, sentí que mi visión había empeorado.
 
-Conozco a algunos de los autores de las opiniones contrarias. También publican en blogs o comentan. Después de realizar un experimento de 3 años, y de que Yin Wang intentara tantas formas de revertir la miopía, el primer pensamiento cuando veo tales opiniones contrarias en Internet es que no nos importan. No saben cuánto esfuerzo hemos hecho, cómo rechazamos nuestras ideas o comenzamos de nuevo, cómo ajustamos nuestros experimentos o cómo reflexionamos sobre todo esto.
+Casualmente conozco a algunos de los autores de las opiniones contrarias. También tienen blogs o comentan. Después de realizar un experimento de 3 años, y de que Yin Wang intentara tantas formas de revertir la miopía, el primer pensamiento que tengo al ver estas opiniones contrarias en Internet es que no nos importan. No saben cuánto esfuerzo hemos puesto, cómo rechazamos nuestras ideas o empezamos de nuevo, cómo ajustamos nuestros experimentos, o cómo reflexionamos sobre todo esto.
 
-El autor tiene buena intención al advertirnos sobre el descubrimiento de Yin Wang. Pero en realidad, el autor aún no ha realizado experimentos al respecto. Estoy de acuerdo con muchas de sus ideas sobre startups, ya que tiene un recorrido de 10 años en el tema. Pero para la miopía en sí, la mayoría de nuestros esfuerzos en experimentos o lectura—y la mayoría de los descubrimientos o discusiones humanas al respecto—no importan. Solo unas pocas verdades importan.
+El autor tiene buenas intenciones al advertirnos sobre el descubrimiento de Yin Wang. Pero en realidad, el autor aún no ha realizado experimentos al respecto. Estoy de acuerdo con muchas de sus ideas sobre emprendimientos, ya que tiene una trayectoria de 10 años en startups. Pero para la miopía en sí, la mayoría de nuestros esfuerzos en experimentos o lectura—y la mayoría de los descubrimientos o discusiones humanas al respecto—no importan. Solo algunas verdades importan.
 
-No somos irrespetuosos con las opiniones contrarias. La ciencia es ciencia. No importa que haya 2 mil millones de personas con miopía. Y un gran número de ellos usa gafas con graduación completa que les permiten ver una pizarra a 5m, pero las usan para mirar mucho los teléfonos móviles. Por eso su miopía se vuelve cada vez más profunda.
+No somos irrespetuosos con las opiniones contrarias. La ciencia es ciencia. No importa que haya 2 mil millones de personas con miopía. Y un gran número de ellos usa gafas con toda la graduación que les permiten ver una pizarra a 5 m, pero las usan mucho para mirar teléfonos móviles. Por eso su miopía se vuelve cada vez más profunda.
 
-Una forma fácil de saber si lo que dice Yin Wang es cierto es simplemente quitarte las gafas. Si tu miopía es de solo 175 o 200 grados, puedes ver tu teléfono móvil sin necesidad de gafas. Y si usas gafas con graduación completa, puedes alejar el teléfono móvil, como a 80 cm o 1 metro, y probablemente aún puedas ver las palabras en la pantalla.
+Una forma fácil de saber si lo que dice Yin Wang es cierto es simplemente dejar tus gafas. Si tu miopía es de solo 175 o 200 grados, puedes ver tu teléfono móvil sin necesidad de gafas. Y si usas gafas con toda la graduación, puedes colocar el teléfono más lejos, como a 80 cm o 1 metro, y probablemente aún puedas ver las palabras en la pantalla.
 
-Puedo ver que uno de los grandes errores es que no hacen experimentos prácticos mientras que nosotros hacemos muchos y pensamos extensamente en ellos. Simplemente dicen lo que dice el libro.
+Puedo ver que uno de los grandes errores es que no realizan experimentos prácticos, mientras que nosotros hacemos muchos y reflexionamos mucho sobre ellos. Ellos solo dicen lo que dice el libro.
 
-En el mundo corporativo, también puedo ver este escenario. En un equipo, los ingenieros y los líderes pueden proponer soluciones. Sin embargo, probablemente la mitad no funcionan. Necesitamos probar las soluciones para ver qué pasa. Es como las decenas de miles de veces que pensé que el código debería funcionar pero la prueba falló en mis 10 años de experiencia en ingeniería de software.
+En el mundo corporativo, también puedo ver este escenario. En un equipo, ingenieros y líderes pueden proponer soluciones. Sin embargo, probablemente la mitad no funcionan. Necesitamos probar las soluciones para ver qué pasa. Es como las decenas de miles de veces que pensé que un código debería funcionar pero falló en las pruebas en mis 10 años de experiencia en ingeniería de software.
 
-Desde el aspecto práctico, en realidad podemos hacer mucho filtrado. Deberíamos contratar, comunicarnos y trabajar con aquellas personas que son más prácticas. En la empresa, aquellos a los que les gusta el trabajo práctico probablemente sean mejores líderes. Steve Jobs destacó una vez la importancia de los colaboradores individuales de alto rendimiento.
+Desde el aspecto práctico, en realidad podemos hacer mucho filtrado. Debemos contratar, comunicarnos y trabajar con aquellas personas que sean más prácticas. En la empresa, aquellos a quienes les gusta el trabajo práctico probablemente sean mejores líderes. Steve Jobs destacó alguna vez la importancia de los contribuyentes individuales altamente eficientes.
 
-Entonces, al juzgar la calidad o veracidad de las opiniones, podemos verificar su grado de práctica. ¿El autor realiza muchos experimentos?
+Así que al juzgar la calidad o veracidad de las opiniones, podemos verificar su grado de experiencia práctica. ¿El autor realiza muchos experimentos?
 
-Y puedo ver que las personas que realizan muchos experimentos prácticos en realidad no mantienen sus opiniones de manera demasiado rígida. Sé que todavía hay dudas sobre revertir la miopía. ¿Qué grado es mejor para revertir la miopía, 150 grados menos o 200 grados menos? Escribí un documento sobre esto: [Restauración Natural de la Visión: El Principio de "Justo lo Suficientemente Claro"](https://lzwjava.github.io/barely-clear-en).
+Y puedo ver que las personas que realizan muchos experimentos prácticos en realidad no mantienen sus opiniones de manera demasiado rígida. Sé que todavía hay dudas sobre cómo revertir la miopía. ¿Qué grado es mejor para revertir la miopía, 150 grados menos o 200 grados menos? Escribí un artículo sobre esto, [Restauración natural de la visión: el principio de "justo lo suficientemente claro"](https://lzwjava.github.io/barely-clear-en).
 
-Es muy fácil hablar, pero más difícil realizar experimentos reales, elaborar una teoría y luego probar de nuevo, como escribir código.
+Es muy fácil hablar, pero es más difícil realizar experimentos reales, desarrollar una teoría y luego probar nuevamente, al igual que escribir código.
 
-Es fácil cometer errores sin experiencia práctica. Después de cometer toneladas de errores, te darás cuenta de que, en comparación con las pérdidas o el dolor que nos causan los errores, el problema de realizar muchos experimentos prácticos para llegar a la verdad y evitar errores es insignificante. Dicho esto, como en la inversión en bolsa, algún día sabrás que, en comparación con las pérdidas o el dolor que nos causan los errores de inversión, el problema de realizar esfuerzos experimentales prácticos y exhaustivos para invertir con éxito es insignificante.
+Es fácil cometer errores sin experiencia práctica. Después de cometer montones de errores, te darás cuenta de que, en comparación con las pérdidas o el dolor que nos causan los errores, la molestia de realizar muchos experimentos prácticos para llegar a la verdad y evitar errores es insignificante. Dicho esto, como en las inversiones en acciones, un día sabrás que, en comparación con las pérdidas o el dolor que nos causan los errores de inversión, la molestia de realizar esfuerzos experimentales prácticos y exhaustivos para invertir con éxito es insignificante.
