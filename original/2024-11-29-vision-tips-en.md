@@ -9,7 +9,7 @@ title: 'Wear Eyeglasses 1.50 Diopters or 150 Degrees Below Full Prescription for
 top: 10
 ---
 
-*Updated in August 2025*
+*Last updated in August 2025*
 
 ### Table of Contents
 
