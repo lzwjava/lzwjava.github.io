@@ -79,12 +79,36 @@ def refactor_python_code(file_path, model="kimi-k2"):
 
 
 if __name__ == "__main__":
+    if len(sys.argv) == 1:
+        print("🐍 Python Code Refactor Agent")
+        print("=" * 50)
+        print("\n📝 Demo Usage Examples:")
+        print("  python scripts/agent/refactor_agent.py my_script.py")
+        print("  python scripts/agent/refactor_agent.py my_script.py --model claude-sonnet")
+        print("  python scripts/agent/refactor_agent.py utils/helper.py --model deepseek-v3")
+        print("\n🤖 Available Models:")
+        print("  claude-opus, claude-sonnet, gemini-flash, gemini-pro, kimi-k2,")
+        print("  deepseek-v3, deepseek-v3.1, mistral-medium, qwen-coder, gpt-oss, gpt-5")
+        print("\n" + "=" * 50)
+        print()
+
     parser = argparse.ArgumentParser(
-        description="Get AI suggestions for refactoring Python code"
+        description="Get AI suggestions for refactoring Python code",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+Available Models:
+  claude-opus, claude-sonnet, gemini-flash, gemini-pro, kimi-k2,
+  deepseek-v3, deepseek-v3.1, mistral-medium, qwen-coder, gpt-oss, gpt-5
+
+Examples:
+  %(prog)s my_script.py
+  %(prog)s my_script.py --model claude-sonnet
+  %(prog)s utils/helper.py --model deepseek-v3
+        """
     )
     parser.add_argument("file_path", help="Path to the Python file to refactor")
     parser.add_argument("--model", default="kimi-k2", 
-                        help="Model to use for refactoring. Available models: claude-opus, claude-sonnet, gemini-flash, gemini-pro, kimi-k2, deepseek-v3, deepseek-v3.1, mistral-medium, qwen-coder, gpt-oss, gpt-5 (default: kimi-k2)")
+                        help="Model to use for refactoring (default: kimi-k2)")
     args = parser.parse_args()
 
     result = refactor_python_code(args.file_path, args.model)
