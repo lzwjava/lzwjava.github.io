@@ -48,7 +48,7 @@ top: 10
 
 * [Myopia: A Modern Yet Reversible Disease, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
 
-* [Natural Vision Improvement Method - English Translation](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2022-02-22-myopia.md), Yin Wang
+* [Myopia: a modern yet reversible disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
 
 * [Experimental Verification of Yin Wang's Natural Vision Restoration Method](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
 
