@@ -4,14 +4,12 @@ import argparse
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 from scripts.llm.openrouter_client import call_openrouter_api
-from sample_code import sample_code
 from code_validation_utils import validate_code_quality
 
 
 def generate_refactor_prompt(file_path):
     """Generate a refactor prompt for the given Python file with proper markdown formatting."""
 
-    sample = sample_code()
     try:
         with open(file_path, "r", encoding="utf-8") as file:
             content = file.read()
@@ -52,7 +50,7 @@ Refactor the Python code below, focusing on:
 
 
 
-def refactor_python_code(file_path):
+def refactor_python_code(file_path, model="kimi-k2"):
     """
     Generate a refactor prompt and get AI suggestions for improving Python code.
     The resulting code is written directly back to the original file.
@@ -63,7 +61,7 @@ def refactor_python_code(file_path):
         
         prompt = generate_refactor_prompt(file_path)
 
-        response = call_openrouter_api(prompt=prompt, model="kimi-k2")
+        response = call_openrouter_api(prompt=prompt, model=model)
 
         if response.startswith("Error"):
             return response
@@ -85,7 +83,8 @@ if __name__ == "__main__":
         description="Get AI suggestions for refactoring Python code"
     )
     parser.add_argument("file_path", help="Path to the Python file to refactor")
+    parser.add_argument("--model", default="kimi-k2", help="Model to use for refactoring (default: kimi-k2)")
     args = parser.parse_args()
 
-    result = refactor_python_code(args.file_path)
+    result = refactor_python_code(args.file_path, args.model)
     print(result)
