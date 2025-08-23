@@ -44,7 +44,7 @@ top: 10
 
 ## Reversing Myopia
 
-*Updated at 2025.08*
+*Last updated in August 2025*
 
 * [Myopia: A Modern Yet Reversible Disease, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
 
