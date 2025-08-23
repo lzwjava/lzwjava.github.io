@@ -83,7 +83,8 @@ if __name__ == "__main__":
         description="Get AI suggestions for refactoring Python code"
     )
     parser.add_argument("file_path", help="Path to the Python file to refactor")
-    parser.add_argument("--model", default="kimi-k2", help="Model to use for refactoring (default: kimi-k2)")
+    parser.add_argument("--model", default="kimi-k2", 
+                        help="Model to use for refactoring. Available models: claude-opus, claude-sonnet, gemini-flash, gemini-pro, kimi-k2, deepseek-v3, deepseek-v3.1, mistral-medium, qwen-coder, gpt-oss, gpt-5 (default: kimi-k2)")
     args = parser.parse_args()
 
     result = refactor_python_code(args.file_path, args.model)
