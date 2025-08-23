@@ -60,15 +60,25 @@ def call_openrouter_api(prompt, model="mistral-medium", debug=False):
 
 
 if __name__ == "__main__":
-    # Example usage
-    for model_name in MODEL_MAPPING.keys():
+    import sys
+    import subprocess
+
+    # Read from stdin if piped, else try macOS clipboard via pbpaste, else use default prompt
+    if not sys.stdin.isatty():
+        content = sys.stdin.read()
+    else:
         try:
-            result = call_openrouter_api(
-                "Hello, 9.11 or 9.9, which one is bigger? ", model_name, debug=True
-            )
-            print(f"Response from {model_name}:\n")
-            print(result)
-            print("-" * 50)
-        except Exception as e:
-            print(f"Error with {model_name}: {str(e)}")
-            print("-" * 50)
+            content = subprocess.check_output(["pbpaste"], text=True)
+        except Exception:
+            content = "Hello, 9.11 or 9.9, which one is bigger? "
+
+    if not content or not content.strip():
+        content = "Hello, 9.11 or 9.9, which one is bigger? "
+
+    model = os.getenv("OPENROUTER_MODEL", "mistral-medium")
+
+    try:
+        result = call_openrouter_api(content, model, debug=True)
+        print(result)
+    except Exception as e:
+        print(f"Error: {e}")

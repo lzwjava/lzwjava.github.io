@@ -6,7 +6,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
-from scripts.agent.git_utils import get_git_diff_lines, extract_changed_content, apply_grammar_fixes_to_original
+from scripts.agent.git_utils import get_git_diff_lines, extract_changed_content, apply_grammar_fixes_to_original, get_changed_md_files_in_last_n_commits
 from scripts.agent.validate_utils import validate_grammar_fix, validate_markdown_syntax, validate_content_structure
 
 #!/usr/bin/env python3
@@ -54,14 +54,14 @@ Return the corrected content:"""
         return None
 
 
-def process_file(file_path, dry_run=False):
+def process_file(file_path, dry_run=False, base_range=None):
     """Process a single Jekyll post file."""
     try:
         # Convert relative path to absolute path
         abs_file_path = os.path.abspath(file_path)
         
-        # Get changed lines from git diff
-        changed_lines = get_git_diff_lines(abs_file_path)
+        # Get changed lines from git diff (optionally use a base range)
+        changed_lines = get_git_diff_lines(abs_file_path, base_range)
         
         if not changed_lines:
             print(f"No changes to fix in {file_path}")
@@ -126,19 +126,50 @@ def main():
         action="store_true",
         help="Show what would be changed without modifying files",
     )
+    parser.add_argument(
+        "--commits",
+        type=int,
+        default=0,
+        help="If >0, consider changes in the last N commits under original/ and prompt to select a file",
+    )
 
     args = parser.parse_args()
 
-    if not args.files:
-        # If no files specified, look for markdown files in current directory
-        md_files = list(Path(".").glob("*.md"))
-        if not md_files:
-            print("No markdown files found. Please specify files to process.")
-            sys.exit(1)
-        args.files = md_files
+    # Handle commits option: if >0, find changed markdown files in last N commits
+    if args.commits > 0:
+        changed_md = get_changed_md_files_in_last_n_commits(args.commits)
+        if not changed_md:
+            print(f"No changed markdown files found in the last {args.commits} commits.")
+            sys.exit(0)
+        if len(changed_md) == 1:
+            args.files = [changed_md[0]]
+        else:
+            print("Multiple changed markdown files found:")
+            for i, f in enumerate(changed_md):
+                print(f"{i+1}. {f}")
+            choice = input("Select a file by number: ").strip()
+            try:
+                idx = int(choice) - 1
+                if idx < 0 or idx >= len(changed_md):
+                    print("Invalid selection.")
+                    sys.exit(1)
+                args.files = [changed_md[idx]]
+            except Exception:
+                print("Invalid input.")
+                sys.exit(1)
+        base_range = f"HEAD~{args.commits}..HEAD"
+    else:
+        base_range = None
+        if not args.files:
+            # If no files specified, look for markdown files in current directory
+            md_files = list(Path(".").glob("*.md"))
+            if not md_files:
+                print("No markdown files found. Please specify files to process.")
+                sys.exit(1)
+            args.files = md_files
 
     for file_path in args.files:
-        process_file(file_path, args.dry_run)
+        process_file(file_path, args.dry_run, base_range=base_range)
 
 
 if __name__ == "__main__":
