@@ -4,14 +4,14 @@ generated: false
 image: true
 lang: hant
 layout: post
-title: 對我最有用的連結與應用程式
+title: 我最有用的網站和應用程式
 top: 10
 translated: true
 ---
 
 *2025年8月更新*
 
-以下係我每日或者隔幾日就會查看嘅連結同應用程式。通常我會用手機apps接收更新，桌面使用時就多數依靠AI工具。佢哋對我嘅思考影響好大。我鐘意搵到最好嘅方法去做嘢。
+以下係我每日或隔幾日會瀏覽嘅連結同應用程式。通常我會用手機App睇更新，而桌上電腦就多數用AI工具。佢哋對我嘅思維影響好大。我鍾意搵最有效率嘅方法做事。
 
 - [ChatGPT](http://chatgpt.com)
 - [OpenRouter](https://openrouter.ai)
@@ -37,20 +37,20 @@ translated: true
 - [USA.gov](https://www.usa.gov)
 - [王垠嘅Substack](https://yinwang1.substack.com)
 - [VS Code](https://code.visualstudio.com)
+- [Ubuntu](https://ubuntu.com)
 
-手機主畫面上，我安裝咗每日必需使用嘅apps，包括App Store、瀏覽器、新聞、待辦清單、代理app、AI聊天機械人、加密貨幣交易，仲有銀行同資產管理apps。呢啲工具幫我緊貼資訊同保持條理。
+我手機主畫面放咗每日必需用嘅App，包括App Store、瀏覽器、新聞、待辦事項、代理工具、AI聊天機械人、加密貨幣交易，同埋銀行同資產管理App。呢啲都係我保持資訊更新同生活有序嘅必需品。
 
-以下係我部主力手機（iOS設備）上最常用嘅apps。
+以下係我主力手機（iOS設備）最常用嘅App。
 
-我可以選擇性咁分享呢啲，好少人會因此唔高興。大部分都係知名或者熱門產品，所以佢哋應該唔會在意我係咪鍾意——我只係眾多用戶之一。我亦都有為呢啲平台作出貢獻。
+我可以選擇性咁講，亦唔會得罪人。呢啲大部分都係出名或流行嘅產品，所以佢哋應該唔會在乎我係咪鍾意——我只係眾多用家之一。而且我都有為呢啲平台貢獻。
 
-我將個人博客網站都列入其中。我經常查看同有時更新內容。咁樣做可以更好咁反思自己做過嘅嘢，同埋將我認為有用嘅資訊分享畀其他人。
-    
+我將自己嘅個人博客網站都放喺度。我成日睇住佢，有時會更新內容。咁樣我可以更好咁反思自己做過嘅嘢，同其他人分享我覺得有用嘅資訊。
 
-![圖片](/assets/images/links/apps1.jpg)
+![img](/assets/images/links/apps1.jpg)
 
-![圖片](/assets/images/links/apps2.jpg)
+![img](/assets/images/links/apps2.jpg)
 
-![圖片](/assets/images/links/apps3.jpg)
+![img](/assets/images/links/apps3.jpg)
 
-![圖片](/assets/images/links/apps4.jpg)
+![img](/assets/images/links/apps4.jpg)
