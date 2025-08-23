@@ -16,10 +16,22 @@ Generates titles for Jekyll post files using AI.
 """
 
 
-def generate_title_with_ai(content):
+def generate_title_with_ai(content, custom_prompt=None):
     """Generate a title using AI."""
     print("Generating title with AI...")
-    prompt = f"""Generate a short, simple, and clean title for this content. Output ONLY the title text with no markdown formatting, quotes, or additional text. Keep it concise and straightforward.
+    
+    # Limit content to first 1000 characters to avoid overwhelming the AI
+    truncated_content = content[:1000]
+    if len(content) > 1000:
+        truncated_content += "..."
+    
+    if custom_prompt:
+        prompt = f"""{custom_prompt}
+
+Content:
+{truncated_content}"""
+    else:
+        prompt = f"""Generate a short, simple, and clean title for this content. Output ONLY the title text with no markdown formatting, quotes, or additional text. Keep it concise and straightforward.
 
 PREFERRED FORMATS (in order of preference):
 1. If possible, simplify to a format like "noun, noun, noun" (e.g., "Docker, Kubernetes, AWS")
@@ -32,7 +44,7 @@ IMPORTANT INSTRUCTIONS:
 - Avoid introducing new vocabulary not present in the content
 
 Content:
-{content}"""
+{truncated_content}"""
 
     try:
         response = call_openrouter_api(prompt)
@@ -72,7 +84,7 @@ def validate_title(title):
     return True
 
 
-def process_file(file_path, output_only=False):
+def process_file(file_path, output_only=False, custom_prompt=None):
     """Process a single Jekyll post file to update its title."""
     print(f"Processing file: {file_path}")
     try:
@@ -80,7 +92,7 @@ def process_file(file_path, output_only=False):
             post = frontmatter.load(f)
             content = post.content
 
-        title = generate_title_with_ai(content)
+        title = generate_title_with_ai(content, custom_prompt)
 
         if title is None:
             return None
@@ -135,6 +147,9 @@ def main():
     parser.add_argument(
         "--output-only", action="store_true", help="Output only title without file info"
     )
+    parser.add_argument(
+        "--prompt", type=str, help="Custom prompt for title generation"
+    )
 
     args = parser.parse_args()
 
@@ -147,7 +162,7 @@ def main():
         args.files = md_files
 
     for file_path in args.files:
-        process_file(file_path, args.output_only)
+        process_file(file_path, args.output_only, args.prompt)
 
 
 if __name__ == "__main__":
