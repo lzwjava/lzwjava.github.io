@@ -46,11 +46,11 @@ translated: false
 
 ## Reversing Myopia
 
-*2024.12.12*
+*Last updated in August 2025*
 
 * [Myopia: A Modern Yet Reversible Disease, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
 
-* [Natural Vision Improvement Method - English Translation](https://github.com/lzwjava/yinwang.github.io/blob/main/_posts/2022-02-22-myopia.md), Yin Wang
+* [Myopia: a modern yet reversible disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
 
 * [Experimental Verification of Yin Wang's Natural Vision Restoration Method](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
 
@@ -114,33 +114,43 @@ translated: false
 
 ### Whole Number Format
 
-| Time | Eye | Myopia | Astigmatism | Vision |
-|------|-----|--------|-------------|--------|
-| 2022.03.05 | Left | 350 | 225 | 1.0 |
-| | Right | 575 | 175 | |
-| 2022.11.13 | Left | 325 | 200 | 0.9 |
-| | Right | 550 | 175 | |
-| 2023.04.20 | Left | 300 | 125 | 1.0 |
-| | Right | 500 | 125 | |
-| 2024.01.07 | Left | 300 | 100 | 0.9 |
-| | Right | 475 | 125 | |
-| 2024.11.28 | Left | 250 | 100 | 0.9 |
-| | Right | 425 | 125 | |
+#### Left Eye
+| Time | Myopia | Astigmatism | Vision |
+|------|--------|-------------|--------|
+| 2022.03.05 | 350 | 225 | 1.0 |
+| 2022.11.13 | 325 | 200 | 0.9 |
+| 2023.04.20 | 300 | 125 | 1.0 |
+| 2024.01.07 | 300 | 100 | 0.9 |
+| 2024.11.28 | 250 | 100 | 0.9 |
+
+#### Right Eye
+| Time | Myopia | Astigmatism | Vision |
+|------|--------|-------------|--------|
+| 2022.03.05 | 575 | 175 | |
+| 2022.11.13 | 550 | 175 | |
+| 2023.04.20 | 500 | 125 | |
+| 2024.01.07 | 475 | 125 | |
+| 2024.11.28 | 425 | 125 | |
 
 ### Decimal Format
 
-| Time | Eye | Myopia | Astigmatism | Vision |
-|------|-----|--------|-------------|--------|
-| 2022.03.05 | Left | -3.50 | -2.25 | 1.0 |
-| | Right | -5.75 | -1.75 | |
-| 2022.11.13 | Left | -3.25 | -2.00 | 0.9 |
-| | Right | -5.50 | -1.75 | |
-| 2023.04.20 | Left | -3.00 | -1.25 | 1.0 |
-| | Right | -5.00 | -1.25 | |
-| 2024.01.07 | Left | -3.00 | -1.00 | 0.9 |
-| | Right | -4.75 | -1.25 | |
-| 2024.11.28 | Left | -2.50 | -1.00 | 0.9 |
-| | Right | -4.25 | -1.25 | |
+#### Left Eye
+| Time | Myopia | Astigmatism | Vision |
+|------|--------|-------------|--------|
+| 2022.03.05 | -3.50 | -2.25 | 1.0 |
+| 2022.11.13 | -3.25 | -2.00 | 0.9 |
+| 2023.04.20 | -3.00 | -1.25 | 1.0 |
+| 2024.01.07 | -3.00 | -1.00 | 0.9 |
+| 2024.11.28 | -2.50 | -1.00 | 0.9 |
+
+#### Right Eye
+| Time | Myopia | Astigmatism | Vision |
+|------|--------|-------------|--------|
+| 2022.03.05 | -5.75 | -1.75 | |
+| 2022.11.13 | -5.50 | -1.75 | |
+| 2023.04.20 | -5.00 | -1.25 | |
+| 2024.01.07 | -4.75 | -1.25 | |
+| 2024.11.28 | -4.25 | -1.25 | |
 
 ---
 
