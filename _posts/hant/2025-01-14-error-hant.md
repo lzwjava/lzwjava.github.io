@@ -15,10 +15,10 @@ translated: true
 **頁面未找到 :(**
 
 {: .centered }
-找不到所請求的頁面。請返回主頁。
+無法找到您請求的頁面。請返回首頁。
 
 {: .centered }
-[主頁](/ "主頁")
+[首頁](/ "首頁")
 
 ## 最新文章
 
@@ -26,13 +26,13 @@ translated: true
 
 ----
 
-* [筆記](/2025-01-11-notes-en)
-* [增長的真正原因](/2025-08-23-growth-reason-en)
-* [DeepSeek V3、MLA、MTP 與 MoE 效率](/2025-01-24-deepseek-v3-conv-en)
-* [滙豐、華僑銀行，銀行賬戶體驗](/2025-07-26-hsbc-ocbc-en)
-* [AI 工作流、代碼編輯器與平台顛覆](/2025-01-29-ai-thoughts-en)
-* [LLM 成本、代理與編碼工具](/2025-08-18-llm-en)
-* [每日佩戴低於全處方 1.50 屈光度或 150 度的眼鏡](/2024-11-29-vision-tips-en)
-* [日常生活小貼士](/2025-01-29-daily-life-en)
-* [生活、學習與創新的實用技巧](/2024-12-10-life-tips-en)
-* [氣炸鍋烹飪](/2024-12-29-cooking-en)
+* [筆記](/notes-en)
+* [完整的AI工具生態系統](/jina-ai-en)
+* [學習英語的完整指南](/english-en)
+* [日常使用低配150度或1.50屈光度的眼鏡](/vision-tips-en)
+* [睡眠襪](/sleeping-socks-en)
+* [增長背後的真正原因](/growth-reason-en)
+* [對我最有用的網站和應用程式](/links-en)
+* [DeepSeek V3、MLA、MTP及MoE效率](/deepseek-v3-conv-en)
+* [HSBC、OCBC銀行帳戶經驗談](/hsbc-ocbc-en)
+* [AI工作流程、代碼編輯器及平台顛覆](/ai-thoughts-en)
