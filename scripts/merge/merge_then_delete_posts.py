@@ -67,13 +67,11 @@ def merge_post_contents_with_filenames(post_data):
         print("Error: Maximum 10 posts allowed")
         return None
 
-    # Process and sort posts
+    # Process posts (maintain argument order)
     processed_posts = []
     for i, content in enumerate(contents):
         filename = filenames[i] if i < len(filenames) else None
         processed_posts.append(process_post_content(content, filename))
-    
-    processed_posts.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
 
     # First post is main post
     main_content = processed_posts[0]['content']
@@ -131,10 +129,7 @@ def delete_other_posts(posts):
             print(f"Error reading file {abs_path}: {e}")
             return
 
-    # Sort posts by date in descending order
-    post_data.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
-
-    # Keep the original for the first post, delete others completely
+    # Keep argument order (first post in arguments is kept)
     if post_data:
         print(f"Keeping original for: {post_data[0]['path']}")
         delete_md(post_data[0]['path'], False)
@@ -167,15 +162,8 @@ def merge_then_delete_posts(posts):
     if combined_content is None:
         return
 
-    # Determine which file should be the main file (by date)
-    processed_posts = []
-    for post in post_data:
-        processed = process_post_content(post['content'], post['filename'])
-        processed['path'] = post['path']
-        processed_posts.append(processed)
-    
-    processed_posts.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
-    main_path = processed_posts[0]['path']
+    # Use first post in argument order as main file
+    main_path = post_data[0]['path']
 
     # Write result to the main file
     try:
@@ -187,7 +175,7 @@ def merge_then_delete_posts(posts):
         return
 
     # Delete other posts (except the main one)
-    posts_to_delete = [post['path'] for post in processed_posts[1:]]
+    posts_to_delete = [post['path'] for post in post_data[1:]]
     for path in posts_to_delete:
         print(f"Deleting post: {path}")
         delete_md(path, True)

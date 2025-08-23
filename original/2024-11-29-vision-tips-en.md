@@ -5,7 +5,7 @@ image: false
 lang: en
 layout: post
 prompt: Do not translate specific human name items such as Yin, Yin Wang, Zhiwei, etc.
-title: 'Complete Natural Vision Restoration Guide'
+title: 'Wear Eyeglasses 1.50 Diopters or 150 Degrees Below Full Prescription for Daily Use'
 top: 10
 ---
 
