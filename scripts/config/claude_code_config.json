@@ -25,45 +25,18 @@
         "x-ai/grok-3-mini"
       ],
       "transformer": {
-        "use": ["openrouter"]
-      },
-      "params": {
-        "deepseek/deepseek-chat-v3.1": {
-          "tool_choice": "none",
-          "reasoning": { "exclude": true }
-        },
-        "deepseek/deepseek-r1": {
-          "tool_choice": "none",
-          "reasoning": { "exclude": true }
-        }
+        "use": [
+          "openrouter"
+        ]
       }
-    },
-    {
-      "name": "anthropic-proxy",
-      "api_base_url": "http://127.0.0.1:3000/v1/messages",
-      "api_key": "",
-      "models": [
-        "anthropic/claude-sonnet-4",
-        "anthropic/claude-3.5-sonnet",
-        "anthropic/claude-3.7-sonnet:thinking",
-        "anthropic/claude-opus-4"
-      ]
     }
   ],
   "Router": {
-    "default": "anthropic-proxy,anthropic/claude-sonnet-4",
-    "background": "anthropic-proxy,anthropic/claude-sonnet-4",
-    "think": "anthropic-proxy,anthropic/claude-sonnet-4",
-    "longContext": "openrouter,moonshotai/kimi-k2",
+    "default": "openrouter,openai/gpt-5-mini",
+    "background": "openrouter,google/gemini-2.5-flash",
+    "think": "openrouter,qwen/qwen3-coder",
+    "longContext": "openrouter,deepseek/deepseek-chat-v3.1",
     "longContextThreshold": 2000,
-    "webSearch": "openrouter,mistralai/mistral-medium-3.1",
-    "overrides": {
-      "deepseek/deepseek-chat-v3.1": "openrouter,deepseek/deepseek-chat-v3.1",
-      "deepseek/deepseek-r1": "openrouter,deepseek/deepseek-r1",
-      "google/gemini-2.5-flash": "openrouter,google/gemini-2.5-flash",
-      "google/gemini-2.5-pro": "openrouter,google/gemini-2.5-pro",
-      "qwen/qwen3-coder": "openrouter,qwen/qwen3-coder",
-      "openai/gpt-5-mini": "openrouter,openai/gpt-5-mini"
-    }
+    "webSearch": "openrouter,mistralai/mistral-medium-3.1"
   }
 }
