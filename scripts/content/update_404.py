@@ -43,8 +43,8 @@ def get_latest_posts(original_dir, count=10):
                 date_match = re.match(r'(\d{4}-\d{2}-\d{2})', filename)
                 date_str = date_match.group(1) if date_match else '1970-01-01'
                 
-                # Generate URL path
-                url_path = '/' + filename.replace('.md', '')
+                # Generate URL path - remove date prefix
+                url_path = '/' + re.sub(r'^\d{4}-\d{2}-\d{2}-', '', filename.replace('.md', ''))
                 
                 posts.append({
                     'title': frontmatter['title'],
