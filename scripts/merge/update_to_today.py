@@ -5,8 +5,11 @@ import argparse
 from datetime import datetime
 from rename_post import rename_post
 
-def update_post_to_today(old_filename):
+def update_post_to_today(old_path):
     """Update a post's date to today by renaming the file"""
+    
+    # Extract just the filename from the path
+    old_filename = os.path.basename(old_path)
     
     # Parse the old filename to extract the title and language
     if not old_filename.endswith('.md'):
@@ -31,7 +34,7 @@ def update_post_to_today(old_filename):
     
     print(f"Updating {old_filename} to {new_filename}")
     
-    # Use the rename_post function
+    # Use the rename_post function with just the filenames
     rename_post(old_filename, new_filename)
     
     return True
