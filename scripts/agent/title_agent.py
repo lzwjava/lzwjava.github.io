@@ -16,7 +16,7 @@ Generates titles for Jekyll post files using AI.
 """
 
 
-def generate_title_with_ai(content, custom_prompt=None):
+def generate_title_with_ai(content, custom_prompt=None, model="mistral-medium"):
     """Generate a title using AI."""
     print("Generating title with AI...")
     
@@ -47,7 +47,7 @@ Content:
 {truncated_content}"""
 
     try:
-        response = call_openrouter_api(prompt)
+        response = call_openrouter_api(prompt, model)
         stripped = response.strip()
         return stripped
     except Exception as e:
@@ -84,7 +84,7 @@ def validate_title(title):
     return True
 
 
-def process_file(file_path, output_only=False, custom_prompt=None):
+def process_file(file_path, output_only=False, custom_prompt=None, model="mistral-medium"):
     """Process a single Jekyll post file to update its title."""
     print(f"Processing file: {file_path}")
     try:
@@ -92,7 +92,7 @@ def process_file(file_path, output_only=False, custom_prompt=None):
             post = frontmatter.load(f)
             content = post.content
 
-        title = generate_title_with_ai(content, custom_prompt)
+        title = generate_title_with_ai(content, custom_prompt, model)
 
         if title is None:
             return None
@@ -150,6 +150,9 @@ def main():
     parser.add_argument(
         "--prompt", type=str, help="Custom prompt for title generation"
     )
+    parser.add_argument(
+        "--model", type=str, default="mistral-medium", help="Model to use for title generation"
+    )
 
     args = parser.parse_args()
 
@@ -162,7 +165,7 @@ def main():
         args.files = md_files
 
     for file_path in args.files:
-        process_file(file_path, args.output_only, args.prompt)
+        process_file(file_path, args.output_only, args.prompt, args.model)
 
 
 if __name__ == "__main__":
