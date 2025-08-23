@@ -10,9 +10,9 @@ translated: false
 
 I have participated in a digital bank project in Singapore or Hong Kong. Singapore has around 5 million people while Hong Kong has 7 million people. 
 
-A digital bank project launched around 2016. Over four years (2016-2020), the banking app steadily grew to 1 million users. Encouraged by this growth, the company experienced rapid expansion by late 2022, reaching 3 million users. Confident in their trajectory, management made an aggressive hiring decision, bringing on approximately 200 additional staff members—including engineers, support personnel, and around 100 contract engineers—across their primary office and a major mainland China development center.
+A digital bank project launched around 2016. Over four years (2016–2020), the banking app steadily grew to 1 million users. Encouraged by this growth, the company experienced rapid expansion by late 2022, reaching 3 million users. Confident in their trajectory, management made an aggressive hiring decision, bringing on approximately 200 additional staff members—including engineers, support personnel, and around 100 contract engineers—across their primary office and a major mainland China development center.
 
-But after one year, the app product probably just reached 3.2 million users. 80% of new hires were let go. 
+But after one year, the app had likely reached only 3.2 million users. 80% of new hires were let go. The number here is probably not accurate. I referenced them to discuss the true reason behind the growth.
 
 In my previous essay [On Big Companies](/big-companies-en), I wrote the following words:
 
