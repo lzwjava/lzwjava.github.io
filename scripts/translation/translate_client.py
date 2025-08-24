@@ -8,7 +8,7 @@ from scripts.llm.openrouter_client import call_openrouter_api
 import spacy
 from langdetect import detect_langs
 
-from scripts.translation.translate_utils import validate_translated_languages
+from scripts.translation.translate_utils import validate_translated_languages, detect_languages_with_langdetect
 
 
 def create_translation_prompt(
@@ -49,6 +49,7 @@ def translate_text(
     model="deepseek-v3",
     front_matter_prompt=None,
     original_lang=None,
+    require_english=True,
 ):
     MIN_LENGTH = 1
     MAX_LENGTH = 5000
@@ -75,6 +76,8 @@ def translate_text(
     )
 
     translated_text = call_openrouter_api(prompt, model)
+
+    print(f"Debug: Raw translated text preview: {translated_text[:200]}")
 
     if not isinstance(translated_text, str):
         raise RuntimeError("Model returned non-text response")
@@ -105,7 +108,14 @@ def translate_text(
         if "\n" in translated_text.strip():
             raise RuntimeError("Model returned multi-line title; expected single-line title")
 
-    validate_translated_languages(translated_text, target_language)
+    # show detected languages before validating
+    try:
+        detected = detect_languages_with_langdetect(translated_text)
+        print(f"Debug: Languages detected by helper: {[(d.lang, d.prob) for d in detected]}")
+    except Exception as e:
+        print(f"Debug: language detect helper failed: {e}")
+
+    validate_translated_languages(translated_text, target_language, require_english=require_english)
 
     return translated_text
 
@@ -113,6 +123,6 @@ def translate_text(
 if __name__ == "__main__":
     print("Debug: Running main test translation")
     text = translate_text(
-        "Hi, it is sunny today. Hahaa...", "zh", model="mistral-medium", original_lang="en"
+        "Hi, it is sunny today. Hahaa...", "zh", model="mistral-medium", original_lang="en",
     )
     print(f"Debug: Final translated text: {text}")
