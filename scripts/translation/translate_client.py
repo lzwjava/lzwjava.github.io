@@ -33,8 +33,8 @@ def validate_length(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
     length = len(text)
-    if not 1 <= length <= 5000:
-        raise ValueError(f"text length {length} outside allowed range [1, 5000]")
+    if not 1 <= length <= 30000:
+        raise ValueError(f"text length {length} outside allowed range [1, 30000]")
 
 def clean_response(text):
     if not isinstance(text, str):
