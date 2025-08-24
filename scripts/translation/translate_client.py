@@ -1,128 +1,105 @@
+```python
+import argparse
 import os
 import sys
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
-
-import spacy
-from langdetect import detect_langs
-
 from scripts.translation.translate_utils import validate_translated_languages, detect_languages_with_langdetect
 
+LANGUAGE_MAP = {
+    "ja": "Japanese",
+    "es": "Spanish",
+    "hi": "Hindi",
+    "fr": "French",
+    "zh": "Simplified Chinese",
+    "hant": "Traditional Chinese (Hong Kong)",
+    "en": "English",
+    "de": "German",
+    "ar": "Arabic"
+}
 
-def create_translation_prompt(
-    target_language, type="content", front_matter_prompt=None
-):
-    if type == "title":
-        base_prompt = "Translate the following title into {target_language}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {target_language}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
+def build_prompt_template(target_language, type_, front_matter):
+    lang_name = LANGUAGE_MAP.get(target_language, target_language)
+    if type_ == "title":
+        tpl = "Translate the following title into {lang}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {lang}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
     else:
-        base_prompt = "Translate the following markdown text into {target_language}. Return only the translated content without any additional notes or explanations. If the text is already in {target_language}, return it unchanged.\n"
-        if front_matter_prompt:
-            base_prompt += f"{front_matter_prompt}\n"
-    if target_language == "ja":
-        return base_prompt.format(target_language="Japanese")
-    elif target_language == "es":
-        return base_prompt.format(target_language="Spanish")
-    elif target_language == "hi":
-        return base_prompt.format(target_language="Hindi")
-    elif target_language == "fr":
-        return base_prompt.format(target_language="French")
-    elif target_language == "zh":
-        return base_prompt.format(target_language="Simplified Chinese")
-    elif target_language == "hant":
-        return base_prompt.format(target_language="Traditional Chinese (Hong Kong)")
-    elif target_language == "en":
-        return base_prompt.format(target_language="English")
-    elif target_language == "de":
-        return base_prompt.format(target_language="German")
-    elif target_language == "ar":
-        return base_prompt.format(target_language="Arabic")
-    else:
-        return base_prompt.format(target_language=target_language)
+        head = "Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.\n"
+        if front_matter:
+            head += f"{front_matter}\n"
+        tpl = head
+    return tpl.format(lang=lang_name)
 
-
-def translate_text(
-    text,
-    target_language,
-    type="content",
-    model="deepseek-v3",
-    front_matter_prompt=None,
-    original_lang=None,
-    require_english=True,
-):
-    MIN_LENGTH = 1
-    MAX_LENGTH = 5000
+def validate_length(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
-    text_len = len(text)
-    if text_len < MIN_LENGTH or text_len > MAX_LENGTH:
-        raise ValueError(f"text length {text_len} outside allowed range [{MIN_LENGTH}, {MAX_LENGTH}]")
+    length = len(text)
+    if not 1 <= length <= 5000:
+        raise ValueError(f"text length {length} outside allowed range [1, 5000]")
 
-    print(f"Debug: Starting translation process for text: {text[:50]}...")
-    print(f"Debug: Target language: {target_language}")
-    print(f"Debug: Model used: {model}")
+def clean_response(text):
+    if not isinstance(text, str):
+        raise RuntimeError("Model returned non-text response")
+    return text.strip()
 
-    if target_language == original_lang:
-        print(
-            f"Debug: Target language matches original language, returning unchanged text"
-        )
+def check_echo(original, translated):
+    if original.lower().strip() in translated.lower():
+        raise RuntimeError("Model returned input or echoed text")
+
+def check_commentary(translated):
+    indicators = [
+        "the output is", "output is", "translated title",
+        "the translation is", "translation is", "translated:",
+        "result:", "output:", "return only", "return only the translated"
+    ]
+    low = translated.lower()
+    for ind in indicators:
+        if ind in low:
+            raise RuntimeError("Model included commentary")
+
+def check_title_single_line(title):
+    if "\n" in title.strip():
+        raise RuntimeError("Model returned multi-line title")
+
+def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
+    validate_length(text)
+    if target == orig_lang:
         return text
 
-    prompt = (
-        create_translation_prompt(target_language, type, front_matter_prompt)
-        + "\n\n"
-        + text
-    )
+    prompt = build_prompt_template(target, kind, front_matter) + "\n\n" + text
+    translated = clean_response(call_openrouter_api(prompt, model))
+    check_echo(text, translated)
+    check_commentary(translated)
+    if kind == "title":
+        check_title_single_line(translated)
 
-    translated_text = call_openrouter_api(prompt, model)
-
-    print(f"Debug: Raw translated text preview: {translated_text[:200]}")
-
-    if not isinstance(translated_text, str):
-        raise RuntimeError("Model returned non-text response")
-
-    low_translated = translated_text.lower()
-    low_text = text.lower().strip()
-
-    if low_text and low_text in low_translated:
-        raise RuntimeError("Model returned the original text or echoed input; aborting translation")
-
-    commentary_indicators = [
-        "the output is",
-        "output is",
-        "translated title",
-        "the translation is",
-        "translation is",
-        "translated:",
-        "result:",
-        "output:",
-        "return only",
-        "return only the translated",
-    ]
-    for indicator in commentary_indicators:
-        if indicator in low_translated:
-            raise RuntimeError("Model included commentary or extra notes; aborting translation")
-
-    if type == "title":
-        if "\n" in translated_text.strip():
-            raise RuntimeError("Model returned multi-line title; expected single-line title")
-
-    # show detected languages before validating
     try:
-        detected = detect_languages_with_langdetect(translated_text)
-        print(f"Debug: Languages detected by helper: {[(d.lang, d.prob) for d in detected]}")
+        detected = detect_languages_with_langdetect(translated)
     except Exception as e:
-        print(f"Debug: language detect helper failed: {e}")
+        detected = []
+    validate_translated_languages(translated, target, require_english=need_en)
+    return translated
 
-    validate_translated_languages(translated_text, target_language, require_english=require_english)
+def cli_translate():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("text")
+    parser.add_argument("--target", required=True)
+    parser.add_argument("--type", default="content")
+    parser.add_argument("--model", default="deepseek-v3")
+    parser.add_argument("--front-matter")
+    parser.add_argument("--original-lang")
+    parser.add_argument("--require-english", action="store_true")
+    args = parser.parse_args()
 
-    return translated_text
-
+    translated = run_translate(
+        args.text, args.target, args.type, args.model,
+        args.front_matter, args.original_lang, args.require_english
+    )
+    print(translated)
 
 if __name__ == "__main__":
-    print("Debug: Running main test translation")
-    text = translate_text(
-        "Hi, it is sunny today. Hahaa...", "zh", model="mistral-medium", original_lang="en",
-    )
-    print(f"Debug: Final translated text: {text}")
+    cli_translate()
+# Demo runs
+# python scripts/translation/translate_client.py "Hello world" --target zh --model mistral-medium --original-lang en
+# python scripts/translation/translate_client.py "Nice Day" --target ja --type title
+```
