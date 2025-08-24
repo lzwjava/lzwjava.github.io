@@ -8,40 +8,32 @@ generated: false
 image: false
 ---
 
-I have participated in a digital bank project in Singapore or Hong Kong. Singapore has around 5 million people while Hong Kong has 7 million people. 
+This draws from general experiences and public trends in digital banking to discuss growth dynamics, not any single project.
 
-A digital bank project launched around 2016. Over four years (2016–2020), the banking app steadily grew to 1 million users. Encouraged by this growth, the company experienced rapid expansion by late 2022, reaching 3 million users. Confident in their trajectory, management made an aggressive hiring decision, bringing on approximately 200 additional staff members—including engineers, support personnel, and around 100 contract engineers—across their primary office and a major mainland China development center.
+I participated in a digital bank project in a major Asian financial hub. A digital bank project launched around the mid-2010s. Over four years, the banking app steadily grew to about a million users. Encouraged by this growth, the company experienced rapid expansion by the early 2020s, reaching several million users. Confident in their trajectory, management made an aggressive hiring decision, bringing on a large number of additional staff—including engineers, support personnel, and many contract engineers—across their primary office and a major regional development center.
 
-But after one year, the app had likely reached only 3.2 million users. 80% of new hires were let go. The number here is probably not accurate. I referenced them to discuss the true reason behind the growth.
+But after one year, the app had likely reached only a slightly higher user base. Most new hires were let go. The numbers here are approximate, used to discuss the true reasons behind growth.
 
-In my previous essay [On Big Companies](/big-companies-en), I wrote the following words:
+In my previous essay [On Big Companies](/big-companies-en), I wrote:
 
 > One contributing factor to this outcome is the cumbersome and numerous processes within large companies. Engineers who had been with the company for six months to a year were unable to make significant contributions. The timeline typically included two months to grasp the basics, three months to become acquainted with the projects, three months navigating through tedious procedures or testing, and finally, two months of productive work that impacted users.
 
-I made this same mistake myself, which I mentioned in my resume:
+I made this same mistake myself, mentioned in my resume:
 
 > After getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to train my management skills. The good news is that by hiring part-time engineers to do 50 small software projects together, we earned half a million back and gave it back to the investor when shutting down the company.
 
-Why do the managers of this banking project make this mistake? It is because they think it is their hard work that drives the growth. But unfortunately, it is not. It is half their hard work and their decisions, and half of the reason should be attributed to the users and market. 
+Why did the managers of this banking project make this mistake? It’s easy to think hard work alone drives growth. But it’s half our efforts and decisions, and half the users and market.
 
-They bet correctly on digital banking ten years ago. Hong Kong and Singapore needed a new digital bank application around 2015. 
+They bet correctly on digital banking years ago. The region needed a new digital bank app around the mid-2010s. Their hard work made their app one of the top choices in the area. But growth stalled due to regional limits, like needing a local phone number to use the app—a significant barrier.
 
-The reason they grew it to half the population of Singapore or Hong Kong is their hard work to make their digital application one of the top 3 choices in that area. 
+Some payment apps don’t require a specific phone number, which is great. Nearby regions have large populations that could contribute users. Cross-border payment systems, like [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect), help transfer money across regions, boosting usage. For internet apps, serving all users without restrictions is ideal. Services like [SMS Activate](https://sms-activate.io) let you rent numbers to bypass such limits.
 
-The reason they cannot grow it more is that the regional population has limits. They need some kind of Hong Kong or Singapore phone number to use their applications. This is a huge limitation. 
+Apps like Grok and Mistral can be used in many regions, which is good. Why should people face internet restrictions due to local laws? Many don’t support such laws, so why should they suffer?
 
-AlipayHK doesn't need a Hong Kong phone number to use, and it is great. Mainland China has tons of population and they can contribute users easily. If they start to use it, they probably will use it more. The Shenzhen or Guangdong people can go to Hong Kong easily and use the digital bank app more. And [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) helps to transfer money between Hong Kong and mainland China.
+The reason I grew to around 20,000 users in a year **was** that I caught a trend—at that time, in China, there was a need for a platform for knowledge workers. Jike Time from GeekBang, Dedao, and Himalaya showed that need. I worked hard on software engineering and marketing, mostly by myself, often on WeChat. Users only care about what the product brings them. They don’t care if it’s made by one person or twenty. Founders, managers, or investors care—users don’t.
 
-For internet applications, it is better to serve all users - phone numbers or whatever shouldn't be limited. SMS activate (https://sms-activate.io) lets you rent a random number. 
+We need to try many ways and verify them. That way, we know what works. It’s okay to make mistakes, but it’s unwise to repeat them. For user growth, there are many paths—online, offline, active, or passive discovery. People hear about things days, months, or years later.
 
-Grok and Mistral can be used in Hong Kong, which is good. Why should Hong Kong people suffer restrictions on internet freedom due to security law concerns? In this city, half of the population doesn't like the security law, so why should they suffer because of that? 
+Not only should we reason about growth, we should understand the reasons for everything. Why do relationships falter? Why doesn’t code work? If we don’t change, problems persist. Why do others appreciate us? What did we do right?
 
-The reason I grew to around 20,000 users in a year **was** that I caught up with the trend—at that time, in China, there was a need for a platform for knowledge workers. The Jike Time from GeekBang showed that we needed a knowledge platform for IT workers. Dedao and Himalaya demonstrated that need as well.
-
-Another reason is that I worked hard on software engineering and marketing mostly by myself, frequently marketing on the WeChat platform. Users only care about what the product can bring them. They don’t care whether it’s made by one person or twenty. Founders, managers, or investors care about that—users don’t.
-
-We need to try many ways of doing things and verify them. That way, we know what works and what doesn’t. It’s okay to make mistakes, but it’s stupid to make the same mistake again and again. For user growth, there are many ways to achieve it. Users can be acquired offline and online. People hear about things in many ways. They learn actively or passively. They discover things through self-reflection or by being told. They hear about something days, months, or years after it’s created.
-
-Not only should we reason about growth, we should figure out the reasons for everything. Why does our relationship with someone have a problem now? Why doesn’t the code work now? If we don’t change, the problem will continue. Why will others appreciate us? What did we do right?
-
-My English became an advantage among candidates in China, which helped me secure job offers for contractor positions from international banks. We should invest in what works to make our lives easier. It is by figuring out the reasons for trouble, unhappiness, and problems that we can avoid them.
+My English became an advantage in China, helping me secure contractor roles at international banks. We should invest in what works to make life easier. By understanding the reasons for challenges, we can avoid them and grow smarter.
