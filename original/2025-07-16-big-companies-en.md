@@ -8,6 +8,30 @@ title: On Big Companies
 translated: false
 ---
 
+### Table of Contents
+
+1. [On Big Companies](#on-big-companies)
+   - Talent density beats sheer team size
+   - Procedures replace trust in employees
+   - Risk aversion stifles innovation growth
+   - Startups deploy faster than enterprises
+   - Bureaucracy masks individual accountability
+
+2. [Engineering in Big Companies](#engineering-in-big-companies)
+   - Rules enforce consistency but limit creativity
+   - Automated checks miss nuanced design quality
+   - Testing tools lack strategic evaluation depth
+   - Monolithic systems resist rapid scaling
+   - Redundant workflows ensure knowledge retention
+
+3. [On Collaboration](#on-collaboration)
+   - Teams mirror modular code organization
+   - Task ownership reduces communication overhead
+   - Transparency replaces real-time alignment needs
+   - AI tools augment individual contributions
+   - Mismatched expectations derail project success
+
+
 ### On Big Companies
 
 Big companies are just like big programs. For a big company with 100,000 employees and 50,000 contractors, they are just like a big program with 150,000 methods.
