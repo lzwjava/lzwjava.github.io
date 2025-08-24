@@ -1,4 +1,3 @@
-```python
 import argparse
 import os
 import sys
@@ -102,4 +101,3 @@ if __name__ == "__main__":
 # Demo runs
 # python scripts/translation/translate_client.py "Hello world" --target zh --model mistral-medium --original-lang en
 # python scripts/translation/translate_client.py "Nice Day" --target ja --type title
-```
