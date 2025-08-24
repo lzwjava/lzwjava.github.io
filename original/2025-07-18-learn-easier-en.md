@@ -31,5 +31,8 @@ Every time I make mistakes or don't understand something, it is because I don't 
 This is probably one of the big lessons of my life. Nowadays, learning is so important. The world is becoming more complicated. This is about how to learn easier, and this is probably equivalent to how to live better.
 
 When it comes to programming, learning easier means reducing repetitive tasks. You can't expect to keep writing simple algorithms like bubble sort and hope to outperform quick sort. Similarly, you can't just build simple APIs with easy tasks and expect to one day create complex systems like LLM APIs.
+To learn more effectively, you need to tackle difficult problems or materials as they arise. If you avoid solving them now, the same challenges will appear again in the future. Before quicksort was invented, most people could only sort with algorithms of O(n²) complexity.
 
-To learn more effectively, you need to tackle difficult problems or materials as they arise. If you avoid solving them now, the same challenges will appear again in the future. Before quick sort was invented, most people could only sort with algorithms of O(n²) complexity.
+How to learn more easily? We should do different things and try many ways. If we do things in one way, the result is the same. Why do people know fewer products in other areas now? Because those products have only been marketed in those areas. After I worked as a contractor for software projects in Hong Kong or Singapore, I came to realize there are so many good products there too.
+
+We are quite blind. Because I don’t live there, even if I have friends or connections there, they won’t recommend these products to me. There are just so many applications on the internet. Most people just want to use them to make their lives better.
