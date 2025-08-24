@@ -4,44 +4,36 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Der wahre Grund für Wachstum
+title: Der wahre Grund hinter Wachstum
 translated: true
 ---
 
-Ich habe an einem Digitalbank-Projekt in Singapur oder Hongkong teilgenommen. Singapur hat etwa 5 Millionen Einwohner, während Hongkong 7 Millionen hat.  
+Hier werden allgemeine Erfahrungen und öffentliche Trends im Bereich des digitalen Bankings herangezogen, um Wachstumsdynamiken zu diskutieren, nicht ein einzelnes Projekt.
 
-Ein Digitalbank-Projekt wurde um 2016 gestartet. Innerhalb von vier Jahren (2016–2020) wuchs die Banking-App stetig auf 1 Million Nutzer an. Ermutigt durch dieses Wachstum expandierte das Unternehmen bis Ende 2022 schnell und erreichte 3 Millionen Nutzer. Zuversichtlich in ihren Erfolg traf das Management eine aggressive Einstellungsentscheidung und holte etwa 200 zusätzliche Mitarbeiter an Bord – darunter Ingenieure, Support-Mitarbeiter und rund 100 vertraglich gebundene Ingenieure – verteilt auf das Hauptbüro und ein großes Entwicklungszentrum in Festlandchina.  
+Ich war an einem Digitalbank-Projekt in einem großen asiatischen Finanzzentrum beteiligt. Ein Digitalbank-Projekt startete um die Mitte der 2010er Jahre. Innerhalb von vier Jahren wuchs die Banking-App allmählich auf etwa eine Million Nutzer an. Ermutigt durch dieses Wachstum erlebte das Unternehmen zu Beginn der 2020er Jahre eine rasche Expansion und erreichte mehrere Millionen Nutzer. Zuversichtlich in ihren Kurs traf die Geschäftsleitung eine aggressive Einstellungsentscheidung und holte eine große Anzahl zusätzlicher Mitarbeiter ins Boot – darunter Ingenieure, Support-Mitarbeiter und viele Vertragsingenieure – sowohl im Hauptbüro als auch in einem großen regionalen Entwicklungszentrum.
 
-Doch nach einem Jahr hatte die App wahrscheinlich nur 3,2 Millionen Nutzer erreicht. 80 % der neuen Mitarbeiter wurden entlassen. Die Zahl hier ist vermutlich nicht genau. Ich habe sie als Referenz verwendet, um den wahren Grund hinter dem Wachstum zu diskutieren.  
+Doch nach einem Jahr hatte die App wahrscheinlich nur eine geringfügig höhere Nutzerbasis erreicht. Die meisten neuen Mitarbeiter wurden entlassen. Die Zahlen hier sind ungefähr und dienen dazu, die wahren Gründe hinter dem Wachstum zu diskutieren.
 
-In meinem vorherigen Aufsatz [Über große Unternehmen](/big-companies-en) schrieb ich folgende Worte:  
+In meinem vorherigen Essay [Über große Unternehmen](/big-companies-en) schrieb ich:
 
-> Ein Faktor, der zu diesem Ergebnis beigetragen hat, sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die sechs Monate bis ein Jahr im Unternehmen waren, konnten keine bedeutenden Beiträge leisten. Der Zeitplan umfasste typischerweise zwei Monate, um die Grundlagen zu verstehen, drei Monate, um sich mit den Projekten vertraut zu machen, drei Monate, um sich durch langwierige Verfahren oder Tests zu kämpfen, und schließlich zwei Monate produktiver Arbeit, die Nutzer beeinflusste.  
+> Ein Faktor, der zu diesem Ergebnis beitrug, sind die umständlichen und zahlreichen Prozesse in großen Unternehmen. Ingenieure, die sechs Monate bis ein Jahr im Unternehmen waren, konnten keine signifikanten Beiträge leisten. Der Zeitplan umfasste typischerweise zwei Monate, um die Grundlagen zu verstehen, drei Monate, um sich mit den Projekten vertraut zu machen, drei Monate für die Bewältigung langwieriger Verfahren oder Tests und schließlich zwei Monate produktiver Arbeit, die sich auf die Nutzer auswirkte.
 
-Ich selbst habe denselben Fehler gemacht, den ich in meinem Lebenslauf erwähnte:  
+Ich selbst habe denselben Fehler gemacht, wie in meinem Lebenslauf erwähnt:
 
-> Nachdem ich Investitionen erhalten hatte, stellte ich 9 Mitarbeiter ein, musste sie aber nach zwei Monaten entlassen. Das trug zu einem meiner schmerzhaftesten Fehler bei: keinen langfristigen Plan zu haben, andere beeindrucken zu wollen und naiv meine Managementfähigkeiten trainieren zu wollen. Die gute Nachricht ist, dass wir durch die Einstellung von Teilzeit-Ingenieuren für 50 kleine Softwareprojekte eine halbe Million verdienten und sie dem Investor zurückgaben, als wir das Unternehmen schlossen.  
+> Nachdem ich Investitionen erhalten hatte, stellte ich neun Mitarbeiter ein, musste sie aber nach zwei Monaten wieder entlassen. Dies trug zu einem meiner schmerzhaftesten Fehler bei: kein langfristiger Plan, der Wunsch, andere zu beeindrucken, und der naive Versuch, meine Managementfähigkeiten zu trainieren. Die gute Nachricht ist, dass wir durch die Einstellung von Teilzeit-Ingenieuren für 50 kleine Softwareprojekte eine halbe Million zurückverdienten und sie dem Investor zurückgaben, als wir das Unternehmen schlossen.
 
-Warum machen die Manager dieses Bankprojekts diesen Fehler? Weil sie denken, dass ihre harte Arbeit das Wachstum antreibt. Doch leider ist das nicht der Fall. Es ist zur Hälfte ihre harte Arbeit und ihre Entscheidungen, und die andere Hälfte des Grundes sollte den Nutzern und dem Markt zugeschrieben werden.  
+Warum haben die Manager dieses Bankprojekts diesen Fehler gemacht? Es ist leicht zu denken, dass harte Arbeit allein das Wachstum antreibt. Aber es ist zur Hälfte unsere Anstrengung und Entscheidung und zur anderen Hälfte die Nutzer und der Markt.
 
-Sie haben vor zehn Jahren richtig auf Digitalbanking gesetzt. Hongkong und Singapur brauchten um 2015 eine neue Digitalbank-Anwendung.  
+Sie haben vor Jahren richtig auf digitales Banking gesetzt. Die Region brauchte Mitte der 2010er Jahre eine neue Digitalbank-App. Ihre harte Arbeit machte ihre App zu einer der Top-Optionen in der Region. Doch das Wachstum stockte aufgrund regionaler Grenzen, wie der Notwendigkeit einer lokalen Telefonnummer für die Nutzung der App – eine große Hürde.
 
-Der Grund, warum sie die Hälfte der Bevölkerung von Singapur oder Hongkong erreichten, ist ihre harte Arbeit, ihre Digitalanwendung zu einer der Top-3-Optionen in der Region zu machen.  
+Einige Zahlungs-Apps benötigen keine bestimmte Telefonnummer, was toll ist. Benachbarte Regionen haben große Bevölkerungen, die Nutzer beitragen könnten. Grenzüberschreitende Zahlungssysteme wie [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) helfen bei der Geldüberweisung zwischen Regionen und steigern die Nutzung. Für Internet-Apps ist es ideal, alle Nutzer ohne Einschränkungen zu bedienen. Dienste wie [SMS Activate](https://sms-activate.io) ermöglichen es, Nummern zu mieten, um solche Grenzen zu umgehen.
 
-Der Grund, warum sie nicht weiter wachsen konnten, ist, dass die regionale Bevölkerung Grenzen hat. Nutzer benötigen eine Art Hongkonger oder singapurische Telefonnummer, um ihre Anwendungen zu nutzen. Das ist eine große Einschränkung.  
+Apps wie Grok und Mistral können in vielen Regionen genutzt werden, was gut ist. Warum sollten Menschen aufgrund lokaler Gesetze Internetbeschränkungen ausgesetzt sein? Viele unterstützen solche Gesetze nicht, warum sollten sie darunter leiden?
 
-AlipayHK benötigt keine Hongkonger Telefonnummer und ist großartig. Festlandchina hat eine riesige Bevölkerung und kann leicht Nutzer beisteuern. Wenn sie es nutzen, werden sie es wahrscheinlich häufiger tun. Die Menschen aus Shenzhen oder Guangdong können leicht nach Hongkong reisen und die Digitalbank-App häufiger nutzen. Und [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect) hilft bei Geldtransfers zwischen Hongkong und Festlandchina.  
+Der Grund, warum ich innerhalb eines Jahres etwa 20.000 Nutzer gewann, **war**, dass ich einen Trend erkannte – zu dieser Zeit gab es in China einen Bedarf an einer Plattform für Wissensarbeiter. Jike Time von GeekBang, Dedao und Himalaya zeigten diesen Bedarf. Ich arbeitete hart an Softwareentwicklung und Marketing, meist allein, oft über WeChat. Nutzer kümmern sich nur darum, was das Produkt ihnen bringt. Es ist ihnen egal, ob es von einer Person oder zwanzig gemacht wird. Gründer, Manager oder Investoren kümmern sich darum – Nutzer nicht.
 
-Für Internetanwendungen ist es besser, alle Nutzer zu bedienen – Telefonnummern oder ähnliches sollten keine Beschränkung sein. SMS activate (https://sms-activate.io) ermöglicht es, eine zufällige Nummer zu mieten.  
+Wir müssen viele Wege ausprobieren und sie verifizieren. So wissen wir, was funktioniert. Es ist okay, Fehler zu machen, aber unklug, sie zu wiederholen. Für Nutzerwachstum gibt es viele Wege – online, offline, aktiv oder passive Entdeckung. Menschen hören Tage, Monate oder Jahre später von Dingen.
 
-Grok und Mistral können in Hongkong genutzt werden, was gut ist. Warum sollten Hongkonger unter Einschränkungen der Internetfreiheit aufgrund von Sicherheitsgesetzen leiden? In dieser Stadt mag die Hälfte der Bevölkerung das Sicherheitsgesetz nicht, warum sollten sie deshalb darunter leiden?  
+Wir sollten nicht nur über Wachstum nachdenken, sondern die Gründe für alles verstehen. Warum scheitern Beziehungen? Warum funktioniert Code nicht? Wenn wir uns nicht ändern, bleiben Probleme bestehen. Warum schätzen uns andere? Was haben wir richtig gemacht?
 
-Der Grund, warum ich innerhalb eines Jahres etwa 20.000 Nutzer gewann, **war**, dass ich den Trend erkannte – damals gab es in China einen Bedarf an einer Plattform für Wissensarbeiter. Die „Jike Time“ von GeekBang zeigte, dass wir eine Wissensplattform für IT-Mitarbeiter brauchten. Dedao und Himalaya demonstrierten diesen Bedarf ebenfalls.  
-
-Ein weiterer Grund ist, dass ich hart an Softwareentwicklung und Marketing gearbeitet habe, hauptsächlich allein, und häufig auf der WeChat-Plattform Werbung gemacht habe. Nutzer kümmern sich nur darum, was das Produkt ihnen bringt. Es ist ihnen egal, ob es von einer Person oder zwanzig gemacht wird. Gründer, Manager oder Investoren kümmern sich darum – Nutzer nicht.  
-
-Wir müssen viele Wege ausprobieren und sie überprüfen. So wissen wir, was funktioniert und was nicht. Es ist okay, Fehler zu machen, aber es ist dumm, denselben Fehler immer wieder zu machen. Für Nutzerwachstum gibt es viele Wege. Nutzer können offline und online gewonnen werden. Menschen erfahren auf viele Arten von Dingen. Sie lernen aktiv oder passiv. Sie entdecken Dinge durch Selbstreflexion oder durch Hinweise. Sie hören Tage, Monate oder Jahre nach der Entstehung davon.  
-
-Wir sollten nicht nur über Wachstum nachdenken, sondern die Gründe für alles herausfinden. Warum gibt es jetzt ein Problem in unserer Beziehung zu jemandem? Warum funktioniert der Code jetzt nicht? Wenn wir uns nicht ändern, wird das Problem bestehen bleiben. Warum werden andere uns schätzen? Was haben wir richtig gemacht?  
-
-Mein Englisch wurde zu einem Vorteil unter Kandidaten in China, was mir half, Auftragsarbeiten für internationale Banken zu erhalten. Wir sollten in das investieren, was funktioniert, um unser Leben leichter zu machen. Indem wir die Gründe für Ärger, Unzufriedenheit und Probleme herausfinden, können wir sie vermeiden.
+Mein Englisch wurde in China zu einem Vorteil und half mir, Auftragsarbeiten bei internationalen Banken zu sichern. Wir sollten in das investieren, was funktioniert, um das Leben einfacher zu machen. Durch das Verständnis der Gründe für Herausforderungen können wir sie vermeiden und klüger wachsen.
