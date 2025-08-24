@@ -79,6 +79,20 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
     validate_translated_languages(translated, target, require_english=need_en)
     return translated
 
+def translate_text(text, target_language, type="content", model="deepseek-v3", front_matter_prompt=None, original_lang=None, front_matter=None):
+    """Wrapper function for markdown_translate_client.py compatibility"""
+    kind = type  # Map 'type' parameter to 'kind' parameter used in run_translate
+    orig_lang = original_lang if original_lang else "en"
+    return run_translate(
+        text=text,
+        target=target_language,
+        kind=kind,
+        model=model,
+        front_matter=front_matter_prompt or front_matter,
+        orig_lang=orig_lang,
+        need_en=False
+    )
+
 def cli_translate():
     parser = argparse.ArgumentParser()
     parser.add_argument("text")
