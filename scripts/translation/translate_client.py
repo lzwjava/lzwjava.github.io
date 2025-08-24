@@ -104,9 +104,14 @@ def cli_translate():
     parser.add_argument("--require-english", action="store_true")
     args = parser.parse_args()
 
-    translated = run_translate(
-        args.text, args.target, args.type, args.model,
-        args.front_matter, args.original_lang, args.require_english
+    translated = translate_text(
+        text=args.text,
+        target_language=args.target,
+        type=args.type,
+        model=args.model,
+        front_matter_prompt=args.front_matter,
+        original_lang=args.original_lang,
+        front_matter=args.original_lang
     )
     print(translated)
 
