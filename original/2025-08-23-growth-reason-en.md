@@ -20,7 +20,7 @@ In my previous essay [On Big Companies](/big-companies-en), I wrote:
 
 I made this same mistake myself, mentioned in my resume:
 
-After getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to develop my management skills. The good news is that by hiring part-time engineers to complete 50 small software projects together, we earned half a million back and returned it to the investor when shutting down the company.
+> After getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to develop my management skills. The good news is that by hiring part-time engineers to complete 50 small software projects together, we earned half a million back and returned it to the investor when shutting down the company.
 
 Why did the managers of this banking project make this mistake? It’s easy to think hard work alone drives growth. But success depends half on our efforts and decisions, and half on the users and market.
 
