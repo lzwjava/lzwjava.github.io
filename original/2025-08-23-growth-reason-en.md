@@ -28,7 +28,9 @@ They bet correctly on digital banking years ago. The region needed a new digital
 
 Some payment apps don’t require a specific phone number, which is great. Nearby regions have large populations that could contribute users. Cross-border payment systems, like [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect), help transfer money across regions, boosting usage. For internet apps, serving all users without restrictions is ideal. Services like [SMS Activate](https://sms-activate.io) let you rent numbers to bypass such limits.
 
-The managers need to report to the top executives to increase the budget. So why do the top executives in the company believe that expansion is the correct decision? Still, the leadership in banking companies couldn’t foresee AI well or worried too much about data security.
+The managers need to report to the top executives to increase the budget. So why do the top executives in the company believe that expansion is the right decision? Still, the leadership in banking companies couldn’t foresee AI well or worried too much about data security.
+
+Few people in the world can predict the future well. And few can avoid mistakes, especially if you run a company and handle all the troublesome stuff across countries.
 
 Apps like Grok and Mistral can be used in many regions, which is good. Why should people face internet restrictions due to local laws? Many don’t support such laws, so why should they suffer?
 The reason I grew to around 20,000 users in a year **was** that I caught a trend—at that time, in China, there was a need for a platform for knowledge workers. Jike Time from GeekBang, Dedao, and Himalaya showed that need. I worked hard on software engineering and marketing, mostly by myself, often on WeChat. Users only care about what the product brings them. They don’t care if it’s made by one person or twenty. Founders, managers, or investors care—users don’t.
