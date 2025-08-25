@@ -13,6 +13,6 @@ dot.edges(['AB', 'AC'])
 dot.edge('B', 'C', constraint='false')
 
 # Render and save the graph
-dot.render('example_graph', format='png', view=True)
+dot.render('tmp/example_graph', format='png', view=True)
 
 print("Graph rendered to 'example_graph.png'")
