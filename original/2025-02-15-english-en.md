@@ -11,34 +11,42 @@ translated: false
 ### Table of Contents
 
 1. [Affordable English Practice with Native Speakers](#affordable-english-practice-with-native-speakers)
-   - Discovering Cheap Online English Courses
-   - IELTS Preparation and Speaking Practice
-   - Comparison with Traditional Platforms
-   - Platform Shopping and Service Selection
+   - Costs 18 CNY per 25-minute session
+   - Focuses on IELTS speaking exercises
+   - Uses Pinduoduo for course comparisons
+   - Teachers are Filipino natives
+   - Goal: improve from IELTS 6 to 7.5
 
 2. [Mastering English](#mastering-english)
-   - My English Learning Journey and Career Success
-   - Intensive Learning Methods (16 hours daily)
-   - Tools and Techniques for Continuous Learning
-   - Becoming the Sharpest Person in the World
-   - Dedication to My Daughter
+   - Dedicated 16 hours daily learning
+   - Transformed brain through immersion
+   - Used English in daily communication
+   - Overcame dropout limitations via skills
+   - Combined learning with daily activities
 
 3. [The Recipe to Learn English](#the-recipe-to-learn-english)
-   - Total Learning Effort Summary (7 years)
-   - Work Environment and Rapid Progress
-   - Brain Changes Through English Immersion
-   - Learning Methods That Don't Feel Like Work
-   - Finding Ways to Work Hard Without Pain
+   - Learned via Google, TikTok, Netflix
+   - Focused on enjoyable immersion methods
+   - Improved typing speed from 5 to 20 wpm
+   - Avoided painful exam preparation
+   - Applied method to other subjects
 
 4. [Improving English with Extensive Input](#improving-english-with-extensive-input)
-   - From Chinese to English Preference Shift
-   - Learning Through Enjoyable Content Methods
-   - Statistics and Time Investment Details
-   - Making Learning Like a Game
-   - Advice for Students and Self-Learners
+   - Shifted from Chinese to English content
+   - Used songs, quotes, games for learning
+   - Watched 100+ shows without subtitles
+   - Spent 8 hours daily on English
+   - Emphasized natural, painless learning
+
+5. [The Journey of Learning English](#the-journey-of-learning-english)
+   - Started with Paul Graham’s essays
+   - Used TikTok as primary learning tool
+   - Read 15+ English books patiently
+   - Practiced via Upwork client projects
+   - Focused on immersion over memorization
 
 
-### Affordable English Practice with Native Speakers
+## Affordable English Practice with Native Speakers
 
 *2025.02.15*
 
@@ -203,3 +211,69 @@ Learning anything might be similar to learning English. Believe in the power of 
 When it becomes a game, our focus is intensified, and thinking becomes enjoyable. If you find yourself struggling to understand, search for easier materials to read. Read English children's books and watch animated films for children; they are excellent resources.
 
 We should consider how we encourage high school and college students and those interested in learning English. After sharing these insights, I want to end with a memorable and slightly exaggerated statement: Learning English like a native is genuinely simple and enjoyable.
+
+---
+
+## The Journey of Learning English 
+
+*2020.08.16 This post was originally written in Chinese. It has been translated to English to facilitate further translations into other languages.*
+
+After struggling for many years, trying many different methods, and using countless apps, I finally found a way to truly love English—so much that I don’t need to force myself anymore. I can simply enjoy it. Now I keep the habit of using English regularly: reading English news, reading English books, watching American shows without subtitles, browsing English websites, reading and listening to large chunks of content. I’ve even had some real conversations with foreigners, and once helped a Dutch client remotely through English communication, earning some money by building them a website. Let me share this journey.
+
+Back in high school, I found the English articles in textbooks dull. But after reading *Hackers and Painters*, I discovered its author Paul Graham. He had written many fascinating essays full of original ideas. I went to his personal website, printed out some essays, and read them. Whenever I didn’t understand a word, I looked it up in a dictionary—an actual paper dictionary back then. Each lookup took half a minute to a minute, very tedious. But the essays were so interesting that I kept going. I even tried reading some English books like Orwell’s *Animal Farm*, but I gave up quickly—the vocabulary was too overwhelming, and I lacked patience.
+
+In college, I revisited Paul Graham’s website and read dozens of his essays, this time with Chrome plugins that allowed quick word lookups. It was much faster. Doing programming also exposed me to foreign technical Q\&A sites like Stack Overflow and projects on GitHub. But at that time, my vocabulary was limited to programming terms. Conversational English and reading bestsellers were still out of reach.
+
+In 2016, I went to the U.S. With my broken English, I could manage simple conversations—asking for directions, chatting with Uber drivers. But I often didn’t understand what was said, and it was embarrassing.
+
+After that, I got busy with work and never really studied English systematically. I only occasionally read an article or looked up words. My listening and speaking stayed poor, and reading was always a struggle.
+
+In May 2019, while working at an outsourcing company, I wanted to get projects from abroad. I filled in some details on Upwork, and surprisingly, a client from Amsterdam reached out. We agreed to build a website, and communicated on WhatsApp.
+
+We even had a few voice calls, which were painfully awkward because my listening was terrible. I had to ask the client to speak very slowly and repeat constantly. But in the end, we completed the project, delivered the website, and I earned a few hundred euros. During that time, I told myself firmly: I must get good at English.
+
+I pushed myself through *The Accidental President* on Kindle Mac, a book about Truman during WWII. It took me more than a month, and it was brutal—so many specialized terms, place names, and sophisticated vocabulary. I looked up word after word, painfully slowly. But when I finally finished, I overcame a mental barrier. I realized: if I can finish such a thick book, then normal essays and everyday written communication shouldn’t be a problem.
+
+I continued with more English books: *The Everything Store* (about Amazon), *To Pixar and Beyond*, *Jony Ive* (about Apple’s designer), *Surely You’re Joking, Mr. Feynman*, *Sapiens*, *The Meaning of It All*, the first ten chapters of *The Feynman Lectures on Physics*, *The Great Gatsby*, *A Mathematician’s Apology*, *A Brief History of Time*, and more. Some I quit after a chapter or two.
+
+Reading English books really trains patience. You have to empty your mind, enjoy “wasting time,” and accept the slowness. Never aim to finish—just read casually. If I kept thinking “I must finish this book,” I’d get anxious and unable to think deeply about each sentence. And if I didn’t understand sentence by sentence, it would feel pointless. So instead, I adjusted my mindset: just flip through casually. Strangely, when I had nothing else to do, I’d keep reading anyway. Each book took me one to two weeks; in Chinese, I’d finish in one or two days. So patience was key.
+
+Reading built vocabulary and comprehension, but not listening. For listening, I watched Netflix shows and documentaries without subtitles. I told myself: it’s fine if I don’t understand, just watch the visuals and catch words here and there. This way, there was no pressure. I ended up watching dozens of documentaries: *Mission Control*, *Our Planet*, *American Factory*, *Spielberg*, *The Bleeding Edge*, *The Dawn Wall*, *The Edge of Democracy*, *Hondros*, and a few seasons of *Friends*. People on Douban even made lists I followed.
+
+After that, my listening improved somewhat, though I still missed many details.
+
+I had tried vocabulary apps like Youdao, syncing words I looked up to review later. But I gave up. Memorizing words felt unnecessary. If I don’t know a word, I can just look it up. Common words naturally stick after multiple encounters; rare words, even if memorized, would be forgotten by the next year. Why suffer? Even in Chinese, there are obscure characters I don’t know, but it doesn’t affect daily life.
+
+The real breakthrough came with TikTok (international Douyin). I’ve praised it many times, but I’ll say it again: it’s the best English-learning tool.
+
+Short, immersive, fun videos feel like face-to-face conversations with foreigners. A 10–60 second video can be rewatched endlessly. The infinite feed keeps your attention. Learning becomes play. With a high-school level of English, after two to three months of scrolling, you can understand most of it.
+
+TikTok also opens your eyes to the world. The app recommends things you didn’t even know existed. Unlike books, where you must first decide whether to read, TikTok shows you instantly, in vivid short videos. This combination of recommendation and short format is powerful.
+
+Far from causing anxiety, TikTok calmed me. What causes anxiety is endless text feeds. Short videos, on the other hand, immerse you.
+
+The best way to learn is to play—to not even realize you’re learning, yet keep going. TikTok achieves that. On Chinese Douyin, we see everyday life across China. On international TikTok, we see the world.
+
+Over the past year, I’ve averaged four hours a day on TikTok. Gradually, I found I could understand everything. Once you truly understand, you never forget. Learning a language feels magical. TikTok has top-quality content, short enough to avoid anxiety, and optional—watch if you want, stop if you don’t.
+
+Compared to reading books or watching long shows, which I struggled to stick with, TikTok suited my impatience. After trying almost every method, I finally found one that works for people like me: casual, fun, and effective.
+
+I also tried joining English-learning groups on Telegram, chatting by voice with a friend from Iran for hours to practice speaking—basically a free language partner. He wasn’t a native speaker, but his English was much better than mine, so I learned from him. We even had video calls, showing each other our living environments. Once, I also video-called an Indian guy who introduced me to his family, while I introduced mine. Incredible—making foreign friends from home.
+
+Looking back, I see I wasted time forcing myself, instead of making learning fun. Like how I learned Chinese as a kid—immersed in martial arts TV dramas, I could understand and speak before school. Immersion and communication matter most. Today’s internet makes it easy to immerse ourselves in top-quality English content without leaving home.
+
+I believe once you master 1,000 basic words, you should focus on listening—watching TikTok, shows, or movies. Get extremely fluent with that core vocabulary instead of memorizing rare words. For elementary to high school students, TikTok could be an amazing way to pick up English naturally while learning about the world.
+
+Once those 1,000 words are second nature, interest and language sense will drive you to learn more.
+
+Sometimes I think of taking TOEFL just to prove my ability. But then I realize—it’s pointless. I’m not studying abroad or becoming a teacher. I know my own level. A certificate doesn’t change whether I actually use English daily.
+
+Now English is indispensable in my life: TikTok, YouTube, Netflix, Twitter, Google.
+
+And yet, I also understand that living only with Chinese is fine too. Chinese books and knowledge are abundant enough. One can live well without English. So this essay isn’t about creating anxiety, but sharing an easier method for those who want it.
+
+Of course, TikTok requires some setup—VPN, SIM card tricks, a spare Android phone. I even taught a friend recently how to use it; it took 30 minutes.
+
+This journey also made me reflect on learning itself. For me, anything that requires discipline and forced persistence won’t work. Only play, joy, and genuine recognition keep me going. Only when I’d rather do this than anything else, can I truly learn.
+
+

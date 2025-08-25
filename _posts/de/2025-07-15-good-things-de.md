@@ -4,22 +4,22 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Wir können weniger gute Dinge nicht ertragen
+title: Wir können nicht weniger Gutes ertragen
 translated: true
 ---
 
-- Sobald wir das neueste iPhone erlebt haben, fällt es schwer, ein älteres iPhone zu nutzen.
+- Wenn man das neueste iPhone erlebt hat, fällt es schwer, ein älteres Modell zu nutzen.
 
-- Sobald wir ein angemessenes Gehalt erlebt haben, fällt es schwer, wieder weniger zu verdienen.
+- Wenn man ein gutes Gehalt gewohnt ist, ist es schwer, wieder weniger zu verdienen.
 
-- Sobald wir ein gutes Leben genossen haben, fällt es schwer, zu einem armen Leben zurückzukehren.
+- Wenn man ein gutes Leben genossen hat, ist es schwer, in bescheidenen Verhältnissen zu leben.
 
-- Sobald wir die Freiheit gekostet haben, fällt es schwer, ein eingeschränktes Leben zu führen.
+- Wenn man Freiheit erlebt hat, ist es schwer, ein eingeschränktes Leben zu führen.
 
-- Sobald wir die Freiheit des Internets genutzt haben, um die GFW zu umgehen, fällt es schwer, zu den alten Zeiten zurückzukehren.
+- Wenn man die Freiheit des Internets ohne die GFW erlebt hat, ist es schwer, in die alten Zeiten zurückzukehren.
 
-- Sobald wir tun können, was wir wollen, solange wir niemandem schaden, fällt es schwer, unsere Seele zu verraten, um Dinge zu tun, die wir nicht mögen.
+- Wenn man tun kann, was man möchte, solange man niemandem schadet, ist es schwer, die eigene Seele zu verraten und Dinge zu tun, die man nicht mag.
 
-- Sobald wir KI und LLMs erlebt haben, fällt es schwer, Google Search zu nutzen und zu den alten Zeiten zurückzukehren.
+- Wenn man in Freiheit leben kann, ist es schwer, mit Einschränkungen zu leben.
 
-- Sobald wir mit freiem Willen leben können, fällt es schwer, mit Einschränkungen zu leben.
+- Wenn man KI und LLMs erlebt hat, ist es schwer, wieder Google Search zu nutzen und in die alten Zeiten zurückzukehren.

@@ -6,36 +6,38 @@ lang: de
 layout: post
 title: Autounfälle in meinem Leben
 translated: true
----In meinem Leben gab es einige Autounfälle. Der schwerwiegendste ereignete sich im April 2018, nur einen Monat nach Erhalt meines Führerscheins. Ich war auf dem Weg nach Xilinhot, Innere Mongolei. Ich fuhr mit meiner Frau etwa 100 km/h. Nach dem Verlassen der Autobahn an einer Mautstelle, die keine Kurve hatte und gerade war, dachte ich, ich sei noch auf der Autobahn. Daher bremste ich überhaupt nicht ab. Plötzlich gab es eine Kreuzung.
+---
 
-Mein Auto kollidierte mit einem weißen Auto, das gerade abbog. Mein Auto wurde etwa 10 Meter weit geschoben. Die Dinge wurden chaotisch. Das andere Auto wurde in die Straßenbegrenzung gedrückt. Ich war unverletzt, weil ich den Sicherheitsgurt trug und keine Verletzungen hatte. Allerdings hatte meine Frau einige Schulterprobleme.
+In meinem Leben gab es einige Autounfälle. Der schwerste davon ereignete sich im April 2018, nur einen Monat nachdem ich meinen Führerschein erhalten hatte. Ich war auf dem Weg nach Xilinhot in der Inneren Mongolei. Ich fuhr mit meiner Frau etwa 100 km/h. Nachdem ich die Autobahn an einer Mautstelle verlassen hatte, die keine Kurve hatte und gerade verlief, dachte ich, ich sei immer noch auf der Autobahn. Also verlangsamte ich überhaupt nicht. Plötzlich gab es eine Kreuzung.
 
-Ich konnte sehen, dass das andere Auto stark beschädigt war. Ich ging, um die Situation zu überprüfen. Ich hatte Angst, dass ich jemanden schwer verletzt haben könnte. Bei der Überprüfung fand ich einen männlichen Fahrer allein im Auto, mit blutendem Kopf. Ich rief die medizinischen Notdienste und die Polizei.
+Mein Auto prallte gegen ein weißes Auto, das gerade abbiegen wollte. Mein Auto wurde etwa 10 Meter weggeschoben. Es wurde chaotisch. Das andere Auto wurde in den Mittelstreifen gedrückt. Mir ging es gut, weil ich angeschnallt war und keine Verletzungen hatte. Meine Frau hatte jedoch Schulterprobleme.
 
-Tatsächlich hatten wir Glück. Bevor wir sein Auto trafen, war ein großer Lkw vor uns. Wir waren froh, dass dieser große Lkw schnell fuhr und unser Auto verfehlte. Andernfalls hätte unser Auto möglicherweise unter den Lkw geraten, was für uns sehr gefährlich hätte sein können.
+Ich konnte sehen, dass das andere Auto stark beschädigt war. Ich ging, um die Situation zu überprüfen. Ich hatte Angst, dass ich jemanden ernsthaft verletzt haben könnte. Bei der Überprüfung stellte ich fest, dass sich ein männlicher Fahrer allein im Auto befand, mit blutendem Kopf. Ich rief den Rettungsdienst und die Polizei.
 
-Später half mir die Versicherungsgesellschaft meines Autos. Ich hatte das gebrauchte Auto nur eineinhalb Monate vor dem Unfall gekauft, daher war die Versicherung noch auf den ursprünglichen Besitzer meines Autos.
+Eigentlich hatten wir Glück. Vor dem Aufprall auf sein Auto war ein großer Lkw vor uns. Wir waren froh, dass dieser große Lkw schnell fuhr und unser Auto verfehlte. Andernfalls hätte unser Auto unter den Lkw geraten können, was für uns sehr gefährlich gewesen wäre.
 
-Die Polizei stellte fest, dass der Fahrer des weißen Autos eine erhebliche Menge Alkohol konsumiert hatte. Folglich entschied die Polizei am nächsten Tag, beide von uns gleich verantwortlich zu machen und die Schuld zu fifty-fifty aufzuteilen.
+Später half mir die Versicherung meines Autos. Ich hatte das Gebrauchtauto erst zwei Wochen vor dem Unfall gekauft, daher war die Versicherung noch auf den Vorbesitzer meines Autos eingetragen.
 
-Dieser Unfall hinterließ eine lebenslange Erinnerung für mich. Spätere Unfälle, die ich hatte, waren trivial. Ich bin froh, dass die Autounfälle in meinem Leben mich nicht getötet haben. Ich schreibe dies hier auf, um mir weniger Autounfälle in meinem späteren Leben zu wünschen, und ich hoffe dasselbe für dich.
+Die Polizei stellte fest, dass der Fahrer des weißen Autos eine erhebliche Menge Alkohol konsumiert hatte. Infolgedessen entschied die Polizei am nächsten Tag, dass beide Parteien gleichermaßen verantwortlich sein sollten, wobei die Schuld fifty-fifty aufgeteilt wurde.
 
-{: .centered }
-![](assets/images/accident/a1.jpg){: .responsive }
+Dieser Unfall hat mir eine lebenslange Erinnerung hinterlassen. Spätere Unfälle, die ich hatte, waren unbedeutend. Ich bin froh, dass die Autounfälle in meinem Leben mich nicht getötet haben. Ich halte dies hier fest, um mir weniger Autounfälle in meinem späteren Leben zu wünschen, und ich hoffe dasselbe für Sie.
+
+{: .centered }  
+![](assets/images/accident/a1.jpg){: .responsive }  
 *Quelle: Selbst aufgenommen*{: .caption }
 
-{: .centered }
-![](assets/images/accident/a2.jpg){: .responsive }
+{: .centered }  
+![](assets/images/accident/a2.jpg){: .responsive }  
 *Quelle: Selbst aufgenommen*{: .caption }
 
-{: .centered }
-![](assets/images/accident/a3.jpg){: .responsive }
+{: .centered }  
+![](assets/images/accident/a3.jpg){: .responsive }  
 *Quelle: Selbst aufgenommen*{: .caption }
 
-{: .centered }
-![](assets/images/accident/a4.jpg){: .responsive }
+{: .centered }  
+![](assets/images/accident/a4.jpg){: .responsive }  
 *Quelle: Selbst aufgenommen*{: .caption }
 
-{: .centered }
-![](assets/images/accident/a5.jpg){: .responsive }
+{: .centered }  
+![](assets/images/accident/a5.jpg){: .responsive }  
 *Quelle: Selbst aufgenommen*{: .caption }

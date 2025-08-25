@@ -364,8 +364,8 @@ Contributed to DBS Client Connect, an AI- and data-driven customer-relationship 
 
 <div align="center">
 
-<img src="/assets/images/portfolio/dbsconnect.webp"/><img/>
-<p><a href="https://www.eddytandesign.com/client-serving-dbs">Image source: eddytandesign</a></p>
+<img src="/assets/images/portfolio/clientconnect.png"/><img/>
+<p><a href="https://www.dbs.com/private-banking/digital-experience.page">Image source: https://www.dbs.com</a></p>
 
 </div>
 

@@ -6,7 +6,7 @@ lang: en
 layout: post
 prompt: Do not translate specific items such as project names, company names, or school
   names, human names if you are not sure.
-title: Practical Tips for Living, Learning, and Innovation
+title: Complete Life Philosophy
 top: 10
 translated: false
 ---

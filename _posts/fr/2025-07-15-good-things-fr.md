@@ -4,22 +4,22 @@ generated: false
 image: false
 lang: fr
 layout: post
-title: Nous ne pouvons pas supporter moins de bonnes choses
+title: On Ne Peut Pas Supporter Moins de Bonnes Choses
 translated: true
 ---
 
-- Une fois que nous avons expérimenté le dernier iPhone, il est difficile d'utiliser un iPhone de quelques années plus tôt.
+- Une fois que nous avons expérimenté le dernier iPhone, il est difficile de revenir à un modèle de quelques années en arrière.
 
-- Une fois que nous avons connu un salaire décent, il est difficile de revenir à gagner moins.
+- Une fois que nous avons touché un salaire décent, il est difficile de retourner à des revenus plus bas.
 
-- Une fois que nous avons profité d'une bonne vie, il est difficile de revenir à une vie pauvre.
+- Une fois que nous avons profité d’une bonne qualité de vie, il est difficile de revenir à une vie précaire.
 
-- Une fois que nous avons goûté à la liberté, il est difficile de vivre une vie limitée.
+- Une fois que nous avons goûté à la liberté, il est difficile de vivre dans des limites imposées.
 
-- Une fois que nous avons débloqué la liberté d'Internet pour contourner la GFW, il est difficile de revenir aux anciens jours.
+- Une fois que nous avons découvert la liberté d’Internet en contournant le GFW, il est difficile de revenir aux anciennes restrictions.
 
-- Une fois que nous pouvons faire ce que nous voulons tant que nous ne faisons pas de mal aux autres, il est difficile de trahir nos âmes pour faire des choses que nous n'aimons pas.
+- Une fois que nous pouvons faire ce que nous voulons sans nuire aux autres, il est difficile de trahir notre âme en faisant des choses que nous n’aimons pas.
 
-- Une fois que nous avons expérimenté l'IA et les LLMs, il est difficile d'utiliser Google Search et de revenir aux anciens jours.
+- Une fois que nous vivons avec un libre arbitre, il est difficile de se soumettre à des contraintes.
 
-- Une fois que nous pouvons vivre avec libre arbitre, il est difficile de vivre avec des contraintes.
+- Une fois que nous avons utilisé l’IA et les LLMs, il est difficile de revenir à Google Search et aux anciennes méthodes.

@@ -6,172 +6,178 @@ lang: de
 layout: post
 prompt: Do not translate specific human name items such as Yin, Yin Wang, Zhiwei,
   etc.
-title: Trage eine Brille mit 1,50 Dioptrien oder 150 Grad unter der vollen Stärke
-  für den täglichen Gebrauch
+title: Ein praktischer Leitfaden für bequemes tägliches Tragen von Brillengläsern
+  mit 1,50 dpt unter der Vollkorrektur
 top: 10
 translated: true
 ---
 
-*Zuletzt aktualisiert im August 2025*
+*Zuletzt aktualisiert am 30. August 2025*
 
 ### Inhaltsverzeichnis
 
-1. [Myopie umkehren](#myopie-umkehren)
+1. [Kurzsichtigkeit umkehren](#kurzsichtigkeit-umkehren)
    - Wichtige Forschung und Ressourcen
    - Methoden von Todd Becker und Yin Wang
-   - Verwandte Artikel und Papiere
+   - Verwandte Artikel und Papers
    - Multifokale und progressive Linsenlösungen
 
-2. [Tipps zur natürlichen Sehkraftwiederherstellung](#tipps-zur-natürlichen-sehkraftwiederherstellung)
-   - Ursachen von Myopie verstehen
-   - Das Prinzip „gerade so klar“
+2. [Natürliche Tipps zur Wiederherstellung der Sehkraft](#natürliche-tipps-zur-wiederherstellung-der-sehkraft)
+   - Ursachen von Kurzsichtigkeit verstehen
+   - Das Prinzip „Gerade noch klar“
    - Richtlinien zur Reduzierung der Sehstärke
-   - Empfehlungen zur täglichen Nutzung
-   - Erwartungen an fortschreitende Verbesserungen
+   - Empfehlungen für die tägliche Nutzung
+   - Erwartungen an die schrittweise Verbesserung
 
-3. [Fortschritte bei der natürlichen Sehkraftwiederherstellung](#fortschritte-bei-der-natürlichen-sehkraftwiederherstellung)
-   - 3-Jahres-Daten eines persönlichen Experiments
-   - Detaillierte Verlauf der Sehstärke
-   - Methoden zur Erfolgsmessung
-   - Mobile-optimierte Fortschrittstabellen
+3. [Fortschritt bei der natürlichen Wiederherstellung der Sehkraft](#fortschritt-bei-der-natürlichen-wiederherstellung-der-sehkraft)
+   - Daten eines 3-jährigen persönlichen Experiments
+   - Detaillierte Verlaufsdokumentation der Sehstärke
+   - Methoden zur Messverfolgung
+   - Für mobile Geräte optimierte Fortschrittstabellen
 
-4. [Myopie: Eine moderne aber reversible Krankheit — Todd Becker](#myopie-eine-moderne-aber-reversible-krankheit--todd-becker)
-   - Grundlagenforschung-Videos
+4. [Kurzsichtigkeit: Eine moderne, aber umkehrbare Krankheit — Todd Becker](#kurzsichtigkeit-eine-moderne-aber-umkehrbare-krankheit--todd-becker)
+   - Grundlagenforschung in Videos
    - Wissenschaftliche Präsentationen von Todd Becker
-   - Historischer Kontext und Entdeckung
+   - Historischer Kontext und Entdeckungen
 
-5. [Fehler sind ohne praktische Erfahrung leicht gemacht](#fehler-sind-ohne-praktische-erfahrung-leicht-gemacht)
+5. [Ohne praktische Erfahrung macht man leicht Fehler](#ohne-praktische-erfahrung-macht-man-leicht-fehler)
    - Reaktion auf Kritiker und Skeptiker
-   - Bedeutung von experimentellen Beweisen
+   - Bedeutung experimenteller Beweise
    - Analyse der persönlichen Familiengeschichte
    - Praktische vs. theoretische Ansätze
    - Parallelen zur Unternehmenswelt
 
-## Myopie umkehren
+---
+
+## Kurzsichtigkeit umkehren
 
 *Zuletzt aktualisiert im August 2025*
 
-* [Myopie: Eine moderne aber reversible Krankheit, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
+* [Myopia: A Modern Yet Reversible Disease, M.S. (AHS14)](https://youtu.be/x5Efg42-Qn0?si=ijNdAE_ifYpvh8gF), Todd Becker
 
-* [Myopie: eine moderne aber reversible Krankheit](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
+* [Myopia: a modern yet reversible disease](https://gettingstronger.org/2014/08/myopia-a-modern-yet-reversible-disease/), Todd Becker
 
-* [Experimentelle Bestätigung der natürlichen Sehkraftwiederherstellungsmethode von Yin Wang](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
+* [Experimentelle Überprüfung von Yin Wangs Methode zur natürlichen Wiederherstellung der Sehkraft](https://lzwjava.github.io/vision-restoration-en), Zhiwei Li
 
-* [Die Diskussion über Astigmatismus, wenn die Augäpfel in ihre normale Form zurückkehren](https://lzwjava.github.io/astigmatism-en), Zhiwei Li
+* [Die Diskussion über Astigmatismus, wenn sich die Augäpfel wieder normalisieren](https://lzwjava.github.io/astigmatism-en), Zhiwei Li
 
-* [Natürliche Sehkraftwiederherstellung: Das Prinzip „gerade so klar“](https://lzwjava.github.io/barely-clear-en), Zhiwei Li
+* [Natürliche Wiederherstellung der Sehkraft: Das Prinzip „Gerade noch klar“](https://lzwjava.github.io/barely-clear-en), Zhiwei Li
 
-* [Tipps zur natürlichen Sehkraftwiederherstellung](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
+* [Natürliche Tipps zur Wiederherstellung der Sehkraft](https://lzwjava.github.io/vision-tips-en), Zhiwei Li
 
-* [Verwendung multifokaler progressiver Linsen zur Umkehrung von Myopie](https://lzwjava.github.io/multifocal-en), Zhiwei Li
+* [Multifokale progressive Linsen zur Umkehrung von Kurzsichtigkeit](https://lzwjava.github.io/multifocal-en), Zhiwei Li
 
+---
 
-## Tipps zur natürlichen Sehkraftwiederherstellung
+## Natürliche Tipps zur Wiederherstellung der Sehkraft
 
-*2024.11.29*
+*29.11.2024*
 
-* Der Grund, warum Menschen ihr Sehvermögen verschlechtern, ist, dass sie die meiste Zeit Brille mit voller Korrektur tragen (die es ermöglicht, eine Tafel in 5m Entfernung klar zu sehen), um auf Handys, Computer oder Bücher zu schauen. Dies führt zu einer Verformung der Augäpfel.
+* Der Grund, warum sich das Sehvermögen verschlechtert, ist, dass die meisten Menschen Brillen mit voller Sehstärke (die es ihnen ermöglichen, eine Tafel in 5 m Entfernung klar zu sehen) verwenden, um auf Handys, Computer oder Bücher zu schauen. Dies führt zur Verformung der Augäpfel.
 
-* Nach einigen Tagen mit Brille mit einer Reduktion von 150-200 Grad möchte man nicht mehr zur vollen Korrektur zurückkehren. Letztere wird sehr unangenehm.
+* Nach einigen Tagen mit einer um 150–200 Grad reduzierten Brille möchte man nicht mehr zur vollen Sehstärke zurückkehren. Letztere wird sehr unangenehm.
 
-* Myopie zu verstehen ist entscheidend – sie wird durch Veränderungen der Augenmuskeln verursacht, nicht nur durch Genetik oder Lichtexposition.
+* Das Verständnis von Kurzsichtigkeit ist entscheidend – sie wird durch Veränderungen der Augenmuskulatur verursacht, nicht nur durch Genetik oder Lichteinwirkung.
 
-* Das wichtigste Prinzip ist „gerade so klar“ – trage Brille, die Dinge gerade so klar macht, ohne Anstrengung.
+* Das wichtigste Prinzip ist „gerade noch klar“ – trage Brillen, die Dinge gerade noch klar genug machen, ohne die Augen zu überanstrengen.
 
-* Für Computer- oder Handynutzung ist oft eine Reduktion von 150-200 Grad geeignet.
+* Für die Nutzung von Computer oder Handy funktioniert oft eine Reduzierung um 150–200 Grad gut.
 
-* Halte eine stärkere Brille für Autofahren und wesentliche Aufgaben bereit, die perfekte Sicht erfordern.
+* Behalte ein stärkeres Paar fürs Autofahren und wichtige Tätigkeiten, die perfektes Sehen erfordern.
 
-* Erwarte langsame Fortschritte – etwa 25 Grad Reduktion alle drei Monate ist gut.
+* Erwarte langsame Fortschritte – eine Reduzierung um etwa 25 Grad alle drei Monate ist gut.
 
-* Strebe nicht nach perfekter Klarheit. Leicht verschwommene Sicht ist Teil des Verbesserungsprozesses.
+* Strebe nicht nach perfekter Klarheit an. Leicht unscharfes Sehen ist Teil des Verbesserungsprozesses.
 
-* Verwende die Formel: Myopie-Grad = 100/Klar-Sicht-Distanz (in Metern) für eine grobe Einschätzung.
+* Verwende die Formel: Kurzsichtigkeitsgrad = 100 / klare Distanz (in Metern) für eine grobe Einschätzung.
 
 * Zwinge dich nicht, klar zu sehen – lass deine Augen sich natürlich anpassen.
 
-* Lerne über deine Augenmechanik – zu verstehen, wie die äußeren Augenmuskeln arbeiten, hilft bei besseren Entscheidungen für die Sehkraft.
+* Lerne die Mechanik deiner Augen kennen – das Verständnis der äußeren Augenmuskeln hilft, bessere Entscheidungen für die Sehkraft zu treffen.
 
-* Myopie erfordert das Tragen von Brillen, was bei Aktivitäten wie Basketballspielen oder beim Tragen eines Huts lästig sein kann. Der Hut kann nicht weiter über die Haut gezogen werden, um mehr Wärme zu bieten, weil die Brille Platz einnimmt. Das Vergessen der Brille beeinträchtigt ebenfalls die Sicht.
+* Kurzsichtigkeit erfordert das Tragen einer Brille, was bei Aktivitäten wie Basketballspielen oder beim Tragen einer Mütze störend sein kann. Die Mütze kann nicht gedehnt werden, um mehr Haut zu bedecken und Wärme zu spenden, weil die Brille Platz einnimmt. Das Vergessen der Brille beeinträchtigt ebenfalls das Sehvermögen.
 
-* Während einige Menschen sich zu alt oder zu faul fühlen, ihre Myopie anzugehen, ist es entscheidend, für zukünftige Generationen aktiv zu werden, um dieselben Herausforderungen zu vermeiden.
+* Obwohl manche sich zu alt oder zu faul fühlen, um ihre Kurzsichtigkeit anzugehen, ist es entscheidend, für zukünftige Generationen zu handeln, um dieselben Herausforderungen zu vermeiden.
 
-* Der Verbesserungsprozess braucht Zeit – Myopie, die sich über Jahre entwickelt hat, benötigt Zeit zur Verbesserung.
+* Der Verbesserungsprozess braucht Zeit – Kurzsichtigkeit, die sich über Jahre entwickelt hat, wird Zeit brauchen, um sich zu bessern.
 
-* Der Punkt ist, dass die meiste Zeit unsere Augen die Objekte, die wir betrachten möchten, klar sehen können. Wenn wir Objekte etwa 10 cm weiter weg bewegen, werden sie unscharf. Dies zeigt, dass wir unsere Augen korrekt nutzen.
+* Der Punkt ist, dass unsere Augen die meisten Objekte, die wir betrachten möchten, klar sehen können. Wenn wir Objekte etwa 10 cm weiter weg bewegen, werden sie unscharf. Das zeigt, dass wir unsere Augen richtig nutzen.
 
-* Da wir die meiste Zeit Handys oder Computer nutzen, müssen wir die Stärke unserer Brillen reduzieren, um unsere Augen richtig zu nutzen.
+* Da wir die meiste Zeit Handys oder Computer nutzen, müssen wir die Sehstärke unserer Brille reduzieren, um unsere Augen richtig zu nutzen.
 
-* Betrachte den Fall von Alterssichtigkeit (Presbyopie). Mit zunehmendem Alter ändern die Augenmuskeln ihre Form in eine Richtung, die der von Myopie entgegengesetzt ist. Wir können die Prinzipien, die bei Presbyopie-Brillen angewendet werden, auf Myopie-Brillen übertragen.
+* Betrachte den Fall von Altersweitsichtigkeitslinsen. Mit zunehmendem Alter verändern sich die Augenmuskeln in eine entgegengesetzte Richtung zur Kurzsichtigkeit. Wir können die Prinzipien von Altersweitsichtigkeitslinsen auf Kurzsichtigkeitslinsen anwenden.
 
-* Ich empfehle multifokale progressive Linsen. Basierend auf deiner Sehstärke und der Annahme, dass korrekte Sicht 0,9 beträgt, lautet der Vorschlag, die zusätzliche Korrektur für Nahsicht auf +1,75 D Myopie (Astigmatismus bleibt unverändert) und für Fernsicht auf +1,00 D Myopie (Astigmatismus bleibt unverändert) festzulegen.
-
+* Ich empfehle multifokale progressive Linsen. Basierend auf deiner Sehstärke, unter der Annahme, dass die korrigierte Sehkraft 0,9 beträgt, wäre der Vorschlag, für die Nahkorrektur eine zusätzliche Korrektur von +1,75 D bei Kurzsichtigkeit (mit unverändertem Astigmatismus) vorzunehmen, während die zusätzliche Korrektur für die Fernsicht +1,00 D bei Kurzsichtigkeit (mit unverändertem Astigmatismus) beträgt.
 
 ---
 
-## Fortschritte bei der natürlichen Sehkraftwiederherstellung
+## Fortschritt bei der natürlichen Wiederherstellung der Sehkraft
 
 *Zuletzt aktualisiert: 28. November 2024*
 
-### Meine Sehstärkenverlauf
+### Verlauf meiner Sehstärke
 
-### Ganze Zahlen-Format
-
-#### Linkes Auge
-
-| Zeit | Myopie | Astigmatismus | Sehkraft |
-|------|--------|--------------|---------|
-| 2022.03.05 | 350 | 225 | 1.0 |
-| 2022.11.13 | 325 | 200 | 0.9 |
-| 2023.04.20 | 300 | 125 | 1.0 |
-| 2024.01.07 | 300 | 100 | 0.9 |
-| 2024.11.28 | 250 | 100 | 0.9 |
-
-#### Rechtes Auge
-
-| Zeit | Myopie | Astigmatismus | Sehkraft |
-|------|--------|--------------|---------|
-| 2022.03.05 | 575 | 175 | |
-| 2022.11.13 | 550 | 175 | |
-| 2023.04.20 | 500 | 125 | |
-| 2024.01.07 | 475 | 125 | |
-| 2024.11.28 | 425 | 125 | |
-
-### Dezimalformat
+### Ganzzahl-Format
 
 #### Linkes Auge
 
-| Zeit | Myopie | Astigmatismus | Sehkraft |
-|------|--------|--------------|---------|
-| 2022.03.05 | -3.50 | -2.25 | 1.0 |
-| 2022.11.13 | -3.25 | -2.00 | 0.9 |
-| 2023.04.20 | -3.00 | -1.25 | 1.0 |
-| 2024.01.07 | -3.00 | -1.00 | 0.9 |
-| 2024.11.28 | -2.50 | -1.00 | 0.9 |
+| Datum       | Kurzsichtigkeit | Astigmatismus | Sehkraft |
+|-------------|-----------------|---------------|----------|
+| 05.03.2022  | 350             | 225           | 1.0      |
+| 13.11.2022  | 325             | 200           | 0.9      |
+| 20.04.2023  | 300             | 125           | 1.0      |
+| 07.01.2024  | 300             | 100           | 0.9      |
+| 28.11.2024  | 250             | 100           | 0.9      |
+| 30.08.2025  | 300             | 100           | 0.9      |
 
 #### Rechtes Auge
 
-| Zeit | Myopie | Astigmatismus | Sehkraft |
-|------|--------|--------------|---------|
-| 2022.03.05 | -5.75 | -1.75 | |
-| 2022.11.13 | -5.50 | -1.75 | |
-| 2023.04.20 | -5.00 | -1.25 | |
-| 2024.01.07 | -4.75 | -1.25 | |
-| 2024.11.28 | -4.25 | -1.25 | |
+| Datum       | Kurzsichtigkeit | Astigmatismus | Sehkraft |
+|-------------|-----------------|---------------|----------|
+| 05.03.2022  | 575             | 175           |          |
+| 13.11.2022  | 550             | 175           |          |
+| 20.04.2023  | 500             | 125           |          |
+| 07.01.2024  | 475             | 125           |          |
+| 28.11.2024  | 425             | 125           |          |
+| 30.08.2025  | 500             | 100           | 0.9      |
+
+### Dezimal-Format
+
+#### Linkes Auge
+
+| Datum       | Kurzsichtigkeit | Astigmatismus | Sehkraft |
+|-------------|-----------------|---------------|----------|
+| 05.03.2022  | -3.50           | -2.25         | 1.0      |
+| 13.11.2022  | -3.25           | -2.00         | 0.9      |
+| 20.04.2023  | -3.00           | -1.25         | 1.0      |
+| 07.01.2024  | -3.00           | -1.00         | 0.9      |
+| 28.11.2024  | -2.50           | -1.00         | 0.9      |
+| 30.08.2025  | -3.00           | -1.00         | 0.9      |
+
+#### Rechtes Auge
+
+| Datum       | Kurzsichtigkeit | Astigmatismus | Sehkraft |
+|-------------|-----------------|---------------|----------|
+| 05.03.2022  | -5.75           | -1.75         |          |
+| 13.11.2022  | -5.50           | -1.75         |          |
+| 20.04.2023  | -5.00           | -1.25         |          |
+| 07.01.2024  | -4.75           | -1.25         |          |
+| 28.11.2024  | -4.25           | -1.25         |          |
+| 30.08.2025  | -5.00           | -1.00         | 0.9      |
 
 ---
 
-## Myopie: Eine moderne aber reversible Krankheit — Todd Becker
+## Kurzsichtigkeit: Eine moderne, aber umkehrbare Krankheit — Todd Becker
 
-Ich entdeckte Todd Beckers Video in den Fußnoten von Yin Wangs Artikel zur [Natürlichen Sehverbesserungsmethode](https://www.yinwang.org/blog-cn/2022/02/22/myopia). Das Video, das 2014 hochgeladen wurde, hat über 1,2 Millionen Aufrufe.
+Ich entdeckte Todd Beckers Video in den Fußnoten von Yin Wangs Artikel über die [Methode zur natürlichen Verbesserung der Sehkraft](https://www.yinwang.org/blog-cn/2022/02/22/myopia). Das 2014 hochgeladene Video hat über 1,2 Millionen Aufrufe.
 
-Myopie: Eine moderne aber reversible Krankheit — Todd Becker, M.S. (AHS14)
+Kurzsichtigkeit: Eine moderne, aber umkehrbare Krankheit — Todd Becker, M.S. (AHS14)
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/x5Efg42-Qn0?si=P9-BqyesxMtirwCx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 
-Wie man Myopie mit Todd Becker umkehrt (Ancestral Health Today Episode 021)
+Wie man Kurzsichtigkeit mit Todd Becker umkehrt (Ancestral Health Today Episode 021)
 
 <div class="video-container">
   <iframe src="https://www.youtube.com/embed/iIrg6Q0s754?si=DprrreN9WqnGi7dJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -179,40 +185,126 @@ Wie man Myopie mit Todd Becker umkehrt (Ancestral Health Today Episode 021)
 
 ---
 
-## Fehler sind ohne praktische Erfahrung leicht gemacht
+## Ohne praktische Erfahrung macht man leicht Fehler
 
-*2025.07.11*
+*11.07.2025*
 
-Nachdem Yin Wang die Myopie-Umkehrmethode in seinem [Blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia) vorgeschlagen hatte, gab es dazu einige gegensätzliche Ansichten im Internet. Ich bin zufällig auf einige dieser Ansichten gestoßen.
+Nachdem Yin Wang die Methode zur Umkehrung von Kurzsichtigkeit in seinem [Blog](https://www.yinwang.org/blog-cn/2022/02/22/myopia) vorgeschlagen hatte, gab es einige gegensätzliche Meinungen dazu. Ich habe zufällig einige dieser Ansichten gelesen.
 
-Seit 2022 führe ich das Experiment genau so durch, wie es in diesem [Artikel](http://localhost:4000/vision-restoration-en) beschrieben wird.
+Seit 2022 führe ich das Experiment genau so durch, wie es in diesem [Paper](http://localhost:4000/vision-restoration-en) beschrieben ist.
 
-Es ist leicht für mich zu erkennen, was richtig oder falsch ist. Die Behauptung, dass Vererbung der Hauptrisikofaktor für Myopie ist, ist falsch. In Todd Beckers YouTube-[Video](https://www.youtube.com/watch?v=x5Efg42-Qn0) gibt es im Intro einen Absatz:
+Es ist für mich einfach zu erkennen, was richtig oder falsch ist. Es ist nicht korrekt zu sagen, dass Vererbung der primäre Risikofaktor für Kurzsichtigkeit ist. In Todd Beckers YouTube-[Video](https://www.youtube.com/watch?v=x5Efg42-Qn0) steht in der Einführung ein Absatz:
 
-> Myopie oder Kurzsichtigkeit wird allgemein als eine irreversible, genetisch bedingte Erkrankung angenommen, die nur durch Korrekturlinsen oder Operationen gemildert werden kann. Ihre Prävalenz liegt bei 30-40% in den USA und Europa und bei über 50% in einigen asiatischen Ländern, aber sie ist selten in Afrika und in vorindustriellen Kulturen. Das Auftreten von Myopie korreliert mit IQ, schulischen Leistungen und Industrialisierung, was darauf hindeutet, dass ein Umweltfaktor am Werk ist – nämlich Naharbeit.
+> Kurzsichtigkeit oder Myopie wird allgemein als eine irreversible, genetisch bedingte Erkrankung angesehen, die nur durch korrigierende Linsen oder Operationen gelindert werden kann. Ihre Verbreitung liegt bei 30–40 % in den USA und Europa und bei über 50 % in einigen asiatischen Ländern, während sie in Afrika und vorindustriellen Kulturen selten ist. Das Auftreten von Kurzsichtigkeit korreliert mit IQ, Schulerfolg und Industrialisierung, was darauf hindeutet, dass ein Umweltfaktor im Spiel ist – nämlich Naharbeit.
 
-Aus meiner Erfahrung kann ich sagen, dass dies richtig ist. Mein Vater hat 3 Brüder. Drei der 4 Geschwister haben keine Myopie, während einer sie hat. Der jüngste Bruder meines Vaters hat Myopie und die höchste Bildung, wahrscheinlich einen Bachelor-Abschluss. Sie wurden in den 1960er und 1970er Jahren geboren.
+Aus meiner Erfahrung kann ich sagen, dass dies korrekt ist. Mein Vater hat drei Brüder. Drei der vier Geschwister sind nicht kurzsichtig, einer schon. Der jüngste Bruder meines Vaters ist kurzsichtig und hat die höchste Bildung, wahrscheinlich einen Bachelor-Abschluss. Sie wurden in den 1960er und 1970er Jahren geboren.
 
-Bei mir selbst begann die Myopie in der Mittelschule um 2009. Zu dieser Zeit hatte ich wahrscheinlich etwa -2,00 Dioptrien. Ich erinnere mich, dass ich nachts aufblieb und mein Nokia-Handy im Bett bei ausgeschaltetem Licht benutzte. Nach einem solchen Sommer fühlte ich, dass mein Sehvermögen schlechter geworden war.
+Bei mir selbst begann sich die Kurzsichtigkeit in der Mittelstufe um 2009 zu entwickeln. Damals hatte ich wahrscheinlich etwa -2,00 Dioptrien. Ich erinnere mich, dass ich nachts wach blieb und mein Nokia-Handy im Bett bei ausgeschaltetem Licht benutzte. Nach einem Sommer wie diesem spürte ich, dass sich mein Sehvermögen verschlechtert hatte.
 
-Ich kenne zufällig einige der Autoren der gegensätzlichen Ansichten. Sie bloggen oder kommentieren ebenfalls. Nachdem ich ein 3-jähriges Experiment durchgeführt habe und Yin Wang so viele Wege ausprobiert hat, um Myopie umzukehren, ist mein erster Gedanke, wenn ich solche gegensätzlichen Ansichten im Internet sehe, dass sie uns egal sind. Sie wissen nicht, wie viel Mühe wir aufgewendet haben, wie wir unsere Ideen verworfen oder neu gestartet haben, wie wir unsere Experimente angepasst oder wie wir über all diese Dinge nachgedacht haben.
+Ich kenne zufällig einige der Autoren gegensätzlicher Ansichten. Sie bloggen oder kommentieren ebenfalls. Nach meinem 3-jährigen Experiment und Yin Wangs vielen Versuchen, Kurzsichtigkeit umzukehren, ist mein erster Gedanke, wenn ich solche gegensätzlichen Meinungen im Internet sehe, dass es uns nicht kümmert. Sie wissen nicht, wie viel Mühe wir uns gegeben haben, wie wir unsere Ideen verworfen oder von vorne begonnen haben, wie wir unsere Experimente angepasst oder wie wir über all diese Dinge nachgedacht haben.
 
-Der Autor meint es gut mit seiner Warnung vor Yin Wangs Entdeckung. Aber wirklich, der Autor hat noch keine Experimente dazu durchgeführt. Ich stimme vielen seiner Ideen über Startups zu, da er eine 10-jährige Startup-Erfahrung hat. Aber was Myopie selbst betrifft, sind die meisten unserer Bemühungen in Experimenten oder Lektüre – und die meisten menschlichen Entdeckungen oder Diskussionen darüber – irrelevant. Nur einige Wahrheiten zählen.
+Der Autor hat gute Absichten, uns vor Yin Wangs Entdeckung zu warnen. Aber wirklich, der Autor hat noch keine Experimente dazu durchgeführt. Ich stimme vielen seiner Ideen über Startups zu, da er eine 10-jährige Startup-Erfahrung hat. Aber bei Kurzsichtigkeit selbst spielen die meisten unserer Anstrengungen in Experimenten oder beim Lesen – und die meisten menschlichen Entdeckungen oder Diskussionen darüber – keine Rolle. Nur wenige Wahrheiten sind wichtig.
 
-Wir zeigen keinen Respekt gegenüber den gegensätzlichen Ansichten. Wissenschaft ist Wissenschaft. Es spielt keine Rolle, dass es 2 Milliarden Menschen mit Myopie gibt. Und eine große Anzahl von ihnen verwendet Brillen mit voller Korrektur, die es ermöglichen, eine Tafel in 5m Entfernung zu sehen, aber sie verwenden sie viel, um auf Handys zu schauen. Deshalb vertieft sich ihre Myopie immer weiter.
+Wir sind nicht respektlos gegenüber gegensätzlichen Meinungen. Wissenschaft ist Wissenschaft. Es spielt keine Rolle, dass es 2 Milliarden kurzsichtige Menschen gibt. Und eine große Anzahl von ihnen trägt Brillen mit voller Sehstärke, die es ihnen ermöglichen, eine Tafel in 5 m Entfernung klar zu sehen, aber sie nutzen sie hauptsächlich, um auf Handys zu schauen. Deshalb wird ihre Kurzsichtigkeit immer schlimmer.
 
-Ein einfacher Weg, um herauszufinden, ob Yin Wang Recht hat, ist einfach die Brille abzulegen. Wenn deine Myopie nur 175 oder 200 Grad beträgt, kannst du dein Handy auch ohne Brille sehen. Und wenn du eine Brille mit voller Korrektur trägst, kannst du das Handy weiter weg halten, etwa 80 cm oder 1 Meter, und du kannst wahrscheinlich immer noch die Worte auf dem Bildschirm erkennen.
+Eine einfache Methode, um zu überprüfen, ob das, was Yin Wang sagt, wahr ist, besteht darin, einfach die Brille abzusetzen. Wenn deine Kurzsichtigkeit nur 175 oder 200 Grad beträgt, kannst du dein Handy ohne Brille sehen. Und wenn du eine Brille mit voller Sehstärke trägst, kannst du das Handy weiter weg halten, etwa 80 cm oder 1 Meter, und wirst wahrscheinlich trotzdem noch die Wörter auf dem Bildschirm lesen können.
 
-Ich sehe, dass einer der großen Fehler ist, dass sie keine praktischen Experimente durchführen, während wir viele machen und intensiv darüber nachdenken. Sie sagen nur, was das Buch sagt.
+Ich sehe, dass einer der großen Fehler darin besteht, dass sie keine praktischen Experimente durchführen, während wir viel experimentieren und ausführlich darüber nachdenken. Sie wiederholen einfach das, was in Büchern steht.
 
-In der Unternehmenswelt sehe ich dieses Szenario ebenfalls. In einem Team können Ingenieure und Führungskräfte Lösungen entwickeln. Allerdings funktionieren wahrscheinlich die Hälfte davon nicht. Wir müssen die Lösungen ausprobieren, um zu sehen, was passiert. Es ist genau wie die zehntausenden Male, als ich dachte, der Code sollte funktionieren, aber der Test in meinen 10 Jahren Softwareentwicklung fehlschlug.
+In der Unternehmenswelt sehe ich dieses Szenario ebenfalls. In einem Team können Ingenieure und Führungskräfte Lösungen vorschlagen. Allerdings funktioniert wahrscheinlich die Hälfte davon nicht. Wir müssen die Lösungen ausprobieren, um zu sehen, was passiert. Es ist wie die tausenden Male, in denen ich dachte, dass Code funktionieren sollte, aber die Tests in meiner 10-jährigen Erfahrung als Softwareingenieur fehlschlugen.
 
-Aus praktischer Sicht können wir eine Menge Filterung vornehmen. Wir sollten diejenigen einstellen, kommunizieren und mit ihnen arbeiten, die mehr praktische Erfahrung haben. In Unternehmen werden diejenigen, die praktische Arbeit mögen, wahrscheinlich bessere Führungskräfte sein. Steve Jobs betonte einmal die Bedeutung hochleistungsfähiger Einzelleistungen.
+Aus praktischer Sicht können wir tatsächlich viel filtern. Wir sollten diejenigen einstellen, mit denen wir kommunizieren und zusammenarbeiten, die mehr praktische Erfahrung haben. Im Unternehmen werden diejenigen, die praktische Arbeit mögen, wahrscheinlich bessere Führungskräfte sein. Steve Jobs betonte einst die Bedeutung hochleistungsfähiger Einzelkämpfer.
 
-Bei der Beurteilung der Qualität oder Wahrhaftigkeit von Meinungen können wir deren praktischen Grad prüfen. Führt der Autor viele Experimente durch?
+Wenn wir also die Qualität oder Wahrheitsgemäßheit von Meinungen beurteilen, können wir ihren Grad an praktischer Erfahrung überprüfen. Führt der Autor viele Experimente durch?
 
-Und ich sehe, dass Menschen, die viele praktische Experimente durchführen, ihre Meinungen tatsächlich nicht zu streng halten. Ich weiß, dass es immer noch Zweifel an der Umkehrung von Myopie gibt. Welche Reduktion ist am besten, 150 Grad oder 200 Grad? Ich habe einen Artikel darüber geschrieben, [Natürliche Sehkraftwiederherstellung: Das Prinzip „gerade so klar“](https://lzwjava.github.io/barely-clear-en).
+Und ich sehe, dass Menschen, die viele praktische Experimente durchführen, ihre Meinungen nicht zu starr vertreten. Ich weiß, dass es immer noch Zweifel an der Umkehrung von Kurzsichtigkeit gibt. Welcher Grad ist am besten, um Kurzsichtigkeit umzukehren, ob 150 Grad weniger oder 200 Grad weniger? Ich habe ein Paper darüber geschrieben: [Natürliche Wiederherstellung der Sehkraft: Das Prinzip „Gerade noch klar“](https://lzwjava.github.io/barely-clear-en).
 
-Es ist wirklich leicht zu reden, aber schwerer, tatsächliche Experimente durchzuführen, eine Theorie zu entwickeln und dann erneut zu testen, genau wie beim Programmieren.
+Es ist wirklich einfach, zu reden, aber schwer, tatsächliche Experimente durchzuführen, eine Theorie zu entwickeln und sie dann erneut zu testen, genau wie beim Programmieren.
 
-Fehler sind ohne praktische Erfahrung leicht gemacht. Nachdem du tonnenweise Fehler gemacht hast, wirst du erkennen, dass im Vergleich zu den Verlusten oder dem Schmerz, die diese Fehler uns verursachen, die Mühe, viele praktische Experimente durchzuführen, um zur Wahrheit zu gelangen und Fehler zu vermeiden, vernachlässigbar ist. Wie beim Aktieninvestment wirst du eines Tages wissen, dass im Vergleich zu den Verlusten oder dem Schmerz, die Anlagefehler uns verursachen, die Mühe, praktische, gründliche experimentelle Anstrengungen zu unternehmen, um erfolgreich zu investieren, vernachlässigbar ist.
+Ohne praktische Erfahrung macht man leicht Fehler. Nach unzähligen Fehlern wirst du erkennen, dass der Aufwand, viele praktische Experimente durchzuführen, um zur Wahrheit zu gelangen und Fehler zu vermeiden, im Vergleich zu den Verlusten oder Schmerzen, die uns die Fehler verursachen, vernachlässigbar ist. Das heißt, wie beim Aktieninvestment wirst du eines Tages erkennen, dass der Aufwand, gründliche praktische Experimente durchzuführen, um erfolgreich zu investieren, im Vergleich zu den Verlusten oder Schmerzen, die uns Investitionsfehler verursachen, vernachlässigbar ist.
+
+---
+
+## Der Weg zur natürlichen Umkehrung von Kurzsichtigkeit
+
+*05.01.2025*
+
+Neben drei Papers über die Umkehrung von Kurzsichtigkeit möchte ich mehr über diese Entdeckungsgeschichte teilen.
+
+> Li, Zhiwei. (Juni 2023). Experimentelle Überprüfung der Methode zur natürlichen Wiederherstellung der Sehkraft. Zhiweis Blog. Web. PDF.
+>
+> Li, Zhiwei. (Juni 2023). Astigmatismus bei der Umkehrung von Kurzsichtigkeit. Zhiweis Blog. Web. PDF.
+>
+> Li, Zhiwei. (November 2024). Natürliche Wiederherstellung der Sehkraft: Das Prinzip „Gerade noch klar“. Zhiweis Blog. Web. PDF.
+
+### Geduld
+
+Da die natürliche Umkehrung von Kurzsichtigkeit recht langsam verläuft, ähnlich wie beim Abnehmen. In meinen 3 Jahren Erfahrung (von Februar 2022 bis Januar 2025) habe ich Folgendes erreicht:
+
+| Zeit       | Kurzsichtigkeit linkes Auge | Astigmatismus linkes Auge | Kurzsichtigkeit rechtes Auge | Astigmatismus rechtes Auge | Korrigierte Sehkraft |
+|------------|----------------------------|---------------------------|------------------------------|----------------------------|----------------------|
+| 05.03.2022 | -3.50                      | -2.25                     | -5.75                        | -1.75                      | 1.0                  |
+| 13.11.2022 | -3.25                      | -2.00                     | -5.50                        | -1.75                      | 0.9                  |
+| 20.04.2023 | -3.00                      | -1.25                     | -5.00                        | -1.25                      | 1.0                  |
+| 07.01.2024 | -3.00                      | -1.00                     | -4.75                        | -1.25                      | 0.9                  |
+| 28.11.2024 | -2.50                      | -1.00                     | -4.25                        | -1.25                      | 0.9                  |
+
+Lass uns Python verwenden, um ein Diagramm dazu zu zeichnen.
+
+![img](/assets/images/research/progress.png)
+
+Man muss also geduldig sein.
+
+### Tu das Richtige, Ergebnisse werden folgen
+
+Solange du das Richtige tust, werden Ergebnisse folgen. Wie beim Abnehmen: Wenn du sehr wenig isst und oft Sport treibst, wirst du abnehmen. Wenn du jeden Monat 1 kg verlierst, wirst du in einem Jahr 12 kg abgenommen haben.
+
+Ähnlich verhält es sich beim Lernen: Wenn wir 10 Stunden am Tag lernen, summiert sich das in einem Jahr auf 3.650 Stunden.
+
+Die gute Nachricht bei der Umkehrung von Kurzsichtigkeit ist, dass es nichts Schwieriges gibt, das man nicht durchhalten könnte. Es erfordert nur, dass du den Bildschirm deines Handys oder Computers gerade noch klar siehst.
+
+Das ist eine bessere und bequemere Methode. Die Kosten für die korrekte Methode bestehen darin, dass ich ein zusätzliches Paar Brillen mit voller Sehstärke fürs Autofahren, für die Aussicht beim Reisen und fürs Kino brauche.
+
+Diese Zeiten im Leben sind tatsächlich nur ein kleiner Teil, höchstens 2 Stunden am Tag, während die restlichen 15 Stunden wach sind.
+
+### Gib dich nicht zufrieden, verbessere dich weiter
+
+Im ersten Jahr bestand meine Haupttätigkeit in der Computerarbeit, bei der ich eine Brille mit einer um 1,50 Dioptrien reduzierten Stärke trug. Diese Einrichtung ermöglichte es mir, häufig den Zustand „gerade noch klar“ zu erleben, bei dem das Sehen ausreichend klar, aber nicht übermäßig scharf war. Im zweiten Jahr jedoch verlagerte ich meinen Fokus auf das Lernen für meinen Associate Degree zu Hause, reduzierte meine Computernutzung und verließ mich hauptsächlich auf mein Handy für Lektüre und Übungen.
+
+Nach einem Gespräch mit einem Freund begann ich, mich über bifokale Linsen und multifokale progressive Linsen zu informieren. Ich lernte sogar Begriffe wie Segmenthöhe, Segmentposition und Arbeitsabstand für die Sehkraft.
+
+Es erforderte viele Experimente. Wenn man das Prinzip versteht, können die Lösungen variieren – von einer einfachen +1,50-D-Zusatzkorrektur zur Sehstärke bis hin zu einer +2,00-D-Zusatzkorrektur und dann der Verwendung multifokaler progressiver Linsen zur Unterstützung. Es gibt immer noch Möglichkeiten zur Verbesserung.
+
+Nach der Einführung von ChatGPT gab es viele Verbesserungen. Viele kluge Menschen denken in diese Richtung. In der realen Welt gibt es viele Anwendungsfälle und mehr reale Probleme zu lösen.
+
+Bei der Umkehrung von Kurzsichtigkeit ist es genau dasselbe. Ältere Menschen verwenden Altersweitsichtigkeitslinsen.
+
+### Teile es mit denen, die es dringend brauchen
+
+Obwohl ich meinen Artikel über die Umkehrung von Kurzsichtigkeit im Juni 2023 auf der WeChat-Abonnement-Plattform geteilt habe, erhielt ich im Dezember 2024 eine Antwort von jemandem, dessen 12-jähriges Kind frustriert war über seinen Kurzsichtigkeitsgrad von 500, also -5,00. Als ich 12 war, dachte ich, ich hätte gerade erst angefangen, eine Brille für meine Kurzsichtigkeit von -2,00 zu tragen.
+
+Da die Wahrheit oder Entdeckung den Menschen weniger bekannt ist, wollen nur diejenigen, die sie dringend brauchen, dies ausprobieren. Diese Methode zur Umkehrung von Kurzsichtigkeit, die wahrscheinlich erstmals 2014 von Todd Becker eingeführt wurde, wird eines Tages populär werden.
+
+Die neue Anpassungsmethode hat keine negativen Auswirkungen. Darüber hinaus werden immer mehr Menschen kurzsichtig, und ihre Kurzsichtigkeit wird immer stärker.
+
+### Gibt es eine Verschwörung bei der Verbreitung von Kurzsichtigkeit?
+
+Menschen, die Brillen mit voller Sehstärke tragen, haben dazu geführt, dass sich ihre Kurzsichtigkeit verschlimmert. Die Kurzsichtigkeit wurde nicht absichtlich von jemandem verursacht. Es ist einfach so, dass Menschen nicht vorsichtig genug sind. Es scheint normal zu sein, volle Sehstärke zu tragen, um eine normale Sehkraft von 5,0 zu erreichen, die Sehkraft eines Kindes.
+
+Was die Menschen jedoch nicht wissen, ist, dass sie diese Brillen verwenden, um auf nahe Objekte zu schauen. Die Erfinder von multifokalen progressiven Linsen oder Sehtestgeräten wussten viel darüber, wie das Auge oder die Kurzsichtigkeit funktioniert.
+
+Die Verbesserung hier besteht also darin, dass wir kategorisieren, wie wir unsere Augen nutzen. Wir beobachten, dass Menschen heutzutage meist Handys oder Computer verwenden. Und es spielt keine Rolle, dass wir Dinge in der Ferne im Alltag unscharf sehen.
+
+Der Punkt ist, dass unsere Augen die meisten Objekte, die wir betrachten möchten, die meiste Zeit klar sehen können. Wenn wir Objekte etwa 10 cm weiter weg bewegen, werden sie unscharf. Das zeigt, dass wir unsere Augen richtig nutzen.
+
+### Wie man neue Entdeckungen macht
+
+Versuche, mehr im Internet zu beobachten und zu lernen. Sei vorsichtig mit unwichtigen Meinungen. Versuche, selbst zu experimentieren.
+
+Es gibt viele Verbesserungen im Leben. Nach der Entdeckung der Wahrheit scheint sie offensichtlich. Die Menschen haben einfach noch nicht darüber nachgedacht. Steve Jobs hat es sicherlich verstanden. Steve Jobs‘ „Think Different“-Kampagne ist gut.
+
+### Selbstbewusster, die Welt zu verbessern
+
+Mit so vielen Menschen, die Brillen tragen, erkenne ich, wenn ich sie sehe – ob offline oder online –, dass es in diesem Bereich Verbesserungspotenzial gibt.
+
+Ihre Brillen sind zu stark für die Betrachtung von Handys oder Computern, was dazu führt, dass sich ihre Kurzsichtigkeit allmählich verschlimmert.

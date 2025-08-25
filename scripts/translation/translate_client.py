@@ -4,7 +4,10 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
-from scripts.translation.translate_utils import validate_translated_languages, detect_languages_with_langdetect
+from scripts.translation.translate_utils import validate_translated_languages, detect_language_with_langid
+from scripts.translation.translate_validate_utils import (
+    validate_length, clean_response, check_commentary, check_title_strict, check_markdown_table_formatting
+)
 
 LANGUAGE_MAP = {
     "ja": "Japanese",
@@ -18,68 +21,73 @@ LANGUAGE_MAP = {
     "ar": "Arabic"
 }
 
+LANGUAGE_MODEL_MAP = {
+    "en": "deepseek-v3.1",
+    "zh": "deepseek-v3.1",
+    "hant": "deepseek-v3.1",
+    "ja": "mistral-medium",
+    "es": "mistral-medium",
+    "hi": "mistral-medium",
+    "fr": "mistral-medium",
+    "de": "mistral-medium",
+    "ar": "mistral-medium"
+}
+
 def build_prompt_template(target_language, type_, front_matter):
     lang_name = LANGUAGE_MAP.get(target_language, target_language)
     if type_ == "title":
-        tpl = "Translate the following title into {lang}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {lang}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
+        tpl = """Translate the following title into {lang}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {lang}, return it as is. If the target language is English, ensure the title is in Title Case.
+
+IMPORTANT: Do not include any quotes, double quotes, special quotation marks (such as ", ', ", ", «, », 「, 」), or other decorative characters around the title.
+"""
     else:
-        head = "Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.\n"
+        head = """Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.
+
+IMPORTANT: When translating markdown content, ensure proper formatting:
+- Always add a blank line between headers (lines starting with #) and tables (lines starting with |)
+- Maintain proper markdown table structure
+- Preserve all original formatting and spacing except where formatting rules require changes
+- DO NOT wrap the entire translation in markdown code blocks (```markdown or ```) - the content will be used directly in Jekyll with Kramdown
+
+TRANSLATION RULES:
+- Do not translate specific items such as project names, company names, or school names if you are not sure
+- For technology terms, new words, and technical concepts, keep them in English instead of translating
+- For Chinese translations: Use English for proper nouns and technical terms instead of Chinese transliterations
+- For Japanese translations: Use English for technical terms instead of romaji or katakana when appropriate
+- For all languages: Prioritize using English for modern technology words, programming terms, and brand names
+
+"""
         if front_matter:
             head += f"{front_matter}\n"
         tpl = head
     return tpl.format(lang=lang_name)
 
-def validate_length(text):
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
-    length = len(text)
-    if not 1 <= length <= 30000:
-        raise ValueError(f"text length {length} outside allowed range [1, 30000]")
 
-def clean_response(text):
-    if not isinstance(text, str):
-        raise RuntimeError("Model returned non-text response")
-    return text.strip()
-
-def check_echo(original, translated):
-    if original.lower().strip() in translated.lower():
-        raise RuntimeError("Model returned input or echoed text")
-
-def check_commentary(translated):
-    indicators = [
-        "the output is", "output is", "translated title",
-        "the translation is", "translation is", "translated:",
-        "result:", "output:", "return only", "return only the translated"
-    ]
-    low = translated.lower()
-    for ind in indicators:
-        if ind in low:
-            raise RuntimeError("Model included commentary")
-
-def check_title_single_line(title):
-    if "\n" in title.strip():
-        raise RuntimeError("Model returned multi-line title")
-
-def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
+def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, source_file=None):
     validate_length(text)
     if target == orig_lang:
         return text
 
+    # Use language-specific model mapping, ignore the model parameter
+    actual_model = LANGUAGE_MODEL_MAP.get(target, "mistral-medium")
     prompt = build_prompt_template(target, kind, front_matter) + "\n\n" + text
-    translated = clean_response(call_openrouter_api(prompt, model))
-    check_echo(text, translated)
+    translated = clean_response(call_openrouter_api(prompt, actual_model))
     check_commentary(translated)
     if kind == "title":
-        check_title_single_line(translated)
+        check_title_strict(translated, target)
+    
+    # Fix markdown table formatting for content translations
+    if kind == "content":
+        translated = check_markdown_table_formatting(translated)
 
     try:
-        detected = detect_languages_with_langdetect(translated)
+        detected = detect_language_with_langid(translated)
     except Exception as e:
         detected = []
-    validate_translated_languages(translated, target, require_english=need_en)
+    validate_translated_languages(translated, target, require_english=need_en, source_file=source_file)
     return translated
 
-def translate_text(text, target_language, type="content", model="deepseek-v3", front_matter_prompt=None, original_lang=None, front_matter=None):
+def translate_text(text, target_language, type="content", model="deepseek-v3", front_matter_prompt=None, original_lang=None, front_matter=None, source_file=None):
     """Wrapper function for markdown_translate_client.py compatibility"""
     kind = type  # Map 'type' parameter to 'kind' parameter used in run_translate
     orig_lang = original_lang if original_lang else "en"
@@ -90,7 +98,8 @@ def translate_text(text, target_language, type="content", model="deepseek-v3", f
         model=model,
         front_matter=front_matter_prompt or front_matter,
         orig_lang=orig_lang,
-        need_en=False
+        need_en=False,
+        source_file=source_file
     )
 
 def cli_translate():

@@ -62,10 +62,9 @@ def generate_short_title(prompt):
         sys.exit(1)
     return title
 
-def create_filename(short_title):
+def create_filename(short_title, notes_dir="notes"):
     today = datetime.date.today()
     date_str = today.strftime("%Y-%m-%d")
-    notes_dir = "notes"
     if not os.path.exists(notes_dir):
         os.makedirs(notes_dir)
     base_file_name = f"{date_str}-{short_title}-en.md"
@@ -77,11 +76,14 @@ def create_filename(short_title):
     return file_path
 
 
-def format_front_matter(full_title):
+def format_front_matter(full_title, date=None):
     if ":" in full_title and '"' not in full_title:
         full_title = f'"{full_title}"'
+    if date is None:
+        date = datetime.date.today().strftime("%Y-%m-%d")
     return f"""---
 title: {full_title}
+date: {date}
 lang: en
 layout: post
 audio: false

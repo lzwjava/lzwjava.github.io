@@ -20,6 +20,7 @@ translated: false
 
 - Once we can do what we want as long as we are not hurting others, it is hard to betray our souls to do things we don't like.
 
+- Once we can live with free will, it is hard to live with constraints.
+
 - Once we have experienced AI and LLMs, it is hard to use Google Search and go back to the old days.
 
-- Once we can live with free will, it is hard to live with constraints.

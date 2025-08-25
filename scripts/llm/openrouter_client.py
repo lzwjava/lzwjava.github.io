@@ -17,13 +17,31 @@ MODEL_MAPPING = {
     "deepseek-v3": "deepseek/deepseek-chat-v3-0324",
     "deepseek-v3.1":"deepseek/deepseek-chat-v3.1",
     "mistral-medium": "mistralai/mistral-medium-3.1",
+    "mistral-large": "mistralai/mistral-large",
     "qwen-coder":"qwen/qwen3-coder",
     "gpt-oss": "openai/gpt-oss-120b",
-    "gpt-5": "openai/gpt-5"
+    "gpt-5": "openai/gpt-5",
+    "gpt-5-mini": "openai/gpt-5-mini"
+}
+
+DEFAULT_TOKENS = {
+    "claude-opus": 8192,
+    "claude-sonnet": 8192,
+    "gemini-flash": 8192,
+    "gemini-pro": 8192,
+    "kimi-k2": 32768,
+    "deepseek-v3": 32768,
+    "deepseek-v3.1": 32768,
+    "mistral-medium": 32768,
+    "mistral-large": 8192,
+    "qwen-coder": 32768,
+    "gpt-oss": 8192,
+    "gpt-5": 8192,
+    "gpt-5-mini": 8192
 }
 
 
-def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=False):
+def call_openrouter_api_with_messages(messages, model="mistral-medium", max_tokens=None, debug=False):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -34,7 +52,11 @@ def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=Fa
     if model not in MODEL_MAPPING:
         raise Exception(f"Model '{model}' not found in MODEL_MAPPING")
 
-    data = {"model": MODEL_MAPPING[model], "messages": messages}
+    # Use provided max_tokens or default for this model
+    if max_tokens is None:
+        max_tokens = DEFAULT_TOKENS.get(model, 4096)
+
+    data = {"model": MODEL_MAPPING[model], "messages": messages, "max_tokens": max_tokens}
     
     if debug:
         print(f"Request URL: {url}")
@@ -54,9 +76,9 @@ def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=Fa
         raise Exception(f"An error occurred: {str(e)}")
 
 
-def call_openrouter_api(prompt, model="mistral-medium", debug=False):
+def call_openrouter_api(prompt, model="deepseek-v3.1", max_tokens=None, debug=False):
     messages = [{"role": "user", "content": prompt}]
-    return call_openrouter_api_with_messages(messages, model, debug)
+    return call_openrouter_api_with_messages(messages, model, max_tokens, debug)
 
 
 if __name__ == "__main__":
