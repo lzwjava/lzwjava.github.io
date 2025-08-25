@@ -10,27 +10,23 @@ image: false
 
 This draws from general experiences and public trends in digital banking to discuss growth dynamics, not any single project.
 
-I participated in a digital bank project in a major Asian financial hub. A digital bank project launched around the mid-2010s. Over four years, the banking app steadily grew to about a million users. Encouraged by this growth, the company experienced rapid expansion by the early 2020s, reaching several million users. Confident in their trajectory, management made an aggressive hiring decision, bringing on a large number of additional staff—including engineers, support personnel, and many contract engineers—across their primary office and a major regional development center.
+Around 2017, when I was doing my startup, after getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to develop my management skills. The good news is that by hiring part-time engineers to complete 50 small software projects together, we earned half a million back and returned it to the investor when shutting down the company.
 
-But after one year, the app had likely reached only a slightly higher user base. Most new hires were let go. The numbers here are approximate, used to discuss the true reasons behind growth.
+This was a painful mistake. Later in my career, I joined a digital bank project in a major Asian financial hub. Launched in the mid-2010s, its app grew to 3 million users by the end of 2022. Confident in this growth, management hired aggressively—bringing in engineers, support staff, and contractors across multiple offices.
+
+But within a year, user numbers barely increased, and most of the new hires were let go. These figures are approximate, shared to highlight the real reasons behind growth.
 
 In my previous essay [On Big Companies](/big-companies-en), I wrote:
 
 > One contributing factor to this outcome is the cumbersome and numerous processes within large companies. Engineers who had been with the company for six months to a year were unable to make significant contributions. The timeline typically included two months to grasp the basics, three months to become acquainted with the projects, three months navigating through tedious procedures or testing, and finally, two months of productive work that impacted users.
 
-I made this same mistake myself, mentioned in my resume:
-
-> After getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to develop my management skills. The good news is that by hiring part-time engineers to complete 50 small software projects together, we earned half a million back and returned it to the investor when shutting down the company.
-
-Why did the managers of this banking project make this mistake? It’s easy to think hard work alone drives growth. But success depends half on our efforts and decisions, and half on the users and market.
-
-They bet correctly on digital banking years ago. The region needed a new digital bank app around the mid-2010s. Their hard work made their app one of the top choices in the area. But growth stalled due to regional limitations, like requiring a local phone number to use the app—a significant barrier.
+Why did managers make this mistake? They assumed hard work alone drove growth, forgetting success also depends on users and the market. Their early bet on digital banking was right, and the app became a top choice. But growth stalled due to regional limits, like requiring a local phone number.
 
 Some payment apps don’t require a specific phone number, which is great. Nearby regions have large populations that could contribute users. Cross-border payment systems, like [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect), help transfer money across regions, boosting usage. For internet apps, serving all users without restrictions is ideal. Services like [SMS Activate](https://sms-activate.io) let you rent numbers to bypass such limits.
 
-The managers need to report to the top executives to increase the budget. So why do the top executives in the company believe that expansion is the right decision? Still, the leadership in banking companies couldn’t foresee AI well or worried too much about data security.
+The managers needed to report to top executives to secure a larger budget. But why did the executives believe expansion was the right decision? Banking leadership often failed to foresee the impact of AI or were overly concerned about data security.
 
-Few people in the world can predict the future well. And few can avoid mistakes, especially if you run a company and handle all the troublesome stuff across countries.
+Few people in the world can predict the future accurately. And few can avoid mistakes—especially when running a company and dealing with complex challenges across countries.
 
 Apps like Grok and Mistral can be used in many regions, which is good. Why should people face internet restrictions due to local laws? Many don’t support such laws, so why should they suffer?
 The reason I grew to around 20,000 users in a year **was** that I caught a trend—at that time, in China, there was a need for a platform for knowledge workers. Jike Time from GeekBang, Dedao, and Himalaya showed that need. I worked hard on software engineering and marketing, mostly by myself, often on WeChat. Users only care about what the product brings them. They don’t care if it’s made by one person or twenty. Founders, managers, or investors care—users don’t.
