@@ -8,8 +8,6 @@ generated: false
 image: false
 ---
 
-This draws from general experiences and public trends in digital banking to discuss growth dynamics, not any single project.
-
 Around 2017, when I was doing my startup, after getting investment, I hired 9 employees but had to let them go after two months, which contributed to one of my most painful mistakes: not having a long-term plan, wanting to impress others, and naively trying to develop my management skills. The good news is that by hiring part-time engineers to complete 50 small software projects together, we earned half a million back and returned it to the investor when shutting down the company.
 
 This was a painful mistake. Later in my career, I joined a digital bank project in a major Asian financial hub. Launched in the mid-2010s, its app grew to 3 million users by the end of 2022. Confident in this growth, management hired aggressively—bringing in engineers, support staff, and contractors across multiple offices.
