@@ -6,7 +6,7 @@ import datetime
 import pyperclip
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
-from scripts.llm.openrouter_client import call_openrouter_api
+from scripts.llm.openrouter_client import call_openrouter_api, MODEL_MAPPING
 
 def sanitize_filename(filename):
     """Sanitize filename for filesystem compatibility"""
@@ -40,13 +40,7 @@ def conduct_multi_model_research(topic, models=None):
     """Conduct research using multiple AI models"""
     
     if models is None:
-        models = [
-            "anthropic/claude-3.5-sonnet",
-            "openai/gpt-4o",
-            "google/gemini-flash-1.5",
-            "kimi/k1",
-            "deepseek/deepseek-chat"
-        ]
+        models = ["kimi-k2", "gpt-5", "mistral-medium"]
     
     research_results = {}
     combined_research = ""
@@ -70,49 +64,63 @@ def conduct_multi_model_research(topic, models=None):
     return research_results
 
 def save_research_results(topic, results):
-    """Save research results to the research directory"""
+    """Save research results as a note using create_note_from_content"""
     
-    # Create research directory if it doesn't exist
-    research_dir = os.path.join(os.path.dirname(__file__), "..", "..", "research")
-    os.makedirs(research_dir, exist_ok=True)
+    # Import the create_note_from_content function
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "create")))
+    from create_note_from_clipboard import create_note_from_content
     
-    # Generate filename with timestamp
-    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    safe_topic = sanitize_filename(topic[:50])  # Limit filename length
-    filename = f"{safe_topic}_{timestamp}.json"
-    filepath = os.path.join(research_dir, filename)
+    # Format the research content as a readable note
+    content = f"""# Research: {topic}
+
+**Generated:** {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+## Models Used
+- {', '.join(results.keys())}
+
+## Summary
+- **Total Models:** {len(results)}
+- **Successful Models:** {len([r for r in results.values() if not str(r).startswith("Error")])}
+
+---
+
+## Detailed Results
+
+"""
     
-    # Prepare data structure
-    research_data = {
-        "topic": topic,
-        "timestamp": datetime.datetime.now().isoformat(),
-        "models_used": list(results.keys()),
-        "results": results,
-        "summary": {
-            "total_models": len(results),
-            "successful_models": len([r for r in results.values() if not str(r).startswith("Error")])
-        }
-    }
+    for model, result in results.items():
+        if str(result).startswith("Error"):
+            content += f"### ⚠️ {model} (Error)
+{result}
+
+"
+        else:
+            content += f"### {model}
+{result}
+
+"
     
-    # Save to JSON file
-    with open(filepath, 'w', encoding='utf-8') as f:
-        json.dump(research_data, f, indent=2, ensure_ascii=False)
-    
-    # Also save a readable text version
-    text_filename = f"{safe_topic}_{timestamp}.txt"
-    text_filepath = os.path.join(research_dir, text_filename)
-    
-    with open(text_filepath, 'w', encoding='utf-8') as f:
-        f.write(f"Research Report: {topic}\n")
-        f.write(f"Generated: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-        f.write("=" * 60 + "\n\n")
+    # Use create_note_from_content to create the note
+    try:
+        file_path = create_note_from_content(content, custom_title=topic)
+        return file_path
+    except Exception as e:
+        # Fallback to the old method if needed
+        print(f"Error using create_note_from_content: {str(e)}")
         
-        for model, result in results.items():
-            f.write(f"\n--- {model} ---\n")
-            f.write(f"{result}\n")
-            f.write("-" * 40 + "\n")
-    
-    return filepath, text_filepath
+        # Create research directory as fallback
+        research_dir = os.path.join(os.path.dirname(__file__), "..", "..", "research")
+        os.makedirs(research_dir, exist_ok=True)
+        
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        safe_topic = sanitize_filename(topic[:50])
+        filename = f"{safe_topic}_{timestamp}.txt"
+        filepath = os.path.join(research_dir, filename)
+        
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        return filepath, None
 
 def main():
     parser = argparse.ArgumentParser(description='Research a topic using multiple AI models')
@@ -138,16 +146,23 @@ def main():
     if args.models:
         models = [m.strip() for m in args.models.split(',')]
     
+    # Validate models against available models in MODEL_MAPPING
+    available_models = list(MODEL_MAPPING.keys())
+    if models:
+        invalid_models = [m for m in models if m not in available_models]
+        if invalid_models:
+            print(f"Warning: Invalid models {invalid_models}. Available models: {available_models}")
+            models = [m for m in models if m in available_models]
+    
     # Conduct research
     results = conduct_multi_model_research(topic, models)
     
-    # Save results
-    json_path, txt_path = save_research_results(topic, results)
+    # Save results as note
+    file_path = save_research_results(topic, results)
     
     # Display summary
     print("Research completed!")
-    print(f"JSON results saved to: {json_path}")
-    print(f"Text report saved to: {txt_path}")
+    print(f"Research note created at: {file_path}")
     
     # Show summary of results
     successful = len([r for r in results.values() if not str(r).startswith("Error")])
