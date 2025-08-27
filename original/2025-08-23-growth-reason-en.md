@@ -14,9 +14,9 @@ Later in my career, I joined a digital bank project in a major Asian financial h
 
 But within a year, user numbers barely increased, and many of the new hires were let go. These figures are approximate, shared to highlight the deeper reasons behind growth.
 
-In my previous essay [On Big Companies](/big-companies-en), I wrote:
+In my previous essay [On Big Companies](/big-companies-en), I wrote below.
 
-> One contributing factor to this outcome is the cumbersome and numerous processes within large companies. Engineers who had been with the company for six months to a year were unable to make significant contributions. The timeline typically included two months to grasp the basics, three months to become acquainted with the projects, three months navigating through tedious procedures or testing, and finally, two months of productive work that impacted users.
+*One contributing factor to this outcome is the cumbersome and numerous processes within large companies. Engineers who had been with the company for six months to a year were unable to make significant contributions. The timeline typically included two months to grasp the basics, three months to become acquainted with the projects, three months navigating through tedious procedures or testing, and finally, two months of productive work that impacted users.*
 
 Why did this happen? It’s easy to assume that hard work alone drives growth, but success also depends on users and the market. Their early bet on digital banking was right, and the app became a top choice. But growth slowed due to regional limits, such as requiring a local phone number.
 
