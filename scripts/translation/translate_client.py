@@ -56,9 +56,33 @@ def check_commentary(translated):
         if ind in low:
             raise RuntimeError("Model included commentary")
 
-def check_title_single_line(title):
+def check_title_strict(title, target_lang):
+    """Strict title validation - removes quotes and special chars based on language"""
     if "\n" in title.strip():
         raise RuntimeError("Model returned multi-line title")
+    
+    # Define forbidden characters by language
+    forbidden_chars = {
+        'ja': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》'],
+        'zh': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》', '〈', '〉'],
+        'hant': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》', '〈', '〉'],
+        'hi': ['"', "'", '"', '"', '«', '»'],
+        'ar': ['"', "'", '"', '"', '«', '»'],
+        'es': ['"', "'", '"', '"', '«', '»'],
+        'fr': ['"', "'", '"', '"', '«', '»'],
+        'de': ['"', "'", '"', '"', '„', '"', '»', '«'],
+        'en': ['"', "'", '"', '"']
+    }
+    
+    # Get forbidden chars for target language, default to common quotes
+    chars_to_remove = forbidden_chars.get(target_lang, ['"', "'", '"', '"'])
+    
+    # Check if title contains any forbidden characters
+    for char in chars_to_remove:
+        if char in title:
+            raise RuntimeError(f"Title contains forbidden character: {char}")
+    
+    return title.strip()
 
 def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
     validate_length(text)
@@ -70,7 +94,7 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
     check_echo(text, translated)
     check_commentary(translated)
     if kind == "title":
-        check_title_single_line(translated)
+        check_title_strict(translated, target)
 
     try:
         detected = detect_languages_with_langdetect(translated)
