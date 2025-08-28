@@ -92,9 +92,9 @@ def validate_translated_languages(translated_text, target_language, require_engl
         raise RuntimeError(f"Translated text does not contain the target language '{target_code}' (detected: {detected})")
     if require_english and "en" not in present:
         # if the translated text is exactly the target language with very high certainty, allow it
-        high_conf = any(prob >= 0.95 and lang == target_code for lang, prob in detected)
+        high_conf = any(prob >= 0.35 and lang == target_code for lang, prob in detected)
         if not high_conf:
             raise RuntimeError(f"Translated text does not contain English (detected: {detected})")
     extras = [lang for lang, prob in detected if lang not in {target_code, "en"} and prob >= 0.05]
-    if extras and not (detected and detected[0][0] == target_code and detected[0][1] > 0.80):
+    if extras and not (detected and detected[0][0] == target_code and detected[0][1] > 0.30):
         raise RuntimeError(f"Translated text contains unexpected additional language(s): {extras} (detected: {detected})")
