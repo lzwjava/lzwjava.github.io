@@ -33,6 +33,7 @@ def translate_front_matter(front_matter, target_language, input_file, model="dee
                 model=model,
                 front_matter_prompt=front_matter_prompt,
                 original_lang=original_lang,
+                source_file=input_file,
             )
             if translated_title:
                 translated_title = translated_title.strip()
@@ -88,6 +89,7 @@ def translate_markdown_file(input_file, output_file, target_language, model="dee
             model=model,
             front_matter_prompt=front_matter_prompt,
             original_lang=original_lang,
+            source_file=input_file,
         )
         if translated_content:
             translated_content = (

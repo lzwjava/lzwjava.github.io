@@ -117,6 +117,7 @@ title: 'Complete Programming Philosophy: Principles, Practices, and Professional
 
 * Keep things simple, make functions small, and keep files small. This makes them easy to test, verify, and check with one sample.
 
+* It is AI era, use ai tools to make thorough test and everything as perect as much. Raise exceptions earlier. Add tests for the code and run it in pipeline everyday. Mistake is ok, but do not make it in the second time. Do it with code checking.
 
 ---
 

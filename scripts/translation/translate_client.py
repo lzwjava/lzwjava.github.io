@@ -84,7 +84,7 @@ def check_title_strict(title, target_lang):
     
     return title.strip()
 
-def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
+def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, source_file=None):
     validate_length(text)
     if target == orig_lang:
         return text
@@ -100,10 +100,10 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en):
         detected = detect_languages_with_langdetect(translated)
     except Exception as e:
         detected = []
-    validate_translated_languages(translated, target, require_english=need_en)
+    validate_translated_languages(translated, target, require_english=need_en, source_file=source_file)
     return translated
 
-def translate_text(text, target_language, type="content", model="deepseek-v3", front_matter_prompt=None, original_lang=None, front_matter=None):
+def translate_text(text, target_language, type="content", model="deepseek-v3", front_matter_prompt=None, original_lang=None, front_matter=None, source_file=None):
     """Wrapper function for markdown_translate_client.py compatibility"""
     kind = type  # Map 'type' parameter to 'kind' parameter used in run_translate
     orig_lang = original_lang if original_lang else "en"
@@ -114,7 +114,8 @@ def translate_text(text, target_language, type="content", model="deepseek-v3", f
         model=model,
         front_matter=front_matter_prompt or front_matter,
         orig_lang=orig_lang,
-        need_en=False
+        need_en=False,
+        source_file=source_file
     )
 
 def cli_translate():
