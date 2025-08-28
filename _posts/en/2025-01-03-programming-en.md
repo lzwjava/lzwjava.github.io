@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: 'Complete Programming Philosophy: Principles, Practices, and Professional Growth'
+title: Complete Programming Philosophy
 translated: false
 ---
 
