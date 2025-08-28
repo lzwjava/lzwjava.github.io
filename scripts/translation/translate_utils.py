@@ -71,7 +71,9 @@ def detect_languages_with_langdetect(text):
     # Normalize language tags like zh-cn -> zh
     normalized = []
     for l in langs:
-        code = l.lang if l.lang.startswith("zh-") else l.lang.split("-")[0]\n    if code == 'ne':\n        code = 'hi'
+        code = l.lang if l.lang.startswith("zh-") else l.lang.split("-")[0]
+        if code == 'ne':
+            code = 'hi'
         normalized.append(type("L", (), {"lang": code, "prob": l.prob}))
     print(f"Debug: normalized langdetect output: {[(n.lang, n.prob) for n in normalized]}")
     return normalized
