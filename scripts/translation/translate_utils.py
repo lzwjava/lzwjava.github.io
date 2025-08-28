@@ -5,8 +5,8 @@ DetectorFactory.seed = 0
 
 def _map_target_code(code):
     mapping = {
-        "hant": "hant",
-        "zh": "zh",
+        "hant": "zh-tw",
+        "zh": "zh-cn",
         "ja": "ja",
         "en": "en",
         "es": "es",
