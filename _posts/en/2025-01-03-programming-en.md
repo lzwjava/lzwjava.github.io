@@ -118,7 +118,7 @@ translated: false
 
 * Keep things simple, make functions small, and keep files small. This makes them easy to test, verify, and check with one sample.
 
-* It is AI era, use ai tools to make thorough test and everything as perect as much. Raise exceptions earlier. Add tests for the code and run it in pipeline everyday. Mistake is ok, but do not make it in the second time. Do it with code checking.
+* It is the AI era, so use AI tools to make thorough tests and everything as perfect as possible. Raise exceptions earlier. Add tests for the code and run them in the pipeline every day. Mistakes are okay, but don't make the same mistake twice. Prevent this with code checking.
 
 ---
 
