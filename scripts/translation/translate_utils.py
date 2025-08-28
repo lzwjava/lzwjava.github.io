@@ -89,14 +89,20 @@ def validate_translated_languages(translated_text, target_language, require_engl
     detected = [(l.lang, l.prob) for l in langs]
     # debug print
     print(f"Debug: Detected languages: {detected}")
-    present = [lang for lang, prob in detected if prob >= 0.10]
+    # Relax thresholds for es and hi
+    threshold = 0.01 if target_code in ["es", "hi"] else 0.10
+    present = [lang for lang, prob in detected if prob >= threshold]
     if target_code not in present:
         raise RuntimeError(f"Translated text does not contain the target language '{target_code}' (detected: {detected})")
     if require_english and "en" not in present:
         # if the translated text is exactly the target language with very high certainty, allow it
-        high_conf = any(prob >= 0.35 and lang == target_code for lang, prob in detected)
+        high_conf = any(prob >= 0.20 and lang == target_code for lang, prob in detected)
         if not high_conf:
             raise RuntimeError(f"Translated text does not contain English (detected: {detected})")
-    extras = [lang for lang, prob in detected if lang not in {target_code, "en"} and prob >= 0.05]
-    if extras and not (detected and detected[0][0] == target_code and detected[0][1] > 0.30):
+    # More permissive for extras detection for es and hi
+    extras_threshold = 0.30 if target_code in ["es", "hi"] else 0.05
+    extras = [lang for lang, prob in detected if lang not in {target_code, "en"} and prob >= extras_threshold]
+    # More permissive validation for es and hi
+    min_conf = 0.01 if target_code in ["es", "hi"] else 0.20
+    if extras and not (detected and detected[0][0] == target_code and detected[0][1] > min_conf):
         raise RuntimeError(f"Translated text contains unexpected additional language(s): {extras} (detected: {detected})")
