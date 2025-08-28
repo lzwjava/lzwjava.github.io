@@ -5,7 +5,7 @@ DetectorFactory.seed = 0
 
 def _map_target_code(code):
     mapping = {
-        "hant": "zh",
+        "hant": "hant",
         "zh": "zh",
         "ja": "ja",
         "en": "en",
@@ -71,7 +71,7 @@ def detect_languages_with_langdetect(text):
     # Normalize language tags like zh-cn -> zh
     normalized = []
     for l in langs:
-        code = l.lang.split("-")[0]
+        code = l.lang if l.lang.startswith("zh-") else l.lang.split("-")[0]
         normalized.append(type("L", (), {"lang": code, "prob": l.prob}))
     print(f"Debug: normalized langdetect output: {[(n.lang, n.prob) for n in normalized]}")
     return normalized

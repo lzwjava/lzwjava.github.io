@@ -4,6 +4,7 @@ generated: false
 image: false
 lang: es
 layout: post
+<<<<<<< HEAD
 title: La Verdadera Razón del Crecimiento
 translated: true
 ---
@@ -33,5 +34,36 @@ La razón por la que llegué a unos 20.000 usuarios en un año **fue** que detec
 Necesitamos probar muchos enfoques y evaluarlos. Así aprendemos qué funciona. Es natural cometer errores, pero repetirlos no es sabio. Para el crecimiento de usuarios, hay muchos caminos—en línea, fuera de línea, mediante alcance activo o descubrimiento lento. La gente se entera de las cosas días, meses o incluso años después.
 
 No solo debemos razonar sobre el crecimiento, sino también intentar entender las razones detrás de todo. ¿Por qué las relaciones fracasan? ¿Por qué no funciona el código? Si no nos ajustamos, los problemas persisten. ¿Por qué los demás nos valoran? ¿Qué hicimos bien?
+=======
+title: El Verdadero Motivo del Crecimiento
+translated: true
+---
+
+Alrededor de 2017, cuando estaba emprendiendo, después de obtener inversión, contraté a 9 empleados pero tuve que despedirlos después de dos meses. Se convirtió en una de mis lecciones más difíciles: no tener un plan a largo plazo, querer impresionar a los demás e intentar desarrollar mis habilidades de gestión demasiado rápido. La buena noticia es que, trabajando con ingenieros a tiempo parcial en 50 pequeños proyectos de software, ganamos medio millón y se lo devolvimos al inversor al cerrar la empresa.
+
+Más adelante en mi carrera, me uní a un proyecto de banco digital en un importante centro financiero asiático. Lanzado a mediados de la década de 2010, su aplicación llegó a 3 millones de usuarios a finales de 2022. Animados por este crecimiento, la dirección contrató agresivamente—incorporando ingenieros, personal de soporte y contratistas en múltiples oficinas.
+
+Pero en menos de un año, el número de usuarios apenas aumentó, y muchos de los nuevos contratados fueron despedidos. Estas cifras son aproximadas, compartidas para resaltar las razones más profundas detrás del crecimiento.
+
+En mi ensayo anterior [Sobre las grandes empresas](/big-companies-en), escribí lo siguiente.
+
+*Un factor que contribuyó a este resultado son los procesos engorrosos y numerosos dentro de las grandes empresas. Los ingenieros que llevaban de seis meses a un año en la compañía no pudieron hacer contribuciones significativas. El cronograma típico incluía dos meses para comprender lo básico, tres meses para familiarizarse con los proyectos, tres meses navegando por procedimientos tediosos o pruebas y, finalmente, dos meses de trabajo productivo que impactaba a los usuarios.*
+
+¿Por qué sucedió esto? Es fácil asumir que solo el trabajo duro impulsa el crecimiento, pero el éxito también depende de los usuarios y el mercado. Su apuesta inicial por la banca digital fue acertada, y la aplicación se convirtió en una de las principales opciones. Pero el crecimiento se ralentizó debido a límites regionales, como requerir un número de teléfono local.
+
+Algunas aplicaciones de pago no requieren un número de teléfono específico, lo cual es útil. Las regiones cercanas tienen grandes poblaciones que podrían aportar usuarios. Los sistemas de pagos transfronterizos, como [Payment Connect](https://www.hkma.gov.hk/eng/smart-consumers/payment-connect), ayudan a transferir dinero entre regiones, impulsando el uso. Para las aplicaciones de internet, lo ideal es servir a todos los usuarios sin restricciones. Servicios como [SMS Activate](https://sms-activate.io) permiten alquilar números para sortear estos límites.
+
+Los gerentes también necesitaban informar a los altos ejecutivos para asegurar un presupuesto mayor. Pero, ¿por qué los ejecutivos creyeron que la expansión era la decisión correcta? El liderazgo bancario a menudo no podía prever el impacto de la IA o era demasiado cauteloso con la seguridad de los datos.
+
+Pocas personas en el mundo pueden predecir el futuro con precisión. Y pocas pueden evitar errores—especialmente al dirigir una empresa y enfrentar desafíos complejos en varios países.
+
+Aplicaciones como Grok y Mistral pueden usarse en muchas regiones, lo cual es positivo. ¿Por qué la gente debería enfrentar restricciones de internet debido a leyes locales? Muchos no apoyan estas leyes, y aún así sufren sus efectos.
+
+La razón por la que llegué a unos 20,000 usuarios en un año **fue** que capté una tendencia—en ese momento, en China, había una necesidad de una plataforma para trabajadores del conocimiento. Jike Time de GeekBang, Dedao y Himalaya mostraron esa demanda. Trabajé duro en ingeniería de software y marketing, principalmente solo, a menudo a través de WeChat. Pero al final, a los usuarios solo les importa lo que el producto les ofrece. No les importa si lo hizo una persona o veinte. A los fundadores, gerentes o inversores les importa—a los usuarios no.
+
+Necesitamos probar muchos enfoques y evaluarlos. Así aprendemos qué funciona. Es natural cometer errores, pero repetirlos no es sabio. Para el crecimiento de usuarios, hay muchos caminos—en línea, fuera de línea, mediante alcance activo o descubrimiento lento. La gente se entera de las cosas días, meses o incluso años después.
+
+No solo debemos razonar sobre el crecimiento, sino también intentar entender las razones de todo. ¿Por qué fallan las relaciones? ¿Por qué no funciona el código? Si no nos ajustamos, los problemas persisten. ¿Por qué los demás nos aprecian? ¿Qué hicimos bien?
+>>>>>>> 5e413ada0 (feat(blog): add Spanish post on growth lessons)
 
 Mi inglés se convirtió en una ventaja en China, ayudándome a conseguir roles como contratista en bancos internacionales. Debemos invertir en lo que funciona para hacer la vida más fácil. Al entender las razones detrás de los desafíos, podemos evitarlos y volvernos más sabios.
