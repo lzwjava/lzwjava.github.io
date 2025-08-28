@@ -7,6 +7,7 @@ def _map_target_code(code):
     mapping = {
         "hant": "zh-tw",
         "zh": "zh-cn",
+        "ko": "zh-tw",
         "ja": "ja",
         "en": "en",
         "es": "es",
