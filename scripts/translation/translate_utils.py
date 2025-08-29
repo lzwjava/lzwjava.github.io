@@ -29,11 +29,39 @@ def validate_translated_languages(translated_text, target_language, require_engl
         print(f"Debug: Skipping validation for {source_file} translating to {target_code}")
         return
     
-    # Simplified validation - just check if text is not empty
+    # Basic validation - check if text is not empty
     if not translated_text.strip():
         raise RuntimeError(f"Translated text is empty")
     
-    print(f"Debug: Validation passed for target language '{target_code}'")
+    # Use langid to detect the primary language of the translated text
+    detected_lang, confidence = detect_language_with_langid(translated_text)
+    
+    # Relaxed confidence threshold for validation
+    min_confidence = 0.7
+    
+    if confidence < min_confidence:
+        print(f"Debug: Low confidence ({confidence:.3f}) for language detection, skipping validation")
+        return
+    
+    # Check if detected language matches target (with some flexibility for Chinese variants)
+    expected_codes = [target_code]
+    if target_code == "zh-cn":
+        expected_codes.extend(["zh", "zh-tw"])  # Accept any Chinese variant
+    elif target_code == "zh-tw":
+        expected_codes.extend(["zh", "zh-cn"])  # Accept any Chinese variant
+    
+    if detected_lang not in expected_codes:
+        # Special case: if target is non-English but detected is English, 
+        # it might be a mixed content or the text wasn't actually translated
+        if detected_lang == "en" and target_code != "en":
+            raise RuntimeError(f"Text appears to be in English but target language is {target_code}")
+        else:
+            print(f"Debug: Language mismatch - detected: {detected_lang} (confidence: {confidence:.3f}), expected: {target_code}")
+            # Only raise error for high confidence mismatches
+            if confidence > 0.9:
+                raise RuntimeError(f"Detected language '{detected_lang}' doesn't match target '{target_code}'")
+    
+    print(f"Debug: Validation passed - detected: {detected_lang} (confidence: {confidence:.3f}), target: {target_code}")
 
 
 def detect_language_with_langid(text):
