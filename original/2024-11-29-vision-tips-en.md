@@ -5,7 +5,7 @@ image: false
 lang: en
 layout: post
 prompt: Do not translate specific human name items such as Yin, Yin Wang, Zhiwei, etc.
-title: 'Comfortable Daily Eyeglass Use at 1.50D Below Full Prescription'
+title: 'A Practical Guide to Comfortable Daily Eyeglass Use at 1.50D Below Full Prescription'
 top: 10
 ---
 
