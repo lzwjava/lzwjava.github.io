@@ -52,3 +52,30 @@ def check_title_strict(title, target_lang):
             raise RuntimeError(f"Title contains forbidden character: {char}")
     
     return title.strip()
+
+def check_markdown_table_formatting(text):
+    """Check for markdown table formatting issues - headers immediately followed by tables"""
+    import re
+    
+    lines = text.split('\n')
+    issues = []
+    
+    for i, line in enumerate(lines):
+        # Check if line is a header (starts with #)
+        if re.match(r'^#+\s+', line.strip()):
+            # Look for the next non-empty line
+            next_line_idx = i + 1
+            while next_line_idx < len(lines) and not lines[next_line_idx].strip():
+                next_line_idx += 1
+            
+            # Check if the next non-empty line is a table (starts with |)
+            if (next_line_idx < len(lines) and 
+                lines[next_line_idx].strip().startswith('|')):
+                header_text = line.strip()
+                table_preview = lines[next_line_idx].strip()
+                if len(table_preview) > 50:
+                    table_preview = table_preview[:47] + "..."
+                issues.append(f"Header '{header_text}' immediately followed by table '{table_preview}'")
+    
+    if issues:
+        raise RuntimeError(f"Found {len(issues)} markdown table formatting issues: " + "; ".join(issues))

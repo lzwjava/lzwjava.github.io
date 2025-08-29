@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 from scripts.llm.openrouter_client import call_openrouter_api
 from scripts.translation.translate_utils import validate_translated_languages, detect_language_with_langid
 from scripts.translation.translate_validate_utils import (
-    validate_length, clean_response, check_echo, check_commentary, check_title_strict
+    validate_length, clean_response, check_echo, check_commentary, check_title_strict, check_markdown_table_formatting
 )
 
 LANGUAGE_MAP = {
@@ -44,6 +44,10 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, s
     check_commentary(translated)
     if kind == "title":
         check_title_strict(translated, target)
+    
+    # Check markdown table formatting for content translations
+    if kind == "content":
+        check_markdown_table_formatting(translated)
 
     try:
         detected = detect_language_with_langid(translated)
