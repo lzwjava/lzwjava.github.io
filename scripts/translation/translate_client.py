@@ -5,6 +5,9 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".
 
 from scripts.llm.openrouter_client import call_openrouter_api
 from scripts.translation.translate_utils import validate_translated_languages, detect_language_with_langid
+from scripts.translation.translate_validate_utils import (
+    validate_length, clean_response, check_echo, check_commentary, check_title_strict
+)
 
 LANGUAGE_MAP = {
     "ja": "Japanese",
@@ -29,60 +32,6 @@ def build_prompt_template(target_language, type_, front_matter):
         tpl = head
     return tpl.format(lang=lang_name)
 
-def validate_length(text):
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
-    length = len(text)
-    if not 1 <= length <= 30000:
-        raise ValueError(f"text length {length} outside allowed range [1, 30000]")
-
-def clean_response(text):
-    if not isinstance(text, str):
-        raise RuntimeError("Model returned non-text response")
-    return text.strip()
-
-def check_echo(original, translated):
-    if original.lower().strip() in translated.lower():
-        raise RuntimeError("Model returned input or echoed text")
-
-def check_commentary(translated):
-    indicators = [
-        "the output is", "output is", "translated title",
-        "the translation is", "translation is", "translated:",
-        "result:", "output:", "return only", "return only the translated"
-    ]
-    low = translated.lower()
-    for ind in indicators:
-        if ind in low:
-            raise RuntimeError("Model included commentary")
-
-def check_title_strict(title, target_lang):
-    """Strict title validation - removes quotes and special chars based on language"""
-    if "\n" in title.strip():
-        raise RuntimeError("Model returned multi-line title")
-    
-    # Define forbidden characters by language
-    forbidden_chars = {
-        'ja': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》'],
-        'zh': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》', '〈', '〉'],
-        'hant': ['"', "'", '"', '"', '「', '」', '『', '』', '《', '》', '〈', '〉'],
-        'hi': ['"', "'", '"', '"', '«', '»'],
-        'ar': ['"', "'", '"', '"', '«', '»'],
-        'es': ['"', "'", '"', '"', '«', '»'],
-        'fr': ['"', "'", '"', '"', '«', '»'],
-        'de': ['"', "'", '"', '"', '„', '"', '»', '«'],
-        'en': ['"', "'", '"', '"']
-    }
-    
-    # Get forbidden chars for target language, default to common quotes
-    chars_to_remove = forbidden_chars.get(target_lang, ['"', "'", '"', '"'])
-    
-    # Check if title contains any forbidden characters
-    for char in chars_to_remove:
-        if char in title:
-            raise RuntimeError(f"Title contains forbidden character: {char}")
-    
-    return title.strip()
 
 def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, source_file=None):
     validate_length(text)
