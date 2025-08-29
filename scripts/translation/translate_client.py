@@ -26,7 +26,7 @@ def build_prompt_template(target_language, type_, front_matter):
     if type_ == "title":
         tpl = "Translate the following title into {lang}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {lang}, return it as is. If the target language is English, ensure the title is in Title Case.\n"
     else:
-        head = "Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.\n"
+        head = "Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.\n\nIMPORTANT: When translating markdown content, ensure proper formatting:\n- Always add a blank line between headers (lines starting with #) and tables (lines starting with |)\n- Maintain proper markdown table structure\n- Preserve all original formatting and spacing except where formatting rules require changes\n\n"
         if front_matter:
             head += f"{front_matter}\n"
         tpl = head
