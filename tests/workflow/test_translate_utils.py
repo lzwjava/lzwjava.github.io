@@ -7,7 +7,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..', 'scripts'
 
 from translation.translate_utils import (
     detect_language_with_langid,
-    analyze_text_languages,
     validate_translated_languages,
     _map_target_code
 )

@@ -75,25 +75,3 @@ def detect_language_with_langid(text):
     return lang, confidence
 
 
-def analyze_text_languages(text, min_confidence=0.8):
-    """Analyze text and return detected languages with confidence scores.
-    Splits text into sentences and analyzes each part.
-    """
-    if not text.strip():
-        return []
-    
-    # Simple sentence splitting
-    sentences = [s.strip() for s in text.replace('\n', ' ').split('.') if s.strip()]
-    
-    language_detections = []
-    for sentence in sentences:
-        if len(sentence) > 10:  # Only analyze meaningful sentences
-            lang, confidence = detect_language_with_langid(sentence)
-            if confidence >= min_confidence:
-                language_detections.append({
-                    'text': sentence[:50] + '...' if len(sentence) > 50 else sentence,
-                    'language': lang,
-                    'confidence': confidence
-                })
-    
-    return language_detections
