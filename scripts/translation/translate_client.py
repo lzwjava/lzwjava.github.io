@@ -60,9 +60,9 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, s
     if kind == "title":
         check_title_strict(translated, target)
     
-    # Check markdown table formatting for content translations
+    # Fix markdown table formatting for content translations
     if kind == "content":
-        check_markdown_table_formatting(translated)
+        translated = check_markdown_table_formatting(translated)
 
     try:
         detected = detect_language_with_langid(translated)
