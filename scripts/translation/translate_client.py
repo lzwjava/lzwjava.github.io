@@ -4,7 +4,7 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 from scripts.llm.openrouter_client import call_openrouter_api
-from scripts.translation.translate_utils import validate_translated_languages, detect_languages_with_langdetect
+from scripts.translation.translate_utils import validate_translated_languages, detect_language_with_langid
 
 LANGUAGE_MAP = {
     "ja": "Japanese",
@@ -97,7 +97,7 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, s
         check_title_strict(translated, target)
 
     try:
-        detected = detect_languages_with_langdetect(translated)
+        detected = detect_language_with_langid(translated)
     except Exception as e:
         detected = []
     validate_translated_languages(translated, target, require_english=need_en, source_file=source_file)
