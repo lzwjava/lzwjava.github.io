@@ -7,7 +7,7 @@ def scan_markdown_files_for_table_issues():
     issues = []
     
     # Define directories to scan
-    directories_to_scan = ['_posts', 'original', 'notes']
+    directories_to_scan = ['_posts', 'original']
     
     for directory in directories_to_scan:
         if not os.path.exists(directory):
@@ -26,7 +26,7 @@ def scan_markdown_files_for_table_issues():
                     
                     # Find headers immediately followed by tables
                     # Pattern: header (### or ####) followed by table without blank line
-                    pattern = r'(#{3,4}[^\n]*)\n(\|[^\n]*\|)'
+                    pattern = r'(#{2,4}[^\n]*)\n(\|[^\n]*\|)'
                     matches = re.finditer(pattern, content, re.MULTILINE)
                     
                     for match in matches:
