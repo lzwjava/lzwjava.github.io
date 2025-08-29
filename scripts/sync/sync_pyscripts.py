@@ -30,8 +30,7 @@ def main():
         "scripts/**/*.sh",
         "requirements*.txt",
         "pyproject.toml",
-        "setup.py",
-        "Makefile",
+        "setup.py"
     ]
     
     # Files and directories to exclude
