@@ -49,7 +49,7 @@ translated: true
    - Construir Innovación a través de la Experiencia  
    - Evaluación Crítica de Nuevos Enfoques  
 
-## Consejos de Vida  
+## Consejos de Vida
 
 * Explora el mundo temprano, visita diferentes países y habla con diversas personas.  
 
@@ -57,7 +57,7 @@ translated: true
 
 * Siempre piensa en mejores formas de hacer las cosas.  
 
-* Piensa como un genio, sospecha de todo, especialmente de las autoridades.  
+* Piensa como un genio, sospecha de todo, especialmente de las autoridades.
 
 * Trata a las personas por igual. Sé amable. No menosprecies a quienes no son mejores que tú en calificaciones o salario. No te mintieron, engañaron o robaron.  
 
@@ -81,7 +81,7 @@ translated: true
 
 * Come alimentos naturales o frescos. Prefiere frutas sobre snacks. La sociedad moderna crea demasiados alimentos procesados. Elige opciones más naturales. Vive más y explora más.  
 
-* No persigas milagros. La vida misma es un milagro.  
+* No busques milagros. La vida en sí es un milagro.
 
 * No vivas por reconocimiento o fama. Al nacer, no lo necesitamos; necesitamos seguridad. Los padres nos castigan si desaprueban nuestro comportamiento, así que gradualmente asociamos reconocimiento con seguridad. Pero son cosas distintas.  
 
@@ -125,7 +125,7 @@ translated: true
 
 ---
 
-## Consejos de Productividad  
+## Consejos de Productividad
 
 * El enfoque en el trabajo no siempre ocurre como esperas. Sorprendentemente, entornos ruidosos o interrumpidos, como cuidar niños, a veces aumentan la productividad. Tu estado de ánimo influye mucho en la concentración, similar a cómo afecta el sueño.  
 
@@ -157,13 +157,13 @@ translated: true
 
 ---
 
-## Consejos de Aprendizaje  
+## Consejos de Aprendizaje
 
 * Trata el aprendizaje como un pasatiempo: con juego e interés genuino.  
 
 * Aprende mediante práctica y repetición hasta dominarlo con experiencia práctica.  
 
-* Sumérgete diariamente en el tema en contextos naturales.  
+* Sumérgete diariamente en el tema en contextos naturales.
 
 * Sigue tus intereses genuinos; la pasión mejora los resultados.  
 
@@ -179,7 +179,7 @@ translated: true
 
 * Recuerda: el aprendizaje surge naturalmente mediante juego y exploración.  
 
-* Usa herramientas de IA como ChatGPT, Claude y Gemini.  
+* Aprende con herramientas de IA como ChatGPT, Claude y Gemini.
 
 * Formula preguntas a las IA en múltiples idiomas.  
 
@@ -197,7 +197,7 @@ translated: true
 
 * Haz exámenes, entrevistas, certificaciones o tareas para alcanzar excelencia.  
 
-* No solo veas videos pretendiendo entender.  
+* No solo ve videos de los temas pretendiendo entender.
 
 * Muchas veces crees estar preparado, pero no es así. Apunta alto para lograr resultados medios; apunta a lo medio para obtener resultados bajos.  
 
@@ -207,7 +207,7 @@ translated: true
 
 * El entorno importa. No necesitas esforzarte en inglés si creciste en un país angloparlante.  
 
-* Tu cerebro es poderoso. Reflexiona una y otra vez.  
+* Tu cerebro es poderoso. Piensa las cosas por ti mismo. Reflexiona una y otra vez, repetidamente.
 
 * Capta la esencia o principio de las cosas. Ejemplo: el aprendizaje automático se basa en cálculo; las startups, en crear algo que la gente desee.  
 
@@ -243,9 +243,9 @@ translated: true
 
 * Compré herramientas mecánicas y de reparación de teléfonos. Son útiles: aprendo de ellas y las uso ocasionalmente.  
 
-* Protege tus pertenencias. Usa fundas para tu computadora o iPhone.  
+* Protege tus pertenencias. Usa fundas para proteger tu computadora o iPhone.
 
-* Si algo es barato, compra varias unidades, como adaptadores o cables.  
+* Si algo es barato, compra varias unidades, como adaptadores de carga o cables eléctricos.
 
 * Aprendes qué es bueno o malo al usar cosas, especialmente con el tiempo. Vigila tus artículos. Ejemplo: quizá debas cambiar la batería de un MacBook después de 5-8 años.  
 
