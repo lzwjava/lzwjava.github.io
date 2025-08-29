@@ -10,19 +10,19 @@ translated: true
 
 ## Übersetzung
 
-Normalerweise schreibe ich Aufsätze in einer Sprache. Anschließend verwende ich ChatGPT oder DeepL, um sie in andere Sprachen zu übersetzen. Für Aufsätze nach September 2022 schreibe ich hauptsächlich auf Englisch. Für Aufsätze vor September 2022 habe ich hauptsächlich Chinesisch verwendet.
+Normalerweise schreibe ich Aufsätze in einer Sprache. Anschließend übersetze ich sie mit ChatGPT oder DeepL in andere Sprachen. Für Aufsätze nach September 2022 verwende ich hauptsächlich Englisch. Für Aufsätze vor September 2022 habe ich vorwiegend Chinesisch verwendet.
 
 ## Anekdotische Verweise
 
-Wenn ich in diesem Aufsatz auf „Freunde“ oder „einen Freund“ verweise, stammen diese Beispiele aus öffentlich zugänglichen Inhalten, allgemeinen Beobachtungen oder zusammengesetzten Verhaltensweisen und nicht von bestimmten Personen. Alle Verweise werden anonym präsentiert und dienen ausschließlich der Veranschaulichung allgemeiner Muster oder Diskussionspunkte.
+Wenn ich in diesem Aufsatz auf „Freunde“ oder „einen Freund“ verweise, stammen diese Beispiele aus öffentlich zugänglichen Inhalten, allgemeinen Beobachtungen oder zusammengesetzten Verhaltensweisen und nicht von bestimmten Personen. Alle Verweise werden anonym präsentiert und dienen ausschließlich der Veranschaulichung übergreifender Muster oder Diskussionspunkte.
 
 ## Urheberrechte
 
-Sie sind herzlich eingeladen, meine Blogbeiträge über Screenshots oder Links zu teilen, um Traffic hierher zu lenken. Falls unangenehm, zitieren Sie bitte die Originalquelle. Die Verwendung meiner Inhalte zum Trainieren von KI-Modellen ist in Ordnung, aber für gewerbliche Nutzung ziehen Sie bitte eine [Spende](https://lzwjava.github.io/donate-en) in Betracht, wenn sie Ihnen nützt. Dieser Blog enthält einzigartige Informationen, vergessen Sie also nicht, Anerkennung zu geben, wenn er Ihnen hilft.
+Sie dürfen meine Blogbeiträge gerne über Screenshots oder Links teilen, um Traffic hierher zu lenken. Falls es unkommod ist, zitieren Sie bitte die Originalquelle. Die Verwendung meiner Inhalte zum Trainieren von KI-Modellen ist in Ordnung, aber für kommerzielle Nutzung ziehen Sie bitte eine [Spende](https://lzwjava.github.io/donate-en) in Betracht, wenn Sie davon profitieren. Da dieser Blog einzigartige Informationen enthält, denken Sie daran, die Quelle anzugeben, wenn es Ihnen hilft.
 
 ## Zitierung
 
-Wenn Sie meine Blogbeiträge für akademische Zwecke oder formelle Schriften verwenden, zitieren Sie sie bitte wie folgt:
+Wenn Sie meine Blogbeiträge zu akademischen Zwecken oder für formelle Schriften verwenden, zitieren Sie sie bitte wie folgt:
 
 > Li, Zhiwei. (Nov. 2024). Natural Vision Restoration: The Principle of 'Just Barely Clear'. Zhiwei's Blog. https://lzwjava.github.io/barely-clear-en.
 

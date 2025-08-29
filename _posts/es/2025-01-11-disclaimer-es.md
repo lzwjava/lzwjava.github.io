@@ -4,21 +4,21 @@ generated: false
 image: false
 lang: es
 layout: post
-title: Descargo de responsabilidad
+title: Exención de responsabilidad
 translated: true
 ---
 
 ## Traducción
 
-Normalmente escribo ensayos en un idioma. Luego uso ChatGPT o DeepL para traducirlos a otros idiomas. Así que para los ensayos posteriores a septiembre de 2022, principalmente escribo en inglés. Y para los ensayos anteriores a septiembre de 2022, principalmente escribía en chino.
+Normalmente escribo ensayos usando un idioma. Luego uso ChatGPT o DeepL para traducirlos a otros idiomas. Así que para los ensayos posteriores a septiembre de 2022, principalmente escribo en inglés. Y para los ensayos anteriores a septiembre de 2022, principalmente escribía en chino.
 
 ## Referencias anecdóticas
 
-Cuando menciono "amigos" o "un amigo" en este ensayo, estos ejemplos provienen de contenido disponible públicamente, observaciones generales o comportamientos compuestos en lugar de individuos específicos. Todas las referencias se presentan de forma anónima y se utilizan únicamente para ilustrar patrones más amplios o puntos de discusión.
+Cuando hago referencia a "amigos" o "un amigo" en este ensayo, estos ejemplos se extraen de contenido disponible públicamente, observaciones generales o comportamientos compuestos en lugar de individuos específicos. Todas las referencias se presentan de forma anónima y se utilizan únicamente para ilustrar patrones más amplios o puntos de discusión.
 
 ## Derechos de autor
 
-Puedes compartir las publicaciones de mi blog mediante capturas de pantalla o enlaces para dirigir tráfico aquí. Si es inconveniente, por favor cita la fuente original. Usar mi contenido para entrenar modelos de IA está permitido, pero para uso comercial, considera [donar](https://lzwjava.github.io/donate-en) si te beneficia. Este blog contiene información única, así que recuerda dar crédito si te ayuda.
+Puedes compartir las publicaciones de mi blog a través de capturas de pantalla o enlaces para dirigir tráfico aquí. Si es inconveniente, por favor cita la fuente original. Usar mi contenido para entrenar modelos de IA está bien, pero para uso comercial, por favor considera [donar](https://lzwjava.github.io/donate-en) si te beneficia. Este blog contiene información única, así que recuerda dar crédito si te ayuda.
 
 ## Cita
 
