@@ -32,7 +32,6 @@ def main():
         "pyproject.toml",
         "setup.py",
         "Makefile",
-        "README.md"
     ]
     
     # Files and directories to exclude
