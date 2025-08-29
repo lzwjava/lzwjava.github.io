@@ -9,7 +9,7 @@ title: 'A Practical Guide to Comfortable Daily Eyeglass Use at 1.50D Below Full 
 top: 10
 ---
 
-*Last updated in August 30 2025*
+*Last updated in 30 August 2025*
 
 ### Table of Contents
 
