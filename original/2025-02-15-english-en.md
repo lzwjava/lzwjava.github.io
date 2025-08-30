@@ -11,34 +11,42 @@ translated: false
 ### Table of Contents
 
 1. [Affordable English Practice with Native Speakers](#affordable-english-practice-with-native-speakers)
-   - Discovering Cheap Online English Courses
-   - IELTS Preparation and Speaking Practice
-   - Comparison with Traditional Platforms
-   - Platform Shopping and Service Selection
+   - Costs 18 CNY per 25-minute session
+   - Focuses on IELTS speaking exercises
+   - Uses Pinduoduo for course comparisons
+   - Teachers are Filipino natives
+   - Goal: improve from IELTS 6 to 7.5
 
 2. [Mastering English](#mastering-english)
-   - My English Learning Journey and Career Success
-   - Intensive Learning Methods (16 hours daily)
-   - Tools and Techniques for Continuous Learning
-   - Becoming the Sharpest Person in the World
-   - Dedication to My Daughter
+   - Dedicated 16 hours daily learning
+   - Transformed brain through immersion
+   - Used English in daily communication
+   - Overcame dropout limitations via skills
+   - Combined learning with daily activities
 
 3. [The Recipe to Learn English](#the-recipe-to-learn-english)
-   - Total Learning Effort Summary (7 years)
-   - Work Environment and Rapid Progress
-   - Brain Changes Through English Immersion
-   - Learning Methods That Don't Feel Like Work
-   - Finding Ways to Work Hard Without Pain
+   - Learned via Google, TikTok, Netflix
+   - Focused on enjoyable immersion methods
+   - Improved typing speed from 5 to 20 wpm
+   - Avoided painful exam preparation
+   - Applied method to other subjects
 
 4. [Improving English with Extensive Input](#improving-english-with-extensive-input)
-   - From Chinese to English Preference Shift
-   - Learning Through Enjoyable Content Methods
-   - Statistics and Time Investment Details
-   - Making Learning Like a Game
-   - Advice for Students and Self-Learners
+   - Shifted from Chinese to English content
+   - Used songs, quotes, games for learning
+   - Watched 100+ shows without subtitles
+   - Spent 8 hours daily on English
+   - Emphasized natural, painless learning
+
+5. [The Journey of Learning English](#the-journey-of-learning-english)
+   - Started with Paul Graham’s essays
+   - Used TikTok as primary learning tool
+   - Read 15+ English books patiently
+   - Practiced via Upwork client projects
+   - Focused on immersion over memorization
 
 
-### Affordable English Practice with Native Speakers
+## Affordable English Practice with Native Speakers
 
 *2025.02.15*
 
@@ -203,6 +211,8 @@ Learning anything might be similar to learning English. Believe in the power of 
 When it becomes a game, our focus is intensified, and thinking becomes enjoyable. If you find yourself struggling to understand, search for easier materials to read. Read English children's books and watch animated films for children; they are excellent resources.
 
 We should consider how we encourage high school and college students and those interested in learning English. After sharing these insights, I want to end with a memorable and slightly exaggerated statement: Learning English like a native is genuinely simple and enjoyable.
+
+---
 
 ## The Journey of Learning English 
 
