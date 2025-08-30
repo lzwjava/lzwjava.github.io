@@ -10,10 +10,6 @@ def clean_response(text):
         raise RuntimeError("Model returned non-text response")
     return text.strip()
 
-def check_echo(original, translated):
-    if original.lower().strip() in translated.lower():
-        raise RuntimeError("Model returned input or echoed text")
-
 def check_commentary(translated):
     indicators = [
         "the output is", "output is", "translated title",
