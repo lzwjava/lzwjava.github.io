@@ -21,6 +21,18 @@ LANGUAGE_MAP = {
     "ar": "Arabic"
 }
 
+LANGUAGE_MODEL_MAP = {
+    "en": "deepseek-v3.1",
+    "zh": "deepseek-v3.1",
+    "hant": "deepseek-v3.1",
+    "ja": "mistral-medium",
+    "es": "mistral-medium",
+    "hi": "mistral-medium",
+    "fr": "mistral-medium",
+    "de": "mistral-medium",
+    "ar": "mistral-medium"
+}
+
 def build_prompt_template(target_language, type_, front_matter):
     lang_name = LANGUAGE_MAP.get(target_language, target_language)
     if type_ == "title":
@@ -53,8 +65,10 @@ def run_translate(text, target, kind, model, front_matter, orig_lang, need_en, s
     if target == orig_lang:
         return text
 
+    # Use language-specific model mapping, ignore the model parameter
+    actual_model = LANGUAGE_MODEL_MAP.get(target, "mistral-medium")
     prompt = build_prompt_template(target, kind, front_matter) + "\n\n" + text
-    translated = clean_response(call_openrouter_api(prompt, model))
+    translated = clean_response(call_openrouter_api(prompt, actual_model))
     check_commentary(translated)
     if kind == "title":
         check_title_strict(translated, target)
