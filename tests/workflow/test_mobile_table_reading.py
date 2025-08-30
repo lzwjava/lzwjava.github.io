@@ -2,8 +2,11 @@ import unittest
 import re
 import os
 
+# Configuration: Maximum allowed columns in markdown tables for mobile readability
+MAX_TABLE_COLUMNS = 7
+
 def scan_markdown_files_for_table_columns():
-    """Scan English markdown files for tables with more than 5 columns."""
+    """Scan English markdown files for tables with more than MAX_TABLE_COLUMNS columns."""
     results = []
 
     # Only scan original directory for English markdown files
@@ -38,7 +41,7 @@ def scan_markdown_files_for_table_columns():
                             table_start = i
                             column_count = len(lines[i].split('|')) - 2  # Subtract 2 for empty columns at start/end
 
-                            if column_count > 5:
+                            if column_count > MAX_TABLE_COLUMNS:
                                 tables_with_many_columns.append({
                                     'line': table_start + 1,
                                     'column_count': column_count,
@@ -66,9 +69,8 @@ def scan_markdown_files_for_table_columns():
     return results
 
 class TestMobileTableReading(unittest.TestCase):
-    @unittest.skip("Test disabled - enable when needed")
     def test_mobile_table_column_count(self):
-        """Test that English markdown files have tables with 5 or fewer columns for mobile readability."""
+        """Test that English markdown files have tables with MAX_TABLE_COLUMNS or fewer columns for mobile readability."""
         table_results = scan_markdown_files_for_table_columns()
 
         failing_files = []
@@ -83,7 +85,7 @@ class TestMobileTableReading(unittest.TestCase):
                     file_details += f"\n  Line {table['line']}: {table['column_count']} columns - {table['header']}"
                 details.append(file_details)
 
-            self.fail(f"Found {len(failing_files)} files with tables having more than 5 columns:\\n{'\\n'.join(details)}")
+            self.fail(f"Found {len(failing_files)} files with tables having more than {MAX_TABLE_COLUMNS} columns:\\n{'\\n'.join(details)}")
 
 if __name__ == '__main__':
     unittest.main()
