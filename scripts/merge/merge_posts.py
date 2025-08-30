@@ -87,10 +87,10 @@ def merge_post_contents(contents):
     return combined_content
 
 def merge_post_contents_with_filenames(post_data):
-    """Merge multiple post contents into one, using filename for date extraction."""
+    """Merge multiple post contents into one, using argument order (first argument becomes main post)."""
     contents = [post['content'] for post in post_data]
     filenames = [post['filename'] for post in post_data]
-    
+
     if len(contents) < 2:
         print("Error: At least 2 posts are required")
         return None
@@ -98,15 +98,13 @@ def merge_post_contents_with_filenames(post_data):
         print("Error: Maximum 10 posts allowed")
         return None
 
-    # Process and sort posts
+    # Process posts (keep argument order - first is main)
     processed_posts = []
     for i, content in enumerate(contents):
         filename = filenames[i] if i < len(filenames) else None
         processed_posts.append(process_post_content(content, filename))
-    
-    processed_posts.sort(key=lambda x: x['date'] if x['date'] else '', reverse=True)
 
-    # First post is main post
+    # First argument becomes main post (no sorting by date)
     main_content = processed_posts[0]['content']
     combined_content = main_content
 
@@ -163,7 +161,7 @@ def combine_posts(posts):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Combine multiple blog posts (max 10)")
-    parser.add_argument("posts", nargs="+", help="Paths to post files. First will be main post after sorting by date.")
+    parser.add_argument("posts", nargs="+", help="Paths to post files. First will be main post, others will be appended to it.")
 
     args = parser.parse_args()
     combine_posts(args.posts)
