@@ -37,6 +37,8 @@ def build_prompt_template(target_language, type_, front_matter):
     lang_name = LANGUAGE_MAP.get(target_language, target_language)
     if type_ == "title":
         tpl = """Translate the following title into {lang}. Return only the translated title without any extra notes, explanations, or repetition of the input text. If the title is already in {lang}, return it as is. If the target language is English, ensure the title is in Title Case.
+
+IMPORTANT: Do not include any quotes, double quotes, special quotation marks (such as ", ', ", ", «, », 「, 」), or other decorative characters around the title.
 """
     else:
         head = """Translate the following markdown text into {lang}. Return only the translated content without any additional notes or explanations. If the text is already in {lang}, return it unchanged.
