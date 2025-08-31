@@ -20,7 +20,7 @@ translated: false
 
 - A matrix is a group of numbers arranged in rows and columns.
 
-- The equation \\[ Ax = B \\] has a solution when \\[ \text{rank}(A) = \text{rank}([A|B]) \\].
+- The equation \\[ Ax = B \\] has a solution when \\[ \text{rank}(A) = \text{rank}([A or B]) \\].
 
 - The rank of a matrix is the number of linearly independent rows (or columns) in its **echelon form**.
 
