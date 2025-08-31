@@ -4,114 +4,115 @@ generated: false
 image: false
 lang: de
 layout: post
-title: Erwartungen übertreffen und Bestätigung vermeiden
+title: Erwartungen übertreffen und Validierung vermeiden
 translated: true
 ---
 
+```markdown
 ### Inhaltsverzeichnis
 
-1. [Erwartungen übertreffen](#erwartungen-übertreffen)
+1. [Über die Erwartungen hinausgehen](#über-die-erwartungen-hinausgehen)
    - Unternehmensstandards für Aufgabenqualität übertreffen
    - Andere mit versteckten Anstrengungen überraschen
    - KI für außergewöhnliche Ergebnisse nutzen
-   - Selbstoffenbarung begrenzen, um Wirkung zu erzielen
+   - Selbstoffenbarung begrenzen, um Wirkung zu verstärken
    - Außergewöhnliche Ergebnisse sind selten
 
-2. [Bestätigung vermeiden](#bestätigung-vermeiden)
-   - Das Streben nach Bestätigung rührt von Unsicherheit her
+2. [Bestätigungssuche vermeiden](#bestätigungssuche-vermeiden)
+   - Bestätigungssuche entsteht aus Unsicherheit
    - Veraltete gesellschaftliche Annahmen ablehnen
    - Zu viel Teilen schafft unnötige Reibung
    - Sterblichkeit akzeptieren, um Selbstvertrauen zu gewinnen
-   - Auf Handlungen statt auf Zustimmung konzentrieren
+   - Handlungen statt Zustimmung priorisieren
 
 3. [Nicht stolz auf Erfolg sein](#nicht-stolz-auf-erfolg-sein)
    - Erfolg unterschätzen, um wachsam zu bleiben
    - Emotionale Investitionen stören die Strategie
-   - Vorzeitige Skalierung zerstört Startups
-   - Schuldenannahmen schlagen hart zurück
+   - Vorzeitiges Skalieren zerstört Startups
+   - Schuldenannahmen führen zu harten Rückschlägen
    - Erholung erfordert langfristige Disziplin
 
 ---
 
-## Erwartungen übertreffen
+## Über die Erwartungen hinausgehen
 
 *2025.07.30*
 
 Es ist gut, Versprechen zu halten – noch besser ist es jedoch, Erwartungen zu übertreffen.
 
-Im Berufsleben wie im Privatleben sorgen Dinge, die über den Erwartungen liegen, für angenehme Überraschungen.
+Im Berufsleben wie im Privatleben schaffen unerwartete Leistungen angenehme Überraschungen.
 
-Im Berufsleben bedeutet das Übertreffen von Erwartungen, schneller oder besser zu liefern, als Kollegen es erwarten. Es bedeutet nicht nur, dass die Arbeit den Unternehmensanforderungen entspricht, sondern dass die Qualität der Arbeit das Geforderte übersteigt.
+Im Berufsleben bedeutet das Übertreffen von Erwartungen, schneller oder besser zu liefern, als Kollegen es erwarten. Es bedeutet nicht nur, die Unternehmensanforderungen zu erfüllen, sondern die Qualität der Arbeit über das Geforderte hinaus zu steigern.
 
-Im Privatleben heißt Erwartungen übertreffen, anderen auf unerwartete Weise zu helfen. Denkt an 7 Milliarden Menschen – wie viele davon können dir helfen? Indem sie ihre beste Arbeit leisten, helfen sie dir bereits, wenn du ihre Dienstleistungen oder Produkte kaufst.
+Im Privatleben heißt das, anderen auf unerwartete Weise zu helfen. Denken Sie an 7 Milliarden Menschen – wie viele davon können Ihnen helfen? Während sie ihr Bestes geben, ist der Kauf ihrer Dienstleistungen oder Produkte bereits eine große Hilfe.
 
-Auch mein Lehrer Yin Wang ist darin außergewöhnlich gut. Er unterrichtet mich stets über meine Erwartungen hinaus. Ich werde nie sein Intelligenzniveau erreichen. Ich lese seine Essays oft erneut, doch egal wie oft ich sie lese, finde ich immer etwas sehr Nützliches.
+Auch mein Lehrer Yin Wang ist darin außergewöhnlich gut. Er unterrichtet mich stets über meine Erwartungen hinaus. Ich werde sein Intelligenzniveau nie erreichen. Ich lese seine Essays immer wieder – doch egal wie oft, finde ich stets etwas Neues und Nützliches.
 
-Im Berufsleben erledigst du, was dir zugewiesen wird – das ist eine Grundvoraussetzung. Doch wie kannst du mehr tun als verlangt?
+Im Berufsleben erledigt man die zugewiesenen Aufgaben – das ist eine Grundvoraussetzung. Doch wie kann man darüber hinausgehen?
 
-Die Antwort liegt im effektiven Einsatz von KI-Tools. Unternehmen stellen möglicherweise KI-Chats für Mitarbeiter bereit. Meiner Meinung nach geht es jedoch nicht nur um intelligente Chatbots, sondern um KI-Agenten, Prompt-Engineering und Context-Engineering.
+Die Antwort lautet: KI-Tools effektiv nutzen. Unternehmen stellen möglicherweise KI-Chatbots zur Verfügung. Meiner Meinung nach geht es jedoch nicht nur um intelligente Chatbots, sondern um **KI-Agenten**, **Prompt-Engineering** und **Context-Engineering**.
 
-Ihre Nützlichkeit wartet nur darauf, entdeckt zu werden. Da KI-Modelle auf Milliarden von Tokens trainiert wurden – dem Großteil des menschlichen Wissens –, sind KI-Chats lediglich eine Methode, dieses Wissen zu komprimieren und zu dekomprimieren.
+Ihr Nutzen liegt bereit – es gilt, ihn zu entdecken. Da KI-Modelle mit Milliarden von Tokens trainiert wurden (dem Großteil des menschlichen Wissens), sind Chatbots nur eine Methode, dieses Wissen zu komprimieren und zu dekomprimieren.
 
-Kehren wir zum Thema zurück. Wenn wir besser arbeiten und positives Feedback erhalten möchten, sollten wir einige Dinge für uns behalten. Wir zeigen nicht alle unsere Arbeit oder Ideen, sondern halten einige zurück, um Vorgesetzte oder Teamleiter zu überraschen.
+Kehren wir zum Thema zurück: Um besser zu arbeiten und positives Feedback zu erhalten, sollte man einige Dinge für sich behalten. Nicht alle Arbeit oder Ideen offenlegen, sondern einige verstecken, um Vorgesetzte oder Teamleiter zu überraschen.
 
-Ein beliebter Gedanke in sozialen Medien ist, dass man nicht zu viel teilen oder zu bedürftig wirken sollte. Das ist guter Rat.
+Ein beliebter Gedanke in sozialen Medien lautet: Man sollte nicht zu viel teilen oder zu bedürftig wirken. Das ist ein guter Rat.
 
-Es gilt nicht nur für Angestellte, sondern auch für Nutzer. Airbnb ist ein gutes Beispiel dafür, Erwartungen zu übertreffen.
+Das gilt nicht nur für Angestellte, sondern auch für Nutzer. **Airbnb** ist ein Beispiel dafür, Erwartungen zu übertreffen.
 
-Es gibt bereits viele Arbeiter, Produkte und Dienstleistungen. Doch Dinge, die Erwartungen übertreffen, sind immer selten.
+Es gibt bereits viele Arbeiter, Produkte und Dienstleistungen – doch wirklich Außergewöhnliches bleibt selten.
 
-ChatGPT übertrifft Erwartungen. DeepSeek übertrifft Erwartungen.
+**ChatGPT** übertrifft Erwartungen. **DeepSeek** übertrifft Erwartungen.
 
-Ergebnisse, die Erwartungen übertreffen, sind nicht nur gut – sie sind auf eine Weise außergewöhnlich gut.
+Ergebnisse, die Erwartungen übertreffen, sind nicht nur gut – sie sind auf besondere Weise herausragend.
 
 ---
 
-## Bestätigung vermeiden
+## Bestätigungssuche vermeiden
 
 *2025.07.12*
 
-Das Streben nach Bestätigung ist für die meisten Menschen wahrscheinlich normal. Man braucht Bestätigung von Eltern, Lehrern, Chefs und anderen, um in der Gesellschaft zu überleben oder erfolgreich zu sein.
+Die Suche nach Bestätigung ist für die meisten Menschen wahrscheinlich allgegenwärtig. Man braucht sie von Eltern, Lehrern, Vorgesetzten und anderen, um in der Gesellschaft zu überleben oder sich zu behaupten.
 
-Wenn jemand sehr reich ist, braucht er dann noch Bestätigung? Er wird wahrscheinlich sehr wählerisch. Er gibt anderen eher Bestätigung, anstatt sie zu suchen. Ihm ist die Meinung anderer einfach egal.
+Wenn jemand sehr reich ist, braucht er dann noch Bestätigung? Er wird wählerisch. Oft gibt er anderen Bestätigung, statt sie zu suchen – die Meinungen anderer sind ihm gleichgültig.
 
-Hat mein Lehrer Yin Wang jemals nach Bestätigung gesucht? Scheinbar nicht. Er brach sein Studium an der Tsinghua-Universität, Cornell und Indiana Bloomington ab. Er verließ Microsoft, Intel, Google usw.
+Hat mein Lehrer **Yin Wang** jemals nach Bestätigung gesucht? Offensichtlich nicht. Er brach sein Studium an der **Tsinghua-Universität**, **Cornell** und **Indiana Bloomington** ab. Er verließ **Microsoft**, **Intel**, **Google** und andere.
 
-Als jemand, der viel Bestätigung sucht, lerne ich von Yin Wang und beginne, das Streben danach zu vermeiden.
+Als jemand, der selbst viel Bestätigung sucht, lerne ich von Yin Wang und beginne, dies zu vermeiden.
 
-Diese Gewohnheit bildet sich sehr früh. Man braucht Bestätigung von den Eltern, um Bestrafungen zu entgehen.
+Diese Gewohnheit bildet sich früh: Man braucht Bestätigung von den Eltern, um Bestrafung zu entgehen.
 
-Doch was Eltern für richtig halten, muss nicht korrekt sein. Schadet es den Augen, wenn Kinder viel auf dem Handy Videos schauen? Mit einer Weitsichtbrille ist das Betrachten eines Handys wie das Schauen auf einen Fernseher in 5 Metern Entfernung. Ihre Augen werden nicht beschädigt.
+Doch was Eltern für richtig halten, muss nicht korrekt sein. Schadet es den Augen, wenn Kinder viel am Handy Videos schauen? Mit Weitsichtbrillen ist der Abstand zum Handy wie zu einem 5 Meter entfernten Fernseher – die Augen werden nicht beschädigt.
 
-Ist es schwer, Kinder dazu zu bringen, beim Schauen von Videos auf dem Handy eine Weitsichtbrille zu tragen? Ich denke nicht. Wenn Kinder zwischen dem Ansehen von Videos mit Brille oder gar nicht wählen müssen, werden sich die meisten für Ersteres entscheiden.
+Ist es schwer, Kinder dazu zu bringen, beim Videogucken am Handy eine Weitsichtbrille zu tragen? Ich glaube nicht. Wenn sie zwischen "Videos mit Brille schauen" oder "gar nicht schauen" wählen müssen, entscheiden sich die meisten für Ersteres.
 
-Tatsächlich sind viele Gedanken oder Ideen von Eltern oder durchschnittlichen Erwachsenen nicht korrekt oder nicht absolut richtig. Es gibt unzählige Wege, Dinge zu tun.
+Viele Gedanken oder Ideen von Eltern oder Durchschnittserwachsenen sind also nicht (absolut) korrekt. Es gibt unzählige Wege, Dinge zu tun.
 
-In meinem letzten Job hat sich bei mir etwas verändert: Ich suche viel weniger Bestätigung. Ich arbeitete als Auftragnehmer für dieselbe Bank wie vor zwei Jahren, diesmal jedoch über einen anderen Dienstleister.
+In meinem aktuellen Job hat sich bei mir verändert, dass ich viel weniger Bestätigung suche. Ich arbeite als Auftragnehmer für dieselbe Bank wie vor zwei Jahren – diesmal jedoch über einen anderen Dienstleister.
 
-Damals erinnere ich mich, dass ich nach einem Monat Arbeit mein Gehalt erhielt und meinem Vorgesetzten meine Dankbarkeit ausdrückte. Ich erzählte ihm, dass ich selbst nach Feierabend viele Videos über Backend-Engineering ansah, um zu lernen. Als ich etwas mehr schrieb, antwortete er mit „Gut, mach weiter so“ und ähnlichen Dingen – er deutete an, dass er diese Details nicht hören muss und ich mich auf die Arbeit konzentrieren soll. Zwar war er nicht direkt, aber ich spürte es.
+Damals, nach einem Monat, erhielt ich mein Gehalt und teilte meinem Manager dankbar mit, dass ich auch nach Feierabend viele Backend-Engineering-Videos anhörte, um zu lernen. Als ich etwas mehr schrieb, antwortete er sinngemäß: *"Gut, mach weiter so"* – und deutete an, dass er solche Details nicht brauche und ich mich auf die Arbeit konzentrieren solle. Zwar ausdrückte er es indirekt, aber ich spürte es.
 
-Auch Binance-CEO Changpeng Zhao sagt, dass es unerträglich ist, mit Menschen zu arbeiten, die ständig Bestätigung suchen. Er bevorzugt selbstbewusste Mitarbeiter. Vorgesetzte sind wahrscheinlich beschäftigt und haben keine Zeit für arbeitsfremde Themen.
+Auch **Binance**-CEO **Changpeng Zhao** sagt, es sei unerträglich, mit Menschen zu arbeiten, die ständig Bestätigung suchen. Er bevorzugt selbstbewusste Mitarbeiter. Manager haben wenig Zeit für arbeitsfremde Themen.
 
-Mein Bedürfnis nach Bestätigung hat mir auch sonst Probleme bereitet. Es ist, als wolle ich mich zu sehr beweisen. Das führte zu Konflikten. Ein Problem war, dass ich mich in Dinge einmischte, für die ich nicht zuständig war. Mein Gedanke war zwar, durch mein Eingreifen Verbesserungen zu erreichen – doch selbst wenn ich gute Absichten hatte, ist der richtige Weg nicht, anderen zu sagen, wie sie etwas tun sollen. Korrekturen sind schmerzhaft. Ich möchte auch nicht korrigiert werden.
+Meine Bestätigungssuche hat mir auch andere Probleme bereitet. Es war, als wolle ich mich zu sehr beweisen – was zu Konflikten führte. Ich mischte mich in Dinge ein, die nicht meine Verantwortung waren, weil ich dachte, durch mein Eingreifen würde sich etwas verbessern. Zwar hatte ich gute Absichten, doch der Weg war falsch: Andere zu korrigieren, ist schmerzhaft – und ich möchte selbst nicht korrigiert werden.
 
-In meinem aktuellen Job suche ich kaum Bestätigung und erledige einfach meine Arbeit. Das funktioniert gut, und ich erhielt positives Feedback.
+In meinem aktuellen Job suche ich kaum Bestätigung und erledige einfach meine Arbeit. Das funktioniert – und ich erhielte positives Feedback.
 
-Eine weitere Veränderung ist, dass ich vor fast zwei Jahren aufgehört habe, auf WeChat Moments zu posten. Früher dachte ich, WeChat Moments sei die ganze Welt. Jetzt sehe ich, dass WeChat Moments für die Welt das ist, was der Line-Status für Japaner ist – es ist nicht so wichtig, wie man denkt.
+Eine weitere Veränderung: Vor fast zwei Jahren hörte ich auf, in **WeChat Moments** zu posten. Früher dachte ich, das sei die ganze Welt. Heute sehe ich, dass **WeChat Moments** für die Welt das ist, was **Line Status** für Japaner bedeutet – weniger bedeutend, als man denkt.
 
-Die Welt ist sehr groß. Ich habe insgesamt 15 Jahre in Guangzhou gelebt, aufgeteilt auf zwei nicht aufeinanderfolgende Aufenthalte – die Hälfte meines bisherigen Lebens. Wenn man Guangzhou als die ganze Welt betrachtet, liegt man wahrscheinlich falsch. Vielleicht arbeite ich eines Tages in einer anderen Stadt in einem anderen Land und entwickle Code, den Milliarden Menschen nutzen.
+Die Welt ist groß. Ich lebte insgesamt 15 Jahre in **Guangzhou** (in zwei nicht aufeinanderfolgenden Abschnitten) – die Hälfte meines bisherigen Lebens. Wenn man Guangzhou als Maßstab nimmt, liegt man falsch. Vielleicht arbeite ich eines Tages in einer anderen Stadt, in einem anderen Land, und entwickle Code für Milliarden Nutzer.
 
-Bestätigung zu suchen, ist ein Zeichen von Unsicherheit. Das ist ein tief verwurzeltes Problem und schwer zu beheben. Man muss herausfinden, was dazu führt, und an der Ursache arbeiten. Man muss sich der Angst direkt stellen.
+Bestätigungssuche ist unsicheres Verhalten – ein tief verwurzeltes Problem, das schwer zu lösen ist. Man muss die Ursachen finden und daran arbeiten. Ängste gilt es direkt zu konfrontieren.
 
-Die größte Angst des Menschen ist wahrscheinlich der Tod. Wenn man ihn akzeptiert, hat man keine Bedauern mehr, in diesem Moment zu leben. Man denkt, ein gutes Leben geführt zu haben. Man tut, was man tun möchte. Je mehr man darüber nachdenkt, desto sicherer fühlt man sich.
+Die größte Angst des Menschen ist wohl der Tod. Wenn man ihn akzeptiert, hat man keine Bedauern mehr über das aktuelle Leben. Man denkt: *"Ich habe ein gutes Leben gelebt. Ich tue, was ich will."* Je mehr man darüber nachdenkt, desto sicherer fühlt man sich.
 
-Ich habe einige Bücher von Morita Shoma gelesen. Es gibt viele Geschichten über den Kampf mit widersprüchlichen Denkweisen. Schmerz ist unvermeidbar. Wir akzeptieren ihn und machen weiter, statt ihn zu vermeiden. Die Dinge werden sich bessern.
+Ich las Bücher von **Morita Shoma** über den Kampf mit widersprüchlichen Denkweisen. Schmerz ist unvermeidbar – wir akzeptieren ihn und handeln weiter, statt ihn zu fliehen. Die Dinge bessern sich.
 
-Bestätigung zu vermeiden, spart Zeit – deine und die anderer. Es hilft dir, das wahre Ich und die wahre Welt zu erkennen. Der Mensch ist nur ein kleiner Teil der Welt. Seine Bestätigung ist nicht so wichtig – warum also danach streben?
+Bestätigungssuche zu vermeiden spart Zeit – Ihre und die anderer. Es hilft, die eigene Wahrheit und die der Welt zu erkennen. Der Mensch ist nur ein kleiner Teil davon. Warum also nach Bestätigung streben, die nicht wirklich zählt?
 
-Yin Wangs Weibo-Name wurde zu „Der Yin, der sich nicht mehr um Menschen kümmert“. Anfangs verstand ich das nicht. Nach langem Nachdenken in den letzten Jahren beginne ich, es zu schätzen.
+**Yin Wang** nannte sich auf Weibo *"Der Yin, der sich nicht mehr um Menschen kümmert"*. Anfangs verstand ich das nicht. Nach jahrelangem Grübeln beginne ich, es zu schätzen.
 
-Newton kümmerte sich nicht um seine Mitmenschen und entdeckte so die Prinzipien der Natur. Yin Wang kümmerte sich nicht um seine Mitmenschen und entdeckte die Prinzipien von Computerprogrammen und mehr. Sie suchen keine Bestätigung und verbergen manchmal sogar ihre Entdeckungen, um Diskussionen mit denen zu vermeiden, die nach Bestätigung streben.
+**Newton** kümmerte sich nicht um seine Mitmenschen – und entdeckte die Naturgesetze. **Yin Wang** kümmerte sich nicht um andere – und fand Prinzipien der Informatik und darüber hinaus. Sie suchten keine Bestätigung und verhielten ihre Entdeckungen manchmal sogar, um Streit mit Bestätigungssuchenden zu vermeiden.
 
 ---
 
@@ -119,16 +120,17 @@ Newton kümmerte sich nicht um seine Mitmenschen und entdeckte so die Prinzipien
 
 *2025.07.12*
 
-Das ist einer der einfachen Fehler, die ich immer wieder gemacht habe. Ich arbeite oft gut, wenn ich der Underdog bin. Doch sobald ich denke, dass ich erfolgreich bin, falle ich in ein Loch.
+Das ist einer der einfachen Fehler, die ich immer wieder mache. Ich performe am besten als Underdog – doch sobald ich mich für erfolgreich halte, falle ich in eine Falle.
 
-In meinem Erwachsenenleben habe ich die meiste Zeit gerne auf WeChat Moments gepostet. Das ließ mich zu viel Bestätigung suchen und mich zu sehr um die Meinung anderer kümmern.
+Im Erwachsenenleben postete ich oft in **WeChat Moments**, was mich zu sehr nach Bestätigung streben ließ und die Meinungen anderer überbewertete.
 
-Und beim Investieren habe ich das unzählige Male getan: Ich wurde zu euphorisch, wenn eine Investition endlich funktionierte, brach dann meine regelmäßige Strategie ab und investierte plötzlich mehr. Das trieb meinen Durchschnittspreis in die Höhe und führte schnell zu Verlusten, wenn sich der Markt umkehrte.
+Beim Investieren passierte mir das häufig: Ich wurde zu euphorisch, wenn eine Anlage endlich Gewinne abwarf, brach meine disziplinierte Strategie und investierte impulsiv mehr – was den Durchschnittspreis erhöhte und bei Markteinbrüchen schnell zu Verlusten führte.
 
-Nachdem ich Nutzer für mein Produkt gewonnen und eine Investition erhalten hatte, begann ich, Mitarbeiter einzustellen, und versuchte, Aufgaben zu delegieren – ich wollte vom Gründer- zum Manager-Modus wechseln. Diese Entscheidung kostete mein Unternehmen eine halbe Million CNY – ein erheblicher Verlust für einen 22-Jährigen in China.
+Nach dem Gewinn von Nutzern für mein Produkt und einer Investition begann ich, Mitarbeiter einzustellen und Aufgaben zu delegieren – ich wollte vom Gründer- zum Manager-Modus wechseln. Diese Entscheidung kostete mein Unternehmen eine halbe Million **CNY** – ein schwerer Verlust für einen 22-Jährigen in China.
 
-Und nachdem ich einen Job als Auftragnehmer bei einer Großbank gesichert und gut Englisch gelernt hatte, dachte ich, ich würde in internationalen Unternehmen in China erfolgreich sein, um dem schwächelnden Binnenmarkt zu entgehen, und dass ich 1,2 Millionen Schulden tragen könnte. Auch da lag ich falsch.
+Und nach einem Job als Auftragnehmer für eine Großbank, kombiniert mit guten Englischkenntnissen, dachte ich, ich würde in internationalen Unternehmen in China durchstarten (um dem schwächelnden Binnenmarkt zu entgehen) und könnte 1,2 Millionen Schulden tragen. Auch das war falsch.
 
-Diese Lektionen trafen mich hart. Beim ersten Mal, als ich in einem Jahr eine halbe Million verlor, brauchte ich zwei Jahre und 20 Teilzeit-Ingenieure für 50 Softwareprojekte, um den Verlust auszugleichen. Beim zweiten Mal, von dem ich mich noch erhole, wird es wahrscheinlich 10 Jahre dauern, das aufgrund der schwierigen Wirtschaftslage und meiner eigenen Unfähigkeit, die nächste Stufe der Exzellenz zu erreichen, zu beheben.
+Diese Lektionen trafen hart. Beim ersten Mal (Verlust von einer halben Million in einem Jahr) brauchte ich zwei Jahre, um mit 20 Teilzeit-Entwicklern 50 Softwareprojekte umzusetzen und den Schaden auszugleichen. Beim zweiten Mal – von dem ich mich noch erhole – wird es wohl 10 Jahre dauern, wegen der schwierigen Wirtschaftslage und meiner eigenen Unfähigkeit, die nächste Exzellenzstufe zu erreichen.
 
-Vermeide es, nach Erfolg stolz zu sein. Bewahre einen friedlichen Geist. Unfälle in meinem Leben – selbstverschuldet (körperlich oder mental) oder durch äußere Faktoren – können jederzeit passieren.
+Vermeiden Sie es, nach Erfolg stolz zu werden. Bewahren Sie einen klaren Geist. Unfälle – selbstverschuldet (körperlich oder mental) oder extern bedingt – können jederzeit passieren.
+```
