@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: Exceeding Expectations, Avoiding Validation, Staying Humble
+title: Exceeding Expectations and Avoiding Validation
 translated: false
 ---
 
