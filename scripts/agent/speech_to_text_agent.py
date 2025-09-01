@@ -36,8 +36,8 @@ def run_batch_recognize(audio_gcs_uri, output_gcs_folder, language_code="en-US")
             encoding=cloud_speech.ExplicitDecodingConfig.AudioEncoding.OGG_OPUS,
             # You can omit these if unknown; Opus is often 48 kHz/stereo, but STT handles downmixing.
             # Provide only if you know them; leaving them out lets the service infer.
-            # sample_rate_hertz=48000,
-            # audio_channel_count=2,
+            sample_rate_hertz=48000,
+            audio_channel_count=1
         )
         config = cloud_speech.RecognitionConfig(
             explicit_decoding_config=decoding,
