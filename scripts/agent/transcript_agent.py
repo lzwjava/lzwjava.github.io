@@ -28,13 +28,15 @@ def refine_transcript_with_ai(content):
    - Cool, perfect, awesome, great (when not substantial)
    - Repeated phrases, false starts, and verbal ticks
 
-3. Maintain the original meaning, tone, and voice of the speaker
-4. Keep the rhythm and natural flow of spoken language where appropriate
-5. Preserve technical terms, names, and specific references exactly
-6. Keep cultural and colloquial expressions if they fit the context
-7. Maintain emotional inflection and emphasis where important
+3. Identify speakers and label them consistently as A (Speaker 1) and B (Speaker 2)
+4. At transcript start, keep Zoom setup or sound check conversations brief and concise
+5. Maintain the original meaning, tone, and voice of the speakers
+6. Keep the rhythm and natural flow of spoken language where appropriate
+7. Preserve technical terms, names, and specific references exactly
+8. Keep cultural and colloquial expressions if they fit the context
+9. Maintain emotional inflection and emphasis where important
 
-8. Output only the refined transcript text - no explanations, no metadata
+10. Output only the refined transcript text - no explanations, no metadata
 
 Transcript:
 {content}"""
