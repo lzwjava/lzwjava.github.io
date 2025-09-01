@@ -44,7 +44,7 @@ Transcript:
 {content}"""
 
     try:
-        response = call_openrouter_api(prompt, model="kimi-k2")
+        response = call_openrouter_api(prompt, model="deepseek-v3.1")
         print(f"AI Response length: {len(response)} characters")
         stripped = response.strip()
         return stripped
