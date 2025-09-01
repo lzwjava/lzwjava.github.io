@@ -53,6 +53,39 @@ Transcript:
         return None
 
 
+def validate_refinement(original_content, refined_content):
+    """Validate refined transcript content."""
+    validation_issues = []
+
+    # Check length difference (+-10%)
+    original_length = len(original_content)
+    refined_length = len(refined_content)
+    length_diff_percent = abs(original_length - refined_length) / original_length * 100
+
+    if length_diff_percent > 10:
+        validation_issues.append(
+            f"Content length changed by {length_diff_percent:.1f}% "
+            f"(original: {original_length}, refined: {refined_length})"
+        )
+
+    # Check for speaker labels (A:, B:, etc.)
+    speaker_patterns = [r'\bA:\s', r'\bB:\s', r'\bA1:\s', r'\bA2:\s', r'\bB1:\s', r'\bB2:\s']
+    has_speaker_labels = any(re.search(pattern, refined_content, re.IGNORECASE) for pattern in speaker_patterns)
+
+    if not has_speaker_labels:
+        validation_issues.append("No speaker labels found (expected A:, B:, etc.)")
+
+    # Report validation issues but don't fail processing
+    if validation_issues:
+        print("⚠️  Validation warnings:")
+        for issue in validation_issues:
+            print(f"   - {issue}")
+    else:
+        print("✅ Validation passed: Content length within range and speaker labels present")
+
+    return validation_issues
+
+
 def process_file(file_path, output_only=False):
     """Process a single markdown file containing transcript."""
     print(f"Processing file: {file_path}")
@@ -70,6 +103,9 @@ def process_file(file_path, output_only=False):
             return None
 
         print(f"Refined content length: {len(refined_content)} characters")
+
+        # Validate the refined content
+        validate_refinement(content, refined_content)
 
         # Generate output filename
         input_path = Path(file_path)
