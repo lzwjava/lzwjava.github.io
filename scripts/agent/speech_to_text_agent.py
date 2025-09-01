@@ -3,6 +3,10 @@ import argparse
 from google.cloud import storage
 from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+
 from scripts.llm.openrouter_client import call_openrouter_api
 
 
@@ -22,7 +26,7 @@ def run_batch_recognize(audio_gcs_uri, output_gcs_folder, language_code="en-US")
     client = SpeechClient()
 
     config = cloud_speech.RecognitionConfig(
-        auto_decoding_config={},
+        auto_decoding_config=cloud_speech.AutoDetectDecodingConfig(),
         features=cloud_speech.RecognitionFeatures(
             enable_word_confidence=True,
             enable_word_time_offsets=True,
