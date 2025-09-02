@@ -19,7 +19,7 @@ MODEL_MAPPING = {
     "mistral-medium": "mistralai/mistral-medium-3.1",
     "qwen-coder":"qwen/qwen3-coder",
     "gpt-oss": "openai/gpt-oss-120b",
-    "gpt-5": "openai/gpt-5"
+    "gpt-5": "openai/gpt-5",
     "gpt-5-mini": "openai/gpt-5-mini"
 }
 
