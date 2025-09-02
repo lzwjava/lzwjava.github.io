@@ -207,7 +207,7 @@ def process_deepseek_response(
             response = client.chat.completions.create(
                 model=model,
                 messages=[{"role": "user", "content": prompt}],
-                max_tokens=100,
+                max_tokens=200,
             )
             if response and response.choices:
                 output_text = response.choices[0].message.content.strip()
@@ -284,7 +284,7 @@ def _call_ollama_api(prompt, model):
     data = {
         "messages": [{"role": "user", "content": prompt}],
         "model": model,
-        "max_tokens": 300,
+        "max_tokens": 400,
     }
     headers = {"Content-Type": "application/json"}
     print(f"Input to API: {data}")

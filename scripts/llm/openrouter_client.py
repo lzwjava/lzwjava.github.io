@@ -25,19 +25,19 @@ MODEL_MAPPING = {
 }
 
 DEFAULT_TOKENS = {
-    "claude-opus": 4096,
-    "claude-sonnet": 4096,
+    "claude-opus": 8192,
+    "claude-sonnet": 8192,
     "gemini-flash": 8192,
-    "gemini-pro": 32768,
+    "gemini-pro": 8192,
     "kimi-k2": 32768,
     "deepseek-v3": 32768,
     "deepseek-v3.1": 32768,
-    "mistral-medium": 131072,
-    "mistral-large": 131072,
-    "qwen-coder": 131072,
-    "gpt-oss": 32768,
-    "gpt-5": 4096,
-    "gpt-5-mini": 4096
+    "mistral-medium": 32768,
+    "mistral-large": 8192,
+    "qwen-coder": 32768,
+    "gpt-oss": 8192,
+    "gpt-5": 8192,
+    "gpt-5-mini": 8192
 }
 
 
