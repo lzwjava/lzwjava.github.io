@@ -11,7 +11,7 @@ from create_note_utils import (
 )
 
 
-def create_note_from_content(content, custom_title=None):
+def create_note_from_content(content, custom_title=None, directory="notes"):
     """Create a note from provided content instead of clipboard"""
     if not content or not content.strip():
         raise ValueError("Content is empty or invalid")
@@ -39,7 +39,7 @@ def create_note_from_content(content, custom_title=None):
             raise ValueError("Short title contains underscore. Please try again with a different title.")
 
     # Create file path
-    file_path = create_filename(short_title)
+    file_path = create_filename(short_title, directory)
 
     # Format front matter
     front_matter = format_front_matter(full_title)

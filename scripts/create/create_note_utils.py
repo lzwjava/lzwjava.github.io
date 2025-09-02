@@ -62,10 +62,9 @@ def generate_short_title(prompt):
         sys.exit(1)
     return title
 
-def create_filename(short_title):
+def create_filename(short_title, notes_dir="notes"):
     today = datetime.date.today()
     date_str = today.strftime("%Y-%m-%d")
-    notes_dir = "notes"
     if not os.path.exists(notes_dir):
         os.makedirs(notes_dir)
     base_file_name = f"{date_str}-{short_title}-en.md"
