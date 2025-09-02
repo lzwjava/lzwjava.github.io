@@ -4,7 +4,7 @@ generated: false
 image: false
 lang: en
 layout: post
-title: "An Interview on the Journey from U.S. PhD Applications to AI Industry Jobs”
+title: An Interview on the Journey from U.S. PhD Applications to AI Industry Jobs
 translated: false
 ---
 
