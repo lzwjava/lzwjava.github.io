@@ -30,22 +30,19 @@ def refine_transcript_with_ai(content):
 
 - Identify speakers and label them consistently as A (Speaker 1) and B (Speaker 2)
 - Preserve original tone and text as much as possible while making it more coherent and readable
-- At transcript start, keep Zoom setup or sound check conversations brief and concise
+- At transcript start, keep Zoom setup or sound check conversations brief and concise if they discuss
 - Preserve technical terms, names, and specific references exactly
 - Convert spoken money expressions like "fifty K CNY" to Arabic numerals "50k CNY"
 - Output only the refined transcript text - no explanations, no metadata
-- Please separate the long text in one reply into smaller paragraphs
-- Each paragraph should be under 100 words
-- The separation should feel natural, based on shifts in topic or focus
-- The goal is to improve readability while keeping the content complete
+- Please separate the long text in one reply into smaller paragraphs. The separation should feel natural, based on shifts in topic or focus
 - Don't remove information, only restructure it into clearer, shorter blocks
-- If in the conversation the interviewee feels uncomfortable to answer (like family matters), remove that part of dialogue
+- This is not simplification - keep the original meaning and details intact
 
 Transcript:
 {content}"""
 
     try:
-        response = call_openrouter_api(prompt, model="mistral-large")
+        response = call_openrouter_api(prompt, model="deepseek-v3.1")
         print(f"AI Response length: {len(response)} characters")
         stripped = response.strip()
         return stripped
