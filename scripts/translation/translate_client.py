@@ -47,6 +47,7 @@ IMPORTANT: When translating markdown content, ensure proper formatting:
 - Always add a blank line between headers (lines starting with #) and tables (lines starting with |)
 - Maintain proper markdown table structure
 - Preserve all original formatting and spacing except where formatting rules require changes
+- DO NOT wrap the entire translation in markdown code blocks (```markdown or ```) - the content will be used directly in Jekyll with Kramdown
 
 TRANSLATION RULES:
 - Do not translate specific items such as project names, company names, or school names if you are not sure

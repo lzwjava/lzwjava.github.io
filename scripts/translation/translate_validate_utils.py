@@ -20,6 +20,10 @@ def check_commentary(translated):
     for ind in indicators:
         if ind in low:
             raise RuntimeError("Model included commentary")
+    
+    # Check for markdown code blocks
+    if "```markdown" in translated.lower():
+        raise RuntimeError("Model included markdown code blocks")
 
 def check_title_strict(title, target_lang):
     """Strict title validation - removes quotes and special chars based on language"""
