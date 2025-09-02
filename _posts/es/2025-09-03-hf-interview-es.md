@@ -9,7 +9,6 @@ title: 'De la Postulación a un Doctorado en EE. UU. a los Empleos en la Industr
 translated: true
 ---
 
-```markdown
 {: .centered }
 ![](/assets/images/hf/hf1.jpg){: .responsive }
 *Fuente: chatgpt.com*{: .caption }
@@ -394,4 +393,3 @@ Hace seis o siete años, el costo de seguir la ley eran las personas: los ingeni
 **B:** Fue un gusto hablar contigo hoy. Gracias de nuevo. ¡Adiós!
 
 **A:** ¡Adiós!
-```

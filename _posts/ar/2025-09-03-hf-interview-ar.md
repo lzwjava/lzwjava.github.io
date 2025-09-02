@@ -9,7 +9,6 @@ title: مقابلة حول الرحلة من طلبات الدكتوراه في 
 translated: true
 ---
 
-```markdown
 {: .centered }
 ![](/assets/images/hf/hf1.jpg){: .responsive }
 *المصدر: chatgpt.com*{: .caption }
@@ -394,4 +393,3 @@ translated: true
 **ب:** كان من الجميل التحدث معك اليوم. شكراً مرة أخرى. إلى اللقاء!
 
 **أ:** إلى اللقاء!
-```

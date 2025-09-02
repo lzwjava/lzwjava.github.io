@@ -9,7 +9,6 @@ title: Un entretien sur le parcours des candidatures en doctorat aux États-Unis
 translated: true
 ---
 
-```markdown
 {: .centered }
 ![](/assets/images/hf/hf1.jpg){: .responsive }
 *Source : chatgpt.com*{: .caption }
@@ -390,4 +389,3 @@ Il a également travaillé chez Intel auparavant et a souligné que cette soluti
 **B** : Sympa de discuter avec toi aujourd’hui. Merci encore. Au revoir !
 
 **A** : Au revoir !
-```
