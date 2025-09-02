@@ -22,36 +22,30 @@ def refine_transcript_with_ai(content):
 
     prompt = f"""Please refine this transcript by:
 
-1. Fix all grammar and punctuation errors
-2. Remove filler words and oral expressions like:
+- Fix all grammar and punctuation errors
+- Remove filler words and oral expressions like:
    - yeah, yep, uh, um, like, you know, basically, literally
    - Cool, perfect, awesome, great (when not substantial)
    - Repeated phrases, false starts, and verbal ticks
 
-3. Identify speakers and label them consistently as A (Speaker 1) and B (Speaker 2)
-4. Preserve original tone and text as much as possible while making it more coherent and readable
-5. At transcript start, keep Zoom setup or sound check conversations brief and concise
-6. Maintain the original meaning, tone, and voice of the speakers
-7. Keep the rhythm and natural flow of spoken language where appropriate
-8. Preserve technical terms, names, and specific references exactly
-9. Keep cultural and colloquial expressions if they fit the context
-10. Convert spoken money expressions like "fifty K CNY" to Arabic numerals "50k CNY"
-11. Maintain emotional inflection and emphasis where important
-
-12. Output only the refined transcript text - no explanations, no metadata
-13. Please separate the long text in one reply into smaller paragraphs
-14. Each paragraph should be under 100 words
-15. The separation should feel natural, based on shifts in topic or focus
-16. Make sure each section flows smoothly and preserves the original meaning
-17. The goal is to improve readability while keeping the content complete
-18. Don't remove information, only restructure it into clearer, shorter blocks
-19. If in the conversation the interviewee feels uncomfortable to answer (like family matters), remove that part of dialogue
+- Identify speakers and label them consistently as A (Speaker 1) and B (Speaker 2)
+- Preserve original tone and text as much as possible while making it more coherent and readable
+- At transcript start, keep Zoom setup or sound check conversations brief and concise
+- Preserve technical terms, names, and specific references exactly
+- Convert spoken money expressions like "fifty K CNY" to Arabic numerals "50k CNY"
+- Output only the refined transcript text - no explanations, no metadata
+- Please separate the long text in one reply into smaller paragraphs
+- Each paragraph should be under 100 words
+- The separation should feel natural, based on shifts in topic or focus
+- The goal is to improve readability while keeping the content complete
+- Don't remove information, only restructure it into clearer, shorter blocks
+- If in the conversation the interviewee feels uncomfortable to answer (like family matters), remove that part of dialogue
 
 Transcript:
 {content}"""
 
     try:
-        response = call_openrouter_api(prompt, model="deepseek-v3.1")
+        response = call_openrouter_api(prompt, model="gpt-5-mini")
         print(f"AI Response length: {len(response)} characters")
         stripped = response.strip()
         return stripped
