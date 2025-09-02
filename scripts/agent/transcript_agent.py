@@ -45,7 +45,7 @@ Transcript:
 {content}"""
 
     try:
-        response = call_openrouter_api(prompt, model="mistral-medium")
+        response = call_openrouter_api(prompt, model="mistral-large")
         print(f"AI Response length: {len(response)} characters")
         stripped = response.strip()
         return stripped
