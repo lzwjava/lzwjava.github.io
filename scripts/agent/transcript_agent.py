@@ -45,6 +45,7 @@ def refine_transcript_with_ai(content):
 16. Make sure each section flows smoothly and preserves the original meaning
 17. The goal is to improve readability while keeping the content complete
 18. Don't remove information, only restructure it into clearer, shorter blocks
+19. If in the conversation the interviewee feels uncomfortable to answer (like family matters), remove that part of dialogue
 
 Transcript:
 {content}"""
