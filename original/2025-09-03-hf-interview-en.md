@@ -360,9 +360,9 @@ He also worked at Intel previously and pointed out that this solution isn't idea
 
 **A:** But AutoML couldn't work in Transformer, GPT Transformers such complicated, couldn't do that.
 
-**B:** Transformer is quite simple; doesn't have lot hyperparameters compared to other architectures. Reason we didn't do that is mainly financial. Giving AutoML system more compute to find better solution: save cost for hiring people, keep people focusing on important things. But now bottleneck is not people. S
+**B:** Transformer is quite simple; doesn't have lot hyperparameters compared to other architectures. Reason we didn't do that is mainly financial. Giving AutoML system more compute to find better solution: save cost for hiring people, keep people focusing on important things. But now bottleneck is not people. 
 
-ix-seven years ago, cost following act was people—machine learning engineers expensive, so optimize productivity for compute to run automatically. Now cost bottleneck changed from people to compute—used up all computing to train one missionary model. Cost bottleneck is compute; spent all money on computers, cost for people becomes negligible. Maybe exaggerating, so they would spend more people, manual work to save computers. This switch between computer and people made lot people not want apply AutoML to transformers.
+Six-seven years ago, cost following act was people—machine learning engineers expensive, so optimize productivity for compute to run automatically. Now cost bottleneck changed from people to compute—used up all computing to train one missionary model. Cost bottleneck is compute; spent all money on computers, cost for people becomes negligible. Maybe exaggerating, so they would spend more people, manual work to save computers. This switch between computer and people made lot people not want apply AutoML to transformers.
 
 **A:** Okay, got you. It's like Firebase thing: very easy, cloud computing easy, don't need write backend database, server. You host all to save bot, but they have limit. Use extraction more higher limits, also expression introduce convenience but limitation.
 
