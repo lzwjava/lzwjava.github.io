@@ -39,6 +39,12 @@ def refine_transcript_with_ai(content):
 11. Maintain emotional inflection and emphasis where important
 
 12. Output only the refined transcript text - no explanations, no metadata
+13. Please separate the long text in one reply into smaller paragraphs
+14. Each paragraph should be under 100 words
+15. The separation should feel natural, based on shifts in topic or focus
+16. Make sure each section flows smoothly and preserves the original meaning
+17. The goal is to improve readability while keeping the content complete
+18. Don't remove information, only restructure it into clearer, shorter blocks
 
 Transcript:
 {content}"""
