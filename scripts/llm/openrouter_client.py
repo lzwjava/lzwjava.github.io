@@ -24,8 +24,24 @@ MODEL_MAPPING = {
     "gpt-5-mini": "openai/gpt-5-mini"
 }
 
+DEFAULT_TOKENS = {
+    "claude-opus": 4096,
+    "claude-sonnet": 4096,
+    "gemini-flash": 8192,
+    "gemini-pro": 32768,
+    "kimi-k2": 32768,
+    "deepseek-v3": 32768,
+    "deepseek-v3.1": 32768,
+    "mistral-medium": 131072,
+    "mistral-large": 131072,
+    "qwen-coder": 131072,
+    "gpt-oss": 32768,
+    "gpt-5": 4096,
+    "gpt-5-mini": 4096
+}
 
-def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=False):
+
+def call_openrouter_api_with_messages(messages, model="mistral-medium", max_tokens=None, debug=False):
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {OPENROUTER_API_KEY}",
@@ -36,7 +52,11 @@ def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=Fa
     if model not in MODEL_MAPPING:
         raise Exception(f"Model '{model}' not found in MODEL_MAPPING")
 
-    data = {"model": MODEL_MAPPING[model], "messages": messages}
+    # Use provided max_tokens or default for this model
+    if max_tokens is None:
+        max_tokens = DEFAULT_TOKENS.get(model, 4096)
+
+    data = {"model": MODEL_MAPPING[model], "messages": messages, "max_tokens": max_tokens}
     
     if debug:
         print(f"Request URL: {url}")
@@ -56,9 +76,9 @@ def call_openrouter_api_with_messages(messages, model="mistral-medium", debug=Fa
         raise Exception(f"An error occurred: {str(e)}")
 
 
-def call_openrouter_api(prompt, model="mistral-medium", debug=False):
+def call_openrouter_api(prompt, model="mistral-medium", max_tokens=None, debug=False):
     messages = [{"role": "user", "content": prompt}]
-    return call_openrouter_api_with_messages(messages, model, debug)
+    return call_openrouter_api_with_messages(messages, model, max_tokens, debug)
 
 
 if __name__ == "__main__":

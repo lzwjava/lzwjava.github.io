@@ -42,7 +42,7 @@ Transcript:
 {content}"""
 
     try:
-        response = call_openrouter_api(prompt, model="deepseek-v3.1")
+        response = call_openrouter_api(prompt, model="deepseek-v3.1", max_tokens=100000)
         print(f"AI Response length: {len(response)} characters")
         stripped = response.strip()
         return stripped
