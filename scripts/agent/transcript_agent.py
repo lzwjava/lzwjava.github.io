@@ -18,7 +18,7 @@ Uses Kimi-K2 model through OpenRouter for handling long text.
 
 def refine_transcript_with_ai(content):
     """Refine transcript content using AI to fix grammar and remove filler words."""
-    print("Refining transcript with AI using Kimi-K2...")
+    print("Refining transcript with AI...")
 
     prompt = f"""Please refine this transcript by:
 
