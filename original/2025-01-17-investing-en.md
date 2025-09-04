@@ -53,4 +53,4 @@ title: Investing
 
 - Big money waits.
 
-- Don’t chase the bull market or follow the crowd. If we need to invest regularly, it’s better to increase the investment amount during a bear market. In the long run, stocks will rise, but there may be short-term bubbles.
+- Don’t chase bull markets or follow the crowd. If you invest regularly, it’s better to increase contributions during bear markets. In the long run, stocks will likely rise significantly, but short-term bubbles may still occur.
