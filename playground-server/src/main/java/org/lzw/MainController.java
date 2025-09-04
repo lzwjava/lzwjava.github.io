@@ -6,18 +6,20 @@ import java.io.InputStreamReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-@RestController
+@Controller
 public class MainController {
 
     private static Logger logger = LoggerFactory.getLogger(MainController.class);
 
+    @ResponseBody
     @CrossOrigin(origins = "*")
-    @GetMapping("/bandwidth")
+    @RequestMapping("/bandwidth")
     public ResponseEntity<String> getBandwidth(@RequestParam(value = "i", required = false) String networkInterface) {
         try {
             String osName = System.getProperty("os.name").toLowerCase();
