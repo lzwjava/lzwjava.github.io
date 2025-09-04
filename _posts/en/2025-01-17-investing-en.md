@@ -53,3 +53,5 @@ translated: false
 - If you care too much about the performance of your regular investing portfolio and frequently open your stocks or crypto app, it means you have invested too much money, borrowed money, or are not confident in your long-term strategy.
 
 - Big money waits.
+
+- Don’t chase the bull market or follow the crowd. If we need to invest regularly, it’s better to increase the investment amount during a bear market. In the long run, stocks will rise, but there may be short-term bubbles.
