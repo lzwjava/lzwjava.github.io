@@ -1,3 +1,3 @@
-package org.lzwjava;
+package org.lzw;
 
 public class AspectJConfig {}

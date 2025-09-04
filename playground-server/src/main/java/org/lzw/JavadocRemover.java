@@ -1,4 +1,4 @@
-package org.lzwjava;
+package org.lzw;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;

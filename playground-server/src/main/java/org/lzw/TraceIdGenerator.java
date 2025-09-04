@@ -1,4 +1,4 @@
-package org.lzwjava;
+package org.lzw;
 
 import org.apache.commons.lang3.RandomStringUtils;
 

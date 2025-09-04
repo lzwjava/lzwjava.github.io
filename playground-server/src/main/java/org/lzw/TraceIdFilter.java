@@ -1,4 +1,4 @@
-package org.lzwjava;
+package org.lzw;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
