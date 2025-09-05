@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 from create_note_utils import (
     get_clipboard_content,
     clean_grok_tags,
@@ -11,10 +12,14 @@ from create_note_utils import (
 )
 
 
-def create_note_from_content(content, custom_title=None, directory="notes"):
+def create_note_from_content(content, custom_title=None, directory="notes", date=None):
     """Create a note from provided content instead of clipboard"""
     if not content or not content.strip():
         raise ValueError("Content is empty or invalid")
+    
+    # Use current date if none provided
+    if date is None:
+        date = datetime.now().strftime("%Y-%m-%d")
     
     # Clean grok tags if present
     content = clean_grok_tags(content)
@@ -41,8 +46,8 @@ def create_note_from_content(content, custom_title=None, directory="notes"):
     # Create file path
     file_path = create_filename(short_title, directory)
 
-    # Format front matter
-    front_matter = format_front_matter(full_title)
+    # Format front matter with date
+    front_matter = format_front_matter(full_title, date)
 
     # Clean content
     content = clean_content(content)
