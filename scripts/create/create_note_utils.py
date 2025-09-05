@@ -76,11 +76,14 @@ def create_filename(short_title, notes_dir="notes"):
     return file_path
 
 
-def format_front_matter(full_title):
+def format_front_matter(full_title, date=None):
     if ":" in full_title and '"' not in full_title:
         full_title = f'"{full_title}"'
+    if date is None:
+        date = datetime.date.today().strftime("%Y-%m-%d")
     return f"""---
 title: {full_title}
+date: {date}
 lang: en
 layout: post
 audio: false
