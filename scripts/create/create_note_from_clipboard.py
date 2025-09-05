@@ -17,7 +17,7 @@ def create_note_from_content(content, custom_title=None, directory="notes", date
     if not content or not content.strip():
         raise ValueError("Content is empty or invalid")
     
-    # Use current date if none provided
+    # Use provided date, otherwise use current date
     if date is None:
         date = datetime.now().strftime("%Y-%m-%d")
     
@@ -57,10 +57,10 @@ def create_note_from_content(content, custom_title=None, directory="notes", date
     return file_path
 
 
-def create_note():
+def create_note(date=None):
     # Get and validate clipboard content
     content = get_clipboard_content()
-    create_note_from_content(content)
+    create_note_from_content(content, date=date)
 
 
 if __name__ == "__main__":
