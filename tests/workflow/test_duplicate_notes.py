@@ -18,12 +18,11 @@ import unittest
 import sys
 
 
-class TestDuplicateNotes(unittest.TestCase):
-    """Test case for detecting duplicate notes group by date."""
+class DuplicateNotesHandler:
+    """Handler for finding and removing duplicate notes."""
     
-    def setUp(self):
-        """Set up test by finding all note files."""
-        self.notes_dir = Path(__file__).parent.parent.parent / "notes"
+    def __init__(self, notes_dir=None):
+        self.notes_dir = notes_dir or Path(__file__).parent.parent.parent / "notes"
         self.note_files = []
         
         # Find all markdown files in notes directory
@@ -81,11 +80,10 @@ class TestDuplicateNotes(unittest.TestCase):
         
         return content1.strip() == content2.strip()
     
-    def test_no_duplicate_notes(self):
-        """Test that there are no duplicate notes within each date group."""
+    def find_duplicates(self):
+        """Find duplicate notes within each date group. Returns list of duplicate pairs."""
         if not self.note_files:
-            print("✓ No note files found")
-            return
+            return []
             
         # Group notes by date
         date_groups = {}
@@ -112,28 +110,90 @@ class TestDuplicateNotes(unittest.TestCase):
             contents = {}
             for file_path in files:
                 content = self._extract_content_without_frontmatter(file_path)
-                contents[file_path.name] = content
+                contents[file_path] = content
             
             # Check each pair only once
-            file_names = list(contents.keys())
-            for i, name1 in enumerate(file_names):
-                for j, name2 in enumerate(file_names[i+1:], i+1):
-                    if self._are_notes_quick_similar(contents[name1], contents[name2]):
-                        duplicates.append(f"{date}: {name1} ~ {name2}")
+            file_paths = list(contents.keys())
+            for i, path1 in enumerate(file_paths):
+                for j, path2 in enumerate(file_paths[i+1:], i+1):
+                    if self._are_notes_quick_similar(contents[path1], contents[path2]):
+                        duplicates.append((path1, path2))
         
-        # Report results
+        return duplicates
+
+    def test_no_duplicate_notes(self):
+        """Test that there are no duplicate notes within each date group."""
+        duplicates = self.find_duplicates()
+        
         if duplicates:
             print("✗ DUPLICATE NOTES DETECTED:")
             print("-" * 40)
-            for dup in sorted(duplicates):
-                print(f"  {dup}")
+            for path1, path2 in duplicates:
+                print(f"  {path1.name} ~ {path2.name}")
             print(f"-" * 40)
             self.fail(f"Found {len(duplicates)} duplicate note pairs")
         else:
             total_files = len(self.note_files)
-            total_dates = len(date_groups)
-            print(f"✓ No duplicates found among {total_files} files across {total_dates} date groups")
+            print(f"✓ No duplicates found among {total_files} files")
+
+
+def fix_duplicates():
+    """Find and remove duplicate notes."""
+    handler = DuplicateNotesHandler()
+    duplicates = handler.find_duplicates()
+    
+    if not duplicates:
+        print("✓ No duplicates found")
+        return
+    
+    print(f"Found {len(duplicates)} duplicate pairs")
+    removed_count = 0
+    
+    for path1, path2 in duplicates:
+        # Keep the first file, remove the second
+        to_remove = path2  # Remove the second file in pair
+        print(f"Removing duplicate: {to_remove.name}")
+        try:
+            to_remove.unlink()
+            removed_count += 1
+            print(f"  ✓ Removed {to_remove.name}")
+        except Exception as e:
+            print(f"  ✗ Failed to remove {to_remove.name}: {e}")
+    
+    print(f"✓ Removed {removed_count} duplicate files")
+
+
+class TestDuplicateNotes(unittest.TestCase):
+    """Test case for detecting duplicate notes group by date."""
+    
+    def setUp(self):
+        """Set up test by finding all note files."""
+        self.handler = DuplicateNotesHandler()
+    
+    def test_no_duplicate_notes(self):
+        """Test that there are no duplicate notes within each date group."""
+        duplicates = self.handler.find_duplicates()
+        
+        if duplicates:
+            print("✗ DUPLICATE NOTES DETECTED:")
+            print("-" * 40)
+            for path1, path2 in duplicates:
+                print(f"  {path1.name} ~ {path2.name}")
+            print(f"-" * 40)
+            self.fail(f"Found {len(duplicates)} duplicate note pairs")
+        else:
+            total_files = len(self.handler.note_files)
+            print(f"✓ No duplicates found among {total_files} files")
 
 
 if __name__ == '__main__':
-    unittest.main()
+    parser = argparse.ArgumentParser(description='Detect and optionally remove duplicate notes')
+    parser.add_argument('--fix', action='store_true', 
+                       help='Remove duplicates instead of just testing')
+    
+    args = parser.parse_args()
+    
+    if args.fix:
+        fix_duplicates()
+    else:
+        unittest.main()
