@@ -58,6 +58,10 @@ But I think for some parts of India and for Singapore, it is normal and natural.
 
 My daughter is living in the future. Maybe one day all kids from all nations will watch English animations since they are two years old. And within a few generations, like in 2050, 80% of the population can speak English.
 
+{: .centered }
+![](assets/images/anim/anim2.jpg){: .responsive }
+*Source: chatgpt.com*{: .caption }
+
 ---
 
 ## Parenting Tips
