@@ -32,7 +32,7 @@ And sometimes, if the VPN proxy for the Apple TV or Fire Stick doesn't work, the
 
 At first, my parents were not able to comprehend why I do this. They think Chinese is okay too. I know. But now, in this society, the competition is too high. She is growing up in China, so she will know Chinese surely. However, English education is what she is missing. I spent several years in my 20s learning this language. So if she is able to achieve that familiarity or get IELTS 7 before 20, then she is going to perform well in the international corporate world.
 
-And there are lots of fights or arguments with my wife that I shouldn't let her use my second mobile phone—a Google Pixel—to watch English animations much. I think that's not a problem because I can reverse myopia. Please check out my [paper](https://lzwjava.github.io/vision-restoration-en).
+And there are lots of fights or arguments with my wife that I shouldn't let her use my second mobile phone—a Google Pixel—to watch English animations much. I think that's not a problem because I can reverse myopia. Please check out my [paper](./vision-restoration-en).
 
 It is really hard to change the opinions of others, including relatives. After seeing my daughter's progress in English, they started to accept letting her watch English animations.
 
