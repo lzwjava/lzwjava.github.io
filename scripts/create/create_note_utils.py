@@ -5,7 +5,7 @@ import datetime
 import pyperclip
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
-from scripts.llm.openrouter_client import call_openrouter_api
+from scripts.llm.openrouter_client import call_openrouter_api, MODEL_MAPPING
 
 
 def get_first_n_words(text, n=500):
@@ -76,11 +76,15 @@ def create_filename(short_title, notes_dir="notes"):
     return file_path
 
 
-def format_front_matter(full_title, date=None):
+def format_front_matter(full_title, note_model_key: str, date=None):
     if ":" in full_title and '"' not in full_title:
         full_title = f'"{full_title}"'
     if date is None:
         date = datetime.date.today().strftime("%Y-%m-%d")
+    # Map simple key to provider/model form for annotation in frontmatter
+    if note_model_key not in MODEL_MAPPING:
+        raise ValueError(f"Unknown model key '{note_model_key}'. Valid keys: {', '.join(sorted(MODEL_MAPPING.keys()))}")
+    model_full = MODEL_MAPPING[note_model_key]
     return f"""---
 title: {full_title}
 date: {date}
@@ -90,6 +94,7 @@ audio: false
 translated: false
 generated: true
 image: false
+model: {model_full}
 ---"""
 
 

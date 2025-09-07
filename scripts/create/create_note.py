@@ -1,6 +1,7 @@
 import sys
 import random
 import subprocess
+import argparse
 from datetime import datetime, timedelta
 from gpa import gpa
 from create_note_from_clipboard import create_note
@@ -23,10 +24,10 @@ def git_pull_rebase() -> None:
 
 def parse_args():
     """Parse command line arguments"""
-    use_random_date = False
-    if len(sys.argv) > 1 and sys.argv[1] == "--random":
-        use_random_date = True
-    return use_random_date
+    parser = argparse.ArgumentParser(description="Create a note (requires --note-model).")
+    parser.add_argument("--random", action="store_true", help="Use a random date within last 180 days")
+    parser.add_argument("--note-model", required=True, help="Model key to annotate in frontmatter (must match scripts.llm.openrouter_client.MODEL_MAPPING)")
+    return parser.parse_args()
 
 def generate_random_date():
     """Generate a random date within the last 180 days"""
@@ -42,9 +43,9 @@ if __name__ == "__main__":
     # Ensure we are up to date to avoid conflicts across machines
     git_pull_rebase()
 
-    use_random_date = parse_args()
-    random_date = generate_random_date() if use_random_date else None
-    
-    create_note(date=random_date)
+    args = parse_args()
+    random_date = generate_random_date() if args.random else None
+
+    create_note(date=random_date, note_model_key=args.note_model)
     # Call gpa function
     gpa()

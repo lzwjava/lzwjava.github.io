@@ -12,10 +12,12 @@ from create_note_utils import (
 )
 
 
-def create_note_from_content(content, custom_title=None, directory="notes", date=None):
+def create_note_from_content(content, custom_title=None, directory="notes", date=None, note_model_key: str | None = None):
     """Create a note from provided content instead of clipboard"""
     if not content or not content.strip():
         raise ValueError("Content is empty or invalid")
+    if not note_model_key:
+        raise ValueError("--note-model is required (no default). Choose a key from openrouter_client.MODEL_MAPPING.")
     
     # Use provided date, otherwise use current date
     if date is None:
@@ -47,7 +49,7 @@ def create_note_from_content(content, custom_title=None, directory="notes", date
     file_path = create_filename(short_title, directory)
 
     # Format front matter with date
-    front_matter = format_front_matter(full_title, date)
+    front_matter = format_front_matter(full_title, note_model_key, date)
 
     # Clean content
     content = clean_content(content)
@@ -57,11 +59,18 @@ def create_note_from_content(content, custom_title=None, directory="notes", date
     return file_path
 
 
-def create_note(date=None):
+def create_note(date=None, note_model_key: str | None = None):
     # Get and validate clipboard content
     content = get_clipboard_content()
-    create_note_from_content(content, date=date)
+    create_note_from_content(content, date=date, note_model_key=note_model_key)
 
 
 if __name__ == "__main__":
-    create_note()
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Create a note from clipboard content.")
+    parser.add_argument("--note-model", required=True, help="Model key to annotate in frontmatter (must match scripts.llm.openrouter_client.MODEL_MAPPING)")
+    parser.add_argument("--date", help="Override date (YYYY-MM-DD)")
+    args = parser.parse_args()
+
+    create_note(date=args.date, note_model_key=args.note_model)
