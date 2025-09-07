@@ -21,7 +21,8 @@ MODEL_MAPPING = {
     "qwen-coder":"qwen/qwen3-coder",
     "gpt-oss": "openai/gpt-oss-120b",
     "gpt-5": "openai/gpt-5",
-    "gpt-5-mini": "openai/gpt-5-mini"
+    "gpt-5-mini": "openai/gpt-5-mini",
+    "grok-3": "x-ai/grok-3"
 }
 
 DEFAULT_TOKENS = {
@@ -37,7 +38,8 @@ DEFAULT_TOKENS = {
     "qwen-coder": 32768,
     "gpt-oss": 8192,
     "gpt-5": 8192,
-    "gpt-5-mini": 8192
+    "gpt-5-mini": 8192,
+    "grok-3": 131072
 }
 
 
