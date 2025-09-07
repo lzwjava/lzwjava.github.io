@@ -46,6 +46,6 @@ if __name__ == "__main__":
     args = parse_args()
     random_date = generate_random_date() if args.random else None
 
-    create_note(date=random_date, note_model_key=args.note_model)
+    create_note(date=random_date, note_model_key=args.model)
     # Call gpa function
     gpa()
