@@ -24,9 +24,21 @@ def git_pull_rebase() -> None:
 
 def parse_args():
     """Parse command line arguments"""
-    parser = argparse.ArgumentParser(description="Create a note (requires --note-model).")
-    parser.add_argument("--random", action="store_true", help="Use a random date within last 180 days")
-    parser.add_argument("--model", required=True, help="Model key to annotate in frontmatter (must match scripts.llm.openrouter_client.MODEL_MAPPING)")
+    parser = argparse.ArgumentParser(
+        description="Create a note; first positional arg is the model key."
+    )
+    parser.add_argument(
+        "model",
+        help=(
+            "Model key to annotate in frontmatter "
+            "(must match scripts.llm.openrouter_client.MODEL_MAPPING)"
+        ),
+    )
+    parser.add_argument(
+        "--random",
+        action="store_true",
+        help="Use a random date within last 180 days",
+    )
     return parser.parse_args()
 
 def generate_random_date():
