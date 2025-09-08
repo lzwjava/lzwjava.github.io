@@ -1,10 +1,15 @@
 import sys
+import os
 import random
 import subprocess
 import argparse
 from datetime import datetime, timedelta
 from gpa import gpa
 from create_note_from_clipboard import create_note
+
+# Ensure repository root is on sys.path for importing scripts.llm
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from scripts.llm.openrouter_client import MODEL_MAPPING
 
 def git_pull_rebase() -> None:
     """Run 'git pull --rebase' at the repository root.
@@ -29,9 +34,9 @@ def parse_args():
     )
     parser.add_argument(
         "model",
+        choices=sorted(MODEL_MAPPING.keys()),
         help=(
-            "Model key to annotate in frontmatter "
-            "(must match scripts.llm.openrouter_client.MODEL_MAPPING)"
+            "Model key to annotate in frontmatter; choices shown above."
         ),
     )
     parser.add_argument(
