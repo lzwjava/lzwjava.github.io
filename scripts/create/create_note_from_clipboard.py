@@ -62,7 +62,8 @@ def create_note_from_content(content, custom_title=None, directory="notes", date
 def create_note(date=None, note_model_key: str | None = None):
     # Get and validate clipboard content
     content = get_clipboard_content()
-    create_note_from_content(content, date=date, note_model_key=note_model_key)
+    # Return the created file path so callers can post-process the file.
+    return create_note_from_content(content, date=date, note_model_key=note_model_key)
 
 
 if __name__ == "__main__":
