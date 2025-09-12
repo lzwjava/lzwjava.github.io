@@ -8,6 +8,10 @@ title: Singaporean and Hong Kong Banking Experience
 translated: false
 ---
 
+Updated in September 2025.
+
+---
+
 ### Table of Contents
 
 1. [HSBC Debit Card Retention Incident](#hsbc-debit-card-retention-incident)
