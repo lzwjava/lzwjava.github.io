@@ -4,7 +4,7 @@ generated: false
 image: true
 lang: en
 layout: post
-title: HSBC, OCBC, Bank Account Experience
+title: Singaporean and Hong Kong Banking Experience
 translated: false
 ---
 
