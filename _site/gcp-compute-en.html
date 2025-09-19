@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Setting up a Google Cloud Server</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Setting up a Google Cloud Server | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Setting up a Google Cloud Server" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Setting up a proxy server in Google Cloud allows you to route your internet traffic securely through a cloud instance, enhancing privacy and circumventing restrictions. In this guide, we’ll walk you through the process of setting up a basic proxy server in Google Cloud and configuring the necessary firewall rules to allow traffic." />
+<meta property="og:description" content="Setting up a proxy server in Google Cloud allows you to route your internet traffic securely through a cloud instance, enhancing privacy and circumventing restrictions. In this guide, we’ll walk you through the process of setting up a basic proxy server in Google Cloud and configuring the necessary firewall rules to allow traffic." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-compute-en" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-compute-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Setting up a Google Cloud Server" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Setting up a proxy server in Google Cloud allows you to route your internet traffic securely through a cloud instance, enhancing privacy and circumventing restrictions. In this guide, we’ll walk you through the process of setting up a basic proxy server in Google Cloud and configuring the necessary firewall rules to allow traffic.","headline":"Setting up a Google Cloud Server","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-compute-en"},"url":"https://lzwjava.github.io/gcp-compute-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Setting up a Google Cloud Server | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2024-12-20-gcp-compute-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/en/2024-12-20-gcp-compute-en.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2024-12-20-gcp-compute-en.md</span> -->
+      
+
+      <!-- <span>2024-12-20-gcp-compute-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-compute-en" selected>English</option>
+        <option value="/gcp-compute-zh" >中文</option>
+        <option value="/gcp-compute-ja" >日本語</option>
+        <option value="/gcp-compute-es" >Español</option>
+        <option value="/gcp-compute-hi" >हिंदी</option>
+        <option value="/gcp-compute-fr" >Français</option>
+        <option value="/gcp-compute-de" >Deutsch</option>
+        <option value="/gcp-compute-ar" >العربية</option>
+        <option value="/gcp-compute-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Setting up a proxy server in Google Cloud allows you to route your internet traffic securely through a cloud instance, enhancing privacy and circumventing restrictions. In this guide, we’ll walk you through the process of setting up a basic proxy server in Google Cloud and configuring the necessary firewall rules to allow traffic.</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+  <li><a href="#creating-a-google-cloud-vm-instance">Creating a Google Cloud VM Instance</a></li>
+  <li><a href="#configuring-the-proxy-server">Configuring the Proxy Server</a></li>
+  <li><a href="#setting-up-firewall-rules">Setting Up Firewall Rules</a></li>
+  <li><a href="#testing-the-proxy-server">Testing the Proxy Server</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ol>
+
+<hr />
+
+<h2 id="creating-a-google-cloud-vm-instance">Creating a Google Cloud VM Instance</h2>
+
+<p>Before setting up the proxy server, you’ll need to create a virtual machine (VM) instance in Google Cloud.</p>
+
+<ol>
+  <li>
+    <p>Log in to Google Cloud Console: Go to <a href="https://console.cloud.google.com/">Google Cloud Console</a> and log in to your account.</p>
+  </li>
+  <li>Create a New VM Instance:
+    <ul>
+      <li>Navigate to Compute Engine &gt; VM instances.</li>
+      <li>Click on Create Instance.</li>
+      <li>Choose the desired Region and Machine Type. For simplicity, you can use the default settings or choose a lightweight configuration like the <code class="language-plaintext highlighter-rouge">e2-micro</code> instance.</li>
+      <li>Under the Firewall section, select both Allow HTTP traffic and Allow HTTPS traffic to enable web access.</li>
+    </ul>
+  </li>
+  <li>Set up SSH Access:
+    <ul>
+      <li>Under the SSH Keys section, add your SSH public key to access the instance remotely. This is critical for configuring your proxy server later.</li>
+    </ul>
+  </li>
+  <li>Click on Create to launch your VM.</li>
+</ol>
+
+<p>After the VM is set up, you can connect to it using SSH from the Google Cloud Console or via the terminal with:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud compute ssh &lt;your-vm-name&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="configuring-the-proxy-server">Configuring the Proxy Server</h2>
+
+<p>Once your VM is set up, you can configure any proxy server software of your choice. The proxy software should be installed and configured to accept connections on the desired port (e.g., <code class="language-plaintext highlighter-rouge">3128</code> for common proxy setups). Ensure that the software allows connections from remote clients.</p>
+
+<hr />
+
+<h2 id="setting-up-firewall-rules">Setting Up Firewall Rules</h2>
+
+<p>To allow traffic to your proxy server, you’ll need to configure the Google Cloud firewall rules to open the necessary port.</p>
+
+<ol>
+  <li>Navigate to Firewall Rules in Google Cloud Console:
+    <ul>
+      <li>Go to VPC Network &gt; Firewall Rules in the Google Cloud Console.</li>
+    </ul>
+  </li>
+  <li>Create a New Firewall Rule:
+    <ul>
+      <li>Click on Create Firewall Rule.</li>
+      <li>Enter a name for the rule, such as <code class="language-plaintext highlighter-rouge">allow-proxy-access</code>.</li>
+      <li>Set the Direction of traffic to Ingress (incoming traffic).</li>
+      <li>Set the Action on match to Allow.</li>
+      <li>Set Targets to All instances in the network or Specified target tags (if you prefer more control).</li>
+      <li>Under Source IP ranges, you can set it to <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> to allow access from all IP addresses, or limit it to specific IPs or ranges for better security.</li>
+      <li>Under Protocols and ports, select Specified protocols and ports and enter the port used by your proxy server (e.g., <code class="language-plaintext highlighter-rouge">tcp:3128</code>).</li>
+    </ul>
+  </li>
+  <li>Save the Firewall Rule:
+After configuring the rule, click Create to enable the firewall.</li>
+</ol>
+
+<hr />
+
+<h2 id="testing-the-proxy-server">Testing the Proxy Server</h2>
+
+<p>After configuring the firewall, it’s time to test your proxy server.</p>
+
+<ol>
+  <li>
+    <p>Test Proxy from Your Local Machine:</p>
+
+    <p>You can configure your local machine’s browser or system proxy settings to use the external IP address of your Google Cloud VM and the port that your proxy server is listening on (e.g., <code class="language-plaintext highlighter-rouge">3128</code>).</p>
+  </li>
+  <li>
+    <p>Test with Command Line:</p>
+
+    <p>You can also test the proxy with <code class="language-plaintext highlighter-rouge">curl</code> by setting the proxy environment variables:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p>If the connection is successful, you should see a response from the website.</p>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>By following this guide, you’ve learned how to set up a proxy server on Google Cloud and configure firewall rules to allow incoming traffic. This setup provides an easy way to route your internet traffic securely through the cloud, bypass network restrictions, and enhance privacy.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

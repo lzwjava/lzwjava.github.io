@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>إصلاح سير عمل GitHub LaTeX مع ChatGPT o1</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>إصلاح سير عمل GitHub LaTeX مع ChatGPT o1 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="إصلاح سير عمل GitHub LaTeX مع ChatGPT o1" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="واجهتُ مؤخرًا مشكلة مع حزمة fontawesome5 في تدفق GitHub. لم يعمل الحل المقدم من 4o-mini (استخدام TeX Live 2021 و tlmgr install fontawesome5)، لكن اقترح 4o نهجًا أفضل (استخدام TeX Live 2023 وإستمرار استخدام tlmgr لتثبيت fontawesome5)، الذي أجربه حاليًا. لم يحل المشكلة بالكامل، لكن التحول إلى TeX Live 2023 بدلاً من 2021 أحدث تحسنًا كبيرًا." />
+<meta property="og:description" content="واجهتُ مؤخرًا مشكلة مع حزمة fontawesome5 في تدفق GitHub. لم يعمل الحل المقدم من 4o-mini (استخدام TeX Live 2021 و tlmgr install fontawesome5)، لكن اقترح 4o نهجًا أفضل (استخدام TeX Live 2023 وإستمرار استخدام tlmgr لتثبيت fontawesome5)، الذي أجربه حاليًا. لم يحل المشكلة بالكامل، لكن التحول إلى TeX Live 2023 بدلاً من 2021 أحدث تحسنًا كبيرًا." />
+<link rel="canonical" href="https://lzwjava.github.io/o1-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/o1-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-08T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="إصلاح سير عمل GitHub LaTeX مع ChatGPT o1" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-08T00:00:00+08:00","datePublished":"2025-01-08T00:00:00+08:00","description":"واجهتُ مؤخرًا مشكلة مع حزمة fontawesome5 في تدفق GitHub. لم يعمل الحل المقدم من 4o-mini (استخدام TeX Live 2021 و tlmgr install fontawesome5)، لكن اقترح 4o نهجًا أفضل (استخدام TeX Live 2023 وإستمرار استخدام tlmgr لتثبيت fontawesome5)، الذي أجربه حاليًا. لم يحل المشكلة بالكامل، لكن التحول إلى TeX Live 2023 بدلاً من 2021 أحدث تحسنًا كبيرًا.","headline":"إصلاح سير عمل GitHub LaTeX مع ChatGPT o1","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/o1-ar"},"url":"https://lzwjava.github.io/o1-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       إصلاح سير عمل GitHub LaTeX مع ChatGPT o1 | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2025-01-08-o1-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2025-01-08-o1-ar.md</span> -->
+      
+
+      <!-- <span>2025-01-08-o1-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/o1-en" >English</option>
+        <option value="/o1-zh" >中文</option>
+        <option value="/o1-ja" >日本語</option>
+        <option value="/o1-es" >Español</option>
+        <option value="/o1-hi" >हिंदी</option>
+        <option value="/o1-fr" >Français</option>
+        <option value="/o1-de" >Deutsch</option>
+        <option value="/o1-ar" selected>العربية</option>
+        <option value="/o1-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>واجهتُ مؤخرًا مشكلة مع حزمة <code class="language-plaintext highlighter-rouge">fontawesome5</code> في تدفق GitHub. لم يعمل الحل المقدم من 4o-mini (استخدام TeX Live 2021 و <code class="language-plaintext highlighter-rouge">tlmgr install fontawesome5</code>)، لكن اقترح 4o نهجًا أفضل (استخدام TeX Live 2023 وإستمرار استخدام <code class="language-plaintext highlighter-rouge">tlmgr</code> لتثبيت <code class="language-plaintext highlighter-rouge">fontawesome5</code>)، الذي أجربه حاليًا. لم يحل المشكلة بالكامل، لكن التحول إلى TeX Live 2023 بدلاً من 2021 أحدث تحسنًا كبيرًا.</p>
+
+<hr />
+
+<h2 id="إجابة-4o-mini">إجابة 4o-mini</h2>
+
+<p>الخطأ الذي تراه يتعلق بعدم تهيئة <code class="language-plaintext highlighter-rouge">tlmgr</code> (TeX Live Manager) بشكل صحيح في وضع المستخدم. بشكل خاص، الرسالة <code class="language-plaintext highlighter-rouge">tlmgr: user mode not initialized, please read the documentation!</code> تشير إلى أن <code class="language-plaintext highlighter-rouge">tlmgr</code> لم يتم إعداده بشكل صحيح في بيئة المستخدم.</p>
+
+<p>إليك تفصيل كيفية إصلاح ذلك:</p>
+
+<h3 id="إصلاح-خطأ-tlmgr-في-وضع-المستخدم">إصلاح خطأ <code class="language-plaintext highlighter-rouge">tlmgr</code> في وضع المستخدم</h3>
+
+<ol>
+  <li>
+    <p><strong>إعداد <code class="language-plaintext highlighter-rouge">tlmgr</code> إلى وضع المستخدم بشكل صحيح</strong>:
+يجب أن تخبر <code class="language-plaintext highlighter-rouge">tlmgr</code> بالعمل في وضع المستخدم والتأكد من تهيئته بشكل صحيح. للقيام بذلك في نصك، اتبع الخطوات التالية:</p>
+
+    <ul>
+      <li>تأكد من استخدام <code class="language-plaintext highlighter-rouge">tlmgr</code> في وضع المستخدم من خلال تعيين المتغير البيئي المناسب.</li>
+      <li>يمكنك أيضًا تهيئة دليل TeX Live الخاص بالمستخدم قبل استخدام <code class="language-plaintext highlighter-rouge">tlmgr</code>.</li>
+    </ul>
+  </li>
+  <li><strong>تهيئة <code class="language-plaintext highlighter-rouge">tlmgr</code> في وضع المستخدم</strong>:
+قبل تشغيل أوامر <code class="language-plaintext highlighter-rouge">tlmgr</code>، تأكد من أن <code class="language-plaintext highlighter-rouge">tlmgr</code> مهيأ بالأمر التالي:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tlmgr init-usertree
+</code></pre></div>    </div>
+
+    <p>سينشئ هذا مجلد TeX Live الخاص بالمستخدم في <code class="language-plaintext highlighter-rouge">~/texmf</code>. بمجرد التهيئة، يمكنك بعد ذلك تشغيل أوامر <code class="language-plaintext highlighter-rouge">tlmgr update</code> و <code class="language-plaintext highlighter-rouge">install</code>.</p>
+  </li>
+  <li>
+    <p><strong>تعديل تدفق عمل GitHub Actions</strong>:
+حدّث ملف تدفق عمل GitHub Actions ليتضمن خطوة التهيئة. إليك مثال على كيفية تعديل التدفق:</p>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">تعيين tlmgr إلى وضع المستخدم</span>
+  <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+    <span class="s"># تهيئة مجلد TeX Live الخاص بالمستخدم</span>
+    <span class="s">tlmgr init-usertree</span>
+    <span class="s">tlmgr update --self</span>
+    <span class="s">tlmgr install fontawesome5</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="مثال-كامل">مثال كامل:</h3>
+
+<p>إذا كنت تشغل هذا كجزء من تدفق عمل GitHub Actions أكبر، يمكنك دمج هذه التغييرات في القسم المناسب من الوظيفة:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">تثبيت TeX Live (xelatex)</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">sudo apt-get update</span>
+          <span class="s">sudo apt-get install -y texlive-xetex</span>
+          <span class="s">tlmgr init-usertree  # تهيئة شجرة TeX Live الخاصة بالمستخدم</span>
+          <span class="s">tlmgr update --self  # تحديث tlmgr نفسه</span>
+          <span class="s">tlmgr install fontawesome5  # تثبيت الحزمة المطلوبة</span>
+</code></pre></div></div>
+
+<h3 id="شرح-الأوامر">شرح الأوامر:</h3>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">tlmgr init-usertree</code>: يقوم هذا بتهيئة شجرة TeX Live الخاصة بالمستخدم (عادة ما تكون موجودة في <code class="language-plaintext highlighter-rouge">~/texmf</code>).</li>
+  <li><code class="language-plaintext highlighter-rouge">tlmgr update --self</code>: يقوم بتحديث الحزمة <code class="language-plaintext highlighter-rouge">tlmgr</code> نفسها إلى أحدث إصدار.</li>
+  <li><code class="language-plaintext highlighter-rouge">tlmgr install fontawesome5</code>: يقوم بتثبيت الحزمة <code class="language-plaintext highlighter-rouge">fontawesome5</code>.</li>
+</ul>
+
+<h3 id="ملاحظات-إضافية">ملاحظات إضافية:</h3>
+
+<ul>
+  <li><strong>الأذونات</strong>: تأكد من أن المستخدم الذي يشغل تدفق عمل GitHub Actions لديه الإذن لتثبيت وتعديل الملفات في دليل TeX Live الخاص بالمستخدم.</li>
+  <li><strong>متغيرات البيئة</strong>: إذا كنت تعمل مع مسارات مخصصة، قد تحتاج إلى تعديل <code class="language-plaintext highlighter-rouge">TEXMFSYSVAR</code> أو <code class="language-plaintext highlighter-rouge">TEXMFHOME</code> لتشير إلى دلائلك المحددة.</li>
+</ul>
+
+<p>من خلال التأكد من أن <code class="language-plaintext highlighter-rouge">tlmgr</code> مهيأ في وضع المستخدم وإعداده بشكل صحيح في تدفق عمل GitHub Actions، يجب أن يتم حل الخطأ. دعني أعرف إذا كان هذا يعمل أو إذا واجهتك أي مشاكل أخرى!</p>
+
+<h3 id="إجابة-o1">إجابة o1</h3>
+
+<p>أفهم أنك تواجه مشاكل مع <code class="language-plaintext highlighter-rouge">tlmgr</code> (TeX Live Manager) في تدفق عمل GitHub Actions، خاصة عند محاولة تثبيت الحزمة <code class="language-plaintext highlighter-rouge">fontawesome5</code>. تشير الرسالة الخطأ:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TLPDB: not a directory, not loading: /home/runner/texmf
+tlmgr: user mode not initialized, please read the documentation!
+Error: Process completed with exit code 2.
+</code></pre></div></div>
+
+<p>إلى أن <code class="language-plaintext highlighter-rouge">tlmgr</code> غير قادر على العمل في “وضع المستخدم” لأن المجلدات والتكوينات اللازمة لم يتم إعدادها بشكل صحيح. تنشأ هذه المشكلة عادةً عند استخدام تثبيتات TeX Live المقدمة من قبل مديري الحزم مثل <code class="language-plaintext highlighter-rouge">apt-get</code>، التي قد تكون لها وظائف محدودة مقارنة بتثبيت TeX Live كامل من TUG (TeX Users Group).</p>
+
+<p>لحل هذه المشكلة، أنصح ب<strong>تثبيت TeX Live 2023 يدويًا</strong> في تدفق عمل GitHub Actions. تضمن هذه النهج أن <code class="language-plaintext highlighter-rouge">tlmgr</code> له وظائف كاملة ويمكنه تثبيت حزم إضافية مثل <code class="language-plaintext highlighter-rouge">fontawesome5</code> دون مشاكل.</p>
+
+<h3 id="حل-خطوة-بخطوة">حل خطوة بخطوة:</h3>
+
+<ol>
+  <li><strong>إزالة تثبيت TeX Live النظامي:</strong>
+    <ul>
+      <li>تجنب استخدام <code class="language-plaintext highlighter-rouge">apt-get install texlive-xetex</code> لأنه يوفر تثبيت TeX Live جزئي بوظائف <code class="language-plaintext highlighter-rouge">tlmgr</code> محدودة.</li>
+    </ul>
+  </li>
+  <li><strong>تثبيت TeX Live 2023 يدويًا:</strong>
+    <ul>
+      <li>قم بتحميل وتثبيت TeX Live مباشرة من TUG.</li>
+    </ul>
+  </li>
+  <li><strong>تكوين متغير البيئة PATH:</strong>
+    <ul>
+      <li>تأكد من أن الثنائيات TeX Live متاحة من خلال تحديث PATH.</li>
+    </ul>
+  </li>
+  <li><strong>استخدام <code class="language-plaintext highlighter-rouge">tlmgr</code> لتثبيت الحزم المطلوبة:</strong>
+    <ul>
+      <li>قم بتحديث <code class="language-plaintext highlighter-rouge">tlmgr</code> وتثبيت <code class="language-plaintext highlighter-rouge">fontawesome5</code>.</li>
+    </ul>
+  </li>
+  <li><strong>تحسين التدفق مع التخزين المؤقت (اختياري):</strong>
+    <ul>
+      <li>قم بتخزين تثبيت TeX Live لتسريع التشغيل المستقبلي للتدفق.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="تدفق-عمل-github-actions-المحدث">تدفق عمل GitHub Actions المحدث:</h3>
+
+<p>إليك نسخة محدثة من تدفق عمل GitHub Actions الخاص بك التي تتضمن التثبيت اليدوي لـ TeX Live 2023 وإعداد <code class="language-plaintext highlighter-rouge">tlmgr</code> بشكل صحيح لتثبيت الحزمة <code class="language-plaintext highlighter-rouge">fontawesome5</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Deploy Jekyll with GitHub Pages dependencies preinstalled</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">master"</span><span class="pi">]</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
+
+<span class="na">permissions</span><span class="pi">:</span>
+  <span class="na">contents</span><span class="pi">:</span> <span class="s">read</span>
+  <span class="na">pages</span><span class="pi">:</span> <span class="s">write</span>
+  <span class="na">id-token</span><span class="pi">:</span> <span class="s">write</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s2">"</span><span class="s">pages"</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">awesome-cv-copy</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up Make</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">sudo apt-get update &amp;&amp; sudo apt-get install -y make</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Cache TeX Live</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/cache@v3</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">path</span><span class="pi">:</span> <span class="s">/usr/local/texlive/2023</span>
+          <span class="na">key</span><span class="pi">:</span> <span class="s">$-texlive-2023</span>
+          <span class="na">restore-keys</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="s">$-texlive-</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install TeX Live </span><span class="m">2023</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">steps.cache-texlive.outputs.cache-hit != 'true'</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s"># Install dependencies for TeX Live installer</span>
+          <span class="s">sudo apt-get update</span>
+          <span class="s">sudo apt-get install -y perl wget xz-utils</span>
+
+          <span class="s"># Download TeX Live installer</span>
+          <span class="s">wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz</span>
+          <span class="s">tar -xzf install-tl-unx.tar.gz</span>
+          <span class="s">cd install-tl-*/</span>
+
+          <span class="s"># Create a texlive.profile for automated installation</span>
+          <span class="s">cat &lt;&lt;EOF &gt; texlive.profile</span>
+          <span class="s">selected_scheme scheme-full</span>
+          <span class="s">TEXDIR /usr/local/texlive/2023</span>
+          <span class="s">TEXMFCONFIG ~/.texlive2023/texmf-config</span>
+          <span class="s">TEXMFHOME ~/texmf</span>
+          <span class="s">TEXMFLOCAL /usr/local/texlive/2023/texmf-local</span>
+          <span class="s">TEXMFSYSCONFIG /usr/local/texlive/2023/texmf-config</span>
+          <span class="s">TEXMFSYSVAR /usr/local/texlive/2023/texmf-var</span>
+          <span class="s">binary_x86_64-linux 1</span>
+          <span class="s">collection-basic 1</span>
+          <span class="s">collection-latex 1</span>
+          <span class="s">collection-fontsrecommended 1</span>
+          <span class="s">EOF</span>
+
+          <span class="s"># Run the installer with the profile</span>
+          <span class="s">sudo ./install-tl --profile=texlive.profile</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Add TeX Live to PATH</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">echo "/usr/local/texlive/2023/bin/x86_64-linux" &gt;&gt; $GITHUB_PATH</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Update tlmgr and Install fontawesome5</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">tlmgr update --self</span>
+          <span class="s">tlmgr install fontawesome5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run make awesome-cv-copy</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">make awesome-cv-copy</span>
+
+  <span class="na">build</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="s">awesome-cv-copy</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Setup Python </span><span class="m">3</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.x"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install python-frontmatter</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Generate notes links</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python scripts/generate_notes_link.py</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Setup Pages</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/configure-pages@v5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Build with Jekyll</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/jekyll-build-pages@v1</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">source</span><span class="pi">:</span> <span class="s">./</span>
+          <span class="na">destination</span><span class="pi">:</span> <span class="s">./_site</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Upload artifact</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/upload-pages-artifact@v3</span>
+
+  <span class="na">deploy</span><span class="pi">:</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="na">name</span><span class="pi">:</span> <span class="s">github-pages</span>
+      <span class="na">url</span><span class="pi">:</span> <span class="s">$</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">needs</span><span class="pi">:</span> <span class="s">build</span>
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Deploy to GitHub Pages</span>
+        <span class="na">id</span><span class="pi">:</span> <span class="s">deployment</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/deploy-pages@v4</span>
+</code></pre></div></div>
+
+<h3 id="شرح-مفصل">شرح مفصل:</h3>
+
+<ol>
+  <li><strong>التحقق من المستودع</strong>:
+    <ul>
+      <li>يستخدم الإجراء <code class="language-plaintext highlighter-rouge">actions/checkout@v4</code> لاستنساخ المستودع الخاص بك.</li>
+    </ul>
+  </li>
+  <li><strong>إعداد Make</strong>:
+    <ul>
+      <li>يقوم بتثبيت <code class="language-plaintext highlighter-rouge">make</code> باستخدام <code class="language-plaintext highlighter-rouge">apt-get</code>، مما يضمن توافره لبناء CV الخاص بك.</li>
+    </ul>
+  </li>
+  <li><strong>تخزين TeX Live</strong>:
+    <ul>
+      <li>يستخدم <code class="language-plaintext highlighter-rouge">actions/cache@v3</code> لتخزين تثبيت TeX Live الموجود في <code class="language-plaintext highlighter-rouge">/usr/local/texlive/2023</code>. يقلل هذا بشكل كبير من وقت التثبيت لتشغيلات التدفق اللاحقة.</li>
+    </ul>
+  </li>
+  <li><strong>تثبيت TeX Live 2023</strong>:
+    <ul>
+      <li><strong>التنفيذ المشروط</strong>: يضمن الشرط <code class="language-plaintext highlighter-rouge">if: steps.cache-texlive.outputs.cache-hit != 'true'</code> تثبيت TeX Live فقط إذا لم يتم تخزينه.</li>
+      <li><strong>تثبيت التبعيات</strong>: يقوم بتثبيت التبعيات اللازمة مثل Perl و <code class="language-plaintext highlighter-rouge">wget</code> و <code class="language-plaintext highlighter-rouge">xz-utils</code>.</li>
+      <li><strong>تحميل واستخراج مثبت</strong>: يقوم بتحميل أحدث مثبت TeX Live من CTAN واستخراجه.</li>
+      <li><strong>إنشاء ملف تعريف التثبيت</strong>: يتم إنشاء <code class="language-plaintext highlighter-rouge">texlive.profile</code> لتلقائية عملية التثبيت. يحدد هذا الملف:
+        <ul>
+          <li><strong><code class="language-plaintext highlighter-rouge">selected_scheme scheme-full</code></strong>: يقوم بتثبيت التوزيع الكامل لـ TeX Live. يمكنك تعديل ذلك إلى مخطط محدود إذا رغبت في ذلك.</li>
+          <li><strong>الدلائل</strong>: يحدد أين يتم تثبيت TeX Live وتكويناته.</li>
+          <li><strong>المجموعات</strong>: يحدد المجموعات الأساسية مثل <code class="language-plaintext highlighter-rouge">basic</code> و <code class="language-plaintext highlighter-rouge">latex</code> و <code class="language-plaintext highlighter-rouge">fontsrecommended</code>.</li>
+        </ul>
+      </li>
+      <li><strong>تشغيل المثبت</strong>: يقوم بتنفيذ المثبت بالملف التعريفي المحدد، مما يقوم بتثبيت TeX Live 2023 في <code class="language-plaintext highlighter-rouge">/usr/local/texlive/2023</code>.</li>
+    </ul>
+  </li>
+  <li><strong>إضافة TeX Live إلى PATH</strong>:
+    <ul>
+      <li>يقوم بتحديث متغير البيئة PATH من خلال إلحاق دليل الثنائيات TeX Live. يضمن هذا أن أوامر TeX Live و <code class="language-plaintext highlighter-rouge">tlmgr</code> متاحة في الخطوات اللاحقة.</li>
+    </ul>
+  </li>
+  <li><strong>تحديث <code class="language-plaintext highlighter-rouge">tlmgr</code> وتثبيت <code class="language-plaintext highlighter-rouge">fontawesome5</code></strong>:
+    <ul>
+      <li><strong>تحديث <code class="language-plaintext highlighter-rouge">tlmgr</code></strong>: يضمن أن <code class="language-plaintext highlighter-rouge">tlmgr</code> نفسه محدث.</li>
+      <li><strong>تثبيت <code class="language-plaintext highlighter-rouge">fontawesome5</code></strong>: يستخدم <code class="language-plaintext highlighter-rouge">tlmgr</code> لتثبيت الحزمة <code class="language-plaintext highlighter-rouge">fontawesome5</code>، مما يحل مشكلتك الأصلية.</li>
+    </ul>
+  </li>
+  <li><strong>تشغيل أمر Make</strong>:
+    <ul>
+      <li>يقوم بتنفيذ <code class="language-plaintext highlighter-rouge">make awesome-cv-copy</code> لبناء CV الخاص بك باستخدام إعداد TeX Live المثبت.</li>
+    </ul>
+  </li>
+  <li><strong>وظائف البناء والنشر</strong>:
+    <ul>
+      <li>تبقى هذه بشكل عام دون تغيير، لكنها تضمن توافر تثبيت TeX Live في جميع مراحل التدفق بسبب تحديث PATH.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="توصيات-إضافية">توصيات إضافية:</h3>
+
+<ul>
+  <li><strong>وقت تثبيت TeX Live</strong>:
+    <ul>
+      <li><strong>التخزين</strong>: تتضمن خطوة <code class="language-plaintext highlighter-rouge">actions/cache@v3</code> معالجة وقت التثبيت الطويل من خلال تخزين TeX Live بعد التشغيل الأول. تأكد من أن مفتاح التخزين (<code class="language-plaintext highlighter-rouge">$-texlive-2023</code>) يعكس إصدار TeX Live بدقة لتجنب تضارب التخزين.</li>
+    </ul>
+  </li>
+  <li><strong>تخصيص تثبيت TeX Live</strong>:
+    <ul>
+      <li>إذا كنت لا تحتاج إلى التوزيع الكامل لـ TeX Live، يمكنك تعديل <code class="language-plaintext highlighter-rouge">texlive.profile</code> لتثبيت مخطط محدود فقط والمجموعات اللازمة، مما يقلل من وقت التثبيت واستخدام القرص. على سبيل المثال، استبدل <code class="language-plaintext highlighter-rouge">scheme-full</code> بـ <code class="language-plaintext highlighter-rouge">scheme-basic</code> وحدد فقط المجموعات الضرورية.</li>
+    </ul>
+  </li>
+  <li><strong>معالجة PATH بشكل صحيح</strong>:
+    <ul>
+      <li>استخدام <code class="language-plaintext highlighter-rouge">echo "/usr/local/texlive/2023/bin/x86_64-linux" &gt;&gt; $GITHUB_PATH</code> يضمن أن ثنائيات TeX Live مضافة إلى PATH لجميع الخطوات اللاحقة في الوظيفة. هذا ضروري لعمل <code class="language-plaintext highlighter-rouge">tlmgr</code> وأوامر LaTeX بشكل صحيح.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="نصائح-لاستكشاف-الأخطاء">نصائح لاستكشاف الأخطاء:</h3>
+
+<ol>
+  <li><strong>مشكلات التخزين</strong>:
+    <ul>
+      <li>تأكد من أن مفتاح التخزين يعكس إصدار TeX Live بدقة. إذا قمت بتحديث TeX Live أو تغيير مسار التثبيت، قم بتحديث مفتاح التخزين على حدة.</li>
+    </ul>
+  </li>
+  <li><strong>فشل التثبيت</strong>:
+    <ul>
+      <li>تحقق من سجلات GitHub Actions للبحث عن أي أخطاء أثناء تثبيت TeX Live. تشمل المشاكل الشائعة مشاكل الشبكة عند تحميل المثبت أو إذن غير كافٍ.</li>
+    </ul>
+  </li>
+  <li><strong>أخطاء تثبيت الحزم</strong>:
+    <ul>
+      <li>إذا فشل <code class="language-plaintext highlighter-rouge">tlmgr</code> في تثبيت <code class="language-plaintext highlighter-rouge">fontawesome5</code>، تحقق من اسم الحزمة بشكل صحيح ومن توافرها في مستودع TeX Live.</li>
+    </ul>
+  </li>
+  <li><strong>مشاكل PATH</strong>:
+    <ul>
+      <li>تأكد من أن PATH قد تم تحديثه بشكل صحيح. يمكنك إضافة خطوة لطباعة PATH للتصحيح:
+```yaml
+        <ul>
+          <li>name: Print PATH
+run: echo $PATH
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>قيود القرص</strong>:
+    <ul>
+      <li>يتميز المشغلون في GitHub Actions بمساحة قرص محدودة. يمكن أن يستهلك تثبيت TeX Live الكامل مساحة كبيرة. إذا واجهت مشكلات مساحة القرص، فكر في تثبيت توزيع TeX Live أقل حجمًا.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="مثال-نهائي-للتدفق-مع-التحقق">مثال نهائي للتدفق مع التحقق:</h3>
+
+<p>إليك تدفق أكثر شمولاً يتضمن خطوات التحقق للتأكد من إعداد كل شيء بشكل صحيح:</p>
+
+<p>```yaml
+name: Deploy Jekyll with GitHub Pages dependencies preinstalled</p>
+
+<p>on:
+  push:
+    branches: [“master”]
+  workflow_dispatch:</p>
+
+<p>permissions:
+  contents: read
+  pages: write
+  id-token: write</p>
+
+<p>concurrency:
+  group: “pages”
+  cancel-in-progress: false</p>
+
+<p>jobs:
+  awesome-cv-copy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  - name: Set up Make
+    run: sudo apt-get update &amp;&amp; sudo apt-get install -y make
+
+  - name: Cache TeX Live
+    uses: actions/cache@v3
+    with:
+      path: /usr/local/texlive/2023
+      key: $-texlive-2023
+      restore-keys: |
+        $-texlive-
+
+  - name: Install TeX Live 2023
+    if: steps.cache-texlive.outputs.cache-hit != 'true'
+    run: |
+      # Install dependencies for TeX Live installer
+      sudo apt-get update
+      sudo apt-get install -y perl wget xz-utils
+
+      # Download TeX Live installer
+      wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
+      tar -xzf install-tl-unx.tar.gz
+      cd install-tl-*/
+
+      # Create a texlive.profile for automated installation
+      cat &lt;&lt;EOF &gt; texlive.profile
+      selected_scheme scheme-full
+      TEXDIR /usr/local/texlive/2023
+      TEXMFCONFIG ~/.texlive2023/texmf-config
+      TEXMFHOME ~/texmf
+      TEXMFLOCAL /usr/local/texlive/2023/texmf-local
+      TEXMFSYSCONFIG /usr/local/texlive/2023/texmf-config
+      TEXMFSYSVAR /usr/local/texlive/2023/texmf-var
+      binary_x86_64-linux 1
+      collection-basic 1
+      collection-latex 1
+      collection-fontsrecommended 1
+      EOF
+
+      # Run the installer with the profile
+      sudo ./install-tl --profile=texlive.profile
+
+  - name: Add TeX Live to PATH
+    run: echo "/usr/local/texlive/2023/bin/x86_64-linux" &gt;&gt; $GITHUB_PATH
+
+  - name: Verify TeX Live Installation
+    run: |
+      tex --version
+      tlmgr --version
+      kpsewhich fontawesome5.sty || echo "
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

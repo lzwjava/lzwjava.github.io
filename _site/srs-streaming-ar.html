@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="دعونا نغوص في استخدام Simple Realtime Server (SRS) لتنفيذ خادم حافة لتبث RTMP، مع التركيز على فهمه وتكوينه بشكل فعال، بما في ذلك ملف rtmp.conf. SRS هو خادم وسائط قوي، ذو أداء عالي، مصمم لمبادئ التوصيل المباشر مثل RTMP، HLS، وHTTP-FLV. إنه مناسب بشكل خاص لمواقف تتطلب قابلية التوسيع، مثل شبكات توزيع المحتوى (CDNs)، حيث يمكن لخادم الحافة توزيع التدفقات بشكل فعال إلى العديد من العملاء بينما يستخرج المحتوى من خادم الأصل. سأقودك عبر العملية خطوة بخطوة، وأشرح مفهوم نشر الحافة، وأوضح كيفية العمل مع التكوينات مثل rtmp.conf." />
+<meta property="og:description" content="دعونا نغوص في استخدام Simple Realtime Server (SRS) لتنفيذ خادم حافة لتبث RTMP، مع التركيز على فهمه وتكوينه بشكل فعال، بما في ذلك ملف rtmp.conf. SRS هو خادم وسائط قوي، ذو أداء عالي، مصمم لمبادئ التوصيل المباشر مثل RTMP، HLS، وHTTP-FLV. إنه مناسب بشكل خاص لمواقف تتطلب قابلية التوسيع، مثل شبكات توزيع المحتوى (CDNs)، حيث يمكن لخادم الحافة توزيع التدفقات بشكل فعال إلى العديد من العملاء بينما يستخرج المحتوى من خادم الأصل. سأقودك عبر العملية خطوة بخطوة، وأشرح مفهوم نشر الحافة، وأوضح كيفية العمل مع التكوينات مثل rtmp.conf." />
+<link rel="canonical" href="https://lzwjava.github.io/srs-streaming-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/srs-streaming-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2017-01-06T00:00:00+08:00","datePublished":"2017-01-06T00:00:00+08:00","description":"دعونا نغوص في استخدام Simple Realtime Server (SRS) لتنفيذ خادم حافة لتبث RTMP، مع التركيز على فهمه وتكوينه بشكل فعال، بما في ذلك ملف rtmp.conf. SRS هو خادم وسائط قوي، ذو أداء عالي، مصمم لمبادئ التوصيل المباشر مثل RTMP، HLS، وHTTP-FLV. إنه مناسب بشكل خاص لمواقف تتطلب قابلية التوسيع، مثل شبكات توزيع المحتوى (CDNs)، حيث يمكن لخادم الحافة توزيع التدفقات بشكل فعال إلى العديد من العملاء بينما يستخرج المحتوى من خادم الأصل. سأقودك عبر العملية خطوة بخطوة، وأشرح مفهوم نشر الحافة، وأوضح كيفية العمل مع التكوينات مثل rtmp.conf.","headline":"سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/srs-streaming-ar"},"url":"https://lzwjava.github.io/srs-streaming-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       سيرفر بسيط في الوقت الحقيقي (SRS) لمباشر RTMP | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2017-01-06-srs-streaming-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2017-01-06-srs-streaming-ar.md</span> -->
+      
+
+      <!-- <span>2017-01-06-srs-streaming-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2017.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/srs-streaming-en" >English</option>
+        <option value="/srs-streaming-zh" >中文</option>
+        <option value="/srs-streaming-ja" >日本語</option>
+        <option value="/srs-streaming-es" >Español</option>
+        <option value="/srs-streaming-hi" >हिंदी</option>
+        <option value="/srs-streaming-fr" >Français</option>
+        <option value="/srs-streaming-de" >Deutsch</option>
+        <option value="/srs-streaming-ar" selected>العربية</option>
+        <option value="/srs-streaming-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>دعونا نغوص في استخدام Simple Realtime Server (SRS) لتنفيذ خادم حافة لتبث RTMP، مع التركيز على فهمه وتكوينه بشكل فعال، بما في ذلك ملف <code class="language-plaintext highlighter-rouge">rtmp.conf</code>. SRS هو خادم وسائط قوي، ذو أداء عالي، مصمم لمبادئ التوصيل المباشر مثل RTMP، HLS، وHTTP-FLV. إنه مناسب بشكل خاص لمواقف تتطلب قابلية التوسيع، مثل شبكات توزيع المحتوى (CDNs)، حيث يمكن لخادم الحافة توزيع التدفقات بشكل فعال إلى العديد من العملاء بينما يستخرج المحتوى من خادم الأصل. سأقودك عبر العملية خطوة بخطوة، وأشرح مفهوم نشر الحافة، وأوضح كيفية العمل مع التكوينات مثل <code class="language-plaintext highlighter-rouge">rtmp.conf</code>.</p>
+
+<h3 id="ما-هو-srs-ونشر-الحافة">ما هو SRS ونشر الحافة؟</h3>
+<p>SRS هو خادم مفتوح المصدر مبني ليدير بث الوسائط المباشر مع التركيز على البساطة والفعالية. يدعم RTMP (بروتوكول الرسائل المباشر) للبث المباشر منخفض التأخير، بالإضافة إلى بروتوكولات أخرى مثل HLS وWebRTC. في SRS، يعمل خادم “الحافة” كوسيط بين العملاء (المشاهدون أو الناشرون) وخادم “الأصل” (حيث يبدأ البث). الحافة تستخرج التدفقات من الأصل فقط عند طلبها من العملاء، مما يقلل من الحمل على الأصل ويتيح توزيعًا قابلًا للتوسيع - افهمه مثل طبقة التخزين المؤقت في CDN مخصصة للتدفقات الحية.</p>
+
+<p>نشر خادم حافة مع SRS مناسب عندما تحتاج إلى:</p>
+<ul>
+  <li>خدمة عدد كبير من المشاهدين دون إفراط في الحمل على الأصل.</li>
+  <li>السماح للناشرين بإرسال التدفقات إلى الحافة، التي تتابعها إلى الأصل.</li>
+  <li>تقليل استخدام النطاق الترددي على الخوادم الأصلية الغالية من خلال استغلال العقد الحافة الرخيصة.</li>
+</ul>
+
+<h3 id="خطوة-بخطوة-نشر-خادم-حافة-مع-srs-لrtmp">خطوة بخطوة: نشر خادم حافة مع SRS لRTMP</h3>
+<p>هنا كيفية إعداد SRS كخادم حافة لRTMP. سأفترض أنك تعمل على نظام لينكس (مثل Ubuntu)، حيث تم تحسين SRS لهذه البيئة.</p>
+
+<h4 id="1-تثبيت-srs">1. تثبيت SRS</h4>
+<p>أولاً، عليك الحصول على SRS يعمل على جهازك:</p>
+<ul>
+  <li><strong>تحميل SRS</strong>: احصل على أحدث إصدار مستقر من مستودع GitHub الرسمي (github.com/ossrs/srs). اعتبارًا من اليوم، 26 فبراير 2025، يمكنك عادةً استنساخ المستودع:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/ossrs/srs.git
+cd srs
+</code></pre></div>    </div>
+  </li>
+  <li><strong>بناء SRS</strong>: يستخدم SRS عملية بناء بسيطة مع <code class="language-plaintext highlighter-rouge">./configure</code> و<code class="language-plaintext highlighter-rouge">make</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure
+make
+</code></pre></div>    </div>
+    <p>هذا يدمج الخادم في دليل <code class="language-plaintext highlighter-rouge">objs</code> (مثل <code class="language-plaintext highlighter-rouge">objs/srs</code>).</p>
+  </li>
+  <li><strong>اختبار الثنائي</strong>: قم بتشغيله مع التكوين الافتراضي لضمان عمله:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/srs.conf
+</code></pre></div>    </div>
+    <p>افتراضيًا، يستمع على الميناء 1935 لRTMP. تحقق من إخراج الشاشة للتأكيد.</p>
+  </li>
+</ul>
+
+<h4 id="2-فهم-مفهوم-الحافة">2. فهم مفهوم الحافة</h4>
+<p>في SRS، يعمل خادم الحافة في “الوضع البعيد”، مما يعني أنه لا يولد التدفقات بنفسه، بل يستخرجها من خادم الأصل عند طلبها من العملاء (للمشاهدة) أو إرسال التدفقات إلى الأصل (للنشر). هذه الاستخراج حسب الطلب هي ما يجعل خوادم الحافة فعالة للتوسيع في توزيع RTMP.</p>
+
+<ul>
+  <li><strong>خادم الأصل</strong>: مصدر التدفق (مثل حيث يدفع المكوّن RTMP مثل OBS).</li>
+  <li><strong>خادم الحافة</strong>: وسيط يربط إليه العملاء، يستخرج من الأصل فقط عند الحاجة.</li>
+</ul>
+
+<p>لهذا المثال، دعنا نفترض أنك تملك خادم أصل يعمل SRS على <code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code> (قم بإستبدال هذا بالعنوان IP الفعلي).</p>
+
+<h4 id="3-تكوين-خادم-الحافة">3. تكوين خادم الحافة</h4>
+<p>يستخدم SRS ملفات التكوين لتحديد سلوكه. <code class="language-plaintext highlighter-rouge">srs.conf</code> الافتراضي هو نقطة بداية جيدة، ولكن لنشر الحافة، ستخلق تكوينًا محددًا - دعونا نسميه <code class="language-plaintext highlighter-rouge">edge.conf</code>. ههنا كيفية إعداده:</p>
+
+<ul>
+  <li><strong>إنشاء <code class="language-plaintext highlighter-rouge">edge.conf</code></strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd conf
+nano edge.conf
+</code></pre></div>    </div>
+  </li>
+  <li><strong>إضافة تكوين الحافة</strong>:
+ههنا <code class="language-plaintext highlighter-rouge">edge.conf</code> البسيط لنشر RTMP الحافة:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">srs_log_tank</span>        <span class="n">file</span>;
+<span class="n">srs_log_file</span>        ./<span class="n">objs</span>/<span class="n">edge</span>.<span class="n">log</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">cluster</span> {
+        <span class="n">mode</span>        <span class="n">remote</span>;
+        <span class="n">origin</span>      <span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">100</span>:<span class="m">1935</span>;
+    }
+}
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">listen 1935</code>: يستمع الحافة للاتصالات RTMP على الميناء 1935.</li>
+      <li><code class="language-plaintext highlighter-rouge">max_connections 1000</code>: يحد الإتصالات المتزامنة (قم بتعديله بناءً على قدرة خادمك).</li>
+      <li><code class="language-plaintext highlighter-rouge">srs_log_file</code>: سجل في ملف للتشخيص.</li>
+      <li><code class="language-plaintext highlighter-rouge">vhost __defaultVhost__</code>: التكوين الافتراضي للمضيف الافتراضي.</li>
+      <li><code class="language-plaintext highlighter-rouge">cluster { mode remote; origin 192.168.1.100:1935; }</code>: يحدد هذا الخادم كحافة (<code class="language-plaintext highlighter-rouge">mode remote</code>) ويشير إلى خادم الأصل.</li>
+    </ul>
+  </li>
+  <li><strong>حفظ وإغلاق</strong>: Ctrl+O، Enter، Ctrl+X في nano.</li>
+</ul>
+
+<h4 id="4-تشغيل-خادم-الحافة">4. تشغيل خادم الحافة</h4>
+<p>قم بتشغيل SRS مع تكوين الحافة:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/edge.conf
+</code></pre></div></div>
+<p>تحقق من السجلات (<code class="language-plaintext highlighter-rouge">./objs/edge.log</code>) للتأكيد على تشغيله وتوصيله بالاصل.</p>
+
+<h4 id="5-اختبار-التكوين">5. اختبار التكوين</h4>
+<ul>
+  <li><strong>نشر تدفق</strong>: استخدم أداة مثل OBS أو FFmpeg لإرسال تدفق RTMP إلى خادم الأصل:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg -re -i input.mp4 -c copy -f flv rtmp://192.168.1.100/live/livestream
+</code></pre></div>    </div>
+    <p>هنا، <code class="language-plaintext highlighter-rouge">live</code> هو اسم التطبيق، و<code class="language-plaintext highlighter-rouge">livestream</code> هو مفتاح التدفق.</p>
+  </li>
+  <li><strong>تشغيل من الحافة</strong>: استخدم VLC أو عميل RTMP آخر لتشغيل التدفق من الحافة:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rtmp://&lt;edge-server-ip&gt;/live/livestream
+</code></pre></div>    </div>
+    <p>استبدل <code class="language-plaintext highlighter-rouge">&lt;edge-server-ip&gt;</code> بالعنوان IP لخادم الحافة (مثل <code class="language-plaintext highlighter-rouge">192.168.1.101</code>). الحافة ستستخرج التدفق من الأصل وتخدمه إليك.</p>
+  </li>
+</ul>
+
+<h4 id="6-استكشاف-rtmpconf">6. استكشاف <code class="language-plaintext highlighter-rouge">rtmp.conf</code></h4>
+<p>SRS لا يأتي مع ملف <code class="language-plaintext highlighter-rouge">rtmp.conf</code> افتراضيًا، ولكن قد تجد مراجعًا له في الدروس أو التكوينات المخصصة. إنه ببساطة اسم تقليدي لملف تكوين RTMP. على سبيل المثال، يوفر وثائق SRS (ossrs.net) نموذجًا <code class="language-plaintext highlighter-rouge">rtmp.conf</code> للبث المباشر RTMP:</p>
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">tcp_nodelay</span>     <span class="n">on</span>;
+    <span class="n">min_latency</span>     <span class="n">on</span>;
+    <span class="n">play</span> {
+        <span class="n">gop_cache</span>   <span class="n">off</span>;
+        <span class="n">queue_length</span> <span class="m">10</span>;
+    }
+    <span class="n">publish</span> {
+        <span class="n">mr</span>          <span class="n">off</span>;
+    }
+}
+</code></pre></div></div>
+<ul>
+  <li><strong>الغرض</strong>: هذا التكوين يفضل البث المباشر RTMP منخفض التأخير على خادم الأصل، لا على الحافة. لنشر الحافة، ستضيف كتلة <code class="language-plaintext highlighter-rouge">cluster</code> من الخطوة 3.</li>
+  <li><strong>إعدادات رئيسية</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tcp_nodelay on</code>: يقلل من التأخير من خلال تعطيل خوارزمية Nagle.</li>
+      <li><code class="language-plaintext highlighter-rouge">min_latency on</code>: يفضل التأخير المنخفض على التخزين المؤقت.</li>
+      <li><code class="language-plaintext highlighter-rouge">gop_cache off</code>: يعطل تخزين مجموعة الصور للتشغيل المباشر.</li>
+      <li><code class="language-plaintext highlighter-rouge">mr off</code>: يعطل “قراءة الدمج” لمنع التأخير في النشر.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>لحافة، ستدمج هذا مع إعدادات <code class="language-plaintext highlighter-rouge">cluster</code> بدلاً من استخدامه بشكل مستقل.</p>
+
+<h3 id="شرح-المزيد-آليات-الحافة-وrtmp">شرح المزيد: آليات الحافة وRTMP</h3>
+<ul>
+  <li><strong>كيف تعمل الحافة</strong>: عندما يطلب عميل <code class="language-plaintext highlighter-rouge">rtmp://&lt;edge-ip&gt;/live/livestream</code>، تحقق الحافة إذا كان لديها التدفق. إذا لم يكن كذلك، تستخرجه من الأصل (<code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code>) وتخزينه محليًا لخدمة العملاء الآخرين. إذا دفع الناشر إلى الحافة، فإنه يتابع التدفق إلى الأصل.</li>
+  <li><strong>معلومات RTMP</strong>: RTMP هو بروتوكول منخفض التأخير مناسب للبث المباشر. يدير SRS RTMP بشكل فعال، يدعم ميزات مثل الترميز الزمني المطلق (ATC) للتزامن عبر الخوادم، على الرغم من أنه معطل افتراضيًا في وضع الحافة إلا إذا تم تحديده.</li>
+  <li><strong>قابلية التوسيع</strong>: أضف حافات متعددة تشير إلى نفس الأصل لتعامل مع آلاف العملاء. يدعم SRS failover من خلال قائمة متعددة الأصول (مثل <code class="language-plaintext highlighter-rouge">origin 192.168.1.100:1935 192.168.1.200:1935;</code>).</li>
+</ul>
+
+<h3 id="نصائح-وتشخيص-الأخطاء">نصائح وتشخيص الأخطاء</h3>
+<ul>
+  <li><strong>حائط الحماية</strong>: تأكد من فتح الميناء 1935 على الخوادم الأصلية والحافة.</li>
+  <li><strong>السجلات</strong>: تحقق من <code class="language-plaintext highlighter-rouge">edge.log</code> للخطأ مثل فشل الإتصالات بالاصل.</li>
+  <li><strong>التأخير</strong>: الحافة تضيف تأخيرًا ضئيلًا (عادةً &lt;1s) إذا كان الأصل منخفض التأخير أيضًا.</li>
+  <li><strong>حافات متعددة</strong>: نشر حافات إضافية مع نفس التكوين، تعديل منافذ الاستماع أو العناوين IP حسب الحاجة.</li>
+</ul>
+
+<h3 id="الخاتمة">الخاتمة</h3>
+<p>نشر خادم SRS الحافة لRTMP بسيط بعد فهم العلاقة بين الأصل والحافة. <code class="language-plaintext highlighter-rouge">edge.conf</code> يحدد الحافة لاستخراج أو إرسال التدفقات بشكل ديناميكي، بينما يمكن أن يحدد تكوين من نوع <code class="language-plaintext highlighter-rouge">rtmp.conf</code> أداء RTMP إذا لزم الأمر. مع هذا التكوين، أنت مستعد لتوسيع البث المباشر بشكل فعال - سواء كان لعدد قليل من المشاهدين أو جمهور عالمي. تريد تعديله أكثر أو دمج HLS بجانب RTMP؟ فقط أخبرني!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

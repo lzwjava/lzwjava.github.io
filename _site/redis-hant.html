@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Redis入門</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Redis入門 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Redis入門" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="打開Redis官網，第一句話是說，Redis是一種開源的內存型的數據結構存儲，常用於數據庫和緩存。Redis很常用。" />
+<meta property="og:description" content="打開Redis官網，第一句話是說，Redis是一種開源的內存型的數據結構存儲，常用於數據庫和緩存。Redis很常用。" />
+<link rel="canonical" href="https://lzwjava.github.io/redis-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/redis-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Redis入門" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-13T00:00:00+08:00","datePublished":"2021-03-13T00:00:00+08:00","description":"打開Redis官網，第一句話是說，Redis是一種開源的內存型的數據結構存儲，常用於數據庫和緩存。Redis很常用。","headline":"Redis入門","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/redis-hant"},"url":"https://lzwjava.github.io/redis-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Redis入門 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2021-03-13-redis-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2021-03-13-redis-hant.md</span> -->
+      
+
+      <!-- <span>2021-03-13-redis-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/redis-en" >English</option>
+        <option value="/redis-zh" >中文</option>
+        <option value="/redis-ja" >日本語</option>
+        <option value="/redis-es" >Español</option>
+        <option value="/redis-hi" >हिंदी</option>
+        <option value="/redis-fr" >Français</option>
+        <option value="/redis-de" >Deutsch</option>
+        <option value="/redis-ar" >العربية</option>
+        <option value="/redis-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>打開Redis官網，第一句話是說，Redis是一種開源的內存型的數據結構存儲，常用於數據庫和緩存。<code class="language-plaintext highlighter-rouge">Redis</code>很常用。</p>
+
+<h2 id="安裝-redis">安裝 Redis</h2>
+
+<p>可到官網安裝<code class="language-plaintext highlighter-rouge">Redis</code>。就像<code class="language-plaintext highlighter-rouge">SQLite</code>一樣。安裝完畢後，那如何在<code class="language-plaintext highlighter-rouge">Python</code>使用<code class="language-plaintext highlighter-rouge">Redis</code>呢。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>redis
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> import redis
+<span class="o">&gt;&gt;&gt;</span> r <span class="o">=</span> redis.Redis<span class="o">(</span><span class="nv">host</span><span class="o">=</span><span class="s1">'localhost'</span>, <span class="nv">port</span><span class="o">=</span>6379, <span class="nv">db</span><span class="o">=</span>0<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> r.set<span class="o">(</span><span class="s1">'foo'</span>, <span class="s1">'bar'</span><span class="o">)</span>
+True
+<span class="o">&gt;&gt;&gt;</span> r.get<span class="o">(</span><span class="s1">'foo'</span><span class="o">)</span>
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<p>Python文檔給了一些例子。這裡出現了像<code class="language-plaintext highlighter-rouge">pip</code>的東西。<code class="language-plaintext highlighter-rouge">pip</code>是包管理工具。包管理工具是什麼，可到「熟悉編程環境」一章查閱。<code class="language-plaintext highlighter-rouge">pip</code>之於<code class="language-plaintext highlighter-rouge">python</code>，就好像<code class="language-plaintext highlighter-rouge">Homebrew</code>之於<code class="language-plaintext highlighter-rouge">macOS</code>系統。</p>
+
+<p><code class="language-plaintext highlighter-rouge">pip</code>通常在安裝<code class="language-plaintext highlighter-rouge">python</code>時已經自帶了。如果電腦有很多版本的<code class="language-plaintext highlighter-rouge">Python</code>和 <code class="language-plaintext highlighter-rouge">Pip</code>，可以在<code class="language-plaintext highlighter-rouge">~/.bash_profile</code>中加入以下兩行：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">python</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/python3
+<span class="nb">alias </span><span class="nv">pip</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/pip3
+</code></pre></div></div>
+
+<p>意思是指定一個版本的<code class="language-plaintext highlighter-rouge">python</code>和 <code class="language-plaintext highlighter-rouge">pip</code>。一種方式是可以<code class="language-plaintext highlighter-rouge">Homebrew</code>來安裝。也可以從源代碼構建安裝。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+make <span class="nb">test
+</span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-server
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># Redis version=6.2.1, bits=64, commit=00000000, modified=0, pid=87684, just started</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf</span>
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> Increased maximum number of open files to 10032 <span class="o">(</span>it was originally <span class="nb">set </span>to 4864<span class="o">)</span><span class="nb">.</span>
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> monotonic clock: POSIX clock_gettime
+...
+Redis 6.2.1 <span class="o">(</span>00000000/0<span class="o">)</span> 64 bit
+...
+87684:M 10 Mar 2021 14:46:06.058 <span class="c"># Server initialized</span>
+87684:M 10 Mar 2021 14:46:06.058 <span class="k">*</span> Ready to accept connections
+</code></pre></div></div>
+
+<p>這裡節選了一點內容。可見我們已經安裝上了。版本號<code class="language-plaintext highlighter-rouge">6.2.1</code>，是官網最新的。打開另外一個終端窗口。可以試著把玩一下：</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-cli
+127.0.0.1:6379&gt; <span class="nb">set </span>a 2
+OK
+127.0.0.1:6379&gt; get a
+<span class="s2">"2"</span>
+</code></pre></div></div>
+
+<p>運行一下代碼。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">bar</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>輸出：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python fib_redis.py
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<h2 id="redis-緩存例子">Redis 緩存例子</h2>
+
+<p>來實現斐波那契數列<code class="language-plaintext highlighter-rouge">Redis</code>版本。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+
+<span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span>
+    <span class="n">res_n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">res_n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res_n</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>這樣就搞定啦。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Invasión de OpenWrt en Xiaomi Mi Router 4C</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Invasión de OpenWrt en Xiaomi Mi Router 4C | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Invasión de OpenWrt en Xiaomi Mi Router 4C" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Este es mi tercer intento de instalar OpenWrt. La primera vez fue en 2019, cuando utilicé un puerto UART para conectar. La segunda vez, en 2023, utilicé un método remoto similar al descrito aquí." />
+<meta property="og:description" content="Este es mi tercer intento de instalar OpenWrt. La primera vez fue en 2019, cuando utilicé un puerto UART para conectar. La segunda vez, en 2023, utilicé un método remoto similar al descrito aquí." />
+<link rel="canonical" href="https://lzwjava.github.io/openwrt-invasion-es" />
+<meta property="og:url" content="https://lzwjava.github.io/openwrt-invasion-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-22T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Invasión de OpenWrt en Xiaomi Mi Router 4C" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-22T00:00:00+08:00","datePublished":"2025-02-22T00:00:00+08:00","description":"Este es mi tercer intento de instalar OpenWrt. La primera vez fue en 2019, cuando utilicé un puerto UART para conectar. La segunda vez, en 2023, utilicé un método remoto similar al descrito aquí.","headline":"Invasión de OpenWrt en Xiaomi Mi Router 4C","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/openwrt-invasion-es"},"url":"https://lzwjava.github.io/openwrt-invasion-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Invasión de OpenWrt en Xiaomi Mi Router 4C | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-02-22-openwrt-invasion-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/es/2025-02-22-openwrt-invasion-es.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-02-22-openwrt-invasion-es.md</span> -->
+      
+
+      <!-- <span>2025-02-22-openwrt-invasion-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.02</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/openwrt-invasion-en" >English</option>
+        <option value="/openwrt-invasion-zh" >中文</option>
+        <option value="/openwrt-invasion-ja" >日本語</option>
+        <option value="/openwrt-invasion-es" selected>Español</option>
+        <option value="/openwrt-invasion-hi" >हिंदी</option>
+        <option value="/openwrt-invasion-fr" >Français</option>
+        <option value="/openwrt-invasion-de" >Deutsch</option>
+        <option value="/openwrt-invasion-ar" >العربية</option>
+        <option value="/openwrt-invasion-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Este es mi tercer intento de instalar OpenWrt. La primera vez fue en 2019, cuando utilicé un puerto UART para conectar. La segunda vez, en 2023, utilicé un método remoto similar al descrito aquí.</p>
+
+<p>El código de explotación se puede encontrar en <a href="https://github.com/acecilia/OpenWRTInvasion">https://github.com/acecilia/OpenWRTInvasion</a>.</p>
+
+<p>Primero, instala los requisitos:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install</span> <span class="nt">-r</span> requirements.txt <span class="nt">--break-system-packages</span>
+</code></pre></div></div>
+
+<p>Después de ejecutar la explotación, puedes acceder a la interfaz web del router en una URL similar a esta (el valor de <code class="language-plaintext highlighter-rouge">stok</code> variará):</p>
+
+<p><code class="language-plaintext highlighter-rouge">http://192.168.1.28/cgi-bin/luci/;stok=fe9b14c5c4dee48709fbdf00e048d5ec/web/home</code></p>
+
+<p>```bash
+lzwjava@anonymous OpenWRTInvasion % python remote_command_execution_vulnerability.py
+Dirección IP del router [presiona enter para usar el valor predeterminado ‘miwifi.com’]: 192.168.1.28
+Ingresa la contraseña del administrador del router: …
+Hay dos opciones para proporcionar los archivos necesarios para la invasión:</p>
+<ol>
+  <li>Usar un servidor de archivos TCP local ejecutándose en un puerto aleatorio para proporcionar archivos en el directorio local <code class="language-plaintext highlighter-rouge">script_tools</code>.</li>
+  <li>Descargar los archivos necesarios desde el repositorio de GitHub remoto. (elige esta opción solo si GitHub es accesible dentro del dispositivo del router.)
+¿Cuál opción prefieres? (predeterminado: 1)1
+<strong>**</strong><strong>**</strong><strong>**
+router_ip_address: 192.168.1.28
+stok: 08f4f22fed20b94580cb8e70703c941c
+proveedor de archivos: servidor de archivos local
+**</strong><strong>**</strong><strong>**</strong>
+comenzando a subir el archivo de configuración…
+comenzando a ejecutar el comando…
+el servidor de archivos local está ejecutándose en 0.0.0.0:63067. root=’script_tools’
+el servidor de archivos local está obteniendo ‘busybox-mipsel’ para 192.168.1.28.
+el servidor de archivos local está obteniendo ‘dropbearStaticMipsel.tar.bz2’ para 192.168.1.28.
+¡Hecho! Ahora puedes conectarte al router usando varias opciones: (usuario: root, contraseña: root)
+    <ul>
+      <li>telnet 192.168.1.28</li>
+      <li>ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa -c 3des-cbc -o UserKnownHostsFile=/dev/null root@192.168.1.28</li>
+      <li>ftp: usando un programa como cyberduck</li>
+    </ul>
+  </li>
+</ol>
+
+<p>root@XiaoQiang:/tmp# wget “https://downloads.openwrt.org/releases/24.10.0/targets/ramips/mt76x8/openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin”
+wget: no es una URL http o ftp: https://downloads.openwrt.org/releases/24.10.0/targets/ramips/mt76x8/openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin</p>
+
+<p>scp -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa -c 3des-cbc  openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin root@192.168.1.28:/tmp/
+ash: /usr/libexec/sftp-server: no encontrado
+scp: Conexión cerrada</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>cat openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin</td>
+      <td>ssh -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-rsa root@192.168.1.28 “cat &gt; /tmp/openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin”</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>root@XiaoQiang:/tmp# ls
+2541.bootcheck.log                                                         oui
+TZ                                                                         rc.done
+appStoreRule.json                                                          rc.timing
+arrays                                                                     resolv.conf
+authenfailed-cache                                                         resolv.conf.auto
+busybox                                                                    root
+daemon                                                                     rr
+datalist                                                                   run
+dropbear                                                                   script.sh
+dropbear.tar.bz2                                                           speedtest_urls.xml
+etc                                                                        spool
+ftpd                                                                       startscene_crontab.lua.PID
+lock                                                                       stat_points_privacy.log
+log                                                                        stat_points_rom.log
+logexec                                                                    state
+luci-indexcache                                                            sysapihttpd
+luci-nonce                                                                 sysapihttpdconf
+luci-sessions                                                              sysinfo
+messages                                                                   syslog-ng.ctl
+miqos.lock                                                                 syslog-ng.pid
+mnt                                                                        taskmonitor
+mt76xx2.sh.log                                                             uci2dat_mt7628.log
+network.env                                                                uploadfiles
+nginx_check.log                                                            upnp.leases
+ntp.status                                                                 web_config_list
+openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin  wifi_analysis.log</p>
+
+<p>root@XiaoQiang:/tmp# mtd -r write openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin OS1
+Desbloqueando OS1 …</p>
+
+<p>Escribiendo desde openwrt-24.10.0-ramips-mt76x8-xiaomi_mi-router-4c-squashfs-sysupgrade.bin a OS1 …  [w]</p>
+
+<p>Conéctate al router a través de una conexión por cable. Luego puedes acceder a la interfaz web en 192.168.1.1 o usar SSH ejecutando <code class="language-plaintext highlighter-rouge">ssh root@192.168.1.1</code>.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

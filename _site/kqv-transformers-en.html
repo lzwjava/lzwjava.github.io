@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>KQV, Transformers and GPT</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>KQV, Transformers and GPT | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="KQV, Transformers and GPT" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="How I Learned the KQV Mechanism in Transformers" />
+<meta property="og:description" content="How I Learned the KQV Mechanism in Transformers" />
+<link rel="canonical" href="https://lzwjava.github.io/kqv-transformers-en" />
+<meta property="og:url" content="https://lzwjava.github.io/kqv-transformers-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-16T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="KQV, Transformers and GPT" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-07-16T00:00:00+08:00","datePublished":"2025-07-16T00:00:00+08:00","description":"How I Learned the KQV Mechanism in Transformers","headline":"KQV, Transformers and GPT","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/kqv-transformers-en"},"url":"https://lzwjava.github.io/kqv-transformers-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       KQV, Transformers and GPT | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2025-07-16-kqv-transformers-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2025-07-16-kqv-transformers-en.md</span> -->
+      
+
+      <!-- <span>2025-07-16-kqv-transformers-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/kqv-transformers-en" selected>English</option>
+        <option value="/kqv-transformers-zh" >中文</option>
+        <option value="/kqv-transformers-ja" >日本語</option>
+        <option value="/kqv-transformers-es" >Español</option>
+        <option value="/kqv-transformers-hi" >हिंदी</option>
+        <option value="/kqv-transformers-fr" >Français</option>
+        <option value="/kqv-transformers-de" >Deutsch</option>
+        <option value="/kqv-transformers-ar" >العربية</option>
+        <option value="/kqv-transformers-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <h2 id="how-i-learned-the-kqv-mechanism-in-transformers">How I Learned the KQV Mechanism in Transformers</h2>
+
+<p><em>2025.07.16</em></p>
+
+<p>After reading <a href="https://lzwjava.github.io/notes/2025-06-02-attention-kqv-en">K, Q, V Mechanism in Transformers</a>, I somehow understood how K, Q, and V work.</p>
+
+<p>Q stands for Query, K stands for Key, and V stands for Value. For a sentence, the Query is a matrix that stores the value of a token that it needs to ask other tokens about. The Key stands for the description of the tokens, and the Value stands for the actual meaning matrix of the tokens.</p>
+
+<p>They have specific shapes, so one needs to know their dimensions and details.</p>
+
+<p>I understood this around early June 2025. I first learned about it around the end of 2023. At that time, I read articles like <a href="https://jalammar.github.io/illustrated-transformer/">The Illustrated Transformer</a>, but I didn’t understand much.</p>
+
+<p>After about two years, I found it easier to understand now. During these two years, I focused on backend work and preparing for my associate degree exams, and I didn’t read or learn much about machine learning. However, I did mull over these concepts from time to time when I was driving or doing other things.</p>
+
+<p>This reminds me of the effect of time. We may learn a lot of things at first sight, even if we don’t comprehend much. But somehow, it triggers a starting point for our thinking.</p>
+
+<p>Over time, I found that for knowledge and discovery, it is hard to think about or understand things the first time. But later, it seems easier to learn and know.</p>
+
+<p>One reason is that in the AI era, it is easier to learn because you can delve into any detail or aspect to resolve your doubts. There are also more related AI videos available. More importantly, you see that so many people are learning and building projects on top of that, like <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>.</p>
+
+<p>The story of Georgi Gerganov is inspiring. As a new machine learning learner starting around 2021, he made a powerful impact in the AI community.</p>
+
+<p>This kind of thing will happen again and again. So, for reinforcement learning and the latest AI knowledge, even though I am still not able to dedicate much time to them, I think I can find some time to quickly learn and try to think about them a lot. The brain will do its work.</p>
+
+<hr />
+
+<h2 id="from-neural-network-to-gpt">From Neural Network to GPT</h2>
+
+<p><em>2023.09.28</em></p>
+
+<h3 id="youtube-videos">YouTube Videos</h3>
+
+<p>Andrej Karpathy - Let’s build GPT: from scratch, in code, spelled out.</p>
+
+<p>Umar Jamil - Attention is all you need (Transformer) - Model explanation (including math), Inference and Training</p>
+
+<p>StatQuest with Josh Starmer - Transformer Neural Networks, ChatGPT’s foundation, Clearly Explained!!!</p>
+
+<p>Pascal Poupart - CS480/680 Lecture 19: Attention and Transformer Networks</p>
+
+<p>The A.I. Hacker - Michael Phi - Illustrated Guide to Transformers Neural Network: A step-by-step explanation</p>
+
+<h3 id="how-i-learn">How I Learn</h3>
+
+<p>Once I had read half of the book “Neural Networks and Deep Learning”, I began to replicate the neural network example of recognizing handwritten digits. I created a repository on GitHub, https://github.com/lzwjava/neural-networks-and-zhiwei-learning.</p>
+
+<p>That’s the real hard part. If one can write it from scratch without copying any code, one understands very well.</p>
+
+<p>My replicate code still lacks the implementation of update_mini_batch and backprop. However, by carefully observing the variables in the phase of loading data, feed forwarding, and evaluating, I got a much better understanding of the vector, dimensionality, matrix, and shape of the objects.</p>
+
+<p>And I began to learn the implementation of the GPT and transformer. By word embedding and positional encoding, the text changes to the numbers. Then, in essence, it has no difference to the simple neural network to recognize hand-written digits.</p>
+
+<p>Andrej Karpathy’s lecture “Let’s build GPT” is very good. He explains things well.</p>
+
+<p>The first reason is that it is really from scratch. We first see how to generate the text. It is kind of fuzzy and random. The second reason is that Andrej could say things very intuitively. Andrej did the project nanoGPT for several months.</p>
+
+<p>I just had a new idea to judge the quality of the lecture. Can the author really write these codes? Why I don’t understand and which topic does the author miss? Besides these elegant diagrams and animations, what are their shortcomings and defects?</p>
+
+<p>Back to the machine learning topic itself. As Andrej mentions, the dropout, the residual connection, the Self-Attention, the Multi-Head Attention, the Masked Attention.</p>
+
+<p>By watching more above videos, I began to understand a bit.</p>
+
+<p>By positional encoding with sin and cos functions, we get some weights. By word embedding, we change the words to numbers.</p>
+
+\[PE_{(pos,2i)} = sin(pos/10000^{2i/d_{model}}) \\
+    PE_{(pos,2i+1)} = cos(pos/10000^{2i/d_{model}})\]
+
+<blockquote>
+  <p>The pizza came out of the oven and it tasted good.</p>
+</blockquote>
+
+<p>In this sentence, how does the algorithm know whether it refers to pizza or oven? How do we calculate the similarities for every word in the sentence?</p>
+
+<p>We want a set of weights. If we use the transformer network to do the task of translation, every time we input a sentence, it can output the corresponding sentence of another language.</p>
+
+<p>About the dot product here. One reason we use the dot product here is that the dot product will consider every number in the vector. What if we use the squared dot product? We first calculate the square of the numbers, then let them do the dot product. What if we do some reversed dot product?</p>
+
+<p>About the masked here, we change the numbers of half of the matrix to the negative infinity. And then we use softmax to make the values range from 0 to 1. How about we change the left-bottom numbers to the negative infinity?</p>
+
+<h3 id="plan">Plan</h3>
+
+<p>Continue to read code and papers and watch videos. Just have fun and follow my curiosity.</p>
+
+<p>https://github.com/karpathy/nanoGPT</p>
+
+<p>https://github.com/jadore801120/attention-is-all-you-need-pytorch</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

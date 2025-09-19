@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>إعداد خادم Azure</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>إعداد خادم Azure | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="إعداد خادم Azure" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="إعداد خادم على Microsoft Azure وتهيئته لفتح منافذ محددة أمر ضروري لتشغيل العديد من التطبيقات، بما في ذلك خدمات الاستضافة والوكلاء (proxies) وغيرها. سيرشدك هذا الدليل خلال عملية إنشاء آلة افتراضية (VM) على Azure وتهيئة الجدار الناري لفتح المنفذ 1080." />
+<meta property="og:description" content="إعداد خادم على Microsoft Azure وتهيئته لفتح منافذ محددة أمر ضروري لتشغيل العديد من التطبيقات، بما في ذلك خدمات الاستضافة والوكلاء (proxies) وغيرها. سيرشدك هذا الدليل خلال عملية إنشاء آلة افتراضية (VM) على Azure وتهيئة الجدار الناري لفتح المنفذ 1080." />
+<link rel="canonical" href="https://lzwjava.github.io/azure-vm-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-vm-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="إعداد خادم Azure" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"إعداد خادم على Microsoft Azure وتهيئته لفتح منافذ محددة أمر ضروري لتشغيل العديد من التطبيقات، بما في ذلك خدمات الاستضافة والوكلاء (proxies) وغيرها. سيرشدك هذا الدليل خلال عملية إنشاء آلة افتراضية (VM) على Azure وتهيئة الجدار الناري لفتح المنفذ 1080.","headline":"إعداد خادم Azure","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-vm-ar"},"url":"https://lzwjava.github.io/azure-vm-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       إعداد خادم Azure | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2024-12-20-azure-vm-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2024-12-20-azure-vm-ar.md</span> -->
+      
+
+      <!-- <span>2024-12-20-azure-vm-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-vm-en" >English</option>
+        <option value="/azure-vm-zh" >中文</option>
+        <option value="/azure-vm-ja" >日本語</option>
+        <option value="/azure-vm-es" >Español</option>
+        <option value="/azure-vm-hi" >हिंदी</option>
+        <option value="/azure-vm-fr" >Français</option>
+        <option value="/azure-vm-de" >Deutsch</option>
+        <option value="/azure-vm-ar" selected>العربية</option>
+        <option value="/azure-vm-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>إعداد خادم على Microsoft Azure وتهيئته لفتح منافذ محددة أمر ضروري لتشغيل العديد من التطبيقات، بما في ذلك خدمات الاستضافة والوكلاء (proxies) وغيرها. سيرشدك هذا الدليل خلال عملية إنشاء آلة افتراضية (VM) على Azure وتهيئة الجدار الناري لفتح المنفذ 1080.</p>
+
+<h2 id="جدول-المحتويات">جدول المحتويات</h2>
+
+<ol>
+  <li><a href="#prerequisites">المتطلبات الأساسية</a></li>
+  <li><a href="#creating-an-azure-virtual-machine">إنشاء آلة افتراضية على Azure</a></li>
+  <li><a href="#configuring-the-firewall-to-open-port-1080">تكوين الجدار الناري لفتح المنفذ 1080</a></li>
+  <li><a href="#testing-the-configuration">اختبار التكوين</a></li>
+  <li><a href="#conclusion">الخاتمة</a></li>
+</ol>
+
+<h2 id="المتطلبات-الأساسية">المتطلبات الأساسية</h2>
+
+<p>قبل أن تبدأ، تأكد من توفر ما يلي:</p>
+
+<ul>
+  <li>حساب نشط على <a href="https://azure.microsoft.com/">Microsoft Azure</a>.</li>
+  <li>معرفة أساسية باستخدام بوابة Azure.</li>
+  <li>عميل SSH (مثل Terminal على macOS/Linux أو PuTTY على Windows) للوصول إلى الجهاز الظاهري (VM).</li>
+</ul>
+
+<h2 id="إنشاء-آلة-افتراضية-على-azure">إنشاء آلة افتراضية على Azure</h2>
+
+<ol>
+  <li>
+    <p>تسجيل الدخول إلى بوابة Azure:
+انتقل إلى <a href="https://portal.azure.com/">بوابة Azure</a> وقم بتسجيل الدخول باستخدام بيانات الاعتماد الخاصة بك.</p>
+  </li>
+  <li>إنشاء جهاز ظاهري جديد:
+    <ul>
+      <li>انقر على “إنشاء مورد” في الزاوية العلوية اليسرى.</li>
+      <li>اختر “الجهاز الظاهري” من قائمة الموارد المتاحة.</li>
+    </ul>
+  </li>
+  <li>تكوين أساسيات الجهاز الظاهري:
+    <ul>
+      <li>الاشتراك: اختر اشتراك Azure الخاص بك.</li>
+      <li>مجموعة الموارد: أنشئ مجموعة موارد جديدة أو اختر مجموعة موجودة.</li>
+      <li>اسم الجهاز الظاهري: أدخل اسمًا لجهازك الظاهري (مثل <code class="language-plaintext highlighter-rouge">AzureServer</code>).</li>
+      <li>المنطقة: اختر المنطقة الأقرب إلى جمهورك المستهدف.</li>
+      <li>الصورة: اختر صورة نظام تشغيل (مثل Ubuntu 22.04 LTS).</li>
+      <li>الحجم: اختر حجم الجهاز الظاهري بناءً على احتياجاتك من الأداء.</li>
+      <li>المصادقة: اختر مفتاح SSH العام للوصول الآمن. قم بتحميل مفتاح SSH العام الخاص بك.</li>
+    </ul>
+  </li>
+  <li>تكوين الشبكات:
+    <ul>
+      <li>تأكد من وضع الـ VM في الشبكة الافتراضية (Virtual Network) والشبكة الفرعية (Subnet) المناسبة.</li>
+      <li>اترك عنوان IP العام (Public IP) مفعلاً للسماح بالوصول الخارجي.</li>
+    </ul>
+  </li>
+  <li>المراجعة والإنشاء:
+    <ul>
+      <li>راجع إعداداتك.</li>
+      <li>انقر على “إنشاء” لنشر الجهاز الظاهري (VM). قد يستغرق النشر بضع دقائق.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="تكوين-الجدار-الناري-لفتح-المنفذ-1080">تكوين الجدار الناري لفتح المنفذ 1080</h2>
+
+<p>بمجرد أن تصبح الآلة الافتراضية (VM) قيد التشغيل، ستحتاج إلى تكوين مجموعة أمان الشبكة (NSG) في Azure للسماح بحركة المرور على المنفذ 1080.</p>
+
+<ol>
+  <li>الانتقال إلى إعدادات الشبكة لجهازك الظاهري (VM):
+    <ul>
+      <li>في بوابة Azure، انتقل إلى “الآلات الظاهرية” (Virtual Machines).</li>
+      <li>اختر جهازك الظاهري (<code class="language-plaintext highlighter-rouge">AzureServer</code>).</li>
+      <li>انقر على “الشبكة” (Networking) في الشريط الجانبي الأيسر.</li>
+    </ul>
+  </li>
+  <li>تحديد مجموعة أمان الشبكة (NSG):
+    <ul>
+      <li>ضمن “واجهة الشبكة”، قم بتحديد مجموعة أمان الشبكة المرتبطة.</li>
+      <li>انقر على مجموعة أمان الشبكة لإدارة قواعدها.</li>
+    </ul>
+  </li>
+  <li>إضافة قاعدة أمان واردة:
+    <ul>
+      <li>في إعدادات مجموعة أمان الشبكة (NSG)، انتقل إلى “قواعد الأمان الواردة”.</li>
+      <li>انقر على “إضافة” لإنشاء قاعدة جديدة.</li>
+    </ul>
+  </li>
+  <li>تكوين القاعدة:
+    <ul>
+      <li>المصدر: أي (أو حدد نطاقًا لتعزيز الأمان).</li>
+      <li>نطاقات منفذ المصدر: <code class="language-plaintext highlighter-rouge">*</code></li>
+      <li>الوجهة: أي</li>
+      <li>نطاقات منفذ الوجهة: <code class="language-plaintext highlighter-rouge">1080</code></li>
+      <li>البروتوكول: TCP</li>
+      <li>الإجراء: السماح</li>
+      <li>الأولوية: <code class="language-plaintext highlighter-rouge">1000</code> (تأكد من عدم تعارضها مع القواعد الحالية).</li>
+      <li>الاسم: <code class="language-plaintext highlighter-rouge">Allow-1080-TCP</code></li>
+    </ul>
+  </li>
+  <li>حفظ القاعدة:
+    <ul>
+      <li>انقر على “إضافة” لتطبيق القاعدة الجديدة.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="اختبار-التكوين">اختبار التكوين</h2>
+
+<p>بعد تكوين الجدار الناري، من الضروري التحقق من أن المنفذ 1080 مفتوح ويمكن الوصول إليه.</p>
+
+<ol>
+  <li>
+    <p>استخدم Telnet للتحقق من إمكانية الوصول إلى المنفذ:
+من جهازك المحلي، قم بتشغيل الأمر التالي:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet &lt;YOUR_VM_IP&gt; 1080
+</code></pre></div>    </div>
+
+    <ul>
+      <li>استبدل <code class="language-plaintext highlighter-rouge">&lt;YOUR_VM_IP&gt;</code> بعنوان IP العام لجهازك الظاهري (VM).</li>
+      <li>إذا نجح الاتصال، فإن المنفذ مفتوح ويمكن الوصول إليه.</li>
+    </ul>
+  </li>
+  <li>أدوات بديلة للتحقق من المنافذ:
+    <ul>
+      <li>Netcat (<code class="language-plaintext highlighter-rouge">nc</code>):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-zv</span> &lt;YOUR_VM_IP&gt; 1080
+</code></pre></div>        </div>
+      </li>
+      <li>أدوات التحقق من المنافذ عبر الإنترنت:
+استخدم خدمات عبر الإنترنت مثل <a href="https://canyouseeme.org/">canyouseeme.org</a> للتحقق مما إذا كان المنفذ 1080 مفتوحًا.</li>
+    </ul>
+  </li>
+  <li>استكشاف الأخطاء وإصلاحها:
+    <ul>
+      <li>مشاكل الاتصال: تحقق من أن قواعد مجموعة أمان الشبكة (NSG) مضبوطة بشكل صحيح وأن أي جدران حماية محلية على الجهاز الظاهاري (VM) تم تكوينها للسماح بحركة المرور على المنفذ 1080.</li>
+      <li>عنوان IP غير صحيح: تأكد من أنك تستخدم عنوان IP العام الصحيح لجهازك الظاهاري (VM).</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="الخلاصة">الخلاصة</h2>
+
+<p>باتباع هذا الدليل، تكون قد نجحت في إعداد جهاز Azure Virtual Machine وتهيئة الجدار الناري لفتح المنفذ 1080. هذا الإعداد يُشكل الأساس لنشر التطبيقات أو الخدمات المختلفة التي تتطلب وصولًا إلى منافذ محددة.</p>
+
+<p>للمزيد من الإعدادات، مثل إعداد خدمات الوكيل أو التطبيقات الأخرى على المنفذ 1080، يُرجى الرجوع إلى منشوراتنا المخصصة حول <a href="#">إعداد وكيل V2Ray</a> و<a href="#">إنشاء عنوان vmess مخصص</a>.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>构建一个 AI 驱动的故事机器人</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>构建一个 AI 驱动的故事机器人 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="构建一个 AI 驱动的故事机器人" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="本博客文章由 ChatGPT-4 协助撰写。" />
+<meta property="og:description" content="本博客文章由 ChatGPT-4 协助撰写。" />
+<link rel="canonical" href="https://lzwjava.github.io/bot-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/bot-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="构建一个 AI 驱动的故事机器人" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-07-07T00:00:00+08:00","datePublished":"2024-07-07T00:00:00+08:00","description":"本博客文章由 ChatGPT-4 协助撰写。","headline":"构建一个 AI 驱动的故事机器人","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/bot-zh"},"url":"https://lzwjava.github.io/bot-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       构建一个 AI 驱动的故事机器人 | 原创，AI翻译
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2024-07-07-bot-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2024-07-07-bot-zh.md</span> -->
+      
+
+      <!-- <span>2024-07-07-bot-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/bot-en" >English</option>
+        <option value="/bot-zh" selected>中文</option>
+        <option value="/bot-ja" >日本語</option>
+        <option value="/bot-es" >Español</option>
+        <option value="/bot-hi" >हिंदी</option>
+        <option value="/bot-fr" >Français</option>
+        <option value="/bot-de" >Deutsch</option>
+        <option value="/bot-ar" >العربية</option>
+        <option value="/bot-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>本博客文章由 ChatGPT-4 协助撰写。</em></p>
+
+<hr />
+
+<h3 id="目录">目录</h3>
+
+<ul>
+  <li><a href="#简介">简介</a></li>
+  <li><a href="#项目架构">项目架构</a>
+    <ul>
+      <li><a href="#后端">后端</a>
+        <ul>
+          <li><a href="#flask-应用程序设置">Flask 应用程序设置</a></li>
+          <li><a href="#日志记录和监控">日志记录和监控</a></li>
+          <li><a href="#请求处理">请求处理</a></li>
+        </ul>
+      </li>
+      <li><a href="#前端">前端</a>
+        <ul>
+          <li><a href="#react-组件">React 组件</a></li>
+          <li><a href="#api-集成">API 集成</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#部署">部署</a>
+    <ul>
+      <li><a href="#部署脚本">部署脚本</a></li>
+      <li><a href="#elasticsearch-配置">ElasticSearch 配置</a></li>
+      <li><a href="#kibana-配置">Kibana 配置</a></li>
+      <li><a href="#logstash-配置">Logstash 配置</a></li>
+    </ul>
+  </li>
+  <li><a href="#nginx-配置和-lets-encrypt-ssl-证书">Nginx 配置和 Let’s Encrypt SSL 证书</a>
+    <ul>
+      <li><a href="#定义一个-map-处理允许的源">定义一个 map 处理允许的源</a></li>
+      <li><a href="#将-http-重定向到-https">将 HTTP 重定向到 HTTPS</a></li>
+      <li><a href="#主站点配置-examplecom">主站点配置 <code class="language-plaintext highlighter-rouge">example.com</code></a></li>
+      <li><a href="#api-配置-apiexamplecom">API 配置 <code class="language-plaintext highlighter-rouge">api.example.com</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#结论">结论</a></li>
+</ul>
+
+<hr />
+
+<h3 id="简介">简介</h3>
+
+<p>本文提供了构建一个 AI 驱动的故事机器人应用程序的全面指南。该项目通过一个 Web 界面生成个性化故事。我们使用 Python、Flask 和 React 进行开发，并部署在 AWS 上。此外，我们使用 Prometheus 进行监控，并使用 ElasticSearch、Kibana 和 Logstash 进行日志管理。DNS 管理通过 GoDaddy 和 Cloudflare 处理，Nginx 用作 SSL 证书和请求头管理的网关。</p>
+
+<h3 id="项目架构">项目架构</h3>
+
+<h4 id="后端">后端</h4>
+
+<p>该项目的后端使用 Flask 构建，这是一个轻量级的 Python WSGI Web 应用程序框架。后端处理 API 请求，管理数据库，记录应用程序活动，并集成 Prometheus 进行监控。</p>
+
+<p>以下是后端组件的详细介绍：</p>
+
+<ol>
+  <li>Flask 应用程序设置：
+    <ul>
+      <li>Flask 应用程序初始化并配置各种扩展，如 Flask-CORS 处理跨源资源共享和 Flask-Migrate 管理数据库迁移。</li>
+      <li>初始化应用程序路由，并启用 CORS 以允许跨源请求。</li>
+      <li>使用默认配置初始化数据库，并设置自定义日志记录器以格式化 Logstash 日志条目。</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+ <span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+ <span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+ <span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+ <span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+ <span class="kn">import</span> <span class="n">logging</span>
+ <span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+ <span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+
+ <span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+ <span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="nf">from_object</span><span class="p">(</span><span class="sh">'</span><span class="s">api.config.BaseConfig</span><span class="sh">'</span><span class="p">)</span>
+
+ <span class="n">db</span><span class="p">.</span><span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+ <span class="nf">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+ <span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+ <span class="n">migrate</span> <span class="o">=</span> <span class="nc">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>日志记录和监控：
+    <ul>
+      <li>应用程序使用 RotatingFileHandler 管理日志文件，并使用自定义格式器格式化日志。</li>
+      <li>集成 Prometheus 指标以跟踪请求计数和延迟。</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">REQUEST_COUNT</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">(</span><span class="sh">'</span><span class="s">flask_app_request_count</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Total request count of the Flask App</span><span class="sh">'</span><span class="p">,</span> <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">endpoint</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">http_status</span><span class="sh">'</span><span class="p">])</span>
+ <span class="n">REQUEST_LATENCY</span> <span class="o">=</span> <span class="nc">Gauge</span><span class="p">(</span><span class="sh">'</span><span class="s">flask_app_request_latency_seconds</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Request latency</span><span class="sh">'</span><span class="p">,</span> <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">endpoint</span><span class="sh">'</span><span class="p">])</span>
+
+ <span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
+     <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span><span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+     <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+     <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
+     <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+
+     <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
+     <span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+     <span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+
+     <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+     <span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
+     <span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+     <span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+
+ <span class="nf">setup_loggers</span><span class="p">()</span>
+</code></pre></div>    </div>
+  </li>
+  <li>请求处理：
+    <ul>
+      <li>应用程序在每个请求之前和之后捕获指标，生成一个 trace ID 以跟踪请求流。</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+     <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+     <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+
+ <span class="nd">@app.before_request</span>
+ <span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+     <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+     <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+     <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
+
+ <span class="nd">@app.after_request</span>
+ <span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+     <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+     <span class="n">request_latency</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sh">'</span><span class="s">start_time</span><span class="sh">'</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">())</span>
+     <span class="n">REQUEST_COUNT</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="n">http_status</span><span class="o">=</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">).</span><span class="nf">inc</span><span class="p">()</span>
+     <span class="n">REQUEST_LATENCY</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="n">request_latency</span><span class="p">)</span>
+     <span class="k">return</span> <span class="n">response</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="前端">前端</h4>
+
+<p>该项目的前端使用 React 构建，这是一个用于构建用户界面的 JavaScript 库。它与后端 API 交互以管理故事提示，并提供一个交互式用户界面来生成和管理个性化故事。</p>
+
+<ol>
+  <li>React 组件：
+    <ul>
+      <li>主要组件处理故事提示的用户输入，并与后端 API 交互以管理这些提示。</li>
+    </ul>
+
+    <div class="language-jsx highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">useState</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react</span><span class="dl">'</span><span class="p">;</span>
+ <span class="k">import</span> <span class="p">{</span> <span class="nx">ToastContainer</span><span class="p">,</span> <span class="nx">toast</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">react-toastify</span><span class="dl">'</span><span class="p">;</span>
+ <span class="k">import</span> <span class="dl">'</span><span class="s1">react-toastify/dist/ReactToastify.css</span><span class="dl">'</span><span class="p">;</span>
+ <span class="k">import</span> <span class="p">{</span> <span class="nx">apiFetch</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">./api</span><span class="dl">'</span><span class="p">;</span>
+ <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span><span class="p">;</span>
+
+ <span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+   <span class="kd">const</span> <span class="p">[</span><span class="nx">prompts</span><span class="p">,</span> <span class="nx">setPrompts</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
+   <span class="kd">const</span> <span class="p">[</span><span class="nx">newPrompt</span><span class="p">,</span> <span class="nx">setNewPrompt</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+   <span class="kd">const</span> <span class="p">[</span><span class="nx">isLoading</span><span class="p">,</span> <span class="nx">setIsLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+
+   <span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nf">fetchPrompts</span><span class="p">();</span>
+   <span class="p">},</span> <span class="p">[]);</span>
+
+   <span class="kd">const</span> <span class="nx">fetchPrompts</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+     <span class="k">try</span> <span class="p">{</span>
+       <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">);</span>
+       <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+         <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+         <span class="nf">setPrompts</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">获取提示失败</span><span class="dl">'</span><span class="p">);</span>
+       <span class="p">}</span>
+     <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">获取提示时发生错误</span><span class="dl">'</span><span class="p">);</span>
+     <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+       <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="p">};</span>
+
+   <span class="kd">const</span> <span class="nx">addPrompt</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">newPrompt</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">toast</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="dl">'</span><span class="s1">提示内容不能为空</span><span class="dl">'</span><span class="p">);</span>
+       <span class="k">return</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+     <span class="k">try</span> <span class="p">{</span>
+       <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+         <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+         <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+           <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+         <span class="p">},</span>
+         <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">newPrompt</span> <span class="p">}),</span>
+       <span class="p">});</span>
+       <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nf">fetchPrompts</span><span class="p">();</span>
+         <span class="nf">setNewPrompt</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+         <span class="nx">toast</span><span class="p">.</span><span class="nf">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">提示添加成功</span><span class="dl">'</span><span class="p">);</span>
+       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">添加提示失败</span><span class="dl">'</span><span class="p">);</span>
+       <span class="p">}</span>
+     <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">添加提示时发生错误</span><span class="dl">'</span><span class="p">);</span>
+     <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+       <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="p">};</span>
+
+   <span class="kd">const</span> <span class="nx">deletePrompt</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">promptId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+     <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+     <span class="k">try</span> <span class="p">{</span>
+       <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="s2">`prompts/</span><span class="p">${</span><span class="nx">promptId</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+         <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">DELETE</span><span class="dl">'</span><span class="p">,</span>
+       <span class="p">});</span>
+       <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+         <span class="nf">fetchPrompts</span><span class="p">();</span>
+         <span class="nx">toast</span><span class="p">.</span><span class="nf">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">提示删除成功</span><span class="dl">'</span><span class="p">);</span>
+       <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+         <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">删除提示失败</span><span class="dl">'</span><span class="p">);</span>
+       <span class="p">}</span>
+     <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+       <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">删除提示时发生错误</span><span class="dl">'</span><span class="p">);</span>
+     <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+       <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+     <span class="p">}</span>
+   <span class="p">};</span>
+
+   <span class="k">return </span><span class="p">(</span>
+     <span class="p">&lt;</span><span class="nt">div</span> <span class="na">className</span><span class="p">=</span><span class="s">"app"</span><span class="p">&gt;</span>
+       <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>AI 驱动的故事机器人<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+       <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+         <span class="p">&lt;</span><span class="nt">input</span>
+           <span class="na">type</span><span class="p">=</span><span class="s">"text"</span>
+           <span class="na">value</span><span class="p">=</span><span class="si">{</span><span class="nx">newPrompt</span><span class="si">}</span>
+           <span class="na">onChange</span><span class="p">=</span><span class="si">{</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">setNewPrompt</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">)</span><span class="si">}</span>
+           <span class="na">placeholder</span><span class="p">=</span><span class="s">"新提示"</span>
+         <span class="p">/&gt;</span>
+         <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="nx">addPrompt</span><span class="si">}</span> <span class="na">disabled</span><span class="p">=</span><span class="si">{</span><span class="nx">isLoading</span><span class="si">}</span><span class="p">&gt;</span>添加提示<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+       <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+       <span class="si">{</span><span class="nx">isLoading</span> <span class="p">?</span> <span class="p">(</span>
+         <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>加载中...<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+       <span class="p">)</span> <span class="p">:</span> <span class="p">(</span>
+         <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+           <span class="si">{</span><span class="nx">prompts</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">prompt</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+             <span class="p">&lt;</span><span class="nt">li</span> <span class="na">key</span><span class="p">=</span><span class="si">{</span><span class="nx">prompt</span><span class="p">.</span><span class="nx">id</span><span class="si">}</span><span class="p">&gt;</span>
+               <span class="si">{</span><span class="nx">prompt</span><span class="p">.</span><span class="nx">content</span><span class="si">}</span>
+               <span class="p">&lt;</span><span class="nt">button</span> <span class="na">onClick</span><span class="p">=</span><span class="si">{</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="nf">deletePrompt</span><span class="p">(</span><span class="nx">prompt</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span><span class="si">}</span><span class="p">&gt;</span>删除<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+             <span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+           <span class="p">))</span><span class="si">}</span>
+         <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+       <span class="p">)</span><span class="si">}</span>
+       <span class="p">&lt;</span><span class="nc">ToastContainer</span> <span class="p">/&gt;</span>
+     <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+   <span class="p">);</span>
+ <span class="p">}</span>
+
+ <span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>API 集成：
+    <ul>
+      <li>前端通过 fetch 请求与后端 API 交互以管理故事提示。</li>
+    </ul>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`https://api.yourdomain.com/</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+ <span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="部署">部署</h3>
+
+<p>该项目部署在 AWS 上，DNS 管理通过 GoDaddy 和 Cloudflare 处理。Nginx 用作 SSL 证书和请求头管理的网关。我们使用 Prometheus 进行监控，并使用 ElasticSearch、Kibana 和 Logstash 进行日志管理。</p>
+
+<ol>
+  <li>部署脚本：
+    <ul>
+      <li>我们使用 Fabric 来自动化部署任务，如准备本地和远程目录、同步文件和设置权限。</li>
+    </ul>
+
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="kn">from</span> <span class="n">fabric</span> <span class="kn">import</span> <span class="n">task</span>
+ <span class="kn">from</span> <span class="n">fabric</span> <span class="kn">import</span> <span class="n">Connection</span>
+
+ <span class="n">server_dir</span> <span class="o">=</span> <span class="sh">'</span><span class="s">/home/project/server</span><span class="sh">'</span>
+ <span class="n">web_tmp_dir</span> <span class="o">=</span> <span class="sh">'</span><span class="s">/home/project/server/tmp</span><span class="sh">'</span>
+
+ <span class="nd">@task</span>
+ <span class="k">def</span> <span class="nf">prepare_remote_dirs</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+     <span class="k">if</span> <span class="ow">not</span> <span class="n">c</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">test -d </span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span> <span class="n">warn</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="n">ok</span><span class="p">:</span>
+         <span class="n">c</span><span class="p">.</span><span class="nf">sudo</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">mkdir -p </span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+         <span class="n">c</span><span class="p">.</span><span class="nf">sudo</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chmod -R 755 </span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+         <span class="n">c</span><span class="p">.</span><span class="nf">sudo</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chmod -R 777 </span><span class="si">{</span><span class="n">web_tmp_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+         <span class="n">c</span><span class="p">.</span><span class="nf">sudo</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chown -R ec2-user:ec2-user </span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+
+ <span class="nd">@task</span>
+ <span class="k">def</span> <span class="nf">deploy</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">install</span><span class="o">=</span><span class="sh">'</span><span class="s">false</span><span class="sh">'</span><span class="p">):</span>
+     <span class="nf">prepare_remote_dirs</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+     <span class="n">pem_file</span> <span class="o">=</span> <span class="sh">'</span><span class="s">./aws-keypair.pem</span><span class="sh">'</span>
+     <span class="n">rsync_command</span> <span class="o">=</span> <span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">rsync -avz --exclude=</span><span class="sh">"</span><span class="s">api/db.sqlite3</span><span class="sh">"</span><span class="s"> </span><span class="sh">'</span>
+                      <span class="sa">f</span><span class="sh">'</span><span class="s">-e </span><span class="sh">"</span><span class="s">ssh -i </span><span class="si">{</span><span class="n">pem_file</span><span class="si">}</span><span class="sh">"</span><span class="s"> --rsync-path=</span><span class="sh">"</span><span class="s">sudo rsync</span><span class="sh">"</span><span class="s"> </span><span class="sh">'</span>
+                      <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">tmp_dir</span><span class="si">}</span><span class="s">/ </span><span class="si">{</span><span class="n">c</span><span class="p">.</span><span class="n">user</span><span class="si">}</span><span class="s">@</span><span class="si">{</span><span class="n">c</span><span class="p">.</span><span class="n">host</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+     <span class="n">c</span><span class="p">.</span><span class="nf">local</span><span class="p">(</span><span class="n">rsync_command</span><span class="p">)</span>
+     <span class="n">c</span><span class="p">.</span><span class="nf">sudo</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chown -R ec2-user:ec2-user </span><span class="si">{</span><span class="n">server_dir</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+  <li>ElasticSearch 配置：
+    <ul>
+      <li>ElasticSearch 设置包括集群、节点和网络设置的配置。</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">cluster.name</span><span class="pi">:</span> <span class="s">my-application</span>
+ <span class="na">node.name</span><span class="pi">:</span> <span class="s">node-1</span>
+ <span class="na">path.data</span><span class="pi">:</span> <span class="s">/var/lib/elasticsearch</span>
+ <span class="na">path.logs</span><span class="pi">:</span> <span class="s">/var/log/elasticsearch</span>
+ <span class="na">network.host</span><span class="pi">:</span> <span class="s">0.0.0.0</span>
+ <span class="na">http.port</span><span class="pi">:</span> <span class="m">9200</span>
+ <span class="na">discovery.seed_hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">127.0.0.1"</span><span class="pi">]</span>
+ <span class="na">cluster.initial_master_nodes</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">node-1"</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Kibana 配置：
+    <ul>
+      <li>Kibana 设置包括服务器和 ElasticSearch 主机的配置。</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="na">server.port</span><span class="pi">:</span> <span class="m">5601</span>
+ <span class="na">server.host</span><span class="pi">:</span> <span class="s2">"</span><span class="s">0.0.0.0"</span>
+ <span class="na">elasticsearch.hosts</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">http://localhost:9200"</span><span class="pi">]</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Logstash 配置：
+    <ul>
+      <li>Logstash 配置为读取日志文件，解析它们，并将解析后的日志输出到 ElasticSearch。</li>
+    </ul>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> input {
+   file {
+     path =&gt; "/home/project/server/app.log"
+     start_position =&gt; "beginning"
+     sincedb_path =&gt; "/dev/null"
+   }
+ }
+
+ filter {
+   json {
+     source =&gt; "message"
+   }
+ }
+
+ output {
+   elasticsearch {
+     hosts =&gt; ["http://localhost:9200"]
+     index =&gt; "flask-logs-%{+YYYY.MM.dd}"
+   }
+ }
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="nginx-配置和-lets-encrypt-ssl-证书">Nginx 配置和 Let’s Encrypt SSL 证书</h3>
+
+<p>为了确保安全通信，我们使用 Nginx 作为反向代理，并使用 Let’s Encrypt 获取 SSL 证书。以下是 Nginx 的配置，用于处理 HTTP 到 HTTPS 的重定向和设置 SSL 证书。</p>
+
+<ol>
+  <li>
+    <p>定义一个 map 处理允许的源：</p>
+
+    <div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">map</span> <span class="nv">$http_origin</span> <span class="nv">$cors_origin</span> <span class="p">{</span>
+     <span class="kn">default</span> <span class="s">"https://example.com"</span><span class="p">;</span>
+     <span class="kn">"http://localhost:3000"</span> <span class="s">"http://localhost:3000"</span><span class="p">;</span>
+     <span class="kn">"https://example.com"</span> <span class="s">"https://example.com"</span><span class="p">;</span>
+     <span class="kn">"https://www.example.com"</span> <span class="s">"https://www.example.com"</span><span class="p">;</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>将 HTTP 重定向到 HTTPS：</p>
+
+    <div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">server</span> <span class="p">{</span>
+     <span class="kn">listen</span> <span class="mi">80</span><span class="p">;</span>
+     <span class="kn">server_name</span> <span class="s">example.com</span> <span class="s">api.example.com</span><span class="p">;</span>
+
+     <span class="kn">return</span> <span class="mi">301</span> <span class="s">https://</span><span class="nv">$host$request_uri</span><span class="p">;</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>主站点配置 <code class="language-plaintext highlighter-rouge">example.com</code>：</p>
+
+    <div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">server</span> <span class="p">{</span>
+     <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+     <span class="kn">server_name</span> <span class="s">example.com</span><span class="p">;</span>
+
+     <span class="kn">ssl_certificate</span> <span class="n">/etc/letsencrypt/live/example.com/fullchain.pem</span><span class="p">;</span>
+     <span class="kn">ssl_certificate_key</span> <span class="n">/etc/letsencrypt/live/example.com/privkey.pem</span><span class="p">;</span>
+
+     <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+     <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+     <span class="kn">ssl_ciphers</span> <span class="s">"EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"</span><span class="p">;</span>
+
+     <span class="kn">root</span> <span class="n">/home/project/web</span><span class="p">;</span>
+     <span class="kn">index</span> <span class="s">index.html</span> <span class="s">index.htm</span> <span class="s">index.php</span> <span class="s">default.html</span> <span class="s">default.htm</span> <span class="s">default.php</span><span class="p">;</span>
+
+     <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+         <span class="kn">try_files</span> <span class="nv">$uri</span> <span class="nv">$uri</span><span class="n">/</span> <span class="p">=</span><span class="mi">404</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="kn">location</span> <span class="p">~</span> <span class="sr">.*\.(gif|jpg|jpeg|png|bmp|swf)$</span> <span class="p">{</span>
+         <span class="kn">expires</span> <span class="s">30d</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="kn">location</span> <span class="p">~</span> <span class="sr">.*\.(js|css)?$</span> <span class="p">{</span>
+         <span class="kn">expires</span> <span class="s">12h</span><span class="p">;</span>
+     <span class="p">}</span>
+
+     <span class="kn">error_page</span> <span class="mi">404</span> <span class="n">/index.html</span><span class="p">;</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>API 配置 <code class="language-plaintext highlighter-rouge">api.example.com</code>：</p>
+
+    <div class="language-nginx highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">server</span> <span class="p">{</span>
+     <span class="kn">listen</span> <span class="mi">443</span> <span class="s">ssl</span><span class="p">;</span>
+     <span class="kn">server_name</span> <span class="s">api.example.com</span><span class="p">;</span>
+
+     <span class="kn">ssl_certificate</span> <span class="n">/etc/letsencrypt/live/example.com-0001/fullchain.pem</span><span class="p">;</span>
+     <span class="kn">ssl_certificate_key</span> <span class="n">/etc/letsencrypt/live/example.com-0001/privkey.pem</span><span class="p">;</span>
+
+     <span class="kn">ssl_protocols</span> <span class="s">TLSv1.2</span> <span class="s">TLSv1.3</span><span class="p">;</span>
+     <span class="kn">ssl_prefer_server_ciphers</span> <span class="no">on</span><span class="p">;</span>
+     <span class="kn">ssl_ciphers</span> <span class="s">"EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH"</span><span class="p">;</span>
+
+     <span class="kn">location</span> <span class="n">/</span> <span class="p">{</span>
+         <span class="c1"># 清除任何现有的 Access-Control 头</span>
+         <span class="kn">more_clear_headers</span> <span class="s">'Access-Control-Allow-Origin'</span><span class="p">;</span>
+
+         <span class="c1"># 处理 CORS 预检请求</span>
+         <span class="kn">if</span> <span class="s">(</span><span class="nv">$request_method</span> <span class="p">=</span> <span class="s">'OPTIONS')</span> <span class="p">{</span>
+             <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Origin'</span> <span class="nv">$cors_origin</span><span class="p">;</span>
+             <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Methods'</span> <span class="s">'GET,</span> <span class="s">POST,</span> <span class="s">OPTIONS,</span> <span class="s">PUT,</span> <span class="s">DELETE'</span><span class="p">;</span>
+             <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Headers'</span> <span class="s">'Origin,</span> <span class="s">Content-Type,</span> <span class="s">Accept,</span> <span class="s">Authorization,</span> <span class="s">X-Client-Info,</span> <span class="s">X-Trace-Id,</span> <span class="s">X-Requested-With,</span> <span class="s">X-HTTP-Method-Override,</span> <span class="s">DNT,</span> <span class="s">Keep-Alive,</span> <span class="s">User-Agent,</span> <span class="s">If-Modified-Since,</span> <span class="s">Cache-Control,</span> <span class="s">Content-Range,</span> <span class="s">Range'</span><span class="p">;</span>
+             <span class="kn">add_header</span> <span class="s">'Access-Control-Max-Age'</span> <span class="mi">3600</span><span class="p">;</span>
+             <span class="kn">return</span> <span class="mi">204</span><span class="p">;</span>
+         <span class="p">}</span>
+
+         <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Origin'</span> <span class="nv">$cors_origin</span> <span class="s">always</span><span class="p">;</span>
+         <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Methods'</span> <span class="s">'GET,</span> <span class="s">POST,</span> <span class="s">OPTIONS,</span> <span class="s">PUT,</span> <span class="s">DELETE'</span> <span class="s">always</span><span class="p">;</span>
+         <span class="kn">add_header</span> <span class="s">'Access-Control-Allow-Headers'</span> <span class="s">'Origin,</span> <span class="s">Content-Type,</span> <span class="s">Accept,</span> <span class="s">Authorization,</span> <span class="s">X-Client-Info,</span> <span class="s">X-Trace-Id,</span> <span class="s">X-Requested-With,</span> <span class="s">X-HTTP-Method-Override,</span> <span class="s">DNT,</span> <span class="s">Keep-Alive,</span> <span class="s">User-Agent,</span> <span class="s">If-Modified-Since,</span> <span class="s">Cache-Control,</span> <span class="s">Content-Range,</span> <span class="s">Range'</span> <span class="s">always</span><span class="p">;</span>
+
+         <span class="kn">proxy_pass</span> <span class="s">http://127.0.0.1:5000/</span><span class="p">;</span>
+         <span class="kn">proxy_set_header</span> <span class="s">Host</span> <span class="nv">$host</span><span class="p">;</span>
+         <span class="kn">proxy_set_header</span> <span class="s">X-Real-IP</span> <span class="nv">$remote_addr</span><span class="p">;</span>
+         <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+         <span class="kn">proxy_set_header</span> <span class="s">X-Forwarded-Proto</span> <span class="nv">$scheme</span><span class="p">;</span>
+         <span class="kn">proxy_connect_timeout</span> <span class="s">600s</span><span class="p">;</span>
+         <span class="kn">proxy_send_timeout</span> <span class="s">600s</span><span class="p">;</span>
+         <span class="kn">proxy_read_timeout</span> <span class="s">600s</span><span class="p">;</span>
+         <span class="kn">send_timeout</span> <span class="s">600s</span><span class="p">;</span>
+     <span class="p">}</span>
+ <span class="p">}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="结论">结论</h3>
+
+<p>该项目展示了一个 AI 驱动的故事机器人应用程序的强大架构，利用了现代 Web 开发实践和工具。后端使用 Flask 构建，确保高效的请求处理并集成各种服务进行日志记录和监控。前端使用 React 构建，提供了一个交互式的用户界面来管理故事提示。通过利用 AWS 进行部署，Nginx 进行安全通信，以及使用 ELK 堆栈进行日志管理，我们确保了系统的可扩展性、可靠性和可维护性。这个全面的设置展示了结合尖端技术来提供无缝用户体验的强大力量。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Generación de Audio para Conversaciones</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Generación de Audio para Conversaciones | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Generación de Audio para Conversaciones" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Inspirado por un video de YouTube que presentaba una discusión sobre DeepSeek-V3, he estado experimentando con conversaciones generadas por IA. Mi objetivo es crear diálogos de audio realistas utilizando Google Text-to-Speech y ffmpeg para la generación y concatenación de audio. El siguiente código describe mi enfoque actual para simular una conversación natural de ida y vuelta." />
+<meta property="og:description" content="Inspirado por un video de YouTube que presentaba una discusión sobre DeepSeek-V3, he estado experimentando con conversaciones generadas por IA. Mi objetivo es crear diálogos de audio realistas utilizando Google Text-to-Speech y ffmpeg para la generación y concatenación de audio. El siguiente código describe mi enfoque actual para simular una conversación natural de ida y vuelta." />
+<link rel="canonical" href="https://lzwjava.github.io/conversation-style-es" />
+<meta property="og:url" content="https://lzwjava.github.io/conversation-style-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-17T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Generación de Audio para Conversaciones" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-17T00:00:00+08:00","datePublished":"2025-01-17T00:00:00+08:00","description":"Inspirado por un video de YouTube que presentaba una discusión sobre DeepSeek-V3, he estado experimentando con conversaciones generadas por IA. Mi objetivo es crear diálogos de audio realistas utilizando Google Text-to-Speech y ffmpeg para la generación y concatenación de audio. El siguiente código describe mi enfoque actual para simular una conversación natural de ida y vuelta.","headline":"Generación de Audio para Conversaciones","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/conversation-style-es"},"url":"https://lzwjava.github.io/conversation-style-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Generación de Audio para Conversaciones | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-01-17-conversation-style-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-01-17-conversation-style-es.md</span> -->
+      
+
+      <!-- <span>2025-01-17-conversation-style-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/conversation-style-en" >English</option>
+        <option value="/conversation-style-zh" >中文</option>
+        <option value="/conversation-style-ja" >日本語</option>
+        <option value="/conversation-style-es" selected>Español</option>
+        <option value="/conversation-style-hi" >हिंदी</option>
+        <option value="/conversation-style-fr" >Français</option>
+        <option value="/conversation-style-de" >Deutsch</option>
+        <option value="/conversation-style-ar" >العربية</option>
+        <option value="/conversation-style-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Inspirado por un video de YouTube que presentaba una discusión sobre DeepSeek-V3, he estado experimentando con conversaciones generadas por IA. Mi objetivo es crear diálogos de audio realistas utilizando Google Text-to-Speech y ffmpeg para la generación y concatenación de audio. El siguiente código describe mi enfoque actual para simular una conversación natural de ida y vuelta.</p>
+
+<h2 id="indicación">Indicación</h2>
+
+<blockquote>
+  <p>Crea una conversación natural y extensa entre dos expertos, A y B, con al menos 100 turnos. Los expertos deben discutir un tema específico en profundidad, con la conversación fluyendo de un lado a otro. Ambos participantes deben hacer preguntas, compartir ideas y explorar los matices del tema. El formato debe ser el siguiente:</p>
+</blockquote>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"speaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Oye, he estado escuchando mucho sobre Machine Learning (ML), Deep Learning (DL) y GPT últimamente. ¿Puedes explicármelo?"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"speaker"</span><span class="p">:</span><span class="w"> </span><span class="s2">"B"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"¡Claro! Comencemos con lo básico. Machine Learning es un campo de la informática donde los sistemas aprenden de los datos para mejorar su rendimiento sin ser programados explícitamente. Piensa en ello como enseñar a una computadora a reconocer patrones."</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<h2 id="código">Código</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="n">subprocess</span>
+<span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+<span class="kn">import</span> <span class="n">tempfile</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="c1"># Directorio de salida fijo para las conversaciones
+</span><span class="n">OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">assets/conversations</span><span class="sh">"</span>
+<span class="n">INPUT_DIRECTORY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">scripts/conversation</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">voice_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Generando audio para: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+        <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">VoiceSelectionParams</span><span class="p">(</span><span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">voice_name</span><span class="p">)</span>
+        <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">AudioConfig</span><span class="p">(</span>
+            <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">MP3</span><span class="p">,</span>
+            <span class="n">effects_profile_id</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">small-bluetooth-speaker-class-device</span><span class="sh">"</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="n">reintentos</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="k">for</span> <span class="n">intento</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">reintentos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">synthesize_speech</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+                    <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Contenido de audio escrito en </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">True</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error en el intento </span><span class="si">{</span><span class="n">intento</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">intento</span> <span class="o">==</span> <span class="n">reintentos</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fallo al generar audio después de </span><span class="si">{</span><span class="n">reintentos</span><span class="si">}</span><span class="s"> intentos.</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+                <span class="n">tiempo_espera</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">intento</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Reintentando en </span><span class="si">{</span><span class="n">tiempo_espera</span><span class="si">}</span><span class="s"> segundos...</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">tiempo_espera</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Ocurrió un error al generar audio para </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="k">def</span> <span class="nf">process_conversation</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.mp3</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">El archivo de audio ya existe: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">conversation</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al cargar el archivo de conversación </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="n">archivos_temporales</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="n">opciones_voz</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">en-US-Journey-D</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">en-US-Journey-F</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">en-US-Journey-O</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">voz_A</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">opciones_voz</span><span class="p">)</span>
+    <span class="n">voz_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">opciones_voz</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">voz_A</span> <span class="o">==</span> <span class="n">voz_B</span><span class="p">:</span>
+        <span class="n">voz_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">opciones_voz</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">linea_datos</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">conversacion</span><span class="p">):</span>
+        <span class="n">speaker</span> <span class="o">=</span> <span class="n">linea_datos</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">speaker</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">linea</span> <span class="o">=</span> <span class="n">linea_datos</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">line</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">linea</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">archivo_temporal</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">temp_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">.mp3</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">archivos_temporales</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">archivo_temporal</span><span class="p">)</span>
+        
+        <span class="n">voz_nombre</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">speaker</span> <span class="o">==</span> <span class="sh">"</span><span class="s">A</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">voz_nombre</span> <span class="o">=</span> <span class="n">voz_A</span>
+        <span class="k">elif</span> <span class="n">speaker</span> <span class="o">==</span> <span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">:</span>
+            <span class="n">voz_nombre</span> <span class="o">=</span> <span class="n">voz_B</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">linea</span><span class="p">,</span> <span class="n">archivo_temporal</span><span class="p">,</span> <span class="n">voice_name</span><span class="o">=</span><span class="n">voz_nombre</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fallo al generar audio para la línea </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> de </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="c1"># Limpiar archivos temporales
+</span>            <span class="k">for</span> <span class="n">archivo_a_eliminar</span> <span class="ow">in</span> <span class="n">archivos_temporales</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">archivo_a_eliminar</span><span class="p">):</span>
+                    <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">archivo_a_eliminar</span><span class="p">)</span>
+            <span class="k">return</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">archivos_temporales</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">No se generó audio para </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span>
+
+    <span class="c1"># Concatenar usando ffmpeg
+</span>    <span class="n">archivo_concat</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="sh">"</span><span class="s">concat.txt</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">archivo_concat</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">archivo_temporal</span> <span class="ow">in</span> <span class="n">archivos_temporales</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">file </span><span class="sh">'</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">abspath</span><span class="p">(</span><span class="n">archivo_temporal</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="sh">'</span><span class="s">ffmpeg</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-f</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">concat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-safe</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="n">archivo_concat</span><span class="p">,</span> <span class="sh">'</span><span class="s">-c</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">copy</span><span class="sh">'</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">],</span>
+            <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span>
+        <span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Audio concatenado exitosamente en </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al concatenar audio: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">decode</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">archivo_concat</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">archivo_temporal</span> <span class="ow">in</span> <span class="n">archivos_temporales</span><span class="p">:</span>
+            <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">archivo_temporal</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Procesa archivos JSON de conversación para generar audio.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+    <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">"</span><span class="s">.json</span><span class="sh">"</span><span class="p">):</span>
+            <span class="nf">process_conversation</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="portada">Portada</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg <span class="nt">-i</span> deepseek.jpg <span class="nt">-vf</span> <span class="s2">"crop=854:480"</span> deepseek_480p_cropped.jpg
+</code></pre></div></div>
+
+<h2 id="video">Video</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg <span class="nt">-loop</span> 1 <span class="nt">-i</span> deepseek.jpg <span class="nt">-i</span> deepseek.mp3 <span class="nt">-c</span>:v libx264 <span class="nt">-tune</span> stillimage <span class="nt">-c</span>:a aac <span class="nt">-b</span>:a 192k <span class="nt">-shortest</span> output_video.mp4
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

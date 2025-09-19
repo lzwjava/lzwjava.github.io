@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Exploring WebSocket</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Exploring WebSocket | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Exploring WebSocket" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="This blog post was organized with the assistance of ChatGPT-4o." />
+<meta property="og:description" content="This blog post was organized with the assistance of ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/websocket-en" />
+<meta property="og:url" content="https://lzwjava.github.io/websocket-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Exploring WebSocket" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-29T00:00:00+08:00","datePublished":"2016-05-29T00:00:00+08:00","description":"This blog post was organized with the assistance of ChatGPT-4o.","headline":"Exploring WebSocket","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/websocket-en"},"url":"https://lzwjava.github.io/websocket-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Exploring WebSocket | Original, translated by AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2016-05-29-websocket-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2016-05-29-websocket-en.md</span> -->
+      
+
+      <!-- <span>2016-05-29-websocket-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/websocket-en" selected>English</option>
+        <option value="/websocket-zh" >中文</option>
+        <option value="/websocket-ja" >日本語</option>
+        <option value="/websocket-es" >Español</option>
+        <option value="/websocket-hi" >हिंदी</option>
+        <option value="/websocket-fr" >Français</option>
+        <option value="/websocket-de" >Deutsch</option>
+        <option value="/websocket-ar" >العربية</option>
+        <option value="/websocket-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>This blog post was organized with the assistance of ChatGPT-4o.</em></p>
+
+<hr />
+
+<p>Hello, I’m Li Zhiwei. As the founder and CTO of CodeReview platform and a former engineer at LeanCloud, I have extensive experience with WebSocket, especially through the development of the IM SDK.</p>
+
+<h3 id="the-relevance-of-websocket">The Relevance of WebSocket</h3>
+<p>WebSocket is a protocol providing full-duplex communication channels over a single TCP connection. It’s widely used in modern applications requiring real-time interaction such as instant messaging, real-time comments, multiplayer games, collaborative editing, and live stock prices.</p>
+
+<h3 id="modern-applications-of-websocket">Modern Applications of WebSocket</h3>
+<p>WebSocket is extensively applied in:</p>
+<ul>
+  <li><strong>Instant Messaging (IM)</strong></li>
+  <li><strong>Real-time Comments</strong></li>
+  <li><strong>Multiplayer Games</strong></li>
+  <li><strong>Collaborative Editing</strong></li>
+  <li><strong>Real-time Stock Prices</strong></li>
+</ul>
+
+<h3 id="evolution-of-websocket">Evolution of WebSocket</h3>
+<p><strong>Polling:</strong> The client frequently requests updates from the server.
+<strong>Long Polling:</strong> The server holds the request open until new information is available.
+<strong>HTTP Bi-directional Connections:</strong> Requires multiple connections for sending and receiving, and HTTP headers with each request.
+<strong>Single TCP Connection (WebSocket):</strong> Overcomes limitations of HTTP bi-directional connections, offering higher real-time capabilities and lower latency.</p>
+
+<h3 id="implementing-websocket-on-ios">Implementing WebSocket on iOS</h3>
+
+<p><strong>Popular iOS WebSocket Libraries:</strong></p>
+<ul>
+  <li><strong>SocketRocket (Objective-C, 4910 Stars)</strong></li>
+  <li><strong>Starscream (Swift, 1714 Stars)</strong></li>
+  <li><strong>SwiftWebSocket (Swift, 435 Stars)</strong></li>
+</ul>
+
+<h3 id="using-srwebsocket">Using SRWebSocket</h3>
+
+<ol>
+  <li><strong>Initialization and Connection:</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SRWebSocket</span> <span class="o">*</span><span class="n">webSocket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SRWebSocket</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithURLRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"ws://echo.websocket.org"</span><span class="p">]]];</span>
+<span class="n">webSocket</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">[</span><span class="n">webSocket</span> <span class="nf">open</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Sending Messages:</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">webSocket</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Hello, World!"</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Receiving Messages:</strong>
+Implement the <code class="language-plaintext highlighter-rouge">SRWebSocketDelegate</code> methods to handle incoming messages and events.</p>
+  </li>
+  <li><strong>Error Handling and Event Notifications:</strong>
+Properly handle errors and notify users of connection issues.</li>
+</ol>
+
+<h3 id="detailed-websocket-protocol-explanation">Detailed WebSocket Protocol Explanation</h3>
+
+<p>WebSocket operates on top of TCP and introduces several enhancements:</p>
+<ul>
+  <li><strong>Security Model:</strong> Adds a browser-based origin security model.</li>
+  <li><strong>Address and Protocol Naming:</strong> Supports multiple services on a single port and multiple domains on a single IP address.</li>
+  <li><strong>Frame Mechanism:</strong> Enhances TCP with an IP packet-like frame mechanism without length limitations.</li>
+  <li><strong>Closing Handshake:</strong> Ensures a clean closure of connections.</li>
+</ul>
+
+<h3 id="websocket-protocol-core">WebSocket Protocol Core</h3>
+
+<p><strong>1. Handshake:</strong>
+   The WebSocket handshake uses the HTTP Upgrade mechanism:</p>
+<ul>
+  <li><strong>Client Request:</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Origin</span><span class="p">:</span> <span class="s">http://example.com</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat, superchat</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Server Response:</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. Data Transmission:</strong>
+   WebSocket frames can contain UTF-8 text, binary data, and control frames like close, ping, and pong.</p>
+
+<p><strong>3. Security:</strong>
+   Browsers automatically add the Origin header, which cannot be forged by other clients.</p>
+
+<h3 id="websocket-uris">WebSocket URIs</h3>
+
+<ul>
+  <li><strong>ws-URI:</strong> <code class="language-plaintext highlighter-rouge">ws://host:port/path?query</code></li>
+  <li><strong>wss-URI:</strong> <code class="language-plaintext highlighter-rouge">wss://host:port/path?query</code></li>
+</ul>
+
+<h3 id="websocket-frame-protocol">WebSocket Frame Protocol</h3>
+
+<p><strong>Frame Structure:</strong></p>
+<ul>
+  <li><strong>FIN (1 bit):</strong> Indicates if this is the final fragment in a message.</li>
+  <li><strong>RSV1, RSV2, RSV3 (1 bit each):</strong> Reserved for future use.</li>
+  <li><strong>Opcode (4 bits):</strong> Defines the interpretation of the payload data.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0x0</code>: Continuation frame</li>
+      <li><code class="language-plaintext highlighter-rouge">0x1</code>: Text frame</li>
+      <li><code class="language-plaintext highlighter-rouge">0x2</code>: Binary frame</li>
+      <li><code class="language-plaintext highlighter-rouge">0x8</code>: Connection close</li>
+      <li><code class="language-plaintext highlighter-rouge">0x9</code>: Ping</li>
+      <li><code class="language-plaintext highlighter-rouge">0xA</code>: Pong</li>
+    </ul>
+  </li>
+  <li><strong>Mask (1 bit):</strong> Indicates if the payload data is masked.</li>
+  <li><strong>Payload Length (7 bits):</strong> Length of the payload data.</li>
+</ul>
+
+<p><strong>Masking Key:</strong> Used to prevent man-in-the-middle attacks by masking frames from the client.</p>
+
+<h3 id="closing-handshake">Closing Handshake</h3>
+
+<p><strong>Close Frame:</strong></p>
+<ul>
+  <li>Can include a body indicating the reason for closure.</li>
+  <li>Both sides must send and respond to close frames.</li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<p><strong>Example 1: Single-frame Unmasked Text Message</strong></p>
+<pre><code class="language-hex">0x81 0x05 0x48 0x65 0x6c 0x6c 0x6f
+</code></pre>
+<p>Contains “Hello”</p>
+
+<p><strong>Example 2: Single-frame Masked Text Message</strong></p>
+<pre><code class="language-hex">0x81 0x85 0x37 0xfa 0x21 0x3d 0x7f 0x9f 0x4d 0x51 0x58
+</code></pre>
+<p>Contains “Hello” with a masking key</p>
+
+<p><strong>Example 3: Fragmented Unmasked Text Message</strong></p>
+<pre><code class="language-hex">0x01 0x03 0x48 0x65 0x6c
+0x80 0x02 0x6c 0x6f
+</code></pre>
+<p>Contains “Hel” and “lo” in two frames</p>
+
+<h3 id="advanced-topics">Advanced Topics</h3>
+
+<p><strong>Masking and Unmasking:</strong></p>
+<ul>
+  <li>Masking is used to prevent man-in-the-middle attacks.</li>
+  <li>Each frame from the client must be masked.</li>
+  <li>The masking key is chosen randomly for each frame.</li>
+</ul>
+
+<p><strong>Fragmentation:</strong></p>
+<ul>
+  <li>Used to send messages of unknown length.</li>
+  <li>A fragmented message starts with a frame where FIN is 0 and ends with a frame where FIN is 1.</li>
+</ul>
+
+<p><strong>Control Frames:</strong></p>
+<ul>
+  <li>Control frames (like close, ping, and pong) have specific opcodes.</li>
+  <li>These frames help manage the state of the WebSocket connection.</li>
+</ul>
+
+<h3 id="augmented-backus-naur-form">Augmented Backus-Naur Form</h3>
+
+<ul>
+  <li>WebSocket uses ABNF (Augmented Backus-Naur Form) for defining message frames and data structures.</li>
+</ul>
+
+<h3 id="implementing-websocket-in-different-scenarios">Implementing WebSocket in Different Scenarios</h3>
+
+<p><strong>1. Real-time Chat Applications:</strong></p>
+<ul>
+  <li>WebSocket can maintain an open connection to deliver messages instantly.</li>
+</ul>
+
+<p><strong>2. Live Updates:</strong></p>
+<ul>
+  <li>Stock prices, sports scores, and other real-time data can be pushed to clients as soon as they change.</li>
+</ul>
+
+<p><strong>3. Multiplayer Games:</strong></p>
+<ul>
+  <li>Synchronizes game state across multiple players with minimal latency.</li>
+</ul>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>WebSocket significantly enhances real-time communication capabilities for web and mobile applications by providing a robust and efficient protocol built on top of TCP. By understanding and implementing WebSocket, developers can create more responsive and interactive applications. Whether you are developing for IM, real-time commenting, or multiplayer gaming, WebSocket is a powerful tool in your development arsenal.</p>
+
+<p>For further details, refer to the <a href="https://tools.ietf.org/html/rfc6455">WebSocket RFC</a> and explore libraries like <a href="https://github.com/square/SocketRocket">SocketRocket</a> on GitHub.</p>
+
+<h3 id="acknowledgements">Acknowledgements</h3>
+<p>Thank you for following along. Feel free to reach out on GitHub or Weibo for more insights and discussions.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

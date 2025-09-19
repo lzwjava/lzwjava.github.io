@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Skalierbare Anwendung auf Azure erstellen</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Skalierbare Anwendung auf Azure erstellen | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Skalierbare Anwendung auf Azure erstellen" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Dieser Blogbeitrag wurde mit der Unterstützung von ChatGPT-4o erstellt." />
+<meta property="og:description" content="Dieser Blogbeitrag wurde mit der Unterstützung von ChatGPT-4o erstellt." />
+<link rel="canonical" href="https://lzwjava.github.io/azure-de" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Skalierbare Anwendung auf Azure erstellen" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-07-07T00:00:00+08:00","datePublished":"2023-07-07T00:00:00+08:00","description":"Dieser Blogbeitrag wurde mit der Unterstützung von ChatGPT-4o erstellt.","headline":"Skalierbare Anwendung auf Azure erstellen","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-de"},"url":"https://lzwjava.github.io/azure-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Skalierbare Anwendung auf Azure erstellen | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2023-07-07-azure-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2023-07-07-azure-de.md</span> -->
+      
+
+      <!-- <span>2023-07-07-azure-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-en" >English</option>
+        <option value="/azure-zh" >中文</option>
+        <option value="/azure-ja" >日本語</option>
+        <option value="/azure-es" >Español</option>
+        <option value="/azure-hi" >हिंदी</option>
+        <option value="/azure-fr" >Français</option>
+        <option value="/azure-de" selected>Deutsch</option>
+        <option value="/azure-ar" >العربية</option>
+        <option value="/azure-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>Dieser Blogbeitrag wurde mit der Unterstützung von ChatGPT-4o erstellt.</em></p>
+
+<hr />
+
+<h3 id="inhaltsverzeichnis">Inhaltsverzeichnis</h3>
+<ul>
+  <li><a href="#einführung">Einführung</a></li>
+  <li><a href="#erste-schritte-mit-azure-abonnement">Erste Schritte mit Azure-Abonnement</a></li>
+  <li><a href="#bereitstellung-von-anwendungen-mit-azure-kubernetes-service-aks">Bereitstellung von Anwendungen mit Azure Kubernetes Service (AKS)</a>
+    <ul>
+      <li><a href="#erstellen-und-verwalten-eines-aks-clusters">Erstellen und Verwalten eines AKS-Clusters</a></li>
+      <li><a href="#bereitstellung-von-anwendungen">Bereitstellung von Anwendungen</a></li>
+    </ul>
+  </li>
+  <li><a href="#abrufen-von-logs-aus-pods">Abrufen von Logs aus Pods</a></li>
+  <li><a href="#überwachung-und-diagnostik-mit-azure-application-insights">Überwachung und Diagnostik mit Azure Application Insights</a></li>
+  <li><a href="#nutzung-von-azure-virtual-machines-vms">Nutzung von Azure Virtual Machines (VMs)</a></li>
+  <li><a href="#echtzeit-datenaufnahme-mit-azure-event-hubs">Echtzeit-Datenaufnahme mit Azure Event Hubs</a></li>
+  <li><a href="#verwaltung-von-apis-mit-azure-api-management-services">Verwaltung von APIs mit Azure API Management Services</a></li>
+  <li><a href="#nutzung-von-azure-sql-datenbanken">Nutzung von Azure SQL-Datenbanken</a></li>
+  <li><a href="#abfragen-von-logs-mit-kusto-query-language-kql">Abfragen von Logs mit Kusto Query Language (KQL)</a></li>
+  <li><a href="#einrichten-von-alerts-für-proaktive-überwachung">Einrichten von Alerts für proaktive Überwachung</a></li>
+  <li><a href="#fazit">Fazit</a></li>
+</ul>
+
+<h3 id="einführung">Einführung</h3>
+
+<p>In der Welt des Cloud-Computing sticht Microsoft Azure als robuste Plattform für den Aufbau, die Bereitstellung und das Management von Anwendungen hervor. In unserem letzten Projekt haben wir mehrere Azure-Dienste genutzt, darunter Azure-Abonnement, Azure Kubernetes Service (AKS), Application Insights, Virtual Machines (VMs), Event Hubs, API Management Services und SQL-Datenbanken, um eine skalierbare und überwachte Anwendungsinfrastruktur zu erstellen. Dieser Blogbeitrag beschreibt unseren Ansatz, die verwendeten Tools, Best Practices und detaillierte Schritte zur Verwaltung von Clustern, zum Abrufen von Logs und zum Abfragen von Logs.</p>
+
+<h3 id="erste-schritte-mit-azure-abonnement">Erste Schritte mit Azure-Abonnement</h3>
+
+<p>Ein Azure-Abonnement ist Ihr Zugang zu Azure-Diensten. Es dient als Container für alle Ihre Ressourcen, wie virtuelle Maschinen, Datenbanken und Kubernetes-Cluster.</p>
+
+<ol>
+  <li>Einrichten eines Azure-Abonnements:
+    <ul>
+      <li>Anmeldung: Falls Sie noch kein Azure-Konto haben, beginnen Sie mit der Anmeldung im <a href="https://portal.azure.com/">Azure-Portal</a>.</li>
+      <li>Erstellen eines Abonnements: Navigieren Sie zum Abschnitt “Abonnements” und erstellen Sie ein neues Abonnement. Dies wird Ihr Container für Abrechnung und Verwaltung sein.</li>
+    </ul>
+  </li>
+  <li>Ressourcenorganisation:
+    <ul>
+      <li>Ressourcengruppen: Organisieren Sie Ihre Ressourcen in Ressourcengruppen basierend auf ihrem Lebenszyklus und den Verwaltungsanforderungen.</li>
+      <li>Tags: Verwenden Sie Tags für zusätzliche Metadaten und eine einfachere Ressourcenverwaltung und Abrechnung.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="bereitstellung-von-anwendungen-mit-azure-kubernetes-service-aks">Bereitstellung von Anwendungen mit Azure Kubernetes Service (AKS)</h3>
+
+<p>Azure Kubernetes Service (AKS) ist ein verwalteter Kubernetes-Dienst, der die Bereitstellung, Verwaltung und Skalierung von containerisierten Anwendungen vereinfacht.</p>
+
+<h4 id="erstellen-und-verwalten-eines-aks-clusters">Erstellen und Verwalten eines AKS-Clusters</h4>
+
+<ol>
+  <li>Erstellen eines AKS-Clusters im Azure-Portal:
+    <ul>
+      <li>Einrichtung: Suchen Sie im Azure-Portal nach AKS und erstellen Sie einen neuen Kubernetes-Cluster.</li>
+      <li>Konfiguration: Wählen Sie die Größe Ihres Clusters, konfigurieren Sie Node-Pools und richten Sie die Netzwerkkonfiguration ein.</li>
+      <li>Authentifizierung: Verwenden Sie Azure Active Directory (AAD) für sicheren Zugriff.</li>
+      <li>Überwachung: Aktivieren Sie Überwachung und Protokollierung während des Einrichtungsprozesses.</li>
+    </ul>
+  </li>
+  <li>Erstellen eines AKS-Clusters mit Azure CLI:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks create <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 3 <span class="se">\</span>
+  <span class="nt">--enable-addons</span> monitoring <span class="se">\</span>
+  <span class="nt">--generate-ssh-keys</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Verwalten Ihres AKS-Clusters:
+    <ul>
+      <li>Skalieren des Clusters:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks scale <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 5
+</code></pre></div>        </div>
+      </li>
+      <li>Upgraden des Clusters:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks upgrade <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--kubernetes-version</span> 1.21.2
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="bereitstellung-von-anwendungen">Bereitstellung von Anwendungen</h4>
+
+<ol>
+  <li>Verwenden von Kubernetes-Manifesten: Erstellen Sie YAML-Dateien für Ihre Bereitstellungen, Dienste und andere Kubernetes-Objekte.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Bereitstellung mit kubectl:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> myapp-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>Helm-Charts: Verwenden Sie Helm zum Verwalten von Kubernetes-Anwendungen und zur Versionskontrolle.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm <span class="nb">install </span>myapp ./mychart
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="abrufen-von-logs-aus-pods">Abrufen von Logs aus Pods</h3>
+
+<ol>
+  <li>Anbindung an einen Pod und Abrufen von Logs:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li>Zum Streamen von Logs:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt; <span class="nt">-f</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Verwenden eines Sidecars für die Protokollierung:
+    <ul>
+      <li>Erstellen Sie einen Protokollierungs-Sidecar-Container in Ihrer Pod-Spezifikation, um Logs an einen zentralen Protokollierungsdienst zu senden.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+    <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-shipper</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">log-shipper:latest</span>
+    <span class="s">...</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="überwachung-und-diagnostik-mit-azure-application-insights">Überwachung und Diagnostik mit Azure Application Insights</h3>
+
+<p>Application Insights bietet leistungsstarke Überwachungs- und Diagnostikfunktionen für Ihre Anwendungen.</p>
+
+<ol>
+  <li>Einrichten von Application Insights:
+    <ul>
+      <li>Integration: Fügen Sie die Application Insights-SDK zu Ihrem Anwendungscode hinzu.</li>
+      <li>Instrumentation Key: Konfigurieren Sie Ihre Anwendung mit dem Instrumentation Key aus Ihrer Application Insights-Ressource.</li>
+    </ul>
+  </li>
+  <li>Verfolgen der Leistung:
+    <ul>
+      <li>Metriken: Überwachen Sie Antwortzeiten, Fehlerraten und Anwendungsabhängigkeiten.</li>
+      <li>Live-Metriken-Stream: Zeigen Sie Echtzeit-Leistungsmetriken für sofortige Einblicke an.</li>
+    </ul>
+  </li>
+  <li>Diagnostik und Problembehandlung:
+    <ul>
+      <li>Anwendungsmap: Visualisieren Sie Abhängigkeiten und identifizieren Sie Leistungsengpässe.</li>
+      <li>Transaktionsdiagnostik: Verwenden Sie verteiltes Tracing, um Anfragen über Dienste hinweg zu verfolgen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="nutzung-von-azure-virtual-machines-vms">Nutzung von Azure Virtual Machines (VMs)</h3>
+
+<p>Azure-VMs bieten die Flexibilität, benutzerdefinierte Anwendungen und Dienste auszuführen, die nicht containerisiert sind.</p>
+
+<ol>
+  <li>Bereitstellen von virtuellen Maschinen:
+    <ul>
+      <li>Erstellen von VMs: Erstellen Sie im Azure-Portal neue virtuelle Maschinen und wählen Sie die entsprechende Größe und das Betriebssystem aus.</li>
+      <li>Netzwerkkonfiguration: Richten Sie virtuelle Netzwerke, Subnetze und Sicherheitsgruppen ein, um den Verkehr zu steuern.</li>
+    </ul>
+  </li>
+  <li>Konfigurieren von VMs:
+    <ul>
+      <li>Softwareinstallation: Installieren Sie die erforderliche Software und Abhängigkeiten.</li>
+      <li>Sicherheit: Wenden Sie regelmäßig Patches und Updates an, konfigurieren Sie Firewalls und verwenden Sie Network Security Groups (NSGs).</li>
+    </ul>
+  </li>
+  <li>Verwalten von VMs:
+    <ul>
+      <li>Backup und Wiederherstellung: Verwenden Sie Azure Backup für VM-Backups.</li>
+      <li>Überwachung: Überwachen Sie die VM-Leistung mit Azure Monitor.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="echtzeit-datenaufnahme-mit-azure-event-hubs">Echtzeit-Datenaufnahme mit Azure Event Hubs</h3>
+
+<p>Azure Event Hubs ist eine Big-Data-Streaming-Plattform und ein Event-Ingestion-Dienst, der in der Lage ist, Millionen von Ereignissen pro Sekunde zu empfangen und zu verarbeiten.</p>
+
+<ol>
+  <li>Einrichten von Event Hubs:
+    <ul>
+      <li>Erstellen eines Event Hub-Namespace: Erstellen Sie im Azure-Portal einen Event Hub-Namespace, um Ihre Event Hubs zu beherbergen.</li>
+      <li>Erstellen von Event Hubs: Erstellen Sie innerhalb des Namespace einen oder mehrere Event Hubs, um Ihre Datenströme zu erfassen.</li>
+    </ul>
+  </li>
+  <li>Aufnehmen von Daten:
+    <ul>
+      <li>Producer: Konfigurieren Sie Ihre Anwendung oder Dienste, um Ereignisse an Event Hubs zu senden, unter Verwendung von SDKs, die für mehrere Sprachen verfügbar sind (z. B. .NET, Java, Python).</li>
+      <li>Partitions: Verwenden Sie Partitions, um die Event-Verarbeitung zu skalieren und eine hohe Durchsatzrate und Parallelität zu gewährleisten.</li>
+    </ul>
+  </li>
+  <li>Verarbeiten von Ereignissen:
+    <ul>
+      <li>Consumer: Verwenden Sie Consumer-Gruppen, um Ereignisse zu lesen und zu verarbeiten. Azure bietet mehrere Optionen zur Verarbeitung, einschließlich Azure Stream Analytics, Azure Functions und benutzerdefinierte Verarbeitung unter Verwendung des Event Hubs SDK.</li>
+    </ul>
+  </li>
+  <li>Überwachen von Event Hubs:
+    <ul>
+      <li>Metriken: Überwachen Sie Durchsatz, Latenz und Event-Verarbeitungsmetriken über das Azure-Portal.</li>
+      <li>Alerts: Richten Sie Alerts ein, um Sie über Probleme wie hohe Latenz oder verlorene Nachrichten zu benachrichtigen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="verwaltung-von-apis-mit-azure-api-management-services">Verwaltung von APIs mit Azure API Management Services</h3>
+
+<p>Azure API Management Services bieten eine Möglichkeit, konsistente und moderne API-Gateways für bestehende Backend-Dienste zu erstellen.</p>
+
+<ol>
+  <li>Einrichten von API Management:
+    <ul>
+      <li>Erstellen eines API Management-Dienstes: Suchen Sie im Azure-Portal nach API Management und erstellen Sie einen neuen Dienst.</li>
+      <li>Konfigurieren von APIs: Definieren und importieren Sie APIs aus OpenAPI-Spezifikationen, Azure Functions oder anderen Backends.</li>
+    </ul>
+  </li>
+  <li>Sichern von APIs:
+    <ul>
+      <li>Authentifizierung und Autorisierung: Verwenden Sie OAuth2, JWT-Validierung und andere Mechanismen, um Ihre APIs zu sichern.</li>
+      <li>Rate Limiting und Throttling: Implementieren Sie Richtlinien, um Ihre APIs vor Missbrauch zu schützen.</li>
+    </ul>
+  </li>
+  <li>Überwachung und Analysen:
+    <ul>
+      <li>API Insights: Verfolgen Sie die Nutzung, überwachen Sie die Leistung und analysieren Sie Logs.</li>
+      <li>Entwicklerportal: Bieten Sie ein Portal für Entwickler, um Ihre APIs zu entdecken und zu nutzen.</li>
+    </ul>
+  </li>
+  <li>Verwalten des Lebenszyklus:
+    <ul>
+      <li>Versionierung und Revisionen: Verwalten Sie verschiedene Versionen und Revisionen Ihrer APIs nahtlos.</li>
+      <li>Richtlinienverwaltung: Wenden Sie Richtlinien für die Transformation, Validierung und Weiterleitung von Anfragen und Antworten an.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="nutzung-von-azure-sql-datenbanken">Nutzung von Azure SQL-Datenbanken</h3>
+
+<p>Azure SQL Database ist eine vollständig verwaltete relationale Datenbank mit eingebauter Intelligenz, hoher Verfügbarkeit und Skalierbarkeit.</p>
+
+<ol>
+  <li>Einrichten von Azure SQL-Datenbank:
+    <ul>
+      <li>Erstellen einer SQL-Datenbank: Navigieren Sie im Azure-Portal zu SQL-Datenbanken und erstellen Sie eine neue Datenbank.</li>
+      <li>Konfigurieren der Datenbank: Legen Sie die Datenbankgröße, die Leistungsebene und die Netzwerkkonfiguration fest.</li>
+    </ul>
+  </li>
+  <li>Verbinden mit der SQL-Datenbank:
+    <ul>
+      <li>Verbindungszeichenfolgen: Verwenden Sie die bereitgestellten Verbindungszeichenfolgen, um Ihre Anwendung mit der SQL-Datenbank zu verbinden.</li>
+      <li>Firewall-Regeln: Konfigurieren Sie Firewall-Regeln, um den Zugriff von Ihrer Anwendung oder Ihrem lokalen Computer zu ermöglichen.</li>
+    </ul>
+  </li>
+  <li>Verwalten der Datenbank:
+    <ul>
+      <li>Backup und Wiederherstellung: Verwenden Sie automatische Backups und Punkt-in-Zeit-Wiederherstellung, um Ihre Daten zu schützen.</li>
+      <li>Skalieren: Skalieren Sie die Datenbank nach oben oder unten basierend auf Ihren Leistungsanforderungen.</li>
+    </ul>
+  </li>
+  <li>Überwachung und Leistungsoptimierung:
+    <ul>
+      <li>Query Performance Insights: Überwachen und optimieren Sie die Abfrageleistung.</li>
+      <li>Automatische Optimierung: Aktivieren Sie automatische Optimierungsfunktionen, um die Leistung zu verbessern.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="abfragen-von-logs-mit-kusto-query-language-kql">Abfragen von Logs mit Kusto Query Language (KQL)</h3>
+
+<p>Kusto Query Language (KQL) wird verwendet, um Azure Monitor Logs abzufragen und leistungsstarke Einblicke in Ihre Log-Daten zu erhalten.</p>
+
+<ol>
+  <li>Grundlegende KQL-Abfrage:
+    <pre><code class="language-kql">// Abrufen von Datensätzen aus einer bestimmten Tabelle
+LogTableName
+| where TimeGenerated &gt; ago(1h)
+| project TimeGenerated, Level, Message
+</code></pre>
+  </li>
+  <li>Filtern und Aggregieren von Daten:
+    <pre><code class="language-kql">LogTableName
+| where TimeGenerated &gt; ago(1h) and Level == "Error"
+| summarize Count=count() by bin(TimeGenerated, 5m)
+</code></pre>
+  </li>
+  <li>Verbinden von Tabellen:
+    <pre><code class="language-kql">Table1
+| join kind=inner (Table2) on $left.UserId == $right.UserId
+| project Table1.TimeGenerated, Table1.Message, Table2.AdditionalInfo
+</code></pre>
+  </li>
+  <li>Erstellen von Alerts basierend auf Abfragen:
+    <ul>
+      <li>Navigieren Sie im Azure-Portal zum Log Analytics-Arbeitsbereich.</li>
+      <li>Klicken Sie auf <code class="language-plaintext highlighter-rouge">Logs</code> und geben Sie Ihre KQL-Abfrage ein.</li>
+      <li>Klicken Sie auf <code class="language-plaintext highlighter-rouge">New alert rule</code>, um eine Alert-Regel basierend auf den Abfrageergebnissen zu erstellen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="einrichten-von-alerts-für-proaktive-überwachung">Einrichten von Alerts für proaktive Überwachung</h3>
+
+<p>Azure Alerts helfen Ihnen, über den Zustand und die Leistung Ihrer Ressourcen informiert zu bleiben.</p>
+
+<ol>
+  <li>Erstellen von Alerts:
+    <ul>
+      <li>Metrik-Alerts: Richten Sie Alerts basierend auf Metriken wie CPU-Auslastung, Speichernutzung und Antwortzeiten ein.</li>
+      <li>Log-Alerts: Erstellen Sie Alerts basierend auf Log-Suchabfragen mit KQL.</li>
+    </ul>
+  </li>
+  <li>Konfigurieren von Aktionen:
+    <ul>
+      <li>Aktionsgruppen: Definieren Sie Aktionsgruppen, um festzulegen, wer benachrichtigt wird und wie (E-Mail, SMS, Webhook).</li>
+      <li>Integration: Integrieren Sie mit ITSM-Tools wie ServiceNow für automatisiertes Incident-Management.</li>
+    </ul>
+  </li>
+  <li>Reagieren auf Alerts:
+    <ul>
+      <li>Dashboards: Richten Sie Azure-Dashboards ein, um eine zentrale Ansicht der Alerts bereitzustellen.</li>
+      <li>Automatisierung: Verwenden Sie Azure Automation, um automatisch auf bestimmte Alerts zu reagieren.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="fazit">Fazit</h3>
+
+<p>Durch die Nutzung von Azure-Abonnement, AKS, Application Insights, Virtual Machines, Event Hubs, API Management Services und SQL-Datenbanken haben wir eine skalierbare, robuste und überwachte Anwendungsinfrastruktur aufgebaut. Das umfassende Toolset von Azure ermöglichte es uns, Anwendungen effizient zu deployen, zu verwalten und zu überwachen. Diese Einrichtung verbesserte nicht nur die Leistung unserer Anwendungen, sondern verschaffte uns auch die Einblicke, die wir benötigten, um unsere Ressourcen proaktiv zu warten und zu optimieren.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

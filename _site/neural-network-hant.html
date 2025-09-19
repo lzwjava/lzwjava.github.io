@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>神經網絡如何運作</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>神經網絡如何運作 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="神經網絡如何運作" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="讓我們直接討論神經網絡工作的核心。也就是說，反向傳播算法：" />
+<meta property="og:description" content="讓我們直接討論神經網絡工作的核心。也就是說，反向傳播算法：" />
+<link rel="canonical" href="https://lzwjava.github.io/neural-network-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/neural-network-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-30T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="神經網絡如何運作" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-05-30T00:00:00+08:00","datePublished":"2023-05-30T00:00:00+08:00","description":"讓我們直接討論神經網絡工作的核心。也就是說，反向傳播算法：","headline":"神經網絡如何運作","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/neural-network-hant"},"url":"https://lzwjava.github.io/neural-network-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       神經網絡如何運作 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2023-05-30-neural-network-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2023-05-30-neural-network-hant.md</span> -->
+      
+
+      <!-- <span>2023-05-30-neural-network-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/neural-network-en" >English</option>
+        <option value="/neural-network-zh" >中文</option>
+        <option value="/neural-network-ja" >日本語</option>
+        <option value="/neural-network-es" >Español</option>
+        <option value="/neural-network-hi" >हिंदी</option>
+        <option value="/neural-network-fr" >Français</option>
+        <option value="/neural-network-de" >Deutsch</option>
+        <option value="/neural-network-ar" >العربية</option>
+        <option value="/neural-network-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>讓我們直接討論神經網絡工作的核心。也就是說，反向傳播算法：</p>
+
+<ol>
+  <li>輸入 x：為輸入層設置相應的激活 \(a^{1}\)。</li>
+  <li>前向傳播：對於每個 l=2,3,…,L 計算 \(z^{l} = w^l a^{l-1}+b^l\) 和 \(a^{l} = \sigma(z^{l})\)。</li>
+  <li>輸出誤差 \(\delta^{L}\)：計算向量 \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\)。</li>
+  <li>反向傳播誤差：對於每個 l=L−1,L−2,…,2，計算 \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\)。</li>
+  <li>輸出：成本函數的梯度由 \(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\) 和 \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\) 給出。</li>
+</ol>
+
+<p>這是從 Michael Nelson 的書《神經網絡與深度學習》中複製的。看起來是不是有點讓人不知所措？第一次看到時可能是這樣。但經過一個月的學習後就不會了。讓我來解釋一下。</p>
+
+<h2 id="輸入">輸入</h2>
+
+<p>共有五個階段。第一階段是輸入。這裡我們使用手寫數字作為輸入。我們的任務是識別它們。一個手寫數字有 784 個像素，即 28*28。每個像素中都有一個灰度值，範圍從 0 到 255。所以激活意味著我們使用某個函數來激活它，將其原始值改變為一個新值，以便於處理。</p>
+
+<p>假設我們現在有 1000 張 784 像素的圖片。我們現在訓練它來識別它們顯示的數字。我們有 100 張圖片來測試學習效果。如果程序能識別出 97 張圖片的數字，我們說它的準確率是 97%。</p>
+
+<p>所以我們會遍歷這 1000 張圖片，來訓練出權重和偏差。每次給它一張新圖片學習時，我們都會讓權重和偏差變得更正確。</p>
+
+<p>一個批次的訓練結果會反映在 10 個神經元中。這裡，10 個神經元代表從 0 到 9，其值範圍從 0 到 1，表示它們對其準確性的信心。</p>
+
+<p>輸入是 784 個神經元。我們如何將 784 個神經元減少到 10 個神經元呢？這就是問題所在。假設我們有兩層。層是什麼意思？第一層有 784 個神經元。第二層有 10 個神經元。</p>
+
+<p>我們給 784 個神經元中的每個神經元一個權重，比如：</p>
+
+\[w_1, w_2, w_3, w_4, ... , w_{784}\]
+
+<p>並給第一層一個偏差，即 \(b_1\)。</p>
+
+<p>所以第二層中的第一個神經元的值是：</p>
+
+\[w_1*a_1 + w_2*a_2+...+ w_{784}*a_{784}+b_1\]
+
+<p>但這些權重和偏差是針對 \(neuron^2_{1}\)（第二層中的第一個神經元）的。對於 \(neuron^2_{2}\)，我們需要另一組權重和偏差。</p>
+
+<p>那麼 sigmoid 函數呢？我們使用 sigmoid 函數將上述值映射到 0 到 1 之間。</p>
+
+\[\begin{eqnarray} 
+  \sigma(z) \equiv \frac{1}{1+e^{-z}}
+\end{eqnarray}\]
+
+\[\begin{eqnarray} 
+  \frac{1}{1+\exp(-\sum_j w_j x_j-b)}
+\end{eqnarray}\]
+
+<p>我們還使用 sigmoid 函數來激活第一層。也就是說，我們將灰度值改變為 0 到 1 的範圍。所以現在，每一層中的每個神經元都有一個從 0 到 1 的值。</p>
+
+<p>所以現在對於我們的兩層網絡，第一層有 784 個神經元，第二層有 10 個神經元。我們訓練它以獲得權重和偏差。</p>
+
+<p>我們有 784 * 10 個權重和 10 個偏差。在第二層中，對於每個神經元，我們將使用 784 個權重和 1 個偏差來計算其值。這裡的代碼如下：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sizes</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">sizes</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+</code></pre></div></div>
+
+<h2 id="前向傳播">前向傳播</h2>
+
+<blockquote>
+  <p>前向傳播：對於每個 l=2,3,…,L 計算 \(z^{l} = w^l a^{l-1}+b^l\) 和 \(a^{l} = \sigma(z^{l})\)</p>
+</blockquote>
+
+<p>注意這裡，我們使用上一層的值，即 \(a^{l-1}\) 和當前層的權重 \(w^l\) 及其偏差 \(b^l\) 來進行 sigmoid 計算，以獲得當前層的值 \(a^{l}\)。</p>
+
+<p>代碼：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="c1"># 前向傳播
+</span>        <span class="n">activation</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> 
+        <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">activation</span><span class="p">)</span><span class="o">+</span><span class="n">b</span>
+            <span class="n">zs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activations</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="輸出誤差">輸出誤差</h2>
+
+<blockquote>
+  <p>輸出誤差 \(\delta^{L}\)：計算向量 \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\)</p>
+</blockquote>
+
+<p>讓我們看看 \(\nabla\) 是什麼意思。</p>
+
+<blockquote>
+  <p>Del 或 nabla 是數學中（特別是在向量微積分中）用作向量微分算子的運算符，通常由 nabla 符號 ∇ 表示。</p>
+</blockquote>
+
+\[\begin{eqnarray}
+  w_k &amp; \rightarrow &amp; w_k' = w_k-\eta \frac{\partial C}{\partial w_k} \\
+  b_l &amp; \rightarrow &amp; b_l' = b_l-\eta \frac{\partial C}{\partial b_l}
+\end{eqnarray}\]
+
+<p>這裡 \(\eta\) 是學習率。我們使用 C 對權重和偏差的導數，即它們之間的變化率。這就是下面的 <code class="language-plaintext highlighter-rouge">sigmoid_prime</code>。</p>
+
+<p>代碼：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">delta</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">cost_derivative</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+        <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">cost_derivative</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">output_activations</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">output_activations</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="反向傳播誤差">反向傳播誤差</h2>
+
+<blockquote>
+  <p>反向傳播誤差：對於每個 l=L−1,L−2,…,2，計算 \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\)</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">sp</span> <span class="o">=</span> <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">(),</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">sp</span>
+            <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+            <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="輸出">輸出</h2>
+
+<blockquote>
+  <p>輸出：成本函數的梯度由 \(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\)
+和 \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\) 給出。</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">update_mini_batch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mini_batch</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">mini_batch</span><span class="p">:</span>
+            <span class="n">delta_nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_w</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">backprop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">nb</span><span class="o">+</span><span class="n">dnb</span> <span class="k">for</span> <span class="n">nb</span><span class="p">,</span> <span class="n">dnb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_b</span><span class="p">)]</span>
+            <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">nw</span><span class="o">+</span><span class="n">dnw</span> <span class="k">for</span> <span class="n">nw</span><span class="p">,</span> <span class="n">dnw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_w</span><span class="p">,</span> <span class="n">delta_nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+                       <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="最後">最後</h2>
+
+<p>這是一篇短文。在大部分內容中，它只是展示了代碼和數學公式。但對我來說沒問題。在寫這篇文章之前，我並不清楚。在寫完或只是從代碼和書中複製片段後，我理解了大部分內容。在從老師 Yin Wang 那裡獲得信心、閱讀了《神經網絡與深度學習》一書的 30%、聽了 Andrej Karpathy 的斯坦福講座和 Andrew Ng 的課程、與我的朋友 Qi 討論並調整 Anaconda、numpy 和 Theano 庫以使多年前的代碼工作後，我現在理解了它。</p>
+
+<p>其中一個關鍵點是維度。我們應該知道每個符號和變量的維度。它只是進行可微計算。讓我們以 Yin Wang 的引述結束：</p>
+
+<blockquote>
+  <p>機器學習真的很有用，甚至可以說是美麗的理論，因為它只是微積分的變身！它是牛頓、萊布尼茨的古老而偉大的理論，以更簡單、優雅和強大的形式呈現。機器學習基本上就是使用微積分來推導和擬合一些函數，而深度學習則是擬合更複雜的函數。</p>
+</blockquote>
+
+<blockquote>
+  <p>人工智能中沒有“智能”，神經網絡中沒有“神經”，機器學習中沒有“學習”，深度學習中沒有“深度”。深度學習中沒有“深度”。在這個領域真正起作用的是“微積分”。所以我更喜歡稱這個領域為“可微計算”，構建模型的過程稱為“可微編程”。</p>
+</blockquote>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

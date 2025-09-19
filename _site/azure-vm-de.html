@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Einrichten eines Azure-Servers</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Einrichten eines Azure-Servers | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Einrichten eines Azure-Servers" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Das Einrichten eines Servers auf Microsoft Azure und die Konfiguration, um bestimmte Ports zu öffnen, ist für verschiedene Anwendungen unerlässlich, einschließlich Hosting-Diensten, Proxys und mehr. Diese Anleitung führt Sie durch den Prozess der Erstellung einer Azure Virtual Machine (VM) und der Konfiguration der Firewall, um Port 1080 zu öffnen." />
+<meta property="og:description" content="Das Einrichten eines Servers auf Microsoft Azure und die Konfiguration, um bestimmte Ports zu öffnen, ist für verschiedene Anwendungen unerlässlich, einschließlich Hosting-Diensten, Proxys und mehr. Diese Anleitung führt Sie durch den Prozess der Erstellung einer Azure Virtual Machine (VM) und der Konfiguration der Firewall, um Port 1080 zu öffnen." />
+<link rel="canonical" href="https://lzwjava.github.io/azure-vm-de" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-vm-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Einrichten eines Azure-Servers" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Das Einrichten eines Servers auf Microsoft Azure und die Konfiguration, um bestimmte Ports zu öffnen, ist für verschiedene Anwendungen unerlässlich, einschließlich Hosting-Diensten, Proxys und mehr. Diese Anleitung führt Sie durch den Prozess der Erstellung einer Azure Virtual Machine (VM) und der Konfiguration der Firewall, um Port 1080 zu öffnen.","headline":"Einrichten eines Azure-Servers","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-vm-de"},"url":"https://lzwjava.github.io/azure-vm-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Einrichten eines Azure-Servers | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2024-12-20-azure-vm-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2024-12-20-azure-vm-de.md</span> -->
+      
+
+      <!-- <span>2024-12-20-azure-vm-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-vm-en" >English</option>
+        <option value="/azure-vm-zh" >中文</option>
+        <option value="/azure-vm-ja" >日本語</option>
+        <option value="/azure-vm-es" >Español</option>
+        <option value="/azure-vm-hi" >हिंदी</option>
+        <option value="/azure-vm-fr" >Français</option>
+        <option value="/azure-vm-de" selected>Deutsch</option>
+        <option value="/azure-vm-ar" >العربية</option>
+        <option value="/azure-vm-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Das Einrichten eines Servers auf Microsoft Azure und die Konfiguration, um bestimmte Ports zu öffnen, ist für verschiedene Anwendungen unerlässlich, einschließlich Hosting-Diensten, Proxys und mehr. Diese Anleitung führt Sie durch den Prozess der Erstellung einer Azure Virtual Machine (VM) und der Konfiguration der Firewall, um Port 1080 zu öffnen.</p>
+
+<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+
+<ol>
+  <li><a href="#voraussetzungen">Voraussetzungen</a></li>
+  <li><a href="#erstellen-einer-azure-virtual-machine">Erstellen einer Azure Virtual Machine</a></li>
+  <li><a href="#konfigurieren-der-firewall-um-port-1080-zu-öffnen">Konfigurieren der Firewall, um Port 1080 zu öffnen</a></li>
+  <li><a href="#testen-der-konfiguration">Testen der Konfiguration</a></li>
+  <li><a href="#fazit">Fazit</a></li>
+</ol>
+
+<h2 id="voraussetzungen">Voraussetzungen</h2>
+
+<p>Bevor Sie beginnen, stellen Sie sicher, dass Sie Folgendes haben:</p>
+
+<ul>
+  <li>Ein aktives <a href="https://azure.microsoft.com/">Microsoft Azure</a>-Konto.</li>
+  <li>Grundkenntnisse in der Verwendung des Azure-Portals.</li>
+  <li>Ein SSH-Client (wie Terminal auf macOS/Linux oder PuTTY auf Windows) für den Zugriff auf die VM.</li>
+</ul>
+
+<h2 id="erstellen-einer-azure-virtual-machine">Erstellen einer Azure Virtual Machine</h2>
+
+<ol>
+  <li>
+    <p>Melden Sie sich beim Azure-Portal an:
+Navigieren Sie zum <a href="https://portal.azure.com/">Azure-Portal</a> und melden Sie sich mit Ihren Anmeldedaten an.</p>
+  </li>
+  <li>Erstellen Sie eine neue virtuelle Maschine:
+    <ul>
+      <li>Klicken Sie in der oberen linken Ecke auf „Ressource erstellen“.</li>
+      <li>Wählen Sie „Virtuelle Maschine“ aus der Liste der verfügbaren Ressourcen aus.</li>
+    </ul>
+  </li>
+  <li>Konfigurieren Sie die grundlegenden Einstellungen der VM:
+    <ul>
+      <li>Abonnement: Wählen Sie Ihr Azure-Abonnement aus.</li>
+      <li>Ressourcengruppe: Erstellen Sie eine neue Ressourcengruppe oder wählen Sie eine bestehende aus.</li>
+      <li>Name der virtuellen Maschine: Geben Sie einen Namen für Ihre VM ein (z. B. <code class="language-plaintext highlighter-rouge">AzureServer</code>).</li>
+      <li>Region: Wählen Sie die Region aus, die Ihrem Zielpublikum am nächsten liegt.</li>
+      <li>Image: Wählen Sie ein Betriebssystem-Image aus (z. B. Ubuntu 22.04 LTS).</li>
+      <li>Größe: Wählen Sie eine VM-Größe basierend auf Ihren Leistungsanforderungen aus.</li>
+      <li>Authentifizierung: Wählen Sie den SSH-Public-Key für einen sicheren Zugriff. Laden Sie Ihren öffentlichen SSH-Schlüssel hoch.</li>
+    </ul>
+  </li>
+  <li>Netzwerkkonfiguration:
+    <ul>
+      <li>Stellen Sie sicher, dass die VM in das richtige virtuelle Netzwerk und Subnetz platziert wird.</li>
+      <li>Lassen Sie die öffentliche IP-Adresse aktiviert, um externen Zugriff zu ermöglichen.</li>
+    </ul>
+  </li>
+  <li>Überprüfen und Erstellen:
+    <ul>
+      <li>Überprüfen Sie Ihre Konfigurationen.</li>
+      <li>Klicken Sie auf “Erstellen”, um die VM bereitzustellen. Die Bereitstellung kann einige Minuten dauern.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="konfiguration-der-firewall-zur-freigabe-von-port-1080">Konfiguration der Firewall zur Freigabe von Port 1080</h2>
+
+<p>Sobald Ihre VM betriebsbereit ist, müssen Sie die Netzwerksicherheitsgruppe (NSG) von Azure konfigurieren, um Datenverkehr auf Port 1080 zuzulassen.</p>
+
+<ol>
+  <li>Navigieren Sie zu den Netzwerkeinstellungen Ihrer VM:
+    <ul>
+      <li>Gehen Sie im Azure-Portal zu “Virtuelle Maschinen”.</li>
+      <li>Wählen Sie Ihre VM (<code class="language-plaintext highlighter-rouge">AzureServer</code>) aus.</li>
+      <li>Klicken Sie in der linken Seitenleiste auf “Netzwerk”.</li>
+    </ul>
+  </li>
+  <li>Identifizieren Sie die Netzwerksicherheitsgruppe (NSG):
+    <ul>
+      <li>Unter “Netzwerkschnittstelle” finden Sie die zugehörige NSG.</li>
+      <li>Klicken Sie auf die NSG, um ihre Regeln zu verwalten.</li>
+    </ul>
+  </li>
+  <li>Fügen Sie eine eingehende Sicherheitsregel hinzu:
+    <ul>
+      <li>Gehen Sie in den NSG-Einstellungen zu “Eingehende Sicherheitsregeln”.</li>
+      <li>Klicken Sie auf “Hinzufügen”, um eine neue Regel zu erstellen.</li>
+    </ul>
+  </li>
+  <li>Regel konfigurieren:
+    <ul>
+      <li>Quelle: Beliebig (oder geben Sie einen Bereich für erhöhte Sicherheit an).</li>
+      <li>Quellportbereiche: <code class="language-plaintext highlighter-rouge">*</code></li>
+      <li>Ziel: Beliebig</li>
+      <li>Zielportbereiche: <code class="language-plaintext highlighter-rouge">1080</code></li>
+      <li>Protokoll: TCP</li>
+      <li>Aktion: Zulassen</li>
+      <li>Priorität: <code class="language-plaintext highlighter-rouge">1000</code> (stellen Sie sicher, dass sie nicht mit bestehenden Regeln in Konflikt steht).</li>
+      <li>Name: <code class="language-plaintext highlighter-rouge">Allow-1080-TCP</code></li>
+    </ul>
+  </li>
+  <li>Regel speichern:
+    <ul>
+      <li>Klicken Sie auf “Hinzufügen”, um die neue Regel anzuwenden.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="testen-der-konfiguration">Testen der Konfiguration</h2>
+
+<p>Nach der Konfiguration der Firewall ist es wichtig, zu überprüfen, ob Port 1080 geöffnet und zugänglich ist.</p>
+
+<ol>
+  <li>
+    <p>Verwenden Sie Telnet, um die Port-Erreichbarkeit zu überprüfen:
+Führen Sie auf Ihrem lokalen Rechner den folgenden Befehl aus:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet &lt;Ihre_VM_IP&gt; 1080
+</code></pre></div>    </div>
+
+    <ul>
+      <li>Ersetzen Sie <code class="language-plaintext highlighter-rouge">&lt;YOUR_VM_IP&gt;</code> durch die öffentliche IP-Adresse Ihrer VM.</li>
+      <li>Wenn die Verbindung erfolgreich ist, ist der Port offen und erreichbar.</li>
+    </ul>
+  </li>
+  <li>Alternative Port-Checking-Tools:
+    <ul>
+      <li>Netcat (<code class="language-plaintext highlighter-rouge">nc</code>):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-zv</span> &lt;YOUR_VM_IP&gt; 1080
+</code></pre></div>        </div>
+      </li>
+      <li>Online-Port-Checker:
+Verwenden Sie Online-Dienste wie <a href="https://canyouseeme.org/">canyouseeme.org</a>, um zu überprüfen, ob Port 1080 geöffnet ist.</li>
+    </ul>
+  </li>
+  <li>Fehlerbehebung:
+    <ul>
+      <li>Verbindungsprobleme: Überprüfen Sie, ob die NSG-Regeln korrekt eingerichtet sind und dass alle lokalen Firewalls auf der VM so konfiguriert sind, dass sie Datenverkehr auf Port 1080 zulassen.</li>
+      <li>Falsche IP: Stellen Sie sicher, dass Sie die korrekte öffentliche IP-Adresse Ihrer VM verwenden.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="fazit">Fazit</h2>
+
+<p>Indem Sie dieser Anleitung gefolgt sind, haben Sie erfolgreich eine Azure Virtual Machine eingerichtet und die Firewall so konfiguriert, dass Port 1080 geöffnet ist. Diese Einrichtung bildet die Grundlage für die Bereitstellung verschiedener Anwendungen oder Dienste, die einen spezifischen Portzugriff erfordern.</p>
+
+<p>Für weitere Konfigurationen, wie das Einrichten von Proxy-Diensten oder anderen Anwendungen auf Port 1080, lesen Sie unsere speziellen Beiträge zu <a href="#">V2Ray-Proxy-Einrichtung</a> und <a href="#">Erstellen einer benutzerdefinierten vmess-URL</a>.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

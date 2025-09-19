@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>開始使用Google文字轉語音API</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>開始使用Google文字轉語音API | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="開始使用Google文字轉語音API" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="我計劃使用Google Text-to-Speech API將一些王垠的文章轉換為音頻。以下是逐步指南，並附上ChatGPT提供的一些有用教程。一切準備就緒後，我將在這裡上傳音頻供您收聽。" />
+<meta property="og:description" content="我計劃使用Google Text-to-Speech API將一些王垠的文章轉換為音頻。以下是逐步指南，並附上ChatGPT提供的一些有用教程。一切準備就緒後，我將在這裡上傳音頻供您收聽。" />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-speech-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-speech-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="開始使用Google文字轉語音API" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"我計劃使用Google Text-to-Speech API將一些王垠的文章轉換為音頻。以下是逐步指南，並附上ChatGPT提供的一些有用教程。一切準備就緒後，我將在這裡上傳音頻供您收聽。","headline":"開始使用Google文字轉語音API","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-speech-hant"},"url":"https://lzwjava.github.io/gcp-speech-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       開始使用Google文字轉語音API | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2024-12-18-gcp-speech-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2024-12-18-gcp-speech-hant.md</span> -->
+      
+
+      <!-- <span>2024-12-18-gcp-speech-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-speech-en" >English</option>
+        <option value="/gcp-speech-zh" >中文</option>
+        <option value="/gcp-speech-ja" >日本語</option>
+        <option value="/gcp-speech-es" >Español</option>
+        <option value="/gcp-speech-hi" >हिंदी</option>
+        <option value="/gcp-speech-fr" >Français</option>
+        <option value="/gcp-speech-de" >Deutsch</option>
+        <option value="/gcp-speech-ar" >العربية</option>
+        <option value="/gcp-speech-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>我計劃使用Google Text-to-Speech API將一些王垠的文章轉換為音頻。以下是逐步指南，並附上ChatGPT提供的一些有用教程。一切準備就緒後，我將在這裡上傳音頻供您收聽。</p>
+
+<hr />
+
+<h3 id="第一步設置google-cloud帳戶">第一步：設置Google Cloud帳戶</h3>
+
+<ol>
+  <li>
+    <p>創建Google Cloud帳戶<br />
+如果還沒有帳戶，請在<a href="https://console.cloud.google.com/">Google Cloud控制台</a>註冊。</p>
+  </li>
+  <li>創建新項目
+    <ul>
+      <li>在Cloud控制台中，點擊項目下拉菜單（左上角）。</li>
+      <li>選擇新建項目，命名並創建項目。</li>
+    </ul>
+  </li>
+  <li>啟用Text-to-Speech API
+    <ul>
+      <li>訪問<a href="https://cloud.google.com/text-to-speech">Google Cloud Text-to-Speech API頁面</a>。</li>
+      <li>點擊啟用以為您的項目激活API。</li>
+    </ul>
+  </li>
+  <li>創建API憑證
+    <ul>
+      <li>在Cloud控制台中導航到API與服務 &gt; 憑證。</li>
+      <li>點擊創建憑證，然後選擇服務帳戶。</li>
+      <li>按照提示創建服務帳戶並下載JSON格式的私鑰文件。</li>
+      <li>請妥善保管此JSON文件，因為它用於驗證您的API請求。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="第二步安裝google-cloud-sdk和客戶端庫">第二步：安裝Google Cloud SDK和客戶端庫</h3>
+
+<ol>
+  <li>
+    <p>安裝Google Cloud SDK<br />
+如果尚未安裝，請按照<a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK安裝指南</a>為您的操作系統安裝。</p>
+  </li>
+  <li>
+    <p>安裝Python客戶端庫<br />
+如果您使用Python，請使用以下命令安裝<code class="language-plaintext highlighter-rouge">google-cloud-texttospeech</code>庫：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>google-cloud-texttospeech
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="第三步設置身份驗證">第三步：設置身份驗證</h3>
+
+<p>在使用API之前，您需要使用憑證進行身份驗證。將環境變量設置為憑證文件的路徑：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">"/path/to/your/service-account-file.json"</span>
+</code></pre></div></div>
+
+<p>將路徑替換為您下載的JSON文件的實際位置。</p>
+
+<hr />
+
+<h3 id="第四步實現文本到語音轉換">第四步：實現文本到語音轉換</h3>
+
+<p>以下是一個使用Google Cloud Text-to-Speech API將文本轉換為語音的Python示例：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+
+<span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
+    <span class="c1"># 初始化Text-to-Speech客戶端
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+
+    <span class="c1"># 設置合成輸入
+</span>    <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># 設置語音參數（使用'en-US-Journey-D'）
+</span>    <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">VoiceSelectionParams</span><span class="p">(</span>
+        <span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># 英語（美國）
+</span>        <span class="n">name</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US-Journey-D</span><span class="sh">"</span>  <span class="c1"># 特定語音模型（Journey）
+</span>    <span class="p">)</span>
+
+    <span class="c1"># 設置音頻配置
+</span>    <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">AudioConfig</span><span class="p">(</span>
+        <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">MP3</span><span class="p">,</span>  <span class="c1"># MP3格式
+</span>        <span class="n">effects_profile_id</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">small-bluetooth-speaker-class-device</span><span class="sh">"</span><span class="p">],</span>  <span class="c1"># 針對藍牙揚聲器優化
+</span>        <span class="n">pitch</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># 無音調修改
+</span>        <span class="n">speaking_rate</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>  <span class="c1"># 調整語速（可根據需要修改）
+</span>        <span class="n">volume_gain_db</span><span class="o">=</span><span class="mf">5.0</span>  <span class="c1"># 更大音量
+</span>    <span class="p">)</span>
+
+    <span class="c1"># 執行文本到語音請求
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">synthesize_speech</span><span class="p">(</span>
+        <span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 將音頻內容寫入文件
+</span>    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="sh">"</span><span class="s">wb</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">音頻內容已寫入 </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># 示例使用
+</span><span class="n">article_text</span> <span class="o">=</span> <span class="sh">"</span><span class="s">電影，哦天哪，我簡直太愛它們了。它們就像時光機，帶你進入不同的世界和風景，我簡直無法自拔。</span><span class="sh">"</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="sh">"</span><span class="s">output_audio.mp3</span><span class="sh">"</span>  <span class="c1"># 輸出為MP3格式
+</span>
+<span class="c1"># 將文本轉換為語音
+</span><span class="nf">text_to_speech</span><span class="p">(</span><span class="n">article_text</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="第五步運行腳本">第五步：運行腳本</h3>
+
+<ol>
+  <li>將腳本保存為<code class="language-plaintext highlighter-rouge">text_to_speech.py</code>。</li>
+  <li>
+    <p>使用以下命令運行腳本：</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python text_to_speech.py
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>這將從提供的文本生成一個音頻文件（<code class="language-plaintext highlighter-rouge">output_audio.mp3</code>）。</p>
+
+<hr />
+
+<h3 id="第六步服務帳戶密鑰">第六步：服務帳戶密鑰</h3>
+
+<p>您的服務帳戶的JSON密鑰應類似於以下內容：</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_account"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-project-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-service-account-email@your-project-id.iam.gserviceaccount.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oauth2.googleapis.com/token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_provider_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/oauth2/v1/certs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-cert-url"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="為什麼選擇journey">為什麼選擇Journey？</h3>
+
+<p>Google Cloud Text-to-Speech提供了多種語音，但Journey因其自然、人聲般的音質而脫穎而出。與其他聽起來常常機械化的模型不同，Journey在表達力和逼真度方面表現出色。它特別適合長篇內容，如播客、有聲書或任何需要更對話語調的應用。</p>
+
+<p>Journey的主要特點：</p>
+<ul>
+  <li>自然語音：聽起來更接近人聲。</li>
+  <li>表達力：根據上下文調整語調和抑揚頓挫。</li>
+  <li>適合長篇內容：非常適合播客和敘述。</li>
+</ul>
+
+<p>有關Google Cloud Text-to-Speech的更多好處，請查看<a href="https://cloud.google.com/text-to-speech#benefits">Google Cloud概述</a>。</p>
+
+<hr />
+
+<h3 id="第七步生成新的服務帳戶密鑰如果需要">第七步：生成新的服務帳戶密鑰（如果需要）</h3>
+
+<p>如果您的服務帳戶密鑰與上述示例不匹配，您可以從Google Cloud控制台生成新的密鑰。</p>
+
+<p>生成新密鑰的步驟：</p>
+<ol>
+  <li>前往<a href="https://console.cloud.google.com/">Google Cloud控制台</a>。</li>
+  <li>導航到IAM與管理 &gt; 服務帳戶。</li>
+  <li>創建新的服務帳戶：
+    <ul>
+      <li>點擊創建服務帳戶並分配適當的角色。</li>
+      <li>點擊創建。</li>
+    </ul>
+  </li>
+  <li>生成密鑰：
+    <ul>
+      <li>創建服務帳戶後，點擊它。</li>
+      <li>轉到密鑰選項卡，點擊添加密鑰，選擇JSON，然後下載密鑰。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="示例音頻輸出">示例音頻輸出</h3>
+
+<p>一切設置完成後，您可以生成音頻文件，該文件將在此處提供：<br />
+<a href="assets/audios/output-audio.mp3">下載音頻文件</a>。</p>
+
+<hr />
+
+<h3 id="結論">結論</h3>
+
+<p>Google Cloud Text-to-Speech API使將文本轉換為自然語音變得簡單。無論您是構建需要語音輸出的應用程序，還是僅僅在實驗文本到語音轉換，此API都提供了強大的功能和自定義選項。探索完整文檔以獲取更多語音選擇、語言和高級功能。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

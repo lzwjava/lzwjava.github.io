@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>テストのタイミング</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>テストのタイミング | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="テストのタイミング" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="昨日、Shadowsocks Outlineの自動設定ツールを作成し、それをPythonプロジェクトとして他の人にも使えるようにしようと試みました。ssconfigファイルからShadowsocksのURLをデコードし、config.yamlファイルにShadowsocksプロキシ設定を更新するスクリプトを開発しました。さらに、gsutilを使用してクライアント用のサブスクリプションファイルをGoogle Cloud Storageにアップロードする別のスクリプトも作成しました。" />
+<meta property="og:description" content="昨日、Shadowsocks Outlineの自動設定ツールを作成し、それをPythonプロジェクトとして他の人にも使えるようにしようと試みました。ssconfigファイルからShadowsocksのURLをデコードし、config.yamlファイルにShadowsocksプロキシ設定を更新するスクリプトを開発しました。さらに、gsutilを使用してクライアント用のサブスクリプションファイルをGoogle Cloud Storageにアップロードする別のスクリプトも作成しました。" />
+<link rel="canonical" href="https://lzwjava.github.io/testing-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/testing-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-31T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="テストのタイミング" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-31T00:00:00+08:00","datePublished":"2024-12-31T00:00:00+08:00","description":"昨日、Shadowsocks Outlineの自動設定ツールを作成し、それをPythonプロジェクトとして他の人にも使えるようにしようと試みました。ssconfigファイルからShadowsocksのURLをデコードし、config.yamlファイルにShadowsocksプロキシ設定を更新するスクリプトを開発しました。さらに、gsutilを使用してクライアント用のサブスクリプションファイルをGoogle Cloud Storageにアップロードする別のスクリプトも作成しました。","headline":"テストのタイミング","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/testing-ja"},"url":"https://lzwjava.github.io/testing-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       テストのタイミング | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2024-12-31-testing-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2024-12-31-testing-ja.md</span> -->
+      
+
+      <!-- <span>2024-12-31-testing-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/testing-en" >English</option>
+        <option value="/testing-zh" >中文</option>
+        <option value="/testing-ja" selected>日本語</option>
+        <option value="/testing-es" >Español</option>
+        <option value="/testing-hi" >हिंदी</option>
+        <option value="/testing-fr" >Français</option>
+        <option value="/testing-de" >Deutsch</option>
+        <option value="/testing-ar" >العربية</option>
+        <option value="/testing-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>昨日、Shadowsocks Outlineの自動設定ツールを作成し、それをPythonプロジェクトとして他の人にも使えるようにしようと試みました。<code class="language-plaintext highlighter-rouge">ssconfig</code>ファイルからShadowsocksのURLをデコードし、<code class="language-plaintext highlighter-rouge">config.yaml</code>ファイルにShadowsocksプロキシ設定を更新するスクリプトを開発しました。さらに、<code class="language-plaintext highlighter-rouge">gsutil</code>を使用してクライアント用のサブスクリプションファイルをGoogle Cloud Storageにアップロードする別のスクリプトも作成しました。</p>
+
+<p>私はAIコードエディタのWindsurfを利用して支援を受けました。しかし、Pythonのユニットテストにおけるモック依存関係の扱いには苦戦しました。</p>
+
+<p>Yin Wang さんのテストに関する教訓を振り返りながら、彼が Google で働いていた時のことを思い出しました。彼はそこで Python インタプリタを開発し、社内のコードを検索機能のためにインデックス化していました。同僚たちはテストを書くことを強く主張し、彼はそれを煩わしく感じていました。彼は、エレガントなコードを書くことがテストよりも重要だと考え、同僚たちは表面的な部分しか理解せず、本質を捉えていないと思っていました。</p>
+
+<p>私は自分の間違いに気づきましたが、AIはそれを指摘しませんでした。ライブラリのメインコードがしっかりしていることを確認してから、テストに集中すべきです。この原則は、プロトタイププロジェクトにも適用されます。以前の仕事、例えばマイクロサービスの立ち上げでは、マイクロサービスがいくつかのAPIや機能を持った後にテストを書くべきです。</p>
+
+<p>もしWindsurfがテストの部分をうまく扱っていたら、私にこの不満はなかったでしょう。しかし、ここには2つの異なる問題があります。テストを実装するタイミングと、テストを正しく書く方法です。現在、私たちは前者に焦点を当てています。これらの問題はある程度相互に関連しています。もしAIコードエディタや人間がテストコードを簡単に書けるなら、テストのタイミングは些細なことに思えるかもしれません。しかし、テストを書くのに必要な労力はメインのコードを書くのと同等であり、タイミングは重要な考慮事項となります。</p>
+
+<p>コラボレーションの観点から見ると、テストへのアプローチは様々です。個人プロジェクトの場合、私はテストを作成する前に多くのコードを書くかもしれません。しかし、チームで作業する場合、一般的にはすべてのスニペットや機能に対してテストを書く方が良いでしょう。ただし、これが常に当てはまるわけではありません。チームがどのように協力するかによります。より正確に言うと、チームメンバーが互いに共有するコードに対してテストを書くべきです。目標はコードの品質を確保することなので、コードを提供する前に、各チームメンバーは自由にテストのタイミングを選ぶことができます。</p>
+
+<p>以前の職場経験では、3人のバックエンドエンジニアと協力して、半年かけて一つの機能を開発しました。テストの観点から見ると、この記事で議論されているポイントが、当時の開発が遅かった理由を説明しているかもしれません。</p>
+
+<p>コラボレーションの観点から、メインコードを担当する者は関連するテストも担当すべきです。タスクは可能な限り絡み合わず、各チームメンバーの責任が明確かつ分離されていることが重要です。</p>
+
+<p>テストの話題に戻ると、AIコードエディタもこの種の最適化を欠いており、改善の余地があることを示しています。この原則はソフトウェア工学に限定されず、ハードウェアやその他の分野にも関連しています。テストは最適化の一形態であり、よく言われるように「時期尚早な最適化は諸悪の根源」です。</p>
+
+<p>仕事の主目的を忘れないことが極めて重要です。プロセスや手順は避けられないものですが、本当に重要なことは何かを常に心に留めておかなければなりません。</p>
+
+<p>参考文献:</p>
+
+<ul>
+  <li><a href="https://www.yinwang.org/blog-cn/2013/04/07/test-driven-dev">テスト駆動開発</a>, Yin Wang</li>
+  <li><a href="https://www.yinwang.org/blog-cn/2016/09/14/tests">テストの論理</a>, Yin Wang</li>
+</ul>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

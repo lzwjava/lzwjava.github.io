@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>BeanDefinitionStoreException in Spring Boot</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>BeanDefinitionStoreException in Spring Boot | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="BeanDefinitionStoreException in Spring Boot" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="李智维" />
+<meta property="og:description" content="李智维" />
+<link rel="canonical" href="https://lzwjava.github.io/notes/2025-02-27-spring-bean-exception-en" />
+<meta property="og:url" content="https://lzwjava.github.io/notes/2025-02-27-spring-bean-exception-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="BeanDefinitionStoreException in Spring Boot" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Zhiwei Li"},"description":"李智维","headline":"BeanDefinitionStoreException in Spring Boot","url":"https://lzwjava.github.io/notes/2025-02-27-spring-bean-exception-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       BeanDefinitionStoreException in Spring Boot | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="notes/2025-02-27-spring-bean-exception-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="notes/2025-02-27-spring-bean-exception-en.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>notes2025-02-27-spring-bean-exception-en.md</span> -->
+      
+
+      <!-- <span></span> -->
+
+      
+        <a href="#" class="button">2025.09</a>
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/spring-bean-exception-en" selected>English</option>
+        <option value="/spring-bean-exception-zh" >中文</option>
+        <option value="/spring-bean-exception-ja" >日本語</option>
+        <option value="/spring-bean-exception-es" >Español</option>
+        <option value="/spring-bean-exception-hi" >हिंदी</option>
+        <option value="/spring-bean-exception-fr" >Français</option>
+        <option value="/spring-bean-exception-de" >Deutsch</option>
+        <option value="/spring-bean-exception-ar" >العربية</option>
+        <option value="/spring-bean-exception-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>The error shown is a <code class="language-plaintext highlighter-rouge">BeanDefinitionStoreException: Invalid bean definition</code> from the Spring Framework, indicating that there’s an issue with how a bean is defined in your Spring application context. This typically occurs during the initialization of the application context when Spring tries to load and parse bean definitions but encounters a problem, such as a misconfiguration, missing dependencies, or syntax errors in your configuration files.</p>
+
+<p>Here’s a step-by-step guide to troubleshoot and fix this issue, based on my knowledge of Spring Framework:</p>
+
+<h3 id="1-understand-the-error">1. <strong>Understand the Error</strong></h3>
+<ul>
+  <li>The error occurs in <code class="language-plaintext highlighter-rouge">org.springframework.beans.factory.BeanDefinitionStoreException</code>, specifically stating “Invalid bean definition.”</li>
+  <li>The stack trace shows the error originates in Spring’s <code class="language-plaintext highlighter-rouge">PlaceholderConfigurerSupport</code> or related classes, which are often used for property placeholder resolution (e.g., <code class="language-plaintext highlighter-rouge">@Value</code> annotations or <code class="language-plaintext highlighter-rouge">&lt;context:property-placeholder&gt;</code> in XML).</li>
+  <li>This suggests there might be an issue with a property file, a bean definition (e.g., in XML, Java <code class="language-plaintext highlighter-rouge">@Configuration</code>, or annotations), or a missing dependency.</li>
+</ul>
+
+<h3 id="2-check-your-configuration">2. <strong>Check Your Configuration</strong></h3>
+<ul>
+  <li><strong>Property Files</strong>: If you’re using property placeholders (e.g., <code class="language-plaintext highlighter-rouge">${property.name}</code>), ensure:
+    <ul>
+      <li>The property file (e.g., <code class="language-plaintext highlighter-rouge">application.properties</code> or <code class="language-plaintext highlighter-rouge">application.yml</code>) exists in the correct location (e.g., <code class="language-plaintext highlighter-rouge">src/main/resources</code>).</li>
+      <li>The property referenced in the bean definition exists in the file.</li>
+      <li>There are no typos or syntax errors in the property file.</li>
+    </ul>
+  </li>
+  <li><strong>Bean Definitions</strong>:
+    <ul>
+      <li>If using XML configuration, check for typos, missing or invalid bean definitions, or incorrect namespace declarations.</li>
+      <li>If using Java-based configuration (<code class="language-plaintext highlighter-rouge">@Configuration</code>), ensure <code class="language-plaintext highlighter-rouge">@Bean</code> methods are correctly defined, and there are no circular dependencies or missing dependencies.</li>
+      <li>If using annotations like <code class="language-plaintext highlighter-rouge">@Component</code>, <code class="language-plaintext highlighter-rouge">@Service</code>, etc., ensure the packages are scanned correctly with <code class="language-plaintext highlighter-rouge">@ComponentScan</code>.</li>
+    </ul>
+  </li>
+  <li><strong>Dependencies</strong>: Verify that all required dependencies (e.g., in your <code class="language-plaintext highlighter-rouge">pom.xml</code> for Maven or <code class="language-plaintext highlighter-rouge">build.gradle</code> for Gradle) are present and compatible with your Spring version.</li>
+</ul>
+
+<h3 id="3-common-causes-and-fixes">3. <strong>Common Causes and Fixes</strong></h3>
+<ul>
+  <li><strong>Missing or Misconfigured Property File</strong>:
+    <ul>
+      <li>Ensure your <code class="language-plaintext highlighter-rouge">application.properties</code> or <code class="language-plaintext highlighter-rouge">application.yml</code> is correctly configured and loaded. For example, if using Spring Boot, ensure the file is in <code class="language-plaintext highlighter-rouge">src/main/resources</code>.</li>
+      <li>If using <code class="language-plaintext highlighter-rouge">&lt;context:property-placeholder&gt;</code> in XML, verify the <code class="language-plaintext highlighter-rouge">location</code> attribute points to the correct file (e.g., <code class="language-plaintext highlighter-rouge">classpath:application.properties</code>).</li>
+    </ul>
+  </li>
+  <li><strong>Invalid Bean Definition</strong>:
+    <ul>
+      <li>Check for typos in bean names, class names, or method names.</li>
+      <li>Ensure all classes referenced in bean definitions are available on the classpath and correctly annotated (e.g., <code class="language-plaintext highlighter-rouge">@Component</code>, <code class="language-plaintext highlighter-rouge">@Service</code>, etc.).</li>
+    </ul>
+  </li>
+  <li><strong>Circular Dependencies</strong>:
+    <ul>
+      <li>If two or more beans depend on each other, Spring might fail to initialize them. Use <code class="language-plaintext highlighter-rouge">@Lazy</code> on one of the dependencies or restructure your code to avoid circular references.</li>
+    </ul>
+  </li>
+  <li><strong>Version Mismatch</strong>:
+    <ul>
+      <li>Ensure your Spring Framework version and other dependencies (e.g., Spring Boot, Java version) are compatible. The stack trace shows Java 1.8.0_432, so ensure your Spring version supports this Java version.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-inspect-the-stack-trace">4. <strong>Inspect the Stack Trace</strong></h3>
+<ul>
+  <li>Look at the classes mentioned in the stack trace, such as <code class="language-plaintext highlighter-rouge">PropertySourcesPlaceholderConfigurer</code> or <code class="language-plaintext highlighter-rouge">ContextLoader</code>. These are part of Spring’s context initialization and property resolution.</li>
+  <li>The error might be caused by a missing or invalid property in a bean definition, so check any <code class="language-plaintext highlighter-rouge">@Value("${property}")</code> annotations or XML properties.</li>
+</ul>
+
+<h3 id="5-steps-to-debug">5. <strong>Steps to Debug</strong></h3>
+<ul>
+  <li><strong>Enable Debug Logging</strong>: Add the following to your <code class="language-plaintext highlighter-rouge">application.properties</code> or log configuration:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>logging.level.org.springframework=DEBUG
+</code></pre></div>    </div>
+    <p>This will provide more detailed logs to help identify the exact bean or property causing the issue.</p>
+  </li>
+  <li><strong>Validate Configuration Files</strong>: Use an IDE like IntelliJ IDEA or Eclipse to validate your XML or Java configuration files for errors.</li>
+  <li><strong>Check Classpath</strong>: Ensure all required classes, jars, and resources are on the classpath.</li>
+</ul>
+
+<h3 id="6-example-fixes">6. <strong>Example Fixes</strong></h3>
+<ul>
+  <li><strong>If Using <code class="language-plaintext highlighter-rouge">@Value</code> Annotations</strong>:
+Ensure the property exists in <code class="language-plaintext highlighter-rouge">application.properties</code>:
+    <div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="py">admin.email</span><span class="p">=</span><span class="s">admin@example.com</span>
+</code></pre></div>    </div>
+    <p>And the bean is correctly defined:</p>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Value</span><span class="o">(</span><span class="s">"${admin.email}"</span><span class="o">)</span>
+<span class="kd">private</span> <span class="nc">String</span> <span class="n">adminEmail</span><span class="o">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>If Using XML</strong>:
+Ensure your XML configuration is valid, e.g.:
+    <div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;context:property-placeholder</span> <span class="na">location=</span><span class="s">"classpath:application.properties"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"myBean"</span> <span class="na">class=</span><span class="s">"com.example.MyClass"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">value=</span><span class="s">"${admin.email}"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div>    </div>
+    <p>Verify the property file and bean class exist.</p>
+  </li>
+</ul>
+
+<h3 id="7-test-after-changes">7. <strong>Test After Changes</strong></h3>
+<ul>
+  <li>After making changes, restart your application and check if the error persists.</li>
+  <li>If the issue is still unresolved, look for more specific error messages in the logs or stack trace.</li>
+</ul>
+
+<h3 id="8-if-you-need-more-help">8. <strong>If You Need More Help</strong></h3>
+<p>If you can provide more details—such as the specific bean definition, property file content, or Spring configuration—I can offer more targeted advice. Alternatively, I can search the web for additional resources or examples if you’d like me to assist further. Would you like me to search for more information or help with specific parts of your configuration?</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

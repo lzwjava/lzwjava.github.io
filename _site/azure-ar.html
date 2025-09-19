@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>بناء تطبيق قابل للتوسع على Azure</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>بناء تطبيق قابل للتوسع على Azure | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="بناء تطبيق قابل للتوسع على Azure" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="هذا المقال تم كتابته مع مساعدة ChatGPT-4o." />
+<meta property="og:description" content="هذا المقال تم كتابته مع مساعدة ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/azure-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="بناء تطبيق قابل للتوسع على Azure" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-07-07T00:00:00+08:00","datePublished":"2023-07-07T00:00:00+08:00","description":"هذا المقال تم كتابته مع مساعدة ChatGPT-4o.","headline":"بناء تطبيق قابل للتوسع على Azure","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-ar"},"url":"https://lzwjava.github.io/azure-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       بناء تطبيق قابل للتوسع على Azure | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2023-07-07-azure-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2023-07-07-azure-ar.md</span> -->
+      
+
+      <!-- <span>2023-07-07-azure-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-en" >English</option>
+        <option value="/azure-zh" >中文</option>
+        <option value="/azure-ja" >日本語</option>
+        <option value="/azure-es" >Español</option>
+        <option value="/azure-hi" >हिंदी</option>
+        <option value="/azure-fr" >Français</option>
+        <option value="/azure-de" >Deutsch</option>
+        <option value="/azure-ar" selected>العربية</option>
+        <option value="/azure-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>هذا المقال تم كتابته مع مساعدة ChatGPT-4o.</em></p>
+
+<hr />
+
+<h3 id="جدول-المحتويات">جدول المحتويات</h3>
+<ul>
+  <li><a href="#introduction">المقدمة</a></li>
+  <li><a href="#getting-started-with-azure-subscription">بدء العمل مع اشتراك Azure</a></li>
+  <li><a href="#deploying-applications-with-azure-kubernetes-service-aks">نشر التطبيقات مع خدمة Azure Kubernetes (AKS)</a>
+    <ul>
+      <li><a href="#creating-and-managing-an-aks-cluster">إنشاء وإدارة مجموعة AKS</a></li>
+      <li><a href="#deploying-applications">نشر التطبيقات</a></li>
+    </ul>
+  </li>
+  <li><a href="#fetching-logs-from-pods">استرجاع السجلات من البودات</a></li>
+  <li><a href="#monitoring-and-diagnostics-with-azure-application-insights">المراقبة والتشخيص مع Azure Application Insights</a></li>
+  <li><a href="#utilizing-azure-virtual-machines-vms">استخدام آلات Azure الافتراضية (VMs)</a></li>
+  <li><a href="#real-time-data-ingestion-with-azure-event-hubs">استيعاب البيانات في الوقت الفعلي مع Azure Event Hubs</a></li>
+  <li><a href="#managing-apis-with-azure-api-management-services">إدارة APIs مع خدمات إدارة APIs في Azure</a></li>
+  <li><a href="#utilizing-azure-sql-databases">استخدام قواعد بيانات Azure SQL</a></li>
+  <li><a href="#querying-logs-with-kusto-query-language-kql">استعلام السجلات باستخدام لغة استعلام Kusto (KQL)</a></li>
+  <li><a href="#setting-up-alerts-for-proactive-monitoring">إعداد التنبيهات للمراقبة الاستباقية</a></li>
+  <li><a href="#conclusion">الخاتمة</a></li>
+</ul>
+
+<h3 id="المقدمة">المقدمة</h3>
+
+<p>في عالم الحوسبة السحابية، يتفوق Microsoft Azure كمنصة قوية لبناء ونشر وإدارة التطبيقات. في مشروعنا الأخير، استغلنا عدة خدمات Azure، بما في ذلك اشتراك Azure، خدمة Azure Kubernetes (AKS)، Application Insights، آلات افتراضية (VMs)، Event Hubs، خدمات إدارة APIs، وقواعد بيانات SQL، لإنشاء بنية تحتية للتطبيقات قابلة للتوسع ومراقبة. يوضح هذا المقال نهجنا، والأدوات المستخدمة، وأفضل الممارسات، والخطوات المفصلة لإدارة المجموعات، واسترجاع السجلات، واستعلام السجلات.</p>
+
+<h3 id="بدء-العمل-مع-اشتراك-azure">بدء العمل مع اشتراك Azure</h3>
+
+<p>يشكل اشتراك Azure بوابة الوصول إلى خدمات Azure. يعمل كحاوية تحتوي على جميع مواردك، مثل آلات افتراضية، وقواعد بيانات، ومجموعات Kubernetes.</p>
+
+<ol>
+  <li>إعداد اشتراك Azure:
+    <ul>
+      <li>التسجيل: إذا لم يكن لديك حساب Azure، ابدأ بالتسجيل في <a href="https://portal.azure.com/">بوابة Azure</a>.</li>
+      <li>إنشاء اشتراك: انتقل إلى قسم “الاشتراكات” وانشئ اشتراكًا جديدًا. هذا سيكون حاوية الفواتير والإدارة.</li>
+    </ul>
+  </li>
+  <li>تنظيم الموارد:
+    <ul>
+      <li>مجموعات الموارد: نظم مواردك في مجموعات الموارد بناءً على دورة حياتها ومعيار الإدارة.</li>
+      <li>التسميات: استخدم التسميات لمعلومات إضافية ومزيد من سهولة إدارة الموارد والفواتير.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="نشر-التطبيقات-مع-خدمة-azure-kubernetes-aks">نشر التطبيقات مع خدمة Azure Kubernetes (AKS)</h3>
+
+<p>خدمة Azure Kubernetes (AKS) هي خدمة Kubernetes المدارة التي تبسط نشر وإدارة وتوسيع التطبيقات المعبأة في حاويات.</p>
+
+<h4 id="إنشاء-وإدارة-مجموعة-aks">إنشاء وإدارة مجموعة AKS</h4>
+
+<ol>
+  <li>إنشاء مجموعة AKS في بوابة Azure:
+    <ul>
+      <li>الإعداد: في بوابة Azure، ابحث عن AKS وانشئ مجموعة Kubernetes جديدة.</li>
+      <li>التكوين: اختر حجم المجموعة، وقم بتكوين مجموعات العقد، وإعداد الشبكة.</li>
+      <li>المصادقة: استخدم Azure Active Directory (AAD) لسيطرة الوصول الآمنة.</li>
+      <li>المراقبة: قم تمكين المراقبة والتسجيل أثناء عملية الإعداد.</li>
+    </ul>
+  </li>
+  <li>إنشاء مجموعة AKS باستخدام واجهة Azure CLI:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks create <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 3 <span class="se">\</span>
+  <span class="nt">--enable-addons</span> monitoring <span class="se">\</span>
+  <span class="nt">--generate-ssh-keys</span>
+</code></pre></div>    </div>
+  </li>
+  <li>إدارة مجموعة AKS الخاصة بك:
+    <ul>
+      <li>توسيع المجموعة:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks scale <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 5
+</code></pre></div>        </div>
+      </li>
+      <li>تحديث المجموعة:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks upgrade <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--kubernetes-version</span> 1.21.2
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="نشر-التطبيقات">نشر التطبيقات</h4>
+
+<ol>
+  <li>استخدام ملفات التكوين Kubernetes: اكتب ملفات YAML لتنزيلاتك، والخدمات، والأشياء الأخرى في Kubernetes.
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div>    </div>
+  </li>
+  <li>النشر باستخدام kubectl:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> myapp-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>مخططات Helm: استخدم Helm لإدارة تطبيقات Kubernetes وتحكم في الإصدارات.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm <span class="nb">install </span>myapp ./mychart
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="استرجاع-السجلات-من-البودات">استرجاع السجلات من البودات</h3>
+
+<ol>
+  <li>الارتباط ببود وتحميل السجلات:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li>لتدفق السجلات:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt; <span class="nt">-f</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>استخدام Sidecar للتسجيل:
+    <ul>
+      <li>انشئ حاوية Sidecar للتسجيل في مواصفات البود الخاصة بك لإرسال السجلات إلى خدمة تسجيل مركزية.</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+    <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-shipper</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">log-shipper:latest</span>
+    <span class="s">...</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="المراقبة-والتشخيص-مع-azure-application-insights">المراقبة والتشخيص مع Azure Application Insights</h3>
+
+<p>يوفر Application Insights قدرات قوية للمراقبة والتشخيص لتطبيقاتك.</p>
+
+<ol>
+  <li>إعداد Application Insights:
+    <ul>
+      <li>التكامل: أضف SDK لـ Application Insights إلى كود تطبيقك.</li>
+      <li>مفتاح التجهيز: قم بتكوين تطبيقك مع مفتاح التجهيز من مورد Application Insights الخاص بك.</li>
+    </ul>
+  </li>
+  <li>تتبع الأداء:
+    <ul>
+      <li>المعايير: راقب أوقات الاستجابة، ومعدلات الفشل، والتبعيات التطبيقية.</li>
+      <li>تدفق المعايير الحية: شاهد المعايير الحية للأداء للحصول على رؤى فورية.</li>
+    </ul>
+  </li>
+  <li>التشخيص والإصلاح:
+    <ul>
+      <li>خريطة التطبيق: visualize التبعيات وتحديد عوائق الأداء.</li>
+      <li>تشخيص المعاملات: استخدم تتبع التوزيع لتتبع الطلبات عبر الخدمات.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="استخدام-آلات-azure-الافتراضية-vms">استخدام آلات Azure الافتراضية (VMs)</h3>
+
+<p>توفر آلات Azure الافتراضية المرونة في تشغيل التطبيقات والخدمات المخصصة التي لم تُعبأ في حاويات.</p>
+
+<ol>
+  <li>توفير آلات افتراضية:
+    <ul>
+      <li>إنشاء آلات افتراضية: في بوابة Azure، انشئ آلات افتراضية جديدة واختر الحجم والنظام التشغيل المناسب.</li>
+      <li>تكوين الشبكة: قم بإعداد الشبكات الافتراضية، والشبكات الفرعية، ومجموعات الأمن لتحكم في حركة المرور.</li>
+    </ul>
+  </li>
+  <li>تكوين آلات افتراضية:
+    <ul>
+      <li>تثبيت البرامج: تثبيت البرامج والمتطلبات اللازمة.</li>
+      <li>الأمن: تطبيق التحديثات والتحديثات بانتظام، وتكوين الحواجز النارية، واستخدام مجموعات الأمن الشبكي (NSGs).</li>
+    </ul>
+  </li>
+  <li>إدارة آلات افتراضية:
+    <ul>
+      <li>النسخ الاحتياطي واستعادة البيانات: استخدم Azure Backup لنسخ آلات افتراضية احتياطية.</li>
+      <li>المراقبة: راقب أداء آلات افتراضية باستخدام Azure Monitor.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="استيعاب-البيانات-في-الوقت-الفعلي-مع-azure-event-hubs">استيعاب البيانات في الوقت الفعلي مع Azure Event Hubs</h3>
+
+<p>Azure Event Hubs هي منصة تدفق البيانات الكبيرة وخدمة استيعاب الأحداث قادرة على استقبال ومعالجة ملايين الأحداث في الثانية.</p>
+
+<ol>
+  <li>إعداد Event Hubs:
+    <ul>
+      <li>إنشاء مساحة اسم Event Hub: في بوابة Azure، انشئ مساحة اسم Event Hub لاستيعاب Event Hubs الخاصة بك.</li>
+      <li>إنشاء Event Hubs: داخل المساحة، انشئ Event Hub أو أكثر لالتقاط تدفقات البيانات الخاصة بك.</li>
+    </ul>
+  </li>
+  <li>استيعاب البيانات:
+    <ul>
+      <li>المقدمون: قم بتكوين تطبيقك أو الخدمات لإرسال الأحداث إلى Event Hubs باستخدام SDKs المتاحة للعديد من اللغات (مثل .NET، Java، Python).</li>
+      <li>التقسيمات: استخدم التقسيمات لتوسيع معالجة الأحداث، مما يضمن معدل نقل عالٍ وموازنة متوازية.</li>
+    </ul>
+  </li>
+  <li>معالجة الأحداث:
+    <ul>
+      <li>المستهلكون: استخدم مجموعات المستهلكين لقراءة ومعالجة الأحداث. تقدم Azure عدة خيارات لمعالجة، بما في ذلك Azure Stream Analytics، Azure Functions، ومعالجة مخصصة باستخدام SDK لـ Event Hubs.</li>
+    </ul>
+  </li>
+  <li>مراقبة Event Hubs:
+    <ul>
+      <li>المعايير: راقب معدل النقل، واللاتنس، ومعايير معالجة الأحداث عبر بوابة Azure.</li>
+      <li>التنبيهات: قم بإعداد التنبيهات لإخطارك بأي مشاكل، مثل اللاتنس العالية أو الرسائل المفقودة.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="إدارة-apis-مع-خدمات-إدارة-apis-في-azure">إدارة APIs مع خدمات إدارة APIs في Azure</h3>
+
+<p>توفر خدمات إدارة APIs في Azure طريقة لإنشاء بوابات APIs حديثة ومتسقة للخدمات الخلفية الموجودة.</p>
+
+<ol>
+  <li>إعداد إدارة APIs:
+    <ul>
+      <li>إنشاء خدمة إدارة APIs: في بوابة Azure، ابحث عن إدارة APIs وانشئ خدمة جديدة.</li>
+      <li>تكوين APIs: حدد واصدر APIs من مواصفات OpenAPI، أو Azure Functions، أو خلفيات أخرى.</li>
+    </ul>
+  </li>
+  <li>تأمين APIs:
+    <ul>
+      <li>المصادقة والمصادقة: استخدم OAuth2، وتحقق من JWT، وآليات أخرى لتأمين APIs الخاصة بك.</li>
+      <li>تحديد معدل الاستهلاك وتقييده: قم بتطبيق السياسات لحماية APIs الخاصة بك من الاستغلال.</li>
+    </ul>
+  </li>
+  <li>المراقبة والتحليل:
+    <ul>
+      <li>رؤى APIs: راقب الاستخدام، ومراقبة الأداء، وتحليل السجلات.</li>
+      <li>بوابة المطورين: قدم بوابة للمطورين لاكتشاف واستخدام APIs الخاصة بك.</li>
+    </ul>
+  </li>
+  <li>إدارة دورة الحياة:
+    <ul>
+      <li>الترقيم والإصدارات: إدارة إصدارات مختلفة وإصدارات APIs الخاصة بك بسلاسة.</li>
+      <li>إدارة السياسات: تطبيق السياسات لتحويل، والتحقق، وتوجيه الطلبات والإجابات.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="استخدام-قواعد-بيانات-azure-sql">استخدام قواعد بيانات Azure SQL</h3>
+
+<p>Azure SQL Database هي قاعدة بيانات علاقية مدارة بالكامل مع ذكاء مدمج، وتوفر متانة عالية، وقابلية للتوسع.</p>
+
+<ol>
+  <li>إعداد قاعدة بيانات Azure SQL:
+    <ul>
+      <li>إنشاء قاعدة بيانات SQL: في بوابة Azure، انتقل إلى قواعد بيانات SQL وانشئ قاعدة بيانات جديدة.</li>
+      <li>تكوين قاعدة البيانات: حدد حجم قاعدة البيانات، ومستوى الأداء، وتكوين إعدادات الشبكة.</li>
+    </ul>
+  </li>
+  <li>الاتصال بقاعدة بيانات SQL:
+    <ul>
+      <li>سلاسل الاتصال: استخدم سلاسل الاتصال المقدمة للاتصال بتطبيقك بقاعدة البيانات SQL.</li>
+      <li>قواعد حائط الحماية: قم بتكوين قواعد حائط الحماية لسماح بالوصول من تطبيقك أو جهازك المحلي.</li>
+    </ul>
+  </li>
+  <li>إدارة قاعدة البيانات:
+    <ul>
+      <li>النسخ الاحتياطي واستعادة البيانات: استخدم النسخ الاحتياطي التلقائي واستعادة نقطة في الوقت لحماية بياناتك.</li>
+      <li>التوسع: توسيع قاعدة البيانات أو تقليلها بناءً على احتياجات الأداء الخاصة بك.</li>
+    </ul>
+  </li>
+  <li>المراقبة وتuning الأداء:
+    <ul>
+      <li>رؤى أداء الاستعلامات: راقب وتحسن أداء الاستعلامات.</li>
+      <li>التكوين التلقائي: تمكين ميزات التكوين التلقائي لتحسين الأداء.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="استعلام-السجلات-باستخدام-لغة-استعلام-kusto-kql">استعلام السجلات باستخدام لغة استعلام Kusto (KQL)</h3>
+
+<p>تستخدم لغة استعلام Kusto (KQL) لاستعلام سجلات Azure Monitor، مما يوفر رؤى قوية في بيانات السجلات الخاصة بك.</p>
+
+<ol>
+  <li>استعلام KQL الأساسي:
+    <pre><code class="language-kql">// استرجاع السجلات من جدول معين
+LogTableName
+| where TimeGenerated &gt; ago(1h)
+| project TimeGenerated, Level, Message
+</code></pre>
+  </li>
+  <li>ترشيح وتجميع البيانات:
+    <pre><code class="language-kql">LogTableName
+| where TimeGenerated &gt; ago(1h) and Level == "Error"
+| summarize Count=count() by bin(TimeGenerated, 5m)
+</code></pre>
+  </li>
+  <li>دمج الجداول:
+    <pre><code class="language-kql">Table1
+| join kind=inner (Table2) on $left.UserId == $right.UserId
+| project Table1.TimeGenerated, Table1.Message, Table2.AdditionalInfo
+</code></pre>
+  </li>
+  <li>إنشاء التنبيهات بناءً على الاستعلامات:
+    <ul>
+      <li>في بوابة Azure، انتقل إلى مساحة عمل Log Analytics.</li>
+      <li>انقر على <code class="language-plaintext highlighter-rouge">Logs</code> وأدخل استعلام KQL الخاص بك.</li>
+      <li>انقر على <code class="language-plaintext highlighter-rouge">New alert rule</code> لإنشاء تنبيه بناءً على نتائج الاستعلام.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="إعداد-التنبيهات-للمراقبة-الاستباقية">إعداد التنبيهات للمراقبة الاستباقية</h3>
+
+<p>تساعدك التنبيهات في Azure على البقاء على اطلاع دائم بشأن حالة أداء مواردك.</p>
+
+<ol>
+  <li>إنشاء التنبيهات:
+    <ul>
+      <li>التنبيهات المعيارية: قم بإعداد التنبيهات بناءً على المعايير مثل استخدام المعالج، واستخدام الذاكرة، وأوقات الاستجابة.</li>
+      <li>التنبيهات السجلية: انشئ تنبيهات بناءً على استعلامات بحث السجلات باستخدام KQL.</li>
+    </ul>
+  </li>
+  <li>تكوين الإجراءات:
+    <ul>
+      <li>مجموعات الإجراءات: حدد مجموعات الإجراءات لتحديد من سيخبر وكيف (البريد الإلكتروني، SMS، الويب هوك).</li>
+      <li>التكامل: تكامل مع أدوات ITSM مثل ServiceNow لإدارة الحوادث التلقائية.</li>
+    </ul>
+  </li>
+  <li>الاستجابة للتنبيهات:
+    <ul>
+      <li>اللوحات: قم بإعداد لوحات Azure لتوفير رؤية مركزية للتنبيهات.</li>
+      <li>التلقائية: استخدم Azure Automation للاستجابة تلقائيًا لبعض التنبيهات.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="الخاتمة">الخاتمة</h3>
+
+<p>باستخدام اشتراك Azure، AKS، Application Insights، آلات افتراضية، Event Hubs، خدمات إدارة APIs، وقواعد بيانات SQL، بنينا بنية تحتية للتطبيقات قابلة للتوسع، قوية، ومراقبة. تضمن مجموعة أدوات Azure الشاملة أننا نستطيع نشر وإدارة ومراقبة تطبيقاتنا بكفاءة. هذا الإعداد لم يحسن أداء التطبيقات فقط، بل قدم لنا أيضًا رؤى اللازمة للحفاظ على الموارد وتطويرها بشكل استباقي.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

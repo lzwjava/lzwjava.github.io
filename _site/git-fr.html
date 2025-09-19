@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title># Opérations et principes avancés de Git</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Opérations et principes avancés de Git | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Opérations et principes avancés de Git" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o. Le Keynote est disponible sur https://github.com/lzwjava/Keynotes." />
+<meta property="og:description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o. Le Keynote est disponible sur https://github.com/lzwjava/Keynotes." />
+<link rel="canonical" href="https://lzwjava.github.io/git-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/git-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-03T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Opérations et principes avancés de Git" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-03T00:00:00+08:00","datePublished":"2016-05-03T00:00:00+08:00","description":"Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o. Le Keynote est disponible sur https://github.com/lzwjava/Keynotes.","headline":"Opérations et principes avancés de Git","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/git-fr"},"url":"https://lzwjava.github.io/git-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       # Opérations et principes avancés de Git | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2016-05-03-git-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2016-05-03-git-fr.md</span> -->
+      
+
+      <!-- <span>2016-05-03-git-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/git-en" >English</option>
+        <option value="/git-zh" >中文</option>
+        <option value="/git-ja" >日本語</option>
+        <option value="/git-es" >Español</option>
+        <option value="/git-hi" >हिंदी</option>
+        <option value="/git-fr" selected>Français</option>
+        <option value="/git-de" >Deutsch</option>
+        <option value="/git-ar" >العربية</option>
+        <option value="/git-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o.</em> Le Keynote est disponible sur https://github.com/lzwjava/Keynotes.</p>
+
+<hr />
+
+<p><strong>Annuler</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git commit --amend 
+$ git add * 
+$ git status 
+$ git reset HEAD CONTRIBUTING.md 
+Modifications non indexées après reset : 
+M CONTRIBUTING.md 
+$ git status 
+$ git checkout -- CONTRIBUTING.md 
+</code></pre></div></div>
+
+<ul>
+  <li>Refaire un commit</li>
+  <li>Annuler la mise en stage des fichiers</li>
+  <li>Annuler les modifications apportées aux fichiers</li>
+</ul>
+
+<p><strong>Commande</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git revert</code>, annule un commit en créant un nouveau commit qui inverse les modifications apportées par un commit précédent.</li>
+  <li><code class="language-plaintext highlighter-rouge">git cherry-pick</code>, sélectionne un ou plusieurs commits spécifiques d’une branche et les applique à une autre branche.</li>
+  <li><code class="language-plaintext highlighter-rouge">git rebase</code>, réapplique une série de commits sur une autre branche, permettant de réorganiser l’historique des commits.</li>
+</ul>
+
+<p><strong>filter-branch</strong></p>
+
+<ul>
+  <li>Supprimer un fichier de chaque commit</li>
+  <li>Vous voulez le supprimer, mais il reste dans l’historique</li>
+  <li>Comment supprimer un fichier de tous les commits ?</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD 
+Réécriture de 6b9b3cf04e7c5686a9cb838c3f36a8cb6a0fc2bd (21/21) 
+La référence 'refs/heads/master' a été réécrite
+</code></pre></div></div>
+
+<p><strong>Recherche</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git grep -n gmtime_r 
+compat/gmtime.c:3:#undef gmtime_r 
+compat/gmtime.c:8:return git_gmtime_r(timep, &amp;result); 
+compat/gmtime.c:11:struct tm *git_gmtime_r(const time_t *timep, struct tm *result) 
+compat/gmtime.c:16:ret = gmtime_r(timep, result); 
+compat/mingw.c:606:struct tm *gmtime_r(const time_t *timep, struct tm *result) 
+compat/mingw.h:162:struct tm *gmtime_r(const time_t *timep, struct tm *result); 
+date.c:429:if (gmtime_r(&amp;now, &amp;now_tm)) 
+date.c:492:if (gmtime_r(&amp;time, tm)) { 
+git-compat-util.h:721:struct tm *git_gmtime_r(const time_t *, struct tm *); 
+git-compat-util.h:723:#define gmtime_r git_gmtime_r 
+$ git log -SZLIB_BUF_MAX --oneline 
+e01503b zlib: allow feeding more than 4GB in one go 
+ef49a7a zlib: zlib can only process 4GB at a time 
+</code></pre></div></div>
+
+<p><strong>Répertoire .Git</strong></p>
+
+<ul>
+  <li>config, configuration du projet</li>
+  <li>info, fichier .gitignore</li>
+  <li>objects, tous les contenus de la base de données Git</li>
+  <li>refs, pointeurs des branches</li>
+  <li>HEAD, pointeur de la branche actuelle</li>
+  <li>index, informations de la zone de staging (index)</li>
+</ul>
+
+<p><strong>Objets Git</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git init test 
+Initialisé un dépôt Git vide dans /tmp/test/.git/ 
+$ cd test 
+$ find .git/objects 
+.git/objects 
+.git/objects/info 
+.git/objects/pack 
+$ find .git/objects -type f
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'test content' | git hash-object -w --stdin 
+d670460b4b4aece5915caf5c68d12f560a9fe3e4 
+$ find .git/objects -type f 
+.git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">hash-object</code>, la commande pour sauvegarder les données dans le répertoire .git</li>
+  <li><code class="language-plaintext highlighter-rouge">-w</code>, écrire l’objet, sinon retourne seulement la clé</li>
+  <li><code class="language-plaintext highlighter-rouge">--stdin</code>, lire depuis l’entrée standard</li>
+  <li>d670…, un checksum de 40 caractères</li>
+  <li><code class="language-plaintext highlighter-rouge">cat-file</code>, le couteau suisse pour visualiser les objets Git</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4 
+contenu de test
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'version 1' &gt; test.txt
+$ git hash-object -w test.txt
+83baae61804e65cc73a7201a7252750c76066a30
+$ echo 'version 2' &gt; test.txt
+$ git hash-object -w test.txt
+1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+$ find .git/objects -type f
+.git/objects/1f/7a7a472abf3dd9643fd615f6da379c4acb3e3a
+.git/objects/83/baae61804e65cc73a7201a7252750c76066a30
+.git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
+$ git cat-file -p 83baae61804e65cc73a7201a7252750c76066a30 &gt; test.txt
+$ cat test.txt
+version 1
+$ git cat-file -p 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a &gt; test.txt
+$ cat test.txt
+version 2
+$ git cat-file -t 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+blob
+$ git cat-file -p master^{tree}
+100644 blob a906cb2a4a904a152e80877d4088654daad0c859 README
+100644 blob 8f94139338f9404f26296befa88755fc2598c289 Rakefile
+040000 tree 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0 lib
+$ git cat-file -p 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0
+100644 blob 47c6340d6459e05787f644c2447d2595f5d3a54b simplegit.rb
+Tree Objects
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git update-index --add --cacheinfo 100644 \
+83baae61804e65cc73a7201a7252750c76066a30 test.txt
+update-index
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update-index</code>, la commande pour créer un arbre</li>
+  <li><code class="language-plaintext highlighter-rouge">--add</code>, crée l’index</li>
+  <li><code class="language-plaintext highlighter-rouge">--cacheinfo</code>, lit depuis la base de données Git</li>
+  <li><code class="language-plaintext highlighter-rouge">100644</code>, mode du fichier, pour un fichier normal ; 100755 pour un fichier exécutable ; 120000 pour un lien symbolique</li>
+  <li>83baae, est le contenu précédent, version 1</li>
+  <li><code class="language-plaintext highlighter-rouge">\</code>, une commande sur une ligne divisée en deux lignes</li>
+</ul>
+
+<p><strong>write-tree</strong></p>
+
+<p>La commande <code class="language-plaintext highlighter-rouge">write-tree</code> est utilisée dans Git pour créer un arbre (tree) à partir de l’index actuel. Un arbre dans Git représente une structure de répertoires et de fichiers, similaire à un répertoire dans un système de fichiers. Cette commande est principalement utilisée dans des scripts ou des outils personnalisés pour manipuler directement les objets Git.</p>
+
+<h3 id="utilisation-de-base">Utilisation de base</h3>
+
+<p>Pour créer un arbre à partir de l’index actuel, vous pouvez simplement exécuter :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git write-tree
+</code></pre></div></div>
+
+<p>Cette commande retourne l’identifiant SHA-1 de l’arbre créé. Cet identifiant peut ensuite être utilisé pour créer un commit ou pour d’autres opérations de bas niveau dans Git.</p>
+
+<h3 id="exemple">Exemple</h3>
+
+<p>Supposons que vous avez ajouté des fichiers à l’index avec <code class="language-plaintext highlighter-rouge">git add</code> et que vous souhaitez créer un arbre à partir de cet index :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git add <span class="nb">.</span>
+git write-tree
+</code></pre></div></div>
+
+<p>Cela retournera un identifiant SHA-1, par exemple <code class="language-plaintext highlighter-rouge">4b825dc642cb6eb9a060e54bf8d69288fbee4904</code>. Cet identifiant représente l’arbre créé à partir de l’index actuel.</p>
+
+<h3 id="utilisation-avancée">Utilisation avancée</h3>
+
+<p>La commande <code class="language-plaintext highlighter-rouge">write-tree</code> peut également être utilisée en combinaison avec d’autres commandes de bas niveau comme <code class="language-plaintext highlighter-rouge">commit-tree</code> pour créer des commits manuellement. Par exemple :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">TREE</span><span class="o">=</span><span class="si">$(</span>git write-tree<span class="si">)</span>
+<span class="nv">COMMIT</span><span class="o">=</span><span class="si">$(</span><span class="nb">echo</span> <span class="s2">"Initial commit"</span> | git commit-tree <span class="nv">$TREE</span><span class="si">)</span>
+git update-ref refs/heads/main <span class="nv">$COMMIT</span>
+</code></pre></div></div>
+
+<p>Dans cet exemple, nous créons d’abord un arbre à partir de l’index, puis nous créons un commit à partir de cet arbre, et enfin nous mettons à jour la référence de la branche <code class="language-plaintext highlighter-rouge">main</code> pour pointer vers ce nouveau commit.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>La commande <code class="language-plaintext highlighter-rouge">write-tree</code> est un outil puissant pour ceux qui ont besoin de manipuler directement les objets Git. Bien qu’elle ne soit pas couramment utilisée dans les workflows Git quotidiens, elle est essentielle pour comprendre le fonctionnement interne de Git et pour créer des scripts ou des outils personnalisés.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git write-tree
+d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+$ git cat-file -p d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+100644 blob 83baae61804e65cc73a7201a7252750c76066a30 test.txt
+$ git cat-file -t d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+tree
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">write-tree</code>, écrit le contenu de la zone de staging dans un objet Tree.</li>
+</ul>
+
+<p><strong>read-tree</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'nouveau fichier' &gt; new.txt 
+$ git update-index test.txt 
+$ git update-index --add new.txt 
+$ git write-tree 
+0155eb4229851634a0f03eb265b69f5a2d56f341 
+$ git cat-file -p 0155eb4229851634a0f03eb265b69f5a2d56f341 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a test.txt 
+$ git read-tree --prefix=bak d8329fc1cc938780ffdd9f94e0d364e0ea74f579 
+$ git write-tree 
+3c4e9cd789d88d8d89c1073707c3585e41b0e614 
+$ git cat-file -p 3c4e9cd789d88d8d89c1073707c3585e41b0e614 
+040000 tree d8329fc1cc938780ffdd9f94e0d364e0ea74f579 bak 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a test.txt
+</code></pre></div></div>
+
+<p><strong>Objets de Commit</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'premier commit' | git commit-tree d8329f 
+d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+$ git cat-file -p d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+tree d8329fc1cc938780ffdd9f94
+</code></pre></div></div>
+
+<p>e0d364e0ea74f579 
+author lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 1462090215 +0800 
+committer lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 1462090215 +0800 
+premier commit</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- La valeur de hachage sera différente car la date de création et l'auteur sont différents.
+
+</code></pre></div></div>
+<p>$ echo ‘second commit’ | git commit-tree 0155eb -p d5ffe1aa4 
+e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ echo ‘third commit’ | git commit-tree 3c4e9c -p e946d6 
+09490bf051c34b3693dfd5c7fb63dfe27b295904 
+$ git log –stat 09490 
+commit 09490bf051c34b3693dfd5c7fb63dfe27b295904 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:38:55 2016 +0800 
+troisième commit 
+bak/test.txt | 1 + 
+1 fichier modifié, 1 insertion(+) 
+commit e946d6367f07de45cac242dca7cd002f5eaa72b1 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:37:01 2016 +0800 
+second commit 
+new.txt | 1 + 
+test.txt | 2 +- 
+2 fichiers modifiés, 2 insertions(+), 1 suppression(-) 
+commit d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:10:15 2016 +0800 
+premier commit 
+test.txt | 1 + 
+1 fichier modifié, 1 insertion(+)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- `commit-tree`, le premier paramètre pointe vers un blob ou un arbre (tree)
+- `-p` pointe vers le nœud parent
+
+</code></pre></div></div>
+<p>troisième commit 
+deuxième commit 
+premier commit 
+arbre
+arbre
+arbre
+“version 2”
+“nouveau fichier”
+“version 1”
+09490b
+e946d6
+d5ffe1 d8329f
+0155eb
+3c4e9c
+83baae
+fa49b0
+1f7a7a
+test.txt
+new.txt 
+test.txt 
+new.txt 
+test.txt 
+bak</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+**Le principe des branches**
+
+</code></pre></div></div>
+<p>$ find .git/refs<br />
+.git/refs 
+.git/refs/heads 
+.git/refs/tags 
+$ find .git/refs -type f<br />
+$ echo “09490bf051c34b3693dfd5c7fb63dfe27b295904” &gt; .git/refs/heads/master 
+$ git log –pretty=oneline master 
+09490bf051c34b3693dfd5c7fb63dfe27b295904 troisième commit 
+e946d6367f07de45cac242dca7cd002f5eaa72b1 deuxième commit 
+d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 premier commit 
+$ git update-ref refs/heads/master 09490bf051c34b3693dfd5c7fb63dfe27b295904 
+$ git update-ref refs/heads/test e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ git branch</p>
+<ul>
+  <li>
+    <p>master 
+test
+```</p>
+  </li>
+  <li>Sauvegarder une référence de pointeur</li>
+  <li><code class="language-plaintext highlighter-rouge">update-ref</code>, utilisé pour modifier ou ajouter des références</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>troisième commit 
+deuxième commit 
+premier commit 
+arbre
+arbre
+arbre
+“version 2”
+“nouveau fichier”
+“version 1”
+09490b
+e946d6
+d5ffe1 d8329f
+0155eb
+3c4e9c
+83baae
+fa49b0
+1f7a7a
+test.txt
+new.txt 
+test.txt 
+new.txt 
+test.txt 
+bak
+refs/heads/master
+refs/heads/test
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .git/HEAD 
+ref: refs/heads/master 
+$ git symbolic-ref HEAD 
+refs/heads/master 
+$ git symbolic-ref HEAD refs/heads/test 
+$ cat .git/HEAD 
+ref: refs/heads/test
+</code></pre></div></div>
+
+<p><strong>symbolic-ref</strong></p>
+
+<p><strong>Principe des tags</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git update-ref refs/tags/v1.0 e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ git tag 
+v1.0 
+$ git tag -a v1.1 e946d6367f07de45cac242dca7cd002f5eaa72b1 -m 'test tag’ 
+$ cat .git/refs/tags/v1.1 
+2766532f03289bc5e158629a8b3faffa5f80b8b6 
+$ git cat-file -p 276653 
+object e946d6367f07de45cac242dca7cd002f5eaa72b1 
+type commit 
+tag v1.1 
+tagger lzwjava &lt;lzwjava@gmail.com&gt; 1462103203 +0800 
+test tag
+</code></pre></div></div>
+
+<p><strong>remotes</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add origin git@github.com:schacon/simplegit-progit.git 
+$ git push origin master 
+Décompte des objets: 11, fait. 
+Compression des objets: 100% (5/5), fait. 
+Écriture des objets: 100% (7/7), 716 octets, fait. 
+Total 7 (delta 2), réutilisés 4 (delta 1) 
+Vers git@github.com:schacon/simplegit-progit.git 
+a11bef0..ca82a6d master -&gt; master 
+$ cat .git/refs/remotes/origin/master 
+ca82a6dff817ec66f44342007202690a93763949
+</code></pre></div></div>
+
+<ul>
+  <li>Placé dans le répertoire <code class="language-plaintext highlighter-rouge">refs/remotes</code></li>
+  <li>La différence entre les références distantes (remotes) et les branches locales est que les références distantes sont en lecture seule</li>
+  <li>Vous pouvez utiliser <code class="language-plaintext highlighter-rouge">git checkout</code>, mais HEAD ne change pas, donc vous ne pouvez pas modifier les références distantes avec un commit</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl https://raw.githubusercontent.com/mojombo/grit/master/lib/grit/repo.rb &gt; repo.rb 
+$ git checkout master 
+$ git add repo.rb 
+$ git commit -m 'ajout de repo.rb' 
+[master 484a592] ajout de repo.rb 
+3 fichiers modifiés, 709 insertions(+), 2 suppressions(-) 
+suppression du mode 100644 bak/test.txt 
+création du mode 100644 repo.rb 
+réécriture de test.txt (100%) 
+$ git cat-file -p master^{tree} 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 repo.rb 
+100644 blob e3f094f522629ae358806b17daf78246c27c007b test.txt 
+$ git cat-file -s 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 
+22044 
+$ echo '# testing' &gt;&gt; repo.rb 
+$ git commit -am 'modification de repo.rb un peu' 
+[master 2431da6] modification de repo.rb un peu 
+1 fichier modifié, 1 insertion(+) 
+$ git cat-file -p master^{tree} 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob b042a60ef7dff760008df33cee372b945b6e884e repo.rb 
+100644 blob e3f094f522629ae358806b17daf78246c27c007b test.txt 
+$ git cat-file -s b042a60ef7dff760008df33cee372b945b6e884e 
+22054 
+$ git gc 
+Dénombrement des objets: 18, fait. 
+Compression delta utilisant jusqu'à 8 threads. 
+Compression des objets: 100% (14/14), fait. 
+Écriture des objets: 100% (18/18), fait. 
+Total 18 (delta 3), réutilisés 0 (delta 0) 
+$ find .git/objects -type f 
+$ git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e30000905586.idx
+</code></pre></div></div>
+
+<p><strong>Refspec</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add origin https://github.com/schacon/simplegit-progit 
+[remote "origin"] 
+url = https://github.com/schacon/simplegit-progit 
+fetch = +refs/heads/*:refs/remotes/origin/* 
+$ git log origin/master 
+$ git log remotes/origin/master 
+$ git log refs/remotes/origin/master 
+fetch = +refs/heads/master:refs/remotes/origin/master 
+[remote "origin"] 
+url = https://github.com/schacon/simplegit-progit 
+fetch = +refs/heads/master:refs/remotes/origin/master 
+fetch = +refs/heads/qa/*:refs/remotes/origin/qa/* 
+push = refs/heads/master:refs/heads
+</code></pre></div></div>
+
+<p>/qa/master</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- `&lt;src&gt;:&lt;dst&gt;`
+- `refs/remotes` l'emplacement local
+
+</code></pre></div></div>
+<p>https://github.com/schacon/simplegit-progit
+https://github.com/schacon/simplegit-progit
+```</p>
+
+<p><strong>Références</strong></p>
+
+<ul>
+  <li><a href="https://git-scm.com/book">Pro Git</a></li>
+</ul>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

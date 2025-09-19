@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Récupération du contenu d'un site web</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Récupération du contenu d’un site web | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Récupération du contenu d’un site web" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Il existe déjà de nombreux outils prêts à l’emploi pour extraire le contenu des sites web. Cependant, en les utilisant, nous ne pouvons pas mieux comprendre le processus sous-jacent. Si nous rencontrons des sites web complexes ou particuliers dans notre travail, leur utilisation pourrait ne pas donner les résultats souhaités. Nous avons besoin de réinventer la roue, pour mieux les apprendre et mieux les utiliser." />
+<meta property="og:description" content="Il existe déjà de nombreux outils prêts à l’emploi pour extraire le contenu des sites web. Cependant, en les utilisant, nous ne pouvons pas mieux comprendre le processus sous-jacent. Si nous rencontrons des sites web complexes ou particuliers dans notre travail, leur utilisation pourrait ne pas donner les résultats souhaités. Nous avons besoin de réinventer la roue, pour mieux les apprendre et mieux les utiliser." />
+<link rel="canonical" href="https://lzwjava.github.io/scrape-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/scrape-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-17T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Récupération du contenu d’un site web" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-17T00:00:00+08:00","datePublished":"2021-03-17T00:00:00+08:00","description":"Il existe déjà de nombreux outils prêts à l’emploi pour extraire le contenu des sites web. Cependant, en les utilisant, nous ne pouvons pas mieux comprendre le processus sous-jacent. Si nous rencontrons des sites web complexes ou particuliers dans notre travail, leur utilisation pourrait ne pas donner les résultats souhaités. Nous avons besoin de réinventer la roue, pour mieux les apprendre et mieux les utiliser.","headline":"Récupération du contenu d’un site web","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/scrape-fr"},"url":"https://lzwjava.github.io/scrape-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Récupération du contenu d'un site web | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2021-03-17-scrape-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2021-03-17-scrape-fr.md</span> -->
+      
+
+      <!-- <span>2021-03-17-scrape-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/scrape-en" >English</option>
+        <option value="/scrape-zh" >中文</option>
+        <option value="/scrape-ja" >日本語</option>
+        <option value="/scrape-es" >Español</option>
+        <option value="/scrape-hi" >हिंदी</option>
+        <option value="/scrape-fr" selected>Français</option>
+        <option value="/scrape-de" >Deutsch</option>
+        <option value="/scrape-ar" >العربية</option>
+        <option value="/scrape-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Il existe déjà de nombreux outils prêts à l’emploi pour extraire le contenu des sites web. Cependant, en les utilisant, nous ne pouvons pas mieux comprendre le processus sous-jacent. Si nous rencontrons des sites web complexes ou particuliers dans notre travail, leur utilisation pourrait ne pas donner les résultats souhaités. Nous avons besoin de réinventer la roue, pour mieux les apprendre et mieux les utiliser.</p>
+
+<p>Jetons également un coup d’œil à certains outils existants.</p>
+
+<h2 id="data-miner">Data Miner</h2>
+
+<p><img src="assets/images/scrape/miner.png" alt="miner" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Data Miner</code> est une extension très pratique pour Chrome. Elle permet de récupérer facilement des liens et du contenu.</p>
+
+<h2 id="getbook">getbook</h2>
+
+<p><code class="language-plaintext highlighter-rouge">getbook</code> est un outil très pratique pour créer des livres électroniques.</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pip</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">getbook</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Livre"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ceci est un exemple de fichier book.json pour un projet de livre."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"language"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fr"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"plugins"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"theme-default"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"highlight"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"search"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lunr"</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"uid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"book"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello World"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Armin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"chapters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"http://lucumr.pocoo.org/2018/7/13/python/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"http://lucumr.pocoo.org/2017/6/5/diversity-in-technology"</span><span class="p">,</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>getbook <span class="nt">-f</span> ./book.json <span class="nt">--mobi</span>
+</code></pre></div></div>
+
+<p>Ainsi, il est devenu pratique de transformer certains liens en livres électroniques. En utilisant <code class="language-plaintext highlighter-rouge">Data Miner</code> et <code class="language-plaintext highlighter-rouge">getbook</code>, l’un pour extraire les liens et l’autre pour les convertir en livres électroniques, il est désormais très facile de créer des livres électroniques.</p>
+
+<h2 id="les-cours-de-physique-de-feynman">Les Cours de Physique de Feynman</h2>
+
+<p><img src="assets/images/scrape/fl.png" alt="fl" /></p>
+
+<p>Dans le chapitre « Projet pratique : Transformer les pages web des cours de physique de Feynman en livre électronique », nous avons appris comment convertir une page web rendue avec <code class="language-plaintext highlighter-rouge">mathjax</code> en un livre électronique. Nous poursuivons ici ce projet pour voir comment récupérer toutes les pages. Les cours de physique de Feynman sont répartis en trois volumes. L’image ci-dessus montre le sommaire du premier volume.</p>
+
+<blockquote>
+  <p>http.client — Client du protocole HTTP</p>
+
+  <p>Code source : Lib/http/client.py</p>
+
+  <p>Ce module définit des classes qui implémentent le côté client des protocoles HTTP et HTTPS. Il n’est généralement pas utilisé directement — le module urllib.request l’utilise pour gérer les URL qui utilisent HTTP et HTTPS.</p>
+
+  <p>Voir aussi : Le package Requests est recommandé pour une interface de client HTTP de plus haut niveau.</p>
+</blockquote>
+
+<p>On peut voir que <code class="language-plaintext highlighter-rouge">requests</code> est une interface de plus haut niveau.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://api.github.com/user</span><span class="sh">'</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="sh">'</span><span class="s">user</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">pass</span><span class="sh">'</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>main()</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```shell
+401
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://github.com</span><span class="sh">'</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>main()</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```html
+200
+&lt;html&gt;
+  ...
+&lt;/html&gt;
+</code></pre></div></div>
+
+<p>J’ai essayé, cela montre que l’interface de <code class="language-plaintext highlighter-rouge">requests</code> est fonctionnelle.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"toc-chapter"</span> <span class="na">id=</span><span class="s">"C03"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"triangle"</span><span class="nt">&gt;</span>
+         â¶
+        <span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;a</span> <span class="na">class=</span><span class="s">"chapterlink"</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3)"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+          Chapitre 3.
+         <span class="nt">&lt;/span&gt;</span>
+         La relation de la physique avec les autres sciences
+        <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"sections"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,1)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-1
+          <span class="nt">&lt;/span&gt;</span>
+          Introduction
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,2)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-2
+          <span class="nt">&lt;/span&gt;</span>
+          Chimie
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,3)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-3
+          <span class="nt">&lt;/span&gt;</span>
+          Biologie
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,4)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-4
+          <span class="nt">&lt;/span&gt;</span>
+          Astronomie
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,5)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-5
+          <span class="nt">&lt;/span&gt;</span>
+          Géologie
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,6)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-6
+          <span class="nt">&lt;/span&gt;</span>
+          Psychologie
+         <span class="nt">&lt;/a&gt;</span>
+         <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:Goto(1,3,7)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+           3-7
+          <span class="nt">&lt;/span&gt;</span>
+          Comment en est-on arrivé là ?
+         <span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+       <span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>Voici le code HTML de la troisième section dans la page de sommaire. L’objectif est d’extraire les liens de chaque section à partir de ce code. <code class="language-plaintext highlighter-rouge">&lt;a href="javascript:Goto(1,3,7)"&gt;</code>, on peut voir qu’il s’agit d’un lien hypertexte JavaScript.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://www.feynmanlectures.caltech.edu/I_03.html
+</code></pre></div></div>
+
+<p>Ensuite, j’ai remarqué que le chemin de chaque chapitre suivait une logique bien définie. Par exemple, <code class="language-plaintext highlighter-rouge">I_03.html</code> représente le chapitre 3 du premier volume.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="n">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scrape</span><span class="p">(</span><span class="n">chapter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">chapter</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">chapter</span> <span class="o">&gt;</span> <span class="mi">52</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chapter </span><span class="si">{</span><span class="n">chapter</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">chapter_str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">{:02d}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">chapter</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://www.feynmanlectures.caltech.edu/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">scraping </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">./chapters/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">52</span><span class="p">):</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="nc">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scrape</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+        
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Continuons avec l’écriture du code de scraping. Ici, nous utilisons <code class="language-plaintext highlighter-rouge">Process</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    raise RuntimeError<span class="o">(</span><span class="s1">'''
+RuntimeError: 
+        Une tentative a été faite pour démarrer un nouveau processus avant que
+        le processus actuel n'</span>ait terminé sa phase d<span class="s1">'initialisation.
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Cela signifie probablement que vous n'utilisez pas fork pour démarrer vos
+    processus enfants et que vous avez oublié d'utiliser l'idiome approprié
+    dans le module principal :
+
+        if __name__ == '__main__':
+            freeze_support()
+            ...
+
+    La ligne "freeze_support()" peut être omise si le programme
+    ne va pas être figé pour produire un exécutable. ```
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">52</span><span class="p">):</span>        
+        <span class="n">p</span> <span class="o">=</span> <span class="nc">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scrape</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="n">p</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="p">[</span><span class="nc">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scrape</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">52</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Temps : </span><span class="sh">'</span><span class="p">,</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>    
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scraping https://www.feynmanlectures.caltech.edu/I_01.html
+scraping https://www.feynmanlectures.caltech.edu/I_04.html
+...
+scraping https://www.feynmanlectures.caltech.edu/I_51.html
+scraping https://www.feynmanlectures.caltech.edu/I_52.html
+Temps :  9.144841699
+</code></pre></div></div>
+
+<p><img src="assets/images/scrape/fig.png" alt="fig" /></p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"figure"</span> <span class="na">id=</span><span class="s">"Ch1-F1"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"img/FLP_I/f01-01/f01-01_tc_big.svgz"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"caption empty"</span><span class="nt">&gt;</span>
+         <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>
+          Figure 1–1
+         <span class="nt">&lt;/span&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="n">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="kn">import</span> <span class="n">timeit</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scrape</span><span class="p">(</span><span class="n">chapter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">chapter</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">chapter</span> <span class="o">&gt;</span> <span class="mi">52</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chapter </span><span class="si">{</span><span class="n">chapter</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">chapter_str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">{:02d}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">chapter</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://www.feynmanlectures.caltech.edu/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">scraping </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">r</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">status_code</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">text</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">./chapters/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="p">[</span><span class="nc">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scrape</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">52</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Temps : </span><span class="sh">'</span><span class="p">,</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>    
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Regardez le lien.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">imgs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">img</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scraping https://www.feynmanlectures.caltech.edu/I_01.html
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"TwitLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"FBLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"MailLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"MobileLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"DarkModeLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">id=</span><span class="s">"DesktopLink"</span> <span class="na">src=</span><span class="s">""</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"img/camera.svg"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"img/FLP_I/f01-00/f01-00.jpg"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-01/f01-01_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-02/f01-02_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-03/f01-03_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-04/f01-04_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-05/f01-05_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-06/f01-06_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"first"</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-07/f01-07_tc_iPad_big_a.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">class=</span><span class="s">"last"</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-07/f01-07_tc_iPad_big_b.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-08/f01-08_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-09/f01-09_tc_big.svgz"</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;img</span> <span class="na">data-src=</span><span class="s">"img/FLP_I/f01-10/f01-10_tc_big.svgz"</span><span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>https://www.feynmanlectures.caltech.edu/img/FLP_I/f01-01/f01-01_tc_big.svgz</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Interdit
+</code></pre></div></div>
+
+<p>Vous n’avez pas l’autorisation d’accéder à cette ressource.</p>
+
+<p>Apache/2.4.38 (Debian) Server à www.feynmanlectures.caltech.edu Port 443</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```shell
+% pip install selenium
+Collecting selenium
+  Using cached selenium-3.141.0-py2.py3-none-any.whl (904 kB)
+Requirement already satisfied: urllib3 in /usr/local/lib/python3.9/site-packages (from selenium) (1.24.2)
+Installing collected packages: selenium
+Successfully installed selenium-3.141.0
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">CHROME_DRIVER_HOME</span><span class="o">=</span><span class="nv">$HOME</span>/dev-env/chromedriver
+<span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"</span><span class="k">${</span><span class="nv">PATH</span><span class="k">}</span><span class="s2">:</span><span class="k">${</span><span class="nv">CHROME_DRIVER_HOME</span><span class="k">}</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% chromedriver <span class="nt">-h</span>
+Usage : chromedriver <span class="o">[</span>OPTIONS]
+</code></pre></div></div>
+
+<p>Options
+  –port=PORT                     port sur lequel écouter
+  –adb-port=PORT                 port du serveur adb
+  –log-path=FILE                 écrire les logs du serveur dans un fichier au lieu de stderr, augmente le niveau de log à INFO
+  –log-level=LEVEL               définir le niveau de log : ALL, DEBUG, INFO, WARNING, SEVERE, OFF
+  –verbose                       logger de manière verbeuse (équivalent à –log-level=ALL)
+  –silent                        ne rien logger (équivalent à –log-level=OFF)
+  –append-log                    ajouter au fichier de log au lieu de le réécrire
+  –replayable                    (expérimental) logger de manière verbeuse et ne pas tronquer les chaînes longues pour que le log puisse être rejoué.
+  –version                       afficher le numéro de version et quitter
+  –url-base                      préfixe de base pour les URL des commandes, par exemple wd/url
+  –readable-timestamp            ajouter des horodatages lisibles au log
+  –enable-chrome-logs            afficher les logs du navigateur (remplace les autres options de log)
+  –allowed-ips                   liste d’adresses IP distantes autorisées à se connecter à ChromeDriver, séparées par des virgules</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+```python
+# Le code reste en anglais, comme dans l'original
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.support.expected_conditions</span> <span class="kn">import</span> <span class="n">presence_of_element_located</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">with</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">()</span> <span class="k">as</span> <span class="n">driver</span><span class="p">:</span>
+    <span class="n">wait</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">driver</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">https://google.com/ncr</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">driver</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">q</span><span class="sh">"</span><span class="p">).</span><span class="nf">send_keys</span><span class="p">(</span><span class="sh">"</span><span class="s">cheese</span><span class="sh">"</span> <span class="o">+</span> <span class="n">Keys</span><span class="p">.</span><span class="n">RETURN</span><span class="p">)</span>
+    <span class="n">first_result</span> <span class="o">=</span> <span class="n">wait</span><span class="p">.</span><span class="nf">until</span><span class="p">(</span><span class="nf">presence_of_element_located</span><span class="p">((</span><span class="n">By</span><span class="p">.</span><span class="n">CSS_SELECTOR</span><span class="p">,</span> <span class="sh">"</span><span class="s">h3&gt;div</span><span class="sh">"</span><span class="p">)))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">first_result</span><span class="p">.</span><span class="nf">get_attribute</span><span class="p">(</span><span class="sh">"</span><span class="s">textContent</span><span class="sh">"</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Le code reste en anglais, comme dans l'original.
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.common.keys</span> <span class="kn">import</span> <span class="n">Keys</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.support.expected_conditions</span> <span class="kn">import</span> <span class="n">presence_of_element_located</span>
+<span class="kn">import</span> <span class="n">urllib</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">()</span>
+    <span class="n">wait</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+    <span class="n">driver</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">https://www.feynmanlectures.caltech.edu/I_01.html</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_elements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">img</span><span class="sh">"</span><span class="p">)</span>
+    <span class="c1"># print(dir(elements[0]))
+</span>    <span class="nf">print</span><span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">page_source</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+        <span class="c1"># src = element.get_attribute('src')
+</span>        <span class="n">element</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">images/</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">.png</span><span class="sh">'</span><span class="p">)</span>        
+        <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>                
+    <span class="n">driver</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="n">multiprocessing</span> <span class="kn">import</span> <span class="n">Process</span>
+<span class="kn">import</span> <span class="n">timeit</span>
+<span class="kn">from</span> <span class="n">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">img_path</span><span class="p">(</span><span class="n">chapter</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="sh">'</span><span class="s">./chapters/</span><span class="si">{</span><span class="n">chapter</span><span class="si">}</span><span class="s">/img</span><span class="sh">'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">img_name</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">splits</span> <span class="o">=</span> <span class="n">url</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">/</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">splits</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">splits</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">last</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">name</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">download_images</span><span class="p">(</span><span class="n">driver</span><span class="p">:</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Chrome</span><span class="p">,</span> <span class="n">chapter</span><span class="p">):</span>        
+    <span class="n">path</span> <span class="o">=</span> <span class="nf">img_path</span><span class="p">(</span><span class="n">chapter</span><span class="p">)</span>
+    <span class="nc">Path</span><span class="p">(</span><span class="n">path</span><span class="p">).</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>    
+        
+    <span class="n">elements</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="nf">find_elements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TAG_NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">img</span><span class="sh">"</span><span class="p">)</span>    
+    <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">elements</span><span class="p">:</span>
+        <span class="n">src</span> <span class="o">=</span> <span class="n">element</span><span class="p">.</span><span class="nf">get_attribute</span><span class="p">(</span><span class="sh">'</span><span class="s">src</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="nf">img_name</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+        <span class="n">element</span><span class="p">.</span><span class="nf">screenshot</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">.png</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>USER_AGENT = ‘Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/605.1.15 (KHTML, comme Gecko) Version/14.0.3 Safari/605.1.15’</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">scrape</span><span class="p">(</span><span class="n">chapter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">chapter</span> <span class="o">&lt;</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">chapter</span> <span class="o">&gt;</span> <span class="mi">52</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">chapter </span><span class="si">{</span><span class="n">chapter</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">chapter_str</span> <span class="o">=</span> <span class="sh">'</span><span class="s">{:02d}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">chapter</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://www.feynmanlectures.caltech.edu/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">()</span>
+    <span class="n">driver</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">page_source</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">page_source</span>        
+    <span class="nc">Path</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">./chapters/</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="sh">'</span><span class="p">).</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">parents</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>    
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">scraping </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+        
+    <span class="nf">download_images</span><span class="p">(</span><span class="n">driver</span><span class="p">,</span> <span class="n">chapter_str</span><span class="p">)</span>
+        
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">page_source</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">'</span><span class="s">lxml</span><span class="sh">'</span><span class="p">)</span>        
+    <span class="n">imgs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">img</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">src</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">data-src</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">:</span>
+            <span class="n">src</span> <span class="o">=</span> <span class="sh">''</span>
+            <span class="k">if</span> <span class="sh">'</span><span class="s">src</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">src</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">src</span><span class="sh">'</span><span class="p">]</span>
+            <span class="k">elif</span> <span class="sh">'</span><span class="s">data-src</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">:</span>
+                <span class="n">src</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">data-src</span><span class="sh">'</span><span class="p">]</span>
+                <span class="k">del</span> <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">data-src</span><span class="sh">'</span><span class="p">]</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="nf">img_name</span><span class="p">(</span><span class="n">src</span><span class="p">)</span>
+            <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">src</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">img/</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s">.png</span><span class="sh">'</span>                
+    
+    <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">./chapters/</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">/I_</span><span class="si">{</span><span class="n">chapter_str</span><span class="si">}</span><span class="s">.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
+    <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    
+    <span class="n">driver</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="n">ps</span> <span class="o">=</span> <span class="p">[</span><span class="nc">Process</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scrape</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ps</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">timeit</span><span class="p">.</span><span class="nf">default_timer</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">Temps : </span><span class="sh">'</span><span class="p">,</span> <span class="n">stop</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>    
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scraping https://www.feynmanlectures.caltech.edu/I_01.html
+scraping https://www.feynmanlectures.caltech.edu/I_02.html
+Temps : 21.478510914999998
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> errpipe_read, errpipe_write <span class="o">=</span> os.pipe<span class="o">()</span>
+OSError: <span class="o">[</span>Errno 24] Trop de fichiers ouverts
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code> % <span class="nb">ulimit </span>a
+<span class="nb">ulimit</span>: nombre invalide : a
+lzw@lzwjava feynman-lectures-mobi % <span class="nb">ulimit</span> <span class="nt">-a</span>
+<span class="nt">-t</span>: temps CPU <span class="o">(</span>secondes<span class="o">)</span>             illimité
+<span class="nt">-f</span>: taille de fichier <span class="o">(</span>blocs<span class="o">)</span>        illimité
+<span class="nt">-d</span>: taille <span class="nb">du </span>segment de données <span class="o">(</span>kbytes<span class="o">)</span> illimité
+<span class="nt">-s</span>: taille de la pile <span class="o">(</span>kbytes<span class="o">)</span>       8192
+<span class="nt">-c</span>: taille <span class="nb">du </span>fichier core <span class="o">(</span>blocs<span class="o">)</span>   0
+<span class="nt">-v</span>: espace d<span class="s1">'adressage (kbytes)      illimité
+-l: taille mémoire verrouillée (kbytes) illimité
+-u: processus                        2784
+-n: descripteurs de fichiers         256
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12
+download_images
+12
+mathjax2svg
+latexs 128
+make_svg 0
+insert_svg 0
+make_svg 1
+insert_svg 1
+make_svg 2
+insert_svg 2
+make_svg 3
+insert_svg 3
+convert
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>12
+download_images
+12
+mathjax2svg
+latexs 0
+latexs 0
+convert
+Temps : 11.369145162
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% <span class="nb">grep</span> <span class="nt">--include</span><span class="o">=</span><span class="se">\*</span>.html <span class="nt">-r</span> <span class="s1">'\$'</span> <span class="k">*</span>
+43/I_43.html:une longue période de temps <span class="nv">$T$,</span> ont un certain nombre, <span class="nv">$N$,</span> de collisions. Si nous
+43/I_43.html:le nombre de collisions est proportionnel au temps <span class="nv">$T$.</span> Nous aimerions
+43/I_43.html:Nous avons écrit la constante de proportionnalité comme <span class="nv">$1</span>/<span class="se">\t</span>au<span class="nv">$,</span> où
+43/I_43.html:<span class="nv">$\</span>tau<span class="nv">$ </span>aura les dimensions d<span class="s1">'un temps. La constante $\tau$ est le
+43/I_43.html:il y a $60$ collisions ; alors $\tau$ est une minute. Nous dirions
+43/I_43.html:que $\tau$ (une minute) est le
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>错误	E21018: Échec de la création d<span class="s1">'un domaine Mobi amélioré lors de l'</span>analyse <span class="nb">du </span>contenu <span class="nb">du </span>fichier. Contenu : &lt;In earlier chapters <span class="o">&gt;</span> Fichier : /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/069e0b8a-f12e-4102-aed3-977c0c3c1178/cTemp/mTemp/mobi-GxL1ye/OEBPS/c-49.xhtml Ligne : 969
+Avertissement	W28001: Le lecteur Kindle ne prend pas en charge le style CSS spécifié dans le contenu. Suppression de la propriété CSS : <span class="s1">'max-width'</span> Fichier : /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/069e0b8a-f12e-4102-aed3-977c0c3c1178/cTemp/mTemp/mobi-GxL1ye/OEBPS/stylesheet.css
+Avertissement	W29004: Balise ouverte fermée de force : &lt;span amzn-src-id<span class="o">=</span><span class="s2">"985"</span><span class="o">&gt;</span> Fichier : /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/069e0b8a-f12e-4102-aed3-977c0c3c1178/cTemp/mTemp/mobi-GxL1ye/OEBPS/c-4.xhtml Ligne : 0000102
+Avertissement	W29004: Balise ouverte fermée de force : &lt;p amzn-src-id<span class="o">=</span><span class="s2">"975"</span><span class="o">&gt;</span> Fichier : /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/069e0b8a-f12e-4102-aed3-977c0c3c1178/cTemp/mTemp/mobi-GxL1ye/OEBPS/c-4.xhtml Ligne : 0000102
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Avertissement	W14001: Problème de lien hypertexte non résolu :  /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/97c9cb4d-35f7-4920-81eb-4705325c482f/cTemp/mTemp/mobi-pvawPN/OEBPS/c-1.xhtml#Ch1-F1			
+Avertissement	W14001: Problème de lien hypertexte non résolu :  /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/97c9cb4d-35f7-4920-81eb-4705325c482f/cTemp/mTemp/mobi-pvawPN/OEBPS/c-1.xhtml#Ch1-F2			
+Avertissement	W14001: Problème de lien hypertexte non résolu :  /private/var/folders/_3/n3b7dq8x6652drmx6_d3t3bh0000gr/T/97c9cb4d-35f7-4920-81eb-4705325c482f/cTemp/mTemp/mobi-pvawPN/OEBPS/c-1.xhtml#Ch1-F3			
+</code></pre></div></div>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"disabled"</span> <span class="na">href=</span><span class="s">"#Ch1-F1"</span><span class="nt">&gt;</span>
+          1–1
+<span class="nt">&lt;/span&gt;</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rasterisation de <span class="s1">'OEBPS/84b8b4179175f097be1180a10089107be75d7d85.svg'</span> en 1264x1011
+Rasterisation de <span class="s1">'OEBPS/23a4df37f269c8ed43f54753eb838b29cff538a1.svg'</span> en 1264x259
+Traceback <span class="o">(</span>dernier appel le plus récent<span class="o">)</span> :
+  Fichier <span class="s2">"runpy.py"</span>, ligne 194, dans _run_module_as_main
+  Fichier <span class="s2">"runpy.py"</span>, ligne 87, dans _run_code
+  Fichier <span class="s2">"site.py"</span>, ligne 39, dans &lt;module&gt;
+  Fichier <span class="s2">"site.py"</span>, ligne 35, dans main
+  Fichier <span class="s2">"calibre/utils/ipc/worker.py"</span>, ligne 216, dans main
+  Fichier <span class="s2">"calibre/gui2/convert/gui_conversion.py"</span>, ligne 41, dans gui_convert_override
+  Fichier <span class="s2">"calibre/gui2/convert/gui_conversion.py"</span>, ligne 28, dans gui_convert
+  Fichier <span class="s2">"calibre/ebooks/conversion/plumber.py"</span>, ligne 1274, dans run
+  Fichier <span class="s2">"calibre/ebooks/conversion/plugins/mobi_output.py"</span>, ligne 214, dans convert
+  Fichier <span class="s2">"calibre/ebooks/conversion/plugins/mobi_output.py"</span>, ligne 237, dans write_mobi
+  Fichier <span class="s2">"calibre/ebooks/oeb/transforms/rasterize.py"</span>, ligne 55, dans __call__
+  Fichier <span class="s2">"calibre/ebooks/oeb/transforms/rasterize.py"</span>, ligne 142, dans rasterize_spine
+  Fichier <span class="s2">"calibre/ebooks/oeb/transforms/rasterize.py"</span>, ligne 152, dans rasterize_item
+  Fichier <span class="s2">"calibre/ebooks/oeb/transforms/rasterize.py"</span>, ligne 185, dans rasterize_external
+  Fichier <span class="s2">"calibre/ebooks/oeb/base.py"</span>, ligne 1092, dans bytes_representation
+  Fichier <span class="s2">"calibre/ebooks/oeb/base.py"</span>, ligne 432, dans serialize
+TypeError: impossible de convertir un objet <span class="s1">'NoneType'</span> en bytes
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% kindlepreviewer feynman-lectures-on-physics-volumn-1.epub <span class="nt">-convert</span>
+Vérification des arguments spécifiés.
+Pré-traitement en cours.
+Traitement de 1/1 livre<span class="o">(</span>s<span class="o">)</span><span class="nb">.</span>
+Livre converti avec des avertissements <span class="o">!</span> : /Users/lzw/projects/feynman-lectures-mobi/feynman-lectures-on-physics-volumn-1.epub
+Post-traitement en cours.
+Écriture des fichiers de sortie/logs dans /Users/lzw/projects/feynman-lectures-mobi/output
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Nettoyage <span class="nb">du </span>manifeste...
+Suppression des fichiers inutilisés <span class="nb">du </span>manifeste...
+Création de la sortie AZW3...
+Sérialisation des ressources...
+Découpage <span class="nb">du </span>balisage sur les sauts de page et les limites de flux, si nécessaire...
+Création de la sortie KF8
+	Génération <span class="nb">du </span>balisage KF8...
+La table de balises n<span class="s1">'a pas d'</span>aide et une taille de bloc trop grande. Ajout malgré tout.
+La table de balises n<span class="s1">'a pas d'</span>aide et une taille de bloc trop grande. Ajout malgré tout.
+La table de balises n<span class="s1">'a pas d'</span>aide et une taille de bloc trop grande. Ajout malgré tout.
+	Compression <span class="nb">du </span>balisage...
+	Création des index...
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>تنفيذ معرف التتبع من البداية إلى النهاية</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>تنفيذ معرف التتبع من البداية إلى النهاية | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="تنفيذ معرف التتبع من البداية إلى النهاية" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="تمت كتابة هذه المدونة بمساعدة ChatGPT-4o." />
+<meta property="og:description" content="تمت كتابة هذه المدونة بمساعدة ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/trace-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/trace-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="تنفيذ معرف التتبع من البداية إلى النهاية" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-07-06T00:00:00+08:00","datePublished":"2024-07-06T00:00:00+08:00","description":"تمت كتابة هذه المدونة بمساعدة ChatGPT-4o.","headline":"تنفيذ معرف التتبع من البداية إلى النهاية","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/trace-ar"},"url":"https://lzwjava.github.io/trace-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       تنفيذ معرف التتبع من البداية إلى النهاية | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2024-07-06-trace-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2024-07-06-trace-ar.md</span> -->
+      
+
+      <!-- <span>2024-07-06-trace-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/trace-en" >English</option>
+        <option value="/trace-zh" >中文</option>
+        <option value="/trace-ja" >日本語</option>
+        <option value="/trace-es" >Español</option>
+        <option value="/trace-hi" >हिंदी</option>
+        <option value="/trace-fr" >Français</option>
+        <option value="/trace-de" >Deutsch</option>
+        <option value="/trace-ar" selected>العربية</option>
+        <option value="/trace-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>تمت كتابة هذه المدونة بمساعدة ChatGPT-4o.</em></p>
+
+<hr />
+
+<p>لقد عملت على حل شامل لمعرف التتبع (Trace ID) من البداية إلى النهاية لضمان إمكانية تتبع كل طلب واستجابة في نظامنا بشكل متسق عبر الواجهة الأمامية والخلفية. يساعد هذا الحل في تصحيح الأخطاء، والمراقبة، وتسجيل الأحداث من خلال ربط كل عملية بمعرف تتبع فريد. فيما يلي شرح مفصل لكيفية عمل هذا الحل، مع أمثلة على الكود.</p>
+
+<h3 id="كيف-يعمل-الحل">كيف يعمل الحل</h3>
+
+<ol>
+  <li><strong>إنشاء معرف التتبع (Trace ID):</strong>
+    <ul>
+      <li>يتم إنشاء معرف تتبع فريد لكل طلب يصل إلى النظام. يمكن أن يكون هذا المعرف عبارة عن UUID أو أي قيمة فريدة أخرى.</li>
+      <li>يتم تمرير هذا المعرف عبر جميع الطبقات والخدمات التي يتفاعل معها الطلب.</li>
+    </ul>
+  </li>
+  <li><strong>تمرير معرف التتبع عبر الطبقات:</strong>
+    <ul>
+      <li>في الواجهة الأمامية، يتم إرفاق معرف التتبع مع كل طلب يتم إرساله إلى الخادم.</li>
+      <li>في الخلفية، يتم تمرير معرف التتبع عبر جميع الخدمات والمكونات التي تعالج الطلب.</li>
+    </ul>
+  </li>
+  <li><strong>تسجيل الأحداث:</strong>
+    <ul>
+      <li>يتم تسجيل كل حدث أو عملية مع معرف التتبع الخاص بها. هذا يشمل الطلبات، الاستجابات، الأخطاء، وأي عمليات أخرى.</li>
+      <li>يتم تخزين هذه السجلات في نظام تسجيل مركزي يمكن البحث فيه.</li>
+    </ul>
+  </li>
+  <li><strong>تصحيح الأخطاء والمراقبة:</strong>
+    <ul>
+      <li>عند حدوث خطأ أو مشكلة، يمكن استخدام معرف التتبع لتتبع مسار الطلب عبر النظام وفهم أين حدثت المشكلة.</li>
+      <li>يمكن أيضًا استخدام معرف التتبع لمراقبة أداء النظام وتحليل سلوك المستخدم.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="أمثلة-على-الكود">أمثلة على الكود</h3>
+
+<h4 id="إنشاء-معرف-التتبع-في-الواجهة-الأمامية">إنشاء معرف التتبع في الواجهة الأمامية</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">generateTraceId</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="dl">'</span><span class="s1">trace-</span><span class="dl">'</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">random</span><span class="p">().</span><span class="nf">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">).</span><span class="nf">substr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="nf">generateTraceId</span><span class="p">();</span>
+
+<span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/endpoint</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+        <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+        <span class="dl">'</span><span class="s1">X-Trace-Id</span><span class="dl">'</span><span class="p">:</span> <span class="nx">traceId</span>
+    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span> <span class="na">data</span><span class="p">:</span> <span class="dl">'</span><span class="s1">example</span><span class="dl">'</span> <span class="p">})</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="تمرير-معرف-التتبع-في-الخلفية-nodejs-مثال">تمرير معرف التتبع في الخلفية (Node.js مثال)</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">express</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="p">{</span> <span class="na">v4</span><span class="p">:</span> <span class="nx">uuidv4</span> <span class="p">}</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">uuid</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nf">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">use</span><span class="p">((</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="dl">'</span><span class="s1">x-trace-id</span><span class="dl">'</span><span class="p">]</span> <span class="o">||</span> <span class="nf">uuidv4</span><span class="p">();</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">traceId</span> <span class="o">=</span> <span class="nx">traceId</span><span class="p">;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">setHeader</span><span class="p">(</span><span class="dl">'</span><span class="s1">X-Trace-Id</span><span class="dl">'</span><span class="p">,</span> <span class="nx">traceId</span><span class="p">);</span>
+    <span class="nf">next</span><span class="p">();</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="dl">'</span><span class="s1">/api/endpoint</span><span class="dl">'</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">traceId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">req</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="s2">`Processing request with Trace ID: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+    <span class="c1">// معالجة الطلب هنا</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nf">json</span><span class="p">({</span> <span class="na">status</span><span class="p">:</span> <span class="dl">'</span><span class="s1">success</span><span class="dl">'</span><span class="p">,</span> <span class="nx">traceId</span> <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nf">listen</span><span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Server is running on port 3000</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<h4 id="تسجيل-الأحداث-مع-معرف-التتبع">تسجيل الأحداث مع معرف التتبع</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">winston</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">winston</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">const</span> <span class="nx">logger</span> <span class="o">=</span> <span class="nx">winston</span><span class="p">.</span><span class="nf">createLogger</span><span class="p">({</span>
+    <span class="na">level</span><span class="p">:</span> <span class="dl">'</span><span class="s1">info</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">format</span><span class="p">:</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">format</span><span class="p">.</span><span class="nf">json</span><span class="p">(),</span>
+    <span class="na">transports</span><span class="p">:</span> <span class="p">[</span>
+        <span class="k">new</span> <span class="nx">winston</span><span class="p">.</span><span class="nx">transports</span><span class="p">.</span><span class="nc">File</span><span class="p">({</span> <span class="na">filename</span><span class="p">:</span> <span class="dl">'</span><span class="s1">combined.log</span><span class="dl">'</span> <span class="p">})</span>
+    <span class="p">]</span>
+<span class="p">});</span>
+
+<span class="kd">function</span> <span class="nf">logEvent</span><span class="p">(</span><span class="nx">traceId</span><span class="p">,</span> <span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nf">info</span><span class="p">({</span> <span class="nx">traceId</span><span class="p">,</span> <span class="nx">message</span> <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="c1">// مثال على استخدام</span>
+<span class="nf">logEvent</span><span class="p">(</span><span class="dl">'</span><span class="s1">trace-12345</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Request received</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="الخلاصة">الخلاصة</h3>
+
+<p>باستخدام معرف التتبع الفريد، يمكننا تتبع كل طلب واستجابة عبر النظام بأكمله، مما يجعل عملية تصحيح الأخطاء والمراقبة أكثر كفاءة وفعالية. هذا الحل يعزز من قابلية النظام للتتبع والتحليل، مما يساعد في تحسين الأداء وتوفير تجربة أفضل للمستخدمين.</p>
+
+<h2 id="كيف-يعمل">كيف يعمل</h2>
+
+<h3 id="الواجهة-الأمامية-frontend">الواجهة الأمامية (Frontend)</h3>
+
+<p>يتضمن الجزء الأمامي من هذا الحل إنشاء معرف تتبع (trace ID) لكل طلب وإرساله مع معلومات العميل إلى الخلفية. يُستخدم هذا المعرف لتتبع الطلب عبر مراحل مختلفة من المعالجة على الخلفية.</p>
+
+<ol>
+  <li>
+    <p>جمع معلومات العميل: نقوم بجمع المعلومات ذات الصلة من العميل، مثل أبعاد الشاشة، نوع الشبكة، المنطقة الزمنية، والمزيد. يتم إرسال هذه المعلومات مع رؤوس الطلبات.</p>
+  </li>
+  <li>
+    <p>إنشاء معرف التتبع (Trace ID): يتم إنشاء معرف تتبع فريد لكل طلب. يتم تضمين هذا المعرف في رؤوس الطلب، مما يسمح لنا بتتبع الطلب خلال دورة حياته.</p>
+  </li>
+  <li>
+    <p>API Fetch: تُستخدم الدالة <code class="language-plaintext highlighter-rouge">apiFetch</code> لإجراء مكالمات API. وهي تقوم بتضمين معرف التتبع (trace ID) ومعلومات العميل في رؤوس (headers) كل طلب.</p>
+  </li>
+</ol>
+
+<h3 id="الواجهة-الخلفية-backend">الواجهة الخلفية (Backend)</h3>
+
+<p>يتضمن الجزء الخلفي من الحل تسجيل معرف التتبع (trace ID) مع كل رسالة سجل (log message) وإدراج معرف التتبع في الردود. هذا يسمح لنا بتتبع الطلبات خلال معالجة الخلفية ومطابقة الردود مع الطلبات.</p>
+
+<ol>
+  <li>
+    <p><strong>معالجة Trace ID</strong>: يستقبل الواجهة الخلفية (Backend) معرف التتبع (Trace ID) من رؤوس الطلبات (Request Headers) أو يقوم بإنشاء واحد جديد إذا لم يتم توفيره. يتم تخزين معرف التتبع في كائن عام (Global Object) في Flask لاستخدامه خلال دورة حياة الطلب.</p>
+  </li>
+  <li>
+    <p><strong>التسجيل (Logging):</strong> تُستخدم مُنسِّقات السجلات المخصصة لتضمين معرف التتبع (Trace ID) في كل رسالة سجل. يضمن ذلك إمكانية ربط جميع رسائل السجل المتعلقة بطلب معين باستخدام معرف التتبع.</p>
+  </li>
+  <li>
+    <p>معالجة الاستجابة: يتم تضمين معرف التتبع (Trace ID) في رؤوس الاستجابة. إذا حدث خطأ، يتم أيضًا تضمين معرف التتبع في نص استجابة الخطأ للمساعدة في عملية التصحيح.</p>
+  </li>
+</ol>
+
+<h3 id="كيبانا">كيبانا</h3>
+
+<p>Kibana هي أداة قوية لتصور بيانات السجلات والبحث فيها المخزنة في Elasticsearch. باستخدام حل Trace ID الخاص بنا، يمكنك بسهولة تتبع الطلبات وتصحيحها باستخدام Kibana. معرّف التتبع (Trace ID)، المضمن في كل إدخال سجل، يمكن استخدامه لتصفية السجلات والبحث عن سجلات محددة.</p>
+
+<p>للبحث عن السجلات التي تحتوي على معرف تتبع محدد، يمكنك استخدام لغة الاستعلام Kibana (KQL). على سبيل المثال، يمكنك البحث عن جميع السجلات المتعلقة بمعرف تتبع معين باستخدام الاستعلام التالي:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<p>هذا الاستعلام سيعيد جميع إدخالات السجل التي تحتوي على معرف التتبع “Lc6t”، مما يسمح لك بتتبع مسار الطلب عبر النظام. بالإضافة إلى ذلك، يمكنك دمج هذا الاستعلام مع معايير أخرى لتضييق نطاق نتائج البحث، مثل التصفية حسب مستوى السجل، الطابع الزمني، أو كلمات محددة داخل رسائل السجل.</p>
+
+<p>باستخدام إمكانيات التصور في Kibana، يمكنك أيضًا إنشاء لوحات تحكم تعرض المقاييس والاتجاهات بناءً على معرفات التتبع (trace IDs). على سبيل المثال، يمكنك تصور عدد الطلبات المعالجة، متوسط أوقات الاستجابة، ومعدلات الأخطاء، وكلها مرتبطة بمعرفات التتبع الخاصة بها. هذا يساعد في تحديد الأنماط والمشكلات المحتملة في أداء وموثوقية تطبيقك.</p>
+
+<p>استخدام Kibana بالاقتران مع حل Trace ID الخاص بنا يوفر نهجًا شاملاً لمراقبة وتصحيح وتحليل سلوك نظامك، مما يضمن إمكانية تتبع كل طلب بشكل فعال والتحقيق فيه.</p>
+
+<h2 id="الواجهة-الأمامية-frontend-1">الواجهة الأمامية (Frontend)</h2>
+
+<h3 id="apijs"><code class="language-plaintext highlighter-rouge">api.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">BASE_URL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">REACT_APP_BASE_URL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// دالة للحصول على معلومات العميل</span>
+<span class="kd">const</span> <span class="nx">getClientInfo</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">language</span><span class="p">,</span> <span class="nx">platform</span><span class="p">,</span> <span class="nx">cookieEnabled</span><span class="p">,</span> <span class="nx">doNotTrack</span><span class="p">,</span> <span class="nx">onLine</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">navigator</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="p">{</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screen</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">connection</span> <span class="o">||</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mozConnection</span> <span class="o">||</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">webkitConnection</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">networkType</span> <span class="o">=</span> <span class="nx">connection</span> <span class="p">?</span> <span class="nx">connection</span><span class="p">.</span><span class="nx">effectiveType</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">unknown</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">timeZone</span> <span class="o">=</span> <span class="nx">Intl</span><span class="p">.</span><span class="nc">DateTimeFormat</span><span class="p">().</span><span class="nf">resolvedOptions</span><span class="p">().</span><span class="nx">timeZone</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">referrer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">referrer</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">viewportWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">viewportHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return {
+    screenWidth: width,
+    screenHeight: height,
+    networkType,
+    timeZone,
+    language,
+    platform,
+    cookieEnabled,
+    doNotTrack,
+    onLine,
+    referrer,
+    viewportWidth,
+    viewportHeight
+}; };
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// دالة لإنشاء معرف تتبع فريد</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">generateTraceId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">characters</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">randomIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">characters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="nx">traceId</span> <span class="o">+=</span> <span class="nx">characters</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">randomIndex</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nx">traceId</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">BASE_URL</span><span class="p">}${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">clientInfo</span> <span class="o">=</span> <span class="nf">getClientInfo</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>تم تصدير دالة <code class="language-plaintext highlighter-rouge">apiFetch</code> التي تأخذ معاملين: <code class="language-plaintext highlighter-rouge">endpoint</code> و <code class="language-plaintext highlighter-rouge">options</code> (بافتراض أن <code class="language-plaintext highlighter-rouge">options</code> هي كائن فارغ بشكل افتراضي). يتم إنشاء متغير <code class="language-plaintext highlighter-rouge">url</code> عن طريق دمج <code class="language-plaintext highlighter-rouge">BASE_URL</code> مع <code class="language-plaintext highlighter-rouge">endpoint</code>. ثم يتم استدعاء دالة <code class="language-plaintext highlighter-rouge">getClientInfo()</code> للحصول على معلومات العميل وتخزينها في متغير <code class="language-plaintext highlighter-rouge">clientInfo</code>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const traceId = options.traceId || generateTraceId();
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">X-Client-Info</span><span class="dl">'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">clientInfo</span><span class="p">),</span>
+    <span class="dl">'</span><span class="s1">X-Trace-Id</span><span class="dl">'</span><span class="p">:</span> <span class="nx">traceId</span><span class="p">,</span>
+    <span class="p">...(</span><span class="nx">options</span><span class="p">.</span><span class="nx">headers</span> <span class="o">||</span> <span class="p">{})</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+    <span class="p">...</span><span class="nx">options</span><span class="p">,</span>
+    <span class="nx">headers</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="appjs"><code class="language-plaintext highlighter-rouge">App.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
+    <span class="na">traceId</span><span class="p">:</span> <span class="nx">traceId</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<p>إذا كانت الاستجابة ناجحة (<code class="language-plaintext highlighter-rouge">response.ok</code>)، يتم تحويل البيانات إلى تنسيق JSON ومعالجتها:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+  <span class="c1">//...        </span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>أما إذا كانت الاستجابة غير ناجحة، يتم تحويل بيانات الخطأ إلى تنسيق JSON، ويتم استخراج رسالة الخطأ أو استخدام رسالة افتراضية في حالة عدم وجود رسالة محددة. ثم يتم إضافة معرف التتبع (<code class="language-plaintext highlighter-rouge">Trace ID</code>) إلى رسالة الخطأ وعرضها كإشعار:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">else</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+  <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">حدث خطأ غير معروف</span><span class="dl">'</span><span class="p">;</span>
+  <span class="kd">let</span> <span class="nx">errorToastMessage</span> <span class="o">=</span> <span class="nx">errorMessage</span><span class="p">;</span>
+  <span class="nx">errorToastMessage</span> <span class="o">+=</span> <span class="s2">` (معرف التتبع: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="p">});</span>
+  <span class="nf">setError</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>في حالة حدوث خطأ أثناء تنفيذ الكود، يتم التحقق مما إذا كان الخطأ من نوع <code class="language-plaintext highlighter-rouge">Error</code>، ثم يتم تحويله إلى سلسلة نصية:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">errorString</span> <span class="o">=</span> <span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>const duration = (Date.now() - startTime) / 1000;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// تم إجراء الطلب واستجاب الخادم برمز حالة خارج النطاق 2xx</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (HTTP </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">بيانات خطأ الاستجابة:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// تم إجراء الطلب ولكن لم يتم استقبال أي استجابة</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1"> (لم يتم استقبال أي استجابة)</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">بيانات خطأ الطلب:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// حدث خطأ أثناء إعداد الطلب مما أدى إلى حدوث خطأ</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (خطأ في إعداد الطلب: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (معرف التتبع: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">`\nStack: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">stack</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>إذا كان <code class="language-plaintext highlighter-rouge">error</code> عبارة عن كائن من نوع <code class="language-plaintext highlighter-rouge">Error</code>، يتم إضافة سلسلة نصية تحتوي على <code class="language-plaintext highlighter-rouge">\nStack:</code> متبوعة بمحتوى <code class="language-plaintext highlighter-rouge">error.stack</code> إلى المتغير <code class="language-plaintext highlighter-rouge">errorString</code>.</p>
+
+<p>errorString += JSON.stringify(error);</p>
+
+<p>errorString += ` (المدة: ${duration} ثانية)`;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`خطأ: </span><span class="p">${</span><span class="nx">errorString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="p">});</span>
+  <span class="nf">setError</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nx">toastId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="الخلفية-backend">الخلفية (Backend)</h2>
+
+<h3 id="__init__py"><code class="language-plaintext highlighter-rouge">__init__.py</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- encoding: utf-8 -*-
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">uuid</span>
+<span class="kn">import</span> <span class="n">string</span>
+<span class="kn">import</span> <span class="n">random</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">has_request_context</span>
+<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+<span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="n">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
+</code></pre></div></div>
+
+<p>تم ترجمة الكود أعلاه إلى:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+<span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="n">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
+</code></pre></div></div>
+
+<p>ملاحظة: الكود لم يتم ترجمته لأنه يحتوي على أسماء مكتبات ودوال محددة يجب أن تبقى كما هي.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="nf">from_object</span><span class="p">(</span><span class="sh">'</span><span class="s">api.config.BaseConfig</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">db</span><span class="p">.</span><span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="nf">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">migrate</span> <span class="o">=</span> <span class="nc">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RequestFormatter</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>تمت ترجمة الكود أعلاه إلى:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RequestFormatter</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>في الكود أعلاه، يتم تعريف فئة <code class="language-plaintext highlighter-rouge">RequestFormatter</code> التي ترث من <code class="language-plaintext highlighter-rouge">logging.Formatter</code>. يتم تعديل طريقة <code class="language-plaintext highlighter-rouge">format</code> لفحص ما إذا كان هناك سياق طلب (<code class="language-plaintext highlighter-rouge">request context</code>) متاح. إذا كان متاحًا، يتم تعيين <code class="language-plaintext highlighter-rouge">trace_id</code> من الكائن <code class="language-plaintext highlighter-rouge">g</code> إلى <code class="language-plaintext highlighter-rouge">record.trace_id</code>. إذا لم يكن هناك سياق طلب، يتم تعيين <code class="language-plaintext highlighter-rouge">trace_id</code> إلى القيمة <code class="language-plaintext highlighter-rouge">'unknown'</code>. أخيرًا، يتم استدعاء الطريقة الأصلية <code class="language-plaintext highlighter-rouge">format</code> من الفئة الأم لإكمال التنسيق.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>تمت ترجمة الكود أعلاه إلى:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>ملاحظة: تم الحفاظ على الكود كما هو لأنه يحتوي على أسماء دوال ومتغيرات بالإنجليزية، والتي عادةً ما تبقى كما هي في الترجمة.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
+    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+        <span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">txt_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">plain.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">txt_formatter</span> <span class="o">=</span> <span class="nc">RequestFormatter</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d] [trace_id: %(trace_id)s]</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">txt_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>تم الحفاظ على الكود كما هو لأنه يحتوي على أسماء متغيرات ودوال بالإنجليزية ولا يحتاج إلى ترجمة.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>تم الحفاظ على الكود كما هو لأنه يحتوي على أسماء مكتبات ومتغيرات لا يجب ترجمتها.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">setup_loggers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>ترجمة:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><strong>ملاحظة:</strong> الكود أعلاه يبقى كما هو لأنه مكتوب بلغة برمجة Python ولا يتم ترجمته. الوظيفة <code class="language-plaintext highlighter-rouge">generate_trace_id</code> تقوم بإنشاء معرف تتبع (Trace ID) عشوائي باستخدام أحرف أبجدية وأرقام.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.before_request</span>
+<span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
+</code></pre></div></div>
+
+<p>تمت ترجمة الكود أعلاه إلى:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.before_request</span>
+<span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
+</code></pre></div></div>
+
+<p>في هذا الكود، يتم تعيين وقت بداية الطلب (<code class="language-plaintext highlighter-rouge">start_time</code>) باستخدام <code class="language-plaintext highlighter-rouge">time.time()</code>، ثم يتم الحصول على <code class="language-plaintext highlighter-rouge">trace_id</code> من رأس الطلب (<code class="language-plaintext highlighter-rouge">headers</code>) باستخدام المفتاح <code class="language-plaintext highlighter-rouge">X-Trace-Id</code>. إذا لم يتم العثور على <code class="language-plaintext highlighter-rouge">X-Trace-Id</code> في الرأس، يتم إنشاء <code class="language-plaintext highlighter-rouge">trace_id</code> جديد باستخدام الدالة <code class="language-plaintext highlighter-rouge">generate_trace_id()</code>. أخيرًا، يتم تعيين <code class="language-plaintext highlighter-rouge">trace_id</code> في الكائن <code class="language-plaintext highlighter-rouge">g</code> الذي يمكن الوصول إليه في جميع أنحاء التطبيق.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">client_info</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Client-Info</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">client_info</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">client_info_json</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">client_info</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">معلومات العميل: </span><span class="si">{</span><span class="n">client_info_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">تنسيق JSON غير صالح لرأس X-Client-Info</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.after_request</span>
+<span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">كود حالة الاستجابة: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">نص الاستجابة: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="nf">get_data</span><span class="p">(</span><span class="n">as_text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    if response.content_type == 'application/json':
+        try:
+            response_json = response.get_json()
+            response_json['trace_id'] = g.trace_id
+            response.set_data(json.dumps(response_json))
+        except Exception as e:
+            logging.error(f"خطأ في إضافة trace_id إلى الاستجابة: {e}")
+
+إرجاع الاستجابة ```
+</code></pre></div></div>
+
+<h2 id="السجل">السجل</h2>
+
+<p>يمكنك البحث عن جميع السجلات المتعلقة بمعرف تتبع معين باستخدام الاستعلام التالي:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flask-logs-2024.07.05"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_doc"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ae9zgZABqOMSOpxCZC5X"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"تمت معالجة الطلب بنجاح"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="mf">685817.8744316101</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mf">1720158740.894831</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="mi">139715118360128</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thread-5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="mf">894.8309421539307</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MainProcess"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/app.log"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lc6t"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stack_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="mi">107613</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"levelname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">685817.9</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">894.83093</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">107613</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1720158700</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">139715118360128</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"تمت معالجة الطلب بنجاح"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">20</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">287</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"تمت معالجة الطلب بنجاح"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>كما هو موضح أعلاه، يمكنك رؤية معرف التتبع (trace ID) في السجل.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

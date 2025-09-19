@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>透過Telegram簡化提醒事項</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>透過Telegram簡化提醒事項 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="透過Telegram簡化提醒事項" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="在這個項目中，我建立了一個自動提醒系統，利用GitHub Actions和Telegram機器人來追蹤我的每日及每月任務。通過設定cron排程，我配置了工作相關任務的提醒，例如在企業微信打卡、提交工時表、查核薪資，以及個人任務如探訪家人、在京東購物，甚至與伴侶一起看電視。該系統使用Python腳本通過Telegram的Bot API發送訊息，並將環境變數安全地儲存在GitHub Secrets中。這樣的設置確保我不會錯過任何重要期限或個人承諾，將科技與日常生活完美結合，以達到最高效率。" />
+<meta property="og:description" content="在這個項目中，我建立了一個自動提醒系統，利用GitHub Actions和Telegram機器人來追蹤我的每日及每月任務。通過設定cron排程，我配置了工作相關任務的提醒，例如在企業微信打卡、提交工時表、查核薪資，以及個人任務如探訪家人、在京東購物，甚至與伴侶一起看電視。該系統使用Python腳本通過Telegram的Bot API發送訊息，並將環境變數安全地儲存在GitHub Secrets中。這樣的設置確保我不會錯過任何重要期限或個人承諾，將科技與日常生活完美結合，以達到最高效率。" />
+<link rel="canonical" href="https://lzwjava.github.io/reminders-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/reminders-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-05T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="透過Telegram簡化提醒事項" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-05T00:00:00+08:00","datePublished":"2025-06-05T00:00:00+08:00","description":"在這個項目中，我建立了一個自動提醒系統，利用GitHub Actions和Telegram機器人來追蹤我的每日及每月任務。通過設定cron排程，我配置了工作相關任務的提醒，例如在企業微信打卡、提交工時表、查核薪資，以及個人任務如探訪家人、在京東購物，甚至與伴侶一起看電視。該系統使用Python腳本通過Telegram的Bot API發送訊息，並將環境變數安全地儲存在GitHub Secrets中。這樣的設置確保我不會錯過任何重要期限或個人承諾，將科技與日常生活完美結合，以達到最高效率。","headline":"透過Telegram簡化提醒事項","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/reminders-hant"},"url":"https://lzwjava.github.io/reminders-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       透過Telegram簡化提醒事項 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2025-06-05-reminders-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/hant/2025-06-05-reminders-hant.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2025-06-05-reminders-hant.md</span> -->
+      
+
+      <!-- <span>2025-06-05-reminders-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/reminders-en" >English</option>
+        <option value="/reminders-zh" >中文</option>
+        <option value="/reminders-ja" >日本語</option>
+        <option value="/reminders-es" >Español</option>
+        <option value="/reminders-hi" >हिंदी</option>
+        <option value="/reminders-fr" >Français</option>
+        <option value="/reminders-de" >Deutsch</option>
+        <option value="/reminders-ar" >العربية</option>
+        <option value="/reminders-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>在這個項目中，我建立了一個自動提醒系統，利用GitHub Actions和Telegram機器人來追蹤我的每日及每月任務。通過設定cron排程，我配置了工作相關任務的提醒，例如在企業微信打卡、提交工時表、查核薪資，以及個人任務如探訪家人、在京東購物，甚至與伴侶一起看電視。該系統使用Python腳本通過Telegram的Bot API發送訊息，並將環境變數安全地儲存在GitHub Secrets中。這樣的設置確保我不會錯過任何重要期限或個人承諾，將科技與日常生活完美結合，以達到最高效率。</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">提醒系統</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># 每週三至週五，北京時間中午12點至晚上8點，每兩小時執行一次。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">4,6,8,10,12</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3-5'</span>
+    <span class="c1"># 每月27日中午12點（北京時間）執行。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">27</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 每月30日下午2點（北京時間）執行。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">30</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 每日凌晨1點（北京時間）執行。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">17</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 每日上午11點（北京時間）執行。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 提醒隔日前往父母家：每週二、三、四晚上9點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">2-4'</span>
+    <span class="c1"># 提醒隔日回自己家：每週日、一、五、六晚上9點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">0,1,5,6'</span>
+    <span class="c1"># 提醒在京東購買生鮮直送：每週三晚上9點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3'</span>
+    <span class="c1"># 提醒在京東購買速食：每週五晚上9點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5'</span>
+    <span class="c1"># 提醒副學士學位考試報名：每年3、4、9、10月的每週一中午1點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3,4,9,10</span><span class="nv"> </span><span class="s">1'</span>
+    <span class="c1"># 提醒提交每週工時表：每週五台北時間下午5點。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">9</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5'</span>
+    <span class="c1"># 提醒提交供應商工時表：每月25日午夜12點（台北時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">16</span><span class="nv"> </span><span class="s">25</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 提醒家人支援房貸還款：每月16日晚上9點（台北時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">16</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># 提醒與伴侶看電視：每週五、六、日晚上10點（台北時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">14</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5,6,0'</span>
+    <span class="c1"># 提醒移除停車許可貼紙：每週三、四、五凌晨2點（北京時間）。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">18</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3,4,5'</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>  <span class="c1"># 允許手動觸發</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">reminders'</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">send-reminders</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">environment</span><span class="pi">:</span> <span class="s">github-pages</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">TELEGRAM_BOT2_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">檢出存儲庫</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">設置Python 3.10.x</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.10.x"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">安裝依賴</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.simple.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送每日打卡提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "請在企業微信打卡"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 4,6,8,10,12 * * 3-5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送每月房貸提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "準備房貸扣款"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 4 27 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送每月薪資查核提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "查核薪資"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 6 30 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送睡眠提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "該睡覺了！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 17 * * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送起床提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "該起床了！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 3 * * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送前往父母家提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "明天要去父母家！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 2-4'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送回自己家提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "明天回自己家！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 0,1,5,6'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送京東生鮮購買提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "記得在京東購買生鮮直送！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 3'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送京東速食購買提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "記得在京東購買速食！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送副學士學位考試提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "記得報名副學士學位考試"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 5 * 3,4,9,10 1'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送每週工時表提交提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "提交每週工時表"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 9 * * 5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送供應商工時表提交提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "提交供應商工時表"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 16 25 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送家人支援房貸提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "請家人支援房貸還款"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 16 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送與伴侶看電視提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "該和伴侶一起看電視了！"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 14 * * 5,6,0'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送移除停車許可貼紙提醒</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "記得移除車窗上的停車許可貼紙"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 18 * * 3,4,5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">執行Telegram腳本發送測試訊息</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "這是來自GitHub Actions的測試訊息。"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'workflow_dispatch'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="nf">load_dotenv</span><span class="p">()</span>
+
+<span class="n">TELEGRAM_BOT2_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT2_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="sh">"</span><span class="s">610574272</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">bot_token</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">使用Telegram Bot API發送訊息至指定聊天室。</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">發送Telegram訊息時出錯：</span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_chat_id</span><span class="p">(</span><span class="n">bot_token</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">獲取最後發送給機器人的訊息的聊天室ID。</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/getUpdates</span><span class="sh">"</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">updates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">updates</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">updates</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+            <span class="n">chat_id</span> <span class="o">=</span> <span class="n">updates</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">chat</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">chat_id</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">send_reminder</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">發送提醒訊息至Telegram。</span><span class="sh">"""</span>
+    <span class="k">if</span> <span class="n">TELEGRAM_BOT2_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+        <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_BOT2_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">提醒：</span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未設定TELEGRAM_BOT2_API_KEY和TELEGRAM_CHAT_ID。</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Telegram機器人腳本</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--job</span><span class="sh">'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">get_chat_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">send_message</span><span class="sh">'</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">執行任務</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--message</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">自訂發送訊息</span><span class="sh">"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">get_chat_id</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">bot_token</span> <span class="o">=</span> <span class="n">TELEGRAM_BOT2_API_KEY</span>
+        <span class="n">chat_id</span> <span class="o">=</span> <span class="nf">get_chat_id</span><span class="p">(</span><span class="n">bot_token</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">chat_id</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">聊天室ID：</span><span class="si">{</span><span class="n">chat_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">無法獲取聊天室ID。</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">send_message</span><span class="sh">'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span><span class="p">:</span>
+            <span class="nf">send_reminder</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未提供發送訊息的內容。</span><span class="sh">"</span><span class="p">)</span>
+            
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>إعداد خادم Google Cloud</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>إعداد خادم Google Cloud | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="إعداد خادم Google Cloud" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="إعداد خادم وكيل (Proxy Server) في Google Cloud يتيح لك توجيه حركة مرور الإنترنت الخاصة بك بشكل آمن من خلال مثيل سحابي، مما يعزز الخصوصية ويتيح تجاوز القيود. في هذا الدليل، سنرشدك خلال عملية إعداد خادم وكيل أساسي في Google Cloud وتهيئة قواعد جدار الحماية اللازمة للسماح بحركة المرور." />
+<meta property="og:description" content="إعداد خادم وكيل (Proxy Server) في Google Cloud يتيح لك توجيه حركة مرور الإنترنت الخاصة بك بشكل آمن من خلال مثيل سحابي، مما يعزز الخصوصية ويتيح تجاوز القيود. في هذا الدليل، سنرشدك خلال عملية إعداد خادم وكيل أساسي في Google Cloud وتهيئة قواعد جدار الحماية اللازمة للسماح بحركة المرور." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-compute-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-compute-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="إعداد خادم Google Cloud" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"إعداد خادم وكيل (Proxy Server) في Google Cloud يتيح لك توجيه حركة مرور الإنترنت الخاصة بك بشكل آمن من خلال مثيل سحابي، مما يعزز الخصوصية ويتيح تجاوز القيود. في هذا الدليل، سنرشدك خلال عملية إعداد خادم وكيل أساسي في Google Cloud وتهيئة قواعد جدار الحماية اللازمة للسماح بحركة المرور.","headline":"إعداد خادم Google Cloud","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-compute-ar"},"url":"https://lzwjava.github.io/gcp-compute-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       إعداد خادم Google Cloud | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2024-12-20-gcp-compute-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2024-12-20-gcp-compute-ar.md</span> -->
+      
+
+      <!-- <span>2024-12-20-gcp-compute-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-compute-en" >English</option>
+        <option value="/gcp-compute-zh" >中文</option>
+        <option value="/gcp-compute-ja" >日本語</option>
+        <option value="/gcp-compute-es" >Español</option>
+        <option value="/gcp-compute-hi" >हिंदी</option>
+        <option value="/gcp-compute-fr" >Français</option>
+        <option value="/gcp-compute-de" >Deutsch</option>
+        <option value="/gcp-compute-ar" selected>العربية</option>
+        <option value="/gcp-compute-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>إعداد خادم وكيل (Proxy Server) في Google Cloud يتيح لك توجيه حركة مرور الإنترنت الخاصة بك بشكل آمن من خلال مثيل سحابي، مما يعزز الخصوصية ويتيح تجاوز القيود. في هذا الدليل، سنرشدك خلال عملية إعداد خادم وكيل أساسي في Google Cloud وتهيئة قواعد جدار الحماية اللازمة للسماح بحركة المرور.</p>
+
+<h2 id="جدول-المحتويات">جدول المحتويات</h2>
+<ol>
+  <li><a href="#creating-a-google-cloud-vm-instance">إنشاء مثيل VM على Google Cloud</a></li>
+  <li><a href="#configuring-the-proxy-server">تكوين خادم الوكيل</a></li>
+  <li><a href="#setting-up-firewall-rules">إعداد قواعد جدار الحماية</a></li>
+  <li><a href="#testing-the-proxy-server">اختبار خادم الوكيل</a></li>
+  <li><a href="#conclusion">الخاتمة</a></li>
+</ol>
+
+<hr />
+
+<h2 id="إنشاء-مثيل-vm-على-google-cloud">إنشاء مثيل VM على Google Cloud</h2>
+
+<p>قبل إعداد خادم الوكيل، ستحتاج إلى إنشاء مثيل لجهاز ظاهري (VM) في Google Cloud.</p>
+
+<ol>
+  <li>
+    <p>تسجيل الدخول إلى Google Cloud Console: انتقل إلى <a href="https://console.cloud.google/">Google Cloud Console</a> وقم بتسجيل الدخول إلى حسابك.</p>
+  </li>
+  <li>إنشاء مثيل VM جديد:
+    <ul>
+      <li>انتقل إلى Compute Engine &gt; VM instances.</li>
+      <li>انقر على Create Instance.</li>
+      <li>اختر المنطقة ونوع الجهاز المطلوب. للتبسيط، يمكنك استخدام الإعدادات الافتراضية أو اختيار تكوين خفيف الوزن مثل مثيل <code class="language-plaintext highlighter-rouge">e2-micro</code>.</li>
+      <li>ضمن قسم الجدار الناري، حدد كل من Allow HTTP traffic و Allow HTTPS traffic لتمكين الوصول إلى الويب.</li>
+    </ul>
+  </li>
+  <li>إعداد الوصول عبر SSH:
+    <ul>
+      <li>ضمن قسم SSH Keys، أضف مفتاح SSH العام الخاص بك للوصول إلى المثيل عن بُعد. هذا أمر بالغ الأهمية لتكوين خادم الوكيل الخاص بك لاحقًا.</li>
+    </ul>
+  </li>
+  <li>انقر على Create لبدء تشغيل VM الخاص بك.</li>
+</ol>
+
+<p>بعد إعداد الجهاز الظاهري (VM)، يمكنك الاتصال به باستخدام SSH من خلال وحدة تحكم Google Cloud أو عبر الطرفية باستخدام الأمر التالي:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud compute ssh &lt;اسم-جهازك-الافتراضي&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="تكوين-خادم-الوكيل-proxy-server">تكوين خادم الوكيل (Proxy Server)</h2>
+
+<p>بمجرد إعداد الجهاز الظاهري (VM)، يمكنك تكوين أي برنامج خادم وكيل تختاره. يجب تثبيت برنامج الوكيل وتكوينه لقبول الاتصالات على المنفذ المطلوب (على سبيل المثال، <code class="language-plaintext highlighter-rouge">3128</code> لإعدادات الوكيل الشائعة). تأكد من أن البرنامج يسمح بالاتصالات من العملاء البعيدين.</p>
+
+<hr />
+
+<h2 id="إعداد-قواعد-جدار-الحماية">إعداد قواعد جدار الحماية</h2>
+
+<p>لتمكين حركة المرور إلى خادم الوكيل الخاص بك، ستحتاج إلى تكوين قواعد جدار الحماية في Google Cloud لفتح المنفذ الضروري.</p>
+
+<ol>
+  <li>انتقل إلى قواعد جدار الحماية في Google Cloud Console:
+    <ul>
+      <li>انتقل إلى VPC Network &gt; Firewall Rules في Google Cloud Console.</li>
+    </ul>
+  </li>
+  <li>إنشاء قاعدة جدار حماية جديدة:
+    <ul>
+      <li>انقر على “إنشاء قاعدة جدار حماية”.</li>
+      <li>أدخل اسمًا للقاعدة، مثل <code class="language-plaintext highlighter-rouge">allow-proxy-access</code>.</li>
+      <li>اضبط اتجاه حركة المرور على “Ingress” (حركة المرور الواردة).</li>
+      <li>اضبط الإجراء عند التطابق على “السماح”.</li>
+      <li>اضبط الأهداف على “كل الحالات في الشبكة” أو “علامات الأهداف المحددة” (إذا كنت تفضل مزيدًا من التحكم).</li>
+      <li>ضمن “نطاقات IP المصدر”، يمكنك تعيينها إلى <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> للسماح بالوصول من جميع عناوين IP، أو قصرها على عناوين IP أو نطاقات محددة لتحسين الأمان.</li>
+      <li>ضمن “البروتوكولات والمنافذ”، اختر “البروتوكولات والمنافذ المحددة” وأدخل المنفذ المستخدم بواسطة خادم الوكيل الخاص بك (على سبيل المثال، <code class="language-plaintext highlighter-rouge">tcp:3128</code>).</li>
+    </ul>
+  </li>
+  <li>حفظ قاعدة الجدار الناري:
+بعد تكوين القاعدة، انقر فوق إنشاء لتمكين الجدار الناري.</li>
+</ol>
+
+<hr />
+
+<h2 id="اختبار-خادم-الوكيل-proxy-server">اختبار خادم الوكيل (Proxy Server)</h2>
+
+<p>بعد تكوين جدار الحماية، حان الوقت لاختبار خادم الوكيل الخاص بك.</p>
+
+<ol>
+  <li>اختبار الوكيل من جهازك المحلي:</li>
+</ol>
+
+<p>يمكنك تكوين إعدادات المتصفح أو إعدادات البروكسي على جهازك المحلي لاستخدام عنوان IP الخارجي لجهاز VM الخاص بك على Google Cloud والمنفذ الذي يستمع إليه خادم البروكسي الخاص بك (على سبيل المثال، <code class="language-plaintext highlighter-rouge">3128</code>).</p>
+
+<ol>
+  <li>
+    <p>الاختبار باستخدام سطر الأوامر:</p>
+
+    <p>يمكنك أيضًا اختبار الوكيل باستخدام <code class="language-plaintext highlighter-rouge">curl</code> عن طريق تعيين متغيرات البيئة للوكيل:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p><strong>ترجمة:</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;your-vm-external-ip&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p><strong>ملاحظة:</strong> الأوامر البرمجية لا تُترجم، لذا تم تركها كما هي.</p>
+
+<p>إذا كان الاتصال ناجحًا، يجب أن ترى استجابة من الموقع.</p>
+
+<hr />
+
+<h2 id="الخلاصة">الخلاصة</h2>
+
+<p>باتباع هذا الدليل، تعلمت كيفية إعداد خادم وكيل (Proxy Server) على Google Cloud وتكوين قواعد جدار الحماية للسماح بحركة المرور الواردة. يوفر هذا الإعداد طريقة سهلة لتوجيه حركة مرور الإنترنت الخاصة بك بشكل آمن عبر السحابة، وتجاوز قيود الشبكة، وتعزيز الخصوصية.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

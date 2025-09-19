@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से तैयार किया गया है।" />
+<meta property="og:description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से तैयार किया गया है।" />
+<link rel="canonical" href="https://lzwjava.github.io/streaming-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/streaming-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-09-23T00:00:00+08:00","datePublished":"2016-09-23T00:00:00+08:00","description":"यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से तैयार किया गया है।","headline":"OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/streaming-hi"},"url":"https://lzwjava.github.io/streaming-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       OBS, SRS, और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेटअप | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2016-09-23-streaming-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2016-09-23-streaming-hi.md</span> -->
+      
+
+      <!-- <span>2016-09-23-streaming-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.09</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/streaming-en" >English</option>
+        <option value="/streaming-zh" >中文</option>
+        <option value="/streaming-ja" >日本語</option>
+        <option value="/streaming-es" >Español</option>
+        <option value="/streaming-hi" selected>हिंदी</option>
+        <option value="/streaming-fr" >Français</option>
+        <option value="/streaming-de" >Deutsch</option>
+        <option value="/streaming-ar" >العربية</option>
+        <option value="/streaming-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से तैयार किया गया है।</em></p>
+
+<hr />
+
+<p>लाइव स्ट्रीमिंग ऑनलाइन संचार का एक महत्वपूर्ण हिस्सा बन गया है, जो पेशेवर प्रसारण से लेकर व्यक्तिगत वीडियो ब्लॉग तक व्यापक रूप से उपयोग किया जाता है। एक मजबूत लाइव स्ट्रीमिंग समाधान बनाने के लिए विभिन्न उपकरणों और प्रोटोकॉल की समझ की आवश्यकता होती है। यह गाइड आपको OBS, SRS और FFmpeg का उपयोग करके लाइव स्ट्रीमिंग सेट करने के चरण-दर-चरण तरीके से परिचित कराएगी।</p>
+
+<h3 id="लाइव-स्ट्रीमिंग-के-मुख्य-घटक">लाइव स्ट्रीमिंग के मुख्य घटक</h3>
+
+<p><strong>1. OBS (Open Broadcaster Software)</strong><br />
+OBS एक शक्तिशाली ओपन-सोर्स सॉफ्टवेयर है जो वीडियो रिकॉर्डिंग और लाइव स्ट्रीमिंग के लिए उपयोग किया जाता है। यह रियल-टाइम स्रोत और डिवाइस कैप्चर, सीन कंपोजिशन, एन्कोडिंग, रिकॉर्डिंग और प्रसारण की सुविधाएं प्रदान करता है।</p>
+
+<p><strong>2. SRS（Simple Realtime Server）</strong><br />
+SRS एक उच्च प्रदर्शन वाला RTMP, HLS और HTTP-FLV स्ट्रीमिंग सर्वर है। यह बड़ी संख्या में समवर्ती कनेक्शनों का समर्थन करता है और अत्यधिक कॉन्फ़िगर करने योग्य है।</p>
+
+<p><strong>3. FFmpeg</strong>
+FFmpeg एक व्यापक मल्टीमीडिया फ्रेमवर्क है, जो लगभग सभी मानव और मशीन द्वारा बनाई गई सामग्री को डिकोड, एनकोड, ट्रांसकोड, मल्टीप्लेक्स, डीमल्टीप्लेक्स, स्ट्रीम, फ़िल्टर और प्ले कर सकता है। स्ट्रीमिंग सेटअप में इसका व्यापक उपयोग किया जाता है, और इसकी बहुमुखी प्रतिभा और विश्वसनीयता के लिए इसे अत्यधिक सम्मानित किया जाता है।</p>
+
+<h3 id="अपना-लाइव-स्ट्रीमिंग-वातावरण-सेट-करें">अपना लाइव स्ट्रीमिंग वातावरण सेट करें</h3>
+
+<h4 id="obs-कॉन्फ़िगरेशन">OBS कॉन्फ़िगरेशन</h4>
+
+<ol>
+  <li><strong>OBS इंस्टॉल करें</strong>: OBS को आधिकारिक वेबसाइट से डाउनलोड और इंस्टॉल करें।</li>
+  <li><strong>सेटिंग्स कॉन्फ़िगर करें</strong>: OBS खोलें, <code class="language-plaintext highlighter-rouge">सेटिंग्स &gt; स्ट्रीम</code> पर जाएं, और स्ट्रीम प्रकार को <code class="language-plaintext highlighter-rouge">कस्टम...</code> के रूप में कॉन्फ़िगर करें। अपना स्ट्रीमिंग सर्वर URL (जैसे <code class="language-plaintext highlighter-rouge">rtmp://your_server_ip/live</code>) दर्ज करें।</li>
+  <li><strong>स्रोत जोड़ें</strong>: OBS में वीडियो और ऑडियो स्रोत जोड़कर एक सीन बनाएं। इसमें स्क्रीन कैप्चर, कैमरा, इमेज, टेक्स्ट आदि शामिल हो सकते हैं।</li>
+</ol>
+
+<h4 id="srs-सर्वर-सेटअप">SRS सर्वर सेटअप</h4>
+
+<ol>
+  <li><strong>SRS इंस्टॉल करें</strong>：GitHub से SRS रिपॉजिटरी को क्लोन करें और SSL के समर्थन के साथ कंपाइल करें।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/ossrs/srs.git
+ <span class="nb">cd </span>srs/trunk
+ ./configure <span class="nt">--disable-all</span> <span class="nt">--with-ssl</span>
+ make
+</code></pre></div>    </div>
+  </li>
+  <li><strong>SRS कॉन्फ़िगर करें</strong>：अपने RTMP सेटिंग्स को कॉन्फ़िगर करने के लिए <code class="language-plaintext highlighter-rouge">conf/rtmp.conf</code> फ़ाइल को संपादित करें।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> listen 1935<span class="p">;</span>
+ max_connections 1000<span class="p">;</span>
+ vhost __defaultVhost__ <span class="o">{</span> <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>SRS शुरू करें</strong>：अपने कॉन्फ़िगरेशन फ़ाइल का उपयोग करके SRS सर्वर को चलाएं।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./objs/srs <span class="nt">-c</span> conf/rtmp.conf
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="ffmpeg-का-उपयोग-करके-स्ट्रीमिंग">FFmpeg का उपयोग करके स्ट्रीमिंग</h4>
+
+<ol>
+  <li><strong>FFmpeg इंस्टॉल करें</strong>: FFmpeg को आधिकारिक वेबसाइट से या पैकेज मैनेजर के माध्यम से इंस्टॉल करें।</li>
+  <li><strong>FFmpeg का उपयोग करके स्ट्रीमिंग करें</strong>: FFmpeg का उपयोग करके वीडियो स्ट्रीम को अपने SRS सर्वर पर पुश करें।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key
+</code></pre></div>    </div>
+  </li>
+  <li><strong>स्वचालित स्ट्रीमिंग</strong>: वीडियो फ़ाइलों को लगातार स्ट्रीम करने के लिए एक स्क्रिप्ट बनाएं।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">for</span> <span class="o">((</span><span class="p">;;</span><span class="o">))</span><span class="p">;</span> <span class="k">do 
+     </span>ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key<span class="p">;</span>
+     <span class="nb">sleep </span>1<span class="p">;</span>
+ <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="प्रोटोकॉल-और-प्रारूप">प्रोटोकॉल और प्रारूप</h3>
+
+<p><strong>RTMP (रियल-टाइम मैसेजिंग प्रोटोकॉल)</strong></p>
+<ul>
+  <li>RTMP अपने कम विलंबता और विश्वसनीय ट्रांसमिशन के कारण लाइव स्ट्रीमिंग में व्यापक रूप से उपयोग किया जाता है।</li>
+  <li>यह TCP का उपयोग करता है, जो स्थायी कनेक्शन बनाए रख सकता है, जिससे स्मूथ स्ट्रीमिंग सुनिश्चित होती है।</li>
+</ul>
+
+<p><strong>HLS (HTTP लाइव स्ट्रीमिंग)</strong></p>
+<ul>
+  <li>HLS वीडियो स्ट्रीम को छोटे HTTP-आधारित फ़ाइल सेगमेंट में विभाजित करता है, जिससे इसे मानक वेब सर्वर के माध्यम से आसानी से ट्रांसमिट किया जा सकता है।</li>
+  <li>हालांकि इसमें विलंबता (latency) हो सकती है, लेकिन यह विभिन्न उपकरणों और प्लेटफॉर्म के साथ अत्यधिक संगत है।</li>
+</ul>
+
+<p><strong>HTTP-FLV</strong></p>
+<ul>
+  <li>FLV प्रारूप को HTTP ट्रांसमिशन के साथ जोड़कर, कम विलंबता वाले स्ट्रीमिंग के लिए उपयोग किया जाता है।</li>
+  <li>ब्राउज़र-आधारित स्ट्रीमिंग के लिए उपयुक्त है, क्योंकि यह मौजूदा HTTP इंफ्रास्ट्रक्चर का उपयोग करता है।</li>
+</ul>
+
+<h3 id="व्यावहारिक-अनुप्रयोग">व्यावहारिक अनुप्रयोग</h3>
+
+<p><strong>iOS और Android स्ट्रीमिंग</strong></p>
+<ul>
+  <li>मोबाइल डिवाइस पर RTMP स्ट्रीमिंग को लागू करने के लिए VideoCore और Ijkplayer जैसे लाइब्रेरीज़ का उपयोग करें।</li>
+  <li>संगतता और प्रदर्शन को बढ़ाने के लिए FFmpeg को एन्कोडिंग और डिकोडिंग कार्यों के लिए एकीकृत करें।</li>
+</ul>
+
+<p><strong>वेब-आधारित स्ट्रीमिंग</strong></p>
+<ul>
+  <li>वेब पेज पर वीडियो प्लेबैक के लिए HTML5 वीडियो एलिमेंट का उपयोग करें, जो HLS या HTTP-FLV को सपोर्ट करता है।</li>
+  <li>रियल-टाइम कम्युनिकेशन और कम लेटेंसी इंटरैक्शन के लिए WebRTC का उपयोग करें।</li>
+</ul>
+
+<h3 id="टूल्स-और-संसाधन">टूल्स और संसाधन</h3>
+
+<ul>
+  <li><strong>VLC</strong>: RTMP, HLS जैसे स्ट्रीमिंग प्रोटोकॉल का समर्थन करने वाला बहुउद्देशीय मीडिया प्लेयर।</li>
+  <li><strong>SRS Player</strong>: SRS स्ट्रीम का परीक्षण करने के लिए ऑनलाइन प्लेयर।</li>
+  <li><strong>FFmpeg दस्तावेज़ीकरण</strong>: विभिन्न मल्टीमीडिया कार्यों के लिए विस्तृत दस्तावेज़ीकरण प्रदान करता है।</li>
+</ul>
+
+<h3 id="निष्कर्ष">निष्कर्ष</h3>
+
+<p>एक विश्वसनीय लाइव स्ट्रीमिंग समाधान बनाने के लिए कई उपकरणों और प्रोटोकॉल को समझने और कॉन्फ़िगर करने की आवश्यकता होती है। OBS, SRS और FFmpeg शक्तिशाली घटक हैं, जिन्हें मिलाकर एक मजबूत स्ट्रीमिंग सेटअप बनाया जा सकता है। चाहे वह iOS, Android या Web के लिए हो, ये उपकरण उच्च गुणवत्ता वाली लाइव स्ट्रीमिंग को प्राप्त करने के लिए आवश्यक लचीलापन और प्रदर्शन प्रदान करते हैं।</p>
+
+<p>अधिक विस्तृत जानकारी और उन्नत कॉन्फ़िगरेशन के लिए, कृपया प्रत्येक टूल के आधिकारिक दस्तावेज़ों का संदर्भ लें, और समुदाय फ़ोरम में अन्य टिप्स और सहायता का अन्वेषण करें। आपकी लाइव स्ट्रीमिंग सफल हो!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Configuración SSH</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuración SSH | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Configuración SSH" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Este archivo ssh-config configura el comportamiento del cliente SSH. Desglosemos cada parte:" />
+<meta property="og:description" content="Este archivo ssh-config configura el comportamiento del cliente SSH. Desglosemos cada parte:" />
+<link rel="canonical" href="https://lzwjava.github.io/ssh-config-es" />
+<meta property="og:url" content="https://lzwjava.github.io/ssh-config-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-09T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuración SSH" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-09T00:00:00+08:00","datePublished":"2025-02-09T00:00:00+08:00","description":"Este archivo ssh-config configura el comportamiento del cliente SSH. Desglosemos cada parte:","headline":"Configuración SSH","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ssh-config-es"},"url":"https://lzwjava.github.io/ssh-config-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Configuración SSH | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-02-09-ssh-config-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/es/2025-02-09-ssh-config-es.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-02-09-ssh-config-es.md</span> -->
+      
+
+      <!-- <span>2025-02-09-ssh-config-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.02</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ssh-config-en" >English</option>
+        <option value="/ssh-config-zh" >中文</option>
+        <option value="/ssh-config-ja" >日本語</option>
+        <option value="/ssh-config-es" selected>Español</option>
+        <option value="/ssh-config-hi" >हिंदी</option>
+        <option value="/ssh-config-fr" >Français</option>
+        <option value="/ssh-config-de" >Deutsch</option>
+        <option value="/ssh-config-ar" >العربية</option>
+        <option value="/ssh-config-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Este archivo <code class="language-plaintext highlighter-rouge">ssh-config</code> configura el comportamiento del cliente SSH. Desglosemos cada parte:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host * !192.*.*.*</code>: Esta sección se aplica a todos los hosts <em>excepto</em> aquellos que coinciden con el patrón <code class="language-plaintext highlighter-rouge">192.*.*.*</code> (típicamente, direcciones de red local).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ProxyCommand corkscrew localhost 7890 %h %p</code>: Esta es la parte clave. Le indica a SSH que use el programa <code class="language-plaintext highlighter-rouge">corkscrew</code> para conectarse al host de destino.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">corkscrew</code>: Una herramienta que le permite tunelizar conexiones SSH a través de proxies HTTP o HTTPS.</li>
+          <li><code class="language-plaintext highlighter-rouge">localhost 7890</code>: Especifica la dirección del servidor proxy (<code class="language-plaintext highlighter-rouge">localhost</code>) y el puerto (<code class="language-plaintext highlighter-rouge">7890</code>). Esto asume que tiene un servidor proxy ejecutándose en su máquina local, escuchando en el puerto 7890 (por ejemplo, Shadowsocks, un proxy SOCKS u otra solución de tunelización).</li>
+          <li><code class="language-plaintext highlighter-rouge">%h</code>: Una variable SSH especial que se expande al nombre de host de destino al que intenta conectarse.</li>
+          <li><code class="language-plaintext highlighter-rouge">%p</code>: Otra variable SSH que se expande al puerto de destino (generalmente 22 para SSH).</li>
+        </ul>
+      </li>
+      <li>En resumen, este bloque <code class="language-plaintext highlighter-rouge">Host</code> configura SSH para usar el proxy <code class="language-plaintext highlighter-rouge">corkscrew</code> para todas las conexiones <em>excepto</em> aquellas a la red local.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Host *</code>: Esta sección se aplica a <em>todos</em> los hosts.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">UseKeychain yes</code>: En macOS, esto le indica a SSH que almacene y recupere las claves SSH de su Keychain, para que no tenga que ingresar su contraseña cada vez.</li>
+      <li><code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code>: Esto agrega automáticamente sus claves SSH al agente SSH, para que no tenga que agregarlas manualmente después de cada reinicio.</li>
+      <li><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code>: Especifica la ruta a su archivo de clave SSH privada. <code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa</code> es la ubicación predeterminada para la clave privada RSA.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>En esencia, esta configuración configura un proxy para todas las conexiones SSH excepto las de la red local, y configura la administración de claves para mayor comodidad.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host <span class="k">*</span> <span class="o">!</span>192.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+    ProxyCommand corkscrew localhost 7890 %h %p
+Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

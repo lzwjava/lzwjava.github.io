@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Redsocks in Aktion</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Redsocks in Aktion | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Redsocks in Aktion" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Natürlich! Ich werde Sie durch die Einrichtung eines Shadowsocks-Proxys auf Ihrem Mac-Computer und die Konfiguration Ihres OpenWRT-Routers führen, um den gesamten Datenverkehr aller angeschlossenen Geräte über diesen Proxy zu leiten. Diese Einrichtung umfasst die folgenden Hauptschritte:" />
+<meta property="og:description" content="Natürlich! Ich werde Sie durch die Einrichtung eines Shadowsocks-Proxys auf Ihrem Mac-Computer und die Konfiguration Ihres OpenWRT-Routers führen, um den gesamten Datenverkehr aller angeschlossenen Geräte über diesen Proxy zu leiten. Diese Einrichtung umfasst die folgenden Hauptschritte:" />
+<link rel="canonical" href="https://lzwjava.github.io/redsocks-de" />
+<meta property="og:url" content="https://lzwjava.github.io/redsocks-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Redsocks in Aktion" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"Natürlich! Ich werde Sie durch die Einrichtung eines Shadowsocks-Proxys auf Ihrem Mac-Computer und die Konfiguration Ihres OpenWRT-Routers führen, um den gesamten Datenverkehr aller angeschlossenen Geräte über diesen Proxy zu leiten. Diese Einrichtung umfasst die folgenden Hauptschritte:","headline":"Redsocks in Aktion","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/redsocks-de"},"url":"https://lzwjava.github.io/redsocks-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Redsocks in Aktion | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2024-12-18-redsocks-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2024-12-18-redsocks-de.md</span> -->
+      
+
+      <!-- <span>2024-12-18-redsocks-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/redsocks-en" >English</option>
+        <option value="/redsocks-zh" >中文</option>
+        <option value="/redsocks-ja" >日本語</option>
+        <option value="/redsocks-es" >Español</option>
+        <option value="/redsocks-hi" >हिंदी</option>
+        <option value="/redsocks-fr" >Français</option>
+        <option value="/redsocks-de" selected>Deutsch</option>
+        <option value="/redsocks-ar" >العربية</option>
+        <option value="/redsocks-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Natürlich! Ich werde Sie durch die Einrichtung eines Shadowsocks-Proxys auf Ihrem Mac-Computer und die Konfiguration Ihres OpenWRT-Routers führen, um den gesamten Datenverkehr aller angeschlossenen Geräte über diesen Proxy zu leiten. Diese Einrichtung umfasst die folgenden Hauptschritte:</p>
+
+<ol>
+  <li>Einrichten des Shadowsocks-Clients auf macOS (mit Shadowsocks-NG oder Clash)</li>
+  <li>Konfigurieren von macOS, um externe Proxy-Verbindungen zuzulassen</li>
+  <li>Zuweisen einer statischen IP-Adresse zu Ihrem Mac</li>
+  <li>Installieren und Konfigurieren von Redsocks auf OpenWRT</li>
+  <li>Umleiten des OpenWRT-Datenverkehrs über den macOS-Proxy</li>
+  <li>Testen der Proxy-Einrichtung</li>
+</ol>
+
+<p>Lassen Sie uns jeden Schritt im Detail betrachten.</p>
+
+<hr />
+
+<h2 id="1-einrichten-des-shadowsocks-clients-auf-macos">1. Einrichten des Shadowsocks-Clients auf macOS</h2>
+
+<p>Sie können entweder Shadowsocks-NG oder Clash als Ihren Shadowsocks-Client verwenden. Im Folgenden finden Sie Anleitungen für beide.</p>
+
+<h3 id="option-a-verwendung-von-shadowsocks-ng">Option A: Verwendung von Shadowsocks-NG</h3>
+
+<p>Shadowsocks-NG ist ein beliebter und benutzerfreundlicher Shadowsocks-Client für macOS.</p>
+
+<h4 id="schritt-1-shadowsocks-ng-herunterladen-und-installieren">Schritt 1: Shadowsocks-NG herunterladen und installieren</h4>
+
+<ol>
+  <li>Laden Sie Shadowsocks-NG herunter:
+    <ul>
+      <li>Besuchen Sie die <a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases">Shadowsocks-NG GitHub Releases-Seite</a>.</li>
+      <li>Laden Sie die neueste <code class="language-plaintext highlighter-rouge">.dmg</code>-Datei herunter.</li>
+    </ul>
+  </li>
+  <li>Installieren Sie die Anwendung:
+    <ul>
+      <li>Öffnen Sie die heruntergeladene <code class="language-plaintext highlighter-rouge">.dmg</code>-Datei.</li>
+      <li>Ziehen Sie die ShadowsocksX-NG-App in Ihren Anwendungsordner.</li>
+    </ul>
+  </li>
+  <li>Starte Shadowsocks-NG:
+    <ul>
+      <li>Öffne ShadowsocksX-NG aus deinem Anwendungsordner.</li>
+      <li>Möglicherweise musst du der App die notwendigen Berechtigungen in den Systemeinstellungen erteilen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="schritt-2-shadowsocks-ng-konfigurieren">Schritt 2: Shadowsocks-NG konfigurieren</h4>
+
+<ol>
+  <li>Einstellungen öffnen:
+    <ul>
+      <li>Klicken Sie auf das ShadowsocksX-NG-Symbol in der Menüleiste.</li>
+      <li>Wählen Sie “ShadowsocksX-NG öffnen” &gt; “Einstellungen”.</li>
+    </ul>
+  </li>
+  <li>Fügen Sie einen neuen Server hinzu:
+    <ul>
+      <li>Navigieren Sie zum Tab “Servers”.</li>
+      <li>Klicken Sie auf die Schaltfläche “+”, um einen neuen Server hinzuzufügen.</li>
+    </ul>
+  </li>
+  <li>Importieren Sie die Shadowsocks-URL:
+    <ul>
+      <li>Kopieren Sie Ihre Shadowsocks-URL:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ss://[ENCRYPTED_PASSWORD]@xxx.xxx.xxx.xxx:xxxxx/?outline=1
+</code></pre></div>        </div>
+      </li>
+      <li>Importmethode:
+        <ul>
+          <li>Klicken Sie auf “Importieren”.</li>
+          <li>Fügen Sie Ihre Shadowsocks-URL ein.</li>
+          <li>Shadowsocks-NG sollte die Serverdetails automatisch analysieren und ausfüllen.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Richten Sie den lokalen Proxy ein:
+    <ul>
+      <li>Stellen Sie sicher, dass “SOCKS5-Proxy aktivieren” ausgewählt ist.</li>
+      <li>Notieren Sie sich den lokalen Port (standardmäßig ist dies normalerweise <code class="language-plaintext highlighter-rouge">1080</code>).</li>
+    </ul>
+  </li>
+  <li>Speichern und Aktivieren:
+    <ul>
+      <li>Klicken Sie auf “OK”, um den Server zu speichern.</li>
+      <li>Schalten Sie den Schalter “Shadowsocks aktivieren” auf EIN.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="option-b-verwendung-von-clash">Option B: Verwendung von Clash</h3>
+
+<p>Clash ist ein vielseitiger Proxy-Client, der mehrere Protokolle unterstützt, darunter auch Shadowsocks.</p>
+
+<h4 id="schritt-1-clash-herunterladen-und-installieren">Schritt 1: Clash herunterladen und installieren</h4>
+
+<ol>
+  <li>Clash für macOS herunterladen:
+    <ul>
+      <li>Besuchen Sie die <a href="https://github.com/Dreamacro/clash/releases">Clash GitHub Releases-Seite</a>.</li>
+      <li>Laden Sie das neueste Clash für macOS-Binary herunter.</li>
+    </ul>
+  </li>
+  <li>Installieren Sie die Anwendung:
+    <ul>
+      <li>Verschieben Sie die heruntergeladene Clash-Anwendung in Ihren Anwendungsordner.</li>
+    </ul>
+  </li>
+  <li>Clash starten:
+    <ul>
+      <li>Öffnen Sie Clash aus Ihrem Anwendungsordner.</li>
+      <li>Möglicherweise müssen Sie die erforderlichen Berechtigungen in den Systemeinstellungen erteilen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="schritt-2-clash-konfigurieren">Schritt 2: Clash konfigurieren</h4>
+
+<ol>
+  <li>Konfigurationsdatei öffnen:
+    <ul>
+      <li>Clash verwendet eine YAML-Konfigurationsdatei. Sie können diese mit einem Texteditor wie TextEdit oder Visual Studio Code erstellen oder bearbeiten.</li>
+    </ul>
+  </li>
+  <li>Fügen Sie Ihren Shadowsocks-Server hinzu:
+    <ul>
+      <li>Erstellen Sie eine Konfigurationsdatei (z.B. <code class="language-plaintext highlighter-rouge">config.yaml</code>) mit folgendem Inhalt:</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">port</span><span class="pi">:</span> <span class="m">7890</span>
+<span class="na">socks-port</span><span class="pi">:</span> <span class="m">7891</span>
+<span class="na">allow-lan</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="na">mode</span><span class="pi">:</span> <span class="s">Rule</span>
+<span class="na">log-level</span><span class="pi">:</span> <span class="s">info</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="na">proxies</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">MyShadowsocks"</span>
+         <span class="na">type</span><span class="pi">:</span> <span class="s">ss</span>
+         <span class="na">server</span><span class="pi">:</span> <span class="s">xxx.xxx.xxx.xxx</span>
+         <span class="na">port</span><span class="pi">:</span> <span class="s">xxxxx</span>
+         <span class="na">cipher</span><span class="pi">:</span> <span class="s">chacha20-ietf-poly1305</span>
+         <span class="na">password</span><span class="pi">:</span> <span class="s2">"</span><span class="s">xxxxxx"</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">proxy-groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Default"</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">select</span>
+    <span class="na">proxies</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">MyShadowsocks"</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">DIRECT"</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rules:
+   - MATCH,Default
+```
+
+Notizen:
+ - `port` und `socks-port` definieren die HTTP- und SOCKS5-Proxy-Ports, die Clash überwacht.
+ - `allow-lan: true` erlaubt es Geräten im LAN, den Proxy zu nutzen.
+ - Der Abschnitt `proxies` enthält die Details Ihres Shadowsocks-Servers.
+ - `proxy-groups` und `rules` bestimmen, wie der Datenverkehr geroutet wird.
+</code></pre></div></div>
+
+<ol>
+  <li>Starte Clash mit der Konfiguration:
+    <ul>
+      <li>Starte Clash und stelle sicher, dass es deine <code class="language-plaintext highlighter-rouge">config.yaml</code>-Datei verwendet.</li>
+      <li>Möglicherweise musst du den Konfigurationspfad beim Starten von Clash angeben.</li>
+    </ul>
+  </li>
+  <li>Überprüfen Sie, ob der Proxy läuft:
+    <ul>
+      <li>Stellen Sie sicher, dass Clash aktiv ist und mit Ihrem Shadowsocks-Server verbunden ist.</li>
+      <li>Überprüfen Sie das Menüleistensymbol auf den Status.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="2-konfiguration-von-macos-um-externe-proxy-verbindungen-zu-ermöglichen">2. Konfiguration von macOS, um externe Proxy-Verbindungen zu ermöglichen</h2>
+
+<p>Standardmäßig binden Shadowsocks-Clients den Proxy an <code class="language-plaintext highlighter-rouge">localhost</code> (<code class="language-plaintext highlighter-rouge">127.0.0.1</code>), was bedeutet, dass nur der Mac den Proxy nutzen kann. Um Ihrem OpenWRT-Router die Nutzung dieses Proxys zu ermöglichen, müssen Sie den Proxy an die LAN-IP des Macs binden.</p>
+
+<h3 id="für-shadowsocks-ng">Für Shadowsocks-NG:</h3>
+
+<ol>
+  <li>Einstellungen öffnen:
+    <ul>
+      <li>Klicken Sie auf das ShadowsocksX-NG-Symbol in der Menüleiste.</li>
+      <li>Wählen Sie “ShadowsocksX-NG öffnen” &gt; “Einstellungen”.</li>
+    </ul>
+  </li>
+  <li>Gehen Sie zum Reiter “Erweitert”:
+    <ul>
+      <li>Navigieren Sie zum Reiter “Erweitert”.</li>
+    </ul>
+  </li>
+  <li>Setzen Sie die Abhör-Adresse:
+    <ul>
+      <li>Ändern Sie die “Listen Address” von <code class="language-plaintext highlighter-rouge">127.0.0.1</code> auf <code class="language-plaintext highlighter-rouge">0.0.0.0</code>, um Verbindungen von jeder Schnittstelle zuzulassen.</li>
+      <li>Alternativ können Sie die LAN-IP des Macs angeben (z.B. <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code>).</li>
+    </ul>
+  </li>
+  <li>Speichern und Neustarten von Shadowsocks-NG:
+    <ul>
+      <li>Klicken Sie auf “OK”, um die Änderungen zu speichern.</li>
+      <li>Starten Sie den Shadowsocks-NG-Client neu, um die neuen Einstellungen zu übernehmen.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="für-clash">Für Clash:</h3>
+
+<ol>
+  <li>Konfigurationsdatei bearbeiten:
+    <ul>
+      <li>Stellen Sie sicher, dass die Einstellung <code class="language-plaintext highlighter-rouge">allow-lan: true</code> in Ihrer <code class="language-plaintext highlighter-rouge">config.yaml</code> aktiviert ist.</li>
+    </ul>
+  </li>
+  <li>An alle Schnittstellen binden:
+    <ul>
+      <li>In der Konfiguration bindet die Einstellung <code class="language-plaintext highlighter-rouge">allow-lan: true</code> den Proxy in der Regel an alle verfügbaren Schnittstellen, einschließlich des LANs.</li>
+    </ul>
+  </li>
+  <li>Clash neu starten:
+    <ul>
+      <li>Starten Sie den Clash-Client neu, um die Änderungen zu übernehmen.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-zuweisen-einer-statischen-ip-adresse-zu-ihrem-mac">3. Zuweisen einer statischen IP-Adresse zu Ihrem Mac</h2>
+
+<p>Um eine konsistente Verbindung zwischen Ihrem OpenWRT-Router und dem Mac sicherzustellen, weisen Sie Ihrem Mac eine statische IP-Adresse in Ihrem lokalen Netzwerk zu.</p>
+
+<h3 id="schritte-zur-zuweisung-einer-statischen-ip-auf-macos">Schritte zur Zuweisung einer statischen IP auf macOS:</h3>
+
+<ol>
+  <li>Systemeinstellungen öffnen:
+    <ul>
+      <li>Klicken Sie auf das Apple-Menü und wählen Sie “Systemeinstellungen”.</li>
+    </ul>
+  </li>
+  <li>Navigieren Sie zu den Netzwerkeinstellungen:
+    <ul>
+      <li>Klicken Sie auf “Netzwerk”.</li>
+    </ul>
+  </li>
+  <li>Wählen Sie Ihre aktive Verbindung:
+    <ul>
+      <li>Wählen Sie im linken Seitenmenü “Wi-Fi” oder “Ethernet” aus, je nachdem, wie Ihr Mac mit dem Router verbunden ist.</li>
+    </ul>
+  </li>
+  <li>IPv4-Einstellungen konfigurieren:
+    <ul>
+      <li>Klicken Sie auf “Erweitert…”.</li>
+      <li>Gehen Sie zum Tab “TCP/IP”.</li>
+      <li>Ändern Sie “IPv4 konfigurieren” von “Mit DHCP” auf “Manuell”.</li>
+    </ul>
+  </li>
+  <li>Statische IP-Adresse einrichten:
+    <ul>
+      <li>IP-Adresse: Wählen Sie eine IP außerhalb des DHCP-Bereichs Ihres Routers, um Konflikte zu vermeiden (z.B. <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code>).</li>
+      <li>Subnetzmaske: Typischerweise <code class="language-plaintext highlighter-rouge">255.255.255.0</code>.</li>
+      <li>Router: Die IP-Adresse Ihres Routers (z.B. <code class="language-plaintext highlighter-rouge">192.168.1.1</code>).</li>
+      <li>DNS-Server: Sie können die IP Ihres Routers oder einen anderen DNS-Dienst wie <code class="language-plaintext highlighter-rouge">8.8.8.8</code> verwenden.</li>
+    </ul>
+  </li>
+  <li>Einstellungen anwenden:
+    <ul>
+      <li>Klicken Sie auf “OK” und dann auf “Übernehmen”, um die Änderungen zu speichern.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="4-installation-und-konfiguration-von-redsocks-auf-openwrt">4. Installation und Konfiguration von Redsocks auf OpenWRT</h2>
+
+<p>Redsocks ist ein transparenter SOCKS-Umleiter, der es ermöglicht, Netzwerkverkehr über einen SOCKS5-Proxy zu routen. Wir werden Redsocks verwenden, um den Datenverkehr von OpenWRT über den auf Ihrem Mac laufenden Shadowsocks-Proxy umzuleiten.</p>
+
+<h3 id="schritt-1-redsocks-installieren">Schritt 1: Redsocks installieren</h3>
+
+<ol>
+  <li>
+    <p>Paketlisten aktualisieren:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@&lt;router_ip&gt;
+opkg update
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Installiere Redsocks:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opkg <span class="nb">install </span>redsocks
+</code></pre></div>    </div>
+
+    <p><em>Falls Redsocks in Ihrem OpenWRT-Repository nicht verfügbar ist, müssen Sie es möglicherweise manuell kompilieren oder ein alternatives Paket verwenden.</em></p>
+  </li>
+</ol>
+
+<h3 id="schritt-2-redsocks-konfigurieren">Schritt 2: Redsocks konfigurieren</h3>
+
+<ol>
+  <li>
+    <p>Erstellen oder Bearbeiten der Redsocks-Konfigurationsdatei:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /etc/redsocks.conf
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Fügen Sie die folgende Konfiguration hinzu:</p>
+  </li>
+</ol>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">base</span> {
+       <span class="n">log_debug</span> = <span class="n">on</span>;
+       <span class="n">log_info</span> = <span class="n">on</span>;
+       <span class="n">log</span> = <span class="s2">"file:/var/log/redsocks.log"</span>;
+       <span class="n">daemon</span> = <span class="n">on</span>;
+       <span class="n">redirector</span> = <span class="n">iptables</span>;
+   }
+</code></pre></div></div>
+
+<p>```redsocks {
+       local_ip = 0.0.0.0;
+       local_port = 12345;  # Lokaler Port, auf dem Redsocks lauschen soll
+       ip = xxx.xxx.xxx.xxx;  # Statische IP des Macs
+       port = xxxxx;          # Lokaler SOCKS5-Proxy-Port von Shadowsocks-NG
+       type = socks5;
+       login = “”;           # Falls Ihr Proxy eine Authentifizierung erfordert
+       password = “”;
+   }</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   Notizen:
+   - `local_port`: Der Port, den Redsocks für eingehende Verbindungen von iptables-Umleitungen überwacht.
+   - `ip` und `port`: Verweisen auf den Shadowsocks SOCKS5-Proxy Ihres Macs (`xxx.xxx.xxx.xxx:xxxxx` basierend auf den vorherigen Schritten).
+   - `type`: Auf `socks5` setzen, da Shadowsocks einen SOCKS5-Proxy bereitstellt.
+
+3. Speichern und Beenden:
+   - Drücken Sie `ESC`, geben Sie `:wq` ein und drücken Sie `Enter`.
+
+4. Protokolldatei erstellen:
+
+```bash
+touch /var/log/redsocks.log
+chmod 644 /var/log/redsocks.log
+</code></pre></div></div>
+
+<h3 id="schritt-3-starten-sie-den-redsocks-dienst">Schritt 3: Starten Sie den Redsocks-Dienst</h3>
+
+<ol>
+  <li>
+    <p>Redsocks beim Systemstart aktivieren:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/init.d/redsocks <span class="nb">enable</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Starte Redsocks:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/etc/init.d/redsocks start
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>Überprüfen, ob Redsocks läuft:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps | <span class="nb">grep </span>redsocks
+</code></pre></div></div>
+
+<p>Sie sollten einen Redsocks-Prozess laufen sehen.</p>
+
+<hr />
+
+<h2 id="5-umleitung-des-openwrt-datenverkehrs-über-den-macos-proxy">5. Umleitung des OpenWRT-Datenverkehrs über den macOS-Proxy</h2>
+
+<p>Nachdem Redsocks auf OpenWRT eingerichtet ist, konfigurieren Sie iptables, um den gesamten ausgehenden TCP-Datenverkehr über Redsocks umzuleiten, der ihn wiederum über den Shadowsocks-Proxy Ihres Macs routet.</p>
+
+<h3 id="schritt-1-iptables-regeln-konfigurieren">Schritt 1: iptables-Regeln konfigurieren</h3>
+
+<ol>
+  <li>Fügen Sie iptables-Regeln hinzu, um den Datenverkehr umzuleiten:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># Leite den gesamten TCP-Datenverkehr an Redsocks weiter (außer den Datenverkehr zum Proxy selbst)</span>
+   iptables <span class="nt">-t</span> nat <span class="nt">-N</span> REDSOCKS
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-d</span> xxx.xxx.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> xxxxx <span class="nt">-j</span> RETURN
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-p</span> tcp <span class="nt">-j</span> REDIRECT <span class="nt">--to-ports</span> 12345
+</code></pre></div></div>
+
+<p># Wende die REDSOCKS-Kette auf den gesamten ausgehenden Verkehr an
+   iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+   iptables -t nat -A PREROUTING -p tcp -j REDSOCKS</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   Erklärung:
+   - Erstelle eine neue Kette: `REDSOCKS`
+   - Proxy-Verkehr ausschließen: Stelle sicher, dass der Verkehr, der für den Proxy selbst bestimmt ist, nicht umgeleitet wird.
+   - Anderen TCP-Verkehr umleiten: Leite anderen TCP-Verkehr an den Port weiter, den Redsocks abhört (`12345`).
+
+2. iptables-Regeln speichern:
+
+Um diese Regeln über Neustarts hinweg beizubehalten, fügen Sie sie der Firewall-Konfiguration hinzu.
+
+   ```bash
+   vi /etc/firewall.user
+</code></pre></div></div>
+
+<p>Fügen Sie die iptables-Regeln hinzu:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># Leite den gesamten TCP-Datenverkehr an Redsocks weiter (außer Proxy)</span>
+   iptables <span class="nt">-t</span> nat <span class="nt">-N</span> REDSOCKS
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-d</span> xxx.xxx.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> xxxxx <span class="nt">-j</span> RETURN
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-p</span> tcp <span class="nt">-j</span> REDIRECT <span class="nt">--to-ports</span> 12345
+</code></pre></div></div>
+
+<p># Die REDSOCKS-Kette anwenden
+   iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+   iptables -t nat -A PREROUTING -p tcp -j REDSOCKS</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   Speichern und Beenden:
+   - Drücken Sie `ESC`, geben Sie `:wq` ein und drücken Sie `Enter`.
+
+3. Firewall neu starten, um die Änderungen zu übernehmen:
+
+   ```bash
+   /etc/init.d/firewall restart
+</code></pre></div></div>
+
+<h3 id="schritt-2-überprüfen-ob-der-traffic-umgeleitet-wird">Schritt 2: Überprüfen, ob der Traffic umgeleitet wird</h3>
+
+<ol>
+  <li>
+    <p>Überprüfen Sie die Redsocks-Protokolle:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /var/log/redsocks.log
+</code></pre></div>    </div>
+
+    <p>Sie sollten Protokolle sehen, die anzeigen, dass der Datenverkehr über Redsocks verarbeitet wird.</p>
+  </li>
+  <li>
+    <p>Test von einem Client-Gerät aus:</p>
+    <ul>
+      <li>Verbinden Sie ein Gerät mit Ihrem OpenWRT-Router.</li>
+      <li>Besuchen Sie eine Website oder führen Sie eine Aktion aus, die das Internet nutzt.</li>
+      <li>Überprüfen Sie, ob der Datenverkehr über den Shadowsocks-Proxy geleitet wird, indem Sie die externe IP-Adresse überprüfen (z. B. über <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a>), um festzustellen, ob sie die IP des Proxys widerspiegelt.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="6-testen-des-proxy-setups">6. Testen des Proxy-Setups</h2>
+
+<p>Stellen Sie sicher, dass das gesamte Setup wie vorgesehen funktioniert, indem Sie die folgenden Tests durchführen.</p>
+
+<h3 id="schritt-1-überprüfen-der-shadowsocks-verbindung-auf-dem-mac">Schritt 1: Überprüfen der Shadowsocks-Verbindung auf dem Mac</h3>
+
+<ol>
+  <li>Überprüfen Sie den Status des Shadowsocks-Clients:
+    <ul>
+      <li>Stellen Sie sicher, dass Shadowsocks-NG oder Clash aktiv mit dem Shadowsocks-Server verbunden ist.</li>
+      <li>Vergewissern Sie sich, dass der lokale Proxy (z.B. <code class="language-plaintext highlighter-rouge">xxx.xxx.xxx.xxx:xxxxx</code>) erreichbar ist.</li>
+    </ul>
+  </li>
+  <li>Testen Sie den Proxy lokal:
+    <ul>
+      <li>Öffnen Sie auf Ihrem Mac einen Browser und konfigurieren Sie ihn so, dass er <code class="language-plaintext highlighter-rouge">localhost:1080</code> als SOCKS5-Proxy verwendet.</li>
+      <li>Besuchen Sie <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a>, um zu bestätigen, dass die IP mit dem Shadowsocks-Server übereinstimmt.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="schritt-2-überprüfen-ob-der-openwrt-datenverkehr-über-den-proxy-geleitet-wird">Schritt 2: Überprüfen, ob der OpenWRT-Datenverkehr über den Proxy geleitet wird</h3>
+
+<ol>
+  <li>Überprüfen Sie die externe IP von OpenWRT:
+    <ul>
+      <li>Besuchen Sie von einem Gerät, das mit OpenWRT verbunden ist, <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a>, um zu sehen, ob die IP die IP des Shadowsocks-Servers widerspiegelt.</li>
+    </ul>
+  </li>
+  <li>Überwachen Sie die Redsocks-Protokolle:
+    <ul>
+      <li>Auf OpenWRT überwachen Sie die Redsocks-Protokolle, um sicherzustellen, dass der Datenverkehr umgeleitet wird.</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-f</span> /var/log/redsocks.log
+</code></pre></div>    </div>
+  </li>
+  <li>Bei Bedarf Fehlerbehebung durchführen:
+    <ul>
+      <li>Wenn der Datenverkehr nicht korrekt weitergeleitet wird:
+        <ul>
+          <li>Stellen Sie sicher, dass der Shadowsocks-Client auf dem Mac läuft und erreichbar ist.</li>
+          <li>Überprüfen Sie, ob die iptables-Regeln korrekt eingerichtet sind.</li>
+          <li>Überprüfen Sie die Firewall-Einstellungen sowohl auf dem Mac als auch auf OpenWRT.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="weitere-überlegungen">Weitere Überlegungen</h2>
+
+<h3 id="1-sicherheit">1. Sicherheit</h3>
+
+<ul>
+  <li>Sichern Sie Ihren Proxy:
+    <ul>
+      <li>Stellen Sie sicher, dass nur vertrauenswürdige Geräte auf den Proxy zugreifen können. Da Sie den gesamten Datenverkehr über Redsocks umleiten, sollten Sie sicherstellen, dass die Firewall Ihres Macs nur Verbindungen von Ihrem OpenWRT-Router zulässt.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Auf macOS:</p>
+
+<ul>
+  <li>Gehen Sie zu Systemeinstellungen &gt; Sicherheit &amp; Datenschutz &gt; Firewall.</li>
+  <li>
+    <p>Konfigurieren Sie die Firewall so, dass eingehende Verbindungen auf dem Proxy-Port (<code class="language-plaintext highlighter-rouge">xxxxx</code>) nur von der IP des OpenWRT-Routers zugelassen werden.</p>
+  </li>
+  <li>Authentifizierung:
+    <ul>
+      <li>Shadowsocks bietet bereits ein gewisses Maß an Sicherheit durch Verschlüsselung. Stellen Sie sicher, dass starke Passwörter und Verschlüsselungsmethoden verwendet werden.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-leistung">2. Leistung</h3>
+
+<ul>
+  <li>Router-Ressourcen:
+    <ul>
+      <li>Das Ausführen von Proxy-Diensten wie Redsocks kann zusätzliche CPU- und Speicherressourcen auf Ihrem OpenWRT-Router beanspruchen. Stellen Sie sicher, dass Ihr Router über ausreichende Ressourcen verfügt.</li>
+    </ul>
+  </li>
+  <li>Mac-Leistung:
+    <ul>
+      <li>Stellen Sie sicher, dass Ihr Mac eingeschaltet und mit dem Netzwerk verbunden bleibt, um die Verfügbarkeit des Proxys aufrechtzuerhalten.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-wartung">3. Wartung</h3>
+
+<ul>
+  <li>Überwachung der Protokolle:
+    <ul>
+      <li>Überprüfen Sie regelmäßig die Protokolle von Redsocks und Shadowsocks auf ungewöhnliche Aktivitäten oder Fehler.</li>
+    </ul>
+  </li>
+  <li>Software aktualisieren:
+    <ul>
+      <li>Halten Sie OpenWRT, Redsocks und Ihren Shadowsocks-Client auf dem neuesten Stand, um von Sicherheitsupdates und Leistungsverbesserungen zu profitieren.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-alternative-ansätze">4. Alternative Ansätze</h3>
+
+<p>Während die Verwendung eines Macs als Zwischen-Proxy-Server möglich ist, sollten Sie die folgenden Alternativen in Betracht ziehen, die möglicherweise einfacher einzurichten sind:</p>
+
+<ul>
+  <li>OpenWRT direkt als Shadowsocks-Client konfigurieren:
+    <ul>
+      <li>OpenWRT unterstützt Shadowsocks direkt über Pakete wie <code class="language-plaintext highlighter-rouge">shadowsocks-libev</code>. Dieser Ansatz macht einen Mac als Vermittler überflüssig.</li>
+    </ul>
+  </li>
+  <li>Verwenden Sie ein dediziertes Proxy/VPN-Gerät:
+    <ul>
+      <li>Geräte wie der Raspberry Pi können Proxy-Dienste ausführen und als dedizierte Gateways fungieren.</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="fazit">Fazit</h2>
+
+<p>Indem Sie die oben beschriebenen Schritte befolgt haben, haben Sie Ihren Mac als Shadowsocks-Proxy-Server eingerichtet und Ihren OpenWRT-Router so konfiguriert, dass der gesamte Datenverkehr aller angeschlossenen Geräte über diesen Proxy geleitet wird. Dieses Setup verbessert die Privatsphäre und Kontrolle Ihres Netzwerks durch die Nutzung des Shadowsocks-Protokolls.</p>
+
+<p>Zusammenfassung der wichtigsten Punkte:</p>
+
+<ol>
+  <li>Shadowsocks-Client auf dem Mac:
+    <ul>
+      <li>Shadowsocks-NG oder Clash mit der bereitgestellten Shadowsocks-URL installiert und konfiguriert.</li>
+      <li>Den Client so konfiguriert, dass er auf die LAN-IP des Macs hört.</li>
+    </ul>
+  </li>
+  <li>Proxy-Zugänglichkeit:
+    <ul>
+      <li>Dem Mac eine statische IP zugewiesen, um einen konsistenten Proxy-Zugang zu gewährleisten.</li>
+      <li>Die macOS-Firewall so konfiguriert, dass eingehende Proxy-Verbindungen zugelassen werden.</li>
+    </ul>
+  </li>
+  <li>OpenWRT-Konfiguration:
+    <ul>
+      <li>Installiert und konfiguriert Redsocks, um den gesamten ausgehenden TCP-Datenverkehr über den Shadowsocks-Proxy umzuleiten.</li>
+      <li>Notwendige iptables-Regeln angewendet, um die Datenverkehrsumleitung zu erzwingen.</li>
+    </ul>
+  </li>
+  <li>Testen:
+    <ul>
+      <li>Überprüft, dass der Datenverkehr von verbundenen Geräten über den Shadowsocks-Proxy geleitet wird, indem die externen IP-Adressen überprüft wurden.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>Empfehlungen:</p>
+
+<ul>
+  <li>Stabilität sicherstellen: Halten Sie Ihren Mac mit Strom versorgt und verbunden, um die Verfügbarkeit des Proxys zu gewährleisten.</li>
+  <li>Sicherheit an erster Stelle: Aktualisieren Sie regelmäßig alle Komponenten und überwachen Sie die Protokolle, um sich vor unbefugtem Zugriff zu schützen.</li>
+  <li>Direkte Router-Konfiguration in Betracht ziehen: Für eine effizientere Einrichtung können Sie die Konfiguration von Shadowsocks direkt auf Ihrem OpenWRT-Router in Betracht ziehen.</li>
+</ul>
+
+<p>Wenn Sie auf Probleme stoßen oder weitere Unterstützung bei bestimmten Konfigurationen benötigen, zögern Sie nicht, sich zu melden!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>base {
+    log_debug = on;
+    log_info = on;
+    log = "file:/var/log/redsocks.log";
+    daemon = on;
+    redirector = generic;
+}
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">redsocks {
+    local_ip = 0.0.0.0;
+    local_port = 7891;
+    ip = xxx.xxx.xxx.xxx;
+    port = xxxxx;
+    type = http-connect;
+    login = "";
+    password = "";
+}
+</code></p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

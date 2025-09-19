@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Azureサーバーのセットアップ</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Azureサーバーのセットアップ | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Azureサーバーのセットアップ" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="Microsoft Azure上にサーバーをセットアップし、特定のポートを開くように設定することは、ホスティングサービスやプロキシなど、さまざまなアプリケーションにとって重要です。このガイドでは、Azure仮想マシン（VM）を作成し、ファイアウォールを設定してポート1080を開く手順を説明します。" />
+<meta property="og:description" content="Microsoft Azure上にサーバーをセットアップし、特定のポートを開くように設定することは、ホスティングサービスやプロキシなど、さまざまなアプリケーションにとって重要です。このガイドでは、Azure仮想マシン（VM）を作成し、ファイアウォールを設定してポート1080を開く手順を説明します。" />
+<link rel="canonical" href="https://lzwjava.github.io/azure-vm-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-vm-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Azureサーバーのセットアップ" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Microsoft Azure上にサーバーをセットアップし、特定のポートを開くように設定することは、ホスティングサービスやプロキシなど、さまざまなアプリケーションにとって重要です。このガイドでは、Azure仮想マシン（VM）を作成し、ファイアウォールを設定してポート1080を開く手順を説明します。","headline":"Azureサーバーのセットアップ","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-vm-ja"},"url":"https://lzwjava.github.io/azure-vm-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Azureサーバーのセットアップ | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2024-12-20-azure-vm-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2024-12-20-azure-vm-ja.md</span> -->
+      
+
+      <!-- <span>2024-12-20-azure-vm-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-vm-en" >English</option>
+        <option value="/azure-vm-zh" >中文</option>
+        <option value="/azure-vm-ja" selected>日本語</option>
+        <option value="/azure-vm-es" >Español</option>
+        <option value="/azure-vm-hi" >हिंदी</option>
+        <option value="/azure-vm-fr" >Français</option>
+        <option value="/azure-vm-de" >Deutsch</option>
+        <option value="/azure-vm-ar" >العربية</option>
+        <option value="/azure-vm-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Microsoft Azure上にサーバーをセットアップし、特定のポートを開くように設定することは、ホスティングサービスやプロキシなど、さまざまなアプリケーションにとって重要です。このガイドでは、Azure仮想マシン（VM）を作成し、ファイアウォールを設定してポート1080を開く手順を説明します。</p>
+
+<h2 id="目次">目次</h2>
+
+<ol>
+  <li><a href="#prerequisites">前提条件</a></li>
+  <li><a href="#creating-an-azure-virtual-machine">Azure仮想マシンの作成</a></li>
+  <li><a href="#configuring-the-firewall-to-open-port-1080">ポート1080を開くためのファイアウォールの設定</a></li>
+  <li><a href="#testing-the-configuration">設定のテスト</a></li>
+  <li><a href="#conclusion">結論</a></li>
+</ol>
+
+<h2 id="前提条件">前提条件</h2>
+
+<p>始める前に、以下のものを用意してください：</p>
+
+<ul>
+  <li>アクティブな <a href="https://azure.microsoft.com/">Microsoft Azure</a> アカウント。</li>
+  <li>Azure Portal の基本的な使用知識。</li>
+  <li>VM にアクセスするための SSH クライアント（macOS/Linux の Terminal や Windows の PuTTY など）。</li>
+</ul>
+
+<h2 id="azure仮想マシンの作成">Azure仮想マシンの作成</h2>
+
+<ol>
+  <li>
+    <p>Azure Portalにログインする:
+<a href="https://portal.azure.com/">Azure Portal</a>にアクセスし、資格情報を使用してサインインします。</p>
+  </li>
+  <li>新しい仮想マシンの作成:
+    <ul>
+      <li>左上隅の「リソースの作成」をクリックします。</li>
+      <li>利用可能なリソースのリストから「仮想マシン」を選択します。</li>
+    </ul>
+  </li>
+  <li>VMの基本設定:
+    <ul>
+      <li>サブスクリプション: 使用するAzureサブスクリプションを選択します。</li>
+      <li>リソースグループ: 新しいリソースグループを作成するか、既存のものを選択します。</li>
+      <li>仮想マシン名: VMの名前を入力します（例: <code class="language-plaintext highlighter-rouge">AzureServer</code>）。</li>
+      <li>リージョン: ターゲットユーザーに最も近いリージョンを選択します。</li>
+      <li>イメージ: OSイメージを選択します（例: Ubuntu 22.04 LTS）。</li>
+      <li>サイズ: パフォーマンス要件に基づいてVMサイズを選択します。</li>
+      <li>認証: セキュアなアクセスのためにSSH公開鍵を選択します。公開SSH鍵をアップロードします。</li>
+    </ul>
+  </li>
+  <li>ネットワーキングの設定:
+    <ul>
+      <li>VMが適切な仮想ネットワークとサブネットに配置されていることを確認します。</li>
+      <li>外部アクセスを許可するために、パブリックIPを有効のままにしておきます。</li>
+    </ul>
+  </li>
+  <li>確認と作成:
+    <ul>
+      <li>設定を確認します。</li>
+      <li>「作成」をクリックしてVMをデプロイします。デプロイには数分かかる場合があります。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="ポート1080を開くためのファイアウォール設定">ポート1080を開くためのファイアウォール設定</h2>
+
+<p>VMが起動して実行されたら、Azureのネットワークセキュリティグループ（NSG）を設定して、ポート1080のトラフィックを許可する必要があります。</p>
+
+<ol>
+  <li>VMのネットワーク設定に移動します：
+    <ul>
+      <li>Azureポータルで「Virtual Machines」に進みます。</li>
+      <li>対象のVM（<code class="language-plaintext highlighter-rouge">AzureServer</code>）を選択します。</li>
+      <li>左側のサイドバーで「Networking」をクリックします。</li>
+    </ul>
+  </li>
+  <li>ネットワークセキュリティグループ（NSG）を特定する：
+    <ul>
+      <li>「ネットワークインターフェース」の下で、関連するNSGを見つけます。</li>
+      <li>NSGをクリックして、そのルールを管理します。</li>
+    </ul>
+  </li>
+  <li>インバウンドセキュリティルールを追加:
+    <ul>
+      <li>NSG設定で、「インバウンドセキュリティルール」に移動します。</li>
+      <li>「追加」をクリックして新しいルールを作成します。</li>
+    </ul>
+  </li>
+  <li>ルールを設定する:
+    <ul>
+      <li>送信元: 任意（またはセキュリティを強化するために範囲を指定）。</li>
+      <li>送信元ポート範囲: <code class="language-plaintext highlighter-rouge">*</code></li>
+      <li>宛先: 任意</li>
+      <li>宛先ポート範囲: <code class="language-plaintext highlighter-rouge">1080</code></li>
+      <li>プロトコル: TCP</li>
+      <li>アクション: 許可</li>
+      <li>優先度: <code class="language-plaintext highlighter-rouge">1000</code>（既存のルールと競合しないようにする）。</li>
+      <li>名前: <code class="language-plaintext highlighter-rouge">Allow-1080-TCP</code></li>
+    </ul>
+  </li>
+  <li>ルールを保存する：
+    <ul>
+      <li>「追加」をクリックして新しいルールを適用します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="設定のテスト">設定のテスト</h2>
+
+<p>ファイアウォールの設定が完了したら、ポート1080が開いてアクセス可能であることを確認することが重要です。</p>
+
+<ol>
+  <li>Telnetを使用してポートのアクセス可能性を確認する:
+ローカルマシンから、次のコマンドを実行します:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet &lt;あなたのVMのIP&gt; 1080
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">&lt;YOUR_VM_IP&gt;</code> をあなたのVMのパブリックIPアドレスに置き換えてください。</li>
+  <li>接続が成功した場合、そのポートは開いており、アクセス可能です。</li>
+</ul>
+
+<ol>
+  <li>代替のポートチェックツール:
+    <ul>
+      <li>Netcat (<code class="language-plaintext highlighter-rouge">nc</code>):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-zv</span> &lt;あなたのVMのIP&gt; 1080
+</code></pre></div>        </div>
+      </li>
+      <li>オンラインポートチェッカー:
+<a href="https://canyouseeme.org/">canyouseeme.org</a> のようなオンラインサービスを使用して、ポート1080が開いているかどうかを確認します。</li>
+    </ul>
+  </li>
+  <li>トラブルシューティング:
+    <ul>
+      <li>接続の問題: NSGルールが正しく設定されていること、およびVM上のローカルファイアウォールがポート1080でのトラフィックを許可するように設定されていることを確認してください。</li>
+      <li>誤ったIP: VMの正しいパブリックIPアドレスを使用していることを確認してください。</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="結論">結論</h2>
+
+<p>このガイドに従うことで、Azure仮想マシンのセットアップと、ポート1080を開くためのファイアウォールの設定が無事に完了しました。このセットアップは、特定のポートアクセスを必要とするさまざまなアプリケーションやサービスの展開の基盤となります。</p>
+
+<p>さらに詳しい設定、例えばポート1080でのプロキシサービスの設定やその他のアプリケーションの設定については、専用の記事「<a href="#">V2Rayプロキシ設定</a>」および「<a href="#">カスタムvmess URLの生成</a>」を参照してください。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

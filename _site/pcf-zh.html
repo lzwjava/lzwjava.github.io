@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>使用 Pivotal Cloud Foundry 部署</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>使用 Pivotal Cloud Foundry 部署 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="使用 Pivotal Cloud Foundry 部署" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="这篇博客文章由 ChatGPT-4o 协助撰写。" />
+<meta property="og:description" content="这篇博客文章由 ChatGPT-4o 协助撰写。" />
+<link rel="canonical" href="https://lzwjava.github.io/pcf-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/pcf-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="使用 Pivotal Cloud Foundry 部署" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2022-11-07T00:00:00+08:00","datePublished":"2022-11-07T00:00:00+08:00","description":"这篇博客文章由 ChatGPT-4o 协助撰写。","headline":"使用 Pivotal Cloud Foundry 部署","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pcf-zh"},"url":"https://lzwjava.github.io/pcf-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       使用 Pivotal Cloud Foundry 部署 | 原创，AI翻译
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2022-11-07-pcf-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2022-11-07-pcf-zh.md</span> -->
+      
+
+      <!-- <span>2022-11-07-pcf-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2022.11</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pcf-en" >English</option>
+        <option value="/pcf-zh" selected>中文</option>
+        <option value="/pcf-ja" >日本語</option>
+        <option value="/pcf-es" >Español</option>
+        <option value="/pcf-hi" >हिंदी</option>
+        <option value="/pcf-fr" >Français</option>
+        <option value="/pcf-de" >Deutsch</option>
+        <option value="/pcf-ar" >العربية</option>
+        <option value="/pcf-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>这篇博客文章由 ChatGPT-4o 协助撰写。</em></p>
+
+<hr />
+
+<h3 id="目录">目录</h3>
+<ul>
+  <li><a href="#简介">简介</a></li>
+  <li><a href="#开始使用-pivotal-cloud-foundry">开始使用 Pivotal Cloud Foundry</a></li>
+  <li><a href="#使用-credhub-保护机密">使用 CredHub 保护机密</a></li>
+  <li><a href="#在-pivotal-cloud-foundry-上部署应用程序">在 Pivotal Cloud Foundry 上部署应用程序</a></li>
+  <li><a href="#监控和获取日志">监控和获取日志</a></li>
+  <li><a href="#结论">结论</a></li>
+</ul>
+
+<h3 id="简介">简介</h3>
+
+<p>Pivotal Cloud Foundry 是一个流行的开源平台即服务（PaaS），使开发人员能够快速高效地部署、管理和扩展应用程序。结合 CredHub，一个安全存储和访问凭据的服务，它为构建和运行应用程序提供了一个强大的环境。在这篇博客文章中，我们将介绍如何设置 Pivotal Cloud Foundry，使用 CredHub 管理机密，部署应用程序，以及使用 <code class="language-plaintext highlighter-rouge">cf logs</code> 监控应用程序。</p>
+
+<h3 id="开始使用-pivotal-cloud-foundry">开始使用 Pivotal Cloud Foundry</h3>
+
+<p>Pivotal Cloud Foundry 简化了应用程序的部署和扩展。以下是入门步骤：</p>
+
+<ol>
+  <li>安装 Pivotal Cloud Foundry CLI：
+    <ul>
+      <li>从<a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">官方网站</a>下载并安装 Pivotal Cloud Foundry CLI。</li>
+      <li>验证安装：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf <span class="nt">--version</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>登录 Pivotal Cloud Foundry：
+    <ul>
+      <li>定位您的 Pivotal Cloud Foundry API 端点：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf api https://api.your-cloud-foundry-instance.com
+</code></pre></div>        </div>
+      </li>
+      <li>使用您的凭据登录：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf login
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>设置空间和组织：
+    <ul>
+      <li>创建和管理组织和空间，以逻辑上分隔应用程序和资源。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="使用-credhub-保护机密">使用 CredHub 保护机密</h3>
+
+<p>CredHub 允许您在应用程序中安全地存储、生成和访问凭据。以下是将 CredHub 与 Pivotal Cloud Foundry 集成的方法：</p>
+
+<ol>
+  <li>设置 CredHub：
+    <ul>
+      <li>确保 CredHub 在您的 Pivotal Cloud Foundry 环境中已部署并配置。</li>
+      <li>使用 CredHub CLI 与 CredHub 交互：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub login <span class="nt">-s</span> https://credhub.your-cloud-foundry-instance.com <span class="nt">--ca-cert</span> &lt;path-to-ca-cert&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>存储机密：
+    <ul>
+      <li>在 CredHub 中存储一个机密：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub <span class="nb">set</span> <span class="nt">-n</span> /cflab/db_password <span class="nt">-t</span> password <span class="nt">-w</span> s3cr3t
+</code></pre></div>        </div>
+      </li>
+      <li>检索一个机密：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub get <span class="nt">-n</span> /cflab/db_password
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>将 CredHub 与应用程序集成：
+    <ul>
+      <li>使用服务绑定或环境变量将 CredHub 机密绑定到您的 Pivotal Cloud Foundry 应用程序。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="在-pivotal-cloud-foundry-上部署应用程序">在 Pivotal Cloud Foundry 上部署应用程序</h3>
+
+<p>在 Pivotal Cloud Foundry 上部署应用程序非常简单。以下是分步指南：</p>
+
+<ol>
+  <li>准备您的应用程序：
+    <ul>
+      <li>确保您的应用程序具有 <code class="language-plaintext highlighter-rouge">manifest.yml</code> 配置文件：
+```yaml
+applications:
+        <ul>
+          <li>name: my-app
+memory: 512M
+instances: 1
+path: .
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>推送您的应用程序：
+    <ul>
+      <li>使用 <code class="language-plaintext highlighter-rouge">cf push</code> 命令部署应用程序：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf push my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>扩展您的应用程序：
+    <ul>
+      <li>扩展实例数量：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf scale my-app <span class="nt">-i</span> 3
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>管理环境变量：
+    <ul>
+      <li>为您的应用程序设置环境变量：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf set-env my-app DB_PASSWORD s3cr3t
+</code></pre></div>        </div>
+      </li>
+      <li>重新启动您的应用程序以应用更改：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf restage my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="监控和获取日志">监控和获取日志</h3>
+
+<p>Pivotal Cloud Foundry 提供了强大的日志功能，以帮助您监控应用程序：</p>
+
+<ol>
+  <li>查看日志：
+    <ul>
+      <li>获取应用程序的最近日志：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf logs my-app <span class="nt">--recent</span>
+</code></pre></div>        </div>
+      </li>
+      <li>实时流式传输日志：
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf logs my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>分析日志：
+    <ul>
+      <li>使用日志来排除问题，监控性能，并获取应用程序行为的见解。</li>
+    </ul>
+  </li>
+  <li>设置日志管理：
+    <ul>
+      <li>与 Loggregator 或第三方服务集成，以聚合和分析日志。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="结论">结论</h3>
+
+<p>通过利用 Pivotal Cloud Foundry 和 CredHub，您可以轻松安全地部署和管理应用程序。Pivotal Cloud Foundry 的 PaaS 功能简化了部署过程，而 CredHub 确保您的应用程序机密存储安全。借助强大的日志记录和监控工具，您可以保持对应用程序性能和健康状况的高可见性。此设置不仅增强了安全性，还提高了操作效率和可扩展性。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

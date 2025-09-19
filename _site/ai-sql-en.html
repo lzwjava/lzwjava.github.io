@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Using AI to Build SQL Queries</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Using AI to Build SQL Queries | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Using AI to Build SQL Queries" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Database Schema (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );" />
+<meta property="og:description" content="Database Schema (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );" />
+<link rel="canonical" href="https://lzwjava.github.io/ai-sql-en" />
+<meta property="og:url" content="https://lzwjava.github.io/ai-sql-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Using AI to Build SQL Queries" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-07-14T00:00:00+08:00","datePublished":"2025-07-14T00:00:00+08:00","description":"Database Schema (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );","headline":"Using AI to Build SQL Queries","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ai-sql-en"},"url":"https://lzwjava.github.io/ai-sql-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Using AI to Build SQL Queries | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2025-07-14-ai-sql-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2025-07-14-ai-sql-en.md</span> -->
+      
+
+      <!-- <span>2025-07-14-ai-sql-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ai-sql-en" selected>English</option>
+        <option value="/ai-sql-zh" >中文</option>
+        <option value="/ai-sql-ja" >日本語</option>
+        <option value="/ai-sql-es" >Español</option>
+        <option value="/ai-sql-hi" >हिंदी</option>
+        <option value="/ai-sql-fr" >Français</option>
+        <option value="/ai-sql-de" >Deutsch</option>
+        <option value="/ai-sql-ar" >العربية</option>
+        <option value="/ai-sql-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><strong>Database Schema (PostgreSQL):</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">username</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">password_hash</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">first_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">last_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">date_of_birth</span> <span class="nb">DATE</span><span class="p">,</span>
+    <span class="n">gender</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">phone_number</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">address</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">city</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="k">state</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">country</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">zip_code</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">created_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">updated_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">last_login</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">is_active</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span><span class="p">,</span>
+    <span class="k">role</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">profile_picture_url</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">bio</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">failed_login_attempts</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">account_balance</span> <span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">.</span><span class="mi">00</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>above is postgre database, below is table definition. here is natural language query instructions.</p>
+
+<p>I want to get some users who’s firstname is andy, created_ at around the day last month, and who are 20 years old as of 2025, and whose last_login like recent week, give me the sql to query such users</p>
+
+<hr />
+
+<p><strong>Generated SQL Query:</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">users</span>
+<span class="k">WHERE</span> <span class="n">first_name</span> <span class="k">ILIKE</span> <span class="s1">'andy'</span>
+  <span class="k">AND</span> <span class="k">CAST</span><span class="p">(</span><span class="n">created_at</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="k">BETWEEN</span> 
+      <span class="p">(</span><span class="k">CURRENT_DATE</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 MONTH'</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 DAY'</span><span class="p">)</span> 
+      <span class="k">AND</span> 
+      <span class="p">(</span><span class="k">CURRENT_DATE</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 MONTH'</span> <span class="o">+</span> <span class="n">INTERVAL</span> <span class="s1">'1 DAY'</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="nb">YEAR</span> <span class="k">FROM</span> <span class="n">AGE</span><span class="p">(</span><span class="n">date_of_birth</span><span class="p">))</span> <span class="o">=</span> <span class="mi">20</span>
+  <span class="k">AND</span> <span class="n">last_login</span> <span class="o">&gt;=</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'7 DAYS'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>Below is a PostgreSQL table definition for a <code class="language-plaintext highlighter-rouge">conversations</code> table that could be used to store user interactions with an AI system like Grok. The table is designed to track conversations, including the user involved, the conversation content, timestamps, and relevant metadata.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">conversations</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">user_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">conversation_type</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">'chat'</span><span class="p">,</span>
+    <span class="n">started_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">ended_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">status</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">'active'</span><span class="p">,</span>
+    <span class="n">message_count</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">last_message_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">is_archived</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span><span class="p">,</span>
+    <span class="n">ai_model_version</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">total_tokens_used</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">created_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">updated_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="explanation">Explanation:</h3>
+<ul>
+  <li><strong>id</strong>: Unique identifier for each conversation.</li>
+  <li><strong>user_id</strong>: References the <code class="language-plaintext highlighter-rouge">users</code> table to link the conversation to a specific user.</li>
+  <li><strong>title</strong>: Optional title for the conversation (e.g., user-defined or auto-generated summary).</li>
+  <li><strong>conversation_type</strong>: Indicates the type of conversation (e.g., ‘chat’, ‘query’, ‘voice’).</li>
+  <li><strong>started_at</strong>: Timestamp when the conversation began.</li>
+  <li><strong>ended_at</strong>: Timestamp when the conversation was closed (nullable if ongoing).</li>
+  <li><strong>status</strong>: Tracks the conversation state (e.g., ‘active’, ‘completed’, ‘paused’).</li>
+  <li><strong>message_count</strong>: Tracks the number of messages exchanged in the conversation.</li>
+  <li><strong>last_message_at</strong>: Timestamp of the most recent message.</li>
+  <li><strong>is_archived</strong>: Boolean to indicate if the conversation is archived.</li>
+  <li><strong>ai_model_version</strong>: Stores the version of the AI model used (e.g., ‘Grok 3’).</li>
+  <li><strong>total_tokens_used</strong>: Tracks token usage for the conversation (useful for API billing or analytics).</li>
+  <li><strong>created_at</strong> and <strong>updated_at</strong>: Timestamps for when the conversation record was created and last updated.</li>
+  <li><strong>FOREIGN KEY</strong>: Ensures referential integrity with the <code class="language-plaintext highlighter-rouge">users</code> table, with <code class="language-plaintext highlighter-rouge">ON DELETE CASCADE</code> to remove conversations if the associated user is deleted.</li>
+</ul>
+
+<p>This table is designed to be flexible and can be extended based on specific needs, such as storing individual messages in a separate <code class="language-plaintext highlighter-rouge">messages</code> table or adding fields for sentiment analysis or conversation tags. Let me know if you need a related table (e.g., for messages) or a query to interact with this table!</p>
+
+<hr />
+
+<p>To enable a frontend where users can query their own conversations using natural language (e.g., “give me my latest 5 conversations” or “conversations whose title has word about java”), you need to ensure the SQL query restricts results to the authenticated user’s conversations. This involves incorporating the user’s identity (e.g., <code class="language-plaintext highlighter-rouge">user_id</code>) into the query and translating the natural language into SQL conditions. Below are prompts and corresponding SQL queries for the <code class="language-plaintext highlighter-rouge">conversations</code> table, ensuring users can only access their own data.</p>
+
+<h3 id="key-considerations">Key Considerations</h3>
+<ul>
+  <li><strong>User Authentication</strong>: The frontend must pass the authenticated <code class="language-plaintext highlighter-rouge">user_id</code> to the backend to filter conversations.</li>
+  <li><strong>Natural Language Parsing</strong>: The natural language input is parsed to identify key conditions (e.g., “latest 5” or “title has word java”).</li>
+  <li><strong>Security</strong>: Always filter by <code class="language-plaintext highlighter-rouge">user_id</code> to prevent users from accessing others’ conversations.</li>
+  <li><strong>Table Reference</strong>: Using the <code class="language-plaintext highlighter-rouge">conversations</code> table defined earlier.</li>
+</ul>
+
+<h3 id="natural-language-prompts-and-sql-queries">Natural Language Prompts and SQL Queries</h3>
+
+<h4 id="prompt-1-give-me-my-latest-5-conversations">Prompt 1: “Give me my latest 5 conversations”</h4>
+<p><strong>Parsed Requirements</strong>:</p>
+<ul>
+  <li>Filter conversations by the authenticated user’s <code class="language-plaintext highlighter-rouge">user_id</code>.</li>
+  <li>Order by <code class="language-plaintext highlighter-rouge">started_at</code> (or <code class="language-plaintext highlighter-rouge">last_message_at</code> for recency) in descending order.</li>
+  <li>Limit to 5 results.</li>
+</ul>
+
+<p><strong>SQL Query</strong>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">started_at</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:authenticated_user_id</code> is a placeholder for the logged-in user’s ID, passed securely from the frontend/backend.</li>
+  <li><code class="language-plaintext highlighter-rouge">started_at DESC</code> ensures the most recent conversations are returned.</li>
+  <li><code class="language-plaintext highlighter-rouge">LIMIT 5</code> restricts the output to 5 conversations.</li>
+</ul>
+
+<h4 id="prompt-2-conversations-whose-title-has-word-about-java">Prompt 2: “Conversations whose title has word about java”</h4>
+<p><strong>Parsed Requirements</strong>:</p>
+<ul>
+  <li>Filter conversations by the authenticated user’s <code class="language-plaintext highlighter-rouge">user_id</code>.</li>
+  <li>Search for conversations where the <code class="language-plaintext highlighter-rouge">title</code> contains “java” (case-insensitive).</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">ILIKE</code> for partial, case-insensitive matching in PostgreSQL.</li>
+</ul>
+
+<p><strong>SQL Query</strong>:</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+  <span class="k">AND</span> <span class="n">title</span> <span class="k">ILIKE</span> <span class="s1">'%java%'</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:authenticated_user_id</code> ensures only the user’s conversations are queried.</li>
+  <li><code class="language-plaintext highlighter-rouge">ILIKE '%java%'</code> matches titles containing “java” (e.g., “Java Tips”, “About Java Programming”).</li>
+</ul>
+
+<h3 id="implementation-notes-for-the-frontend">Implementation Notes for the Frontend</h3>
+<ol>
+  <li><strong>User Authentication</strong>:
+    <ul>
+      <li>The frontend must send the authenticated user’s ID (e.g., from a JWT token or session) to the backend API.</li>
+      <li>The backend should validate the <code class="language-plaintext highlighter-rouge">user_id</code> and use it in the <code class="language-plaintext highlighter-rouge">WHERE</code> clause to filter results.</li>
+    </ul>
+  </li>
+  <li><strong>Natural Language Processing</strong>:
+    <ul>
+      <li>Use a simple rule-based parser or an AI model (like Grok) to interpret the natural language query and extract:
+        <ul>
+          <li><strong>Intent</strong>: List conversations.</li>
+          <li><strong>Filters</strong>: Keywords (e.g., “java”), sorting (e.g., “latest”), or limits (e.g., “5”).</li>
+        </ul>
+      </li>
+      <li>For example, map “latest 5” to <code class="language-plaintext highlighter-rouge">ORDER BY started_at DESC LIMIT 5</code> and “title has word java” to <code class="language-plaintext highlighter-rouge">title ILIKE '%java%'</code>.</li>
+    </ul>
+  </li>
+  <li><strong>API Design</strong>:
+    <ul>
+      <li>Create an endpoint (e.g., <code class="language-plaintext highlighter-rouge">/api/conversations</code>) that accepts:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">user_id</code>: From the authenticated session.</li>
+          <li><code class="language-plaintext highlighter-rouge">query</code>: The natural language input or structured parameters (e.g., <code class="language-plaintext highlighter-rouge">{ filter: "title contains java" }</code>).</li>
+        </ul>
+      </li>
+      <li>The backend translates the query into SQL, ensuring <code class="language-plaintext highlighter-rouge">user_id</code> is always included in the <code class="language-plaintext highlighter-rouge">WHERE</code> clause.</li>
+    </ul>
+  </li>
+  <li><strong>Security</strong>:
+    <ul>
+      <li>Never allow users to directly input SQL or modify the <code class="language-plaintext highlighter-rouge">user_id</code> filter.</li>
+      <li>Use parameterized queries (e.g., <code class="language-plaintext highlighter-rouge">:authenticated_user_id</code>) to prevent SQL injection.</li>
+      <li>Validate inputs to avoid malicious patterns in <code class="language-plaintext highlighter-rouge">ILIKE</code> searches.</li>
+    </ul>
+  </li>
+  <li><strong>Frontend Display</strong>:
+    <ul>
+      <li>Return fields like <code class="language-plaintext highlighter-rouge">id</code>, <code class="language-plaintext highlighter-rouge">title</code>, <code class="language-plaintext highlighter-rouge">started_at</code>, <code class="language-plaintext highlighter-rouge">last_message_at</code>, and <code class="language-plaintext highlighter-rouge">status</code> to display a conversation list.</li>
+      <li>Allow sorting or filtering options in the UI (e.g., dropdowns for “latest” or text input for title search).</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="example-workflow">Example Workflow</h3>
+<ol>
+  <li>User logs in, and the frontend retrieves their <code class="language-plaintext highlighter-rouge">user_id</code> (e.g., <code class="language-plaintext highlighter-rouge">123</code>).</li>
+  <li>User types “give me my latest 5 conversations” in a search bar.</li>
+  <li>Frontend sends a request to the backend: <code class="language-plaintext highlighter-rouge">/api/conversations?user_id=123&amp;query=latest 5</code>.</li>
+  <li>Backend parses the query, generates the SQL:
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">started_at</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>Backend returns the results as JSON, and the frontend displays the conversations.</li>
+</ol>
+
+<h3 id="additional-notes">Additional Notes</h3>
+<ul>
+  <li>If <code class="language-plaintext highlighter-rouge">title</code> is nullable, add <code class="language-plaintext highlighter-rouge">AND title IS NOT NULL</code> to the second query to avoid matching null titles.</li>
+  <li>For more complex queries (e.g., “conversations about java from last week”), combine conditions:
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+  <span class="k">AND</span> <span class="n">title</span> <span class="k">ILIKE</span> <span class="s1">'%java%'</span>
+  <span class="k">AND</span> <span class="n">started_at</span> <span class="o">&gt;=</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'7 DAYS'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>If you need a more advanced natural language parser, consider integrating an AI model (e.g., Grok via xAI’s API) to map complex queries to SQL. For API details, visit <a href="https://x.ai/api">xAI API</a>.</li>
+</ul>
+
+<p>Let me know if you need help with the frontend code, backend API setup, or additional query examples!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title># مقدمة إلى Redis</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>مقدمة إلى Redis | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="مقدمة إلى Redis" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="عند فتح موقع Redis الرسمي، الجملة الأولى تقول أن Redis هو نظام تخزين هياكل بيانات مفتوح المصدر يعتمد على الذاكرة، ويُستخدم عادةً كقاعدة بيانات وذاكرة تخزين مؤقت. Redis شائع الاستخدام." />
+<meta property="og:description" content="عند فتح موقع Redis الرسمي، الجملة الأولى تقول أن Redis هو نظام تخزين هياكل بيانات مفتوح المصدر يعتمد على الذاكرة، ويُستخدم عادةً كقاعدة بيانات وذاكرة تخزين مؤقت. Redis شائع الاستخدام." />
+<link rel="canonical" href="https://lzwjava.github.io/redis-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/redis-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="مقدمة إلى Redis" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-13T00:00:00+08:00","datePublished":"2021-03-13T00:00:00+08:00","description":"عند فتح موقع Redis الرسمي، الجملة الأولى تقول أن Redis هو نظام تخزين هياكل بيانات مفتوح المصدر يعتمد على الذاكرة، ويُستخدم عادةً كقاعدة بيانات وذاكرة تخزين مؤقت. Redis شائع الاستخدام.","headline":"مقدمة إلى Redis","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/redis-ar"},"url":"https://lzwjava.github.io/redis-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       # مقدمة إلى Redis | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2021-03-13-redis-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2021-03-13-redis-ar.md</span> -->
+      
+
+      <!-- <span>2021-03-13-redis-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/redis-en" >English</option>
+        <option value="/redis-zh" >中文</option>
+        <option value="/redis-ja" >日本語</option>
+        <option value="/redis-es" >Español</option>
+        <option value="/redis-hi" >हिंदी</option>
+        <option value="/redis-fr" >Français</option>
+        <option value="/redis-de" >Deutsch</option>
+        <option value="/redis-ar" selected>العربية</option>
+        <option value="/redis-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>عند فتح موقع Redis الرسمي، الجملة الأولى تقول أن Redis هو نظام تخزين هياكل بيانات مفتوح المصدر يعتمد على الذاكرة، ويُستخدم عادةً كقاعدة بيانات وذاكرة تخزين مؤقت. <code class="language-plaintext highlighter-rouge">Redis</code> شائع الاستخدام.</p>
+
+<h2 id="تثبيت-redis">تثبيت Redis</h2>
+
+<p>يمكنك تثبيت <code class="language-plaintext highlighter-rouge">Redis</code> من الموقع الرسمي. تمامًا مثل <code class="language-plaintext highlighter-rouge">SQLite</code>. بعد الانتهاء من التثبيت، كيف يمكن استخدام <code class="language-plaintext highlighter-rouge">Redis</code> في <code class="language-plaintext highlighter-rouge">Python</code>؟</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>redis
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> import redis
+<span class="o">&gt;&gt;&gt;</span> r <span class="o">=</span> redis.Redis<span class="o">(</span><span class="nv">host</span><span class="o">=</span><span class="s1">'localhost'</span>, <span class="nv">port</span><span class="o">=</span>6379, <span class="nv">db</span><span class="o">=</span>0<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> r.set<span class="o">(</span><span class="s1">'foo'</span>, <span class="s1">'bar'</span><span class="o">)</span>
+True
+<span class="o">&gt;&gt;&gt;</span> r.get<span class="o">(</span><span class="s1">'foo'</span><span class="o">)</span>
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<p>توثيق Python يقدم بعض الأمثلة. هنا ظهر شيء مثل <code class="language-plaintext highlighter-rouge">pip</code>. <code class="language-plaintext highlighter-rouge">pip</code> هو أداة إدارة الحزم. ما هي أداة إدارة الحزم؟ يمكنك الرجوع إلى فصل “تعرف على بيئة البرمجة” للاطلاع. <code class="language-plaintext highlighter-rouge">pip</code> بالنسبة لـ <code class="language-plaintext highlighter-rouge">python</code> يشبه <code class="language-plaintext highlighter-rouge">Homebrew</code> بالنسبة لنظام <code class="language-plaintext highlighter-rouge">macOS</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">pip</code> عادةً ما يكون مضمنًا عند تثبيت <code class="language-plaintext highlighter-rouge">Python</code>. إذا كان لديك العديد من إصدارات <code class="language-plaintext highlighter-rouge">Python</code> و <code class="language-plaintext highlighter-rouge">Pip</code> على جهازك، يمكنك إضافة السطرين التاليين إلى ملف <code class="language-plaintext highlighter-rouge">~/.bash_profile</code>:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">python</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/python3
+<span class="nb">alias </span><span class="nv">pip</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/pip3
+</code></pre></div></div>
+
+<p>المقصود هو تحديد إصدار معين من <code class="language-plaintext highlighter-rouge">python</code> و <code class="language-plaintext highlighter-rouge">pip</code>. إحدى الطرق للقيام بذلك هي استخدام <code class="language-plaintext highlighter-rouge">Homebrew</code> للتثبيت. كما يمكن أيضًا بناء التثبيت من الكود المصدري.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+make <span class="nb">test
+</span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-server
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># oO0OoO0OoO0Oo Redis يبدأ التشغيل oO0OoO0OoO0Oo</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># إصدار Redis=6.2.1، بت=64، commit=00000000، معدل=0، pid=87684، بدأ للتو</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># تحذير: لم يتم تحديد ملف تكوين، سيتم استخدام التكوين الافتراضي. لتحديد ملف تكوين، استخدم redis-server /path/to/redis.conf</span>
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> تم زيادة الحد الأقصى لعدد الملفات المفتوحة إلى 10032 <span class="o">(</span>كان مضبوطًا في الأصل على 4864<span class="o">)</span><span class="nb">.</span>
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> الساعة الأحادية: POSIX clock_gettime
+...
+Redis 6.2.1 <span class="o">(</span>00000000/0<span class="o">)</span> 64 بت
+...
+87684:M 10 Mar 2021 14:46:06.058 <span class="c"># تم تهيئة الخادم</span>
+87684:M 10 Mar 2021 14:46:06.058 <span class="k">*</span> جاهز لقبول الاتصالات
+</code></pre></div></div>
+
+<p>هنا مقتطف صغير من المحتوى. يمكننا أن نرى أنه تم التثبيت بنجاح. رقم الإصدار <code class="language-plaintext highlighter-rouge">6.2.1</code>، وهو الأحدث على الموقع الرسمي. افتح نافذة طرفية أخرى. يمكنك تجربة اللعب قليلاً:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-cli
+127.0.0.1:6379&gt; <span class="nb">set </span>a 2
+OK
+127.0.0.1:6379&gt; get a
+<span class="s2">"2"</span>
+</code></pre></div></div>
+
+<p>قم بتشغيل الكود التالي.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">bar</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>الإخراج:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python fib_redis.py
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<h2 id="مثال-على-التخزين-المؤقت-باستخدام-redis">مثال على التخزين المؤقت باستخدام Redis</h2>
+
+<p>لتنفيذ متسلسلة فيبوناتشي باستخدام <code class="language-plaintext highlighter-rouge">Redis</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span>
+    <span class="n">res_n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">res_n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res_n</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>بهذا تكون قد انتهيت! 🎉</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

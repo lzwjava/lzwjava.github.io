@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Intégration du SDK Ping++ avec le Framework CodeIgniter</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Intégration du SDK Ping++ avec le Framework CodeIgniter | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Intégration du SDK Ping++ avec le Framework CodeIgniter" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Voici un exemple complet, étape par étape, de l’intégration de Pingpp (Ping++), un SDK de traitement des paiements, dans une application PHP en utilisant le framework CodeIgniter, basé sur la classe BaseController fournie. Ce guide suppose que vous avez une configuration de base de CodeIgniter et se concentre sur l’intégration de Pingpp pour le traitement des paiements, comme permettre aux utilisateurs de payer via Alipay PC Direct (bien que vous puissiez l’adapter pour d’autres canaux)." />
+<meta property="og:description" content="Voici un exemple complet, étape par étape, de l’intégration de Pingpp (Ping++), un SDK de traitement des paiements, dans une application PHP en utilisant le framework CodeIgniter, basé sur la classe BaseController fournie. Ce guide suppose que vous avez une configuration de base de CodeIgniter et se concentre sur l’intégration de Pingpp pour le traitement des paiements, comme permettre aux utilisateurs de payer via Alipay PC Direct (bien que vous puissiez l’adapter pour d’autres canaux)." />
+<link rel="canonical" href="https://lzwjava.github.io/pingpp-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/pingpp-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Intégration du SDK Ping++ avec le Framework CodeIgniter" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-03-07T00:00:00+08:00","datePublished":"2016-03-07T00:00:00+08:00","description":"Voici un exemple complet, étape par étape, de l’intégration de Pingpp (Ping++), un SDK de traitement des paiements, dans une application PHP en utilisant le framework CodeIgniter, basé sur la classe BaseController fournie. Ce guide suppose que vous avez une configuration de base de CodeIgniter et se concentre sur l’intégration de Pingpp pour le traitement des paiements, comme permettre aux utilisateurs de payer via Alipay PC Direct (bien que vous puissiez l’adapter pour d’autres canaux).","headline":"Intégration du SDK Ping++ avec le Framework CodeIgniter","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pingpp-fr"},"url":"https://lzwjava.github.io/pingpp-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Intégration du SDK Ping++ avec le Framework CodeIgniter | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2016-03-07-pingpp-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2016-03-07-pingpp-fr.md</span> -->
+      
+
+      <!-- <span>2016-03-07-pingpp-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pingpp-en" >English</option>
+        <option value="/pingpp-zh" >中文</option>
+        <option value="/pingpp-ja" >日本語</option>
+        <option value="/pingpp-es" >Español</option>
+        <option value="/pingpp-hi" >हिंदी</option>
+        <option value="/pingpp-fr" selected>Français</option>
+        <option value="/pingpp-de" >Deutsch</option>
+        <option value="/pingpp-ar" >العربية</option>
+        <option value="/pingpp-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Voici un exemple complet, étape par étape, de l’intégration de <strong>Pingpp</strong> (Ping++), un SDK de traitement des paiements, dans une application PHP en utilisant le framework CodeIgniter, basé sur la classe <code class="language-plaintext highlighter-rouge">BaseController</code> fournie. Ce guide suppose que vous avez une configuration de base de CodeIgniter et se concentre sur l’intégration de Pingpp pour le traitement des paiements, comme permettre aux utilisateurs de payer via Alipay PC Direct (bien que vous puissiez l’adapter pour d’autres canaux).</p>
+
+<hr />
+
+<h3 id="prérequis">Prérequis</h3>
+<ol>
+  <li><strong>Compte Pingpp</strong> : Inscrivez-vous sur <a href="https://www.pingxx.com/">Ping++</a> et obtenez votre <strong>clé API</strong> et votre <strong>ID d’application</strong>. Vous aurez une clé de test (<code class="language-plaintext highlighter-rouge">sk_test_...</code>) pour le développement et une clé de production (<code class="language-plaintext highlighter-rouge">sk_live_...</code>).</li>
+  <li><strong>SDK PHP Pingpp</strong> : Installez le SDK PHP Pingpp via Composer :
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require pingplusplus/pingpp-php
+</code></pre></div>    </div>
+    <p>Assurez-vous que le SDK est chargé automatiquement dans votre application CodeIgniter (par exemple, placez-le dans <code class="language-plaintext highlighter-rouge">application/libraries</code> ou configurez le chargement automatique de Composer).</p>
+  </li>
+  <li><strong>Configuration CodeIgniter</strong> : Vous devez avoir une application CodeIgniter fonctionnelle avec un contrôleur et des modèles de base de données pour les utilisateurs et les charges.</li>
+</ol>
+
+<hr />
+
+<h3 id="intégration-étape-par-étape">Intégration Étape par Étape</h3>
+
+<h4 id="1-configurer-le-contrôleur">1. Configurer le Contrôleur</h4>
+<p>Créez un contrôleur (par exemple, <code class="language-plaintext highlighter-rouge">PaymentController.php</code>) qui étend un contrôleur de base similaire à <code class="language-plaintext highlighter-rouge">BaseController</code>. Configurez la clé API Pingpp dans le constructeur en fonction de votre environnement (développement ou production).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nb">defined</span><span class="p">(</span><span class="s1">'BASEPATH'</span><span class="p">)</span> <span class="k">OR</span> <span class="k">exit</span><span class="p">(</span><span class="s1">'No direct script access allowed'</span><span class="p">);</span>
+
+<span class="k">require_once</span> <span class="no">APPPATH</span> <span class="mf">.</span> <span class="s1">'/libraries/REST_Controller.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="no">APPPATH</span> <span class="mf">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span> <span class="c1">// Supposant le chargement automatique de Composer</span>
+
+<span class="kd">class</span> <span class="nc">PaymentController</span> <span class="kd">extends</span> <span class="nc">REST_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$userDao</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$chargeDao</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">__construct</span><span class="p">();</span>
+
+        <span class="c1">// Définir la clé API Pingpp en fonction de l'environnement</span>
+        <span class="nv">$isLocalDebug</span> <span class="o">=</span> <span class="no">ENVIRONMENT</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">;</span> <span class="c1">// Environnement CodeIgniter</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$isLocalDebug</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">\Pingpp\Pingpp</span><span class="o">::</span><span class="nf">setApiKey</span><span class="p">(</span><span class="s1">'sk_test_your_test_key_here'</span><span class="p">);</span> <span class="c1">// Remplacez par votre clé de test</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nc">\Pingpp\Pingpp</span><span class="o">::</span><span class="nf">setApiKey</span><span class="p">(</span><span class="s1">'sk_live_your_live_key_here'</span><span class="p">);</span> <span class="c1">// Remplacez par votre clé de production</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Charger les modèles</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">model</span><span class="p">(</span><span class="s1">'UserDao'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserDao</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">model</span><span class="p">(</span><span class="s1">'ChargeDao'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ChargeDao</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Remplacez <code class="language-plaintext highlighter-rouge">'sk_test_your_test_key_here'</code> et <code class="language-plaintext highlighter-rouge">'sk_live_your_live_key_here'</code> par vos clés API Pingpp réelles.</li>
+  <li>Assurez-vous que <code class="language-plaintext highlighter-rouge">UserDao</code> et <code class="language-plaintext highlighter-rouge">ChargeDao</code> sont implémentés pour gérer l’authentification des utilisateurs et le stockage des charges (voir Étape 2).</li>
+</ul>
+
+<h4 id="2-créer-les-modèles-de-support">2. Créer les Modèles de Support</h4>
+<p>Vous aurez besoin de modèles pour gérer les sessions utilisateur et stocker les détails des charges.</p>
+
+<p><strong>UserDao.php</strong> (exemple simplifié) :</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">extends</span> <span class="nc">CI_Model</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">findUserBySessionToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">db</span><span class="o">-&gt;</span><span class="nf">get_where</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'session_token'</span> <span class="o">=&gt;</span> <span class="nv">$token</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">row</span><span class="p">();</span> <span class="c1">// Retourne un objet utilisateur ou null</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>ChargeDao.php</strong> (exemple simplifié) :</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">ChargeDao</span> <span class="kd">extends</span> <span class="nc">CI_Model</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="nv">$userId</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'order_no'</span> <span class="o">=&gt;</span> <span class="nv">$orderNo</span><span class="p">,</span>
+            <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="nv">$amount</span><span class="p">,</span>
+            <span class="s1">'user_id'</span> <span class="o">=&gt;</span> <span class="nv">$userId</span><span class="p">,</span>
+            <span class="s1">'client_ip'</span> <span class="o">=&gt;</span> <span class="nv">$ipAddress</span><span class="p">,</span>
+            <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'pending'</span><span class="p">,</span>
+            <span class="s1">'created_at'</span> <span class="o">=&gt;</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">)</span>
+        <span class="p">];</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">db</span><span class="o">-&gt;</span><span class="nf">insert</span><span class="p">(</span><span class="s1">'charges'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Créez des tables de base de données correspondantes (<code class="language-plaintext highlighter-rouge">users</code> et <code class="language-plaintext highlighter-rouge">charges</code>) avec les champs appropriés.</p>
+
+<h4 id="3-implémenter-la-méthode-de-création-de-charge">3. Implémenter la Méthode de Création de Charge</h4>
+<p>Ajoutez une méthode pour créer une charge Pingpp et la renvoyer au client. Cet exemple utilise Alipay PC Direct comme canal de paiement.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">createChargeThenResponse</span><span class="p">(</span><span class="nv">$amount</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$metaData</span><span class="p">,</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Générer un numéro de commande unique</span>
+    <span class="nv">$orderNo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">generateOrderNo</span><span class="p">();</span>
+
+    <span class="c1">// Définir l'ID de l'application en fonction de l'environnement</span>
+    <span class="nv">$isLocalDebug</span> <span class="o">=</span> <span class="no">ENVIRONMENT</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">;</span>
+    <span class="nv">$appId</span> <span class="o">=</span> <span class="nv">$isLocalDebug</span> <span class="o">?</span> <span class="s1">'app_your_test_app_id'</span> <span class="o">:</span> <span class="s1">'app_your_live_app_id'</span><span class="p">;</span>
+
+    <span class="c1">// Obtenir l'adresse IP du client</span>
+    <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">input</span><span class="o">-&gt;</span><span class="nf">ip_address</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$ipAddress</span> <span class="o">===</span> <span class="s1">'::1'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Gérer le cas de débogage local</span>
+        <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="s1">'127.0.0.1'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Créer la charge</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nv">$charge</span> <span class="o">=</span> <span class="nc">\Pingpp\Charge</span><span class="o">::</span><span class="nf">create</span><span class="p">([</span>
+            <span class="s1">'order_no'</span> <span class="o">=&gt;</span> <span class="nv">$orderNo</span><span class="p">,</span>
+            <span class="s1">'app'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="nv">$appId</span><span class="p">],</span>
+            <span class="s1">'channel'</span> <span class="o">=&gt;</span> <span class="s1">'alipay_pc_direct'</span><span class="p">,</span> <span class="c1">// Changez ceci pour d'autres canaux (par exemple, 'wx' pour WeChat)</span>
+            <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="nv">$amount</span><span class="p">,</span> <span class="c1">// En centimes (par exemple, 1000 = 10 CNY)</span>
+            <span class="s1">'client_ip'</span> <span class="o">=&gt;</span> <span class="nv">$ipAddress</span><span class="p">,</span>
+            <span class="s1">'currency'</span> <span class="o">=&gt;</span> <span class="s1">'cny'</span><span class="p">,</span>
+            <span class="s1">'subject'</span> <span class="o">=&gt;</span> <span class="nv">$subject</span><span class="p">,</span>
+            <span class="s1">'body'</span> <span class="o">=&gt;</span> <span class="nv">$body</span><span class="p">,</span>
+            <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="nv">$metaData</span><span class="p">,</span>
+            <span class="s1">'extra'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'success_url'</span> <span class="o">=&gt;</span> <span class="s1">'http://yourdomain.com/payment/success'</span> <span class="c1">// Remplacez par votre URL de succès</span>
+            <span class="p">]</span>
+        <span class="p">]);</span>
+
+        <span class="c1">// Stocker les détails de la charge dans la base de données</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">);</span>
+
+        <span class="c1">// Retourner l'objet de charge en JSON</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">output</span>
+            <span class="o">-&gt;</span><span class="nf">set_status_header</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">set_content_type</span><span class="p">(</span><span class="s1">'application/json'</span><span class="p">,</span> <span class="s1">'utf-8'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">set_output</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">(</span><span class="nv">$charge</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Pingpp\Error\Base</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">log_message</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="s1">'Échec de la charge Pingpp : '</span> <span class="mf">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="s1">'La création du paiement a échoué'</span><span class="p">],</span> <span class="mi">500</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">function</span> <span class="n">generateOrderNo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">uniqid</span><span class="p">();</span> <span class="c1">// ID unique simple ; remplacez par un générateur plus robuste si nécessaire</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Remplacez <code class="language-plaintext highlighter-rouge">'app_your_test_app_id'</code> et <code class="language-plaintext highlighter-rouge">'app_your_live_app_id'</code> par vos IDs d’application Pingpp.</li>
+  <li>Ajustez <code class="language-plaintext highlighter-rouge">'success_url'</code> à l’URL de la page de succès de votre application.</li>
+</ul>
+
+<h4 id="4-créer-une-méthode-de-caisse">4. Créer une Méthode de Caisse</h4>
+<p>Ajoutez une méthode publique pour gérer le passage en caisse de l’utilisateur, en appelant la méthode de création de charge.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">checkout_post</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Vérifier si l'utilisateur est connecté</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getSessionUser</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="s1">'Utilisateur non connecté'</span><span class="p">],</span> <span class="mi">401</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Exemple de détails de commande</span>
+    <span class="nv">$amount</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// 10 CNY (exemple ; calculez dynamiquement dans une application réelle)</span>
+    <span class="nv">$subject</span> <span class="o">=</span> <span class="s1">'Paiement de commande'</span><span class="p">;</span>
+    <span class="nv">$body</span> <span class="o">=</span> <span class="s1">'Paiement pour la commande #123'</span><span class="p">;</span>
+    <span class="nv">$metaData</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'order_id'</span> <span class="o">=&gt;</span> <span class="s1">'123'</span><span class="p">];</span> <span class="c1">// Attacher des données spécifiques à la commande</span>
+
+    <span class="c1">// Créer une charge et répondre</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">createChargeThenResponse</span><span class="p">(</span><span class="nv">$amount</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$metaData</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">function</span> <span class="n">getSessionUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$token</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">input</span><span class="o">-&gt;</span><span class="nf">get_request_header</span><span class="p">(</span><span class="s1">'Authorization'</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">);</span> <span class="c1">// Ajustez en fonction de votre méthode d'authentification</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userDao</span><span class="o">-&gt;</span><span class="nf">findUserBySessionToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="5-gérer-la-réponse-du-client">5. Gérer la Réponse du Client</h4>
+<p>La méthode <code class="language-plaintext highlighter-rouge">createChargeThenResponse</code> retourne un objet JSON <code class="language-plaintext highlighter-rouge">charge</code>. Pour <code class="language-plaintext highlighter-rouge">alipay_pc_direct</code>, il inclut un champ <code class="language-plaintext highlighter-rouge">credential</code> avec une URL de paiement. Gérez cela côté client (par exemple, avec JavaScript).</p>
+
+<p><strong>Exemple (JavaScript Frontend) :</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/payment/checkout</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">your-session-token</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">charge</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span> <span class="o">&amp;&amp;</span> <span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span><span class="p">.</span><span class="nx">alipay_pc_direct</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span><span class="p">.</span><span class="nx">alipay_pc_direct</span><span class="p">;</span> <span class="c1">// Rediriger vers Alipay</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erreur de paiement :</span><span class="dl">'</span><span class="p">,</span> <span class="nx">charge</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Erreur :</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h4 id="6-page-de-succès">6. Page de Succès</h4>
+<p>Créez une page de succès (par exemple, <code class="language-plaintext highlighter-rouge">payment/success</code>) pour afficher une confirmation après le paiement. Mettez à jour le statut de la commande manuellement ici si nécessaire, bien que les webhooks soient recommandés pour la fiabilité (voir Étape 7).</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">success_get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// Optionnellement vérifier le statut du paiement ici</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">view</span><span class="p">(</span><span class="s1">'payment_success'</span><span class="p">);</span> <span class="c1">// Charger une vue</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="7-optionnel-gérer-les-webhooks">7. (Optionnel) Gérer les Webhooks</h4>
+<p>Pingpp envoie des mises à jour de statut de paiement asynchrones via des webhooks. Configurez un point de terminaison pour recevoir ces notifications et mettre à jour votre base de données.</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">webhook_post</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$rawData</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+    <span class="nv">$event</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$rawData</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$event</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'charge.succeeded'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$charge</span> <span class="o">=</span> <span class="nv">$event</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">];</span>
+        <span class="nv">$orderNo</span> <span class="o">=</span> <span class="nv">$charge</span><span class="p">[</span><span class="s1">'order_no'</span><span class="p">];</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span><span class="o">-&gt;</span><span class="nf">updateStatus</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="s1">'paid'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'ok'</span><span class="p">],</span> <span class="mi">200</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Ajoutez une méthode <code class="language-plaintext highlighter-rouge">updateStatus</code> à <code class="language-plaintext highlighter-rouge">ChargeDao</code> pour mettre à jour le statut de la charge.</li>
+  <li>Configurez votre URL de webhook dans le tableau de bord Pingpp (par exemple, <code class="language-plaintext highlighter-rouge">http://yourdomain.com/payment/webhook</code>).</li>
+</ul>
+
+<hr />
+
+<h3 id="exemple-dutilisation-complète">Exemple d’Utilisation Complète</h3>
+<ol>
+  <li><strong>Action de l’Utilisateur</strong> : Un utilisateur se connecte et initie un passage en caisse via une requête POST à <code class="language-plaintext highlighter-rouge">/payment/checkout</code>.</li>
+  <li><strong>Réponse du Serveur</strong> : Le serveur crée une charge et retourne un objet JSON avec les détails de paiement.</li>
+  <li><strong>Gestion Client</strong> : Le frontend redirige l’utilisateur vers la page de paiement Alipay.</li>
+  <li><strong>Achèvement du Paiement</strong> : Après le paiement, l’utilisateur est redirigé vers l’URL de succès.</li>
+  <li><strong>Mise à Jour du Webhook</strong> : Pingpp notifie votre point de terminaison de webhook, et vous mettez à jour le statut de la charge.</li>
+</ol>
+
+<hr />
+
+<h3 id="notes-supplémentaires">Notes Supplémentaires</h3>
+<ul>
+  <li><strong>Canaux de Paiement</strong> : Remplacez <code class="language-plaintext highlighter-rouge">'alipay_pc_direct'</code> par d’autres canaux (par exemple, <code class="language-plaintext highlighter-rouge">'wx'</code> pour WeChat) selon les besoins. Consultez la <a href="https://www.pingxx.com/api">documentation Pingpp</a> pour les paramètres <code class="language-plaintext highlighter-rouge">extra</code> spécifiques au canal.</li>
+  <li><strong>Gestion des Erreurs</strong> : Améliorez la gestion des erreurs pour la production (par exemple, logique de nouvelle tentative, messages d’erreur détaillés).</li>
+  <li><strong>Sécurité</strong> : Validez les entrées utilisateur (<code class="language-plaintext highlighter-rouge">$amount</code>, etc.) et sécurisez vos points de terminaison API.</li>
+</ul>
+
+<p>Cet exemple fournit une base solide pour intégrer Pingpp dans votre application CodeIgniter, adaptable à divers cas d’utilisation comme le commerce électronique ou les dons.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

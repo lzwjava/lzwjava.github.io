@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>自动新闻摘要机器人</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>自动新闻摘要机器人 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="自动新闻摘要机器人" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API抓取并汇总来自Hacker News、GitHub Trending和《纽约时报》（中文版）的热门新闻，通过Telegram发送简洁的每日简报，并通过GitHub Actions工作流实现自动化执行。是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。" />
+<meta property="og:description" content="这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API抓取并汇总来自Hacker News、GitHub Trending和《纽约时报》（中文版）的热门新闻，通过Telegram发送简洁的每日简报，并通过GitHub Actions工作流实现自动化执行。是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。" />
+<link rel="canonical" href="https://lzwjava.github.io/news-bot-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/news-bot-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="自动新闻摘要机器人" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-07T00:00:00+08:00","datePublished":"2025-06-07T00:00:00+08:00","description":"这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API抓取并汇总来自Hacker News、GitHub Trending和《纽约时报》（中文版）的热门新闻，通过Telegram发送简洁的每日简报，并通过GitHub Actions工作流实现自动化执行。是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。","headline":"自动新闻摘要机器人","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/news-bot-zh"},"url":"https://lzwjava.github.io/news-bot-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       自动新闻摘要机器人 | 原创，AI翻译
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2025-06-07-news-bot-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/zh/2025-06-07-news-bot-zh.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2025-06-07-news-bot-zh.md</span> -->
+      
+
+      <!-- <span>2025-06-07-news-bot-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/news-bot-en" >English</option>
+        <option value="/news-bot-zh" selected>中文</option>
+        <option value="/news-bot-ja" >日本語</option>
+        <option value="/news-bot-es" >Español</option>
+        <option value="/news-bot-hi" >हिंदी</option>
+        <option value="/news-bot-fr" >Français</option>
+        <option value="/news-bot-de" >Deutsch</option>
+        <option value="/news-bot-ar" >العربية</option>
+        <option value="/news-bot-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>这篇帖子展示了一个基于Python的新闻机器人，它利用Mistral API抓取并汇总来自Hacker News、GitHub Trending和《纽约时报》（中文版）的热门新闻，通过Telegram发送简洁的每日简报，并通过GitHub Actions工作流实现自动化执行。是轻松跟进科技和全球新闻的理想工具。以下是每日新闻摘要的示例。</p>
+
+<hr />
+
+<p>每日新闻摘要 - 2025年6月7日</p>
+
+<h2 id="hacker-news">Hacker News</h2>
+<ol>
+  <li>
+    <p>网页显示Facebook与当前浏览器不兼容，建议更新至支持的浏览器以继续使用服务。</p>
+  </li>
+  <li>
+    <p>卢旺达的仇恨电台通过使用暗语煽动听众杀害图西族人，引发了种族灭绝。</p>
+  </li>
+  <li>
+    <p>Railway推出Railpack取代Nixpacks，旨在解决困扰20万用户的可扩展性和依赖管理问题，以更顺畅地过渡至支持1亿用户。</p>
+  </li>
+  <li>
+    <p>文章深入探讨了Radiant AI的遗产，这是一个曾承诺用于《上古卷轴IV：湮没》但最终大部分被删减的有争议且雄心勃勃的AI系统。</p>
+  </li>
+  <li>
+    <p>《华盛顿邮报》建议用户通过停用Chrome和删除Meta应用来增强隐私保护。</p>
+  </li>
+</ol>
+
+<h2 id="github-trending">GitHub Trending</h2>
+<ol>
+  <li>
+    <p>Cognee通过可扩展、模块化的ECL管道，仅用五行代码即可为AI代理创建动态记忆。</p>
+  </li>
+  <li>
+    <p>NetBird结合了基于WireGuard的点对点覆盖网络与集中化、精细的访问控制，简化了安全私密网络的建设。</p>
+  </li>
+  <li>
+    <p>NoteGen是一款AI驱动的跨平台Markdown笔记应用，整合录音与书写功能，将碎片化知识组织成连贯的笔记。</p>
+  </li>
+  <li>
+    <p>Scrapy是一个快速、高级的Python网页爬取和抓取框架，专为从网站提取结构化数据而设计。</p>
+  </li>
+  <li>
+    <p>React Bits提供了一系列免费、开源的动画化、交互式且可定制的React组件，用于增强网页界面。</p>
+  </li>
+</ol>
+
+<h2 id="纽约时报中文版">《纽约时报》（中文版）</h2>
+<ol>
+  <li>
+    <p>中国国家主席习近平与美国总统特朗普通话后，双方同意进一步开展贸易谈判，以缓解关税和稀土供应方面的紧张局势。</p>
+  </li>
+  <li>
+    <p>中国近期的争议凸显了公众对社会不平等的普遍不满，认为成功往往取决于关系而非能力。</p>
+  </li>
+  <li>
+    <p>中国加强对稀土金属走私的打击，导致全球行业供应严重中断，北京正收紧控制以将这些关键资源作为战略工具。</p>
+  </li>
+  <li>
+    <p>特朗普与马斯克之间不断升级的冲突可能产生重大影响，双方都在利用自身的影响力和资源对抗对方。</p>
+  </li>
+  <li>
+    <p>中国暂停出口七种稀土金属及其磁铁，导致美国和欧洲工厂可能因严重短缺而关闭。</p>
+  </li>
+</ol>
+
+<hr />
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">re</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="nf">load_dotenv</span><span class="p">()</span>
+
+<span class="n">TELEGRAM_BOT_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_CHAT_ID</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">610574272</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">4096</span>
+
+<span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">TELEGRAM_BOT_TOKEN</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误：未设置TELEGRAM_BOT_API_KEY或TELEGRAM_CHAT_ID。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">TELEGRAM_BOT_TOKEN</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="c1"># 移除消息中的所有星号（用于加粗/斜体）
+</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># 移除消息中的链接
+</span>    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">message_no_links</span>
+    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="nf">rfind</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">split_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">split_idx</span> <span class="o">&lt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">split_idx</span> <span class="o">=</span> <span class="n">TELEGRAM_MAX_LENGTH</span>
+        <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="n">split_idx</span><span class="p">:]</span>
+    <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功发送Telegram消息部分（</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s">字符）。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">发送Telegram消息时出错：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">success</span>
+
+<span class="k">def</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">从以下URL获取HTML内容：</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功从以下URL获取HTML内容：</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">无法获取URL：</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">extract_hacker_news_links</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">.titleline &gt; a</span><span class="sh">'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">url</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">item?id=</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://news.ycombinator.com/</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span>
+        <span class="k">if</span> <span class="n">url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+            <span class="n">seen</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">从Hacker News提取了</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s">个链接。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="k">def</span> <span class="nf">extract_github_trending</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">article.Box-row h2 a</span><span class="sh">'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://github.com</span><span class="si">{</span><span class="n">repo</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s+</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">,</span> <span class="n">repo</span><span class="p">.</span><span class="n">text</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">and</span> <span class="n">url</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">从GitHub提取了</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s">个热门仓库。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-small-latest</span><span class="sh">"</span><span class="p">):</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">MISTRAL_API_KEY</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误：未设置MISTRAL_API_KEY环境变量。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">使用模型调用Mistral API：</span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">发送的提示：</span><span class="si">{</span><span class="n">prompt</span><span class="p">[</span><span class="si">:</span><span class="mi">1000</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API响应：</span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API内容：</span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">content</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API错误：无效的响应格式：</span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API错误：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="sh">"</span><span class="s">response</span><span class="sh">"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应状态码：</span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应内容：</span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">fetch_and_summarize</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fallback_title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">正在摘要：</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">html</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">无法获取内容。</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">}</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span> <span class="nf">else </span><span class="p">(</span><span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">)</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">p</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="nf">get_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">text_content</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">text_content</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+        <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text_content</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">title</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span> <span class="o">+</span> <span class="sh">"</span><span class="s">...</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">MISTRAL_API_KEY</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未设置MISTRAL_API_KEY。返回前15个词作为摘要。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sh">"</span><span class="s">如果原文是中文，请用英文摘要。</span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">用清晰简洁的英文摘要以下网页内容。</span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">聚焦于最重要的一个观点或见解。</span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">摘要应约300字符。</span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">仅输出摘要句子：</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="s">标题：</span><span class="si">{</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="sh">''</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="sh">'</span><span class="s">原文链接：</span><span class="sh">'</span> <span class="o">+</span> <span class="n">url</span> <span class="k">if</span> <span class="n">url</span> <span class="k">else</span> <span class="sh">''</span><span class="si">}</span><span class="sh">"</span>
+    <span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">summary</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="c1"># 最后截断至300字符
+</span>    <span class="k">return</span> <span class="n">summary</span><span class="p">.</span><span class="nf">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">source_name</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">source_name</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">summaries</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">未找到项目。</span><span class="se">\n\n</span><span class="sh">"</span>
+        <span class="k">return</span> <span class="n">text</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\r</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">summary</span><span class="p">)</span>
+        <span class="c1"># 最后将每个摘要截断至300字符
+</span>        <span class="n">summary</span> <span class="o">=</span> <span class="n">summary</span><span class="p">[:</span><span class="mi">300</span><span class="p">]</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">. </span><span class="si">{</span><span class="n">summary</span><span class="si">}</span><span class="se">\n\n</span><span class="sh">"</span>  <span class="c1"># 在摘要之间添加额外空行
+</span>    <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="k">return</span> <span class="n">text</span>
+
+<span class="c1"># --- 《纽约时报》（中文版）集成 ---
+</span>
+<span class="k">def</span> <span class="nf">extract_nytimes_links</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    从cn.nytimes.com主页提取链接。
+    仅包含以</span><span class="sh">'</span><span class="s">https://cn.nytimes.com/</span><span class="sh">'</span><span class="s">开头的链接。
+    </span><span class="sh">"""</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">,</span> <span class="n">href</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">url</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">https://cn.nytimes.com/</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
+                <span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+                <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">a</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+            <span class="p">})</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">从主页提取了</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s">个链接。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="k">def</span> <span class="nf">summarize_nytimes_article</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">html</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">无法获取内容。</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">}</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="c1"># 尝试提取文章主标题
+</span>    <span class="n">title_element</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select_one</span><span class="p">(</span><span class="sh">'</span><span class="s">.article-area .article-content .article-header header h1</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">title_element</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">title_element</span> <span class="nf">else </span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span> <span class="k">else</span> <span class="n">url</span><span class="p">)</span>
+    <span class="c1"># 提取文章正文
+</span>    <span class="n">article_area</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">section</span><span class="sh">'</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="sh">'</span><span class="s">article-body</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">article_area</span><span class="p">:</span>
+        <span class="n">article_text</span> <span class="o">=</span> <span class="n">article_area</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">article_text</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">article_text</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">article_text</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">article_text</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="n">strip</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">article_text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+        <span class="n">article_text</span> <span class="o">=</span> <span class="n">article_text</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">article_text</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">title</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># 检查--test参数
+</span>    <span class="n">is_test</span> <span class="o">=</span> <span class="sh">"</span><span class="s">--test</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span>
+
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">datetime</span><span class="p">.</span><span class="nf">now</span><span class="p">().</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">"</span><span class="s">%Y-%m-%d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">report</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">每日新闻摘要 - </span><span class="si">{</span><span class="n">today</span><span class="si">}</span><span class="se">\n\n</span><span class="sh">"</span>
+
+    <span class="k">if</span> <span class="n">is_test</span><span class="p">:</span>
+        <span class="c1"># 仅抓取一个链接并发送一个摘要（《纽约时报》中文版）
+</span>        <span class="n">ny_html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="sh">'</span><span class="s">https://m.cn.nytimes.com</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">ny_links</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ny_summaries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">ny_html</span><span class="p">:</span>
+            <span class="n">ny_links</span> <span class="o">=</span> <span class="nf">extract_nytimes_links</span><span class="p">(</span><span class="n">ny_html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ny_links</span><span class="p">:</span>
+                <span class="n">link</span> <span class="o">=</span> <span class="n">ny_links</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">summary</span> <span class="o">=</span> <span class="nf">summarize_nytimes_article</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">ny_summaries</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">=</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">ny_summaries</span><span class="p">,</span> <span class="sh">"</span><span class="s">《纽约时报》（中文版）</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ny_summaries</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">report</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">测试摘要成功发送至Telegram。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">发送测试摘要至Telegram失败。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未收集到新闻，未发送至Telegram。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># --- Hacker News ---
+</span>        <span class="n">hn_html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="sh">'</span><span class="s">https://news.ycombinator.com</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">hn_links</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">hn_summaries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">hn_html</span><span class="p">:</span>
+            <span class="n">hn_links</span> <span class="o">=</span> <span class="nf">extract_hacker_news_links</span><span class="p">(</span><span class="n">hn_html</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">hn_links</span><span class="p">:</span>
+                <span class="n">summary</span> <span class="o">=</span> <span class="nf">fetch_and_summarize</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">],</span> <span class="n">fallback_title</span><span class="o">=</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">hn_summaries</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">+=</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">hn_summaries</span><span class="p">,</span> <span class="sh">"</span><span class="s">Hacker News</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="c1"># --- GitHub Trending ---
+</span>        <span class="n">gh_html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="sh">'</span><span class="s">https://github.com/trending</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">gh_links</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">gh_summaries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">gh_html</span><span class="p">:</span>
+            <span class="n">gh_links</span> <span class="o">=</span> <span class="nf">extract_github_trending</span><span class="p">(</span><span class="n">gh_html</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">gh_links</span><span class="p">:</span>
+                <span class="n">summary</span> <span class="o">=</span> <span class="nf">fetch_and_summarize</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">],</span> <span class="n">fallback_title</span><span class="o">=</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">gh_summaries</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">+=</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">gh_summaries</span><span class="p">,</span> <span class="sh">"</span><span class="s">GitHub Trending</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="c1"># --- 《纽约时报》（中文版） ---
+</span>        <span class="n">ny_html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="sh">'</span><span class="s">https://m.cn.nytimes.com</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">ny_links</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">ny_summaries</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">ny_html</span><span class="p">:</span>
+            <span class="n">ny_links</span> <span class="o">=</span> <span class="nf">extract_nytimes_links</span><span class="p">(</span><span class="n">ny_html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">ny_links</span><span class="p">:</span>
+                <span class="n">summary</span> <span class="o">=</span> <span class="nf">summarize_nytimes_article</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">])</span>
+                <span class="n">ny_summaries</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">report</span> <span class="o">+=</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">ny_summaries</span><span class="p">,</span> <span class="sh">"</span><span class="s">《纽约时报》（中文版）</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nf">any</span><span class="p">([</span><span class="n">hn_summaries</span><span class="p">,</span> <span class="n">gh_summaries</span><span class="p">,</span> <span class="n">ny_summaries</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">report</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">报告超过</span><span class="si">{</span><span class="n">TELEGRAM_MAX_LENGTH</span><span class="si">}</span><span class="s">字符，将被分割为多条消息。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">report</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">每日新闻报告成功发送至Telegram。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">发送每日新闻报告至Telegram失败。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未收集到新闻，未发送至Telegram。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">新闻机器人</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># 每天北京时间上午9点（UTC凌晨1点）运行。</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>  <span class="c1"># 允许手动触发</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="c1"># 仅当两个文件在同一提交/推送中更改时触发</span>
+    <span class="c1"># 这需要下面的过滤作业来检查两个文件</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">scripts/nytimes/news_bot.py</span>
+      <span class="pi">-</span> <span class="s">.github/workflows/news.yml</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">news'</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">发送新闻</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">environment</span><span class="pi">:</span> <span class="s">github-pages</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">TELEGRAM_BOT_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">MISTRAL_API_KEY</span><span class="pi">:</span> <span class="s">$</span>    
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">检出仓库</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">设置Python 3.10.x</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.10.x"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">安装依赖</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.simple.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">运行新闻机器人脚本</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/nytimes/news_bot.py</span>
+              
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

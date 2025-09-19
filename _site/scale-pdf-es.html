@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Escalar contenido PDF para impresión</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Escalar contenido PDF para impresión | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Escalar contenido PDF para impresión" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Necesito imprimir documentos y he notado que el espacio en blanco alrededor del contenido suele ser demasiado grande, lo que desperdicia papel y hace que el texto parezca más pequeño de lo que debería. Este script ayuda a escalar automáticamente el contenido del PDF para que se ajuste mejor a la página, detectando el área del contenido y escalándola para llenar la página, respetando un pequeño margen." />
+<meta property="og:description" content="Necesito imprimir documentos y he notado que el espacio en blanco alrededor del contenido suele ser demasiado grande, lo que desperdicia papel y hace que el texto parezca más pequeño de lo que debería. Este script ayuda a escalar automáticamente el contenido del PDF para que se ajuste mejor a la página, detectando el área del contenido y escalándola para llenar la página, respetando un pequeño margen." />
+<link rel="canonical" href="https://lzwjava.github.io/scale-pdf-es" />
+<meta property="og:url" content="https://lzwjava.github.io/scale-pdf-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Escalar contenido PDF para impresión" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-18T00:00:00+08:00","datePublished":"2025-01-18T00:00:00+08:00","description":"Necesito imprimir documentos y he notado que el espacio en blanco alrededor del contenido suele ser demasiado grande, lo que desperdicia papel y hace que el texto parezca más pequeño de lo que debería. Este script ayuda a escalar automáticamente el contenido del PDF para que se ajuste mejor a la página, detectando el área del contenido y escalándola para llenar la página, respetando un pequeño margen.","headline":"Escalar contenido PDF para impresión","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/scale-pdf-es"},"url":"https://lzwjava.github.io/scale-pdf-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Escalar contenido PDF para impresión | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-01-18-scale-pdf-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-01-18-scale-pdf-es.md</span> -->
+      
+
+      <!-- <span>2025-01-18-scale-pdf-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/scale-pdf-en" >English</option>
+        <option value="/scale-pdf-zh" >中文</option>
+        <option value="/scale-pdf-ja" >日本語</option>
+        <option value="/scale-pdf-es" selected>Español</option>
+        <option value="/scale-pdf-hi" >हिंदी</option>
+        <option value="/scale-pdf-fr" >Français</option>
+        <option value="/scale-pdf-de" >Deutsch</option>
+        <option value="/scale-pdf-ar" >العربية</option>
+        <option value="/scale-pdf-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Necesito imprimir documentos y he notado que el espacio en blanco alrededor del contenido suele ser demasiado grande, lo que desperdicia papel y hace que el texto parezca más pequeño de lo que debería. Este script ayuda a escalar automáticamente el contenido del PDF para que se ajuste mejor a la página, detectando el área del contenido y escalándola para llenar la página, respetando un pequeño margen.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="n">pdf2image</span> <span class="kn">import</span> <span class="n">convert_from_path</span>
+
+<span class="n">MARGIN_PERCENT</span> <span class="o">=</span> <span class="mf">0.005</span>
+<span class="n">DPI</span> <span class="o">=</span> <span class="mi">72</span>
+
+<span class="k">def</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">pixeles</span><span class="p">,</span> <span class="n">dpi</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Convierte píxeles a puntos.</span><span class="sh">"""</span>
+    <span class="k">return</span> <span class="n">pixeles</span> <span class="o">*</span> <span class="mi">72</span> <span class="o">/</span> <span class="n">dpi</span>
+
+<span class="k">def</span> <span class="nf">obtener_dimensiones_imagen</span><span class="p">(</span><span class="n">imagen</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Obtiene las dimensiones de la imagen en píxeles y puntos.</span><span class="sh">"""</span>
+    <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span> <span class="o">=</span> <span class="n">imagen</span><span class="p">.</span><span class="n">size</span>
+    <span class="n">dpi</span> <span class="o">=</span> <span class="n">imagen</span><span class="p">.</span><span class="n">info</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">dpi</span><span class="sh">'</span><span class="p">,</span> <span class="p">(</span><span class="n">DPI</span><span class="p">,</span> <span class="n">DPI</span><span class="p">))</span>
+    <span class="n">ancho_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">ancho</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">alto_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">alto</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">ancho_puntos</span><span class="p">,</span> <span class="n">alto_puntos</span><span class="p">,</span> <span class="n">dpi</span>
+
+<span class="k">def</span> <span class="nf">analizar_espacio_blanco</span><span class="p">(</span><span class="n">imagen</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Analiza el espacio en blanco para encontrar el cuadro delimitador del contenido.</span><span class="sh">"""</span>
+    <span class="n">margen_izquierdo_px</span> <span class="o">=</span> <span class="n">ancho</span>
+    <span class="n">margen_derecho_px</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">margen_superior_px</span> <span class="o">=</span> <span class="n">alto</span>
+    <span class="n">margen_inferior_px</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">contenido_encontrado</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">ancho</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">alto</span><span class="p">):</span>
+            <span class="n">pixel</span> <span class="o">=</span> <span class="n">imagen</span><span class="p">.</span><span class="nf">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">pixel</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nf">any</span><span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">250</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">pixel</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">contenido_encontrado</span><span class="p">:</span>
+                        <span class="n">margen_izquierdo_px</span> <span class="o">=</span> <span class="n">x</span>
+                        <span class="n">margen_superior_px</span> <span class="o">=</span> <span class="n">y</span>
+                        <span class="n">contenido_encontrado</span> <span class="o">=</span> <span class="bp">True</span>
+                    <span class="n">margen_derecho_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">margen_derecho_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                    <span class="n">margen_inferior_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">margen_inferior_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">pixel</span> <span class="o">&lt;</span> <span class="mi">250</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">contenido_encontrado</span><span class="p">:</span>
+                    <span class="n">margen_izquierdo_px</span> <span class="o">=</span> <span class="n">x</span>
+                    <span class="n">margen_superior_px</span> <span class="o">=</span> <span class="n">y</span>
+                    <span class="n">contenido_encontrado</span> <span class="o">=</span> <span class="bp">True</span>
+                <span class="n">margen_derecho_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">margen_derecho_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                <span class="n">margen_inferior_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">margen_inferior_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">contenido_encontrado</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
+    
+    <span class="n">margen_derecho_px</span> <span class="o">=</span> <span class="n">ancho</span> <span class="o">-</span> <span class="n">margen_derecho_px</span>
+    <span class="n">margen_inferior_px</span> <span class="o">=</span> <span class="n">alto</span> <span class="o">-</span> <span class="n">margen_inferior_px</span>
+    <span class="k">return</span> <span class="n">margen_izquierdo_px</span><span class="p">,</span> <span class="n">margen_derecho_px</span><span class="p">,</span> <span class="n">margen_superior_px</span><span class="p">,</span> <span class="n">margen_inferior_px</span>
+
+<span class="k">def</span> <span class="nf">calcular_factor_escala</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Detecta las dimensiones de la primera página de un PDF, analiza el espacio en blanco,
+    y calcula el factor de escala basado en el contenido del PDF y las dimensiones objetivo A4 con márgenes.
+    Devuelve el factor de escala o None si ocurre un error.
+    </span><span class="sh">"""</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Calculando factor de escala para: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">imagenes</span> <span class="o">=</span> <span class="nf">convert_from_path</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">first_page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">last_page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">imagenes</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">  No se pudo convertir el PDF a imagen.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        
+        <span class="n">imagen</span> <span class="o">=</span> <span class="n">imagenes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">,</span> <span class="n">ancho_puntos</span><span class="p">,</span> <span class="n">alto_puntos</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="nf">obtener_dimensiones_imagen</span><span class="p">(</span><span class="n">imagen</span><span class="p">)</span>
+        
+        <span class="n">margenes</span> <span class="o">=</span> <span class="nf">analizar_espacio_blanco</span><span class="p">(</span><span class="n">imagen</span><span class="p">,</span> <span class="n">ancho</span><span class="p">,</span> <span class="n">alto</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">margenes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">  No se pudo determinar el cuadro delimitador del contenido.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">margen_izquierdo_puntos</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">margen_derecho_puntos</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">margen_superior_puntos</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">margen_inferior_puntos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">margen_izquierdo_px</span><span class="p">,</span> <span class="n">margen_derecho_px</span><span class="p">,</span> <span class="n">margen_superior_px</span><span class="p">,</span> <span class="n">margen_inferior_px</span> <span class="o">=</span> <span class="n">margenes</span>
+            <span class="n">ancho_contenido_px</span> <span class="o">=</span> <span class="n">margen_derecho_px</span> <span class="o">-</span> <span class="n">margen_izquierdo_px</span>
+            <span class="n">alto_contenido_px</span> <span class="o">=</span> <span class="n">margen_inferior_px</span> <span class="o">-</span> <span class="n">margen_superior_px</span>
+            
+            <span class="n">margen_izquierdo_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">margen_izquierdo_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">margen_derecho_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">margen_derecho_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">margen_superior_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">margen_superior_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">margen_inferior_puntos</span> <span class="o">=</span> <span class="nf">convertir_pixeles_a_puntos</span><span class="p">(</span><span class="n">margen_inferior_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Cuadro del contenido: izquierdo=</span><span class="si">{</span><span class="n">margen_izquierdo_px</span><span class="si">}</span><span class="s">, superior=</span><span class="si">{</span><span class="n">margen_superior_px</span><span class="si">}</span><span class="s">, derecho=</span><span class="si">{</span><span class="n">margen_derecho_px</span><span class="si">}</span><span class="s">, inferior=</span><span class="si">{</span><span class="n">margen_inferior_px</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Dimensiones del contenido (píxeles): ancho=</span><span class="si">{</span><span class="n">ancho_contenido_px</span><span class="si">}</span><span class="s">, alto=</span><span class="si">{</span><span class="n">alto_contenido_px</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Márgenes (puntos): izquierdo=</span><span class="si">{</span><span class="n">margen_izquierdo_puntos</span><span class="si">}</span><span class="s">, derecho=</span><span class="si">{</span><span class="n">margen_derecho_puntos</span><span class="si">}</span><span class="s">, superior=</span><span class="si">{</span><span class="n">margen_superior_puntos</span><span class="si">}</span><span class="s">, inferior=</span><span class="si">{</span><span class="n">margen_inferior_puntos</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Dimensiones detectadas: ancho=</span><span class="si">{</span><span class="n">ancho_puntos</span><span class="si">}</span><span class="s">, alto=</span><span class="si">{</span><span class="n">alto_puntos</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="n">margen_ancho_puntos</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">margen_izquierdo_puntos</span><span class="p">,</span> <span class="n">margen_derecho_puntos</span><span class="p">)</span>
+        <span class="n">margen_alto_puntos</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">margen_superior_puntos</span><span class="p">,</span> <span class="n">margen_inferior_puntos</span><span class="p">)</span>        
+        
+        <span class="n">ancho_contenido</span> <span class="o">=</span> <span class="n">ancho_puntos</span> <span class="o">-</span> <span class="n">margen_ancho_puntos</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="n">alto_contenido</span> <span class="o">=</span> <span class="n">alto_puntos</span> <span class="o">-</span> <span class="n">margen_alto_puntos</span> <span class="o">*</span> <span class="mi">2</span>
+
+        <span class="n">ancho_objetivo</span> <span class="o">=</span> <span class="n">ancho_puntos</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">MARGIN_PERCENT</span><span class="p">)</span>
+        <span class="n">alto_objetivo</span> <span class="o">=</span> <span class="n">alto_puntos</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">MARGIN_PERCENT</span><span class="p">)</span>
+
+        <span class="n">escala_ancho</span> <span class="o">=</span> <span class="n">ancho_objetivo</span> <span class="o">/</span> <span class="n">ancho_contenido</span>
+        <span class="n">escala_alto</span> <span class="o">=</span> <span class="n">alto_objetivo</span> <span class="o">/</span> <span class="n">alto_contenido</span>
+
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Dimensiones del contenido (puntos): ancho=</span><span class="si">{</span><span class="n">ancho_contenido</span><span class="si">}</span><span class="s">, alto=</span><span class="si">{</span><span class="n">alto_contenido</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ancho_contenido</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">alto_contenido</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: No se pudieron determinar las dimensiones del contenido.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+        
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Dimensiones objetivo: ancho=</span><span class="si">{</span><span class="n">ancho_objetivo</span><span class="si">}</span><span class="s">, alto=</span><span class="si">{</span><span class="n">alto_objetivo</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Escala de ancho calculada: </span><span class="si">{</span><span class="n">escala_ancho</span><span class="si">}</span><span class="s">, escala de alto calculada: </span><span class="si">{</span><span class="n">escala_alto</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="n">factor_escala</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">escala_ancho</span><span class="p">,</span> <span class="n">escala_alto</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Factor de escala final: </span><span class="si">{</span><span class="n">factor_escala</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">factor_escala</span>
+
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al obtener las dimensiones del PDF o calcular el factor de escala: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+
+<span class="k">def</span> <span class="nf">escalar_pdf</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">output_pdf</span><span class="p">,</span> <span class="n">factor_escala</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Escala un PDF usando pdfjam.</span><span class="sh">"""</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Escalando </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> a </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="s"> con factor de escala: </span><span class="si">{</span><span class="n">factor_escala</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
+            <span class="p">[</span>
+                <span class="sh">"</span><span class="s">pdfjam</span><span class="sh">"</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">--scale</span><span class="sh">"</span><span class="p">,</span>
+                <span class="nf">str</span><span class="p">(</span><span class="n">factor_escala</span><span class="p">),</span>
+                <span class="n">input_pdf</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">--outfile</span><span class="sh">"</span><span class="p">,</span>
+                <span class="n">output_pdf</span><span class="p">,</span>
+            <span class="p">],</span>
+            <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">PDF escalado exitosamente: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> a </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al escalar el PDF: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: No se encontró el comando pdfjam. Asegúrese de que esté instalado y en el PATH del sistema.</span><span class="sh">"</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Uso: python escalar-pdf.py &lt;input_pdf&gt; &lt;output_pdf&gt;</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">input_pdf</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">output_pdf</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">PDF de entrada: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s">, PDF de salida: </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">):</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error: No se encontró el archivo PDF de entrada: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">factor_escala</span> <span class="o">=</span> <span class="nf">calcular_factor_escala</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">factor_escala</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="nf">escalar_pdf</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">output_pdf</span><span class="p">,</span> <span class="n">factor_escala</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>A Deep Dive into Custom Drawing in Android</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>A Deep Dive into Custom Drawing in Android | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="A Deep Dive into Custom Drawing in Android" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="This blog post was written with the assistance of ChatGPT-4o." />
+<meta property="og:description" content="This blog post was written with the assistance of ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/draw-en" />
+<meta property="og:url" content="https://lzwjava.github.io/draw-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-04-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="A Deep Dive into Custom Drawing in Android" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-04-25T00:00:00+08:00","datePublished":"2014-04-25T00:00:00+08:00","description":"This blog post was written with the assistance of ChatGPT-4o.","headline":"A Deep Dive into Custom Drawing in Android","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/draw-en"},"url":"https://lzwjava.github.io/draw-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       A Deep Dive into Custom Drawing in Android | Original, translated by AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2014-04-25-draw-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2014-04-25-draw-en.md</span> -->
+      
+
+      <!-- <span>2014-04-25-draw-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.04</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/draw-en" selected>English</option>
+        <option value="/draw-zh" >中文</option>
+        <option value="/draw-ja" >日本語</option>
+        <option value="/draw-es" >Español</option>
+        <option value="/draw-hi" >हिंदी</option>
+        <option value="/draw-fr" >Français</option>
+        <option value="/draw-de" >Deutsch</option>
+        <option value="/draw-ar" >العربية</option>
+        <option value="/draw-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>This blog post was written with the assistance of ChatGPT-4o.</em></p>
+
+<hr />
+
+<h3 id="introduction">Introduction</h3>
+
+<p>In this blog, we’ll explore the <code class="language-plaintext highlighter-rouge">DrawActivity</code> class, a comprehensive example of implementing a custom drawing view in an Android application. We’ll break down each component and algorithm used, providing a detailed explanation of how everything works together to achieve the desired functionality.</p>
+
+<hr />
+
+<h3 id="table-of-contents">Table of Contents</h3>
+
+<p><a href="#overview-of-drawactivity">Overview of DrawActivity</a><br />
+<a href="#initializing-the-activity">Initializing the Activity</a><br />
+<a href="#handling-image-operations">Handling Image Operations</a><br />
+<a href="#fragment-management">Fragment Management</a><br />
+<a href="#event-handling">Event Handling</a><br />
+<a href="#undo-and-redo-functionality">Undo and Redo Functionality</a><br />
+<a href="#custom-drawview">Custom DrawView</a><br />
+<a href="#history-management">History Management</a><br />
+<a href="#conclusion">Conclusion</a></p>
+
+<hr />
+
+<h3 id="overview-of-drawactivity">Overview of DrawActivity</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawActivity</code> is the main activity that handles drawing operations, image cropping, and interaction with other components like fragments and image upload. It provides a user interface where users can draw, undo, redo, and manipulate images.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrawActivity</span> <span class="kd">extends</span> <span class="nc">Activity</span> <span class="kd">implements</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="o">{</span>
+  <span class="c1">// Constants for request codes and fragment IDs</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CAMERA_RESULT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CROP_RESULT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DRAW_FRAGMENT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">RECOG_FRAGMENT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">RESULT_FRAGMENT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">WAIT_FRAGMENT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MATERIAL_RESULT</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">RESULT_JSON</span> <span class="o">=</span> <span class="s">"resultJson"</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INIT_FLOWER_ID</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">flower_b</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">LOGOUT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">IMAGE_RESULT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="c1">// Variables for handling image and drawing operations</span>
+  <span class="nc">String</span> <span class="n">baseUrl</span><span class="o">;</span>
+  <span class="nc">DrawView</span> <span class="n">drawView</span><span class="o">;</span>
+  <span class="nc">Bitmap</span> <span class="n">originImg</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">DrawActivity</span> <span class="n">instance</span><span class="o">;</span>
+  <span class="nc">View</span> <span class="n">dir</span><span class="o">,</span> <span class="n">clear</span><span class="o">,</span> <span class="n">cameraView</span><span class="o">,</span> <span class="n">materialView</span><span class="o">,</span> <span class="n">scale</span><span class="o">;</span>
+  <span class="nc">ImageView</span> <span class="n">undoView</span><span class="o">,</span> <span class="n">redoView</span><span class="o">;</span>
+  <span class="nc">View</span> <span class="n">upload</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">cropPath</span><span class="o">;</span>
+  <span class="nc">Tooltip</span> <span class="n">toolTip</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">curFragmentId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">serverId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Bitmap</span> <span class="n">resultBitmap</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">RadioGroup</span> <span class="n">radioGroup</span><span class="o">;</span>
+  <span class="nc">Fragment</span> <span class="n">curFragment</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">curDrawMode</span><span class="o">;</span>
+  <span class="nc">RadioButton</span> <span class="n">drawBackBtn</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Activity</span> <span class="n">cxt</span><span class="o">;</span>
+  <span class="nc">Uri</span> <span class="n">curPicUri</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="initializing-the-activity">Initializing the Activity</h3>
+
+<p>When the activity is created, various initializations are performed, such as setting up views, loading the initial image, and configuring event listeners.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+  <span class="n">instance</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+  <span class="n">cxt</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+  <span class="n">cropPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getCropPath</span><span class="o">();</span>
+  <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">draw_layout</span><span class="o">);</span>
+  <span class="n">findView</span><span class="o">();</span>
+  <span class="n">setSize</span><span class="o">();</span>
+  <span class="n">initOriginImage</span><span class="o">();</span>
+  <span class="n">toolTip</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tooltip</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">initUndoRedoEnable</span><span class="o">();</span>
+  <span class="n">setIp</span><span class="o">();</span>
+  <span class="n">initDrawmode</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>findView()</strong><br />
+This method initializes the views used in the activity.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">findView</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">drawView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">drawView</span><span class="o">);</span>
+  <span class="n">undoView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">undo</span><span class="o">);</span>
+  <span class="n">redoView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">redo</span><span class="o">);</span>
+  <span class="n">scale</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">scale</span><span class="o">);</span>
+  <span class="n">upload</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">upload</span><span class="o">);</span>
+  <span class="n">clear</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">clear</span><span class="o">);</span>
+  <span class="n">dir</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">dir</span><span class="o">);</span>
+  <span class="n">materialView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">material</span><span class="o">);</span>
+  <span class="n">cameraView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">camera</span><span class="o">);</span>
+
+  <span class="n">dir</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">materialView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">undoView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">scale</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">redoView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">clear</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">cameraView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">upload</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">initRadio</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>setSize()</strong><br />
+Sets the size of the drawing view.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setSize</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">setSizeByResourceSize</span><span class="o">();</span>
+  <span class="n">setViewSize</span><span class="o">(</span><span class="n">drawView</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">setSizeByResourceSize</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">dimen</span><span class="o">.</span><span class="na">draw_width</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">dimen</span><span class="o">.</span><span class="na">draw_height</span><span class="o">);</span>
+  <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">=</span> <span class="n">width</span><span class="o">;</span>
+  <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span> <span class="o">=</span> <span class="n">height</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">setViewSize</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">ViewGroup</span><span class="o">.</span><span class="na">LayoutParams</span> <span class="n">lp</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">();</span>
+  <span class="n">lp</span><span class="o">.</span><span class="na">width</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span><span class="o">;</span>
+  <span class="n">lp</span><span class="o">.</span><span class="na">height</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">;</span>
+  <span class="n">v</span><span class="o">.</span><span class="na">setLayoutParams</span><span class="o">(</span><span class="n">lp</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>initOriginImage()</strong><br />
+Loads the initial image that will be used for drawing.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">initOriginImage</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Bitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeResource</span><span class="o">(</span><span class="n">getResources</span><span class="o">(),</span> <span class="no">INIT_FLOWER_ID</span><span class="o">);</span>
+  <span class="nc">String</span> <span class="n">imgPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getCameraPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">bitmap</span><span class="o">,</span> <span class="n">imgPath</span><span class="o">);</span>
+  <span class="nc">Uri</span> <span class="n">uri1</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">imgPath</span><span class="o">));</span>
+  <span class="n">setImageByUri</span><span class="o">(</span><span class="n">uri1</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="handling-image-operations">Handling Image Operations</h3>
+
+<p>The activity handles various image operations, such as setting the image by URI, cropping, and saving the drawn bitmap.</p>
+
+<p><strong>setImageByUri(Uri uri)</strong><br />
+Loads an image from a given URI and prepares it for drawing.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setImageByUri</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Uri</span> <span class="n">uri</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">new</span> <span class="nf">Handler</span><span class="o">().</span><span class="na">postDelayed</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">curPicUri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">;</span>
+      <span class="nc">Bitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">uri</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">getBitmapByUri</span><span class="o">(</span><span class="nc">DrawActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">uri</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+
+      <span class="kt">int</span> <span class="n">originW</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+      <span class="kt">int</span> <span class="n">originH</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">originW</span> <span class="o">!=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">||</span> <span class="n">originH</span> <span class="o">!=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">float</span> <span class="n">originRadio</span> <span class="o">=</span> <span class="n">originW</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">originH</span><span class="o">;</span>
+        <span class="kt">float</span> <span class="n">radio</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">originRadio</span> <span class="o">-</span> <span class="n">radio</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="o">)</span> <span class="o">{</span>
+          <span class="nc">Bitmap</span> <span class="n">originBm</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">;</span>
+          <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">createScaledBitmap</span><span class="o">(</span><span class="n">originBm</span><span class="o">,</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span><span class="o">,</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+          <span class="n">originBm</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+          <span class="n">cropIt</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+          <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="nc">ImageLoader</span> <span class="n">imageLoader</span> <span class="o">=</span> <span class="nc">ImageLoader</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+      <span class="n">imageLoader</span><span class="o">.</span><span class="na">addOrReplaceToMemoryCache</span><span class="o">(</span><span class="s">"origin"</span><span class="o">,</span> <span class="n">bitmap</span><span class="o">);</span>
+      <span class="n">originImg</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">;</span>
+      <span class="n">serverId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+
+      <span class="n">drawView</span><span class="o">.</span><span class="na">setSrcBitmap</span><span class="o">(</span><span class="n">originImg</span><span class="o">);</span>
+      <span class="n">showDrawFragment</span><span class="o">(</span><span class="nc">App</span><span class="o">.</span><span class="na">ALL_INFO</span><span class="o">);</span>
+      <span class="n">curDrawMode</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">DRAW_FORE</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">},</span> <span class="mi">500</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>cropIt(Uri uri)</strong><br />
+Starts an image cropping activity.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">cropIt</span><span class="o">(</span><span class="nc">Uri</span> <span class="n">uri</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Crop</span><span class="o">.</span><span class="na">startPhotoCrop</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">uri</span><span class="o">,</span> <span class="n">cropPath</span><span class="o">,</span> <span class="no">CROP_RESULT</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>saveBitmap()</strong><br />
+Saves the drawn bitmap to a file and uploads it to the server.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveBitmap</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Bitmap</span> <span class="n">handBitmap</span> <span class="o">=</span> <span class="n">drawView</span><span class="o">.</span><span class="na">getHandBitmap</span><span class="o">();</span>
+  <span class="nc">Bitmap</span> <span class="n">originBitmap</span> <span class="o">=</span> <span class="n">drawView</span><span class="o">.</span><span class="na">getSrcBitmap</span><span class="o">();</span>
+  <span class="n">saveBitmapToFileAndUpload</span><span class="o">(</span><span class="n">handBitmap</span><span class="o">,</span> <span class="n">originBitmap</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>saveBitmapToFileAndUpload(Bitmap handBitmap, Bitmap originBitmap)</strong><br />
+Saves bitmaps to files and uploads them asynchronously.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveBitmapToFileAndUpload</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">handBitmap</span><span class="o">,</span> <span class="nc">Bitmap</span> <span class="n">originBitmap</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="nc">String</span> <span class="n">originPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getOriginPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">originBitmap</span><span class="o">,</span> <span class="n">originPath</span><span class="o">);</span>
+  <span class="kd">final</span> <span class="nc">String</span> <span class="n">handPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getHandPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">handBitmap</span><span class="o">,</span> <span class="n">handPath</span><span class="o">);</span>
+  <span class="k">new</span> <span class="nc">AsyncTask</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">,</span> <span class="nc">Void</span><span class="o">,</span> <span class="nc">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="n">res</span><span class="o">;</span>
+    <span class="nc">Bitmap</span> <span class="n">foreBitmap</span><span class="o">;</span>
+    <span class="nc">Bitmap</span> <span class="n">backBitmap</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPreExecute</span><span class="o">()</span> <span class="o">{</span>
+      <span class="kd">super</span><span class="o">.</span><span class="na">onPreExecute</span><span class="o">();</span>
+      <span class="n">showWaitFragment</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">doInBackground</span><span class="o">(</span><span class="nc">Void</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">baseUrl</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="o">(</span><span class="s">"baseUrl is null"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">String</span> <span class="n">jsonRes</span> <span class="o">=</span> <span class="nc">UploadImage</span><span class="o">.</span><span class="na">upload</span><span class="o">(</span><span class="n">baseUrl</span><span class="o">,</span> <span class="n">serverId</span><span class="o">,</span> <span class="nc">Web</span><span class="o">.</span><span class="na">STATUS_CONTINUE</span><span class="o">,</span> <span class="n">originPath</span><span class="o">,</span> <span class="n">handPath</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">getJsonData</span><span class="o">(</span><span class="n">jsonRes</span><span class="o">);</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">getJsonData</span><span class="o">(</span><span class="nc">String</span> <span class="n">jsonRes</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+      <span class="nc">JSONObject</span> <span class="n">json</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">(</span><span class="n">jsonRes</span><span class="o">);</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">serverId</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">serverId</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">ID</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="nc">String</span> <span class="n">foreUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">FORE</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">backUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">BACK</span><span class="o">);</span>
+      <span class="nc">String</span> <span class="n">resultUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">RESULT</span><span class="o">);</span>
+      <span class="n">foreBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">foreUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+      <span class="n">backBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">backUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+      <span class="n">resultBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">resultUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPostExecute</span><span class="o">(</span><span class="nc">Void</span> <span class="n">aVoid</span><span class="o">)</span> <span class="o">{</span>
+      <span class="kd">super</span><span class="o">.</span><span class="na">onPostExecute</span><span class="o">(</span><span class="n">aVoid</span><span class="o">);</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">res</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">showRecogFragment</span><span class="o">(</span><span class="n">foreBitmap</span><span class="o">,</span> <span class="n">backBitmap</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">Utils</span><span class="o">.</span><span class="na">toast</span><span class="o">(</span><span class="nc">DrawActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">server_error</span><span class="o">);</span>
+        <span class="n">recogNo</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}.</span><span class="na">execute</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="fragment-management">Fragment Management</h3>
+
+<p>The activity manages</p>
+
+<p>different fragments to handle various states of the application, such as drawing, recognition, and waiting.</p>
+
+<p><strong>showDrawFragment(int infoId)</strong><br />
+Displays the drawing fragment.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showDrawFragment</span><span class="o">(</span><span class="kt">int</span> <span class="n">infoId</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">curFragmentId</span> <span class="o">=</span> <span class="no">DRAW_FRAGMENT</span><span class="o">;</span>
+  <span class="n">curFragment</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DrawFragment</span><span class="o">(</span><span class="n">infoId</span><span class="o">);</span>
+  <span class="n">showFragment</span><span class="o">(</span><span class="n">curFragment</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>showWaitFragment()</strong><br />
+Displays the waiting fragment.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showWaitFragment</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">curFragmentId</span> <span class="o">=</span> <span class="no">WAIT_FRAGMENT</span><span class="o">;</span>
+  <span class="n">showFragment</span><span class="o">(</span><span class="k">new</span> <span class="nc">WaitFragment</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>showFragment(Fragment fragment)</strong><br />
+Replaces the current fragment with the specified fragment.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showFragment</span><span class="o">(</span><span class="nc">Fragment</span> <span class="n">fragment</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">FragmentTransaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">getFragmentManager</span><span class="o">().</span><span class="na">beginTransaction</span><span class="o">();</span>
+  <span class="n">trans</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">rightLayout</span><span class="o">,</span> <span class="n">fragment</span><span class="o">);</span>
+  <span class="n">trans</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="event-handling">Event Handling</h3>
+
+<p>The activity handles various user interactions, such as button clicks and menu selections.</p>
+
+<p><strong>onClick(View v)</strong><br />
+Handles click events for different views.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">drawOk</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">isDrawFinish</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">saveBitmap</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="nc">Utils</span><span class="o">.</span><span class="na">alertDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">please_draw_finish</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">recogOk</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">recogOk</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">recogNo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">recogNo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">dir</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Utils</span><span class="o">.</span><span class="na">getGalleryPhoto</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="no">IMAGE_RESULT</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">clear</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">clearEverything</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">undo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">drawView</span><span class="o">.</span><span class="na">undo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">redo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">drawView</span><span class="o">.</span><span class="na">redo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">camera</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Utils</span><span class="o">.</span><span class="na">takePhoto</span><span class="o">(</span><span class="n">cxt</span><span class="o">,</span> <span class="no">CAMERA_RESULT</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">material</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">goMaterial</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">upload</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">com</span><span class="o">.</span><span class="na">lzw</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">Utils</span><span class="o">.</span><span class="na">goActivity</span><span class="o">(</span><span class="n">cxt</span><span class="o">,</span> <span class="nc">PhotoActivity</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">scale</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">cropIt</span><span class="o">(</span><span class="n">curPicUri</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>onActivityResult(int requestCode, int resultCode, Intent data)</strong><br />
+Handles results from other activities, such as image selection or cropping.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">,</span> <span class="nc">Intent</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">resultCode</span> <span class="o">!=</span> <span class="no">RESULT_CANCELED</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Uri</span> <span class="n">uri</span><span class="o">;</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">requestCode</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nl">IMAGE_RESULT:</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">setImageByUri</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">CAMERA_RESULT:</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="nc">Utils</span><span class="o">.</span><span class="na">getCameraUri</span><span class="o">());</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">CROP_RESULT:</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">cropPath</span><span class="o">));</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">MATERIAL_RESULT:</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="undo-and-redo-functionality">Undo and Redo Functionality</h3>
+
+<p>The activity provides undo and redo functionality for the drawing operations.</p>
+
+<p><strong>initUndoRedoEnable()</strong><br />
+Initializes the undo and redo functionality by setting a callback.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">initUndoRedoEnable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">setCallBack</span><span class="o">(</span><span class="k">new</span> <span class="nc">History</span><span class="o">.</span><span class="na">CallBack</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onHistoryChanged</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">setUndoRedoEnable</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">curFragmentId</span> <span class="o">!=</span> <span class="no">DRAW_FRAGMENT</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">showDrawFragment</span><span class="o">(</span><span class="n">curDrawMode</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+
+<span class="kt">void</span> <span class="nf">setUndoRedoEnable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">redoView</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">canRedo</span><span class="o">());</span>
+  <span class="n">undoView</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">canUndo</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="custom-drawview">Custom DrawView</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawView</code> is a custom view that handles drawing operations, touch events, and scaling.</p>
+
+<p><strong>onTouchEvent(MotionEvent event)</strong><br />
+Handles touch events for drawing and scaling.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(!</span><span class="n">scaleMode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">handleDrawTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">handleScaleTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleDrawTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">action</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_DOWN</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">moveTo</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_MOVE</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">quadTo</span><span class="o">(</span><span class="n">preX</span><span class="o">,</span> <span class="n">preY</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_UP</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Matrix</span> <span class="n">matrix1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Matrix</span><span class="o">();</span>
+    <span class="n">matrix</span><span class="o">.</span><span class="na">invert</span><span class="o">(</span><span class="n">matrix1</span><span class="o">);</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">matrix1</span><span class="o">);</span>
+    <span class="n">paint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="n">strokeWidth</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">totalRatio</span><span class="o">);</span>
+    <span class="n">history</span><span class="o">.</span><span class="na">saveToStack</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="n">cacheCanvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="n">paint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="n">strokeWidth</span><span class="o">);</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">setPrev</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleScaleTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">switch</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getActionMasked</span><span class="o">())</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_POINTER_DOWN</span><span class="o">:</span>
+      <span class="n">lastFingerDist</span> <span class="o">=</span> <span class="n">calFingerDistance</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_MOVE</span><span class="o">:</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getPointerCount</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handleMove</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getPointerCount</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handleZoom</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_UP</span><span class="o">:</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_POINTER_UP</span><span class="o">:</span>
+      <span class="n">lastMoveX</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="n">lastMoveY</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleMove</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">float</span> <span class="n">moveX</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">moveY</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">lastMoveX</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">lastMoveY</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">lastMoveX</span> <span class="o">=</span> <span class="n">moveX</span><span class="o">;</span>
+    <span class="n">lastMoveY</span> <span class="o">=</span> <span class="n">moveY</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">moveDistX</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">moveX</span> <span class="o">-</span> <span class="n">lastMoveX</span><span class="o">);</span>
+  <span class="n">moveDistY</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">moveY</span> <span class="o">-</span> <span class="n">lastMoveY</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span> <span class="o">+</span> <span class="n">curBitmapWidth</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">moveDistX</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span> <span class="o">+</span> <span class="n">curBitmapHeight</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">moveDistY</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_MOVE</span><span class="o">;</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+  <span class="n">lastMoveX</span> <span class="o">=</span> <span class="n">moveX</span><span class="o">;</span>
+  <span class="n">lastMoveY</span> <span class="o">=</span> <span class="n">moveY</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleZoom</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">float</span> <span class="n">fingerDist</span> <span class="o">=</span> <span class="n">calFingerDistance</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="n">calFingerCenter</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">fingerDist</span> <span class="o">&gt;</span> <span class="n">lastFingerDist</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_ZOOM_OUT</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_ZOOM_IN</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">scaledRatio</span> <span class="o">=</span> <span class="n">fingerDist</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">lastFingerDist</span><span class="o">;</span>
+  <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">totalRatio</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">totalRatio</span> <span class="o">&lt;</span> <span class="n">initRatio</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">initRatio</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">totalRatio</span> <span class="o">&gt;</span> <span class="n">initRatio</span> <span class="o">*</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">initRatio</span> <span class="o">*</span> <span class="mi">4</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">lastFingerDist</span> <span class="o">=</span> <span class="n">fingerDist</span><span class="o">;</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>onDraw(Canvas canvas)</strong><br />
+Draws the current state of the view.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDraw</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onDraw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">scaleMode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nl">STATUS_MOVE:</span>
+        <span class="n">move</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">STATUS_ZOOM_IN:</span>
+      <span class="k">case</span> <span class="nl">STATUS_ZOOM_OUT:</span>
+        <span class="n">zoom</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cacheBm</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+          <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">cacheBm</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+      <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>move(Canvas canvas)</strong><br />
+Handles the move operation during scaling.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">move</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postScale</span><span class="o">(</span><span class="n">totalRatio</span><span class="o">,</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="n">totalTranslateX</span> <span class="o">=</span> <span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span><span class="o">;</span>
+  <span class="n">totalTranslateY</span> <span class="o">=</span> <span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span><span class="o">;</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postTranslate</span><span class="o">(</span><span class="n">totalTranslateX</span><span class="o">,</span> <span class="n">totalTranslateY</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>zoom(Canvas canvas)</strong><br />
+Handles the zoom operation during scaling.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">zoom</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postScale</span><span class="o">(</span><span class="n">totalRatio</span><span class="o">,</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">scaledWidth</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">cacheBm</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()</span> <span class="o">*</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">scaledHeight</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">cacheBm</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()</span> <span class="o">*</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">translateX</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">translateY</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">curBitmapWidth</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">translateX</span> <span class="o">=</span> <span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">scaledWidth</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">translateX</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">centerPointX</span> <span class="o">+</span> <span class="o">(</span><span class="n">totalTranslateX</span> <span class="o">-</span> <span class="n">centerPointX</span><span class="o">)</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">translateX</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateX</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">scaledWidth</span> <span class="o">+</span> <span class="n">translateX</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateX</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">scaledWidth</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">curBitmapHeight</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">translateY</span> <span class="o">=</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">scaledHeight</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">translateY</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">centerPointY</span> <span class="o">+</span> <span class="o">(</span><span class="n">totalTranslateY</span> <span class="o">-</span> <span class="n">centerPointY</span><span class="o">)</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">translateY</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateY</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">scaledHeight</span> <span class="o">+</span> <span class="n">translateY</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateY</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">scaledHeight</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="n">totalTranslateX</span> <span class="o">=</span> <span class="n">translateX</span><span class="o">;</span>
+  <span class="n">total</span>
+
+<span class="nc">TranslateY</span> <span class="o">=</span> <span class="n">translateY</span><span class="o">;</span>
+  <span class="n">curBitmapWidth</span> <span class="o">=</span> <span class="n">scaledWidth</span><span class="o">;</span>
+  <span class="n">curBitmapHeight</span> <span class="o">=</span> <span class="n">scaledHeight</span><span class="o">;</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postTranslate</span><span class="o">(</span><span class="n">translateX</span><span class="o">,</span> <span class="n">translateY</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="history-management">History Management</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">History</code> class manages the drawing history for undo and redo functionality.</p>
+
+<p><strong>saveToStack(Path path, Paint paint)</strong><br />
+Saves the current path and paint to the stack.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveToStack</span><span class="o">(</span><span class="nc">Path</span> <span class="n">path</span><span class="o">,</span> <span class="nc">Paint</span> <span class="n">paint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Draw</span> <span class="n">draw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Draw</span><span class="o">();</span>
+  <span class="n">draw</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Path</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+  <span class="n">draw</span><span class="o">.</span><span class="na">paint</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Paint</span><span class="o">(</span><span class="n">paint</span><span class="o">);</span>
+  <span class="n">saveToStack</span><span class="o">(</span><span class="n">draw</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveToStack</span><span class="o">(</span><span class="nc">Draw</span> <span class="n">draw</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">curPos</span><span class="o">++;</span>
+  <span class="k">while</span> <span class="o">(</span><span class="n">histroy</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">curPos</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">histroy</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">histroy</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">draw</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>getBitmapAtDraw(int n)</strong><br />
+Returns a bitmap representing the state at a given point in the history.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Canvas</span> <span class="n">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Canvas</span><span class="o">();</span>
+  <span class="nc">Bitmap</span> <span class="n">bm</span> <span class="o">=</span> <span class="nc">Utils</span><span class="o">.</span><span class="na">getCopyBitmap</span><span class="o">(</span><span class="n">srcBitmap</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">setBitmap</span><span class="o">(</span><span class="n">bm</span><span class="o">);</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">Draw</span> <span class="n">draw</span> <span class="o">=</span> <span class="n">histroy</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">draw</span><span class="o">.</span><span class="na">path</span><span class="o">,</span> <span class="n">draw</span><span class="o">.</span><span class="na">paint</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">bm</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>undo()</strong><br />
+Performs the undo operation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">undo</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnsupportedOperationException</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">canUndo</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">curPos</span><span class="o">--;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="n">curPos</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">(</span><span class="s">"don't have undo record"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>redo()</strong><br />
+Performs the redo operation.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">redo</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnsupportedOperationException</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">canRedo</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">curPos</span><span class="o">++;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="n">curPos</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">(</span><span class="s">"don't have redo record"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>canUndo()</strong><br />
+Checks if undo is possible.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canUndo</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">curPos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>canRedo()</strong><br />
+Checks if redo is possible.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canRedo</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">curPos</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">histroy</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawActivity</code> and its related classes provide a comprehensive example of implementing a custom drawing view in Android. It demonstrates various techniques, including handling touch events, managing drawing history, and integrating with other components like fragments and async tasks. By understanding each component and algorithm, you can leverage these techniques in your own applications to create powerful and interactive drawing features.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

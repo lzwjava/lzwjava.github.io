@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Einrichten eines Google Cloud Servers</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Einrichten eines Google Cloud Servers | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Einrichten eines Google Cloud Servers" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Das Einrichten eines Proxy-Servers in Google Cloud ermöglicht es Ihnen, Ihren Internetverkehr sicher über eine Cloud-Instanz zu leiten, was die Privatsphäre erhöht und Einschränkungen umgeht. In dieser Anleitung führen wir Sie durch den Prozess der Einrichtung eines grundlegenden Proxy-Servers in Google Cloud und der Konfiguration der erforderlichen Firewall-Regeln, um den Datenverkehr zu ermöglichen." />
+<meta property="og:description" content="Das Einrichten eines Proxy-Servers in Google Cloud ermöglicht es Ihnen, Ihren Internetverkehr sicher über eine Cloud-Instanz zu leiten, was die Privatsphäre erhöht und Einschränkungen umgeht. In dieser Anleitung führen wir Sie durch den Prozess der Einrichtung eines grundlegenden Proxy-Servers in Google Cloud und der Konfiguration der erforderlichen Firewall-Regeln, um den Datenverkehr zu ermöglichen." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-compute-de" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-compute-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Einrichten eines Google Cloud Servers" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Das Einrichten eines Proxy-Servers in Google Cloud ermöglicht es Ihnen, Ihren Internetverkehr sicher über eine Cloud-Instanz zu leiten, was die Privatsphäre erhöht und Einschränkungen umgeht. In dieser Anleitung führen wir Sie durch den Prozess der Einrichtung eines grundlegenden Proxy-Servers in Google Cloud und der Konfiguration der erforderlichen Firewall-Regeln, um den Datenverkehr zu ermöglichen.","headline":"Einrichten eines Google Cloud Servers","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-compute-de"},"url":"https://lzwjava.github.io/gcp-compute-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Einrichten eines Google Cloud Servers | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2024-12-20-gcp-compute-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2024-12-20-gcp-compute-de.md</span> -->
+      
+
+      <!-- <span>2024-12-20-gcp-compute-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-compute-en" >English</option>
+        <option value="/gcp-compute-zh" >中文</option>
+        <option value="/gcp-compute-ja" >日本語</option>
+        <option value="/gcp-compute-es" >Español</option>
+        <option value="/gcp-compute-hi" >हिंदी</option>
+        <option value="/gcp-compute-fr" >Français</option>
+        <option value="/gcp-compute-de" selected>Deutsch</option>
+        <option value="/gcp-compute-ar" >العربية</option>
+        <option value="/gcp-compute-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Das Einrichten eines Proxy-Servers in Google Cloud ermöglicht es Ihnen, Ihren Internetverkehr sicher über eine Cloud-Instanz zu leiten, was die Privatsphäre erhöht und Einschränkungen umgeht. In dieser Anleitung führen wir Sie durch den Prozess der Einrichtung eines grundlegenden Proxy-Servers in Google Cloud und der Konfiguration der erforderlichen Firewall-Regeln, um den Datenverkehr zu ermöglichen.</p>
+
+<h2 id="inhaltsverzeichnis">Inhaltsverzeichnis</h2>
+<ol>
+  <li><a href="#creating-a-google-cloud-vm-instance">Erstellen einer Google Cloud VM-Instanz</a></li>
+  <li><a href="#configuring-the-proxy-server">Konfigurieren des Proxy-Servers</a></li>
+  <li><a href="#setting-up-firewall-rules">Einrichten von Firewall-Regeln</a></li>
+  <li><a href="#testing-the-proxy-server">Testen des Proxy-Servers</a></li>
+  <li><a href="#conclusion">Fazit</a></li>
+</ol>
+
+<hr />
+
+<h2 id="erstellen-einer-google-cloud-vm-instanz">Erstellen einer Google Cloud VM-Instanz</h2>
+
+<p>Bevor Sie den Proxy-Server einrichten, müssen Sie eine virtuelle Maschine (VM) in Google Cloud erstellen.</p>
+
+<ol>
+  <li>
+    <p>Melden Sie sich bei der Google Cloud Console an: Gehen Sie zur <a href="https://console.cloud.google.com/">Google Cloud Console</a> und melden Sie sich bei Ihrem Konto an.</p>
+  </li>
+  <li>Erstellen Sie eine neue VM-Instanz:
+    <ul>
+      <li>Navigieren Sie zu Compute Engine &gt; VM-Instanzen.</li>
+      <li>Klicken Sie auf Instanz erstellen.</li>
+      <li>Wählen Sie die gewünschte Region und den Maschinentyp. Zur Vereinfachung können Sie die Standardeinstellungen verwenden oder eine leichte Konfiguration wie die <code class="language-plaintext highlighter-rouge">e2-micro</code>-Instanz wählen.</li>
+      <li>Wählen Sie im Abschnitt Firewall sowohl HTTP-Datenverkehr zulassen als auch HTTPS-Datenverkehr zulassen aus, um den Webzugriff zu ermöglichen.</li>
+    </ul>
+  </li>
+  <li>Richten Sie den SSH-Zugriff ein:
+    <ul>
+      <li>Fügen Sie im Abschnitt SSH-Schlüssel Ihren öffentlichen SSH-Schlüssel hinzu, um auf die Instanz remote zugreifen zu können. Dies ist entscheidend für die spätere Konfiguration Ihres Proxy-Servers.</li>
+    </ul>
+  </li>
+  <li>Klicken Sie auf Erstellen, um Ihre VM zu starten.</li>
+</ol>
+
+<p>Nachdem die VM eingerichtet ist, können Sie sich über SSH entweder über die Google Cloud Console oder über das Terminal mit folgendem Befehl verbinden:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud compute ssh &lt;dein-vm-name&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="konfiguration-des-proxy-servers">Konfiguration des Proxy-Servers</h2>
+
+<p>Sobald Ihre VM eingerichtet ist, können Sie einen Proxy-Server Ihrer Wahl konfigurieren. Die Proxy-Software sollte installiert und so konfiguriert werden, dass sie Verbindungen auf dem gewünschten Port (z. B. <code class="language-plaintext highlighter-rouge">3128</code> für gängige Proxy-Einrichtungen) akzeptiert. Stellen Sie sicher, dass die Software Verbindungen von entfernten Clients zulässt.</p>
+
+<hr />
+
+<h2 id="einrichten-von-firewall-regeln">Einrichten von Firewall-Regeln</h2>
+
+<p>Um den Datenverkehr zu Ihrem Proxy-Server zu ermöglichen, müssen Sie die Google Cloud Firewall-Regeln konfigurieren, um den erforderlichen Port zu öffnen.</p>
+
+<ol>
+  <li>Navigieren Sie zu Firewall-Regeln in der Google Cloud Console:
+    <ul>
+      <li>Gehen Sie zu VPC-Netzwerk &gt; Firewall-Regeln in der Google Cloud Console.</li>
+    </ul>
+  </li>
+  <li>Erstellen Sie eine neue Firewall-Regel:
+    <ul>
+      <li>Klicken Sie auf „Firewall-Regel erstellen“.</li>
+      <li>Geben Sie einen Namen für die Regel ein, z. B. <code class="language-plaintext highlighter-rouge">allow-proxy-access</code>.</li>
+      <li>Setzen Sie die Richtung des Datenverkehrs auf „Eingehend“ (eingehender Datenverkehr).</li>
+      <li>Setzen Sie die Aktion bei Übereinstimmung auf „Zulassen“.</li>
+      <li>Setzen Sie die Ziele auf „Alle Instanzen im Netzwerk“ oder „Spezifische Ziel-Tags“ (wenn Sie mehr Kontrolle bevorzugen).</li>
+      <li>Unter „Quell-IP-Bereiche“ können Sie <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> eingeben, um den Zugriff von allen IP-Adressen zu erlauben, oder ihn auf bestimmte IPs oder Bereiche beschränken, um die Sicherheit zu erhöhen.</li>
+      <li>Wählen Sie unter „Protokolle und Ports“ die Option „Spezifizierte Protokolle und Ports“ aus und geben Sie den von Ihrem Proxy-Server verwendeten Port ein (z. B. <code class="language-plaintext highlighter-rouge">tcp:3128</code>).</li>
+    </ul>
+  </li>
+  <li>Speichern Sie die Firewall-Regel:
+Nachdem Sie die Regel konfiguriert haben, klicken Sie auf Erstellen, um die Firewall zu aktivieren.</li>
+</ol>
+
+<hr />
+
+<h2 id="testen-des-proxy-servers">Testen des Proxy-Servers</h2>
+
+<p>Nachdem Sie die Firewall konfiguriert haben, ist es an der Zeit, Ihren Proxy-Server zu testen.</p>
+
+<ol>
+  <li>Proxy von Ihrem lokalen Rechner testen:</li>
+</ol>
+
+<p>Sie können die Browser- oder System-Proxy-Einstellungen Ihres lokalen Computers so konfigurieren, dass sie die externe IP-Adresse Ihrer Google Cloud VM und den Port verwenden, den Ihr Proxy-Server überwacht (z. B. <code class="language-plaintext highlighter-rouge">3128</code>).</p>
+
+<ol>
+  <li>
+    <p>Testen mit der Befehlszeile:</p>
+
+    <p>Sie können den Proxy auch mit <code class="language-plaintext highlighter-rouge">curl</code> testen, indem Sie die Proxy-Umgebungsvariablen setzen:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;deine-vm-externe-ip&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;deine-vm-externe-ip&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p>Wenn die Verbindung erfolgreich ist, sollten Sie eine Antwort von der Website erhalten.</p>
+
+<hr />
+
+<h2 id="fazit">Fazit</h2>
+
+<p>Indem Sie dieser Anleitung gefolgt sind, haben Sie gelernt, wie man einen Proxy-Server auf Google Cloud einrichtet und Firewall-Regeln konfiguriert, um eingehenden Datenverkehr zuzulassen. Dieses Setup bietet eine einfache Möglichkeit, Ihren Internetverkehr sicher durch die Cloud zu leiten, Netzwerkbeschränkungen zu umgehen und die Privatsphäre zu verbessern.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Redis का परिचय</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Redis का परिचय | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Redis का परिचय" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="Redis की आधिकारिक वेबसाइट खोलें, तो पहला वाक्य यह कहता है कि Redis एक ओपन-सोर्स, इन-मेमोरी डेटा स्ट्रक्चर स्टोर है, जिसे अक्सर डेटाबेस और कैशिंग के लिए उपयोग किया जाता है। Redis बहुत ही आम तौर पर उपयोग किया जाता है।" />
+<meta property="og:description" content="Redis की आधिकारिक वेबसाइट खोलें, तो पहला वाक्य यह कहता है कि Redis एक ओपन-सोर्स, इन-मेमोरी डेटा स्ट्रक्चर स्टोर है, जिसे अक्सर डेटाबेस और कैशिंग के लिए उपयोग किया जाता है। Redis बहुत ही आम तौर पर उपयोग किया जाता है।" />
+<link rel="canonical" href="https://lzwjava.github.io/redis-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/redis-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Redis का परिचय" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-13T00:00:00+08:00","datePublished":"2021-03-13T00:00:00+08:00","description":"Redis की आधिकारिक वेबसाइट खोलें, तो पहला वाक्य यह कहता है कि Redis एक ओपन-सोर्स, इन-मेमोरी डेटा स्ट्रक्चर स्टोर है, जिसे अक्सर डेटाबेस और कैशिंग के लिए उपयोग किया जाता है। Redis बहुत ही आम तौर पर उपयोग किया जाता है।","headline":"Redis का परिचय","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/redis-hi"},"url":"https://lzwjava.github.io/redis-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Redis का परिचय | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2021-03-13-redis-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2021-03-13-redis-hi.md</span> -->
+      
+
+      <!-- <span>2021-03-13-redis-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/redis-en" >English</option>
+        <option value="/redis-zh" >中文</option>
+        <option value="/redis-ja" >日本語</option>
+        <option value="/redis-es" >Español</option>
+        <option value="/redis-hi" selected>हिंदी</option>
+        <option value="/redis-fr" >Français</option>
+        <option value="/redis-de" >Deutsch</option>
+        <option value="/redis-ar" >العربية</option>
+        <option value="/redis-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Redis की आधिकारिक वेबसाइट खोलें, तो पहला वाक्य यह कहता है कि Redis एक ओपन-सोर्स, इन-मेमोरी डेटा स्ट्रक्चर स्टोर है, जिसे अक्सर डेटाबेस और कैशिंग के लिए उपयोग किया जाता है। <code class="language-plaintext highlighter-rouge">Redis</code> बहुत ही आम तौर पर उपयोग किया जाता है।</p>
+
+<h2 id="redis-स्थापित-करना">Redis स्थापित करना</h2>
+
+<p>आप <code class="language-plaintext highlighter-rouge">Redis</code> को उसके आधिकारिक वेबसाइट से इंस्टॉल कर सकते हैं। यह <code class="language-plaintext highlighter-rouge">SQLite</code> की तरह ही है। इंस्टॉल हो जाने के बाद, <code class="language-plaintext highlighter-rouge">Python</code> में <code class="language-plaintext highlighter-rouge">Redis</code> का उपयोग कैसे करें?</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>redis
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> import redis
+<span class="o">&gt;&gt;&gt;</span> r <span class="o">=</span> redis.Redis<span class="o">(</span><span class="nv">host</span><span class="o">=</span><span class="s1">'localhost'</span>, <span class="nv">port</span><span class="o">=</span>6379, <span class="nv">db</span><span class="o">=</span>0<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> r.set<span class="o">(</span><span class="s1">'foo'</span>, <span class="s1">'bar'</span><span class="o">)</span>
+True
+<span class="o">&gt;&gt;&gt;</span> r.get<span class="o">(</span><span class="s1">'foo'</span><span class="o">)</span>
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<p>(नोट: कोड ब्लॉक को अनुवादित नहीं किया गया है क्योंकि यह प्रोग्रामिंग सिंटैक्स है और इसे अपरिवर्तित रखना आवश्यक है।)</p>
+
+<p>Python डॉक्यूमेंटेशन में कुछ उदाहरण दिए गए हैं। यहां <code class="language-plaintext highlighter-rouge">pip</code> जैसी चीज़ें दिखाई देती हैं। <code class="language-plaintext highlighter-rouge">pip</code> एक पैकेज मैनेजमेंट टूल है। पैकेज मैनेजमेंट टूल क्या है, यह “प्रोग्रामिंग वातावरण से परिचित होना” अध्याय में देखा जा सकता है। <code class="language-plaintext highlighter-rouge">pip</code> का <code class="language-plaintext highlighter-rouge">python</code> से वही संबंध है, जो <code class="language-plaintext highlighter-rouge">Homebrew</code> का <code class="language-plaintext highlighter-rouge">macOS</code> सिस्टम से है।</p>
+
+<p><code class="language-plaintext highlighter-rouge">pip</code> आमतौर पर <code class="language-plaintext highlighter-rouge">Python</code> इंस्टॉल करते समय पहले से ही शामिल होता है। यदि आपके कंप्यूटर में कई संस्करणों के <code class="language-plaintext highlighter-rouge">Python</code> और <code class="language-plaintext highlighter-rouge">Pip</code> हैं, तो आप <code class="language-plaintext highlighter-rouge">~/.bash_profile</code> में निम्नलिखित दो पंक्तियाँ जोड़ सकते हैं:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">python</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/python3
+<span class="nb">alias </span><span class="nv">pip</span><span class="o">=</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/pip3
+</code></pre></div></div>
+
+<p>(नोट: कोड ब्लॉक को अनुवादित नहीं किया गया है क्योंकि यह एक टर्मिनल कमांड है और इसे हिंदी में अनुवादित करने की आवश्यकता नहीं है।)</p>
+
+<p>इसका मतलब है कि <code class="language-plaintext highlighter-rouge">python</code> और <code class="language-plaintext highlighter-rouge">pip</code> का एक विशिष्ट संस्करण निर्दिष्ट करना। एक तरीका यह है कि <code class="language-plaintext highlighter-rouge">Homebrew</code> का उपयोग करके इसे इंस्टॉल किया जाए। इसके अलावा, इसे सोर्स कोड से भी बनाया और इंस्टॉल किया जा सकता है।</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>make
+make <span class="nb">test
+</span>make <span class="nb">install</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-server
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># oO0OoO0OoO0Oo Redis शुरू हो रहा है oO0OoO0OoO0Oo</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># Redis version=6.2.1, bits=64, commit=00000000, modified=0, pid=87684, just started</span>
+87684:C 10 Mar 2021 14:46:06.056 <span class="c"># चेतावनी: कोई कॉन्फ़िग फ़ाइल निर्दिष्ट नहीं की गई है, डिफ़ॉल्ट कॉन्फ़िग का उपयोग किया जा रहा है। कॉन्फ़िग फ़ाइल निर्दिष्ट करने के लिए redis-server /path/to/redis.conf का उपयोग करें</span>
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> खुली फ़ाइलों की अधिकतम संख्या 10032 तक बढ़ाई गई है <span class="o">(</span>यह मूल रूप से 4864 पर सेट थी<span class="o">)</span>।
+87684:M 10 Mar 2021 14:46:06.057 <span class="k">*</span> मोनोटोनिक घड़ी: POSIX clock_gettime
+...
+Redis 6.2.1 <span class="o">(</span>00000000/0<span class="o">)</span> 64 bit
+...
+87684:M 10 Mar 2021 14:46:06.058 <span class="c"># सर्वर आरंभ हो गया है</span>
+87684:M 10 Mar 2021 14:46:06.058 <span class="k">*</span> कनेक्शन स्वीकार करने के लिए तैयार
+</code></pre></div></div>
+
+<p>यहां कुछ सामग्री का एक अंश दिया गया है। जैसा कि आप देख सकते हैं, हमने इसे सफलतापूर्वक इंस्टॉल कर लिया है। संस्करण संख्या <code class="language-plaintext highlighter-rouge">6.2.1</code> है, जो कि आधिकारिक वेबसाइट पर उपलब्ध नवीनतम संस्करण है। एक और टर्मिनल विंडो खोलें। आप इसे आज़मा सकते हैं और इसके साथ खेल सकते हैं:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>redis-cli
+127.0.0.1:6379&gt; <span class="nb">set </span>a 2
+OK
+127.0.0.1:6379&gt; get a
+<span class="s2">"2"</span>
+</code></pre></div></div>
+
+<p>कोड को चलाएं।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">bar</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>यह कोड Redis डेटाबेस से जुड़ता है और एक कुंजी-मान जोड़ी को सेट करता है। <code class="language-plaintext highlighter-rouge">r.set('foo', 'bar')</code> कमांड ‘foo’ कुंजी के साथ ‘bar’ मान को सेट करता है। <code class="language-plaintext highlighter-rouge">r.get('foo')</code> कमांड ‘foo’ कुंजी से जुड़े मान को प्राप्त करता है और उसे प्रिंट करता है।</p>
+
+<p>आउटपुट:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>python fib_redis.py
+b<span class="s1">'bar'</span>
+</code></pre></div></div>
+
+<h2 id="redis-कैश-उदाहरण">Redis कैश उदाहरण</h2>
+
+<p>फिबोनाची अनुक्रम का <code class="language-plaintext highlighter-rouge">Redis</code> संस्करण लागू करने के लिए, हम Redis को एक कैशिंग लेयर के रूप में उपयोग कर सकते हैं। यह हमें पहले से गणना किए गए फिबोनाची मानों को स्टोर करने और उन्हें बाद में पुनः प्राप्त करने की अनुमति देता है, जिससे प्रदर्शन में सुधार होता है।</p>
+
+<p>नीचे एक उदाहरण दिया गया है कि कैसे हम Redis का उपयोग करके फिबोनाची अनुक्रम को लागू कर सकते हैं:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># Redis कनेक्शन स्थापित करें
+</span><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="c1"># यदि मान Redis में पहले से मौजूद है, तो उसे वापस लौटाएं
+</span>    <span class="k">if</span> <span class="n">r</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    
+    <span class="c1"># बेस केस
+</span>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span>
+    
+    <span class="c1"># फिबोनाची अनुक्रम की गणना करें
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># परिणाम को Redis में स्टोर करें
+</span>    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># उदाहरण के लिए, 10वें फिबोनाची संख्या की गणना करें
+</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">fibonacci</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Time taken: </span><span class="si">{</span><span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="si">}</span><span class="s"> seconds</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="व्याख्या">व्याख्या:</h3>
+<ol>
+  <li><strong>Redis कनेक्शन</strong>: हम <code class="language-plaintext highlighter-rouge">redis.Redis</code> का उपयोग करके Redis सर्वर से कनेक्ट होते हैं।</li>
+  <li><strong>फिबोनाची फ़ंक्शन</strong>: <code class="language-plaintext highlighter-rouge">fibonacci</code> फ़ंक्शन पुनरावर्ती रूप से फिबोनाची अनुक्रम की गणना करता है। यदि मान पहले से ही Redis में स्टोर है, तो उसे सीधे वापस लौटा दिया जाता है।</li>
+  <li><strong>कैशिंग</strong>: गणना किए गए मानों को Redis में स्टोर किया जाता है ताकि भविष्य में उन्हें दोबारा गणना करने की आवश्यकता न पड़े।</li>
+  <li><strong>प्रदर्शन</strong>: Redis का उपयोग करने से पुनरावर्ती गणना का समय काफी कम हो जाता है, खासकर बड़े <code class="language-plaintext highlighter-rouge">n</code> के लिए।</li>
+</ol>
+
+<h3 id="उदाहरण-आउटपुट">उदाहरण आउटपुट:</h3>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>55
+Time taken: 0.0005 seconds
+</code></pre></div></div>
+
+<p>यह कोड फिबोनाची अनुक्रम की गणना करता है और Redis का उपयोग करके प्रदर्शन को अनुकूलित करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span>
+    <span class="n">res_n</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">res_n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res_n</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>इस तरह से यह काम हो गया।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

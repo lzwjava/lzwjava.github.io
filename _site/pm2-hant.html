@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>掌握生產環境中的 Node.js 使用 PM2</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>掌握生產環境中的 Node.js 使用 PM2 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="掌握生產環境中的 Node.js 使用 PM2" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="如果你曾經建立過一個 Node.js 應用程式並想知道如何在生產環境中保持其順暢運行，你可能會遇到 PM2。如果沒有，讓我介紹這個改變遊戲規則的工具。PM2，即 Process Manager 2，是一個開源工具，旨在使管理生產環境中的 Node.js 應用程式變得輕而易舉——內建負載均衡器、監控功能和零停機部署。讓我們深入了解 PM2 的優點以及為什麼它可能會成為你的首選工具。" />
+<meta property="og:description" content="如果你曾經建立過一個 Node.js 應用程式並想知道如何在生產環境中保持其順暢運行，你可能會遇到 PM2。如果沒有，讓我介紹這個改變遊戲規則的工具。PM2，即 Process Manager 2，是一個開源工具，旨在使管理生產環境中的 Node.js 應用程式變得輕而易舉——內建負載均衡器、監控功能和零停機部署。讓我們深入了解 PM2 的優點以及為什麼它可能會成為你的首選工具。" />
+<link rel="canonical" href="https://lzwjava.github.io/pm2-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/pm2-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-15T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="掌握生產環境中的 Node.js 使用 PM2" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2017-12-15T00:00:00+08:00","datePublished":"2017-12-15T00:00:00+08:00","description":"如果你曾經建立過一個 Node.js 應用程式並想知道如何在生產環境中保持其順暢運行，你可能會遇到 PM2。如果沒有，讓我介紹這個改變遊戲規則的工具。PM2，即 Process Manager 2，是一個開源工具，旨在使管理生產環境中的 Node.js 應用程式變得輕而易舉——內建負載均衡器、監控功能和零停機部署。讓我們深入了解 PM2 的優點以及為什麼它可能會成為你的首選工具。","headline":"掌握生產環境中的 Node.js 使用 PM2","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pm2-hant"},"url":"https://lzwjava.github.io/pm2-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       掌握生產環境中的 Node.js 使用 PM2 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2017-12-15-pm2-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2017-12-15-pm2-hant.md</span> -->
+      
+
+      <!-- <span>2017-12-15-pm2-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2017.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pm2-en" >English</option>
+        <option value="/pm2-zh" >中文</option>
+        <option value="/pm2-ja" >日本語</option>
+        <option value="/pm2-es" >Español</option>
+        <option value="/pm2-hi" >हिंदी</option>
+        <option value="/pm2-fr" >Français</option>
+        <option value="/pm2-de" >Deutsch</option>
+        <option value="/pm2-ar" >العربية</option>
+        <option value="/pm2-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>如果你曾經建立過一個 Node.js 應用程式並想知道如何在生產環境中保持其順暢運行，你可能會遇到 PM2。如果沒有，讓我介紹這個改變遊戲規則的工具。PM2，即 Process Manager 2，是一個開源工具，旨在使管理生產環境中的 Node.js 應用程式變得輕而易舉——內建負載均衡器、監控功能和零停機部署。讓我們深入了解 PM2 的優點以及為什麼它可能會成為你的首選工具。</p>
+
+<h4 id="什麼是-pm2">什麼是 PM2？</h4>
+
+<p>PM2 的核心是一個 Node.js 應用程式的進程管理器。你可以把它想像成一個守護者，保持你的應用程式運行，如果它崩潰了，會自動重新啟動，並幫助你輕鬆擴展。最初由 Unitech 創建，現在由一個活躍的開源社區維護，PM2 以其在 GitHub 上的 45k 星（截至 2025 年初）和可靠性聲譽而聞名。</p>
+
+<p>與在終端中運行 <code class="language-plaintext highlighter-rouge">node app.js</code> 並祈禱不同，PM2 控制你的應用程式的生命週期。這就像給你的 Node.js 應用程式配備了一個個人助理，處理那些無聊的事情——讓你可以專注於編碼。</p>
+
+<h4 id="為什麼-pm2-突出">為什麼 PM2 突出</h4>
+
+<p>這是重點：Node.js 本質上是單線程的，這對於輕量級、非阻塞 I/O 操作來說是很好的，但在高流量下可能會成為瓶頸。PM2 通過一些強大的功能來解決這個問題：</p>
+
+<ol>
+  <li>
+    <p><strong>簡化進程管理</strong>
+使用一個簡單的命令如 <code class="language-plaintext highlighter-rouge">pm2 start app.js</code>，你的應用程式就會作為一個管理過的進程運行。如果它崩潰了（這是可能的），PM2 會自動重新啟動它。你可以使用簡單的命令如 <code class="language-plaintext highlighter-rouge">pm2 stop app</code> 或 <code class="language-plaintext highlighter-rouge">pm2 delete app</code> 來停止、重新啟動或刪除進程。不需要照顧。</p>
+  </li>
+  <li>
+    <p><strong>內建負載均衡</strong>
+這是 PM2 發揮作用的地方。使用其集群模式（<code class="language-plaintext highlighter-rouge">pm2 start app.js -i max</code>），PM2 會在你的 CPU 核心上啟動多個應用程式實例。然後它會在這些實例之間負載均衡傳入的請求。不需要單獨的工具如 Nginx 來分發流量——PM2 內建支持。</p>
+  </li>
+  <li>
+    <p><strong>零停機重新加載</strong>
+你是否曾經因為更新會將用戶踢出應用程式而害怕部署？PM2 使用 <code class="language-plaintext highlighter-rouge">pm2 reload app</code> 來解決這個問題。它會一個接一個地重新啟動你的應用程式進程，確保用戶不會中斷。順暢如蝴蝶。</p>
+  </li>
+  <li>
+    <p><strong>監控和日誌</strong>
+運行 <code class="language-plaintext highlighter-rouge">pm2 monit</code> 會給你一個 CPU 使用率、記憶體消耗和重新啟動的實時儀表板。需要深入研究錯誤嗎？<code class="language-plaintext highlighter-rouge">pm2 logs</code> 會將你的應用程式日誌直接流到你的終端。這就像為你的應用程式配備了一個控制塔。</p>
+  </li>
+  <li>
+    <p><strong>啟動腳本</strong>
+想要在伺服器重新啟動後自動啟動 PM2 嗎？只需運行 <code class="language-plaintext highlighter-rouge">pm2 startup</code>，它會生成一個在啟動時重新啟動你的應用程式的腳本。幾分鐘內就可以準備好生產環境。</p>
+  </li>
+</ol>
+
+<h4 id="開始使用-pm2">開始使用 PM2</h4>
+
+<p>準備好試試看嗎？設置非常簡單：</p>
+
+<ol>
+  <li><strong>全局安裝 PM2</strong>
+打開你的終端並運行：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install pm2 -g
+</code></pre></div>    </div>
+    <p>這會全局安裝 PM2，讓你可以在任何地方使用它。</p>
+  </li>
+  <li><strong>啟動你的應用程式</strong>
+導航到你的項目文件夾並運行：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pm2 start app.js
+</code></pre></div>    </div>
+    <p>你的應用程式現在由 PM2 管理。想要使用集群模式嗎？試試：</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pm2 start app.js -i max
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">max</code> 標誌告訴 PM2 使用所有可用的 CPU 核心。</p>
+  </li>
+  <li>
+    <p><strong>檢查狀態</strong>
+運行 <code class="language-plaintext highlighter-rouge">pm2 list</code> 以查看所有運行中的進程、它們的狀態和資源使用情況。</p>
+  </li>
+  <li><strong>探索生態系統</strong>
+PM2 不僅僅是一個單一功能的工具。它支持配置文件（例如 <code class="language-plaintext highlighter-rouge">ecosystem.config.js</code>）用於更複雜的設置，與 Keymetrics 集成以進行高級監控，甚至可以與非 Node.js 應用程式一起使用，如果你想冒險。</li>
+</ol>
+
+<h4 id="適合誰">適合誰？</h4>
+
+<p>PM2 適合任何在生產環境中運行 Node.js 的人——無論你是一個獨自開發者部署一個副項目，還是一個團隊成員管理一個高流量 API。它輕量級、直觀，不會讓你陷入過於複雜的設置步驟。小型初創公司和大型企業都對其推崇備至。</p>
+
+<h4 id="幾個專業技巧">幾個專業技巧</h4>
+
+<ul>
+  <li><strong>觀察模式</strong>：在開發過程中使用 <code class="language-plaintext highlighter-rouge">pm2 start app.js --watch</code> 以在文件變更時自動重新啟動你的應用程式。</li>
+  <li><strong>記憶體限制</strong>：使用 <code class="language-plaintext highlighter-rouge">--max-memory-restart 200M</code> 設置記憶體上限，以在應用程式變得過於饑渴時重新啟動它。</li>
+  <li><strong>日誌清理</strong>：運行 <code class="language-plaintext highlighter-rouge">pm2 flush</code> 以清除舊日誌並保持整潔。</li>
+</ul>
+
+<h4 id="最後的想法">最後的想法</h4>
+
+<p>PM2 是那種一旦開始使用，你會想知道自己以前是如何生活的工具。它將管理 Node.js 進程的混亂轉變為一個流暢、無壓力的體驗。無論你是擴展微服務、保持網頁應用程式運行，還是只是玩弄一個愛好項目，PM2 都會支持你。</p>
+
+<p>所以，前往 <a href="https://github.com/Unitech/pm2">PM2 的 GitHub 頁面</a>，給它一個星並試試看。你的 Node.js 應用程式會感謝你——你的心情也會。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

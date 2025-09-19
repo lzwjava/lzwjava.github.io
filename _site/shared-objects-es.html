@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Objetos Compartidos en Múltiples Hilos</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Objetos Compartidos en Múltiples Hilos | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Objetos Compartidos en Múltiples Hilos" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Lección" />
+<meta property="og:description" content="Lección" />
+<link rel="canonical" href="https://lzwjava.github.io/shared-objects-es" />
+<meta property="og:url" content="https://lzwjava.github.io/shared-objects-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-28T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Objetos Compartidos en Múltiples Hilos" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-28T00:00:00+08:00","datePublished":"2025-01-28T00:00:00+08:00","description":"Lección","headline":"Objetos Compartidos en Múltiples Hilos","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/shared-objects-es"},"url":"https://lzwjava.github.io/shared-objects-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Objetos Compartidos en Múltiples Hilos | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-01-28-shared-objects-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-01-28-shared-objects-es.md</span> -->
+      
+
+      <!-- <span>2025-01-28-shared-objects-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/shared-objects-en" >English</option>
+        <option value="/shared-objects-zh" >中文</option>
+        <option value="/shared-objects-ja" >日本語</option>
+        <option value="/shared-objects-es" selected>Español</option>
+        <option value="/shared-objects-hi" >हिंदी</option>
+        <option value="/shared-objects-fr" >Français</option>
+        <option value="/shared-objects-de" >Deutsch</option>
+        <option value="/shared-objects-ar" >العربية</option>
+        <option value="/shared-objects-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <h2 id="lección">Lección</h2>
+
+<p>El código presenta un fallo intermitente que se manifiesta de manera inconsistente. Su naturaleza esporádica dificulta su reproducción y depuración efectivas.</p>
+
+<p>Este comportamiento intermitente se debe a la manera en que la función <code class="language-plaintext highlighter-rouge">translate_markdown_file</code>, particularmente la función <code class="language-plaintext highlighter-rouge">translate_front_matter</code>, maneja los datos compartidos. Estas funciones pueden estar accediendo y modificando estructuras de datos compartidas, como diccionarios o listas, sin una sincronización adecuada.</p>
+
+<p>Cuando múltiples hilos acceden y modifican los mismos datos de manera concurrente, esto puede llevar a condiciones de carrera. Las condiciones de carrera ocurren cuando el estado final de los datos depende del orden impredecible en que los hilos se ejecutan. Esto puede resultar en corrupción de datos, comportamiento inesperado del programa y los fallos intermitentes que estás observando.</p>
+
+<p>Para corregir esto, debes evitar compartir datos mutables entre hilos o utilizar mecanismos de sincronización adecuados, como bloqueos, para proteger los datos compartidos. En este caso, <code class="language-plaintext highlighter-rouge">front_matter_dict</code> se está modificando en su lugar, lo cual no es seguro para hilos. La solución es crear una copia del diccionario antes de modificarlo. Esto ya se hace en el código, pero es importante entender por qué es necesario.</p>
+
+<h2 id="contexto">Contexto</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">with</span> <span class="n">concurrent</span><span class="p">.</span><span class="n">futures</span><span class="p">.</span><span class="nc">ThreadPoolExecutor</span><span class="p">(</span><span class="n">max_workers</span><span class="o">=</span><span class="n">MAX_THREADS</span><span class="p">)</span> <span class="k">as</span> <span class="n">executor</span><span class="p">:</span>
+        <span class="n">futures</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">changed_files</span><span class="p">:</span>
+            <span class="n">input_file</span> <span class="o">=</span> <span class="n">filename</span>
+
+            <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">languages</span><span class="p">:</span>
+
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Enviando trabajo de traducción para </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> a </span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">future</span> <span class="o">=</span> <span class="n">executor</span><span class="p">.</span><span class="nf">submit</span><span class="p">(</span><span class="n">translate_markdown_file</span><span class="p">,</span> <span class="n">input_file</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">_posts/</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">filename</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">.md</span><span class="sh">"</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">-</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">.md</span><span class="sh">"</span><span class="p">)),</span> <span class="n">lang</span><span class="p">,</span> <span class="n">dry_run</span><span class="p">)</span>
+                <span class="n">futures</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="n">concurrent</span><span class="p">.</span><span class="n">futures</span><span class="p">.</span><span class="nf">as_completed</span><span class="p">(</span><span class="n">futures</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">future</span><span class="p">.</span><span class="nf">result</span><span class="p">()</span>
+            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Un hilo falló: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="antes">Antes</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">translate_front_matter</span><span class="p">(</span><span class="n">front_matter</span><span class="p">,</span> <span class="n">target_language</span><span class="p">,</span> <span class="n">input_file</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traduciendo el front matter para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">front_matter</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  No se encontró front matter para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sh">""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">front_matter_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">front_matter</span><span class="p">:</span>
+            <span class="n">front_matter_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">safe_load</span><span class="p">(</span><span class="n">front_matter</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Front matter después de safe_load: </span><span class="si">{</span><span class="n">front_matter_dict</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="sh">'</span><span class="s">title</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">front_matter_dict</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traduciendo el título: </span><span class="si">{</span><span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">input_file</span> <span class="o">==</span> <span class="sh">'</span><span class="s">original/2025-01-11-resume-en.md</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">target_language</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">zh</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">fr</span><span class="sh">'</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">translated_title</span> <span class="o">=</span> <span class="nf">translate_text</span><span class="p">(</span><span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">],</span> <span class="n">target_language</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">translated_title</span><span class="p">:</span>
+                        <span class="n">translated_title</span> <span class="o">=</span> <span class="n">translated_title</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">translated_title</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">:</span>
+                            <span class="n">translated_title</span> <span class="o">=</span> <span class="n">translated_title</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">translated_title</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traducido el título a: </span><span class="si">{</span><span class="n">translated_title</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Falló la traducción del título para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  El título no es una cadena, se omite la traducción para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Se omite la traducción del título para </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s"> a </span><span class="si">{</span><span class="n">target_language</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="c1"># Siempre establece lang en target_language
+</span>
+        <span class="c1"># Determinar si el archivo es una traducción
+</span>        <span class="n">original_lang</span> <span class="o">=</span> <span class="sh">'</span><span class="s">en</span><span class="sh">'</span> <span class="c1"># Predeterminado a inglés
+</span>        <span class="k">if</span> <span class="sh">'</span><span class="s">lang</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">front_matter_dict</span><span class="p">:</span>
+            <span class="n">original_lang</span> <span class="o">=</span> <span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">lang</span><span class="sh">'</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">target_language</span> <span class="o">!=</span> <span class="n">original_lang</span><span class="p">:</span>
+            <span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">lang</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_language</span>
+            <span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">translated</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Marcado como traducido a </span><span class="si">{</span><span class="n">target_language</span><span class="si">}</span><span class="s"> para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">front_matter_dict</span><span class="p">[</span><span class="sh">'</span><span class="s">translated</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  No marcado como traducido para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="sh">"</span><span class="s">---</span><span class="se">\n</span><span class="sh">"</span> <span class="o">+</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">front_matter_dict</span><span class="p">,</span> <span class="n">allow_unicode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">---</span><span class="sh">"</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traducción del front matter completada para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">except</span> <span class="n">yaml</span><span class="p">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Error al parsear el front matter: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">front_matter</span>
+</code></pre></div></div>
+
+<h2 id="después">Después</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">translate_front_matter</span><span class="p">(</span><span class="n">front_matter</span><span class="p">,</span> <span class="n">target_language</span><span class="p">,</span> <span class="n">input_file</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traduciendo el front matter para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">front_matter</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  No se encontró front matter para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="sh">""</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">front_matter_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">front_matter</span><span class="p">:</span>
+            <span class="n">front_matter_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">safe_load</span><span class="p">(</span><span class="n">front_matter</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Front matter después de safe_load: </span><span class="si">{</span><span class="n">front_matter_dict</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="n">front_matter_dict_copy</span> <span class="o">=</span> <span class="n">front_matter_dict</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="sh">'</span><span class="s">title</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">front_matter_dict_copy</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traduciendo el título: </span><span class="si">{</span><span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">input_file</span> <span class="o">==</span> <span class="sh">'</span><span class="s">original/2025-01-11-resume-en.md</span><span class="sh">'</span> <span class="ow">and</span> <span class="n">target_language</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">zh</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">fr</span><span class="sh">'</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="n">translated_title</span> <span class="o">=</span> <span class="nf">translate_text</span><span class="p">(</span><span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">],</span> <span class="n">target_language</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">translated_title</span><span class="p">:</span>
+                        <span class="n">translated_title</span> <span class="o">=</span> <span class="n">translated_title</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+                        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">translated_title</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">:</span>
+                            <span class="n">translated_title</span> <span class="o">=</span> <span class="n">translated_title</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">title</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">translated_title</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traducido el título a: </span><span class="si">{</span><span class="n">translated_title</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Falló la traducción del título para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  El título no es una cadena, se omite la traducción para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Se omite la traducción del título para </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="s"> a </span><span class="si">{</span><span class="n">target_language</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="c1"># Siempre establece lang en target_language
+</span>
+        <span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">lang</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">target_language</span>
+        <span class="n">front_matter_dict_copy</span><span class="p">[</span><span class="sh">'</span><span class="s">translated</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="sh">"</span><span class="s">---</span><span class="se">\n</span><span class="sh">"</span> <span class="o">+</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">front_matter_dict_copy</span><span class="p">,</span> <span class="n">allow_unicode</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="s">---</span><span class="sh">"</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Traducción del front matter completada para: </span><span class="si">{</span><span class="n">input_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">except</span> <span class="n">yaml</span><span class="p">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Error al parsear el front matter: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">front_matter</span>
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

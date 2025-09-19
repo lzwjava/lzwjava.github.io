@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Transformando Eclipse en Emacs</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Transformando Eclipse en Emacs | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Transformando Eclipse en Emacs" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Como usuario de Emacs durante medio año, simplemente no puedo imaginar cómo solía codificar, moviendo las manos desde la posición estándar para hacer clic en el mouse o presionar las teclas de flecha, sin sentir que era incómodo e insoportable. Ahora, cuando le digo a mis amigos que he configurado los atajos Alt+P y Alt+N para cambiar rápidamente entre archivos XML y el Diseño Gráfico, su respuesta es solo “de acuerdo”, lo que implica que usar el mouse para cambiar también está bien. Para mí, eso es una pesadilla; simplemente no es lo suficientemente rápido. ¡Si eres un usuario de Emacs, lo entiendes!" />
+<meta property="og:description" content="Como usuario de Emacs durante medio año, simplemente no puedo imaginar cómo solía codificar, moviendo las manos desde la posición estándar para hacer clic en el mouse o presionar las teclas de flecha, sin sentir que era incómodo e insoportable. Ahora, cuando le digo a mis amigos que he configurado los atajos Alt+P y Alt+N para cambiar rápidamente entre archivos XML y el Diseño Gráfico, su respuesta es solo “de acuerdo”, lo que implica que usar el mouse para cambiar también está bien. Para mí, eso es una pesadilla; simplemente no es lo suficientemente rápido. ¡Si eres un usuario de Emacs, lo entiendes!" />
+<link rel="canonical" href="https://lzwjava.github.io/eclipse-emacs-es" />
+<meta property="og:url" content="https://lzwjava.github.io/eclipse-emacs-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-11-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Transformando Eclipse en Emacs" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2013-11-29T00:00:00+08:00","datePublished":"2013-11-29T00:00:00+08:00","description":"Como usuario de Emacs durante medio año, simplemente no puedo imaginar cómo solía codificar, moviendo las manos desde la posición estándar para hacer clic en el mouse o presionar las teclas de flecha, sin sentir que era incómodo e insoportable. Ahora, cuando le digo a mis amigos que he configurado los atajos Alt+P y Alt+N para cambiar rápidamente entre archivos XML y el Diseño Gráfico, su respuesta es solo “de acuerdo”, lo que implica que usar el mouse para cambiar también está bien. Para mí, eso es una pesadilla; simplemente no es lo suficientemente rápido. ¡Si eres un usuario de Emacs, lo entiendes!","headline":"Transformando Eclipse en Emacs","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/eclipse-emacs-es"},"url":"https://lzwjava.github.io/eclipse-emacs-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Transformando Eclipse en Emacs | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2013-11-29-eclipse-emacs-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2013-11-29-eclipse-emacs-es.md</span> -->
+      
+
+      <!-- <span>2013-11-29-eclipse-emacs-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2013.11</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/eclipse-emacs-en" >English</option>
+        <option value="/eclipse-emacs-zh" >中文</option>
+        <option value="/eclipse-emacs-ja" >日本語</option>
+        <option value="/eclipse-emacs-es" selected>Español</option>
+        <option value="/eclipse-emacs-hi" >हिंदी</option>
+        <option value="/eclipse-emacs-fr" >Français</option>
+        <option value="/eclipse-emacs-de" >Deutsch</option>
+        <option value="/eclipse-emacs-ar" >العربية</option>
+        <option value="/eclipse-emacs-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Como usuario de Emacs durante medio año, simplemente no puedo imaginar cómo solía codificar, moviendo las manos desde la posición estándar para hacer clic en el mouse o presionar las teclas de flecha, sin sentir que era incómodo e insoportable. Ahora, cuando le digo a mis amigos que he configurado los atajos Alt+P y Alt+N para cambiar rápidamente entre archivos XML y el Diseño Gráfico, su respuesta es solo “de acuerdo”, lo que implica que usar el mouse para cambiar también está bien.
+Para mí, eso es una pesadilla; simplemente no es lo suficientemente rápido. ¡Si eres un usuario de Emacs, lo entiendes!</p>
+
+<p>Este artículo describe técnicas simples para construir un entorno de “edición” rápida en Eclipse. Básicamente, tus manos pueden quedarse en la posición estándar, permitiéndote codificar con máxima eficiencia.</p>
+
+<p>Lo más importante es instalar el complemento Emacs+. Consulta “Emacs+: Experiencia de Emacs en Eclipse”.</p>
+
+<p>Para aprovechar al máximo el asistente de código, necesitas habilitar que se desencadene con cualquier carácter y evitar la autocompletación al presionar espacio o =. Recomiendo descargar este archivo jar desde CSDN. Con él y una rápida búsqueda en Google, puedes importar paquetes en un santiamén.</p>
+
+<p>A continuación, personalicemos algunos atajos:</p>
+
+<p>1) Enlaza Alt+P a “Pestaña anterior” y Alt+N a “Pestaña siguiente”.</p>
+
+<p>La pestaña secundaria es la barra de pestañas debajo de un editor, como las pestañas “Diseño Gráfico” y “XML” al editar un archivo XML. Esto te permite ver el diseño al instante.</p>
+
+<p>2) Enlaza Ctrl+C, Ctrl+C a “Ejecutar”.</p>
+
+<p>Esto está copiado de la configuración de sbcl. El valor predeterminado es Ctrl+F11, que está demasiado lejos para un atajo tan frecuentemente utilizado, lo que hace que los usuarios de Emacs se sientan terribles. ¡Tontamente presioné Ctrl+F11 durante unos días antes de cambiarlo!</p>
+
+<p>3) Enlaza Ctrl+X, Ctrl+O a “Vista siguiente” cuando Windows y en el texto de edición.</p>
+
+<p>Esto te permite saltar instantáneamente del Editor a la Consola al escribir código Java.</p>
+
+<p>4) Enlaza Ctrl+X, O a “Editor siguiente” cuando Windows y en el texto de edición.</p>
+
+<p>Esto te permite cambiar rápidamente entre archivos Java.</p>
+
+<p>5) Enlaza Ctrl+Q a “Corrección rápida”.</p>
+
+<p>De esta manera, cuando escribas <code class="language-plaintext highlighter-rouge">@string/xx</code>, con el cursor en <code class="language-plaintext highlighter-rouge">xx</code>, presionar Ctrl+Q y luego Enter te llevará instantáneamente a <code class="language-plaintext highlighter-rouge">string.xml</code>, con el cursor posicionado en el <code class="language-plaintext highlighter-rouge">TODO</code> dentro de <code class="language-plaintext highlighter-rouge">&lt;string name="xx"&gt;TODO&lt;/string&gt;</code>.</p>
+
+<p>6) Enlaza Ctrl+Shift+W a “Cerrar” (cuando en ventanas) y elimina el enlace original (cerrar todo).
+El atajo de cierre original es Ctrl+W, que coincide con nuestros hábitos en navegadores, cajas de chat y exploradores de archivos. Sin embargo, entra en conflicto con el comando de corte de Emacs. En realidad, presionar Ctrl+Shift+W por un segundo puede cerrar muchos archivos. Entonces, cambiar Ctrl+Shift+W de “cerrar todo” a “cerrar” no pierde nada.</p>
+
+<p>Hay un problema: después de instalar Emacs+, al editar código y aparecer el asistente de código, presionar las teclas de flecha hacia arriba y hacia abajo no selecciona elementos en la lista de candidatos del asistente de código; en cambio, se mueve hacia arriba y hacia abajo en el código que se está editando. El valor predeterminado es activarlo con F2. Activar el asistente de código pone el enfoque en el asistente de código, pero luego solo puedes usar las teclas de flecha hacia arriba y hacia abajo para seleccionar. ¡Qué genial sería poder usar Ctrl+P y Ctrl+N! La codificación sería increíblemente rápida. Pero el problema es que después de instalar el complemento Emacs+, aunque Eclipse se vuelve más como Emacs, se pierde esta funcionalidad. En un Eclipse limpio, con el diseño de teclado Emacs (no Emacs+Scheme) seleccionado, puedes usar Ctrl+N y Ctrl+P para seleccionar elementos de autocompletar cuando aparece el asistente de código. Alguien preguntó sobre esto en Stack Overflow, pero aún no hay respuesta.</p>
+
+<p>¡Si pudiéramos usar Ctrl+P y Ctrl+N para seleccionar elementos de autocompletar, sería realmente increíble!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

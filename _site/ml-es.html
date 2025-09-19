@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Introducción al Aprendizaje Automático - TensorFlow</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Introducción al Aprendizaje Automático - TensorFlow | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Introducción al Aprendizaje Automático - TensorFlow" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Este artículo fue escrito originalmente en chino. Ha sido traducido al inglés para facilitar su traducción a otros idiomas." />
+<meta property="og:description" content="Este artículo fue escrito originalmente en chino. Ha sido traducido al inglés para facilitar su traducción a otros idiomas." />
+<link rel="canonical" href="https://lzwjava.github.io/ml-es" />
+<meta property="og:url" content="https://lzwjava.github.io/ml-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-12T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Introducción al Aprendizaje Automático - TensorFlow" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-12T00:00:00+08:00","datePublished":"2021-03-12T00:00:00+08:00","description":"Este artículo fue escrito originalmente en chino. Ha sido traducido al inglés para facilitar su traducción a otros idiomas.","headline":"Introducción al Aprendizaje Automático - TensorFlow","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ml-es"},"url":"https://lzwjava.github.io/ml-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Introducción al Aprendizaje Automático - TensorFlow | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2021-03-12-ml-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2021-03-12-ml-es.md</span> -->
+      
+
+      <!-- <span>2021-03-12-ml-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ml-en" >English</option>
+        <option value="/ml-zh" >中文</option>
+        <option value="/ml-ja" >日本語</option>
+        <option value="/ml-es" selected>Español</option>
+        <option value="/ml-hi" >हिंदी</option>
+        <option value="/ml-fr" >Français</option>
+        <option value="/ml-de" >Deutsch</option>
+        <option value="/ml-ar" >العربية</option>
+        <option value="/ml-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Este artículo fue escrito originalmente en chino. Ha sido traducido al inglés para facilitar su traducción a otros idiomas.</p>
+
+<hr />
+
+<p>Dado que estamos aprendiendo <code class="language-plaintext highlighter-rouge">Python</code>, definitivamente necesitamos hablar sobre aprendizaje automático. Muchas de sus bibliotecas están escritas en Python. Comencemos por instalarlas y probarlas.</p>
+
+<h2 id="tensorflow">TensorFlow</h2>
+
+<p>Vamos a instalarlo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>tensorflow
+ERROR: Could not find a version that satisfies the requirement tensorflow
+ERROR: No matching distribution found <span class="k">for </span>tensorflow
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">type </span>python
+python is aliased to <span class="sb">`</span>/usr/local/Cellar/python@3.9/3.9.1_6/bin/python3<span class="s1">'
+</span></code></pre></div></div>
+
+<p>Sin embargo, <code class="language-plaintext highlighter-rouge">TensorFlow 2</code> solo admite <code class="language-plaintext highlighter-rouge">Python 3.5–3.8</code>. Estamos usando la versión <code class="language-plaintext highlighter-rouge">3.9</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% <span class="nb">type </span>python3
+python3 is /usr/bin/python3
+% python3 <span class="nt">-V</span>
+Python 3.8.2
+</code></pre></div></div>
+
+<p>Observa que el <code class="language-plaintext highlighter-rouge">python3</code> en mi sistema es la versión <code class="language-plaintext highlighter-rouge">3.8.2</code>. ¿Dónde instala los paquetes el <code class="language-plaintext highlighter-rouge">pip</code> correspondiente a esta versión de Python?</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% python3 <span class="nt">-m</span> pip <span class="nt">-V</span>
+pip 21.0.1 from /Users/lzw/Library/Python/3.8/lib/python/site-packages/pip <span class="o">(</span>python 3.8<span class="o">)</span>
+</code></pre></div></div>
+
+<p>El <code class="language-plaintext highlighter-rouge">pip</code> correspondiente está aquí. Así que modificaré el archivo <code class="language-plaintext highlighter-rouge">.zprofile</code>. Recientemente, cambié mi <code class="language-plaintext highlighter-rouge">shell</code>, y <code class="language-plaintext highlighter-rouge">.zprofile</code> es equivalente al anterior <code class="language-plaintext highlighter-rouge">.bash_profile</code>. Agrega una línea:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">alias </span><span class="nv">pip3</span><span class="o">=</span>/Users/lzw/Library/Python/3.8/bin/pip3
+</code></pre></div></div>
+
+<p>De esta manera, podemos usar <code class="language-plaintext highlighter-rouge">python3</code> y <code class="language-plaintext highlighter-rouge">pip3</code> para trabajar con <code class="language-plaintext highlighter-rouge">TensorFlow</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% pip3 <span class="nb">install </span>tensorflow
+...
+Successfully installed absl-py-0.12.0 astunparse-1.6.3 cachetools-4.2.1 certifi-2020.12.5 chardet-4.0.0 flatbuffers-1.12 gast-0.3.3 google-auth-1.27.1 google-auth-oauthlib-0.4.3 google-pasta-0.2.0 grpcio-1.32.0 h5py-2.10.0 idna-2.10 keras-preprocessing-1.1.2 markdown-3.3.4 numpy-1.19.5 oauthlib-3.1.0 opt-einsum-3.3.0 protobuf-3.15.6 pyasn1-0.4.8 pyasn1-modules-0.2.8 requests-2.25.1 requests-oauthlib-1.3.0 rsa-4.7.2 tensorboard-2.4.1 tensorboard-plugin-wit-1.8.0 tensorflow-2.4.1 tensorflow-estimator-2.4.0 termcolor-1.1.0 typing-extensions-3.7.4.3 urllib3-1.26.3 werkzeug-1.0.1 wheel-0.36.2 wrapt-1.12.1
+</code></pre></div></div>
+
+<p>Se instalaron muchas bibliotecas. Usemos un ejemplo del sitio web oficial.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="n">mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">mnist</span>
+
+<span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="p">.</span><span class="nf">load_data</span><span class="p">()</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">=</span> <span class="n">x_train</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">x_test</span> <span class="o">/</span> <span class="mf">255.0</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">),</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">),</span>
+  <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="nf">model</span><span class="p">(</span><span class="n">x_train</span><span class="p">[:</span><span class="mi">1</span><span class="p">]).</span><span class="nf">numpy</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Vamos a ejecutarlo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/python3 tf.py
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+11493376/11490434 <span class="o">[==============================]</span> - 10s 1us/step
+<span class="o">[[</span> 0.15477428 <span class="nt">-0</span>.3877643   0.0994779   0.07474922 <span class="nt">-0</span>.26219758 <span class="nt">-0</span>.03550266
+   0.32226565 <span class="nt">-0</span>.37141111  0.10925996 <span class="nt">-0</span>.0115255 <span class="o">]]</span>
+</code></pre></div></div>
+
+<p>Como puedes ver, el conjunto de datos se descargó y se generaron los resultados.</p>
+
+<p>A continuación, veamos un ejemplo de clasificación de imágenes.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># TensorFlow y tf.keras
+</span><span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># Bibliotecas auxiliares
+</span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">__version__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Ocurrió un error.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ModuleNotFoundError: No module named <span class="s1">'matplotlib'</span>
+</code></pre></div></div>
+
+<p>Vamos a instalarlo.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% pip3 <span class="nb">install </span>matplotlib
+</code></pre></div></div>
+
+<p>Ahora está correcto.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/python3 image.py
+2.4.1
+</code></pre></div></div>
+
+<p>Copiemos y peguemos el código de ejemplo.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># TensorFlow y tf.keras
+</span><span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># Bibliotecas auxiliares
+</span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">fashion_mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">fashion_mnist</span>
+
+<span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">),</span> <span class="p">(</span><span class="n">test_images</span><span class="p">,</span> <span class="n">test_labels</span><span class="p">)</span> <span class="o">=</span> <span class="n">fashion_mnist</span><span class="p">.</span><span class="nf">load_data</span><span class="p">()</span>
+
+<span class="n">class_names</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">Camiseta/suéter</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Pantalón</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Sudadera</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Vestido</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Abrigo</span><span class="sh">'</span><span class="p">,</span>
+               <span class="sh">'</span><span class="s">Sandalia</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Camisa</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Zapatilla</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Bolsa</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Bota hasta el tobillo</span><span class="sh">'</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">train_images</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">train_labels</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Se muestran los resultados. Observa que tenemos <code class="language-plaintext highlighter-rouge">train_images</code>, <code class="language-plaintext highlighter-rouge">train_labels</code>, <code class="language-plaintext highlighter-rouge">test_images</code> y <code class="language-plaintext highlighter-rouge">test_labels</code>. Estos se dividen en conjuntos de datos de entrenamiento y prueba.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>60000, 28, 28<span class="o">)</span>
+60000
+</code></pre></div></div>
+
+<p>A continuación, intentemos mostrar una imagen.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Veamos el resultado.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[[</span>  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   1   0   0  13  73   0
+    0   1   4   0   0   0   0   1   1   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   3   0  36 136 127  62
+   54   0   0   0   1   3   4   0   0   3]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   6   0 102 204 176 134
+  144 123  23   0   0   0   0  12  10   0]
+ <span class="o">[</span>  0   0   0   0   0   0   0   0   0   0   0   0   0   0 155 236 207 178
+  107 156 161 109  64  23  77 130  72  15]]
+  ....
+</code></pre></div></div>
+
+<p>Aquí se extrae parte del resultado.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>Muestra <code class="language-plaintext highlighter-rouge">28</code>. Así que está claro que esta es una matriz con un ancho de 28. Continuemos imprimiendo.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">TypeError</span><span class="p">:</span> <span class="nb">object</span> <span class="n">of</span> <span class="nb">type</span> <span class="sh">'</span><span class="s">numpy.uint8</span><span class="sh">'</span> <span class="n">has</span> <span class="n">no</span> <span class="nf">len</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Así que está claro. Cada imagen es un arreglo de <code class="language-plaintext highlighter-rouge">28*28*3</code>. La última dimensión almacena los valores RGB. Sin embargo, podríamos estar equivocados en esto.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">][</span><span class="mi">20</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+</code></pre></div></div>
+
+<p>Esto muestra que cada imagen es un arreglo de <code class="language-plaintext highlighter-rouge">28*28</code>. Después de algunas pruebas, finalmente descubrimos el secreto.</p>
+
+<p>Primero, veamos la imagen de salida.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">colorbar</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/tf.png" alt="tf" style="zoom:30%;" /></p>
+
+<p>¿Ves la barra de colores a la derecha? Desde <code class="language-plaintext highlighter-rouge">0</code> a <code class="language-plaintext highlighter-rouge">250</code>. Resulta que esto es un degradado entre dos colores. Pero, ¿cómo sabe qué dos colores? ¿Dónde lo especificamos?</p>
+
+<p>A continuación, imprimamos también la segunda imagen.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/plt.png" alt="plt" style="zoom:30%;" /></p>
+
+<p>Muy interesante. ¿Es este el valor predeterminado de la biblioteca <code class="language-plaintext highlighter-rouge">pyplot</code>? Continuemos ejecutando el código proporcionado por el sitio web oficial.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">binary</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">train_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/tf2.png" alt="tf2" style="zoom:20%;" /></p>
+
+<p>Observa que aquí se muestran las imágenes y sus clasificaciones. Finalmente, entendemos el parámetro <code class="language-plaintext highlighter-rouge">cmap</code>. Si <code class="language-plaintext highlighter-rouge">cmap</code> no se especifica, se utilizará el esquema de color que vimos anteriormente. Efectivamente.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plt.imshow<span class="o">(</span>train_images[i]<span class="o">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/cmap.png" alt="cmap" style="zoom:20%;" /></p>
+
+<p>Esta vez, buscamos <code class="language-plaintext highlighter-rouge">pyplot cmap</code> y encontramos algunos recursos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>plt.imshow<span class="o">(</span>train_images[i], <span class="nv">cmap</span><span class="o">=</span>plt.cm.PiYG<span class="o">)</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/cmap1.png" alt="cmap1" style="zoom:20%;" /></p>
+
+<p>Modifiquemos el código.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>   <span class="c1">## Línea modificada
+</span>    <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">Blues</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">train_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>Sin embargo, ocurrió un error.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ValueError: num must be 1 &lt;<span class="o">=</span> num &lt;<span class="o">=</span> 10, not 11
+</code></pre></div></div>
+
+<p>¿Qué significa esto? ¿Qué significa exactamente el anterior <code class="language-plaintext highlighter-rouge">5,5,i+1</code>? ¿Por qué no funciona cuando se cambia a <code class="language-plaintext highlighter-rouge">2</code>? Aunque intuitivamente entendemos que podría significar 5 filas y 5 columnas, ¿por qué ocurre este error? ¿Cómo se calcula <code class="language-plaintext highlighter-rouge">11</code>? ¿Qué significa <code class="language-plaintext highlighter-rouge">num</code>? ¿Qué significa <code class="language-plaintext highlighter-rouge">10</code>? Observa que <code class="language-plaintext highlighter-rouge">2*5=10</code>. Entonces, quizá el error ocurre cuando <code class="language-plaintext highlighter-rouge">i=11</code>. Cuando se cambia a <code class="language-plaintext highlighter-rouge">for i in range(10):</code>, obtenemos el siguiente resultado.</p>
+
+<p><img src="/assets/images/ml/plot3.png" alt="plot3" style="zoom:20%;" /></p>
+
+<p>Esta vez, después de revisar brevemente la documentación, aprendemos sobre <code class="language-plaintext highlighter-rouge">subplot(nrows, ncols, index, **kwargs)</code>. Vale, ahora lo entendemos.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">25</span><span class="p">):</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># plt.xticks([])
+</span>    <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">train_images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">Blues</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">train_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/plot_xticks.png" alt="plot_xticks" style="zoom:30%;" /></p>
+
+<p>Observa que cosas como <code class="language-plaintext highlighter-rouge">0 25</code> se llaman <code class="language-plaintext highlighter-rouge">xticks</code>. Cuando hacemos zoom dentro o fuera de este marco, la visualización cambia.</p>
+
+<p><img src="assets/images/ml/plot_scale.png" alt="plot_scale" /></p>
+
+<p>Observa que al hacer zoom dentro o fuera, <code class="language-plaintext highlighter-rouge">xticks</code> y <code class="language-plaintext highlighter-rouge">xlabels</code> se muestran de manera diferente.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="nc">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">accuracy</span><span class="sh">'</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span>  <span class="n">test_labels</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="s">Test accuracy:</span><span class="sh">'</span><span class="p">,</span> <span class="n">test_acc</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Observa la forma en que se define el modelo aquí, usando la clase <code class="language-plaintext highlighter-rouge">Sequential</code>. Presta atención a estos parámetros: <code class="language-plaintext highlighter-rouge">28,28</code>, <code class="language-plaintext highlighter-rouge">128</code>, <code class="language-plaintext highlighter-rouge">relu</code>, <code class="language-plaintext highlighter-rouge">10</code>. Observa que necesitas <code class="language-plaintext highlighter-rouge">compile</code> y <code class="language-plaintext highlighter-rouge">fit</code>. <code class="language-plaintext highlighter-rouge">fit</code> significa ajustar. Observa que <code class="language-plaintext highlighter-rouge">28,28</code> corresponde al tamaño de la imagen.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/10
+1875/1875 <span class="o">[==============================]</span> - 2s 928us/step - loss: 0.6331 - accuracy: 0.7769
+Epoch 2/10
+1875/1875 <span class="o">[==============================]</span> - 2s 961us/step - loss: 0.3860 - accuracy: 0.8615
+Epoch 3/10
+1875/1875 <span class="o">[==============================]</span> - 2s 930us/step - loss: 0.3395 - accuracy: 0.8755
+Epoch 4/10
+1875/1875 <span class="o">[==============================]</span> - 2s 1ms/step - loss: 0.3071 - accuracy: 0.8890
+Epoch 5/10
+1875/1875 <span class="o">[==============================]</span> - 2s 1ms/step - loss: 0.2964 - accuracy: 0.8927
+Epoch 6/10
+1875/1875 <span class="o">[==============================]</span> - 2s 985us/step - loss: 0.2764 - accuracy: 0.8955
+Epoch 7/10
+1875/1875 <span class="o">[==============================]</span> - 2s 961us/step - loss: 0.2653 - accuracy: 0.8996
+Epoch 8/10
+1875/1875 <span class="o">[==============================]</span> - 2s 1ms/step - loss: 0.2549 - accuracy: 0.9052
+Epoch 9/10
+1875/1875 <span class="o">[==============================]</span> - 2s 1ms/step - loss: 0.2416 - accuracy: 0.9090
+Epoch 10/10
+1875/1875 <span class="o">[==============================]</span> - 2s 1ms/step - loss: 0.2372 - accuracy: 0.9086
+313/313 - 0s - loss: 0.3422 - accuracy: 0.8798
+
+Test accuracy: 0.879800021648407
+</code></pre></div></div>
+
+<p>El modelo ha sido entrenado. Ajustemos los parámetros.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>model <span class="o">=</span> tf.keras.Sequential<span class="o">([</span>
+    tf.keras.layers.Flatten<span class="o">(</span><span class="nv">input_shape</span><span class="o">=(</span>28, 28<span class="o">))</span>,
+    tf.keras.layers.Dense<span class="o">(</span>28, <span class="nv">activation</span><span class="o">=</span><span class="s1">'relu'</span><span class="o">)</span>,    <span class="c"># 128 -&gt; 28</span>
+    tf.keras.layers.Dense<span class="o">(</span>10<span class="o">)</span>
+<span class="o">])</span>
+</code></pre></div></div>
+
+<p>Modifica el primer parámetro de <code class="language-plaintext highlighter-rouge">Dense</code>.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/10
+1875/1875 <span class="o">[==============================]</span> - 2s 714us/step - loss: 6.9774 - accuracy: 0.3294
+Epoch 2/10
+1875/1875 <span class="o">[==============================]</span> - 1s 715us/step - loss: 1.3038 - accuracy: 0.4831
+Epoch 3/10
+1875/1875 <span class="o">[==============================]</span> - 1s 747us/step - loss: 1.0160 - accuracy: 0.6197
+Epoch 4/10
+1875/1875 <span class="o">[==============================]</span> - 1s 800us/step - loss: 0.7963 - accuracy: 0.6939
+Epoch 5/10
+1875/1875 <span class="o">[==============================]</span> - 2s 893us/step - loss: 0.7006 - accuracy: 0.7183
+Epoch 6/10
+1875/1875 <span class="o">[==============================]</span> - 1s 747us/step - loss: 0.6675 - accuracy: 0.7299
+Epoch 7/10
+1875/1875 <span class="o">[==============================]</span> - 1s 694us/step - loss: 0.6681 - accuracy: 0.7330
+Epoch 8/10
+1875/1875 <span class="o">[==============================]</span> - 1s 702us/step - loss: 0.6675 - accuracy: 0.7356
+Epoch 9/10
+1875/1875 <span class="o">[==============================]</span> - 1s 778us/step - loss: 0.6508 - accuracy: 0.7363
+Epoch 10/10
+1875/1875 <span class="o">[==============================]</span> - 1s 732us/step - loss: 0.6532 - accuracy: 0.7350
+313/313 - 0s - loss: 0.6816 - accuracy: 0.7230
+
+Test accuracy: 0.7229999899864197
+</code></pre></div></div>
+
+<p>Observa el cambio en <code class="language-plaintext highlighter-rouge">Test accuracy</code> antes y después. Los registros de <code class="language-plaintext highlighter-rouge">Epoch</code> son generados por la función <code class="language-plaintext highlighter-rouge">fit</code>. Observa que con <code class="language-plaintext highlighter-rouge">128</code>, <code class="language-plaintext highlighter-rouge">accuracy</code> pasa de <code class="language-plaintext highlighter-rouge">0.7769</code> a <code class="language-plaintext highlighter-rouge">0.9086</code>. Con <code class="language-plaintext highlighter-rouge">28</code>, <code class="language-plaintext highlighter-rouge">accuracy</code> pasa de <code class="language-plaintext highlighter-rouge">0.3294</code> a <code class="language-plaintext highlighter-rouge">0.7350</code>. Esta vez, vemos que primero usamos el conjunto de entrenamiento para optimizar <code class="language-plaintext highlighter-rouge">loss</code> y <code class="language-plaintext highlighter-rouge">accuracy</code>, luego usamos el conjunto de datos de prueba para evaluar. Veamos <code class="language-plaintext highlighter-rouge">train_labels</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">9</span> <span class="mi">0</span> <span class="mi">0</span> <span class="p">...</span> <span class="mi">3</span> <span class="mi">0</span> <span class="mi">5</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">train_labels</span><span class="p">))</span>
+<span class="mi">60000</span>
+</code></pre></div></div>
+
+<p>Esto significa que los números del <code class="language-plaintext highlighter-rouge">0 al 9</code> representan estas categorías. Casualmente, <code class="language-plaintext highlighter-rouge">class_names</code> también tiene 10 elementos.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class_names <span class="o">=</span> <span class="o">[</span><span class="s1">'Camiseta/suéter'</span>, <span class="s1">'Pantalón'</span>, <span class="s1">'Sudadera'</span>, <span class="s1">'Vestido'</span>, <span class="s1">'Abrigo'</span>,
+               <span class="s1">'Sandalia'</span>, <span class="s1">'Camisa'</span>, <span class="s1">'Zapatilla'</span>, <span class="s1">'Bolsa'</span>, <span class="s1">'Bota hasta el tobillo'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>Hagamos otro cambio.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>   <span class="c1"># 10 -&gt; 5
+</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="nc">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">accuracy</span><span class="sh">'</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Ocurrió un error.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>tensorflow.python.framework.errors_impl.InvalidArgumentError:  Received a label value of 9 which is outside the valid range of <span class="o">[</span>0, 5<span class="o">)</span><span class="nb">.</span>  Label values: 4 3 2 9 4 1 6 0 7 9 1 6 5 2 3 8 6 3 8 0 3 5 6 1 2 6 3 6 8 4 8 4
+         <span class="o">[[</span>node sparse_categorical_crossentropy/SparseSoftmaxCrossEntropyWithLogits/SparseSoftmaxCrossEntropyWithLogits <span class="o">(</span>defined at /curiosity-courses/ml/tf/image.py:53<span class="o">)</span> <span class="o">]]</span> <span class="o">[</span>Op:__inference_train_function_538]
+
+Function call stack:
+train_function
+</code></pre></div></div>
+
+<p>Cambiar el tercer parámetro de <code class="language-plaintext highlighter-rouge">Sequential</code>, <code class="language-plaintext highlighter-rouge">Dense</code>, a <code class="language-plaintext highlighter-rouge">15</code> resuelve el problema. Los resultados no son muy diferentes. Intentemos cambiar <code class="language-plaintext highlighter-rouge">Epoch</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Flatten</span><span class="p">(</span><span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">)),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">),</span>
+    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span>
+              <span class="n">loss</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="nc">SparseCategoricalCrossentropy</span><span class="p">(</span><span class="n">from_logits</span><span class="o">=</span><span class="bp">True</span><span class="p">),</span>
+              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">accuracy</span><span class="sh">'</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">train_images</span><span class="p">,</span> <span class="n">train_labels</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>  <span class="c1"># 10 -&gt; 15
+</span>
+<span class="n">test_loss</span><span class="p">,</span> <span class="n">test_acc</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">test_images</span><span class="p">,</span>  <span class="n">test_labels</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="s">Test accuracy:</span><span class="sh">'</span><span class="p">,</span> <span class="n">test_acc</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/15
+1875/1875 <span class="o">[==============================]</span> - 2s 892us/step - loss: 6.5778 - accuracy: 0.3771
+Epoch 2/15
+1875/1875 <span class="o">[==============================]</span> - 2s 872us/step - loss: 1.3121 - accuracy: 0.4910
+Epoch 3/15
+1875/1875 <span class="o">[==============================]</span> - 2s 909us/step - loss: 1.0900 - accuracy: 0.5389
+Epoch 4/15
+1875/1875 <span class="o">[==============================]</span> - 1s 730us/step - loss: 1.0422 - accuracy: 0.5577
+Epoch 5/15
+1875/1875 <span class="o">[==============================]</span> - 1s 709us/step - loss: 0.9529 - accuracy: 0.5952
+Epoch 6/15
+1875/1875 <span class="o">[==============================]</span> - 1s 714us/step - loss: 0.9888 - accuracy: 0.5950
+Epoch 7/15
+1875/1875 <span class="o">[==============================]</span> - 1s 767us/step - loss: 0.8678 - accuracy: 0.6355
+Epoch 8/15
+1875/1875 <span class="o">[==============================]</span> - 1s 715us/step - loss: 0.8247 - accuracy: 0.6611
+Epoch 9/15
+1875/1875 <span class="o">[==============================]</span> - 1s 721us/step - loss: 0.8011 - accuracy: 0.6626
+Epoch 10/15
+1875/1875 <span class="o">[==============================]</span> - 1s 711us/step - loss: 0.8024 - accuracy: 0.6622
+Epoch 11/15
+1875/1875 <span class="o">[==============================]</span> - 1s 781us/step - loss: 0.7777 - accuracy: 0.6696
+Epoch 12/15
+1875/1875 <span class="o">[==============================]</span> - 1s 724us/step - loss: 0.7764 - accuracy: 0.6728
+Epoch 13/15
+1875/1875 <span class="o">[==============================]</span> - 1s 731us/step - loss: 0.7688 - accuracy: 0.6767
+Epoch 14/15
+1875/1875 <span class="o">[==============================]</span> - 1s 715us/step - loss: 0.7592 - accuracy: 0.6793
+Epoch 15/15
+1875/1875 <span class="o">[==============================]</span> - 1s 786us/step - loss: 0.7526 - accuracy: 0.6792
+313/313 - 0s - loss: 0.8555 - accuracy: 0.6418
+
+Test accuracy: 0.6417999863624573
+</code></pre></div></div>
+
+<p>Observa que cambiar a 15 no hace mucha diferencia. <code class="language-plaintext highlighter-rouge">tf.keras.layers.Dense(88, activation='relu')</code> es importante. Al intentar cambiar 128 a 88 se obtuvo <code class="language-plaintext highlighter-rouge">Test accuracy: 0.824999988079071</code>. Con 128, fue <code class="language-plaintext highlighter-rouge">0.879800021648407</code>. Con 28, fue <code class="language-plaintext highlighter-rouge">0.7229999899864197</code>. ¿Un valor más grande significa mejores resultados? Sin embargo, al cambiarlo a <code class="language-plaintext highlighter-rouge">256</code>, fue <code class="language-plaintext highlighter-rouge">Test accuracy: 0.8409000039100647</code>. Esto nos hace reflexionar sobre el significado de <code class="language-plaintext highlighter-rouge">loss</code> y <code class="language-plaintext highlighter-rouge">accuracy</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">probability_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span><span class="n">model</span><span class="p">,</span>
+                                         <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Softmax</span><span class="p">()])</span>
+</code></pre></div></div>
+
+<p>A continuación, hagamos una predicción. Observa que <code class="language-plaintext highlighter-rouge">Sequential</code> es el mismo que antes. Presta atención a los parámetros <code class="language-plaintext highlighter-rouge">model</code> y <code class="language-plaintext highlighter-rouge">tf.keras.layers.Softmax()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">probability_model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Sequential</span><span class="p">([</span><span class="n">model</span><span class="p">,</span>
+                                         <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Softmax</span><span class="p">()])</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">probability_model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">test_images</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_image</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions_array</span><span class="p">,</span> <span class="n">true_label</span><span class="p">,</span> <span class="n">img</span><span class="p">):</span>
+  <span class="n">true_label</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">true_label</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">img</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+
+  <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">binary</span><span class="p">)</span>
+
+  <span class="n">predicted_label</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">predicted_label</span> <span class="o">==</span> <span class="n">true_label</span><span class="p">:</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">blue</span><span class="sh">'</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="sh">'</span><span class="s">red</span><span class="sh">'</span>
+
+  <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">{} {:2.0f}% ({})</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">class_names</span><span class="p">[</span><span class="n">predicted_label</span><span class="p">],</span>
+                                <span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">),</span>
+                                <span class="n">class_names</span><span class="p">[</span><span class="n">true_label</span><span class="p">]),</span>
+                                <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_value_array</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions_array</span><span class="p">,</span> <span class="n">true_label</span><span class="p">):</span>
+  <span class="n">true_label</span> <span class="o">=</span> <span class="n">true_label</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+  <span class="n">thisplot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">bar</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span> <span class="n">predictions_array</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">#777777</span><span class="sh">"</span><span class="p">)</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+  <span class="n">predicted_label</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">predictions_array</span><span class="p">)</span>
+
+  <span class="n">thisplot</span><span class="p">[</span><span class="n">predicted_label</span><span class="p">].</span><span class="nf">set_color</span><span class="p">(</span><span class="sh">'</span><span class="s">red</span><span class="sh">'</span><span class="p">)</span>
+  <span class="n">thisplot</span><span class="p">[</span><span class="n">true_label</span><span class="p">].</span><span class="nf">set_color</span><span class="p">(</span><span class="sh">'</span><span class="s">blue</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="nf">plot_image</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">test_labels</span><span class="p">,</span> <span class="n">test_images</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">plot_value_array</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>  <span class="n">test_labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/pred.png" alt="pred" style="zoom:50%;" /></p>
+
+<p>Esto indica que esta imagen tiene un 99% de probabilidad de ser una <code class="language-plaintext highlighter-rouge">Bota hasta el tobillo</code>. Observa que <code class="language-plaintext highlighter-rouge">plot_image</code> muestra el gráfico de la izquierda, y <code class="language-plaintext highlighter-rouge">plot_value_array</code> genera el gráfico de la derecha.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">num_rows</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">num_cols</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">num_images</span> <span class="o">=</span> <span class="n">num_rows</span><span class="o">*</span><span class="n">num_cols</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">num_cols</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">num_rows</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_images</span><span class="p">):</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">num_cols</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="nf">plot_image</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">test_labels</span><span class="p">,</span> <span class="n">test_images</span><span class="p">)</span>
+  <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">num_rows</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">num_cols</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+  <span class="nf">plot_value_array</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">test_labels</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/ml/pred1.png" alt="pred1" style="zoom:50%;" /></p>
+
+<p>Observa que esto solo muestra más resultados de prueba. Así que entendemos aproximadamente el flujo de uso. Todavía no sabemos cómo funcionan los cálculos detrás de escena, pero sabemos cómo usarlos. Detrás de todo esto está el cálculo. ¿Cómo entendemos el cálculo?</p>
+
+<p>Por ejemplo, hay un número entre 1 y 100 para que lo adivines. Cada vez que adivinas, te digo si es demasiado bajo o demasiado alto. Adivinas 50. Digo demasiado bajo. Adivinas 80. Digo demasiado alto. Adivinas 65. Digo demasiado alto. Adivinas 55. Digo demasiado bajo. Adivinas 58. Digo, sí, lo adivinaste.</p>
+
+<p>El aprendizaje automático simula un proceso similar detrás de escena, solo que más complejo. Podría implicar muchos rangos como <code class="language-plaintext highlighter-rouge">1 a 100</code>, adivinando muchos números a la vez. Cada adivinanza implica muchos cálculos, y determinar si es demasiado alto o demasiado bajo también requiere muchos cómputos.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

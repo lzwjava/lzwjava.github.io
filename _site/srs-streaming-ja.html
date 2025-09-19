@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>シンプルリアルタイムサーバー（SRS）RTMPストリーミング用</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>シンプルリアルタイムサーバー（SRS）RTMPストリーミング用 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="シンプルリアルタイムサーバー（SRS）RTMPストリーミング用" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="SRSを使用してRTMPストリーミング用のエッジサーバーをデプロイする方法について詳しく説明します。特に、rtmp.confファイルの理解と設定に焦点を当てます。SRSは、RTMP、HLS、HTTP-FLVなどのリアルタイムストリーミングプロトコルをサポートする高性能なメディアサーバーです。特に、コンテンツ配信ネットワーク（CDN）など、スケーラビリティが求められるシナリオに適しています。エッジサーバーは、クライアントに対して効率的にストリームを配布しつつ、オリジンサーバーからコンテンツをフェッチすることができます。以下に、ステップバイステップの手順を説明し、エッジデプロイメントの概念や設定方法について詳しく説明します。" />
+<meta property="og:description" content="SRSを使用してRTMPストリーミング用のエッジサーバーをデプロイする方法について詳しく説明します。特に、rtmp.confファイルの理解と設定に焦点を当てます。SRSは、RTMP、HLS、HTTP-FLVなどのリアルタイムストリーミングプロトコルをサポートする高性能なメディアサーバーです。特に、コンテンツ配信ネットワーク（CDN）など、スケーラビリティが求められるシナリオに適しています。エッジサーバーは、クライアントに対して効率的にストリームを配布しつつ、オリジンサーバーからコンテンツをフェッチすることができます。以下に、ステップバイステップの手順を説明し、エッジデプロイメントの概念や設定方法について詳しく説明します。" />
+<link rel="canonical" href="https://lzwjava.github.io/srs-streaming-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/srs-streaming-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="シンプルリアルタイムサーバー（SRS）RTMPストリーミング用" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2017-01-06T00:00:00+08:00","datePublished":"2017-01-06T00:00:00+08:00","description":"SRSを使用してRTMPストリーミング用のエッジサーバーをデプロイする方法について詳しく説明します。特に、rtmp.confファイルの理解と設定に焦点を当てます。SRSは、RTMP、HLS、HTTP-FLVなどのリアルタイムストリーミングプロトコルをサポートする高性能なメディアサーバーです。特に、コンテンツ配信ネットワーク（CDN）など、スケーラビリティが求められるシナリオに適しています。エッジサーバーは、クライアントに対して効率的にストリームを配布しつつ、オリジンサーバーからコンテンツをフェッチすることができます。以下に、ステップバイステップの手順を説明し、エッジデプロイメントの概念や設定方法について詳しく説明します。","headline":"シンプルリアルタイムサーバー（SRS）RTMPストリーミング用","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/srs-streaming-ja"},"url":"https://lzwjava.github.io/srs-streaming-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       シンプルリアルタイムサーバー（SRS）RTMPストリーミング用 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2017-01-06-srs-streaming-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2017-01-06-srs-streaming-ja.md</span> -->
+      
+
+      <!-- <span>2017-01-06-srs-streaming-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2017.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/srs-streaming-en" >English</option>
+        <option value="/srs-streaming-zh" >中文</option>
+        <option value="/srs-streaming-ja" selected>日本語</option>
+        <option value="/srs-streaming-es" >Español</option>
+        <option value="/srs-streaming-hi" >हिंदी</option>
+        <option value="/srs-streaming-fr" >Français</option>
+        <option value="/srs-streaming-de" >Deutsch</option>
+        <option value="/srs-streaming-ar" >العربية</option>
+        <option value="/srs-streaming-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>SRSを使用してRTMPストリーミング用のエッジサーバーをデプロイする方法について詳しく説明します。特に、<code class="language-plaintext highlighter-rouge">rtmp.conf</code>ファイルの理解と設定に焦点を当てます。SRSは、RTMP、HLS、HTTP-FLVなどのリアルタイムストリーミングプロトコルをサポートする高性能なメディアサーバーです。特に、コンテンツ配信ネットワーク（CDN）など、スケーラビリティが求められるシナリオに適しています。エッジサーバーは、クライアントに対して効率的にストリームを配布しつつ、オリジンサーバーからコンテンツをフェッチすることができます。以下に、ステップバイステップの手順を説明し、エッジデプロイメントの概念や設定方法について詳しく説明します。</p>
+
+<h3 id="srsとエッジデプロイメントとは">SRSとエッジデプロイメントとは？</h3>
+<p>SRSは、リアルタイムメディアストリーミングを効率的に処理するためのオープンソースサーバーです。RTMP（リアルタイムメッセージングプロトコル）をサポートし、他にもHLSやWebRTCなどのプロトコルをサポートしています。SRSでは、「エッジ」サーバーは、クライアント（視聴者やパブリッシャー）と「オリジン」サーバー（ストリームの発生源）の間の中継役を担います。エッジは、クライアントからのリクエストがあったときにのみオリジンからストリームをフェッチし、オリジンの負荷を軽減し、スケーラブルな配布を可能にします。CDNのキャッシュレイヤーのように考えてください。</p>
+
+<p>SRSを使用してエッジサーバーをデプロイするのは、以下のような場合に適しています：</p>
+<ul>
+  <li>大量の視聴者をサポートする。</li>
+  <li>パブリッシャーがエッジにストリームをプッシュし、エッジがそれをオリジンに転送する。</li>
+  <li>高価なオリジンサーバーの帯域幅使用を最小限に抑えるために、安価なエッジノードを活用する。</li>
+</ul>
+
+<h3 id="ステップバイステップsrsを使用してrtmpエッジサーバーをデプロイする">ステップバイステップ：SRSを使用してRTMPエッジサーバーをデプロイする</h3>
+<p>以下に、SRSをRTMPストリーミング用のエッジサーバーとして設定する方法を説明します。Linuxシステム（例：Ubuntu）を使用していることを前提としています。</p>
+
+<h4 id="1-srsのインストール">1. SRSのインストール</h4>
+<p>まず、SRSをマシン上で動作させる必要があります：</p>
+<ul>
+  <li><strong>SRSのダウンロード</strong>：最新の安定版を公式GitHubリポジトリから取得します（github.com/ossrs/srs）。2025年2月26日現在、通常は以下のようにリポジトリをクローンします：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/ossrs/srs.git
+cd srs
+</code></pre></div>    </div>
+  </li>
+  <li><strong>SRSのビルド</strong>：SRSは、<code class="language-plaintext highlighter-rouge">./configure</code>と<code class="language-plaintext highlighter-rouge">make</code>を使用したシンプルなビルドプロセスを持っています：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure
+make
+</code></pre></div>    </div>
+    <p>これにより、サーバーが<code class="language-plaintext highlighter-rouge">objs</code>ディレクトリ（例：<code class="language-plaintext highlighter-rouge">objs/srs</code>）にコンパイルされます。</p>
+  </li>
+  <li><strong>バイナリのテスト</strong>：デフォルトの設定で動作することを確認します：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/srs.conf
+</code></pre></div>    </div>
+    <p>デフォルトでは、RTMP用にポート1935をリッスンします。コンソール出力を確認してください。</p>
+  </li>
+</ul>
+
+<h4 id="2-エッジの概念を理解する">2. エッジの概念を理解する</h4>
+<p>SRSでは、エッジサーバーは「リモート」モードで動作し、クライアントからのリクエストがあったときにのみオリジンサーバーからストリームをフェッチします。このオンデマンドのフェッチが、RTMPの配布を効率的にスケーリングするための鍵です。</p>
+
+<ul>
+  <li><strong>オリジンサーバー</strong>：ストリームの発生源（例：OBSなどのエンコーダーがRTMPストリームをプッシュする場所）。</li>
+  <li><strong>エッジサーバー</strong>：クライアントが接続する中継で、必要なときにオリジンからフェッチします。</li>
+</ul>
+
+<p>この例では、SRSを実行しているオリジンサーバーが<code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code>にあると仮定します（実際のオリジンIPに置き換えてください）。</p>
+
+<h4 id="3-エッジサーバーの設定">3. エッジサーバーの設定</h4>
+<p>SRSは、動作を定義するための設定ファイルを使用します。デフォルトの<code class="language-plaintext highlighter-rouge">srs.conf</code>は良い出発点ですが、エッジデプロイメントには特定の設定が必要です。ここでは、<code class="language-plaintext highlighter-rouge">edge.conf</code>という名前の設定を作成します。</p>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">edge.conf</code>の作成</strong>：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd conf
+nano edge.conf
+</code></pre></div>    </div>
+  </li>
+  <li><strong>エッジ設定の追加</strong>：
+以下は、RTMPエッジデプロイメント用の最小限の<code class="language-plaintext highlighter-rouge">edge.conf</code>です：
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">srs_log_tank</span>        <span class="n">file</span>;
+<span class="n">srs_log_file</span>        ./<span class="n">objs</span>/<span class="n">edge</span>.<span class="n">log</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">cluster</span> {
+        <span class="n">mode</span>        <span class="n">remote</span>;
+        <span class="n">origin</span>      <span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">100</span>:<span class="m">1935</span>;
+    }
+}
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">listen 1935</code>：エッジはポート1935でRTMP接続をリッスンします。</li>
+      <li><code class="language-plaintext highlighter-rouge">max_connections 1000</code>：同時接続の制限（サーバーの容量に応じて調整）。</li>
+      <li><code class="language-plaintext highlighter-rouge">srs_log_file</code>：デバッグ用にファイルにログを出力します。</li>
+      <li><code class="language-plaintext highlighter-rouge">vhost __defaultVhost__</code>：デフォルトの仮想ホスト設定。</li>
+      <li><code class="language-plaintext highlighter-rouge">cluster { mode remote; origin 192.168.1.100:1935; }</code>：このサーバーをエッジ（<code class="language-plaintext highlighter-rouge">mode remote</code>）として設定し、オリジンサーバーを指定します。</li>
+    </ul>
+  </li>
+  <li><strong>保存と終了</strong>：nanoでCtrl+O、Enter、Ctrl+X。</li>
+</ul>
+
+<h4 id="4-エッジサーバーの起動">4. エッジサーバーの起動</h4>
+<p>エッジ設定でSRSを実行します：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/edge.conf
+</code></pre></div></div>
+<p>ログ（<code class="language-plaintext highlighter-rouge">./objs/edge.log</code>）を確認して、オリジンに接続されていることを確認します。</p>
+
+<h4 id="5-設定のテスト">5. 設定のテスト</h4>
+<ul>
+  <li><strong>ストリームのパブリッシュ</strong>：OBSやFFmpegなどのツールを使用して、オリジンサーバーにRTMPストリームをプッシュします：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg -re -i input.mp4 -c copy -f flv rtmp://192.168.1.100/live/livestream
+</code></pre></div>    </div>
+    <p>ここで、<code class="language-plaintext highlighter-rouge">live</code>はアプリ名、<code class="language-plaintext highlighter-rouge">livestream</code>はストリームキーです。</p>
+  </li>
+  <li><strong>エッジからの再生</strong>：VLCや他のRTMPクライアントを使用して、エッジからストリームを再生します：
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rtmp://&lt;edge-server-ip&gt;/live/livestream
+</code></pre></div>    </div>
+    <p><code class="language-plaintext highlighter-rouge">&lt;edge-server-ip&gt;</code>をエッジサーバーのIP（例：<code class="language-plaintext highlighter-rouge">192.168.1.101</code>）に置き換えます。エッジはオリジンからストリームをフェッチし、それを提供します。</p>
+  </li>
+</ul>
+
+<h4 id="6-rtmpconfの探索">6. <code class="language-plaintext highlighter-rouge">rtmp.conf</code>の探索</h4>
+<p>SRSはデフォルトで<code class="language-plaintext highlighter-rouge">rtmp.conf</code>ファイルを同梱していませんが、チュートリアルやカスタム設定で参照されることがあります。これは、RTMP専用の設定ファイルの命名規則です。例えば、SRSのドキュメント（ossrs.net）には、リアルタイムRTMPストリーミング用のサンプル<code class="language-plaintext highlighter-rouge">rtmp.conf</code>が提供されています：</p>
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">tcp_nodelay</span>     <span class="n">on</span>;
+    <span class="n">min_latency</span>     <span class="n">on</span>;
+    <span class="n">play</span> {
+        <span class="n">gop_cache</span>   <span class="n">off</span>;
+        <span class="n">queue_length</span> <span class="m">10</span>;
+    }
+    <span class="n">publish</span> {
+        <span class="n">mr</span>          <span class="n">off</span>;
+    }
+}
+</code></pre></div></div>
+<ul>
+  <li><strong>目的</strong>：この設定は、オリジンサーバーでの低遅延RTMPストリーミングを最適化します。エッジデプロイメントでは、ステップ3の<code class="language-plaintext highlighter-rouge">cluster</code>ブロックを追加することで適応します。</li>
+  <li><strong>主要な設定</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tcp_nodelay on</code>：Nagleのアルゴリズムを無効にして遅延を減少させます。</li>
+      <li><code class="language-plaintext highlighter-rouge">min_latency on</code>：バッファリングよりも低遅延を優先します。</li>
+      <li><code class="language-plaintext highlighter-rouge">gop_cache off</code>：リアルタイム再生のためにグループオブピクチャのキャッシュを無効にします。</li>
+      <li><code class="language-plaintext highlighter-rouge">mr off</code>：パブリッシュの遅延を避けるために「マージリード」を無効にします。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>エッジの場合、この設定を<code class="language-plaintext highlighter-rouge">cluster</code>設定と組み合わせることで、単独で使用するのではなく、適応します。</p>
+
+<h3 id="エッジのメカニズムとrtmpの説明">エッジのメカニズムとRTMPの説明</h3>
+<ul>
+  <li><strong>エッジの動作</strong>：クライアントが<code class="language-plaintext highlighter-rouge">rtmp://&lt;edge-ip&gt;/live/livestream</code>をリクエストすると、エッジはストリームを持っているかどうかを確認します。持っていない場合、オリジン（<code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code>）からフェッチし、ローカルにキャッシュして他のクライアントに提供します。パブリッシャーがエッジにプッシュすると、エッジはストリームをオリジンに転送します。</li>
+  <li><strong>RTMPの詳細</strong>：RTMPは、ライブストリーミングに適した低遅延プロトコルです。SRSはRTMPを効率的に処理し、サーバー間の同期のための絶対時間コーディング（ATC）などの機能をサポートしていますが、エッジモードではデフォルトで無効です。</li>
+  <li><strong>スケーラビリティ</strong>：同じオリジンを指す複数のエッジを追加して、数千のクライアントを処理します。SRSは、複数のオリジンをリストアップすることでフェイルオーバーをサポートします（例：<code class="language-plaintext highlighter-rouge">origin 192.168.1.100:1935 192.168.1.200:1935;</code>）。</li>
+</ul>
+
+<h3 id="ヒントとトラブルシューティング">ヒントとトラブルシューティング</h3>
+<ul>
+  <li><strong>ファイアウォール</strong>：オリジンサーバーとエッジサーバーの両方でポート1935が開いていることを確認します。</li>
+  <li><strong>ログ</strong>：オリジンへの接続失敗などのエラーを確認するために<code class="language-plaintext highlighter-rouge">edge.log</code>をチェックします。</li>
+  <li><strong>遅延</strong>：オリジンが低遅延である場合、エッジは通常1秒未満の遅延を追加します。</li>
+  <li><strong>複数のエッジ</strong>：同じ設定で追加のエッジをデプロイし、必要に応じて<code class="language-plaintext highlighter-rouge">listen</code>ポートやIPを調整します。</li>
+</ul>
+
+<h3 id="まとめ">まとめ</h3>
+<p>SRSを使用してRTMPエッジサーバーをデプロイすることは、オリジンとエッジの関係を理解すれば簡単です。<code class="language-plaintext highlighter-rouge">edge.conf</code>は、エッジがストリームを動的にフェッチまたはプッシュするように設定し、<code class="language-plaintext highlighter-rouge">rtmp.conf</code>スタイルの設定は必要に応じてRTMPのパフォーマンスを微調整することができます。この設定で、数人の視聴者からグローバルな視聴者まで、効率的にライブストリーミングをスケールアップできます。さらに調整したい場合や、RTMPとHLSを統合したい場合は、お知らせください！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

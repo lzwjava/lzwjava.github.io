@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>北京林業大学ログインシステムの分析</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>北京林業大学ログインシステムの分析 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="北京林業大学ログインシステムの分析" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="この記事は、元々中国語で書かれ、CSDNに公開されました。" />
+<meta property="og:description" content="この記事は、元々中国語で書かれ、CSDNに公開されました。" />
+<link rel="canonical" href="https://lzwjava.github.io/bjfu-web-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/bjfu-web-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-01-09T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="北京林業大学ログインシステムの分析" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-01-09T00:00:00+08:00","datePublished":"2014-01-09T00:00:00+08:00","description":"この記事は、元々中国語で書かれ、CSDNに公開されました。","headline":"北京林業大学ログインシステムの分析","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/bjfu-web-ja"},"url":"https://lzwjava.github.io/bjfu-web-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       北京林業大学ログインシステムの分析 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2014-01-09-bjfu-web-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2014-01-09-bjfu-web-ja.md</span> -->
+      
+
+      <!-- <span>2014-01-09-bjfu-web-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/bjfu-web-en" >English</option>
+        <option value="/bjfu-web-zh" >中文</option>
+        <option value="/bjfu-web-ja" selected>日本語</option>
+        <option value="/bjfu-web-es" >Español</option>
+        <option value="/bjfu-web-hi" >हिंदी</option>
+        <option value="/bjfu-web-fr" >Français</option>
+        <option value="/bjfu-web-de" >Deutsch</option>
+        <option value="/bjfu-web-ar" >العربية</option>
+        <option value="/bjfu-web-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>この記事は、元々中国語で書かれ、<a href="https://blog.csdn.net/lzw_java/article/details/18049581">CSDN</a>に公開されました。</p>
+
+<hr />
+
+<p>この記事では、北京林業大学のネットワークログインシステムを逆手に取るプロセスについて詳述しています。</p>
+
+<p>目標は、プログラムでログインプロセスをシミュレートし、ユーザーがウェブブラウザを通じてネットワークに接続する動作を効果的に模倣することです。</p>
+
+<p>Chromeの開発者ツールを使用して、ログインプロセス中に行われるネットワークリクエストを観察できます。</p>
+
+<p>最初のリクエストは<code class="language-plaintext highlighter-rouge">CheckLogin.jsp</code>に対して行われ、次に<code class="language-plaintext highlighter-rouge">CheckLogin.jsp</code>によってトリガーされる<code class="language-plaintext highlighter-rouge">index.jsp</code>に対してリクエストが行われます。</p>
+
+<p>それでは、<code class="language-plaintext highlighter-rouge">CheckLogin.jsp</code>をより詳細に調べます。</p>
+
+<p>POSTリクエストを使用し、いくつかのキーと値のペアを含むことがわかります。しかし、<code class="language-plaintext highlighter-rouge">action</code>とは何でしょうか？</p>
+
+<p>開発者ツールの「フォームデータ」を確認することで、ソースを表示できます。</p>
+
+<p>実際の<code class="language-plaintext highlighter-rouge">action</code>の値を見つけるには、ページソースを確認します。</p>
+
+<p><code class="language-plaintext highlighter-rouge">action</code>の値は、2行目の文字列です。</p>
+
+<p>では、IPアドレスはどうやって取得しますか？ログインシステムは、キャンパスのどこからでもアクセスでき、Wi-Fiまたは寮のケーブル接続でもアクセスできます。IPアドレスは動的です。これを自動的に取得する方法は何でしょうか？</p>
+
+<p>最初の画像を覚えていますか？</p>
+
+<p>ウェブページは自動的にIPアドレスを提供します。ログインシステムは、どのIPがアクセスしているかを知っています。ウェブページから簡単に抽出できます。</p>
+
+<p>Chromeは、ウェブページのコードの特定の部分を迅速に特定するための便利なツールを提供します。Firefoxには、Firebugという同様のプラグインがあります。</p>
+
+<p>「要素を検証する」ツール（拡大鏡アイコン）を使用して、ページ上のIPアドレスをクリックします。</p>
+
+<p>開発者ツールは、HTML構造を表示し、IPアドレスが<code class="language-plaintext highlighter-rouge">&lt;span&gt;</code>タグで<code class="language-plaintext highlighter-rouge">login_txt</code>クラス、特にそのテキストコンテンツにあることを示します。</p>
+
+<p>Jsoupの<code class="language-plaintext highlighter-rouge">select</code>関数は、CSSクエリにマッチする要素を見つけ、<code class="language-plaintext highlighter-rouge">first()</code>は最初のマッチング要素を返します。</p>
+
+<p>すべてのキーと値のペアを持つことで、現在ログインプロセスをシミュレートできます。</p>
+
+<p>POSTリクエストは、リクエスト本文にキーと値のペアを送信します。<code class="language-plaintext highlighter-rouge">post.abort()</code>呼び出しはリクエストを中断します。これは、後のリクエストで<code class="language-plaintext highlighter-rouge">httpClient</code>を再利用するためです。<code class="language-plaintext highlighter-rouge">org.apache.http</code>クラスは、可能な限りHTTP接続を再利用しようとします。リクエストが終了しない場合、同じ接続を使用して別のリクエストを送信することで例外が発生する可能性があります。</p>
+
+<p>なぜ<code class="language-plaintext highlighter-rouge">httpClient</code>を再利用する必要があるのか、後で説明します。</p>
+
+<p><code class="language-plaintext highlighter-rouge">checkLogin.jsp</code>に送信するだけでは、ネットワークに接続できません。このJSPは、ユーザー名とパスワードが正しいかどうかを確認するだけです。</p>
+
+<p>印刷ステートメントを追加することで、応答コードを確認できます。</p>
+
+<p>200の応答は正常なログインを示し、303は認証情報が誤っていることを示し、404は接続エラーを示します。</p>
+
+<p>2番目のJSPスクリプトが実行されるのは<code class="language-plaintext highlighter-rouge">index.jsp</code>で、これはGETリクエストです。</p>
+
+<p>その後もまだネットワークに接続できません。<code class="language-plaintext highlighter-rouge">connect_action.jsp</code>に対するリクエストをシミュレートする必要があります。これは、<code class="language-plaintext highlighter-rouge">userid</code>パラメータ（例：<code class="language-plaintext highlighter-rouge">userid=88888</code>）が必要で、これは学生のIDに対応します。前の学生IDの学生の<code class="language-plaintext highlighter-rouge">userid</code>が私のIDと1つ違っていたことに気づきました。この値はどうやって取得できますか？</p>
+
+<p>幸いにも、IPアドレスをウェブページから抽出することを思い出しました。<code class="language-plaintext highlighter-rouge">userid</code>も同じことができますか？</p>
+
+<p>このスクリーンショットは、切断されたページからのものですが、<code class="language-plaintext highlighter-rouge">connect.jsp</code>にも同じ論理が適用されます。2番目のJSPが返すページのソースコードには、次にリクエストする必要があるJSPのためのキーと値のペアが含まれています。</p>
+
+<p>ここでは、正規表現を使用します。<code class="language-plaintext highlighter-rouge">group(0)</code>は、完全な一致（例：<code class="language-plaintext highlighter-rouge">userid=88888</code>）であり、<code class="language-plaintext highlighter-rouge">group(1)</code>はカッコ内のコンテンツ（例：<code class="language-plaintext highlighter-rouge">88888</code>）です。<code class="language-plaintext highlighter-rouge">\d</code>は任意の数字にマッチし、<code class="language-plaintext highlighter-rouge">+</code>は1回以上の発生を意味します。<code class="language-plaintext highlighter-rouge">find()</code>は、正規表現が文字列の任意の部分に一致するかどうかを確認し、<code class="language-plaintext highlighter-rouge">matches()</code>は正規表現が完全に一致するかどうかを確認します。したがって、<code class="language-plaintext highlighter-rouge">src</code>が<code class="language-plaintext highlighter-rouge">&lt;frame userid=88888&amp;ip="</code>のような場合、<code class="language-plaintext highlighter-rouge">matches()</code>は<code class="language-plaintext highlighter-rouge">false</code>を返します。これは、正規表現が完全に一致するためです。</p>
+
+<p>以下は、Javaコードです：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.LinkedList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.List</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.regex.Matcher</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.regex.Pattern</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.apache.http.HttpEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.HttpResponse</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.NameValuePair</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.client.HttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.client.entity.UrlEncodedFormEntity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.client.methods.HttpGet</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.client.methods.HttpPost</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.client.utils.URLEncodedUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.cookie.Cookie</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.impl.client.AbstractHttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.impl.client.DefaultHttpClient</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.message.BasicNameValuePair</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.protocol.HTTP</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.apache.http.util.EntityUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.Jsoup</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.nodes.Document</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.nodes.Element</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.jsoup.select.Elements</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Login</span><span class="o">{</span>
+
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="nc">String</span> <span class="n">format</span><span class="o">,</span> <span class="nc">Object</span><span class="o">...</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="nc">String</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">format</span><span class="o">,</span> <span class="n">args</span><span class="o">));</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">HttpClient</span> <span class="n">httpClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DefaultHttpClient</span><span class="o">();</span>
+		<span class="nc">String</span> <span class="n">ip</span><span class="o">;</span>
+		<span class="nc">String</span> <span class="n">userId</span><span class="o">;</span>
+		<span class="nc">String</span> <span class="n">username</span><span class="o">=</span><span class="s">"130888888"</span><span class="o">;</span>
+		<span class="nc">String</span> <span class="n">password</span> <span class="o">=</span> <span class="s">"88888888"</span><span class="o">;</span>
+
+		<span class="n">ip</span><span class="o">=</span><span class="n">cssQueryFirstText</span><span class="o">(</span><span class="s">"http://login.bjfu.edu.cn/index.jsp"</span><span class="o">,</span><span class="s">"span.login_txt"</span><span class="o">);</span>
+
+		<span class="n">doPost</span><span class="o">(</span><span class="n">httpClient</span><span class="o">,</span><span class="s">"http://login.bjfu.edu.cn/checkLogin.jsp"</span><span class="o">,</span>
+				<span class="s">"username"</span><span class="o">,</span><span class="n">username</span><span class="o">,</span><span class="s">"password"</span><span class="o">,</span><span class="n">password</span><span class="o">,</span>
+				<span class="s">"ip"</span><span class="o">,</span><span class="n">ip</span><span class="o">,</span><span class="s">"action"</span><span class="o">,</span><span class="s">"checkLogin.jsp"</span><span class="o">);</span>
+		<span class="nc">String</span> <span class="n">content</span><span class="o">=</span><span class="n">doGet</span><span class="o">(</span><span class="n">httpClient</span><span class="o">,</span><span class="s">"http://login.bjfu.edu.cn/user/index.jsp"</span><span class="o">,</span>
+		  <span class="s">"ip"</span><span class="o">,</span><span class="n">ip</span><span class="o">,</span><span class="s">"action"</span><span class="o">,</span><span class="s">"connect"</span><span class="o">);</span>
+		<span class="n">userId</span><span class="o">=</span><span class="n">userId</span><span class="o">(</span><span class="n">content</span><span class="o">);</span>
+		<span class="n">doGet</span><span class="o">(</span><span class="n">httpClient</span><span class="o">,</span><span class="s">"http://login.bjfu.edu.cn/user/network/connect_action.jsp"</span><span class="o">,</span>
+			<span class="s">"userid"</span><span class="o">,</span><span class="n">userId</span><span class="o">,</span><span class="s">"ip"</span><span class="o">,</span><span class="n">ip</span><span class="o">,</span><span class="s">"type"</span><span class="o">,</span><span class="s">"2"</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">userId</span><span class="o">(</span><span class="nc">String</span> <span class="n">html</span><span class="o">){</span>
+		<span class="nc">Document</span> <span class="n">doc</span><span class="o">=</span><span class="nc">Jsoup</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="n">html</span><span class="o">);</span>
+		<span class="nc">Element</span> <span class="n">elem</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="s">"frame#main"</span><span class="o">).</span><span class="na">first</span><span class="o">();</span>
+		<span class="nc">String</span> <span class="n">src</span><span class="o">=</span><span class="n">elem</span><span class="o">.</span><span class="na">attr</span><span class="o">(</span><span class="s">"src"</span><span class="o">);</span>
+		<span class="nc">Pattern</span> <span class="n">pattern</span><span class="o">=</span><span class="nc">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"userid=(\\d+)"</span><span class="o">);</span>
+		<span class="nc">Matcher</span> <span class="n">matcher</span><span class="o">=</span><span class="n">pattern</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">src</span><span class="o">);</span>
+		<span class="nc">String</span> <span class="n">ans</span><span class="o">=</span><span class="s">""</span><span class="o">;</span>
+		<span class="k">if</span><span class="o">(</span><span class="n">matcher</span><span class="o">.</span><span class="na">find</span><span class="o">()){</span>
+		  <span class="n">ans</span><span class="o">=</span><span class="n">matcher</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="mi">1</span><span class="o">);</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">ans</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">cssQueryFirstText</span><span class="o">(</span><span class="nc">String</span> <span class="n">url</span><span class="o">,</span><span class="nc">String</span> <span class="n">cssQuery</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="n">ip</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+		<span class="k">try</span><span class="o">{</span>
+			<span class="nc">Document</span> <span class="n">doc</span><span class="o">=</span><span class="nc">Jsoup</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">url</span><span class="o">).</span><span class="na">get</span><span class="o">();</span>
+			<span class="nc">Elements</span> <span class="n">elems</span><span class="o">=</span><span class="n">doc</span><span class="o">.</span><span class="na">select</span><span class="o">(</span><span class="n">cssQuery</span><span class="o">);</span>
+			<span class="nc">Element</span> <span class="n">elem</span><span class="o">=</span><span class="n">elems</span><span class="o">.</span><span class="na">first</span><span class="o">();</span>
+			<span class="n">ip</span><span class="o">=</span><span class="n">elem</span><span class="o">.</span><span class="na">text</span><span class="o">();</span>
+		<span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">){</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">ip</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">doGet</span><span class="o">(</span><span class="nc">HttpClient</span> <span class="n">httpClient</span><span class="o">,</span> <span class="nc">String</span> <span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">...</span> <span class="n">pairs</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="n">entityContent</span><span class="o">=</span><span class="kc">null</span><span class="o">;</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="n">url</span> <span class="o">=</span> <span class="n">makeGetSrl</span><span class="o">(</span><span class="n">url</span><span class="o">,</span> <span class="n">pairs</span><span class="o">);</span>
+			<span class="nc">HttpGet</span> <span class="n">get</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HttpGet</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+			<span class="nc">HttpResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">get</span><span class="o">);</span>
+			<span class="c1">//print("%d", response.getStatusLine().getStatusCode());</span>
+			<span class="n">entityContent</span> <span class="o">=</span> <span class="n">entity</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+			<span class="nc">EntityUtils</span><span class="o">.</span><span class="na">consume</span><span class="o">(</span><span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">());</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">entityContent</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="kt">void</span> <span class="nf">printEntity</span><span class="o">(</span><span class="nc">HttpResponse</span> <span class="n">rp</span><span class="o">){</span>
+		<span class="n">print</span><span class="o">(</span><span class="s">"%s"</span><span class="o">,</span><span class="n">entity</span><span class="o">(</span><span class="n">rp</span><span class="o">));</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">entity</span><span class="o">(</span><span class="nc">HttpResponse</span> <span class="n">response</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">(</span><span class="s">""</span><span class="o">);</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">HttpEntity</span> <span class="n">entity</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="na">getEntity</span><span class="o">();</span>
+			<span class="k">if</span> <span class="o">(</span><span class="n">entity</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+				<span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span>
+						<span class="n">entity</span><span class="o">.</span><span class="na">getContent</span><span class="o">()));</span>
+				<span class="nc">String</span> <span class="n">line</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+				<span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">())</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+					<span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span> <span class="o">+</span> <span class="s">"\n"</span><span class="o">);</span>
+				<span class="o">}</span>
+			<span class="o">}</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">makeGetSrl</span><span class="o">(</span><span class="nc">String</span> <span class="n">url</span><span class="o">,</span><span class="nc">String</span><span class="o">...</span> <span class="n">pairs</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">if</span><span class="o">(!</span><span class="n">url</span><span class="o">.</span><span class="na">endsWith</span><span class="o">(</span><span class="s">"?"</span><span class="o">)){</span>
+			<span class="n">url</span><span class="o">+=</span><span class="s">"?"</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="nc">List</span><span class="o">&lt;</span><span class="nc">NameValuePair</span><span class="o">&gt;</span><span class="n">params</span><span class="o">=</span><span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">NameValuePair</span><span class="o">&gt;();</span>
+		<span class="kt">int</span> <span class="n">len</span><span class="o">=</span><span class="n">pairs</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">len</span><span class="o">/</span><span class="mi">2</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+			<span class="n">params</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">BasicNameValuePair</span><span class="o">(</span><span class="n">pairs</span><span class="o">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">],</span><span class="n">pairs</span><span class="o">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]));</span>
+		<span class="o">}</span>
+		<span class="nc">String</span> <span class="n">paramsStr</span><span class="o">=</span><span class="nc">URLEncodedUtils</span><span class="o">.</span><span class="na">format</span><span class="o">(</span><span class="n">params</span><span class="o">,</span><span class="s">"utf-8"</span><span class="o">);</span>
+		<span class="n">url</span><span class="o">+=</span><span class="n">paramsStr</span><span class="o">;</span>
+		<span class="k">return</span> <span class="n">url</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">static</span> <span class="nc">String</span> <span class="nf">doPost</span><span class="o">(</span><span class="nc">HttpClient</span> <span class="n">httpClient</span><span class="o">,</span> <span class="nc">String</span> <span class="n">url</span><span class="o">,</span> <span class="nc">String</span><span class="o">...</span> <span class="n">pairs</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">String</span> <span class="n">entityContent</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">HttpPost</span> <span class="n">post</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HttpPost</span><span class="o">(</span><span class="n">url</span><span class="o">);</span>
+			<span class="nc">List</span><span class="o">&lt;</span><span class="nc">NameValuePair</span><span class="o">&gt;</span> <span class="n">params</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">NameValuePair</span><span class="o">&gt;();</span>
+			<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">pairs</span><span class="o">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+				<span class="n">params</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="k">new</span> <span class="nc">BasicNameValuePair</span><span class="o">(</span><span class="n">pairs</span><span class="o">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span><span class="o">],</span> <span class="n">pairs</span><span class="o">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]));</span>
+			<span class="o">}</span>
+			<span class="n">post</span><span class="o">.</span><span class="na">setEntity</span><span class="o">(</span><span class="k">new</span> <span class="nc">UrlEncodedFormEntity</span><span class="o">(</span><span class="n">params</span><span class="o">,</span> <span class="no">HTTP</span><span class="o">.</span><span class="na">UTF_8</span><span class="o">));</span>
+			<span class="nc">HttpResponse</span> <span class="n">response</span> <span class="o">=</span> <span class="n">httpClient</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="n">post</span><span class="o">);</span>
+			<span class="n">entityContent</span> <span class="o">=</span> <span class="n">entity</span><span class="o">(</span><span class="n">response</span><span class="o">);</span>
+			<span class="c1">//print("%d", response.getStatusLine().getStatusCode());</span>
+			<span class="n">post</span><span class="o">.</span><span class="na">abort</span><span class="o">();</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+		<span class="o">}</span>
+		<span class="k">return</span> <span class="n">entityContent</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">private</span> <span class="kd">static</span> <span class="nc">String</span> <span class="nf">getCookies</span><span class="o">(</span><span class="nc">HttpClient</span> <span class="n">client</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">StringBuilder</span> <span class="n">sb</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">StringBuilder</span><span class="o">();</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Cookie</span><span class="o">&gt;</span> <span class="n">cookies</span> <span class="o">=</span> <span class="o">((</span><span class="nc">AbstractHttpClient</span><span class="o">)</span>
+        		<span class="n">client</span><span class="o">).</span><span class="na">getCookieStore</span><span class="o">().</span><span class="na">getCookies</span><span class="o">();</span>
+        <span class="k">for</span><span class="o">(</span><span class="nc">Cookie</span> <span class="nl">cookie:</span> <span class="n">cookies</span><span class="o">)</span>
+            <span class="n">sb</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">cookie</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">+</span> <span class="s">"="</span> <span class="o">+</span> <span class="n">cookie</span><span class="o">.</span><span class="na">getValue</span><span class="o">()</span> <span class="o">+</span> <span class="s">";"</span><span class="o">);</span>
+        <span class="k">return</span> <span class="n">sb</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>完全なソースコードはGitHubで入手できます。ただし、有効な大学ネットワークアカウントがなければ実行できないかもしれません。</p>
+
+<p>同じ<code class="language-plaintext highlighter-rouge">HttpClient</code>を再利用する理由は、クッキーを自動的に保存するからです。JSPスクリプトは、クッキーを使用してリクエストが同じセッションからのものかどうかを確認します。これは、淘宝のURLを他のブラウザにコピーするとタイムアウトエラーが発生する理由です。</p>
+
+<p><code class="language-plaintext highlighter-rouge">jsoup</code>と正規表現は非常に便利なツールです。正規表現を練習するためのオンラインツールがあります。これを楽しんで使ってください！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

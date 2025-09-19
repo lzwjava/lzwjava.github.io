@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="इस ब्लॉग पोस्ट को ChatGPT-4o के सहयोग से लिखा गया है।" />
+<meta property="og:description" content="इस ब्लॉग पोस्ट को ChatGPT-4o के सहयोग से लिखा गया है।" />
+<link rel="canonical" href="https://lzwjava.github.io/azure-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-07-07T00:00:00+08:00","datePublished":"2023-07-07T00:00:00+08:00","description":"इस ब्लॉग पोस्ट को ChatGPT-4o के सहयोग से लिखा गया है।","headline":"एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-hi"},"url":"https://lzwjava.github.io/azure-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       एज़्योर पर एक स्केलेबल एप्लिकेशन बनाना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2023-07-07-azure-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2023-07-07-azure-hi.md</span> -->
+      
+
+      <!-- <span>2023-07-07-azure-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-en" >English</option>
+        <option value="/azure-zh" >中文</option>
+        <option value="/azure-ja" >日本語</option>
+        <option value="/azure-es" >Español</option>
+        <option value="/azure-hi" selected>हिंदी</option>
+        <option value="/azure-fr" >Français</option>
+        <option value="/azure-de" >Deutsch</option>
+        <option value="/azure-ar" >العربية</option>
+        <option value="/azure-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>इस ब्लॉग पोस्ट को ChatGPT-4o के सहयोग से लिखा गया है।</em></p>
+
+<hr />
+
+<h3 id="सामग्री-सूची">सामग्री सूची</h3>
+<ul>
+  <li><a href="#परिचय">परिचय</a></li>
+  <li><a href="#azure-subscription-से-शुरू-करना">Azure Subscription से शुरू करना</a></li>
+  <li><a href="#azure-kubernetes-service-aks-के-साथ-एप्लिकेशन-डिप्लॉय-करना">Azure Kubernetes Service (AKS) के साथ एप्लिकेशन डिप्लॉय करना</a>
+    <ul>
+      <li><a href="#एक-aks-क्लस्टर-बनाना-और-प्रबंधित-करना">एक AKS क्लस्टर बनाना और प्रबंधित करना</a></li>
+      <li><a href="#एप्लिकेशन-डिप्लॉय-करना">एप्लिकेशन डिप्लॉय करना</a></li>
+    </ul>
+  </li>
+  <li><a href="#पॉड्स-से-लॉग्स-प्राप्त-करना">पॉड्स से लॉग्स प्राप्त करना</a></li>
+  <li><a href="#azure-application-insights-के-साथ-निगरानी-और-निदान">Azure Application Insights के साथ निगरानी और निदान</a></li>
+  <li><a href="#azure-virtual-machines-vms-का-उपयोग-करना">Azure Virtual Machines (VMs) का उपयोग करना</a></li>
+  <li><a href="#azure-event-hubs-के-साथ-रियल-टाइम-डेटा-इंजेस्टन">Azure Event Hubs के साथ रियल-टाइम डेटा इनजेस्टन</a></li>
+  <li><a href="#azure-api-management-services-के-साथ-apis-प्रबंधित-करना">Azure API Management Services के साथ APIs प्रबंधित करना</a></li>
+  <li><a href="#azure-sql-databases-का-उपयोग-करना">Azure SQL Databases का उपयोग करना</a></li>
+  <li><a href="#kusto-query-language-kql-के-साथ-लॉग्स-क्वेरी-करना">Kusto Query Language (KQL) के साथ लॉग्स क्वेरी करना</a></li>
+  <li><a href="#प्रोएक्टिव-निगरानी-के-लिए-अलर्ट-सेटअप-करना">प्रोएक्टिव निगरानी के लिए अलर्ट सेटअप करना</a></li>
+  <li><a href="#निष्कर्ष">निष्कर्ष</a></li>
+</ul>
+
+<h3 id="परिचय">परिचय</h3>
+
+<p>क्लाउड कंप्यूटिंग के दुनिया में, माइक्रोसॉफ्ट एज़्योर एक मजबूत प्लेटफॉर्म के रूप में उभर कर आता है, जो एप्लिकेशन बनाना, डिप्लॉय करना और प्रबंधित करना संभालता है। हमारी हालिया परियोजना में, हमने कई Azure सेवाओं का उपयोग किया, जिसमें Azure Subscription, Azure Kubernetes Service (AKS), Application Insights, Virtual Machines (VMs), Event Hubs, API Management Services, और SQL Databases शामिल हैं, ताकि एक स्केलेबल और निगरानी वाले एप्लिकेशन इन्फ्रास्ट्रक्चर बनाया जा सके। इस ब्लॉग पोस्ट में, हमने अपने दृष्टिकोण, उपयोग किए गए उपकरणों, सर्वोत्तम प्रथाओं और क्लस्टर प्रबंधित करने, लॉग्स प्राप्त करने और लॉग्स क्वेरी करने के लिए विस्तृत चरणों का वर्णन किया है।</p>
+
+<h3 id="azure-subscription-से-शुरू-करना">Azure Subscription से शुरू करना</h3>
+
+<p>एक Azure Subscription आपका Azure सेवाओं तक पहुंचने का प्रवेश द्वार है। यह एक कंटेनर के रूप में कार्य करता है जो सभी संसाधनों, जैसे वर्चुअल मशीनें, डेटाबेस और Kubernetes क्लस्टर को समाहित करता है।</p>
+
+<ol>
+  <li>Azure Subscription सेटअप करना:
+    <ul>
+      <li>साइन अप: अगर आपके पास एक Azure खाता नहीं है, तो <a href="https://portal.azure.com/">Azure पोर्टल</a> पर साइन अप करके शुरू करें।</li>
+      <li>Subscription बनाना: “Subscriptions” अनुभाग पर जाएं और एक नया subscription बनाएं। यह आपका बिलिंग और प्रबंधन कंटेनर होगा।</li>
+    </ul>
+  </li>
+  <li>संसाधन संगठन:
+    <ul>
+      <li>Resource Groups: अपने संसाधनों को उनके लाइफसाइकिल और प्रबंधन मानदंडों के आधार पर resource groups में संगठित करें।</li>
+      <li>Tags: अतिरिक्त मेटाडेटा और आसान संसाधन प्रबंधन और बिलिंग के लिए टैग का उपयोग करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-kubernetes-service-aks-के-साथ-एप्लिकेशन-डिप्लॉय-करना">Azure Kubernetes Service (AKS) के साथ एप्लिकेशन डिप्लॉय करना</h3>
+
+<p>Azure Kubernetes Service (AKS) एक प्रबंधित Kubernetes सेवा है जो कंटेनराइज्ड एप्लिकेशन डिप्लॉय, प्रबंधित और स्केल करने को सरल बनाती है।</p>
+
+<h4 id="एक-aks-क्लस्टर-बनाना-और-प्रबंधित-करना">एक AKS क्लस्टर बनाना और प्रबंधित करना</h4>
+
+<ol>
+  <li>Azure पोर्टल में एक AKS क्लस्टर बनाना:
+    <ul>
+      <li>सेटअप: Azure पोर्टल में, AKS खोजें और एक नया Kubernetes क्लस्टर बनाएं।</li>
+      <li>कॉन्फ़िगरेशन: अपने क्लस्टर के आकार का चयन करें, नोड पूल कॉन्फ़िगर करें और नेटवर्किंग सेटअप करें।</li>
+      <li>ऑथेंटिकेशन: सुरक्षित एक्सेस कंट्रोल के लिए Azure Active Directory (AAD) का उपयोग करें।</li>
+      <li>निगरानी: सेटअप प्रक्रिया के दौरान निगरानी और लॉगिंग को सक्षम करें।</li>
+    </ul>
+  </li>
+  <li>Azure CLI के साथ एक AKS क्लस्टर बनाना:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks create <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 3 <span class="se">\</span>
+  <span class="nt">--enable-addons</span> monitoring <span class="se">\</span>
+  <span class="nt">--generate-ssh-keys</span>
+</code></pre></div>    </div>
+  </li>
+  <li>अपने AKS क्लस्टर का प्रबंधन करना:
+    <ul>
+      <li>क्लस्टर स्केल करना:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks scale <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 5
+</code></pre></div>        </div>
+      </li>
+      <li>क्लस्टर अपग्रेड करना:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks upgrade <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--kubernetes-version</span> 1.21.2
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="एप्लिकेशन-डिप्लॉय-करना">एप्लिकेशन डिप्लॉय करना</h4>
+
+<ol>
+  <li>Kubernetes Manifests का उपयोग करना: अपने डिप्लॉयमेंट, सर्विस और अन्य Kubernetes ऑब्जेक्ट्स के लिए YAML फाइलें लिखें।
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div>    </div>
+  </li>
+  <li>kubectl के साथ डिप्लॉय करना:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> myapp-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>Helm Charts: Helm का उपयोग Kubernetes एप्लिकेशन प्रबंधित करने और वर्जन कंट्रोल के लिए करें।
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm <span class="nb">install </span>myapp ./mychart
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="पॉड्स-से-लॉग्स-प्राप्त-करना">पॉड्स से लॉग्स प्राप्त करना</h3>
+
+<ol>
+  <li>एक पॉड से जुड़ना और लॉग्स प्राप्त करना:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li>लॉग्स स्ट्रीम करना:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt; <span class="nt">-f</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>लॉगिंग के लिए साइडकार का उपयोग करना:
+    <ul>
+      <li>अपने पॉड स्पेसिफिकेशन में एक लॉगिंग साइडकार कंटेनर बनाएं ताकि लॉग्स को एक केंद्रीकृत लॉगिंग सेवा में भेजा जा सके।</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+    <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-shipper</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">log-shipper:latest</span>
+    <span class="s">...</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="azure-application-insights-के-साथ-निगरानी-और-निदान">Azure Application Insights के साथ निगरानी और निदान</h3>
+
+<p>Application Insights अपने एप्लिकेशन के लिए शक्तिशाली निगरानी और निदान क्षमताएं प्रदान करता है।</p>
+
+<ol>
+  <li>Application Insights सेटअप करना:
+    <ul>
+      <li>इंटीग्रेशन: अपने एप्लिकेशन कोड में Application Insights SDK जोड़ें।</li>
+      <li>इंस्ट्रूमेंटेशन की: अपने Application Insights संसाधन से इंस्ट्रूमेंटेशन की को कॉन्फ़िगर करें।</li>
+    </ul>
+  </li>
+  <li>प्रदर्शन ट्रैक करना:
+    <ul>
+      <li>मेट्रिक्स: रिस्पॉन्स टाइम, फेल्योर रेट और एप्लिकेशन डिपेंडेंसीज का निगरानी करें।</li>
+      <li>लाइव मेट्रिक्स स्ट्रीम: तत्काल अंतर्दृष्टि के लिए रियल-टाइम प्रदर्शन मेट्रिक्स देखें।</li>
+    </ul>
+  </li>
+  <li>निदान और ट्रबलशूटिंग:
+    <ul>
+      <li>एप्लिकेशन मैप: डिपेंडेंसीज को विज़ुअलाइज़ करें और प्रदर्शन बोटलनेक्स पहचानें।</li>
+      <li>ट्रांजैक्शन निदान: डिस्ट्रीब्यूटेड ट्रेसिंग का उपयोग करके सर्विसों के बीच अनुरोधों का ट्रेस करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-virtual-machines-vms-का-उपयोग-करना">Azure Virtual Machines (VMs) का उपयोग करना</h3>
+
+<p>Azure VMs उन अनुप्रयोगों और सेवाओं को चलाने की लचीलापन प्रदान करते हैं जो कंटेनराइज्ड नहीं हैं।</p>
+
+<ol>
+  <li>वर्चुअल मशीनें प्रोविजन करना:
+    <ul>
+      <li>VMs बनाना: Azure पोर्टल में, नए वर्चुअल मशीनें बनाएं और उपयुक्त आकार और ऑपरेटिंग सिस्टम का चयन करें।</li>
+      <li>नेटवर्क कॉन्फ़िगरेशन: ट्रैफिक को नियंत्रित करने के लिए वर्चुअल नेटवर्क, सबनेट और सुरक्षा समूह सेटअप करें।</li>
+    </ul>
+  </li>
+  <li>VMs कॉन्फ़िगर करना:
+    <ul>
+      <li>सॉफ्टवेयर इंस्टॉलेशन: आवश्यक सॉफ्टवेयर और डिपेंडेंसीज इंस्टॉल करें।</li>
+      <li>सुरक्षा: नियमित रूप से पैच और अपडेट लागू करें, फायरवॉल कॉन्फ़िगर करें और नेटवर्क सुरक्षा समूह (NSGs) का उपयोग करें।</li>
+    </ul>
+  </li>
+  <li>VMs प्रबंधित करना:
+    <ul>
+      <li>बैकअप और रिस्टोर: Azure Backup का उपयोग VM बैकअप के लिए करें।</li>
+      <li>निगरानी: Azure Monitor का उपयोग करके VM प्रदर्शन का निगरानी करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-event-hubs-के-साथ-रियल-टाइम-डेटा-इनजेस्टन">Azure Event Hubs के साथ रियल-टाइम डेटा इनजेस्टन</h3>
+
+<p>Azure Event Hubs एक बिग डेटा स्ट्रीमिंग प्लेटफॉर्म और इवेंट इनजेस्टन सेवा है जो प्रति सेकंड मिलियन इवेंट प्राप्त और प्रोसेस करने में सक्षम है।</p>
+
+<ol>
+  <li>Event Hubs सेटअप करना:
+    <ul>
+      <li>एक Event Hub Namespace बनाना: Azure पोर्टल में, अपने Event Hubs को समाहित करने के लिए एक Event Hub namespace बनाएं।</li>
+      <li>Event Hubs बनाना: namespace के भीतर, अपने डेटा स्ट्रीम्स को कैप्चर करने के लिए एक या अधिक Event Hubs बनाएं।</li>
+    </ul>
+  </li>
+  <li>डेटा इनजेस्ट करना:
+    <ul>
+      <li>प्रोड्यूसर्स: अपने एप्लिकेशन या सेवाओं को Event Hubs में इवेंट भेजने के लिए SDKs कॉन्फ़िगर करें जो कई भाषाओं (जैसे, .NET, Java, Python) के लिए उपलब्ध हैं।</li>
+      <li>पार्टिशन: पार्टिशन का उपयोग करके इवेंट प्रोसेसिंग को स्केल करें, जिससे उच्च थ्रूपुट और पैरालेलिज्म सुनिश्चित हो।</li>
+    </ul>
+  </li>
+  <li>इवेंट्स प्रोसेस करना:
+    <ul>
+      <li>कंस्यूमर्स: कंस्यूमर ग्रुप का उपयोग करके इवेंट्स को पढ़ें और प्रोसेस करें। Azure कई विकल्प प्रदान करता है, जिसमें Azure Stream Analytics, Azure Functions, और Event Hubs SDK का उपयोग करके कस्टम प्रोसेसिंग शामिल है।</li>
+    </ul>
+  </li>
+  <li>Event Hubs का निगरानी करना:
+    <ul>
+      <li>मेट्रिक्स: Azure पोर्टल के माध्यम से थ्रूपुट, लेटेंसी और इवेंट प्रोसेसिंग मेट्रिक्स का निगरानी करें।</li>
+      <li>अलर्ट: उच्च लेटेंसी या ड्रॉप्ड संदेशों जैसे किसी भी समस्या के बारे में आपको सूचित करने के लिए अलर्ट सेटअप करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-api-management-services-के-साथ-apis-प्रबंधित-करना">Azure API Management Services के साथ APIs प्रबंधित करना</h3>
+
+<p>Azure API Management Services मौजूदा बैक-एंड सेवाओं के लिए एकसंगत और आधुनिक API गेटवे बनाना संभालते हैं।</p>
+
+<ol>
+  <li>API Management सेटअप करना:
+    <ul>
+      <li>एक API Management सेवा बनाना: Azure पोर्टल में, API Management खोजें और एक नई सेवा बनाएं।</li>
+      <li>APIs कॉन्फ़िगर करना: OpenAPI स्पेसिफिकेशन्स, Azure Functions, या अन्य बैकएंड्स से APIs को परिभाषित और आयात करें।</li>
+    </ul>
+  </li>
+  <li>APIs सुरक्षित करना:
+    <ul>
+      <li>ऑथेंटिकेशन और ऑथोराइजेशन: OAuth2, JWT वैलिडेशन और अन्य मेकेनिज्म का उपयोग करके अपने APIs को सुरक्षित करें।</li>
+      <li>रेट लिमिटिंग और थ्रॉटलिंग: अपने APIs को दुरुपयोग से बचाने के लिए पॉलिसी लागू करें।</li>
+    </ul>
+  </li>
+  <li>निगरानी और एनालिटिक्स:
+    <ul>
+      <li>API इंसाइट्स: उपयोग, प्रदर्शन का निगरानी और लॉग्स का विश्लेषण करें।</li>
+      <li>डेवलपर पोर्टल: डेवलपर्स के लिए एक पोर्टल प्रदान करें ताकि वे अपने APIs खोज और उपयोग कर सकें।</li>
+    </ul>
+  </li>
+  <li>लाइफसाइकिल प्रबंधित करना:
+    <ul>
+      <li>वर्जनिंग और रिविजन: अपने APIs के विभिन्न वर्जन और रिविजन को आसानी से प्रबंधित करें।</li>
+      <li>पॉलिसी प्रबंधन: अनुरोधों और प्रतिक्रियाओं के ट्रांसफॉर्मेशन, वैलिडेशन और रूटिंग के लिए पॉलिसी लागू करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-sql-databases-का-उपयोग-करना">Azure SQL Databases का उपयोग करना</h3>
+
+<p>Azure SQL Database एक पूर्ण रूप से प्रबंधित रिलेशनल डेटाबेस है जिसमें बिल्ट-इन इंटेलिजेंस, उच्च उपलब्धता और स्केलेबिलिटी है।</p>
+
+<ol>
+  <li>Azure SQL Database सेटअप करना:
+    <ul>
+      <li>एक SQL डेटाबेस बनाना: Azure पोर्टल में, SQL डेटाबेस पर जाएं और एक नया डेटाबेस बनाएं।</li>
+      <li>डेटाबेस कॉन्फ़िगर करना: डेटाबेस के आकार, प्रदर्शन स्तर और नेटवर्किंग सेटिंग्स सेट करें।</li>
+    </ul>
+  </li>
+  <li>SQL डेटाबेस से कनेक्ट करना:
+    <ul>
+      <li>कनेक्शन स्ट्रिंग्स: अपने एप्लिकेशन को SQL डेटाबेस से कनेक्ट करने के लिए प्रदान की गई कनेक्शन स्ट्रिंग्स का उपयोग करें।</li>
+      <li>फायरवॉल रूल्स: अपने एप्लिकेशन या लोकल मशीन से एक्सेस की अनुमति देने के लिए फायरवॉल रूल्स कॉन्फ़िगर करें।</li>
+    </ul>
+  </li>
+  <li>डेटाबेस प्रबंधित करना:
+    <ul>
+      <li>बैकअप और रिस्टोर: अपने डेटा की सुरक्षा के लिए ऑटोमेटेड बैकअप और पॉइंट-इन-टाइम रिस्टोर का उपयोग करें।</li>
+      <li>स्केलिंग: अपने प्रदर्शन आवश्यकताओं के आधार पर डेटाबेस को अप या डाउन स्केल करें।</li>
+    </ul>
+  </li>
+  <li>निगरानी और प्रदर्शन ट्यूनिंग:
+    <ul>
+      <li>क्वेरी प्रदर्शन इंसाइट्स: क्वेरी प्रदर्शन का निगरानी और अनुकूलन करें।</li>
+      <li>ऑटोमेटिक ट्यूनिंग: प्रदर्शन सुधारने के लिए ऑटोमेटिक ट्यूनिंग फीचर्स को सक्षम करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="kusto-query-language-kql-के-साथ-लॉग्स-क्वेरी-करना">Kusto Query Language (KQL) के साथ लॉग्स क्वेरी करना</h3>
+
+<p>Kusto Query Language (KQL) का उपयोग Azure Monitor Logs को क्वेरी करने के लिए किया जाता है, जो अपने लॉग डेटा में शक्तिशाली अंतर्दृष्टि प्रदान करता है।</p>
+
+<ol>
+  <li>बेसिक KQL क्वेरी:
+    <pre><code class="language-kql">// एक विशिष्ट टेबल से रिकॉर्ड्स प्राप्त करना
+LogTableName
+| where TimeGenerated &gt; ago(1h)
+| project TimeGenerated, Level, Message
+</code></pre>
+  </li>
+  <li>डेटा फिल्टरिंग और एग्रीगेटिंग:
+    <pre><code class="language-kql">LogTableName
+| where TimeGenerated &gt; ago(1h) and Level == "Error"
+| summarize Count=count() by bin(TimeGenerated, 5m)
+</code></pre>
+  </li>
+  <li>टेबल्स जॉइन करना:
+    <pre><code class="language-kql">Table1
+| join kind=inner (Table2) on $left.UserId == $right.UserId
+| project Table1.TimeGenerated, Table1.Message, Table2.AdditionalInfo
+</code></pre>
+  </li>
+  <li>क्वेरी के आधार पर अलर्ट बनाना:
+    <ul>
+      <li>Azure पोर्टल में, Log Analytics वर्कस्पेस पर जाएं।</li>
+      <li><code class="language-plaintext highlighter-rouge">Logs</code> पर क्लिक करें और अपनी KQL क्वेरी दर्ज करें।</li>
+      <li><code class="language-plaintext highlighter-rouge">New alert rule</code> पर क्लिक करें ताकि क्वेरी परिणामों के आधार पर एक अलर्ट बनाया जा सके।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="प्रोएक्टिव-निगरानी-के-लिए-अलर्ट-सेटअप-करना">प्रोएक्टिव निगरानी के लिए अलर्ट सेटअप करना</h3>
+
+<p>Azure Alerts आपको अपने संसाधनों के स्वास्थ्य और प्रदर्शन के बारे में सूचित रखते हैं।</p>
+
+<ol>
+  <li>अलर्ट बनाना:
+    <ul>
+      <li>मेट्रिक अलर्ट: CPU उपयोग, मेमोरी उपयोग और रिस्पॉन्स टाइम जैसे मेट्रिक्स के आधार पर अलर्ट सेटअप करें।</li>
+      <li>लॉग अलर्ट: KQL के साथ लॉग सर्च क्वेरी के आधार पर अलर्ट बनाएं।</li>
+    </ul>
+  </li>
+  <li>एक्शन कॉन्फ़िगर करना:
+    <ul>
+      <li>एक्शन ग्रुप: एक्शन ग्रुप परिभाषित करें ताकि यह निर्धारित हो सके कि किसे सूचित किया जाए और कैसे (ईमेल, SMS, वेबहुक)।</li>
+      <li>इंटीग्रेशन: ITSM टूल्स जैसे ServiceNow के साथ स्वचालित इन्किडेंट प्रबंधन के लिए इंटीग्रेट करें।</li>
+    </ul>
+  </li>
+  <li>अलर्ट्स का जवाब देना:
+    <ul>
+      <li>डैशबोर्ड: अलर्ट्स के लिए एक केंद्रीकृत दृश्य प्रदान करने के लिए Azure डैशबोर्ड सेटअप करें।</li>
+      <li>ऑटोमेशन: Azure Automation का उपयोग करके कुछ अलर्ट्स के स्वचालित रूप से जवाब देने के लिए करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="निष्कर्ष">निष्कर्ष</h3>
+
+<p>Azure Subscription, AKS, Application Insights, Virtual Machines, Event Hubs, API Management Services, और SQL Databases का उपयोग करके, हमने एक स्केलेबल, मजबूत और निगरानी वाले एप्लिकेशन इन्फ्रास्ट्रक्चर बनाया। Azure की व्यापक उपकरणों की सूची ने सुनिश्चित किया कि हम अपने एप्लिकेशन को डिप्लॉय, प्रबंधित और निगरानी करने में कुशल हो सकें। इस सेटअप ने न केवल हमारे एप्लिकेशन प्रदर्शन को सुधारा, बल्कि हमें अपने संसाधनों को प्रोएक्टिव रूप से बनाए रखने और अनुकूलित करने के लिए आवश्यक अंतर्दृष्टि भी प्रदान की।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

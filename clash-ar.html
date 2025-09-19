@@ -1,557 +1,0 @@
-<!DOCTYPE html>
-<html lang=" en-US">
-
-<head>
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-  <link rel="manifest" href="/favicon/site.webmanifest">
-
-  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
-    href="https://lzwjava.github.io/feeds/feed.xml" />
-
-  <title>أتمتة إدارة بروكسي التصادم</title>
-
-  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
-          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
-  </script>
-
-  <!-- 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-66656236-1');
-  </script>
-   -->
-  <meta charset="UTF-8">
-
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>أتمتة إدارة بروكسي التصادم | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="أتمتة إدارة بروكسي التصادم" />
-<meta name="author" content="Zhiwei Li" />
-<meta property="og:locale" content="ar" />
-<meta name="description" content="هذا المنشور يوضح برنامجًا نصيًا بلغة بايثون، clash.py، مصممًا لأتمتة إدارة تكوين بروكسي Clash الخاص بك. يتولى كل شيء بدءًا من تنزيل تكوينات البروكسي المحدثة دوريًا وإعادة تشغيل خدمة Clash وحتى اختيار التحويل الذكي إلى أسرع بروكسي متاح ضمن مجموعة محددة. إلى جانب clash.py، فإن وحدة speed.py تسهل اختبار زمن الوصل لكل بروكسي Clash بشكل متزامن، مما يضمن أن اتصالك دائمًا ما يتم توجيهه عبر الخادم الأمثل." />
-<meta property="og:description" content="هذا المنشور يوضح برنامجًا نصيًا بلغة بايثون، clash.py، مصممًا لأتمتة إدارة تكوين بروكسي Clash الخاص بك. يتولى كل شيء بدءًا من تنزيل تكوينات البروكسي المحدثة دوريًا وإعادة تشغيل خدمة Clash وحتى اختيار التحويل الذكي إلى أسرع بروكسي متاح ضمن مجموعة محددة. إلى جانب clash.py، فإن وحدة speed.py تسهل اختبار زمن الوصل لكل بروكسي Clash بشكل متزامن، مما يضمن أن اتصالك دائمًا ما يتم توجيهه عبر الخادم الأمثل." />
-<link rel="canonical" href="https://lzwjava.github.io/clash-ar" />
-<meta property="og:url" content="https://lzwjava.github.io/clash-ar" />
-<meta property="og:site_name" content="Zhiwei Li" />
-<meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-06-08T00:00:00+08:00" />
-<meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="أتمتة إدارة بروكسي التصادم" />
-<meta name="twitter:site" content="@lzwjava" />
-<meta name="twitter:creator" content="@lzwjava" />
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-08T00:00:00+08:00","datePublished":"2025-06-08T00:00:00+08:00","description":"هذا المنشور يوضح برنامجًا نصيًا بلغة بايثون، clash.py، مصممًا لأتمتة إدارة تكوين بروكسي Clash الخاص بك. يتولى كل شيء بدءًا من تنزيل تكوينات البروكسي المحدثة دوريًا وإعادة تشغيل خدمة Clash وحتى اختيار التحويل الذكي إلى أسرع بروكسي متاح ضمن مجموعة محددة. إلى جانب clash.py، فإن وحدة speed.py تسهل اختبار زمن الوصل لكل بروكسي Clash بشكل متزامن، مما يضمن أن اتصالك دائمًا ما يتم توجيهه عبر الخادم الأمثل.","headline":"أتمتة إدارة بروكسي التصادم","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/clash-ar"},"url":"https://lzwjava.github.io/clash-ar"}</script>
-<!-- End Jekyll SEO tag -->
-
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#157878">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-  <!-- Facebook Meta Tags -->
-  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
-  <meta property="og:type" content="website">
-  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
-  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
-
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@lzwjava">
-  <meta property="twitter:domain" content="lzwjava.github.io">
-  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
-  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
-  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
-  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
-
-
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
-
-  <!-- for mathjax support -->
-  <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-          tex2jax: {
-            inlineMath: [ ['\\(','\\)'], ['$', '$']],
-            displayMath: [ ['$$','$$'], ['\\[','\\]']],
-            processEscapes: false
-          },
-          "HTML-CSS": { linebreaks: { automatic: true } },
-          "CommonHTML": {
-            linebreaks: { automatic: true }
-          },
-          TeX: { equationNumbers: { autoNumber: "AMS" } }
-        });
-      </script>
-
-  <script type="text/javascript" async
-    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
-</head>
-
-<body>
-  <main id="content" class="main-content post-content" role="main">
-  
-
-  
-
-  
-
-
-  <div class="title-row post-title-row">
-    <h2 class="title post-title">
-       أتمتة إدارة بروكسي التصادم | أصلي، ترجم بواسطة AI
-    </h2>
-  </div>
-
-  <div class="button-container">
-    <a href="/" class="button left-button">Home</a>
-
-    <!-- PDF Button -->
-     
-    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2025-06-08-clash-ar.md">PDF</a> -->
-
-    <!-- Audio Button -->
-
-
-
-    <!--  -->
-
-        <!-- Date Button -->
-    
-      
-      <!-- <span>_postsar2025-06-08-clash-ar.md</span> -->
-      
-
-      <!-- <span>2025-06-08-clash-ar.md</span> -->
-
-      
-        
-
-        
-          
-          <a href="#" class="button">2025.06</a>
-        
-
-      
-    
-
-    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
-      <!-- theme-icons.html -->
-<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-    <circle cx="12" cy="12" r="5"></circle>
-    <line x1="12" y1="1" x2="12" y2="3"></line>
-    <line x1="12" y1="21" x2="12" y2="23"></line>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-    <line x1="1" y1="12" x2="3" y2="12"></line>
-    <line x1="21" y1="12" x2="23" y2="12"></line>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-</svg>
-
-<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
-    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
-</svg>
-    </button>    
-
-    <!-- Language Select Section -->
-    
-    
-    
-    
-    
-    
-    
-
-    
-    <select id="languageSelect" class="button right-button">
-        
-        <option value="/clash-en" >English</option>
-        <option value="/clash-zh" >中文</option>
-        <option value="/clash-ja" >日本語</option>
-        <option value="/clash-es" >Español</option>
-        <option value="/clash-hi" >हिंदी</option>
-        <option value="/clash-fr" >Français</option>
-        <option value="/clash-de" >Deutsch</option>
-        <option value="/clash-ar" selected>العربية</option>
-        <option value="/clash-hant" >繁體中文</option>
-    </select>
-  </div>
-
-  <!-- Audio player for text-to-speech -->
-  <div class="audio-container">
-    <audio id="audioPlayer" controls loop style="display:none;">
-      <source id="audioSource" src="" type="audio/mp3">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <hr>
-
-  <p>هذا المنشور يوضح برنامجًا نصيًا بلغة بايثون، <code class="language-plaintext highlighter-rouge">clash.py</code>، مصممًا <strong>لأتمتة إدارة تكوين بروكسي Clash الخاص بك</strong>. يتولى كل شيء بدءًا من <strong>تنزيل تكوينات البروكسي المحدثة دوريًا</strong> و<strong>إعادة تشغيل خدمة Clash</strong> وحتى <strong>اختيار التحويل الذكي إلى أسرع بروكسي متاح</strong> ضمن مجموعة محددة. إلى جانب <code class="language-plaintext highlighter-rouge">clash.py</code>، فإن وحدة <code class="language-plaintext highlighter-rouge">speed.py</code> تسهل <strong>اختبار زمن الوصل لكل بروكسي Clash بشكل متزامن</strong>، مما يضمن أن اتصالك دائمًا ما يتم توجيهه عبر الخادم الأمثل.</p>
-
-<h2 id="clashpy">clash.py</h2>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">urllib.parse</span>
-
-<span class="c1"># بافتراض أن speed.py موجود في نفس الدليل أو متاح في PYTHONPATH
-</span><span class="kn">from</span> <span class="n">speed</span> <span class="kn">import</span> <span class="n">get_top_proxies</span> 
-
-<span class="c1"># --- التكوين ---
-</span><span class="n">CLASH_CONTROLLER_HOST</span> <span class="o">=</span> <span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span>
-<span class="n">CLASH_CONTROLLER_PORT</span> <span class="o">=</span> <span class="mi">9090</span>
-<span class="n">CLASH_API_BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_PORT</span><span class="si">}</span><span class="sh">"</span>
-<span class="c1"># اسم مجموعة البروكسي التي سيتم تعيين أفضل بروكسي فردي إليها.
-# تأكد من وجود هذه المجموعة في تكوين Clash الخاص بك.
-</span><span class="n">TARGET_PROXY_GROUP</span> <span class="o">=</span> <span class="sh">"</span><span class="s">🚧Proxy</span><span class="sh">"</span> 
-
-<span class="k">def</span> <span class="nf">setup_logging</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">يضبط تسجيل الأحداث الأساسي للنص البرمجي.</span><span class="sh">"""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="sh">'</span><span class="s">clash.log</span><span class="sh">'</span><span class="p">,</span> 
-        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="sh">'</span><span class="s">%(asctime)s - %(message)s</span><span class="sh">'</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="sh">'</span><span class="s">%Y-%m-%d %H:%M:%S</span><span class="sh">'</span>
-    <span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">global_proxy_address</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">يضبط متغيرات بيئة البروكسي على مستوى النظام.</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">GLOBAL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_proxy_address</span> <span class="c1"># يتم تعيينه للاتساق إذا كان مطلوبًا في مكان آخر
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="c1"># هذه عادةً لا تحتاج إلى تعيين صريح إلى "false" مع الأدوات الحديثة،
-</span>    <span class="c1"># ولكن يتم الاحتفاظ بها لتوافقها مع نية النص البرمجي الأصلي.
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span> 
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">تم تعيين البروكسي على مستوى النظام إلى: </span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">stop_system_proxy</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">يمسح متغيرات بيئة البروكسي على مستوى النظام.</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span> <span class="c1"># العودة إلى الإعداد الافتراضي
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">تم إيقاف البروكسي على مستوى النظام (تم مسح متغيرات البيئة).</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="k">def</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">proxy_name</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
-    يحول البروكسي النشط في مجموعة بروكسي Clash محددة إلى بروكسي جديد.
-    </span><span class="sh">"""</span>
-    <span class="n">encoded_group_name</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span><span class="p">.</span><span class="nf">quote</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">/proxies/</span><span class="si">{</span><span class="n">encoded_group_name</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">}</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="n">proxy_name</span><span class="p">}</span>
-    
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">تم التحويل بنجاح من </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> إلى </span><span class="sh">'</span><span class="si">{</span><span class="n">proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="nb">ConnectionError</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">خطأ: لا يمكن الاتصال بـ Clash API في </span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s"> لتحويل البروكسي.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">تأكد من أن Clash يعمل وأن external-controller مضبوط.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">Timeout</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">خطأ: انتهت مهلة الاتصال بـ Clash API أثناء تحويل البروكسي لـ </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">حدث خطأ غير متوقع أثناء تحويل البروكسي لـ </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">False</span>
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">الوظيفة الرئيسية لإدارة تكوين Clash، إعادة التشغيل، واختيار أفضل بروكسي.</span><span class="sh">"""</span>
-    <span class="nf">setup_logging</span><span class="p">()</span>
-    
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">نص برمجي لإدارة وتكوين Clash.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--minutes</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">الدقائق بين التحديثات (الافتراضي: 10)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--iterations</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">عدد التكرارات (الافتراضي: 1000)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">--config-url</span><span class="sh">"</span><span class="p">,</span> 
-        <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
-        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">CLASH_DOWNLOAD_URL</span><span class="sh">"</span><span class="p">),</span>
-        <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">رابط تنزيل تكوين Clash منه. الافتراضي هو متغير البيئة CLASH_DOWNLOAD_URL إذا تم تعيينه، وإلا فسيتم استخدام رابط ثابت.</span><span class="sh">"</span>
-    <span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
-
-    <span class="n">ITERATIONS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">iterations</span>
-    <span class="n">SLEEP_SECONDS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
-    <span class="n">config_download_url</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">config_url</span>
-
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">config_download_url</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">خطأ: لم يتم تقديم رابط تنزيل التكوين. يرجى تعيين متغير البيئة CLASH_DOWNLOAD_URL أو استخدام وسيطة --config-url.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="c1"># الخروج إذا لم يكن هناك رابط متاح
-</span>
-    <span class="n">clash_executable_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">/home/lzw/clash-linux-386-v1.17.0/clash-linux-386</span><span class="sh">"</span>
-    <span class="n">clash_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="sh">"</span><span class="s">~/.config/clash</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">clash_config_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="sh">"</span><span class="s">config.yaml</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ITERATIONS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- بدء التكرار </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> من </span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
-
-        <span class="c1"># الخطوة 1: إيقاف أي إعدادات بروكسي نظامية موجودة
-</span>        <span class="nf">stop_system_proxy</span><span class="p">()</span>
-        
-        <span class="c1"># الخطوة 2: تنزيل وتحديث تكوين Clash
-</span>        <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">جاري تنزيل التكوين الجديد من: </span><span class="si">{</span><span class="n">config_download_url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">wget</span><span class="sh">"</span><span class="p">,</span> <span class="n">config_download_url</span><span class="p">,</span> <span class="sh">"</span><span class="s">-O</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">shutil</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">,</span> <span class="n">clash_config_path</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">تم تحديث تكوين Clash بنجاح!</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">فشل في تنزيل أو نقل ملف التكوين: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">decode</span><span class="p">().</span><span class="nf">strip</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">تخطي إلى التكرار التالي.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># الانتظار قليلاً قبل إعادة المحاولة
-</span>            <span class="k">continue</span>
-        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">حدث خطأ غير متوقع أثناء تحديث التكوين: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">تخطي إلى التكرار التالي.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-            <span class="k">continue</span>
-
-        <span class="c1"># الخطوة 3: تشغيل Clash في الخلفية
-</span>        <span class="n">clash_process</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="c1"># من الضروري أن يبدأ Clash مع تفعيل external-controller ويمكن الوصول إليه
-</span>            <span class="c1"># هذا عادةً ما يتم تكوينه داخل ملف config.yaml نفسه.
-</span>            <span class="n">clash_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nc">Popen</span><span class="p">([</span><span class="n">clash_executable_path</span><span class="p">],</span> 
-                                             <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">تم تشغيل Clash بمعرف العملية </span><span class="si">{</span><span class="n">clash_process</span><span class="p">.</span><span class="n">pid</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="c1"># إعطاء Clash لحظة للتهيئة الكاملة وفتح منفذ API الخاص به
-</span>            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
-        <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">لم يتم العثور على ملف تنفيذ Clash في: </span><span class="si">{</span><span class="n">clash_executable_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">يرجى التأكد من صحة المسار وأن Clash مثبت.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">return</span> <span class="c1"># خطأ حرج، الخروج من النص البرمجي
-</span>        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">فشل في تشغيل Clash: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">تخطي إلى التكرار التالي.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span> <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-            <span class="k">continue</span>
-
-        <span class="c1"># الخطوة 4: اختبار سرعات البروكسي واختيار الأفضل
-</span>        <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">جاري اختبار سرعات البروكسي للعثور على الأفضل...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">top_proxies</span> <span class="o">=</span> <span class="nf">get_top_proxies</span><span class="p">(</span><span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># الحصول على أفضل بروكسي واحد فقط
-</span>            <span class="k">if</span> <span class="n">top_proxies</span><span class="p">:</span>
-                <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">تم تحديد أفضل بروكسي: </span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> بزمن وصل </span><span class="si">{</span><span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">latency</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">ms</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">لا توجد اختبارات بروكسي ناجحة. لا يمكن اختيار أفضل بروكسي لهذا التكرار.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">خطأ أثناء اختبار سرعة البروكسي: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-
-        <span class="c1"># الخطوة 5: تحويل مجموعة بروكسي Clash إلى البروكسي الأفضل (إذا تم العثور عليه)
-</span>        <span class="k">if</span> <span class="n">best_proxy_name</span><span class="p">:</span>
-            <span class="c1"># قبل تعيين بروكسي النظام، تأكد من أن Clash مضبوط بشكل صحيح.
-</span>            <span class="c1"># تعيين بروكسي النظام للإشارة إلى بروكسي HTTP المحلي لـ Clash.
-</span>            <span class="c1"># عادةً ما يعمل Clash بروكسي HTTP على المنفذ 7890 (أو ما شابه، تحقق من تكوينك).
-</span>            <span class="n">clash_local_proxy_address</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:7890</span><span class="sh">"</span> <span class="c1"># اضبط إذا كان منفذ HTTP لـ Clash مختلفًا
-</span>            <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">clash_local_proxy_address</span><span class="p">)</span>
-            
-            <span class="k">if</span> <span class="ow">not</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">TARGET_PROXY_GROUP</span><span class="p">,</span> <span class="n">best_proxy_name</span><span class="p">):</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">فشل في تحويل مجموعة Clash </span><span class="sh">'</span><span class="si">{</span><span class="n">TARGET_PROXY_GROUP</span><span class="si">}</span><span class="sh">'</span><span class="s"> إلى </span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">لم يتم العثور على أفضل بروكسي، تخطي تحويل مجموعة البروكسي وإعداد بروكسي النظام لهذا التكرار.</span><span class="sh">"</span><span class="p">)</span>
-            
-        <span class="c1"># الخطوة 6: الانتظار للمدة المحددة
-</span>        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">الانتظار لمدة </span><span class="si">{</span><span class="n">SLEEP_SECONDS</span> <span class="o">/</span> <span class="mi">60</span><span class="si">}</span><span class="s"> دقائق قبل التكرار التالي...</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">SLEEP_SECONDS</span><span class="p">)</span>
-
-        <span class="c1"># الخطوة 7: إيقاف عملية Clash
-</span>        <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">جاري إنهاء عملية Clash...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># إعطاء Clash وقتًا إضافيًا للإغلاق بلطف
-</span>                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">تم إيقاف Clash بنجاح.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">لم يتم إنهاء Clash بلطف، جاري قتل العملية.</span><span class="sh">"</span><span class="p">)</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">kill</span><span class="p">()</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">()</span> <span class="c1"># التأكد من قتل العملية بالكامل
-</span>            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">خطأ أثناء انتظار إيقاف Clash: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- اكتمل التكرار </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
-
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">تم إكمال </span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> تكرارات. انتهى النص البرمجي.</span><span class="sh">"</span><span class="p">)</span>
-
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
-</code></pre></div></div>
-
-<h2 id="speedpy">speed.py</h2>
-
-<p>```python
-import requests
-import json
-import urllib.parse
-import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
-import logging # استيراد وحدة تسجيل الأحداث</p>
-
-<h1 id="-التكوين-">— التكوين —</h1>
-<p>CLASH_CONTROLLER_HOST = “127.0.0.1”  # استخدام 127.0.0.1 حيث أن المتحكم على نفس الجهاز
-CLASH_CONTROLLER_PORT = 9090
-CLASH_API_BASE_URL = f”http://{CLASH_CONTROLLER_HOST}:{CLASH_CONTROLLER_PORT}”
-LATENCY_TEST_URL = “https://github.com” # رابط الاختبار المحدث
-LATENCY_TEST_TIMEOUT_MS = 5000  # ميلي ثانية
-CONCURRENT_CONNECTIONS = 10 # عدد الاختبارات المتزامنة</p>
-
-<h1 id="قائمة-بأسماء-مجموعات-البروكسي-المعروفة-لاستبعادها-من-اختبار-السرعة">قائمة بأسماء مجموعات البروكسي المعروفة لاستبعادها من اختبار السرعة</h1>
-<h1 id="هذه-عادةً-ما-لا-تكون-عقدًا-فردية-ولكن-مجموعات-سياسات-أو-بروكسيات-خاصة">هذه عادةً ما لا تكون عقدًا فردية ولكن مجموعات سياسات أو بروكسيات خاصة.</h1>
-<p>EXCLUDE_PROXY_GROUPS = [
-    “DIRECT”,
-    “REJECT”,
-    “GLOBAL”, # مستبعد بالفعل افتراضيًا في API
-    “🇨🇳国内网站或资源”,
-    “🌵其它规则外”,
-    “🎬Netflix等国外流媒体”,
-    “📦ChatGPT”,
-    “📹Youtube”,
-    “📺爱奇艺等国内流媒体”,
-    “🚧Proxy”,
-    # أضف أي أسماء مجموعات أخرى تريد استبعادها هنا
-]</p>
-
-<h1 id="-إعداد-تسجيل-الأحداث-لـ-speedpy-">— إعداد تسجيل الأحداث لـ speed.py —</h1>
-<h1 id="تكوين-تسجيل-الأحداث-لهذا-النص-البرمجي-المحدد">تكوين تسجيل الأحداث لهذا النص البرمجي المحدد</h1>
-<h1 id="هذا-يضمن-أنه-عند-استيراد-speedpy-واستدعاء-وظائفه">هذا يضمن أنه عند استيراد speed.py واستدعاء وظائفه،</h1>
-<h1 id="يذهب-إخراجه-إلى-speedlog-منفصل-عن-clash_managerlog">يذهب إخراجه إلى speed.log، منفصل عن clash_manager.log.</h1>
-<p>logging.basicConfig(
-    filename=’clash.log’,
-    level=logging.INFO,
-    format=’%(asctime)s - %(levelname)s - %(message)s’,
-    datefmt=’%Y-%m-%d %H:%M:%S’
-)</p>
-<h1 id="اختياريًا-إذا-كنت-تريد-أيضًا-رؤية-الإخراج-في-وحدة-التحكم-أضف-streamhandler">اختياريًا، إذا كنت تريد أيضًا رؤية الإخراج في وحدة التحكم، أضف StreamHandler:</h1>
-<h1 id="console_handler--loggingstreamhandler">console_handler = logging.StreamHandler()</h1>
-<h1 id="console_handlersetlevellogginginfo">console_handler.setLevel(logging.INFO)</h1>
-<h1 id="formatter--loggingformatterasctimes---levelnames---messages">formatter = logging.Formatter(‘%(asctime)s - %(levelname)s - %(message)s’)</h1>
-<h1 id="console_handlersetformatterformatter">console_handler.setFormatter(formatter)</h1>
-<h1 id="logginggetloggeraddhandlerconsole_handler">logging.getLogger().addHandler(console_handler)</h1>
-
-<h1 id="-منطق-النص-البرمجي-">— منطق النص البرمجي —</h1>
-
-<p>def get_all_proxy_names():
-    “"”يجلب جميع أسماء البروكسي من Clash API، باستثناء المجموعات المعروفة.”””
-    try:
-        response = requests.get(f”{CLASH_API_BASE_URL}/proxies”, timeout=5)
-        response.raise_for_status()  # إثارة استثناء لأخطاء HTTP (4xx أو 5xx)
-        proxies_data = response.json()</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    all_names = proxies_data.get("proxies", {}).keys()
-    
-    # تصفية أسماء المجموعات
-    filtered_names = [name for name in all_names if name not in EXCLUDE_PROXY_GROUPS]
-    
-    logging.info(f"تم جلب {len(filtered_names)} أسماء بروكسي قابلة للاختبار بنجاح.")
-    return filtered_names
-except requests.exceptions.ConnectionError:
-    logging.error(f"لا يمكن الاتصال بـ Clash API في {CLASH_API_BASE_URL}. تأكد من أن Clash يعمل.")
-    return []
-except requests.exceptions.Timeout:
-    logging.error(f"انتهت مهلة الاتصال بـ Clash API بعد 5 ثوانٍ.")
-    return []
-except requests.exceptions.RequestException as e:
-    logging.error(f"حدث خطأ غير متوقع أثناء جلب أسماء البروكسي: {e}")
-    return []
-</code></pre></div></div>
-
-<p>def test_proxy_latency(proxy_name):
-    “"”يختبر زمن الوصل لبروكسي واحد باستخدام Clash API.
-    يعيد tuple (اسم البروكسي, زمن الوصل) أو (اسم البروكسي, None) في حالة الفشل.
-    “””
-    encoded_proxy_name = urllib.parse.quote(proxy_name)
-    url = f”{CLASH_API_BASE_URL}/proxies/{encoded_proxy_name}/delay”
-    params = {
-        “url”: LATENCY_TEST_URL,
-        “timeout”: LATENCY_TEST_TIMEOUT_MS
-    }
-    try:
-        # مهلة requests بالثواني، تحويل الميلي ثانية
-        response = requests.get(url, params=params, timeout=(LATENCY_TEST_TIMEOUT_MS / 1000) + 1)
-        response.raise_for_status()
-        latency_data = response.json()
-        latency = latency_data.get(“delay”)
-        logging.info(f”البروكسي: {proxy_name} - زمن الوصل: {latency}ms”)
-        return proxy_name, latency
-    except requests.exceptions.RequestException as e:
-        logging.warning(f”خطأ في اختبار ‘{proxy_name}’: {e}”)
-        return proxy_name, None</p>
-
-<p>def get_top_proxies(num_results=5):
-    “””
-    يختبر سرعات بروكسي Clash بشكل متزامن ويعيد أفضل N بروكسي فردي من حيث السرعة.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>الإرجاع:
-    list: قائمة من القواميس، كل منها يحتوي على 'name' و 'latency' لأفضل البروكسيات.
-          تعيد قائمة فارغة إذا لم يتم العثور على بروكس
-</code></pre></div></div>
-
-
-  <hr>
-
-  <div class="button-container">
-    <a href="/" class="button left-button">Back</a>
-
-
-    
-
-    
-    
-    <a href="/donate-ar" class="button right-button">Donate</a>
-  </div>
-</main>
-
-<script src="/assets/js/dark-mode.js"></script>
-<script src="/assets/js/audio.js" defer></script>
-<script src="/assets/js/pdf.js" defer></script>
-<script>
-    document.getElementById('languageSelect').addEventListener('change', function() {
-        var selectedValue = this.value;
-        if (selectedValue) {
-            window.location.href = selectedValue;
-        }
-    });
-</script>
-
-</body>
-
-</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>إتقان Node.js في الإنتاج مع PM2</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>إتقان Node.js في الإنتاج مع PM2 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="إتقان Node.js في الإنتاج مع PM2" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="إذا كنت قد بنيت تطبيقًا Node.js في أي وقت مضى و wondered كيف يمكنك الحفاظ على تشغيله بشكل سلس في الإنتاج، فقد كنت قد واجهت PM2. إذا لم تكن قد واجهته، دعني أقدّم إليك هذا المبدع. PM2، اختصارًا لـ Process Manager 2، هو أداة مفتوحة المصدر مصممة لجعل إدارة تطبيقات Node.js في الإنتاج سهلة تمامًا - مع موازن حمولات مدمج، وميزات مراقبة، وإعادة التوزيع بدون انقطاع. دعنا نغوص في ما يجعل PM2 رائعًا و لماذا قد يصبح أداتك المفضلة." />
+<meta property="og:description" content="إذا كنت قد بنيت تطبيقًا Node.js في أي وقت مضى و wondered كيف يمكنك الحفاظ على تشغيله بشكل سلس في الإنتاج، فقد كنت قد واجهت PM2. إذا لم تكن قد واجهته، دعني أقدّم إليك هذا المبدع. PM2، اختصارًا لـ Process Manager 2، هو أداة مفتوحة المصدر مصممة لجعل إدارة تطبيقات Node.js في الإنتاج سهلة تمامًا - مع موازن حمولات مدمج، وميزات مراقبة، وإعادة التوزيع بدون انقطاع. دعنا نغوص في ما يجعل PM2 رائعًا و لماذا قد يصبح أداتك المفضلة." />
+<link rel="canonical" href="https://lzwjava.github.io/pm2-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/pm2-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-12-15T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="إتقان Node.js في الإنتاج مع PM2" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2017-12-15T00:00:00+08:00","datePublished":"2017-12-15T00:00:00+08:00","description":"إذا كنت قد بنيت تطبيقًا Node.js في أي وقت مضى و wondered كيف يمكنك الحفاظ على تشغيله بشكل سلس في الإنتاج، فقد كنت قد واجهت PM2. إذا لم تكن قد واجهته، دعني أقدّم إليك هذا المبدع. PM2، اختصارًا لـ Process Manager 2، هو أداة مفتوحة المصدر مصممة لجعل إدارة تطبيقات Node.js في الإنتاج سهلة تمامًا - مع موازن حمولات مدمج، وميزات مراقبة، وإعادة التوزيع بدون انقطاع. دعنا نغوص في ما يجعل PM2 رائعًا و لماذا قد يصبح أداتك المفضلة.","headline":"إتقان Node.js في الإنتاج مع PM2","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pm2-ar"},"url":"https://lzwjava.github.io/pm2-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       إتقان Node.js في الإنتاج مع PM2 | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2017-12-15-pm2-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2017-12-15-pm2-ar.md</span> -->
+      
+
+      <!-- <span>2017-12-15-pm2-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2017.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pm2-en" >English</option>
+        <option value="/pm2-zh" >中文</option>
+        <option value="/pm2-ja" >日本語</option>
+        <option value="/pm2-es" >Español</option>
+        <option value="/pm2-hi" >हिंदी</option>
+        <option value="/pm2-fr" >Français</option>
+        <option value="/pm2-de" >Deutsch</option>
+        <option value="/pm2-ar" selected>العربية</option>
+        <option value="/pm2-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>إذا كنت قد بنيت تطبيقًا Node.js في أي وقت مضى و wondered كيف يمكنك الحفاظ على تشغيله بشكل سلس في الإنتاج، فقد كنت قد واجهت PM2. إذا لم تكن قد واجهته، دعني أقدّم إليك هذا المبدع. PM2، اختصارًا لـ Process Manager 2، هو أداة مفتوحة المصدر مصممة لجعل إدارة تطبيقات Node.js في الإنتاج سهلة تمامًا - مع موازن حمولات مدمج، وميزات مراقبة، وإعادة التوزيع بدون انقطاع. دعنا نغوص في ما يجعل PM2 رائعًا و لماذا قد يصبح أداتك المفضلة.</p>
+
+<h4 id="ما-هو-pm2">ما هو PM2؟</h4>
+
+<p>في جوهره، PM2 هو مدير عمليات لأتطبيقات Node.js. افهمه كحارس يحافظ على بقاء تطبيقك على قيد الحياة، ويعيد تشغيله إذا انهار، ويساعدك في توسيعه بسهولة. تم إنشاؤه أصلاً من قبل Unitech، والآن يتم الحفاظ عليه من قبل مجتمع مفتوح المصدر حيوي، PM2 قد كسبت شهادتها مع أكثر من 45 ألف نجم على GitHub (حتى أوائل عام 2025) و سمعة في الموثوقية.</p>
+
+<p>على عكس تشغيل <code class="language-plaintext highlighter-rouge">node app.js</code> في شريط الأوامر الخاص بك و صليب أصابعك، PM2 يأخذ السيطرة على دورة حياة تطبيقك. إنه مثل إعطاء تطبيقك Node.js مساعدًا شخصيًا يدير الأمور المملة - حتى يمكنك التركيز على الكود.</p>
+
+<h4 id="لماذا-pm2-يبرز">لماذا PM2 يبرز</h4>
+
+<p>هنا هو الأمر: Node.js هو واحد الملتفاف من طبيعته، وهو رائع للعمليات الخفيفة، غير المتلفة لل I/O ولكن يمكن أن يكون عائقًا تحت حركة المرور الثقيلة. PM2 يحل هذا مع بعض الميزات القاتلة:</p>
+
+<ol>
+  <li>
+    <p><strong>إدارة العمليات سهلة</strong>
+مع أمر واحد مثل <code class="language-plaintext highlighter-rouge">pm2 start app.js</code>، يكون تطبيقك قيد التشغيل كعملية مدارة. إذا انهار (نعم، يحدث ذلك)، PM2 يعيد تشغيله تلقائيًا. يمكنك إيقاف أو إعادة تشغيل أو حذف العمليات باستخدام أوامر بسيطة مثل <code class="language-plaintext highlighter-rouge">pm2 stop app</code> أو <code class="language-plaintext highlighter-rouge">pm2 delete app</code>. لا تحتاج إلى رعاية.</p>
+  </li>
+  <li>
+    <p><strong>موازنة الحمولات المدمجة</strong>
+هنا حيث PM2 يبرز. باستخدام وضع التجمعات الخاص بها (<code class="language-plaintext highlighter-rouge">pm2 start app.js -i max</code>), PM2 يرفع عدة نسخ من تطبيقك عبر نواة المعالج الخاصة بك. ثم يوزن الحمولات بينهم. لا حاجة إلى أداة منفصلة مثل Nginx لتوزيع حركة المرور - PM2 يدير ذلك من الصندوق.</p>
+  </li>
+  <li>
+    <p><strong>إعادة التوزيع بدون انقطاع</strong>
+هل كنت تخاف من نشر تحديث لأنه سيطرد المستخدمين من تطبيقك؟ PM2 يغطيك مع <code class="language-plaintext highlighter-rouge">pm2 reload app</code>. يعيد تشغيل عمليات تطبيقك واحدة تلو الأخرى، مما يضمن عدم وجود انقطاع للمستخدمين. ناعم مثل الزبدة.</p>
+  </li>
+  <li>
+    <p><strong>المراقبة والسجلات</strong>
+تشغيل <code class="language-plaintext highlighter-rouge">pm2 monit</code> يعطي لك لوحة تحكم حية لاستهلاك المعالج، واستهلاك الذاكرة، وإعادة التشغيل. تحتاج إلى التنقيب في الأخطاء؟ <code class="language-plaintext highlighter-rouge">pm2 logs</code> يجلب سجلات تطبيقك مباشرة إلى شريط الأوامر الخاص بك. مثل وجود برج تحكم لأتطبيقك.</p>
+  </li>
+  <li>
+    <p><strong>Scripts التشغيل</strong>
+تريد PM2 أن يبدأ تلقائيًا بعد إعادة تشغيل الخادم؟ فقط قم بتشغيل <code class="language-plaintext highlighter-rouge">pm2 startup</code>، ويولد نصًا لإعادة تشغيل تطبيقاتك عند التشغيل. جاهز للانتاج في دقائق.</p>
+  </li>
+</ol>
+
+<h4 id="البدء-مع-pm2">البدء مع PM2</h4>
+
+<p>هل أنت مستعد لتجربة؟ إنه سهل جدًا التثبيت:</p>
+
+<ol>
+  <li><strong>تثبيت PM2 عالميًا</strong>
+افتح شريط الأوامر الخاص بك و قم بتشغيل:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>npm install pm2 -g
+</code></pre></div>    </div>
+    <p>هذا يثبث PM2 عالميًا حتى يمكنك استخدامه في أي مكان.</p>
+  </li>
+  <li><strong>بدء تطبيقك</strong>
+انتقل إلى مجلد المشروع الخاص بك و قم بتشغيل:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pm2 start app.js
+</code></pre></div>    </div>
+    <p>Boom— الآن تطبيقك مدار من قبل PM2. تريد استخدام وضع التجمعات؟ حاول:</p>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pm2 start app.js -i max
+</code></pre></div>    </div>
+    <p>يشير العلم <code class="language-plaintext highlighter-rouge">max</code> إلى PM2 لاستخدام جميع النواة المعالج المتاحة.</p>
+  </li>
+  <li>
+    <p><strong>تحقق من الحالة</strong>
+قم بتشغيل <code class="language-plaintext highlighter-rouge">pm2 list</code> لرؤية جميع عملياتك الجارية، حالةها، واستهلاك الموارد.</p>
+  </li>
+  <li><strong>استكشاف النظام البيئي</strong>
+PM2 ليس مجرد حصان واحد. يدعم ملفات التكوين (مثل <code class="language-plaintext highlighter-rouge">ecosystem.config.js</code>) لأتطبيقات أكثر تعقيدًا، ويدمج مع Keymetrics لمراقبة متقدمة، ويعمل حتى مع تطبيقات غير Node.js إذا كنت تشعر بالتحريض.</li>
+</ol>
+
+<h4 id="من-هو-من-أجله">من هو من أجله؟</h4>
+
+<p>PM2 مثالي لأي شخص يعمل Node.js في الإنتاج - سواء كنت مطورًا فرديًا تنشر مشروعًا جانبيًا أو جزء من فريق يدير API حركة المرور العالية. إنه خفيف، و مفهوم، و لا يثقلك مع خطوات التثبيت المعقدة. الشركات الصغيرة و الشركات الكبيرة على حد سواء تسبح به.</p>
+
+<h4 id="بعض-النصائح-المهنية">بعض النصائح المهنية</h4>
+
+<ul>
+  <li><strong>وضع المراقبة</strong>: استخدم <code class="language-plaintext highlighter-rouge">pm2 start app.js --watch</code> أثناء التطوير لإعادة تشغيل تطبيقك تلقائيًا عند تغيير الملفات.</li>
+  <li><strong>حدود الذاكرة</strong>: قم بتعيين سقف الذاكرة مع <code class="language-plaintext highlighter-rouge">--max-memory-restart 200M</code> لإعادة تشغيل تطبيقك إذا أصبح جائعًا جدًا.</li>
+  <li><strong>تنظيف السجلات</strong>: قم بتشغيل <code class="language-plaintext highlighter-rouge">pm2 flush</code> لتفريغ السجلات القديمة و الحفاظ على الأمور نظيفة.</li>
+</ul>
+
+<h4 id="الخاتمة">الخاتمة</h4>
+
+<p>PM2 هو من الأدوات التي، بعد أن تبدأ في استخدامها، تسأل نفسك كيف كنت تعيش بدونها. يأخذ الفوضى في إدارة عمليات Node.js ويحولها إلى تجربة مريحة، بدون تكلفة. سواء كنت توسع خدمة ميكرو، أو الحفاظ على تطبيق ويب على قيد الحياة، أو مجرد التلميع مع مشروع هواية، PM2 يدعمك.</p>
+
+<p>فأذهب إلى <a href="https://github.com/Unitech/pm2">صفحة GitHub PM2</a>، أعطها نجمًا، و حاولها. سيشكرك تطبيقاتك Node.js - و سيشكرك عقلك.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

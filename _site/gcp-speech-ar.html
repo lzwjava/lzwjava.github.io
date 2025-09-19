@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="أخطط لتحويل بعض مقالات Yin Wang إلى صوت باستخدام واجهة برمجة تطبيقات Google Text-to-Speech. أدناه دليل خطوة بخطوة، بالإضافة إلى بعض البرامج التعليمية المفيدة التي قدمها ChatGPT. بمجرد أن يصبح كل شيء جاهزًا، سأقوم بتحميل الصوت هنا لكي تتمكن من الاستماع إليه." />
+<meta property="og:description" content="أخطط لتحويل بعض مقالات Yin Wang إلى صوت باستخدام واجهة برمجة تطبيقات Google Text-to-Speech. أدناه دليل خطوة بخطوة، بالإضافة إلى بعض البرامج التعليمية المفيدة التي قدمها ChatGPT. بمجرد أن يصبح كل شيء جاهزًا، سأقوم بتحميل الصوت هنا لكي تتمكن من الاستماع إليه." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-speech-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-speech-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"أخطط لتحويل بعض مقالات Yin Wang إلى صوت باستخدام واجهة برمجة تطبيقات Google Text-to-Speech. أدناه دليل خطوة بخطوة، بالإضافة إلى بعض البرامج التعليمية المفيدة التي قدمها ChatGPT. بمجرد أن يصبح كل شيء جاهزًا، سأقوم بتحميل الصوت هنا لكي تتمكن من الاستماع إليه.","headline":"بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-speech-ar"},"url":"https://lzwjava.github.io/gcp-speech-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       بدء العمل مع واجهة برمجة تطبيقات تحويل النص إلى كلام من Google | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2024-12-18-gcp-speech-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2024-12-18-gcp-speech-ar.md</span> -->
+      
+
+      <!-- <span>2024-12-18-gcp-speech-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-speech-en" >English</option>
+        <option value="/gcp-speech-zh" >中文</option>
+        <option value="/gcp-speech-ja" >日本語</option>
+        <option value="/gcp-speech-es" >Español</option>
+        <option value="/gcp-speech-hi" >हिंदी</option>
+        <option value="/gcp-speech-fr" >Français</option>
+        <option value="/gcp-speech-de" >Deutsch</option>
+        <option value="/gcp-speech-ar" selected>العربية</option>
+        <option value="/gcp-speech-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>أخطط لتحويل بعض مقالات Yin Wang إلى صوت باستخدام واجهة برمجة تطبيقات Google Text-to-Speech. أدناه دليل خطوة بخطوة، بالإضافة إلى بعض البرامج التعليمية المفيدة التي قدمها ChatGPT. بمجرد أن يصبح كل شيء جاهزًا، سأقوم بتحميل الصوت هنا لكي تتمكن من الاستماع إليه.</p>
+
+<hr />
+
+<h3 id="الخطوة-1-إعداد-حساب-google-cloud">الخطوة 1: إعداد حساب Google Cloud</h3>
+
+<p>أولاً، تحتاج إلى إنشاء حساب على Google Cloud إذا لم يكن لديك حساب بالفعل. اتبع الخطوات التالية:</p>
+
+<ol>
+  <li><strong>زيارة موقع Google Cloud</strong>: انتقل إلى <a href="https://cloud.google.com/">Google Cloud Platform</a>.</li>
+  <li><strong>إنشاء حساب جديد</strong>: انقر على “Get Started for Free” وقم بإنشاء حساب جديد باستخدام بريدك الإلكتروني.</li>
+  <li><strong>تفعيل الحساب</strong>: قد يُطلب منك إدخال معلومات الدفع لتأكيد هويتك، ولكنك تحصل على رصيد مجاني لبدء الاستخدام.</li>
+</ol>
+
+<p>بمجرد إنشاء حسابك، ستتمكن من الوصول إلى لوحة تحكم Google Cloud حيث يمكنك إدارة جميع خدماتك.</p>
+
+<ol>
+  <li>
+    <p>إنشاء حساب Google Cloud<br />
+إذا لم يكن لديك حساب، سجل في <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</p>
+  </li>
+  <li>إنشاء مشروع جديد
+    <ul>
+      <li>في وحدة التحكم السحابية (Cloud Console)، انقر على قائمة اختيار المشروع (في أعلى اليسار).</li>
+      <li>اختر “New Project”، قم بإعطائه اسمًا، ثم أنشئ المشروع.</li>
+    </ul>
+  </li>
+  <li>تفعيل واجهة برمجة التطبيقات (API) للتحويل من النص إلى كلام
+    <ul>
+      <li>قم بزيارة <a href="https://cloud.google.com/text-to-speech">صفحة واجهة برمجة التطبيقات للتحويل من النص إلى كلام على Google Cloud</a>.</li>
+      <li>انقر على “تفعيل” لتنشيط الواجهة لمشروعك.</li>
+    </ul>
+  </li>
+  <li>إنشاء بيانات اعتماد API
+    <ul>
+      <li>انتقل إلى APIs &amp; Services &gt; Credentials في Cloud Console.</li>
+      <li>انقر على Create Credentials، ثم اختر Service Account.</li>
+      <li>اتبع التعليمات لإنشاء حساب الخدمة وتنزيل ملف المفتاح الخاص بتنسيق JSON.</li>
+      <li>احتفظ بهذا الملف JSON بأمان حيث يتم استخدامه للمصادقة على طلبات API الخاصة بك.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="الخطوة-2-تثبيت-google-cloud-sdk-ومكتبة-العميل">الخطوة 2: تثبيت Google Cloud SDK ومكتبة العميل</h3>
+
+<p>في هذه الخطوة، سنقوم بتثبيت Google Cloud SDK ومكتبة العميل اللازمة للتفاعل مع خدمات Google Cloud.</p>
+
+<ol>
+  <li>
+    <p>تثبيت Google Cloud SDK<br />
+إذا لم تكن قد قمت بذلك بعد، اتبع التعليمات لتثبيت <a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK</a> لنظام التشغيل الخاص بك.</p>
+  </li>
+  <li>
+    <p>تثبيت مكتبة العميل لـ Python<br />
+إذا كنت تستخدم Python، قم بتثبيت مكتبة <code class="language-plaintext highlighter-rouge">google-cloud-texttospeech</code> باستخدام الأمر التالي:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   pip <span class="nb">install </span>google-cloud-texttospeech
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="الخطوة-3-إعداد-المصادقة">الخطوة 3: إعداد المصادقة</h3>
+
+<p>قبل استخدام API، تحتاج إلى المصادقة باستخدام بيانات الاعتماد الخاصة بك. قم بتعيين متغير البيئة إلى المسار الخاص بملف بيانات الاعتماد:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">"/path/to/your/service-account-file.json"</span>
+</code></pre></div></div>
+
+<p>استبدل المسار بالموقع الفعلي لملف JSON الذي قمت بتنزيله.</p>
+
+<hr />
+
+<h3 id="الخطوة-4-تنفيذ-تحويل-النص-إلى-كلام">الخطوة 4: تنفيذ تحويل النص إلى كلام</h3>
+
+<p>في هذه الخطوة، سنقوم بتنفيذ وظيفة تحويل النص إلى كلام باستخدام مكتبة <code class="language-plaintext highlighter-rouge">gTTS</code> (Google Text-to-Speech). هذه المكتبة تسمح لنا بتحويل النص إلى ملف صوتي بتنسيق MP3.</p>
+
+<h4 id="1-تثبيت-المكتبة-المطلوبة">1. تثبيت المكتبة المطلوبة</h4>
+
+<p>أولاً، نحتاج إلى تثبيت مكتبة <code class="language-plaintext highlighter-rouge">gTTS</code> إذا لم تكن مثبتة بالفعل. يمكنك تثبيتها باستخدام <code class="language-plaintext highlighter-rouge">pip</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>gtts
+</code></pre></div></div>
+
+<h4 id="2-كتابة-الكود-لتحويل-النص-إلى-كلام">2. كتابة الكود لتحويل النص إلى كلام</h4>
+
+<p>بعد تثبيت المكتبة، يمكننا كتابة كود بسيط لتحويل النص إلى كلام وحفظه كملف صوتي.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">gtts</span> <span class="kn">import</span> <span class="n">gTTS</span>
+
+<span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="sh">'</span><span class="s">en</span><span class="sh">'</span><span class="p">):</span>
+    <span class="n">tts</span> <span class="o">=</span> <span class="nf">gTTS</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="n">lang</span><span class="p">)</span>
+    <span class="n">tts</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="sh">"</span><span class="s">output.mp3</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">تم تحويل النص إلى كلام وحفظه في ملف output.mp3</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># مثال للاستخدام
+</span><span class="n">text</span> <span class="o">=</span> <span class="sh">"</span><span class="s">مرحبًا، هذا مثال على تحويل النص إلى كلام.</span><span class="sh">"</span>
+<span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lang</span><span class="o">=</span><span class="sh">'</span><span class="s">ar</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="3-تشغيل-الملف-الصوتي">3. تشغيل الملف الصوتي</h4>
+
+<p>بعد تحويل النص إلى كلام وحفظه كملف MP3، يمكنك تشغيل الملف باستخدام أي مشغل صوتي متوفر على نظامك. إذا كنت ترغب في تشغيل الملف مباشرة من الكود، يمكنك استخدام مكتبة <code class="language-plaintext highlighter-rouge">os</code> لتشغيل الملف.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+
+<span class="k">def</span> <span class="nf">play_audio</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">start </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># لنظام ويندوز
+</span>    <span class="c1"># os.system(f"afplay {file_path}")  # لنظام macOS
+</span>    <span class="c1"># os.system(f"mpg321 {file_path}")  # لنظام Linux
+</span>
+<span class="c1"># تشغيل الملف الصوتي
+</span><span class="nf">play_audio</span><span class="p">(</span><span class="sh">"</span><span class="s">output.mp3</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h4 id="4-اختبار-الكود">4. اختبار الكود</h4>
+
+<p>قم بتشغيل الكود وتأكد من أن النص يتم تحويله إلى كلام بشكل صحيح وأن الملف الصوتي يتم تشغيله كما هو متوقع.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python your_script_name.py
+</code></pre></div></div>
+
+<p>إذا سارت الأمور على ما يرام، يجب أن تسمع النص الذي أدخلته يتم تحويله إلى كلام ويتم تشغيله كملف صوتي.</p>
+
+<p>هذه هي الخطوات الأساسية لتنفيذ تحويل النص إلى كلام باستخدام Python. يمكنك تعديل الكود ليتناسب مع احتياجاتك الخاصة، مثل تغيير لغة الكلام أو إضافة ميزات إضافية.</p>
+
+<p>إليك مثالًا باستخدام لغة Python لتحويل النص إلى كلام باستخدام واجهة برمجة تطبيقات Google Cloud Text-to-Speech:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
+    <span class="c1"># تهيئة عميل تحويل النص إلى كلام
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># إعداد مدخل التوليف
+synthesis_input = texttospeech.SynthesisInput(text=text)
+
+# تعيين معلمات الصوت (باستخدام 'en-US-Journey-D')
+voice = texttospeech.VoiceSelectionParams(
+    language_code="en-US",  # الإنجليزية (الولايات المتحدة)
+    name="en-US-Journey-D"  # نموذج صوت محدد (Journey)
+)
+
+# تعيين إعدادات الصوت
+audio_config = texttospeech.AudioConfig(
+    audio_encoding=texttospeech.AudioEncoding.MP3,  # تنسيق MP3
+    effects_profile_id=["small-bluetooth-speaker-class-device"],  # مُحسّن لمكبرات الصوت البلوتوث
+    pitch=0.0,  # بدون تعديل في النغمة
+    speaking_rate=0.9,  # معدل الكلام المعدل (يمكن تعديله حسب الحاجة)
+    volume_gain_db=5.0  # زيادة مستوى الصوت
+)
+
+# تنفيذ طلب تحويل النص إلى كلام
+response = client.synthesize_speech(
+    input=synthesis_input, voice=voice, audio_config=audio_config
+)
+
+# كتابة محتوى الصوت إلى ملف
+with open(output_filename, "wb") as out:
+    out.write(response.audio_content)
+
+print(f"تم كتابة محتوى الصوت في {output_filename}")
+</code></pre></div></div>
+
+<h1 id="مثال-على-الاستخدام">مثال على الاستخدام</h1>
+<p>article_text = “الأفلام، يا إلهي، أنا أعشقها تمامًا. إنها مثل آلات الزمن التي تأخذك إلى عوالم ومناظر طبيعية مختلفة، ولا أستطيع الحصول على ما يكفي منها.”
+output_file = “output_audio.mp3”  # الإخراج بصيغة MP3</p>
+
+<h1 id="تحويل-النص-إلى-كلام">تحويل النص إلى كلام</h1>
+<p>text_to_speech(article_text, output_file)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+
+### الخطوة 5: تشغيل البرنامج النصي
+
+1. احفظ النص البرمجي كملف باسم `text_to_speech.py`.
+2. قم بتشغيل النص البرمجي باستخدام:
+
+   ```bash
+   python text_to_speech.py
+</code></pre></div></div>
+
+<p>سيؤدي هذا إلى إنشاء ملف صوتي (<code class="language-plaintext highlighter-rouge">output_audio.mp3</code>) من النص المقدم.</p>
+
+<hr />
+
+<h3 id="الخطوة-6-مفتاح-حساب-الخدمة">الخطوة 6: مفتاح حساب الخدمة</h3>
+
+<p>يجب أن يبدو مفتاح JSON لحساب الخدمة الخاص بك مشابهًا لهذا:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_account"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-project-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-service-account-email@your-project-id.iam.gserviceaccount.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oauth2.googleapis.com/token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_provider_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/oauth2/v1/certs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-cert-url"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="لماذا-تختار-journey">لماذا تختار Journey؟</h3>
+
+<p>يقدم Google Cloud Text-to-Speech العديد من الأصوات، ولكن صوت Journey يتميز بكونه طبيعيًا ويشبه الصوت البشري. على عكس النماذج الأخرى التي غالبًا ما تبدو آلية، يتفوق Journey في التعبيرية والتوصيل الواقعي. وهو مناسب بشكل خاص للمحتوى الطويل مثل البودكاست أو الكتب الصوتية أو أي تطبيق يتطلب نبرة أكثر حوارية.</p>
+
+<p>الميزات الرئيسية لـ Journey:</p>
+<ul>
+  <li>الكلام الطبيعي: يبدو أقرب إلى صوت بشري.</li>
+  <li>التعبيرية: يضبط النبرة والانعطاف بناءً على السياق.</li>
+  <li>مثالي للمحتوى الطويل: مثالي للبودكاست والسرد.</li>
+</ul>
+
+<p>لمزيد من التفاصيل حول فوائد خدمة Google Cloud Text-to-Speech، يمكنك الاطلاع على <a href="https://cloud.google.com/text-to-speech#benefits">نظرة عامة على Google Cloud</a>.</p>
+
+<hr />
+
+<h3 id="الخطوة-7-إنشاء-مفتاح-حساب-خدمة-جديد-إذا-لزم-الأمر">الخطوة 7: إنشاء مفتاح حساب خدمة جديد (إذا لزم الأمر)</h3>
+
+<p>إذا كان مفتاح حساب الخدمة الخاص بك لا يتطابق مع المثال أعلاه، يمكنك إنشاء مفتاح جديد من خلال وحدة تحكم Google Cloud.</p>
+
+<p>لإنشاء مفتاح جديد:</p>
+<ol>
+  <li>انتقل إلى <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</li>
+  <li>انتقل إلى IAM &amp; Admin &gt; Service Accounts.</li>
+  <li>قم بإنشاء حساب خدمة جديد:
+    <ul>
+      <li>انقر على Create Service Account وقم بتعيين الأدوار المناسبة.</li>
+      <li>انقر على Create.</li>
+    </ul>
+  </li>
+  <li>قم بإنشاء مفتاح:
+    <ul>
+      <li>بعد إنشاء حساب الخدمة، انقر عليه.</li>
+      <li>انتقل إلى علامة التبويب Keys، انقر على Add Key، واختر JSON. ثم قم بتنزيل المفتاح.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="مثال-على-إخراج-الصوت">مثال على إخراج الصوت</h3>
+
+<p>بمجرد أن يتم إعداد كل شيء، يمكنك إنشاء ملف صوتي، والذي سيكون متاحًا هنا:<br />
+<a href="assets/audios/output-audio.mp3">تحميل الملف الصوتي</a>.</p>
+
+<hr />
+
+<h3 id="الخلاصة">الخلاصة</h3>
+
+<p>واجهة برمجة تطبيقات Google Cloud Text-to-Speech تجعل من السهل تحويل النص إلى كلام طبيعي. سواء كنت تبني تطبيقًا يحتاج إلى إخراج صوتي أو كنت تجرب تحويل النص إلى كلام، توفر هذه الواجهة ميزات قوية وخيارات تخصيص. استكشف الوثائق الكاملة للحصول على خيارات إضافية للأصوات واللغات والميزات المتقدمة.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

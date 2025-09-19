@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>集成 Ping++ SDK 与 CodeIgniter 框架</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>集成 Ping++ SDK 与 CodeIgniter 框架 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="集成 Ping++ SDK 与 CodeIgniter 框架" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="以下是一个完整的、逐步示例，展示如何在使用提供的 BaseController 类的基础上，将 Pingpp（Ping++）支付处理 SDK 集成到 PHP 应用程序中，使用 CodeIgniter 框架。本指南假设你已经有一个基本的 CodeIgniter 设置，并专注于集成 Pingpp 进行支付处理，例如启用用户通过支付宝 PC 直连支付（尽管你可以将其适配到其他渠道）。" />
+<meta property="og:description" content="以下是一个完整的、逐步示例，展示如何在使用提供的 BaseController 类的基础上，将 Pingpp（Ping++）支付处理 SDK 集成到 PHP 应用程序中，使用 CodeIgniter 框架。本指南假设你已经有一个基本的 CodeIgniter 设置，并专注于集成 Pingpp 进行支付处理，例如启用用户通过支付宝 PC 直连支付（尽管你可以将其适配到其他渠道）。" />
+<link rel="canonical" href="https://lzwjava.github.io/pingpp-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/pingpp-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-03-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="集成 Ping++ SDK 与 CodeIgniter 框架" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-03-07T00:00:00+08:00","datePublished":"2016-03-07T00:00:00+08:00","description":"以下是一个完整的、逐步示例，展示如何在使用提供的 BaseController 类的基础上，将 Pingpp（Ping++）支付处理 SDK 集成到 PHP 应用程序中，使用 CodeIgniter 框架。本指南假设你已经有一个基本的 CodeIgniter 设置，并专注于集成 Pingpp 进行支付处理，例如启用用户通过支付宝 PC 直连支付（尽管你可以将其适配到其他渠道）。","headline":"集成 Ping++ SDK 与 CodeIgniter 框架","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pingpp-zh"},"url":"https://lzwjava.github.io/pingpp-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       集成 Ping++ SDK 与 CodeIgniter 框架 | 原创，AI翻译
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2016-03-07-pingpp-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2016-03-07-pingpp-zh.md</span> -->
+      
+
+      <!-- <span>2016-03-07-pingpp-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pingpp-en" >English</option>
+        <option value="/pingpp-zh" selected>中文</option>
+        <option value="/pingpp-ja" >日本語</option>
+        <option value="/pingpp-es" >Español</option>
+        <option value="/pingpp-hi" >हिंदी</option>
+        <option value="/pingpp-fr" >Français</option>
+        <option value="/pingpp-de" >Deutsch</option>
+        <option value="/pingpp-ar" >العربية</option>
+        <option value="/pingpp-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>以下是一个完整的、逐步示例，展示如何在使用提供的 <code class="language-plaintext highlighter-rouge">BaseController</code> 类的基础上，将 <strong>Pingpp</strong>（Ping++）支付处理 SDK 集成到 PHP 应用程序中，使用 CodeIgniter 框架。本指南假设你已经有一个基本的 CodeIgniter 设置，并专注于集成 Pingpp 进行支付处理，例如启用用户通过支付宝 PC 直连支付（尽管你可以将其适配到其他渠道）。</p>
+
+<hr />
+
+<h3 id="前提条件">前提条件</h3>
+<ol>
+  <li><strong>Pingpp 账户</strong>：在 <a href="https://www.pingxx.com/">Ping++</a> 注册并获取你的 <strong>API Key</strong> 和 <strong>App ID</strong>。你将有一个测试密钥 (<code class="language-plaintext highlighter-rouge">sk_test_...</code>) 用于开发，和一个生产密钥 (<code class="language-plaintext highlighter-rouge">sk_live_...</code>) 用于生产。</li>
+  <li><strong>Pingpp PHP SDK</strong>：通过 Composer 安装 Pingpp PHP SDK：
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>composer require pingplusplus/pingpp-php
+</code></pre></div>    </div>
+    <p>确保 SDK 在你的 CodeIgniter 应用中自动加载（例如，将其放在 <code class="language-plaintext highlighter-rouge">application/libraries</code> 或配置 Composer 自动加载）。</p>
+  </li>
+  <li><strong>CodeIgniter 设置</strong>：你应该有一个工作的 CodeIgniter 应用程序，其中包含用户和费用的控制器和数据库模型。</li>
+</ol>
+
+<hr />
+
+<h3 id="逐步集成">逐步集成</h3>
+
+<h4 id="1-设置控制器">1. 设置控制器</h4>
+<p>创建一个控制器（例如 <code class="language-plaintext highlighter-rouge">PaymentController.php</code>），它扩展了类似于 <code class="language-plaintext highlighter-rouge">BaseController</code> 的基础控制器。在构造函数中根据环境（开发或生产）配置 Pingpp API 密钥。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="nb">defined</span><span class="p">(</span><span class="s1">'BASEPATH'</span><span class="p">)</span> <span class="k">OR</span> <span class="k">exit</span><span class="p">(</span><span class="s1">'No direct script access allowed'</span><span class="p">);</span>
+
+<span class="k">require_once</span> <span class="no">APPPATH</span> <span class="mf">.</span> <span class="s1">'/libraries/REST_Controller.php'</span><span class="p">;</span>
+<span class="k">require_once</span> <span class="no">APPPATH</span> <span class="mf">.</span> <span class="s1">'/vendor/autoload.php'</span><span class="p">;</span> <span class="c1">// 假设 Composer 自动加载</span>
+
+<span class="kd">class</span> <span class="nc">PaymentController</span> <span class="kd">extends</span> <span class="nc">REST_Controller</span> <span class="p">{</span>
+
+    <span class="k">public</span> <span class="nv">$userDao</span><span class="p">;</span>
+    <span class="k">public</span> <span class="nv">$chargeDao</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="n">__construct</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">parent</span><span class="o">::</span><span class="nf">__construct</span><span class="p">();</span>
+
+        <span class="c1">// 根据环境设置 Pingpp API 密钥</span>
+        <span class="nv">$isLocalDebug</span> <span class="o">=</span> <span class="no">ENVIRONMENT</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">;</span> <span class="c1">// CodeIgniter 环境</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$isLocalDebug</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">\Pingpp\Pingpp</span><span class="o">::</span><span class="nf">setApiKey</span><span class="p">(</span><span class="s1">'sk_test_your_test_key_here'</span><span class="p">);</span> <span class="c1">// 替换为你的测试密钥</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nc">\Pingpp\Pingpp</span><span class="o">::</span><span class="nf">setApiKey</span><span class="p">(</span><span class="s1">'sk_live_your_live_key_here'</span><span class="p">);</span> <span class="c1">// 替换为你的生产密钥</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 加载模型</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">model</span><span class="p">(</span><span class="s1">'UserDao'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">UserDao</span><span class="p">();</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">model</span><span class="p">(</span><span class="s1">'ChargeDao'</span><span class="p">);</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ChargeDao</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>替换 <code class="language-plaintext highlighter-rouge">'sk_test_your_test_key_here'</code> 和 <code class="language-plaintext highlighter-rouge">'sk_live_your_live_key_here'</code> 为你的实际 Pingpp API 密钥。</li>
+  <li>确保 <code class="language-plaintext highlighter-rouge">UserDao</code> 和 <code class="language-plaintext highlighter-rouge">ChargeDao</code> 已实现以处理用户认证和费用存储（见步骤 2）。</li>
+</ul>
+
+<h4 id="2-创建支持模型">2. 创建支持模型</h4>
+<p>你需要模型来管理用户会话和存储费用详情。</p>
+
+<p><strong>UserDao.php</strong>（简化示例）：</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">UserDao</span> <span class="kd">extends</span> <span class="nc">CI_Model</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">findUserBySessionToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$query</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">db</span><span class="o">-&gt;</span><span class="nf">get_where</span><span class="p">(</span><span class="s1">'users'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'session_token'</span> <span class="o">=&gt;</span> <span class="nv">$token</span><span class="p">]);</span>
+        <span class="k">return</span> <span class="nv">$query</span><span class="o">-&gt;</span><span class="nf">row</span><span class="p">();</span> <span class="c1">// 返回用户对象或 null</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>ChargeDao.php</strong>（简化示例）：</p>
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
+<span class="kd">class</span> <span class="nc">ChargeDao</span> <span class="kd">extends</span> <span class="nc">CI_Model</span> <span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="n">add</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="nv">$userId</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$data</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">'order_no'</span> <span class="o">=&gt;</span> <span class="nv">$orderNo</span><span class="p">,</span>
+            <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="nv">$amount</span><span class="p">,</span>
+            <span class="s1">'user_id'</span> <span class="o">=&gt;</span> <span class="nv">$userId</span><span class="p">,</span>
+            <span class="s1">'client_ip'</span> <span class="o">=&gt;</span> <span class="nv">$ipAddress</span><span class="p">,</span>
+            <span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'pending'</span><span class="p">,</span>
+            <span class="s1">'created_at'</span> <span class="o">=&gt;</span> <span class="nb">date</span><span class="p">(</span><span class="s1">'Y-m-d H:i:s'</span><span class="p">)</span>
+        <span class="p">];</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">db</span><span class="o">-&gt;</span><span class="nf">insert</span><span class="p">(</span><span class="s1">'charges'</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>创建相应的数据库表（<code class="language-plaintext highlighter-rouge">users</code> 和 <code class="language-plaintext highlighter-rouge">charges</code>），并包含适当的字段。</p>
+
+<h4 id="3-实现费用创建方法">3. 实现费用创建方法</h4>
+<p>添加一个方法来创建 Pingpp 费用并将其返回给客户端。此示例使用支付宝 PC 直连作为支付渠道。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">createChargeThenResponse</span><span class="p">(</span><span class="nv">$amount</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$metaData</span><span class="p">,</span> <span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 生成唯一订单号</span>
+    <span class="nv">$orderNo</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">generateOrderNo</span><span class="p">();</span>
+
+    <span class="c1">// 根据环境设置 App ID</span>
+    <span class="nv">$isLocalDebug</span> <span class="o">=</span> <span class="no">ENVIRONMENT</span> <span class="o">===</span> <span class="s1">'development'</span><span class="p">;</span>
+    <span class="nv">$appId</span> <span class="o">=</span> <span class="nv">$isLocalDebug</span> <span class="o">?</span> <span class="s1">'app_your_test_app_id'</span> <span class="o">:</span> <span class="s1">'app_your_live_app_id'</span><span class="p">;</span>
+
+    <span class="c1">// 获取客户端 IP 地址</span>
+    <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">input</span><span class="o">-&gt;</span><span class="nf">ip_address</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$ipAddress</span> <span class="o">===</span> <span class="s1">'::1'</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 处理本地调试情况</span>
+        <span class="nv">$ipAddress</span> <span class="o">=</span> <span class="s1">'127.0.0.1'</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 创建费用</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="nv">$charge</span> <span class="o">=</span> <span class="nc">\Pingpp\Charge</span><span class="o">::</span><span class="nf">create</span><span class="p">([</span>
+            <span class="s1">'order_no'</span> <span class="o">=&gt;</span> <span class="nv">$orderNo</span><span class="p">,</span>
+            <span class="s1">'app'</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="s1">'id'</span> <span class="o">=&gt;</span> <span class="nv">$appId</span><span class="p">],</span>
+            <span class="s1">'channel'</span> <span class="o">=&gt;</span> <span class="s1">'alipay_pc_direct'</span><span class="p">,</span> <span class="c1">// 更改此处以使用其他渠道（例如，'wx' 表示微信）</span>
+            <span class="s1">'amount'</span> <span class="o">=&gt;</span> <span class="nv">$amount</span><span class="p">,</span> <span class="c1">// 以分为单位（例如，1000 = 10 CNY）</span>
+            <span class="s1">'client_ip'</span> <span class="o">=&gt;</span> <span class="nv">$ipAddress</span><span class="p">,</span>
+            <span class="s1">'currency'</span> <span class="o">=&gt;</span> <span class="s1">'cny'</span><span class="p">,</span>
+            <span class="s1">'subject'</span> <span class="o">=&gt;</span> <span class="nv">$subject</span><span class="p">,</span>
+            <span class="s1">'body'</span> <span class="o">=&gt;</span> <span class="nv">$body</span><span class="p">,</span>
+            <span class="s1">'metadata'</span> <span class="o">=&gt;</span> <span class="nv">$metaData</span><span class="p">,</span>
+            <span class="s1">'extra'</span> <span class="o">=&gt;</span> <span class="p">[</span>
+                <span class="s1">'success_url'</span> <span class="o">=&gt;</span> <span class="s1">'http://yourdomain.com/payment/success'</span> <span class="c1">// 替换为你的成功 URL</span>
+            <span class="p">]</span>
+        <span class="p">]);</span>
+
+        <span class="c1">// 将费用详情存储在数据库中</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span><span class="o">-&gt;</span><span class="nf">add</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="nv">$amount</span><span class="p">,</span> <span class="nv">$user</span><span class="o">-&gt;</span><span class="n">id</span><span class="p">,</span> <span class="nv">$ipAddress</span><span class="p">);</span>
+
+        <span class="c1">// 将费用对象作为 JSON 返回</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">output</span>
+            <span class="o">-&gt;</span><span class="nf">set_status_header</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">set_content_type</span><span class="p">(</span><span class="s1">'application/json'</span><span class="p">,</span> <span class="s1">'utf-8'</span><span class="p">)</span>
+            <span class="o">-&gt;</span><span class="nf">set_output</span><span class="p">(</span><span class="nb">json_encode</span><span class="p">(</span><span class="nv">$charge</span><span class="p">));</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nc">\Pingpp\Error\Base</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nf">log_message</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="s1">'Pingpp Charge Failed: '</span> <span class="mf">.</span> <span class="nv">$e</span><span class="o">-&gt;</span><span class="nf">getMessage</span><span class="p">());</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="s1">'支付创建失败'</span><span class="p">],</span> <span class="mi">500</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">function</span> <span class="n">generateOrderNo</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nb">uniqid</span><span class="p">();</span> <span class="c1">// 简单唯一 ID；如果需要，替换为更强大的生成器</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>替换 <code class="language-plaintext highlighter-rouge">'app_your_test_app_id'</code> 和 <code class="language-plaintext highlighter-rouge">'app_your_live_app_id'</code> 为你的 Pingpp App ID。</li>
+  <li>调整 <code class="language-plaintext highlighter-rouge">'success_url'</code> 为你应用程序的成功页面 URL。</li>
+</ul>
+
+<h4 id="4-创建结账方法">4. 创建结账方法</h4>
+<p>添加一个公共方法来处理用户结账，调用费用创建方法。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">checkout_post</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 检查用户是否登录</span>
+    <span class="nv">$user</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">getSessionUser</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nv">$user</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'error'</span> <span class="o">=&gt;</span> <span class="s1">'用户未登录'</span><span class="p">],</span> <span class="mi">401</span><span class="p">);</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 示例订单详情</span>
+    <span class="nv">$amount</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span> <span class="c1">// 10 CNY（示例；在实际应用中动态计算）</span>
+    <span class="nv">$subject</span> <span class="o">=</span> <span class="s1">'订单支付'</span><span class="p">;</span>
+    <span class="nv">$body</span> <span class="o">=</span> <span class="s1">'订单 #123 的支付'</span><span class="p">;</span>
+    <span class="nv">$metaData</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'order_id'</span> <span class="o">=&gt;</span> <span class="s1">'123'</span><span class="p">];</span> <span class="c1">// 附加订单特定数据</span>
+
+    <span class="c1">// 创建费用并响应</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">createChargeThenResponse</span><span class="p">(</span><span class="nv">$amount</span><span class="p">,</span> <span class="nv">$subject</span><span class="p">,</span> <span class="nv">$body</span><span class="p">,</span> <span class="nv">$metaData</span><span class="p">,</span> <span class="nv">$user</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">private</span> <span class="k">function</span> <span class="n">getSessionUser</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$token</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">input</span><span class="o">-&gt;</span><span class="nf">get_request_header</span><span class="p">(</span><span class="s1">'Authorization'</span><span class="p">,</span> <span class="kc">TRUE</span><span class="p">);</span> <span class="c1">// 根据你的认证方法调整</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$token</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">userDao</span><span class="o">-&gt;</span><span class="nf">findUserBySessionToken</span><span class="p">(</span><span class="nv">$token</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="5-处理客户端响应">5. 处理客户端响应</h4>
+<p><code class="language-plaintext highlighter-rouge">createChargeThenResponse</code> 方法返回一个 JSON <code class="language-plaintext highlighter-rouge">charge</code> 对象。对于 <code class="language-plaintext highlighter-rouge">alipay_pc_direct</code>，它包括一个包含支付 URL 的 <code class="language-plaintext highlighter-rouge">credential</code> 字段。在客户端（例如，使用 JavaScript）处理此内容。</p>
+
+<p><strong>示例（前端 JavaScript）：</strong></p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">/payment/checkout</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">your-session-token</span><span class="dl">'</span> <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+<span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">charge</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span> <span class="o">&amp;&amp;</span> <span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span><span class="p">.</span><span class="nx">alipay_pc_direct</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">charge</span><span class="p">.</span><span class="nx">credential</span><span class="p">.</span><span class="nx">alipay_pc_direct</span><span class="p">;</span> <span class="c1">// 重定向到支付宝</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">支付错误:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">charge</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">错误:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">));</span>
+</code></pre></div></div>
+
+<h4 id="6-成功页面">6. 成功页面</h4>
+<p>创建一个成功页面（例如 <code class="language-plaintext highlighter-rouge">payment/success</code>），在支付后显示确认。如果需要，可以在此处手动更新订单状态，尽管建议使用 webhook 以确保可靠性（见步骤 7）。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">success_get</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// 可选：在此处验证支付状态</span>
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">load</span><span class="o">-&gt;</span><span class="nf">view</span><span class="p">(</span><span class="s1">'payment_success'</span><span class="p">);</span> <span class="c1">// 加载视图</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="7-可选处理-webhook">7. （可选）处理 Webhook</h4>
+<p>Pingpp 通过 webhook 发送异步支付状态更新。设置一个端点来接收这些通知并更新你的数据库。</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">function</span> <span class="n">webhook_post</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nv">$rawData</span> <span class="o">=</span> <span class="nb">file_get_contents</span><span class="p">(</span><span class="s1">'php://input'</span><span class="p">);</span>
+    <span class="nv">$event</span> <span class="o">=</span> <span class="nb">json_decode</span><span class="p">(</span><span class="nv">$rawData</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$event</span><span class="p">[</span><span class="s1">'type'</span><span class="p">]</span> <span class="o">===</span> <span class="s1">'charge.succeeded'</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$charge</span> <span class="o">=</span> <span class="nv">$event</span><span class="p">[</span><span class="s1">'data'</span><span class="p">][</span><span class="s1">'object'</span><span class="p">];</span>
+        <span class="nv">$orderNo</span> <span class="o">=</span> <span class="nv">$charge</span><span class="p">[</span><span class="s1">'order_no'</span><span class="p">];</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="n">chargeDao</span><span class="o">-&gt;</span><span class="nf">updateStatus</span><span class="p">(</span><span class="nv">$orderNo</span><span class="p">,</span> <span class="s1">'paid'</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nv">$this</span><span class="o">-&gt;</span><span class="nf">response</span><span class="p">([</span><span class="s1">'status'</span> <span class="o">=&gt;</span> <span class="s1">'ok'</span><span class="p">],</span> <span class="mi">200</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>向 <code class="language-plaintext highlighter-rouge">ChargeDao</code> 添加一个 <code class="language-plaintext highlighter-rouge">updateStatus</code> 方法以更新费用状态。</li>
+  <li>在 Pingpp 仪表板中配置你的 webhook URL（例如，<code class="language-plaintext highlighter-rouge">http://yourdomain.com/payment/webhook</code>）。</li>
+</ul>
+
+<hr />
+
+<h3 id="完整示例使用">完整示例使用</h3>
+<ol>
+  <li><strong>用户操作</strong>：用户登录并通过 POST 请求到 <code class="language-plaintext highlighter-rouge">/payment/checkout</code> 启动结账。</li>
+  <li><strong>服务器响应</strong>：服务器创建费用并返回包含支付详情的 JSON 对象。</li>
+  <li><strong>客户端处理</strong>：前端将用户重定向到支付宝支付页面。</li>
+  <li><strong>支付完成</strong>：支付后，用户被重定向到成功 URL。</li>
+  <li><strong>Webhook 更新</strong>：Pingpp 通知你的 webhook 端点，你更新费用状态。</li>
+</ol>
+
+<hr />
+
+<h3 id="附加说明">附加说明</h3>
+<ul>
+  <li><strong>支付渠道</strong>：将 <code class="language-plaintext highlighter-rouge">'alipay_pc_direct'</code> 替换为其他渠道（例如，<code class="language-plaintext highlighter-rouge">'wx'</code> 表示微信）以满足需要。查看 <a href="https://www.pingxx.com/api">Pingpp 文档</a> 以获取渠道特定的 <code class="language-plaintext highlighter-rouge">extra</code> 参数。</li>
+  <li><strong>错误处理</strong>：增强生产环境的错误处理（例如，重试逻辑、详细错误消息）。</li>
+  <li><strong>安全性</strong>：验证用户输入（<code class="language-plaintext highlighter-rouge">$amount</code> 等）并保护你的 API 端点。</li>
+</ul>
+
+<p>此示例为将 Pingpp 集成到你的 CodeIgniter 应用程序中提供了一个坚实的基础，可以适应各种用例，如电子商务或捐赠。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

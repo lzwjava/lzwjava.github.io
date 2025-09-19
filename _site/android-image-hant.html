@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Android 圖像處理變簡單</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Android 圖像處理變簡單 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Android 圖像處理變簡單" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="在 Android 中處理圖像可能會很棘手——位圖會佔用大量記憶體，旋轉會影響方向，裁剪需要精確度。這就是 BitmapUtils 和 Crop 這類工具類的用武之地。在這篇文章中，我將帶你了解來自 com.lzw.flower.utils 包的這對強大的類。我們將探索它們的代碼，分解每個方法的功能，並展示如何在你的項目中使用它們。讓我們開始吧！" />
+<meta property="og:description" content="在 Android 中處理圖像可能會很棘手——位圖會佔用大量記憶體，旋轉會影響方向，裁剪需要精確度。這就是 BitmapUtils 和 Crop 這類工具類的用武之地。在這篇文章中，我將帶你了解來自 com.lzw.flower.utils 包的這對強大的類。我們將探索它們的代碼，分解每個方法的功能，並展示如何在你的項目中使用它們。讓我們開始吧！" />
+<link rel="canonical" href="https://lzwjava.github.io/android-image-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/android-image-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-07-27T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Android 圖像處理變簡單" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-07-27T00:00:00+08:00","datePublished":"2014-07-27T00:00:00+08:00","description":"在 Android 中處理圖像可能會很棘手——位圖會佔用大量記憶體，旋轉會影響方向，裁剪需要精確度。這就是 BitmapUtils 和 Crop 這類工具類的用武之地。在這篇文章中，我將帶你了解來自 com.lzw.flower.utils 包的這對強大的類。我們將探索它們的代碼，分解每個方法的功能，並展示如何在你的項目中使用它們。讓我們開始吧！","headline":"Android 圖像處理變簡單","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/android-image-hant"},"url":"https://lzwjava.github.io/android-image-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Android 圖像處理變簡單 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2014-07-27-android-image-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2014-07-27-android-image-hant.md</span> -->
+      
+
+      <!-- <span>2014-07-27-android-image-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/android-image-en" >English</option>
+        <option value="/android-image-zh" >中文</option>
+        <option value="/android-image-ja" >日本語</option>
+        <option value="/android-image-es" >Español</option>
+        <option value="/android-image-hi" >हिंदी</option>
+        <option value="/android-image-fr" >Français</option>
+        <option value="/android-image-de" >Deutsch</option>
+        <option value="/android-image-ar" >العربية</option>
+        <option value="/android-image-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>在 Android 中處理圖像可能會很棘手——位圖會佔用大量記憶體，旋轉會影響方向，裁剪需要精確度。這就是 <code class="language-plaintext highlighter-rouge">BitmapUtils</code> 和 <code class="language-plaintext highlighter-rouge">Crop</code> 這類工具類的用武之地。在這篇文章中，我將帶你了解來自 <code class="language-plaintext highlighter-rouge">com.lzw.flower.utils</code> 包的這對強大的類。我們將探索它們的代碼，分解每個方法的功能，並展示如何在你的項目中使用它們。讓我們開始吧！</p>
+
+<hr />
+
+<h4 id="bitmaputils您的圖像操作工具包">BitmapUtils：您的圖像操作工具包</h4>
+
+<p><code class="language-plaintext highlighter-rouge">BitmapUtils</code> 類是一組用於操作 <code class="language-plaintext highlighter-rouge">Bitmap</code> 對象的靜態方法。以下是完整的代碼，後面是詳細說明：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.lzw.flower.utils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.content.Context</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.BitmapFactory</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.Matrix</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.net.Uri</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.provider.MediaStore</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.FileOutputStream</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BitmapUtils</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">convertGreyImg</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">img</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">pixels</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">width</span> <span class="o">*</span> <span class="n">height</span><span class="o">];</span>
+    <span class="n">img</span><span class="o">.</span><span class="na">getPixels</span><span class="o">(</span><span class="n">pixels</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mh">0xFF</span> <span class="o">&lt;&lt;</span> <span class="mi">24</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">grey</span> <span class="o">=</span> <span class="n">pixels</span><span class="o">[</span><span class="n">width</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">];</span>
+        <span class="kt">int</span> <span class="n">red</span> <span class="o">=</span> <span class="o">((</span><span class="n">grey</span> <span class="o">&amp;</span> <span class="mh">0x00FF0000</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">green</span> <span class="o">=</span> <span class="o">((</span><span class="n">grey</span> <span class="o">&amp;</span> <span class="mh">0x0000FF00</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">blue</span> <span class="o">=</span> <span class="o">(</span><span class="n">grey</span> <span class="o">&amp;</span> <span class="mh">0x000000FF</span><span class="o">);</span>
+        <span class="n">grey</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">((</span><span class="kt">float</span><span class="o">)</span> <span class="n">red</span> <span class="o">*</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">green</span> <span class="o">*</span> <span class="mf">0.59</span> <span class="o">+</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">blue</span> <span class="o">*</span> <span class="mf">0.11</span><span class="o">);</span>
+        <span class="n">grey</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">|</span> <span class="o">(</span><span class="n">grey</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">grey</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="o">)</span> <span class="o">|</span> <span class="n">grey</span><span class="o">;</span>
+        <span class="n">pixels</span><span class="o">[</span><span class="n">width</span> <span class="o">*</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">grey</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="nc">Bitmap</span> <span class="n">result</span> <span class="o">=</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">createBitmap</span><span class="o">(</span><span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">,</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">Config</span><span class="o">.</span><span class="na">ARGB_8888</span><span class="o">);</span>
+    <span class="n">result</span><span class="o">.</span><span class="na">setPixels</span><span class="o">(</span><span class="n">pixels</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">width</span><span class="o">,</span> <span class="n">height</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">toGreyImg</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">bitmapOrg</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Bitmap</span> <span class="n">bitmapNew</span> <span class="o">=</span> <span class="n">bitmapOrg</span><span class="o">.</span><span class="na">copy</span><span class="o">(</span><span class="nc">Bitmap</span><span class="o">.</span><span class="na">Config</span><span class="o">.</span><span class="na">ARGB_8888</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">bitmapNew</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">bitmapNew</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">bitmapNew</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">bitmapNew</span><span class="o">.</span><span class="na">getPixel</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">alpha</span> <span class="o">=</span> <span class="n">col</span> <span class="o">&amp;</span> <span class="mh">0xFF000000</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">red</span> <span class="o">=</span> <span class="o">(</span><span class="n">col</span> <span class="o">&amp;</span> <span class="mh">0x00FF0000</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">green</span> <span class="o">=</span> <span class="o">(</span><span class="n">col</span> <span class="o">&amp;</span> <span class="mh">0x0000FF00</span><span class="o">)</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">blue</span> <span class="o">=</span> <span class="o">(</span><span class="n">col</span> <span class="o">&amp;</span> <span class="mh">0x000000FF</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">gray</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">((</span><span class="kt">float</span><span class="o">)</span> <span class="n">red</span> <span class="o">*</span> <span class="mf">0.3</span> <span class="o">+</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">green</span> <span class="o">*</span> <span class="mf">0.59</span> <span class="o">+</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span> <span class="n">blue</span> <span class="o">*</span> <span class="mf">0.11</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">newColor</span> <span class="o">=</span> <span class="n">alpha</span> <span class="o">|</span> <span class="o">(</span><span class="n">gray</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="o">)</span> <span class="o">|</span> <span class="o">(</span><span class="n">gray</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="o">)</span> <span class="o">|</span> <span class="n">gray</span><span class="o">;</span>
+        <span class="n">bitmapNew</span><span class="o">.</span><span class="na">setPixel</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">newColor</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">bitmapNew</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">saveBitmapToPath</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">bitmap</span><span class="o">,</span> <span class="nc">String</span> <span class="n">imagePath</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">FileOutputStream</span> <span class="n">out</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="nc">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">imagePath</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">file</span><span class="o">.</span><span class="na">getParentFile</span><span class="o">().</span><span class="na">exists</span><span class="o">()</span> <span class="o">==</span> <span class="kc">false</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">file</span><span class="o">.</span><span class="na">getParentFile</span><span class="o">().</span><span class="na">mkdirs</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">try</span> <span class="o">{</span>
+      <span class="n">out</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FileOutputStream</span><span class="o">(</span><span class="n">imagePath</span><span class="o">);</span>
+      <span class="n">bitmap</span><span class="o">.</span><span class="na">compress</span><span class="o">(</span><span class="nc">Bitmap</span><span class="o">.</span><span class="na">CompressFormat</span><span class="o">.</span><span class="na">PNG</span><span class="o">,</span> <span class="mi">100</span><span class="o">,</span> <span class="n">out</span><span class="o">);</span>
+      <span class="n">out</span><span class="o">.</span><span class="na">flush</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">finally</span> <span class="o">{</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">out</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">out</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">rotateBitmap</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">source</span><span class="o">,</span> <span class="kt">float</span> <span class="n">angle</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Matrix</span> <span class="n">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Matrix</span><span class="o">();</span>
+    <span class="n">matrix</span><span class="o">.</span><span class="na">postRotate</span><span class="o">(</span><span class="n">angle</span><span class="o">);</span>
+    <span class="k">return</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">createBitmap</span><span class="o">(</span><span class="n">source</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">source</span><span class="o">.</span><span class="na">getWidth</span><span class="o">(),</span> <span class="n">source</span><span class="o">.</span><span class="na">getHeight</span><span class="o">(),</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Uri</span> <span class="nf">getResourceUri</span><span class="o">(</span><span class="kt">int</span> <span class="n">resId</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">parse</span><span class="o">(</span><span class="s">"android.resource://com.lzw.flower/"</span> <span class="o">+</span> <span class="n">resId</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">getBitmapByUri</span><span class="o">(</span><span class="nc">Context</span> <span class="n">cxt</span><span class="o">,</span> <span class="nc">Uri</span> <span class="n">uri</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nc">MediaStore</span><span class="o">.</span><span class="na">Images</span><span class="o">.</span><span class="na">Media</span><span class="o">.</span><span class="na">getBitmap</span><span class="o">(</span><span class="n">cxt</span><span class="o">.</span><span class="na">getContentResolver</span><span class="o">(),</span> <span class="n">uri</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">calInSampleSize</span><span class="o">(</span><span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span> <span class="n">options</span><span class="o">,</span> <span class="kt">int</span> <span class="n">reqWidth</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="na">outWidth</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="na">outHeight</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">inSampleSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">w</span> <span class="o">&gt;</span> <span class="n">reqWidth</span> <span class="o">&amp;&amp;</span> <span class="n">reqWidth</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">inSampleSize</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">w</span> <span class="o">/</span> <span class="n">reqWidth</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">inSampleSize</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">decodeSampledBitmapFromPath</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">,</span> <span class="kt">int</span> <span class="n">reqWidth</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span> <span class="n">options</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span><span class="o">();</span>
+    <span class="n">options</span><span class="o">.</span><span class="na">inJustDecodeBounds</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">inSampleSize</span> <span class="o">=</span> <span class="n">calInSampleSize</span><span class="o">(</span><span class="n">options</span><span class="o">,</span> <span class="n">reqWidth</span><span class="o">);</span>
+    <span class="n">options</span><span class="o">.</span><span class="na">inJustDecodeBounds</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="n">options</span><span class="o">.</span><span class="na">inSampleSize</span> <span class="o">=</span> <span class="n">inSampleSize</span><span class="o">;</span>
+    <span class="k">return</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">options</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">Bitmap</span> <span class="nf">decodeFileByHeight</span><span class="o">(</span><span class="nc">String</span> <span class="n">path</span><span class="o">,</span> <span class="kt">int</span> <span class="n">reqH</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span> <span class="n">opt</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span><span class="o">();</span>
+    <span class="n">opt</span><span class="o">.</span><span class="na">inJustDecodeBounds</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">opt</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">scale</span> <span class="o">=</span> <span class="n">calInSampleSizeByHeight</span><span class="o">(</span><span class="n">opt</span><span class="o">,</span> <span class="n">reqH</span><span class="o">);</span>
+    <span class="n">opt</span><span class="o">.</span><span class="na">inSampleSize</span> <span class="o">=</span> <span class="n">scale</span><span class="o">;</span>
+    <span class="n">opt</span><span class="o">.</span><span class="na">inJustDecodeBounds</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="nc">Bitmap</span> <span class="n">bm</span> <span class="o">=</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeFile</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">opt</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">bm</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">calInSampleSizeByHeight</span><span class="o">(</span><span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">Options</span> <span class="n">options</span><span class="o">,</span> <span class="kt">int</span> <span class="n">reqHeight</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="na">outHeight</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">inSampleSize</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">h</span> <span class="o">&gt;</span> <span class="n">reqHeight</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">inSampleSize</span> <span class="o">=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">round</span><span class="o">(</span><span class="n">h</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">reqHeight</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">inSampleSize</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="內容簡介">內容簡介</h5>
+<ul>
+  <li><strong>灰度轉換</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">convertGreyImg</code>：使用像素陣列批量處理位圖轉換為灰度。</li>
+      <li><code class="language-plaintext highlighter-rouge">toGreyImg</code>：逐像素處理可變副本，提供另一種方法。
+兩者都使用亮度公式（<code class="language-plaintext highlighter-rouge">0.3R + 0.59G + 0.11B</code>）來生成自然的灰度。</li>
+    </ul>
+  </li>
+  <li><strong>文件操作</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">saveBitmapToPath</code>：將位圖保存為 PNG，必要時創建目錄。</li>
+    </ul>
+  </li>
+  <li><strong>轉換</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">rotateBitmap</code>：使用 <code class="language-plaintext highlighter-rouge">Matrix</code> 旋轉圖像——簡單有效。</li>
+    </ul>
+  </li>
+  <li><strong>加載和取樣</strong>：
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">getBitmapByUri</code> 和 <code class="language-plaintext highlighter-rouge">getResourceUri</code>：從 URI 或資源加載圖像。</li>
+      <li><code class="language-plaintext highlighter-rouge">decodeSampledBitmapFromPath</code> 和 <code class="language-plaintext highlighter-rouge">decodeFileByHeight</code>：根據寬度或高度高效縮放大圖像，避免記憶體問題。</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h4 id="crop使用-android-原生工具進行精確裁剪">Crop：使用 Android 原生工具進行精確裁剪</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Crop</code> 類利用 Android 的內建裁剪意圖。以下是代碼：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="nn">com.lzw.flower.utils</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">android.app.Activity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.content.Intent</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.net.Uri</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.provider.MediaStore</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.lzw.flower.base.App</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">java.io.File</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Crop</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">startPhotoCrop</span><span class="o">(</span><span class="nc">Activity</span> <span class="n">cxt</span><span class="o">,</span> <span class="nc">Uri</span> <span class="n">uri</span><span class="o">,</span> <span class="nc">String</span> <span class="n">outputPath</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Intent</span> <span class="n">intent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Intent</span><span class="o">(</span><span class="s">"com.android.camera.action.CROP"</span><span class="o">);</span>
+    <span class="n">intent</span><span class="o">.</span><span class="na">setDataAndType</span><span class="o">(</span><span class="n">uri</span><span class="o">,</span> <span class="s">"image/*"</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="n">gcd</span><span class="o">(</span><span class="n">w</span><span class="o">,</span> <span class="n">h</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">w1</span> <span class="o">=</span> <span class="n">w</span> <span class="o">/</span> <span class="n">factor</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">h1</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">factor</span><span class="o">;</span>
+    <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"crop"</span><span class="o">,</span> <span class="s">"true"</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"aspectX"</span><span class="o">,</span> <span class="n">w1</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"aspectY"</span><span class="o">,</span> <span class="n">h1</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"scale"</span><span class="o">,</span> <span class="kc">true</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"outputX"</span><span class="o">,</span> <span class="n">w</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"outputY"</span><span class="o">,</span> <span class="n">h</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"outputFormat"</span><span class="o">,</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">CompressFormat</span><span class="o">.</span><span class="na">PNG</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+    <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"noFaceDetection"</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+    <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="s">"return-data"</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+    <span class="nc">Uri</span> <span class="n">uri1</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">outputPath</span><span class="o">));</span>
+    <span class="n">intent</span><span class="o">.</span><span class="na">putExtra</span><span class="o">(</span><span class="nc">MediaStore</span><span class="o">.</span><span class="na">EXTRA_OUTPUT</span><span class="o">,</span> <span class="n">uri1</span><span class="o">);</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="na">startActivityForResult</span><span class="o">(</span><span class="n">intent</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">static</span> <span class="kt">int</span> <span class="nf">gcd</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">gcd</span><span class="o">(</span><span class="n">b</span><span class="o">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="這裡發生了什麼">這裡發生了什麼？</h5>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">startPhotoCrop</code>：啟動系統裁剪活動，指定 <code class="language-plaintext highlighter-rouge">Uri</code>、簡化後的長寬比（使用 GCD）和輸出路徑。假設 <code class="language-plaintext highlighter-rouge">App.drawWidth</code> 和 <code class="language-plaintext highlighter-rouge">App.drawHeight</code> 在其他地方定義（例如在基礎 <code class="language-plaintext highlighter-rouge">App</code> 類中）。</li>
+  <li><code class="language-plaintext highlighter-rouge">gcd</code>：一個遞歸方法來計算最大公因數，確保長寬比簡化。</li>
+</ul>
+
+<hr />
+
+<h4 id="將它們結合起來使用示例">將它們結合起來：使用示例</h4>
+
+<p>這是你可能在 Android 應用中使用這些工具的方式：</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">android.graphics.Bitmap</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.net.Uri</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">android.os.Bundle</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">androidx.appcompat.app.AppCompatActivity</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.lzw.flower.utils.BitmapUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.lzw.flower.utils.Crop</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">REQUEST_CROP</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+        <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_main</span><span class="o">);</span>
+
+        <span class="c1">// 將圖像轉換為灰度並保存它</span>
+        <span class="nc">Bitmap</span> <span class="n">original</span> <span class="o">=</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeResource</span><span class="o">(</span><span class="n">getResources</span><span class="o">(),</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">sample</span><span class="o">);</span>
+        <span class="nc">Bitmap</span> <span class="n">grey</span> <span class="o">=</span> <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">convertGreyImg</span><span class="o">(</span><span class="n">original</span><span class="o">);</span>
+        <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">grey</span><span class="o">,</span> <span class="s">"/sdcard/DCIM/grey_image.png"</span><span class="o">);</span>
+
+        <span class="c1">// 高效加載和縮放圖像</span>
+        <span class="nc">Bitmap</span> <span class="n">scaled</span> <span class="o">=</span> <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">decodeSampledBitmapFromPath</span><span class="o">(</span><span class="s">"/sdcard/DCIM/photo.jpg"</span><span class="o">,</span> <span class="mi">200</span><span class="o">);</span>
+
+        <span class="c1">// 啟動裁剪</span>
+        <span class="nc">Uri</span> <span class="n">imageUri</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="s">"/sdcard/DCIM/photo.jpg"</span><span class="o">));</span>
+        <span class="nc">Crop</span><span class="o">.</span><span class="na">startPhotoCrop</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">imageUri</span><span class="o">,</span> <span class="s">"/sdcard/DCIM/cropped.png"</span><span class="o">,</span> <span class="no">REQUEST_CROP</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">,</span> <span class="nc">Intent</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onActivityResult</span><span class="o">(</span><span class="n">requestCode</span><span class="o">,</span> <span class="n">resultCode</span><span class="o">,</span> <span class="n">data</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">requestCode</span> <span class="o">==</span> <span class="no">REQUEST_CROP</span> <span class="o">&amp;&amp;</span> <span class="n">resultCode</span> <span class="o">==</span> <span class="no">RESULT_OK</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 裁剪後的圖像保存在 "/sdcard/DCIM/cropped.png"</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>備註</strong>：</p>
+<ul>
+  <li>確保在 <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> 中有適當的存儲權限，並在運行時檢查文件操作。</li>
+  <li><code class="language-plaintext highlighter-rouge">App</code> 類（在 <code class="language-plaintext highlighter-rouge">Crop</code> 中引用）應該定義 <code class="language-plaintext highlighter-rouge">drawWidth</code> 和 <code class="language-plaintext highlighter-rouge">drawHeight</code>。</li>
+</ul>
+
+<hr />
+
+<h4 id="為什麼這些工具很棒">為什麼這些工具很棒</h4>
+
+<ol>
+  <li><strong>高效</strong>：取樣方法可以防止處理大圖像時出現 <code class="language-plaintext highlighter-rouge">OutOfMemoryError</code>。</li>
+  <li><strong>靈活性</strong>：灰度、旋轉和裁剪涵蓋了廣泛的用例。</li>
+  <li><strong>簡單</strong>：靜態方法使集成變得輕鬆——無需實例化。</li>
+</ol>
+
+<hr />
+
+<h4 id="結語">結語</h4>
+
+<p><code class="language-plaintext highlighter-rouge">BitmapUtils</code> 和 <code class="language-plaintext highlighter-rouge">Crop</code> 類是任何需要圖像操作的 Android 應用的絕佳起點。無論你是構建照片編輯器、優化相冊縮略圖，還是添加用戶驅動的裁剪，這段代碼都能滿足你的需求。試試看，根據你的需求進行調整，並告訴我它的效果如何！</p>
+
+<p>你在 Android 中遇到過哪些圖像處理挑戰？在下面分享你的想法！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

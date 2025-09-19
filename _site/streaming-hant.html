@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>使用 OBS、SRS 和 FFmpeg 進行直播設置</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>使用 OBS、SRS 和 FFmpeg 進行直播設置 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="使用 OBS、SRS 和 FFmpeg 進行直播設置" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="這篇博文是由 ChatGPT-4o 協助整理的。" />
+<meta property="og:description" content="這篇博文是由 ChatGPT-4o 協助整理的。" />
+<link rel="canonical" href="https://lzwjava.github.io/streaming-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/streaming-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="使用 OBS、SRS 和 FFmpeg 進行直播設置" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-09-23T00:00:00+08:00","datePublished":"2016-09-23T00:00:00+08:00","description":"這篇博文是由 ChatGPT-4o 協助整理的。","headline":"使用 OBS、SRS 和 FFmpeg 進行直播設置","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/streaming-hant"},"url":"https://lzwjava.github.io/streaming-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       使用 OBS、SRS 和 FFmpeg 進行直播設置 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2016-09-23-streaming-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2016-09-23-streaming-hant.md</span> -->
+      
+
+      <!-- <span>2016-09-23-streaming-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.09</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/streaming-en" >English</option>
+        <option value="/streaming-zh" >中文</option>
+        <option value="/streaming-ja" >日本語</option>
+        <option value="/streaming-es" >Español</option>
+        <option value="/streaming-hi" >हिंदी</option>
+        <option value="/streaming-fr" >Français</option>
+        <option value="/streaming-de" >Deutsch</option>
+        <option value="/streaming-ar" >العربية</option>
+        <option value="/streaming-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>這篇博文是由 ChatGPT-4o 協助整理的。</em></p>
+
+<hr />
+
+<p>直播已成為在線交流的重要組成部分，從專業廣播到個人視頻博客，應用廣泛。建立一個強大的直播解決方案需要了解各種工具和協議。本指南將帶您逐步了解如何使用 OBS、SRS 和 FFmpeg 設置直播。</p>
+
+<h3 id="直播的關鍵組件">直播的關鍵組件</h3>
+
+<p><strong>1. OBS（Open Broadcaster Software）</strong>
+OBS 是一個功能強大的開源軟件，用於視頻錄製和直播。它提供實時源和設備捕獲、場景合成、編碼、錄製和廣播功能。</p>
+
+<p><strong>2. SRS（Simple Realtime Server）</strong>
+SRS 是一個高性能的 RTMP、HLS 和 HTTP-FLV 流媒體服務器。它支持大量並發連接，並且高度可配置。</p>
+
+<p><strong>3. FFmpeg</strong>
+FFmpeg 是一個綜合性的多媒體框架，可以解碼、編碼、轉碼、多路復用、解多路復用、流、過濾和播放幾乎所有人類和機器創建的內容。在流媒體設置中廣泛使用，因其多功能性和可靠性而備受推崇。</p>
+
+<h3 id="設置您的直播環境">設置您的直播環境</h3>
+
+<h4 id="obs-配置">OBS 配置</h4>
+
+<ol>
+  <li><strong>安裝 OBS</strong>：從官網下載安裝 OBS。</li>
+  <li><strong>配置設置</strong>：打開 OBS，進入 <code class="language-plaintext highlighter-rouge">設置 &gt; 流</code>，將流類型配置為 <code class="language-plaintext highlighter-rouge">自定義...</code>。輸入您的流媒體服務器 URL（例如 <code class="language-plaintext highlighter-rouge">rtmp://your_server_ip/live</code>）。</li>
+  <li><strong>添加來源</strong>：在 OBS 中添加視頻和音頻來源以創建場景。這可以包括屏幕捕獲、攝像頭、圖片、文本等。</li>
+</ol>
+
+<h4 id="srs-服務器設置">SRS 服務器設置</h4>
+
+<ol>
+  <li><strong>安裝 SRS</strong>：從 GitHub 克隆 SRS 倉庫並編譯以支持 SSL。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/ossrs/srs.git
+ <span class="nb">cd </span>srs/trunk
+ ./configure <span class="nt">--disable-all</span> <span class="nt">--with-ssl</span>
+ make
+</code></pre></div>    </div>
+  </li>
+  <li><strong>配置 SRS</strong>：編輯 <code class="language-plaintext highlighter-rouge">conf/rtmp.conf</code> 文件以配置您的 RTMP 設置。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> listen 1935<span class="p">;</span>
+ max_connections 1000<span class="p">;</span>
+ vhost __defaultVhost__ <span class="o">{</span> <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>啟動 SRS</strong>：使用您的配置文件運行 SRS 服務器。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./objs/srs <span class="nt">-c</span> conf/rtmp.conf
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="使用-ffmpeg-進行流媒體傳輸">使用 FFmpeg 進行流媒體傳輸</h4>
+
+<ol>
+  <li><strong>安裝 FFmpeg</strong>：從官網或通過包管理器安裝 FFmpeg。</li>
+  <li><strong>使用 FFmpeg 進行流媒體傳輸</strong>：使用 FFmpeg 將視頻流推送到您的 SRS 服務器。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key
+</code></pre></div>    </div>
+  </li>
+  <li><strong>自動化流媒體傳輸</strong>：創建一個腳本以持續傳輸視頻文件。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">for</span> <span class="o">((</span><span class="p">;;</span><span class="o">))</span><span class="p">;</span> <span class="k">do 
+     </span>ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key<span class="p">;</span>
+     <span class="nb">sleep </span>1<span class="p">;</span>
+ <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="協議和格式">協議和格式</h3>
+
+<p><strong>RTMP（實時消息傳輸協議）</strong></p>
+<ul>
+  <li>RTMP 因其低延遲和可靠的傳輸而廣泛用於直播。</li>
+  <li>它使用 TCP，可以維持持久連接，確保流暢的流媒體傳輸。</li>
+</ul>
+
+<p><strong>HLS（HTTP 實時流媒體）</strong></p>
+<ul>
+  <li>HLS 將視頻流分成小的基於 HTTP 的文件段，使其易於通過標準 Web 服務器傳輸。</li>
+  <li>雖然會引入延遲，但它與各種設備和平台高度兼容。</li>
+</ul>
+
+<p><strong>HTTP-FLV</strong></p>
+<ul>
+  <li>將 FLV 格式與 HTTP 傳輸結合，用於低延遲流媒體傳輸。</li>
+  <li>適用於基於瀏覽器的流媒體，因為它利用現有的 HTTP 基礎設施。</li>
+</ul>
+
+<h3 id="實際應用">實際應用</h3>
+
+<p><strong>iOS 和 Android 流媒體</strong></p>
+<ul>
+  <li>使用 VideoCore 和 Ijkplayer 等庫在移動設備上實現 RTMP 流媒體傳輸。</li>
+  <li>集成 FFmpeg 進行編碼和解碼任務，以增強兼容性和性能。</li>
+</ul>
+
+<p><strong>基於 Web 的流媒體</strong></p>
+<ul>
+  <li>使用 HTML5 視頻元素在網頁上實現視頻播放，支持 HLS 或 HTTP-FLV。</li>
+  <li>利用 WebRTC 進行實時通信和低延遲交互。</li>
+</ul>
+
+<h3 id="工具和資源">工具和資源</h3>
+
+<ul>
+  <li><strong>VLC</strong>：支持 RTMP、HLS 等流媒體協議的多功能媒體播放器。</li>
+  <li><strong>SRS Player</strong>：用於測試 SRS 流的在線播放器。</li>
+  <li><strong>FFmpeg 文檔</strong>：提供各種多媒體任務的詳細文檔。</li>
+</ul>
+
+<h3 id="結論">結論</h3>
+
+<p>建立一個可靠的直播解決方案需要理解和配置多種工具和協議。OBS、SRS 和 FFmpeg 是強大的組件，結合使用可以創建一個強大的流媒體設置。無論是面向 iOS、Android 還是 Web，這些工具都提供了實現高質量直播所需的靈活性和性能。</p>
+
+<p>有關更詳細的信息和高級配置，請參考每個工具的官方文檔，並在社區論壇中探索其他技巧和支持。祝您直播順利！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

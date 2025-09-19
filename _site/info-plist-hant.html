@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>解碼 Info.plist 文件</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>解碼 Info.plist 文件 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="解碼 Info.plist 文件" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="如果你曾經與 macOS 或 iOS 開發有過接觸，你可能會遇到一個 Info.plist 文件。這個基於 XML 的文件是任何 Apple 應用程式或插件的重要組成部分，就像護照一樣，告訴系統它是誰，它做什麼以及它應該如何行為。今天，我們將探索來自 “Reveal-In-GitHub” 的 Info.plist，這是我們在之前的文章中介紹的 Xcode 插件。與其逐行分析，我們將專注於核心概念和模式，這些概念和模式定義了它的目的和功能。" />
+<meta property="og:description" content="如果你曾經與 macOS 或 iOS 開發有過接觸，你可能會遇到一個 Info.plist 文件。這個基於 XML 的文件是任何 Apple 應用程式或插件的重要組成部分，就像護照一樣，告訴系統它是誰，它做什麼以及它應該如何行為。今天，我們將探索來自 “Reveal-In-GitHub” 的 Info.plist，這是我們在之前的文章中介紹的 Xcode 插件。與其逐行分析，我們將專注於核心概念和模式，這些概念和模式定義了它的目的和功能。" />
+<link rel="canonical" href="https://lzwjava.github.io/info-plist-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/info-plist-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="解碼 Info.plist 文件" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2015-10-23T00:00:00+08:00","datePublished":"2015-10-23T00:00:00+08:00","description":"如果你曾經與 macOS 或 iOS 開發有過接觸，你可能會遇到一個 Info.plist 文件。這個基於 XML 的文件是任何 Apple 應用程式或插件的重要組成部分，就像護照一樣，告訴系統它是誰，它做什麼以及它應該如何行為。今天，我們將探索來自 “Reveal-In-GitHub” 的 Info.plist，這是我們在之前的文章中介紹的 Xcode 插件。與其逐行分析，我們將專注於核心概念和模式，這些概念和模式定義了它的目的和功能。","headline":"解碼 Info.plist 文件","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/info-plist-hant"},"url":"https://lzwjava.github.io/info-plist-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       解碼 Info.plist 文件 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2015-10-23-info-plist-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2015-10-23-info-plist-hant.md</span> -->
+      
+
+      <!-- <span>2015-10-23-info-plist-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2015.10</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/info-plist-en" >English</option>
+        <option value="/info-plist-zh" >中文</option>
+        <option value="/info-plist-ja" >日本語</option>
+        <option value="/info-plist-es" >Español</option>
+        <option value="/info-plist-hi" >हिंदी</option>
+        <option value="/info-plist-fr" >Français</option>
+        <option value="/info-plist-de" >Deutsch</option>
+        <option value="/info-plist-ar" >العربية</option>
+        <option value="/info-plist-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>如果你曾經與 macOS 或 iOS 開發有過接觸，你可能會遇到一個 <code class="language-plaintext highlighter-rouge">Info.plist</code> 文件。這個基於 XML 的文件是任何 Apple 應用程式或插件的重要組成部分，就像護照一樣，告訴系統它是誰，它做什麼以及它應該如何行為。今天，我們將探索來自 “Reveal-In-GitHub” 的 <code class="language-plaintext highlighter-rouge">Info.plist</code>，這是我們在之前的文章中介紹的 Xcode 插件。與其逐行分析，我們將專注於核心概念和模式，這些概念和模式定義了它的目的和功能。</p>
+
+<hr />
+
+<h4 id="什麼是-infoplist-文件">什麼是 <code class="language-plaintext highlighter-rouge">Info.plist</code> 文件？</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Info.plist</code>（即「資訊屬性列表」）是一個結構化的文件，包含有關應用程式、插件或捆綁包的元數據。以 XML 書寫（使用特定的 Apple 定義的結構），它使用鍵值對來描述基本信息，如應用程式的名稱、版本和兼容性。對於 “Reveal-In-GitHub”，這個文件將其識別為 Xcode 插件，並確保它能夠與 IDE 無縫整合。</p>
+
+<p>與 <code class="language-plaintext highlighter-rouge">.pbxproj</code> 文件不同，<code class="language-plaintext highlighter-rouge">.pbxproj</code> 文件是關於如何構建某物，<code class="language-plaintext highlighter-rouge">Info.plist</code> 文件是關於這個某物是什麼。它是身份和意圖的聲明。</p>
+
+<hr />
+
+<h4 id="文件中的核心概念">文件中的核心概念</h4>
+
+<ol>
+  <li><strong>捆綁包基礎</strong>
+幾個鍵將插件定義為 macOS 捆綁包：
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleExecutable</code></strong>：設置為 <code class="language-plaintext highlighter-rouge">$(EXECUTABLE_NAME)</code>，這是編譯二進制文件名的占位符（在構建過程中定義）。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleIdentifier</code></strong>：<code class="language-plaintext highlighter-rouge">$(PRODUCT_BUNDLE_IDENTIFIER)</code> 解析為 <code class="language-plaintext highlighter-rouge">com.lzwjava.Reveal-In-GitHub</code>，這是一個唯一的反向 DNS 格式 ID，用於區分這個插件與其他插件。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundlePackageType</code></strong>：<code class="language-plaintext highlighter-rouge">BNDL</code> 將其標記為捆綁包，這是 macOS 插件和庫的常見格式。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleName</code></strong>：<code class="language-plaintext highlighter-rouge">$(PRODUCT_NAME)</code> 將成為 “Reveal-In-GitHub”，這是人類友好的名稱。</li>
+    </ul>
+  </li>
+  <li><strong>版本和所有權</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleShortVersionString</code></strong>：”1.0” 是用戶面向的版本。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleVersion</code></strong>：”1” 是內部構建號。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">NSHumanReadableCopyright</code></strong>：”Copyright © 2015年 lzwjava. All rights reserved.” 給予創作者 <code class="language-plaintext highlighter-rouge">lzwjava</code> 信用，並將插件日期定為 2015 年。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleSignature</code></strong>：”????” 是占位符（通常是四個字符的代碼），儘管對於插件來說這不太重要。</li>
+    </ul>
+  </li>
+  <li><strong>本地化</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleDevelopmentRegion</code></strong>：”en” 將英文設置為默認語言，影響資源（如果有）的本地化方式。</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Xcode 插件兼容性</strong>
+這裡的突出特點是 <strong><code class="language-plaintext highlighter-rouge">DVTPlugInCompatibilityUUIDs</code></strong>，這是一個長的 UUID 陣列。這些 UUID 與特定的 Xcode 版本（例如 Xcode 6、7 等）匹配，確保插件僅在兼容的 IDE 中加載。這個列表異常廣泛，表明 “Reveal-In-GitHub” 被設計用於多個 Xcode 版本之間的工作——這是前瞻性和向後兼容性的標誌。</p>
+  </li>
+  <li><strong>插件特定設置</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">NSPrincipalClass</code></strong>：留空 (<code class="language-plaintext highlighter-rouge">&lt;string&gt;&lt;/string&gt;</code>)，暗示插件可能會動態定義其入口點或依賴 Xcode 的慣例。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XC4Compatible</code> 和 <code class="language-plaintext highlighter-rouge">XC5Compatible</code></strong>：兩者均為 <code class="language-plaintext highlighter-rouge">&lt;true/&gt;</code>，確認與 Xcode 4 和 5 兼容。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XCGCReady</code></strong>：<code class="language-plaintext highlighter-rouge">&lt;true/&gt;</code> 表示準備好進行垃圾回收，這是一個較舊的 macOS 記憶體管理功能（大多數在 2015 年之前已經被 ARC 取代）。</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XCPluginHasUI</code></strong>：<code class="language-plaintext highlighter-rouge">&lt;false/&gt;</code> 表明沒有超出 Xcode 內建的自定義 UI——儘管這似乎與 <code class="language-plaintext highlighter-rouge">.pbxproj</code> 中的 <code class="language-plaintext highlighter-rouge">.xib</code> 文件相矛盾。也許 UI 是最小化的或以不同方式處理的。</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="要注意的模式">要注意的模式</h4>
+
+<ol>
+  <li>
+    <p><strong>靈活的占位符</strong>
+如 <code class="language-plaintext highlighter-rouge">$(EXECUTABLE_NAME)</code> 和 <code class="language-plaintext highlighter-rouge">$(PRODUCT_BUNDLE_IDENTIFIER)</code> 這樣的鍵使用與構建系統相關的變量（在 <code class="language-plaintext highlighter-rouge">.pbxproj</code> 中定義）。這使得 <code class="language-plaintext highlighter-rouge">Info.plist</code> 可以在不同的配置（例如調試與發布）之間重用。</p>
+  </li>
+  <li>
+    <p><strong>簡潔設計</strong>
+這個文件非常簡潔，專注於基本信息。沒有花哨的圖標、權限或應用程式特定的設置——只有一個 Xcode 插件需要的功能。這種簡潔性對於擴展現有應用程式（Xcode）的插件來說是典型的，而不是獨立程式。</p>
+  </li>
+  <li>
+    <p><strong>兼容性重點</strong>
+長長的 <code class="language-plaintext highlighter-rouge">DVTPlugInCompatibilityUUIDs</code> 列表和 <code class="language-plaintext highlighter-rouge">XC4Compatible</code> 這樣的標誌顯示出一個建造用來持久的插件。這種模式在開發者工具中很常見，用戶可能會因為穩定性而使用較舊的 Xcode 版本。</p>
+  </li>
+  <li>
+    <p><strong>元數據而非行為</strong>
+與代碼文件不同，<code class="language-plaintext highlighter-rouge">Info.plist</code> 不會做任何事情——它描述。它的角色是被動的，提供 Xcode 和 macOS 在運行時解釋的信息。</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="這告訴我們什麼關於-reveal-in-github">這告訴我們什麼關於 Reveal-In-GitHub？</h4>
+
+<p>這個 <code class="language-plaintext highlighter-rouge">Info.plist</code> 將 “Reveal-In-GitHub” 描繪為一個輕量級、專注的 Xcode 插件，可能由一個獨立開發者（<code class="language-plaintext highlighter-rouge">lzwjava</code>）在 2015 年創建。其廣泛的兼容性表明它被設計用於廣泛使用，而缺少 UI 旗標（儘管項目中有一個 <code class="language-plaintext highlighter-rouge">.xib</code>）暗示了一種微妙的整合——可能是一個菜單項或上下文操作，而不是一個華麗的介面。根據名稱和 <code class="language-plaintext highlighter-rouge">.pbxproj</code> 的上下文，它可能會簡化 GitHub 工作流程，例如將 Xcode 文件鏈接到它們的在線存儲庫。</p>
+
+<hr />
+
+<h4 id="為什麼這很重要">為什麼這很重要</h4>
+
+<p><code class="language-plaintext highlighter-rouge">Info.plist</code> 是你的應用程式與系統的握手。對於開發者來說，理解它意味著你可以調整兼容性、版本或行為，而不需要觸碰代碼。對於 “Reveal-In-GitHub”，它是無縫整合到 Xcode 的關鍵。下次當你在調試插件或創建自己的插件時，這個文件將是你的起點——小而強大。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

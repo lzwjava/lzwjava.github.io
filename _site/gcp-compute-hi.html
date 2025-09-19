@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Google क्लाउड सर्वर सेट करना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Google क्लाउड सर्वर सेट करना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Google क्लाउड सर्वर सेट करना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="Google Cloud में एक प्रॉक्सी सर्वर सेट करने से आप अपने इंटरनेट ट्रैफ़िक को सुरक्षित रूप से एक क्लाउड इंस्टेंस के माध्यम से रूट कर सकते हैं, जिससे गोपनीयता बढ़ती है और प्रतिबंधों को दरकिनार किया जा सकता है। इस गाइड में, हम आपको Google Cloud में एक बेसिक प्रॉक्सी सर्वर सेट करने और ट्रैफ़िक की अनुमति देने के लिए आवश्यक फ़ायरवॉल नियमों को कॉन्फ़िगर करने की प्रक्रिया के बारे में बताएंगे।" />
+<meta property="og:description" content="Google Cloud में एक प्रॉक्सी सर्वर सेट करने से आप अपने इंटरनेट ट्रैफ़िक को सुरक्षित रूप से एक क्लाउड इंस्टेंस के माध्यम से रूट कर सकते हैं, जिससे गोपनीयता बढ़ती है और प्रतिबंधों को दरकिनार किया जा सकता है। इस गाइड में, हम आपको Google Cloud में एक बेसिक प्रॉक्सी सर्वर सेट करने और ट्रैफ़िक की अनुमति देने के लिए आवश्यक फ़ायरवॉल नियमों को कॉन्फ़िगर करने की प्रक्रिया के बारे में बताएंगे।" />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-compute-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-compute-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Google क्लाउड सर्वर सेट करना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Google Cloud में एक प्रॉक्सी सर्वर सेट करने से आप अपने इंटरनेट ट्रैफ़िक को सुरक्षित रूप से एक क्लाउड इंस्टेंस के माध्यम से रूट कर सकते हैं, जिससे गोपनीयता बढ़ती है और प्रतिबंधों को दरकिनार किया जा सकता है। इस गाइड में, हम आपको Google Cloud में एक बेसिक प्रॉक्सी सर्वर सेट करने और ट्रैफ़िक की अनुमति देने के लिए आवश्यक फ़ायरवॉल नियमों को कॉन्फ़िगर करने की प्रक्रिया के बारे में बताएंगे।","headline":"Google क्लाउड सर्वर सेट करना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-compute-hi"},"url":"https://lzwjava.github.io/gcp-compute-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Google क्लाउड सर्वर सेट करना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2024-12-20-gcp-compute-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2024-12-20-gcp-compute-hi.md</span> -->
+      
+
+      <!-- <span>2024-12-20-gcp-compute-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-compute-en" >English</option>
+        <option value="/gcp-compute-zh" >中文</option>
+        <option value="/gcp-compute-ja" >日本語</option>
+        <option value="/gcp-compute-es" >Español</option>
+        <option value="/gcp-compute-hi" selected>हिंदी</option>
+        <option value="/gcp-compute-fr" >Français</option>
+        <option value="/gcp-compute-de" >Deutsch</option>
+        <option value="/gcp-compute-ar" >العربية</option>
+        <option value="/gcp-compute-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Google Cloud में एक प्रॉक्सी सर्वर सेट करने से आप अपने इंटरनेट ट्रैफ़िक को सुरक्षित रूप से एक क्लाउड इंस्टेंस के माध्यम से रूट कर सकते हैं, जिससे गोपनीयता बढ़ती है और प्रतिबंधों को दरकिनार किया जा सकता है। इस गाइड में, हम आपको Google Cloud में एक बेसिक प्रॉक्सी सर्वर सेट करने और ट्रैफ़िक की अनुमति देने के लिए आवश्यक फ़ायरवॉल नियमों को कॉन्फ़िगर करने की प्रक्रिया के बारे में बताएंगे।</p>
+
+<h2 id="विषय-सूची">विषय सूची</h2>
+<ol>
+  <li><a href="#creating-a-google-cloud-vm-instance">Google Cloud VM इंस्टेंस बनाना</a></li>
+  <li><a href="#configuring-the-proxy-server">प्रॉक्सी सर्वर कॉन्फ़िगर करना</a></li>
+  <li><a href="#setting-up-firewall-rules">फ़ायरवॉल नियम सेट करना</a></li>
+  <li><a href="#testing-the-proxy-server">प्रॉक्सी सर्वर का परीक्षण</a></li>
+  <li><a href="#conclusion">निष्कर्ष</a></li>
+</ol>
+
+<hr />
+
+<h2 id="google-cloud-vm-इंस्टेंस-बनाना">Google Cloud VM इंस्टेंस बनाना</h2>
+
+<p>प्रॉक्सी सर्वर सेटअप करने से पहले, आपको Google Cloud में एक वर्चुअल मशीन (VM) इंस्टेंस बनाना होगा।</p>
+
+<ol>
+  <li>
+    <p>Google Cloud Console में लॉग इन करें: <a href="https://console.cloud.google.com/">Google Cloud Console</a> पर जाएं और अपने खाते में लॉग इन करें।</p>
+  </li>
+  <li>एक नया VM इंस्टेंस बनाएं:
+    <ul>
+      <li>Compute Engine &gt; VM instances पर नेविगेट करें।</li>
+      <li>Create Instance पर क्लिक करें।</li>
+      <li>वांछित Region और Machine Type चुनें। सरलता के लिए, आप डिफ़ॉल्ट सेटिंग्स का उपयोग कर सकते हैं या हल्के वजन वाले कॉन्फ़िगरेशन जैसे <code class="language-plaintext highlighter-rouge">e2-micro</code> इंस्टेंस का चयन कर सकते हैं।</li>
+      <li>Firewall सेक्शन के तहत, वेब एक्सेस को सक्षम करने के लिए Allow HTTP traffic और Allow HTTPS traffic दोनों का चयन करें।</li>
+    </ul>
+  </li>
+  <li>SSH एक्सेस सेटअप करें:
+    <ul>
+      <li>SSH Keys सेक्शन के तहत, इंस्टेंस को दूरस्थ रूप से एक्सेस करने के लिए अपनी SSH पब्लिक कुंजी जोड़ें। यह बाद में अपने प्रॉक्सी सर्वर को कॉन्फ़िगर करने के लिए महत्वपूर्ण है।</li>
+    </ul>
+  </li>
+  <li>अपना VM लॉन्च करने के लिए Create पर क्लिक करें।</li>
+</ol>
+
+<p>VM सेटअप होने के बाद, आप इसे Google Cloud Console से SSH के माध्यम से या टर्मिनल से कनेक्ट कर सकते हैं:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud compute ssh &lt;आपका-वीएम-नाम&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="प्रॉक्सी-सर्वर-को-कॉन्फ़िगर-करना">प्रॉक्सी सर्वर को कॉन्फ़िगर करना</h2>
+
+<p>एक बार आपका VM सेट हो जाने के बाद, आप अपनी पसंद के किसी भी प्रॉक्सी सर्वर सॉफ़्टवेयर को कॉन्फ़िगर कर सकते हैं। प्रॉक्सी सॉफ़्टवेयर को इंस्टॉल किया जाना चाहिए और इसे वांछित पोर्ट (जैसे, सामान्य प्रॉक्सी सेटअप के लिए <code class="language-plaintext highlighter-rouge">3128</code>) पर कनेक्शन स्वीकार करने के लिए कॉन्फ़िगर किया जाना चाहिए। सुनिश्चित करें कि सॉफ़्टवेयर रिमोट क्लाइंट से कनेक्शन स्वीकार करता है।</p>
+
+<hr />
+
+<h2 id="फ़ायरवॉल-नियम-सेट-करना">फ़ायरवॉल नियम सेट करना</h2>
+
+<p>अपने प्रॉक्सी सर्वर पर ट्रैफ़िक की अनुमति देने के लिए, आपको आवश्यक पोर्ट खोलने के लिए Google Cloud फ़ायरवॉल नियमों को कॉन्फ़िगर करना होगा।</p>
+
+<ol>
+  <li>Google Cloud Console में फ़ायरवॉल नियमों पर नेविगेट करें:
+    <ul>
+      <li>Google Cloud Console में VPC नेटवर्क &gt; फ़ायरवॉल नियम पर जाएं।</li>
+    </ul>
+  </li>
+  <li>एक नया फ़ायरवॉल नियम बनाएं:
+    <ul>
+      <li>Create Firewall Rule पर क्लिक करें।</li>
+      <li>नियम के लिए एक नाम दर्ज करें, जैसे <code class="language-plaintext highlighter-rouge">allow-proxy-access</code>।</li>
+      <li>ट्रैफ़िक की दिशा को Ingress (आने वाला ट्रैफ़िक) पर सेट करें।</li>
+      <li>मैच पर कार्रवाई को Allow पर सेट करें।</li>
+      <li>Targets को नेटवर्क में सभी इंस्टेंस या Specified target tags पर सेट करें (यदि आप अधिक नियंत्रण चाहते हैं)।</li>
+      <li>Source IP ranges के तहत, इसे <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> पर सेट करें ताकि सभी IP पतों से पहुंच की अनुमति मिल सके, या बेहतर सुरक्षा के लिए इसे विशिष्ट IP या रेंज तक सीमित करें।</li>
+      <li>Protocols and ports के तहत, Specified protocols and ports चुनें और अपने प्रॉक्सी सर्वर द्वारा उपयोग किए जाने वाले पोर्ट को दर्ज करें (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">tcp:3128</code>)।</li>
+    </ul>
+  </li>
+  <li>फ़ायरवॉल नियम सहेजें:
+नियम कॉन्फ़िगर करने के बाद, फ़ायरवॉल को सक्षम करने के लिए Create पर क्लिक करें।</li>
+</ol>
+
+<hr />
+
+<h2 id="प्रॉक्सी-सर्वर-का-परीक्षण">प्रॉक्सी सर्वर का परीक्षण</h2>
+
+<p>फ़ायरवॉल को कॉन्फ़िगर करने के बाद, अब आपके प्रॉक्सी सर्वर का परीक्षण करने का समय है।</p>
+
+<ol>
+  <li>अपने स्थानीय मशीन से प्रॉक्सी का परीक्षण करें:</li>
+</ol>
+
+<p>आप अपने स्थानीय मशीन के ब्राउज़र या सिस्टम प्रॉक्सी सेटिंग्स को अपने Google Cloud VM के बाहरी IP पते और उस पोर्ट के साथ कॉन्फ़िगर कर सकते हैं जिस पर आपका प्रॉक्सी सर्वर सुन रहा है (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">3128</code>)।</p>
+
+<ol>
+  <li>
+    <p>कमांड लाइन के साथ टेस्ट करें:</p>
+
+    <p>आप <code class="language-plaintext highlighter-rouge">curl</code> का उपयोग करके प्रॉक्सी को टेस्ट कर सकते हैं, प्रॉक्सी पर्यावरण चर सेट करके:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;आपका-वीएम-बाहरी-आईपी&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;आपका-वीएम-बाहरी-आईपी&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p>यदि कनेक्शन सफल होता है, तो आपको वेबसाइट से एक प्रतिक्रिया दिखाई देनी चाहिए।</p>
+
+<hr />
+
+<h2 id="निष्कर्ष">निष्कर्ष</h2>
+
+<p>इस गाइड का पालन करके, आपने Google Cloud पर एक प्रॉक्सी सर्वर सेट करना और इनकमिंग ट्रैफ़िक की अनुमति देने के लिए फ़ायरवॉल नियमों को कॉन्फ़िगर करना सीख लिया है। यह सेटअप आपके इंटरनेट ट्रैफ़िक को सुरक्षित रूप से क्लाउड के माध्यम से रूट करने, नेटवर्क प्रतिबंधों को बायपास करने और गोपनीयता को बढ़ाने का एक आसान तरीका प्रदान करता है।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

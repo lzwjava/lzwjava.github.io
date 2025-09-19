@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>複雑な正規表現</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>複雑な正規表現 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="複雑な正規表現" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="最近、HTML解析について研究している際に、次のような正規表現に出会いました：" />
+<meta property="og:description" content="最近、HTML解析について研究している際に、次のような正規表現に出会いました：" />
+<link rel="canonical" href="https://lzwjava.github.io/regex-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/regex-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="複雑な正規表現" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-25T00:00:00+08:00","datePublished":"2016-05-25T00:00:00+08:00","description":"最近、HTML解析について研究している際に、次のような正規表現に出会いました：","headline":"複雑な正規表現","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/regex-ja"},"url":"https://lzwjava.github.io/regex-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       複雑な正規表現 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2016-05-25-regex-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2016-05-25-regex-ja.md</span> -->
+      
+
+      <!-- <span>2016-05-25-regex-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/regex-en" >English</option>
+        <option value="/regex-zh" >中文</option>
+        <option value="/regex-ja" selected>日本語</option>
+        <option value="/regex-es" >Español</option>
+        <option value="/regex-hi" >हिंदी</option>
+        <option value="/regex-fr" >Français</option>
+        <option value="/regex-de" >Deutsch</option>
+        <option value="/regex-ar" >العربية</option>
+        <option value="/regex-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>最近、HTML解析について研究している際に、次のような正規表現に出会いました：</p>
+
+<p><code class="language-plaintext highlighter-rouge">/([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)/is</code></p>
+
+<p>この正規表現は、特定のパターンにマッチする文字列を検索するために使用されます。以下に、各部分の説明を示します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">\w</code>: 単語文字（アルファベット、数字、アンダースコア）にマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">-</code>: ハイフンにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">:</code>: コロンにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">\*</code>: アスタリスクにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">&gt;</code>: 大なり記号にマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">*</code>: 直前の文字が0回以上繰り返されることを示す。</li>
+      <li>全体として、これらの文字の任意の組み合わせにマッチ。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">\#([\w-]+)</code>: ハッシュ記号に続く単語文字またはハイフンの1回以上の繰り返しにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">\.([\w-]+)</code>: ドットに続く単語文字またはハイフンの1回以上の繰り返しにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">|</code>: またはを示す。</li>
+      <li><code class="language-plaintext highlighter-rouge">(...)?</code>: 全体が0回または1回出現することを示す。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">\[</code>: 開き角括弧にマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">@?</code>: @記号が0回または1回出現することを示す。</li>
+      <li><code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code>: 感嘆符が0回または1回出現し、その後に単語文字、ハイフン、コロンの1回以上の繰り返しにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)?</code>:
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">([!*^$]?=)</code>: 感嘆符、アスタリスク、キャレット、ドル記号のいずれかが0回または1回出現し、その後に等号が続く。</li>
+          <li><code class="language-plaintext highlighter-rouge">["']?(.*?)["']?</code>: 引用符が0回または1回出現し、その間に任意の文字列が0回以上繰り返される。</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">\]</code>: 閉じ角括弧にマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">(...)?</code>: 全体が0回または1回出現することを示す。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">([\/, ]+)</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">\/</code>: スラッシュにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">,</code>: カンマにマッチ。</li>
+      <li>` `: スペースにマッチ。</li>
+      <li><code class="language-plaintext highlighter-rouge">+</code>: 直前の文字が1回以上繰り返されることを示す。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">/is</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">i</code>: 大文字小文字を区別しない。</li>
+      <li><code class="language-plaintext highlighter-rouge">s</code>: ドットが改行文字にもマッチする。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>この正規表現は、HTMLやCSSのセレクタのようなパターンにマッチする文字列を検索するために使用されることがあります。</p>
+
+<p>これは、<code class="language-plaintext highlighter-rouge">div &gt; ul</code> のような CSS セレクタをマッチングするために使用されます。</p>
+
+<p>以前、このような複雑な式を見たことが何度もあり、本能的に避けてきました。今日こそ、これを徹底的に理解しましょう！男として、自分に厳しくあるべきです！</p>
+
+<h3 id="div--ul-のマッチング"><code class="language-plaintext highlighter-rouge">div &gt; ul</code> のマッチング</h3>
+
+<p><code class="language-plaintext highlighter-rouge">div &gt; ul</code> というセレクタは、<code class="language-plaintext highlighter-rouge">div</code> 要素の直接の子要素である <code class="language-plaintext highlighter-rouge">ul</code> 要素にマッチします。つまり、<code class="language-plaintext highlighter-rouge">div</code> の直下にある <code class="language-plaintext highlighter-rouge">ul</code> だけが選択され、それより深い階層にある <code class="language-plaintext highlighter-rouge">ul</code> は選択されません。</p>
+
+<p>例えば、以下のHTMLがあるとします：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;div&gt;</span>
+  <span class="nt">&lt;ul&gt;</span> <span class="c">&lt;!-- このulはマッチする --&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Item 1<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;li&gt;</span>Item 2<span class="nt">&lt;/li&gt;</span>
+  <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;div&gt;</span>
+    <span class="nt">&lt;ul&gt;</span> <span class="c">&lt;!-- このulはマッチしない --&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Item 3<span class="nt">&lt;/li&gt;</span>
+      <span class="nt">&lt;li&gt;</span>Item 4<span class="nt">&lt;/li&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div></div>
+
+<p>この場合、<code class="language-plaintext highlighter-rouge">div &gt; ul</code> セレクタは最初の <code class="language-plaintext highlighter-rouge">ul</code> にのみマッチし、2番目の <code class="language-plaintext highlighter-rouge">ul</code> にはマッチしません。</p>
+
+<p>私は https://regex101.com/ というウェブサイトを見つけました。これはオンラインで正規表現のマッチングができ、さらにその解説も提供してくれます。</p>
+
+<p>右側の説明を読んで、少しは理解できましたが、具体的にどのようにマッチングされるのかはまだわかりません。そこで、いくつかの例を挙げて、一つ一つ分析してみましょう。</p>
+
+<p>具体的にこの正規表現が現れるコードは次のとおりです：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$matches</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nb">preg_match_all</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">pattern</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$selector</span><span class="p">)</span><span class="mf">.</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">,</span> <span class="no">PREG_SET_ORDER</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>このコードは、PHPで正規表現を使用して文字列を検索し、マッチした結果を配列に格納するものです。具体的には、<code class="language-plaintext highlighter-rouge">preg_match_all</code>関数を使って、指定されたパターン<code class="language-plaintext highlighter-rouge">$this-&gt;pattern</code>に基づいて、<code class="language-plaintext highlighter-rouge">trim($selector)</code>でトリミングされた文字列にスペースを追加したものを検索します。マッチした結果は<code class="language-plaintext highlighter-rouge">$matches</code>配列に格納され、<code class="language-plaintext highlighter-rouge">PREG_SET_ORDER</code>フラグによって、各マッチが個別の配列として格納されます。</p>
+
+<p><code class="language-plaintext highlighter-rouge">preg_match_all</code> の意味は、パターンに一致するすべての文字列を取得することです。もし以下のような場合：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">preg_match_all</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"abcdabc"</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>このコードは、PHPの<code class="language-plaintext highlighter-rouge">preg_match_all</code>関数を使用して、文字列 <code class="language-plaintext highlighter-rouge">"abcdabc"</code> の中からパターン <code class="language-plaintext highlighter-rouge">"abc"</code> にマッチするすべての部分を検索し、その結果を <code class="language-plaintext highlighter-rouge">$matches</code> 配列に格納します。<code class="language-plaintext highlighter-rouge">preg_match_all</code> は、正規表現を使用して文字列内のすべてのマッチを検索するための関数です。この場合、パターン <code class="language-plaintext highlighter-rouge">"abc"</code> は文字列 <code class="language-plaintext highlighter-rouge">"abcdabc"</code> に2回出現するため、<code class="language-plaintext highlighter-rouge">$matches</code> には2つのマッチが含まれます。</p>
+
+<p>最初の引数はパターン、2番目の引数はマッチさせる文字列、3番目の引数は結果の参照です。実行後、<code class="language-plaintext highlighter-rouge">$matches</code> 配列には2つの <code class="language-plaintext highlighter-rouge">abc</code> が含まれます。</p>
+
+<p>この理解を得た後、上の図の <code class="language-plaintext highlighter-rouge">div &gt; ul</code> は最初の4文字 <code class="language-plaintext highlighter-rouge">div &gt;</code> にのみマッチします。<code class="language-plaintext highlighter-rouge">regex101</code> は <code class="language-plaintext highlighter-rouge">preg_match_all</code> をサポートしていないのでしょうか？幸い、<code class="language-plaintext highlighter-rouge">g</code> という修飾子を追加すれば問題ありません：</p>
+
+<p><code class="language-plaintext highlighter-rouge">g</code> を追加すると、最初に一致したものだけでなく、すべての一致するものを検索します。</p>
+
+<p>追加した後、<code class="language-plaintext highlighter-rouge">div &gt; ul</code> にマッチしました：</p>
+
+<p>右側に表示されている通り、最初のマッチでは、<code class="language-plaintext highlighter-rouge">div</code> に対して第一グループのルールが適用され、その後、第七グループのルールがスペース ` ` に適用されています。</p>
+
+<p>それでは、最初のルールセットの説明を見ていきましょう：</p>
+
+<p>この長い式の中で、最初の括弧で囲まれた部分を第一のルールグループと呼びます。これはキャプチャグループです。括弧自体はマッチングに使用されず、グループ化のために使われます。<code class="language-plaintext highlighter-rouge">[]</code> は文字集合を表し、その中のルールはどのような文字集合であるかを示します。この文字集合には以下のものが含まれます：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\w</code> は大文字小文字のアルファベット、0から9までの数字、およびアンダースコアを表します。</li>
+  <li><code class="language-plaintext highlighter-rouge">-:</code> は直接、これらの2つの文字が集合内にあることを表します。</li>
+  <li><code class="language-plaintext highlighter-rouge">\*</code> は、<code class="language-plaintext highlighter-rouge">*</code> が正規表現における予約文字で特殊な意味を持つため、<code class="language-plaintext highlighter-rouge">\</code> を使ってエスケープし、これは通常の <code class="language-plaintext highlighter-rouge">*</code> 文字であることを示します。</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code> は単純に <code class="language-plaintext highlighter-rouge">&gt;</code> という文字を表します。</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">[\w-:\*&gt;]*</code> の最後の <code class="language-plaintext highlighter-rouge">*</code> は、前の文字が0回以上、できるだけ多く出現することを意味します。<code class="language-plaintext highlighter-rouge">div</code> にマッチする理由は、<code class="language-plaintext highlighter-rouge">\w</code> が <code class="language-plaintext highlighter-rouge">d</code>、<code class="language-plaintext highlighter-rouge">i</code>、<code class="language-plaintext highlighter-rouge">v</code> にマッチするためです。後続のスペースにマッチしない理由は、スペースが <code class="language-plaintext highlighter-rouge">[]</code> の中に含まれていないためです。キャプチャグループとは、このグループのマッチが結果の配列に含まれることを意味します。これに対応する非キャプチャグループもあり、その構文は <code class="language-plaintext highlighter-rouge">(?:)</code> です。上記の <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> が結果として不要な場合は、<code class="language-plaintext highlighter-rouge">(?:[\w-:\*&gt;]*)</code> と記述することができます。</p>
+
+<p>では、結果に現れないのであれば、単に括弧を使わなければいいのでは？括弧はグループ化のためであり、グループ化は非常に意味があります。参考として <a href="http://stackoverflow.com/questions/3512471/what-is-a-non-capturing-group">《What is a non capturing group? (?:) - StackOverflow》</a> をご覧ください。</p>
+
+<p>次に、<code class="language-plaintext highlighter-rouge">div</code> が最初のルールセットを満たすことを説明した後、スペース ` ` がなぜ第七のルールセットを満たすのかについて説明します。</p>
+
+<p><code class="language-plaintext highlighter-rouge">[\/, ]</code> の意味は、これら4つの文字のいずれかにマッチすることを示し、<code class="language-plaintext highlighter-rouge">+</code> は前のマッチが1回以上、可能な限り多く出現することを表します。したがって、これら4つの文字にはスペースが含まれているため、スペースにマッチします。また、<code class="language-plaintext highlighter-rouge">div </code> の次の文字が <code class="language-plaintext highlighter-rouge">&gt;</code> であるため、第7グループのルールを満たさなくなり、それ以上のマッチは行われません。</p>
+
+<p><code class="language-plaintext highlighter-rouge">div</code> のマッチングが理解できました。では、なぜ2番目から6番目のグループのルールがここのスペースにマッチせず、7番目のグループに残されたのでしょうか？</p>
+
+<p>第二部の解説：</p>
+
+<p>まず、<code class="language-plaintext highlighter-rouge">(?:)</code> は非キャプチャグループを表します。最後の <code class="language-plaintext highlighter-rouge">?</code> は、前のマッチが0回または1回出現することを示します。したがって、上記の <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> は、存在しても存在しなくても構いません。外側の修飾子を取り除くと、残りは <code class="language-plaintext highlighter-rouge">\#([\w-]+)|\.([\w-]+)</code> となり、中間の <code class="language-plaintext highlighter-rouge">|</code> は「または」を意味し、どちらか一方が満たされれば良いです。<code class="language-plaintext highlighter-rouge">\#([\w-]+)</code> の <code class="language-plaintext highlighter-rouge">\#</code> は <code class="language-plaintext highlighter-rouge">#</code> 文字にマッチし、<code class="language-plaintext highlighter-rouge">[\w-]+</code> は他の文字にマッチします。後半を見ると、<code class="language-plaintext highlighter-rouge">\.([\w-]+)</code> の <code class="language-plaintext highlighter-rouge">.</code> は <code class="language-plaintext highlighter-rouge">.</code> 文字にマッチします。</p>
+
+<p>したがって、2番目から6番目のグループは、スペースがこれらのグループの要求する開始文字ではないため、条件を満たさない可能性があります。また、これらのグループには <code class="language-plaintext highlighter-rouge">?</code> 修飾子が付いているため、条件を満たさなくても問題ありません。そのため、7番目のグループに進みます。</p>
+
+<p><code class="language-plaintext highlighter-rouge">div &gt; ul</code> の後の <code class="language-plaintext highlighter-rouge">&gt;</code> も同様です：</p>
+
+<p>最初のルールグループ <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> は <code class="language-plaintext highlighter-rouge">&gt;</code> にマッチし、7番目のルールグループ <code class="language-plaintext highlighter-rouge">([\/, ]+)</code> はスペースにマッチします。その後、<code class="language-plaintext highlighter-rouge">ul</code> は <code class="language-plaintext highlighter-rouge">div</code> と同様に処理されます。</p>
+
+<h3 id="マッチ-answer-4185009--table--tbody--tdanswercell--div--pre">マッチ <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code></h3>
+
+<p>次に、少し複雑なセレクター <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code> を紹介します（テストするために、https://regex101.com/ を開いてそこに貼り付けることもできます）：</p>
+
+<p>これはChromeからコピー＆ペーストしたものです：</p>
+
+<p>最初の一致：</p>
+
+<p>最初のグループのルール <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> において、<code class="language-plaintext highlighter-rouge">[]</code> 内の文字集合には <code class="language-plaintext highlighter-rouge">#</code> にマッチするものが含まれていません。そのため、最後の <code class="language-plaintext highlighter-rouge">*</code> が0回以上のマッチをサポートしていることから、ここでは0回のマッチとなります。続いて、第二のグループのルールの説明は以下の通りです：</p>
+
+<p>上記で既に分析しました。直接 <code class="language-plaintext highlighter-rouge">|</code> の前の <code class="language-plaintext highlighter-rouge">\#([\w-]+)</code> を見てみましょう。<code class="language-plaintext highlighter-rouge">\#</code> は <code class="language-plaintext highlighter-rouge">#</code> にマッチし、<code class="language-plaintext highlighter-rouge">[\w-]+</code> は <code class="language-plaintext highlighter-rouge">answer-4185009</code> にマッチします。後ろの <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code> は、もし <code class="language-plaintext highlighter-rouge">.answer-4185009</code> であれば、この部分にマッチします。</p>
+
+<p>次に、<code class="language-plaintext highlighter-rouge">td.answercell</code> というマッチングを見ていきましょう。</p>
+
+<p>最初のグループのルール <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> は <code class="language-plaintext highlighter-rouge">td</code> にマッチし、第二の大部分 <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> の後半部分、すなわち <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code> は <code class="language-plaintext highlighter-rouge">.answercell</code> にマッチします。</p>
+
+<p>このセレクタの分析はこれで終了です。</p>
+
+<h3 id="ahrefhttpgooglecom-にマッチ"><code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code> にマッチ</h3>
+
+<p>次に、セレクター <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code> をマッチングさせます：</p>
+
+<p>第三の大きなブロックを見てみましょう：</p>
+
+<p>第三大块的表达式は <code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code> です。まず、最外層の <code class="language-plaintext highlighter-rouge">(?:)</code> は非キャプチャグループを表し、最後の <code class="language-plaintext highlighter-rouge">?</code> はこの大きなブロック全体が0回または1回マッチすることを意味します。これを取り除くと <code class="language-plaintext highlighter-rouge">\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\]</code> になります。<code class="language-plaintext highlighter-rouge">\[</code> は <code class="language-plaintext highlighter-rouge">[</code> 文字にマッチします。<code class="language-plaintext highlighter-rouge">@?</code> は <code class="language-plaintext highlighter-rouge">@</code> 文字が存在しても存在しなくても良いことを示します。次のグループ <code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code> では、<code class="language-plaintext highlighter-rouge">!</code> が存在しても存在しなくてもよく、<code class="language-plaintext highlighter-rouge">[\w-:]+</code> は <code class="language-plaintext highlighter-rouge">href</code> にマッチします。次のグループ <code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)</code> は非キャプチャグループで、最外層を取り除くと <code class="language-plaintext highlighter-rouge">([!*^$]?=)["']?(.*?)["']?</code> になります。ここで、<code class="language-plaintext highlighter-rouge">([!*^$]?=)</code> の <code class="language-plaintext highlighter-rouge">[!*^$]?</code> は <code class="language-plaintext highlighter-rouge">[]</code> 内の文字を0個または1個マッチすることを示します。続く <code class="language-plaintext highlighter-rouge">=</code> は直接マッチします。そして <code class="language-plaintext highlighter-rouge">["']?(.*?)["']?</code> は <code class="language-plaintext highlighter-rouge">"http://google.com/"</code> にマッチします。<code class="language-plaintext highlighter-rouge">["']?</code> は <code class="language-plaintext highlighter-rouge">"</code> または <code class="language-plaintext highlighter-rouge">'</code> のいずれか、またはどちらもマッチしないことを示し、この最外層を取り除くと <code class="language-plaintext highlighter-rouge">(.*?)</code> は <code class="language-plaintext highlighter-rouge">http://google.com/</code> にマッチします。ここで、<code class="language-plaintext highlighter-rouge">*?</code> はできるだけ少ない文字列にマッチすることを意味します。つまり、<code class="language-plaintext highlighter-rouge">"</code> または <code class="language-plaintext highlighter-rouge">'</code> がある場合、それらは後続の式 <code class="language-plaintext highlighter-rouge">["']?</code> にマッチさせるため、<code class="language-plaintext highlighter-rouge">http://google.com/"</code> ではなく、<code class="language-plaintext highlighter-rouge">http://google.com/</code> だけにマッチします。したがって、セレクタ全体 <code class="language-plaintext highlighter-rouge">a[href="http://google.com/</code> はこのように解析されます。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"]` でマッチングが終了します。
+</code></pre></div></div>
+
+<h3 id="まとめ">まとめ</h3>
+
+<p>やっと理解できました！もう一度整理してみましょう。まず、この複雑な正規表現 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)</code> は、大きく4つの部分で構成されています：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">([\/, ]+)</code></li>
+</ul>
+
+<p>これらの正規表現パターンは、特定の文字列をマッチングさせるために使用されます。それぞれのパターンの意味は以下の通りです：</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code>:
+    <ul>
+      <li>アルファベット、数字、アンダースコア (<code class="language-plaintext highlighter-rouge">\w</code>)、ハイフン (<code class="language-plaintext highlighter-rouge">-</code>)、コロン (<code class="language-plaintext highlighter-rouge">:</code>)、アスタリスク (<code class="language-plaintext highlighter-rouge">*</code>)、大なり記号 (<code class="language-plaintext highlighter-rouge">&gt;</code>) のいずれかの文字が0回以上繰り返される文字列にマッチします。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">#</code> で始まる1つ以上のアルファベット、数字、アンダースコア、ハイフンからなる文字列、または <code class="language-plaintext highlighter-rouge">.</code> で始まる1つ以上のアルファベット、数字、アンダースコア、ハイフンからなる文字列にマッチします。このグループはオプションで、存在しなくてもマッチします。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">[</code> で始まり <code class="language-plaintext highlighter-rouge">]</code> で終わる、<code class="language-plaintext highlighter-rouge">@</code> がオプションで付いた1つ以上のアルファベット、数字、アンダースコア、ハイフン、コロンからなる文字列にマッチします。さらに、<code class="language-plaintext highlighter-rouge">!</code>、<code class="language-plaintext highlighter-rouge">*</code>、<code class="language-plaintext highlighter-rouge">^</code>、<code class="language-plaintext highlighter-rouge">$</code> のいずれかの記号がオプションで付いた <code class="language-plaintext highlighter-rouge">=</code> 記号と、その後に続くオプションの引用符で囲まれた任意の文字列にマッチします。このグループもオプションで、存在しなくてもマッチします。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">([\/, ]+)</code>:
+    <ul>
+      <li>スラッシュ (<code class="language-plaintext highlighter-rouge">/</code>)、カンマ (<code class="language-plaintext highlighter-rouge">,</code>)、スペース (<code class="language-plaintext highlighter-rouge"> </code>) のいずれかの文字が1回以上繰り返される文字列にマッチします。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>これらのパターンは、HTMLやCSSのセレクタ、あるいは特定のフォーマットの文字列を解析する際に使用されることがあります。</p>
+
+<p>最も複雑な第三部分は、以下のいくつかの部分で構成されています：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\[</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">\]</code></li>
+</ul>
+
+<p>上記の正規表現パターンを日本語で説明すると以下のようになります：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\[</code>：開き角括弧 <code class="language-plaintext highlighter-rouge">[</code> にマッチします。</li>
+  <li><code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code>：感嘆符 <code class="language-plaintext highlighter-rouge">!</code> が0回または1回続き、その後、単語文字（アルファベット、数字、アンダースコア）、ハイフン、コロンが1回以上続く文字列にマッチします。</li>
+  <li><code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)?</code>：オプションで、感嘆符 <code class="language-plaintext highlighter-rouge">!</code>、アスタリスク <code class="language-plaintext highlighter-rouge">*</code>、キャレット <code class="language-plaintext highlighter-rouge">^</code>、ドル記号 <code class="language-plaintext highlighter-rouge">$</code> のいずれかが0回または1回続き、等号 <code class="language-plaintext highlighter-rouge">=</code> が続くパターンにマッチします。その後、オプションでシングルクォート <code class="language-plaintext highlighter-rouge">'</code> またはダブルクォート <code class="language-plaintext highlighter-rouge">"</code> で囲まれた任意の文字列にマッチします。</li>
+  <li><code class="language-plaintext highlighter-rouge">\]</code>：閉じ角括弧 <code class="language-plaintext highlighter-rouge">]</code> にマッチします。</li>
+</ul>
+
+<p>このパターンは、特定の形式の角括弧内のテキストを抽出するために使用されます。</p>
+
+<p>したがって、これらの十分に小さな部分は一つ一つ解決できます。次に、もっと多くの例を見つけて、それぞれの例がどのようにマッチするかを確認し、同時に https://regex101.com/ の説明を組み合わせて分析します。このようにして、一見複雑に見える正規表現を理解し、実は紙の虎であることがわかります！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

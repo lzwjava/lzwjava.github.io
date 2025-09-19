@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Configuration de streaming en direct avec OBS, SRS et FFmpeg</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuration de streaming en direct avec OBS, SRS et FFmpeg | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Configuration de streaming en direct avec OBS, SRS et FFmpeg" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o." />
+<meta property="og:description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/streaming-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/streaming-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-09-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuration de streaming en direct avec OBS, SRS et FFmpeg" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-09-23T00:00:00+08:00","datePublished":"2016-09-23T00:00:00+08:00","description":"Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o.","headline":"Configuration de streaming en direct avec OBS, SRS et FFmpeg","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/streaming-fr"},"url":"https://lzwjava.github.io/streaming-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Configuration de streaming en direct avec OBS, SRS et FFmpeg | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2016-09-23-streaming-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2016-09-23-streaming-fr.md</span> -->
+      
+
+      <!-- <span>2016-09-23-streaming-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.09</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/streaming-en" >English</option>
+        <option value="/streaming-zh" >中文</option>
+        <option value="/streaming-ja" >日本語</option>
+        <option value="/streaming-es" >Español</option>
+        <option value="/streaming-hi" >हिंदी</option>
+        <option value="/streaming-fr" selected>Français</option>
+        <option value="/streaming-de" >Deutsch</option>
+        <option value="/streaming-ar" >العربية</option>
+        <option value="/streaming-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o.</em></p>
+
+<hr />
+
+<p>La diffusion en direct est devenue une composante essentielle de la communication en ligne, avec des applications allant des émissions professionnelles aux blogs vidéo personnels. La mise en place d’une solution de diffusion en direct robuste nécessite une compréhension approfondie de divers outils et protocoles. Ce guide vous accompagnera étape par étape pour configurer une diffusion en direct en utilisant OBS, SRS et FFmpeg.</p>
+
+<h3 id="les-composants-clés-du-streaming-en-direct">Les composants clés du streaming en direct</h3>
+
+<p><strong>1. OBS（Open Broadcaster Software）</strong>
+OBS est un logiciel open source puissant utilisé pour l’enregistrement vidéo et le streaming en direct. Il offre des fonctionnalités de capture en temps réel de sources et de périphériques, de composition de scènes, d’encodage, d’enregistrement et de diffusion.</p>
+
+<p><strong>2. SRS（Simple Realtime Server）</strong>
+SRS est un serveur de streaming haute performance prenant en charge RTMP, HLS et HTTP-FLV. Il supporte un grand nombre de connexions simultanées et est hautement configurable.</p>
+
+<p><strong>3. FFmpeg</strong>
+FFmpeg est un cadre multimédia complet capable de décoder, encoder, transcoder, multiplexer, démultiplexer, diffuser, filtrer et lire presque tout ce qui est créé par les humains et les machines. Il est largement utilisé dans les configurations de streaming et est très apprécié pour sa polyvalence et sa fiabilité.</p>
+
+<h3 id="configuration-de-votre-environnement-de-streaming-en-direct">Configuration de votre environnement de streaming en direct</h3>
+
+<h4 id="configuration-dobs">Configuration d’OBS</h4>
+
+<ol>
+  <li><strong>Installer OBS</strong> : Téléchargez et installez OBS depuis le site officiel.</li>
+  <li><strong>Configurer les paramètres</strong> : Ouvrez OBS, allez dans <code class="language-plaintext highlighter-rouge">Paramètres &gt; Diffusion</code>, et configurez le type de diffusion sur <code class="language-plaintext highlighter-rouge">Personnalisé...</code>. Entrez l’URL de votre serveur de streaming (par exemple, <code class="language-plaintext highlighter-rouge">rtmp://votre_ip_serveur/live</code>).</li>
+  <li><strong>Ajouter des sources</strong> : Ajoutez des sources vidéo et audio dans OBS pour créer une scène. Cela peut inclure la capture d’écran, une webcam, des images, du texte, etc.</li>
+</ol>
+
+<h4 id="configuration-du-serveur-srs">Configuration du serveur SRS</h4>
+
+<ol>
+  <li><strong>Installer SRS</strong> : Clonez le dépôt SRS depuis GitHub et compilez-le pour prendre en charge SSL.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> git clone https://github.com/ossrs/srs.git
+ <span class="nb">cd </span>srs/trunk
+ ./configure <span class="nt">--disable-all</span> <span class="nt">--with-ssl</span>
+ make
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Configurer SRS</strong> : Modifiez le fichier <code class="language-plaintext highlighter-rouge">conf/rtmp.conf</code> pour configurer vos paramètres RTMP.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> listen 1935<span class="p">;</span>
+ max_connections 1000<span class="p">;</span>
+ vhost __defaultVhost__ <span class="o">{</span> <span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Démarrer SRS</strong> : Exécutez le serveur SRS avec votre fichier de configuration.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ./objs/srs <span class="nt">-c</span> conf/rtmp.conf
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="utilisation-de-ffmpeg-pour-le-streaming">Utilisation de FFmpeg pour le streaming</h4>
+
+<ol>
+  <li><strong>Installer FFmpeg</strong> : Installez FFmpeg depuis le site officiel ou via un gestionnaire de paquets.</li>
+  <li><strong>Utiliser FFmpeg pour la diffusion en continu</strong> : Utilisez FFmpeg pour pousser un flux vidéo vers votre serveur SRS.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Automatiser la diffusion en continu</strong> : Créez un script pour diffuser en continu des fichiers vidéo de manière continue.
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">for</span> <span class="o">((</span><span class="p">;;</span><span class="o">))</span><span class="p">;</span> <span class="k">do 
+     </span>ffmpeg <span class="nt">-re</span> <span class="nt">-i</span> input_video.flv <span class="nt">-vcodec</span> copy <span class="nt">-acodec</span> copy <span class="nt">-f</span> flv rtmp://your_server_ip/live/stream_key<span class="p">;</span>
+     <span class="nb">sleep </span>1<span class="p">;</span>
+ <span class="k">done</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="protocoles-et-formats">Protocoles et formats</h3>
+
+<p><strong>RTMP (Real-Time Messaging Protocol)</strong></p>
+<ul>
+  <li>RTMP est largement utilisé pour la diffusion en direct en raison de sa faible latence et de sa transmission fiable.</li>
+  <li>Il utilise TCP, ce qui permet de maintenir une connexion persistante, assurant ainsi une diffusion fluide.</li>
+</ul>
+
+<p><strong>HLS (HTTP Live Streaming)</strong></p>
+<ul>
+  <li>HLS divise le flux vidéo en petits segments basés sur HTTP, ce qui facilite la transmission via des serveurs web standard.</li>
+  <li>Bien qu’il introduise une certaine latence, il est hautement compatible avec une variété d’appareils et de plateformes.</li>
+</ul>
+
+<p><strong>HTTP-FLV</strong></p>
+<ul>
+  <li>Combine le format FLV avec le transport HTTP pour une diffusion en continu à faible latence.</li>
+  <li>Convient pour la diffusion en continu basée sur le navigateur, car il utilise l’infrastructure HTTP existante.</li>
+</ul>
+
+<h3 id="applications-pratiques">Applications Pratiques</h3>
+
+<p><strong>Diffusion en continu sur iOS et Android</strong></p>
+<ul>
+  <li>Utilisation de bibliothèques telles que VideoCore et Ijkplayer pour la diffusion RTMP sur les appareils mobiles.</li>
+  <li>Intégration de FFmpeg pour les tâches d’encodage et de décodage afin d’améliorer la compatibilité et les performances.</li>
+</ul>
+
+<p><strong>Diffusion en continu basée sur le Web</strong></p>
+<ul>
+  <li>Utilisation de l’élément vidéo HTML5 pour la lecture de vidéos sur une page web, prenant en charge HLS ou HTTP-FLV.</li>
+  <li>Exploitation de WebRTC pour la communication en temps réel et les interactions à faible latence.</li>
+</ul>
+
+<h3 id="outils-et-ressources">Outils et Ressources</h3>
+
+<ul>
+  <li><strong>VLC</strong> : Un lecteur multimédia polyvalent prenant en charge les protocoles de streaming comme RTMP et HLS.</li>
+  <li><strong>SRS Player</strong> : Un lecteur en ligne pour tester les flux SRS.</li>
+  <li><strong>Documentation FFmpeg</strong> : Fournit une documentation détaillée pour diverses tâches multimédias.</li>
+</ul>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>La mise en place d’une solution de streaming en direct fiable nécessite la compréhension et la configuration de plusieurs outils et protocoles. OBS, SRS et FFmpeg sont des composants puissants qui, combinés, permettent de créer une configuration de streaming robuste. Que ce soit pour iOS, Android ou le Web, ces outils offrent la flexibilité et les performances nécessaires pour réaliser des diffusions en direct de haute qualité.</p>
+
+<p>Pour des informations plus détaillées et des configurations avancées, veuillez consulter la documentation officielle de chaque outil et explorer d’autres astuces et supports sur les forums communautaires. Bonne chance pour votre diffusion en direct !</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>
