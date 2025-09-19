@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>रैडसॉक्स एक्शन में</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>रैडसॉक्स एक्शन में | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="रैडसॉक्स एक्शन में" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="ज़रूर! मैं आपको अपने Mac कंप्यूटर का उपयोग करके Shadowsocks प्रॉक्सी सेट करने और अपने OpenWRT राउटर को कॉन्फ़िगर करने के लिए मार्गदर्शन करूंगा ताकि सभी कनेक्टेड डिवाइस का ट्रैफ़िक इस प्रॉक्सी के माध्यम से रूट हो सके। इस सेटअप में निम्नलिखित मुख्य चरण शामिल हैं:" />
+<meta property="og:description" content="ज़रूर! मैं आपको अपने Mac कंप्यूटर का उपयोग करके Shadowsocks प्रॉक्सी सेट करने और अपने OpenWRT राउटर को कॉन्फ़िगर करने के लिए मार्गदर्शन करूंगा ताकि सभी कनेक्टेड डिवाइस का ट्रैफ़िक इस प्रॉक्सी के माध्यम से रूट हो सके। इस सेटअप में निम्नलिखित मुख्य चरण शामिल हैं:" />
+<link rel="canonical" href="https://lzwjava.github.io/redsocks-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/redsocks-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="रैडसॉक्स एक्शन में" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"ज़रूर! मैं आपको अपने Mac कंप्यूटर का उपयोग करके Shadowsocks प्रॉक्सी सेट करने और अपने OpenWRT राउटर को कॉन्फ़िगर करने के लिए मार्गदर्शन करूंगा ताकि सभी कनेक्टेड डिवाइस का ट्रैफ़िक इस प्रॉक्सी के माध्यम से रूट हो सके। इस सेटअप में निम्नलिखित मुख्य चरण शामिल हैं:","headline":"रैडसॉक्स एक्शन में","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/redsocks-hi"},"url":"https://lzwjava.github.io/redsocks-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       रैडसॉक्स एक्शन में | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2024-12-18-redsocks-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2024-12-18-redsocks-hi.md</span> -->
+      
+
+      <!-- <span>2024-12-18-redsocks-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/redsocks-en" >English</option>
+        <option value="/redsocks-zh" >中文</option>
+        <option value="/redsocks-ja" >日本語</option>
+        <option value="/redsocks-es" >Español</option>
+        <option value="/redsocks-hi" selected>हिंदी</option>
+        <option value="/redsocks-fr" >Français</option>
+        <option value="/redsocks-de" >Deutsch</option>
+        <option value="/redsocks-ar" >العربية</option>
+        <option value="/redsocks-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>ज़रूर! मैं आपको अपने Mac कंप्यूटर का उपयोग करके Shadowsocks प्रॉक्सी सेट करने और अपने OpenWRT राउटर को कॉन्फ़िगर करने के लिए मार्गदर्शन करूंगा ताकि सभी कनेक्टेड डिवाइस का ट्रैफ़िक इस प्रॉक्सी के माध्यम से रूट हो सके। इस सेटअप में निम्नलिखित मुख्य चरण शामिल हैं:</p>
+
+<ol>
+  <li>macOS पर Shadowsocks क्लाइंट सेटअप करना (Shadowsocks-NG या Clash का उपयोग करके)</li>
+  <li>macOS को बाहरी प्रॉक्सी कनेक्शन की अनुमति देने के लिए कॉन्फ़िगर करना</li>
+  <li>अपने Mac को एक स्थिर IP असाइन करना</li>
+  <li>OpenWRT पर Redsocks इंस्टॉल और कॉन्फ़िगर करना</li>
+  <li>OpenWRT का ट्रैफ़िक macOS प्रॉक्सी के माध्यम से रीडायरेक्ट करना</li>
+  <li>प्रॉक्सी सेटअप का परीक्षण करना</li>
+</ol>
+
+<p>आइए प्रत्येक चरण को विस्तार से समझते हैं।</p>
+
+<hr />
+
+<h2 id="1-macos-पर-shadowsocks-क्लाइंट-सेटअप-करना">1. macOS पर Shadowsocks क्लाइंट सेटअप करना</h2>
+
+<p>आप Shadowsocks क्लाइंट के रूप में Shadowsocks-NG या Clash का उपयोग कर सकते हैं। नीचे दोनों के लिए निर्देश दिए गए हैं।</p>
+
+<h3 id="विकल्प-a-shadowsocks-ng-का-उपयोग-करना">विकल्प A: Shadowsocks-NG का उपयोग करना</h3>
+
+<p>Shadowsocks-NG macOS के लिए एक लोकप्रिय और उपयोगकर्ता-अनुकूल Shadowsocks क्लाइंट है।</p>
+
+<h4 id="चरण-1-shadowsocks-ng-डाउनलोड-और-इंस्टॉल-करें">चरण 1: Shadowsocks-NG डाउनलोड और इंस्टॉल करें</h4>
+
+<ol>
+  <li>Shadowsocks-NG डाउनलोड करें:
+    <ul>
+      <li><a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases">Shadowsocks-NG GitHub रिलीज़ पेज</a> पर जाएँ।</li>
+      <li>नवीनतम <code class="language-plaintext highlighter-rouge">.dmg</code> फ़ाइल डाउनलोड करें।</li>
+    </ul>
+  </li>
+  <li>एप्लिकेशन इंस्टॉल करें:
+    <ul>
+      <li>डाउनलोड किए गए <code class="language-plaintext highlighter-rouge">.dmg</code> फ़ाइल को खोलें।</li>
+      <li>ShadowsocksX-NG ऐप को अपने Applications फ़ोल्डर में ड्रैग करें।</li>
+    </ul>
+  </li>
+  <li>Shadowsocks-NG लॉन्च करें:
+    <ul>
+      <li>अपने Applications फ़ोल्डर से ShadowsocksX-NG खोलें।</li>
+      <li>हो सकता है कि आपको System Preferences में ऐप को आवश्यक अनुमतियाँ प्रदान करनी पड़ें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="चरण-2-shadowsocks-ng-को-कॉन्फ़िगर-करें">चरण 2: Shadowsocks-NG को कॉन्फ़िगर करें</h4>
+
+<ol>
+  <li>प्राथमिकताएँ खोलें:
+    <ul>
+      <li>मेनू बार में ShadowsocksX-NG आइकन पर क्लिक करें।</li>
+      <li>“ShadowsocksX-NG खोलें” &gt; “प्राथमिकताएँ” चुनें।</li>
+    </ul>
+  </li>
+  <li>एक नया सर्वर जोड़ें:
+    <ul>
+      <li>“Servers” टैब पर जाएं।</li>
+      <li>नया सर्वर जोड़ने के लिए “+” बटन पर क्लिक करें।</li>
+    </ul>
+  </li>
+  <li>Shadowsocks URL आयात करें:
+    <ul>
+      <li>अपना Shadowsocks URL कॉपी करें:
+        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ss://[ENCRYPTED_PASSWORD]@xxx.xxx.xxx.xxx:xxxxx/?outline=1
+</code></pre></div>        </div>
+      </li>
+      <li>आयात करने की विधि:
+        <ul>
+          <li>“Import” पर क्लिक करें।</li>
+          <li>अपना Shadowsocks URL पेस्ट करें।</li>
+          <li>Shadowsocks-NG को स्वचालित रूप से सर्वर विवरण को पार्स और भरना चाहिए।</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>स्थानीय प्रॉक्सी सेट करें:
+    <ul>
+      <li>सुनिश्चित करें कि “Enable SOCKS5 Proxy” चेक किया गया है।</li>
+      <li>Local Port (डिफ़ॉल्ट आमतौर पर <code class="language-plaintext highlighter-rouge">1080</code> होता है) को नोट करें।</li>
+    </ul>
+  </li>
+  <li>सेव और एक्टिवेट करें:
+    <ul>
+      <li>सर्वर को सेव करने के लिए “OK” पर क्लिक करें।</li>
+      <li>“Enable Shadowsocks” स्विच को ON पर टॉगल करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="विकल्प-b-clash-का-उपयोग-करना">विकल्प B: Clash का उपयोग करना</h3>
+
+<p>Clash एक बहुमुखी प्रॉक्सी क्लाइंट है जो Shadowsocks सहित कई प्रोटोकॉल का समर्थन करता है।</p>
+
+<h4 id="चरण-1-clash-डाउनलोड-और-इंस्टॉल-करें">चरण 1: Clash डाउनलोड और इंस्टॉल करें</h4>
+
+<ol>
+  <li>Clash for macOS डाउनलोड करें:
+    <ul>
+      <li><a href="https://github.com/Dreamacro/clash/releases">Clash GitHub Releases पेज</a> पर जाएं।</li>
+      <li>नवीनतम Clash for macOS बाइनरी डाउनलोड करें।</li>
+    </ul>
+  </li>
+  <li>एप्लिकेशन इंस्टॉल करें:
+    <ul>
+      <li>डाउनलोड की गई Clash एप्लिकेशन को अपने Applications फ़ोल्डर में ले जाएं।</li>
+    </ul>
+  </li>
+  <li>Clash लॉन्च करें:
+    <ul>
+      <li>अपने Applications फ़ोल्डर से Clash खोलें।</li>
+      <li>आपको System Preferences में आवश्यक अनुमतियाँ प्रदान करने की आवश्यकता हो सकती है।</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="चरण-2-clash-को-कॉन्फ़िगर-करें">चरण 2: Clash को कॉन्फ़िगर करें</h4>
+
+<ol>
+  <li>कॉन्फ़िगरेशन फ़ाइल तक पहुंचें:
+    <ul>
+      <li>Clash एक YAML कॉन्फ़िगरेशन फ़ाइल का उपयोग करता है। आप इसे TextEdit या Visual Studio Code जैसे टेक्स्ट एडिटर का उपयोग करके बना या संपादित कर सकते हैं।</li>
+    </ul>
+  </li>
+  <li>अपना Shadowsocks सर्वर जोड़ें:
+    <ul>
+      <li>एक कॉन्फ़िगरेशन फ़ाइल (जैसे, <code class="language-plaintext highlighter-rouge">config.yaml</code>) बनाएं और उसमें निम्नलिखित सामग्री डालें:</li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">port</span><span class="pi">:</span> <span class="m">7890</span>
+<span class="na">socks-port</span><span class="pi">:</span> <span class="m">7891</span>
+<span class="na">allow-lan</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="na">mode</span><span class="pi">:</span> <span class="s">Rule</span>
+<span class="na">log-level</span><span class="pi">:</span> <span class="s">info</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> proxies:
+   - name: "MyShadowsocks"
+     type: ss
+     server: xxx.xxx.xxx.xxx
+     port: xxxxx
+     cipher: chacha20-ietf-poly1305
+     password: "xxxxxx"
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="na">proxy-groups</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Default"</span>
+         <span class="na">type</span><span class="pi">:</span> <span class="s">select</span>
+         <span class="na">proxies</span><span class="pi">:</span>
+           <span class="pi">-</span> <span class="s2">"</span><span class="s">MyShadowsocks"</span>
+           <span class="pi">-</span> <span class="s2">"</span><span class="s">DIRECT"</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rules:
+   - MATCH,Default
+```
+
+ नोट्स:
+ - `port` और `socks-port` Clash द्वारा सुनने वाले HTTP और SOCKS5 प्रॉक्सी पोर्ट को परिभाषित करते हैं।
+ - `allow-lan: true` LAN डिवाइस को प्रॉक्सी का उपयोग करने की अनुमति देता है।
+ - `proxies` सेक्शन में आपके Shadowsocks सर्वर का विवरण शामिल होता है।
+ - `proxy-groups` और `rules` यह निर्धारित करते हैं कि ट्रैफ़िक कैसे रूट किया जाएगा।
+</code></pre></div></div>
+
+<ol>
+  <li>कॉन्फ़िगरेशन के साथ Clash शुरू करें:
+    <ul>
+      <li>Clash लॉन्च करें और सुनिश्चित करें कि यह आपकी <code class="language-plaintext highlighter-rouge">config.yaml</code> फ़ाइल का उपयोग करता है।</li>
+      <li>Clash शुरू करते समय आपको कॉन्फ़िगरेशन पथ निर्दिष्ट करने की आवश्यकता हो सकती है।</li>
+    </ul>
+  </li>
+  <li>प्रॉक्सी चल रहा है यह सत्यापित करें:
+    <ul>
+      <li>सुनिश्चित करें कि Clash सक्रिय है और आपके Shadowsocks सर्वर से जुड़ा हुआ है।</li>
+      <li>स्थिति जांचने के लिए मेनू बार आइकन की जांच करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="2-macos-को-एक्सटर्नल-प्रॉक्सी-कनेक्शन-की-अनुमति-देने-के-लिए-कॉन्फ़िगर-करना">2. macOS को एक्सटर्नल प्रॉक्सी कनेक्शन की अनुमति देने के लिए कॉन्फ़िगर करना</h2>
+
+<p>डिफ़ॉल्ट रूप से, Shadowsocks क्लाइंट प्रॉक्सी को <code class="language-plaintext highlighter-rouge">localhost</code> (<code class="language-plaintext highlighter-rouge">127.0.0.1</code>) से बांधते हैं, जिसका अर्थ है कि केवल Mac ही इस प्रॉक्सी का उपयोग कर सकता है। अपने OpenWRT राउटर को इस प्रॉक्सी का उपयोग करने की अनुमति देने के लिए, आपको प्रॉक्सी को Mac के LAN IP से बांधना होगा।</p>
+
+<h3 id="shadowsocks-ng-के-लिए">Shadowsocks-NG के लिए:</h3>
+
+<ol>
+  <li>प्राथमिकताएँ खोलें:
+    <ul>
+      <li>मेनू बार में ShadowsocksX-NG आइकन पर क्लिक करें।</li>
+      <li>“Open ShadowsocksX-NG” &gt; “Preferences” चुनें।</li>
+    </ul>
+  </li>
+  <li>एडवांस्ड टैब पर जाएं:
+    <ul>
+      <li>“एडवांस्ड” टैब पर नेविगेट करें।</li>
+    </ul>
+  </li>
+  <li>लिसनिंग एड्रेस सेट करें:
+    <ul>
+      <li>“Listen Address” को <code class="language-plaintext highlighter-rouge">127.0.0.1</code> से <code class="language-plaintext highlighter-rouge">0.0.0.0</code> में बदलें ताकि किसी भी इंटरफेस से कनेक्शन की अनुमति मिल सके।</li>
+      <li>वैकल्पिक रूप से, Mac के LAN IP को निर्दिष्ट करें (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code>)।</li>
+    </ul>
+  </li>
+  <li>Shadowsocks-NG को सेव और रीस्टार्ट करें:
+    <ul>
+      <li>परिवर्तनों को सेव करने के लिए “OK” पर क्लिक करें।</li>
+      <li>नई सेटिंग्स को लागू करने के लिए Shadowsocks-NG क्लाइंट को रीस्टार्ट करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="clash-के-लिए">Clash के लिए:</h3>
+
+<ol>
+  <li>कॉन्फ़िगरेशन फ़ाइल संपादित करें:
+    <ul>
+      <li>सुनिश्चित करें कि आपकी <code class="language-plaintext highlighter-rouge">config.yaml</code> में <code class="language-plaintext highlighter-rouge">allow-lan: true</code> सेटिंग सक्षम है।</li>
+    </ul>
+  </li>
+  <li>सभी इंटरफेस से बाइंड करें:
+    <ul>
+      <li>कॉन्फ़िगरेशन में, <code class="language-plaintext highlighter-rouge">allow-lan: true</code> सेट करने से आमतौर पर प्रॉक्सी सभी उपलब्ध इंटरफेस, जिसमें LAN भी शामिल है, से बाइंड हो जाता है।</li>
+    </ul>
+  </li>
+  <li>Clash को पुनरारंभ करें:
+    <ul>
+      <li>परिवर्तनों को लागू करने के लिए Clash क्लाइंट को पुनरारंभ करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="3-अपने-mac-को-एक-स्थिर-ip-पता-असाइन-करना">3. अपने Mac को एक स्थिर IP पता असाइन करना</h2>
+
+<p>अपने OpenWRT राउटर और Mac के बीच सुसंगत कनेक्टिविटी सुनिश्चित करने के लिए, अपने Mac को अपने स्थानीय नेटवर्क के भीतर एक स्थिर IP पता असाइन करें।</p>
+
+<h3 id="macos-पर-स्थिर-ip-असाइन-करने-के-चरण">macOS पर स्थिर IP असाइन करने के चरण:</h3>
+
+<ol>
+  <li>सिस्टम प्रेफरेंसेस खोलें:
+    <ul>
+      <li>Apple मेनू पर क्लिक करें और “System Preferences” चुनें।</li>
+    </ul>
+  </li>
+  <li>नेटवर्क सेटिंग्स पर जाएँ:
+    <ul>
+      <li>“नेटवर्क” पर क्लिक करें।</li>
+    </ul>
+  </li>
+  <li>अपना सक्रिय कनेक्शन चुनें:
+    <ul>
+      <li>अपने Mac के राउटर से कनेक्ट होने के तरीके के आधार पर बाईं साइडबार से “Wi-Fi” या “Ethernet” चुनें।</li>
+    </ul>
+  </li>
+  <li>IPv4 सेटिंग्स कॉन्फ़िगर करें:
+    <ul>
+      <li>“Advanced…” पर क्लिक करें।</li>
+      <li>“TCP/IP” टैब पर जाएं।</li>
+      <li>“Configure IPv4” को “Using DHCP” से “Manually” में बदलें।</li>
+    </ul>
+  </li>
+  <li>स्थिर IP पता सेट करें:
+    <ul>
+      <li>IP पता: अपने राउटर के DHCP रेंज के बाहर एक IP चुनें ताकि टकराव से बचा जा सके (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">192.168.1.xxx</code>)।</li>
+      <li>सबनेट मास्क: आमतौर पर <code class="language-plaintext highlighter-rouge">255.255.255.0</code>।</li>
+      <li>राउटर: आपके राउटर का IP पता (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">192.168.1.1</code>)।</li>
+      <li>DNS सर्वर: आप अपने राउटर का IP या किसी अन्य DNS सेवा जैसे <code class="language-plaintext highlighter-rouge">8.8.8.8</code> का उपयोग कर सकते हैं।</li>
+    </ul>
+  </li>
+  <li>सेटिंग्स लागू करें:
+    <ul>
+      <li>परिवर्तनों को सहेजने के लिए “OK” और फिर “Apply” पर क्लिक करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="4-openwrt-पर-redsocks-को-इंस्टॉल-और-कॉन्फ़िगर-करना">4. OpenWRT पर Redsocks को इंस्टॉल और कॉन्फ़िगर करना</h2>
+
+<p>Redsocks एक पारदर्शी SOCKS रीडायरेक्टर है जो आपको नेटवर्क ट्रैफ़िक को SOCKS5 प्रॉक्सी के माध्यम से रूट करने की अनुमति देता है। हम Redsocks का उपयोग करके OpenWRT के ट्रैफ़िक को आपके Mac पर चल रहे Shadowsocks प्रॉक्सी के माध्यम से रीडायरेक्ट करेंगे।</p>
+
+<h3 id="चरण-1-redsocks-स्थापित-करें">चरण 1: Redsocks स्थापित करें</h3>
+
+<ol>
+  <li>पैकेज सूचियों को अपडेट करें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ssh root@&lt;router_ip&gt;
+   opkg update
+</code></pre></div></div>
+
+<p>(नोट: यह कोड ब्लॉक है, इसलिए इसे अनुवादित नहीं किया गया है।)</p>
+
+<ol>
+  <li>Redsocks इंस्टॉल करें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   opkg <span class="nb">install </span>redsocks
+</code></pre></div></div>
+
+<p>यह कमांड <code class="language-plaintext highlighter-rouge">redsocks</code> को इंस्टॉल करने के लिए उपयोग की जाती है। <code class="language-plaintext highlighter-rouge">opkg</code> OpenWrt पर पैकेज मैनेजर है, और <code class="language-plaintext highlighter-rouge">redsocks</code> एक ट्रांसपेरेंट SOCKS प्रॉक्सी है जो ट्रैफिक को रीडायरेक्ट करने के लिए उपयोग किया जाता है।</p>
+
+<p><em>यदि आपके OpenWRT रिपॉजिटरी में Redsocks उपलब्ध नहीं है, तो आपको इसे मैन्युअल रूप से कंपाइल करने की आवश्यकता हो सकती है या किसी वैकल्पिक पैकेज का उपयोग करना पड़ सकता है।</em></p>
+
+<h3 id="चरण-2-redsocks-को-कॉन्फ़िगर-करें">चरण 2: Redsocks को कॉन्फ़िगर करें</h3>
+
+<ol>
+  <li>
+    <p>Redsocks कॉन्फ़िगरेशन फ़ाइल बनाएं या संपादित करें:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vi /etc/redsocks.conf
+</code></pre></div>    </div>
+
+    <p>यह कमांड <code class="language-plaintext highlighter-rouge">/etc/redsocks.conf</code> फ़ाइल को संपादित करने के लिए <code class="language-plaintext highlighter-rouge">vi</code> एडिटर को खोलता है। यह फ़ाइल redsocks कॉन्फ़िगरेशन सेटिंग्स को संग्रहीत करती है।</p>
+  </li>
+  <li>
+    <p>निम्नलिखित कॉन्फ़िगरेशन जोड़ें:</p>
+  </li>
+</ol>
+
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="n">base</span> {
+       <span class="n">log_debug</span> = <span class="n">on</span>;
+       <span class="n">log_info</span> = <span class="n">on</span>;
+       <span class="n">log</span> = <span class="s2">"file:/var/log/redsocks.log"</span>;
+       <span class="n">daemon</span> = <span class="n">on</span>;
+       <span class="n">redirector</span> = <span class="n">iptables</span>;
+   }
+</code></pre></div></div>
+
+<p>```redsocks {
+       local_ip = 0.0.0.0;
+       local_port = 12345;  # Redsocks के लिए सुनने के लिए स्थानीय पोर्ट
+       ip = xxx.xxx.xxx.xxx;  # Mac का स्थिर IP
+       port = xxxxx;          # Shadowsocks-NG का स्थानीय SOCKS5 प्रॉक्सी पोर्ट
+       type = socks5;
+       login = “”;           # यदि आपके प्रॉक्सी को प्रमाणीकरण की आवश्यकता है
+       password = “”;
+   }</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   नोट्स:
+   - `local_port`: वह पोर्ट जिस पर Redsocks, iptables रीडायरेक्ट से आने वाले कनेक्शन को सुनता है।
+   - `ip` और `port`: आपके Mac के Shadowsocks SOCKS5 प्रॉक्सी की ओर इशारा करते हैं (`xxx.xxx.xxx.xxx:xxxxx` पिछले चरणों के आधार पर)।
+   - `type`: `socks5` पर सेट करें क्योंकि Shadowsocks एक SOCKS5 प्रॉक्सी प्रदान करता है।
+
+3. सहेजें और बाहर निकलें:
+   - `ESC` दबाएं, `:wq` टाइप करें, और `Enter` दबाएं।
+
+4. लॉग फ़ाइल बनाएं:
+
+```bash
+   touch /var/log/redsocks.log
+   chmod 644 /var/log/redsocks.log
+</code></pre></div></div>
+
+<h3 id="चरण-3-redsocks-सेवा-शुरू-करें">चरण 3: Redsocks सेवा शुरू करें</h3>
+
+<ol>
+  <li>बूट पर Redsocks को सक्षम करें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   /etc/init.d/redsocks <span class="nb">enable</span>
+</code></pre></div></div>
+
+<p>यह कमांड <code class="language-plaintext highlighter-rouge">redsocks</code> सेवा को सक्षम (enable) करने के लिए उपयोग की जाती है। यह सेवा सिस्टम स्टार्टअप पर स्वचालित रूप से शुरू हो जाएगी।</p>
+
+<ol>
+  <li>Redsocks शुरू करें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   /etc/init.d/redsocks start
+</code></pre></div></div>
+
+<ol>
+  <li>सत्यापित करें कि Redsocks चल रहा है:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   ps | <span class="nb">grep </span>redsocks
+</code></pre></div></div>
+
+<p>यह कमांड सिस्टम में चल रही प्रक्रियाओं (processes) की सूची में से <code class="language-plaintext highlighter-rouge">redsocks</code> नामक प्रक्रिया को ढूंढने के लिए उपयोग किया जाता है। <code class="language-plaintext highlighter-rouge">ps</code> कमांड सभी चल रही प्रक्रियाओं को दिखाता है, और <code class="language-plaintext highlighter-rouge">grep redsocks</code> उनमें से केवल <code class="language-plaintext highlighter-rouge">redsocks</code> से संबंधित प्रक्रियाओं को फ़िल्टर करता है।</p>
+
+<p>आपको एक Redsocks प्रक्रिया चलती हुई दिखनी चाहिए।</p>
+
+<hr />
+
+<h2 id="5-openwrt-के-ट्रैफ़िक-को-macos-प्रॉक्सी-के-माध्यम-से-रीडायरेक्ट-करना">5. OpenWRT के ट्रैफ़िक को macOS प्रॉक्सी के माध्यम से रीडायरेक्ट करना</h2>
+
+<p>अब जबकि Redsocks OpenWRT पर सेटअप हो चुका है, iptables को कॉन्फ़िगर करें ताकि सभी आउटबाउंड TCP ट्रैफ़िक Redsocks के माध्यम से रीडायरेक्ट हो, जो इसे आपके Mac के Shadowsocks प्रॉक्सी के माध्यम से रूट करता है।</p>
+
+<h3 id="चरण-1-iptables-नियम-कॉन्फ़िगर-करें">चरण 1: iptables नियम कॉन्फ़िगर करें</h3>
+
+<ol>
+  <li>ट्रैफ़िक को रीडायरेक्ट करने के लिए iptables नियम जोड़ें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># सभी TCP ट्रैफ़िक को Redsocks पर रीडायरेक्ट करें (प्रॉक्सी के ट्रैफ़िक को छोड़कर)</span>
+   iptables <span class="nt">-t</span> nat <span class="nt">-N</span> REDSOCKS
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-d</span> xxx.xxx.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> xxxxx <span class="nt">-j</span> RETURN
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-p</span> tcp <span class="nt">-j</span> REDIRECT <span class="nt">--to-ports</span> 12345
+</code></pre></div></div>
+
+<h1 id="सभी-आउटगोइंग-ट्रैफ़िक-पर-redsocks-चेन-लागू-करें">सभी आउटगोइंग ट्रैफ़िक पर REDSOCKS चेन लागू करें</h1>
+<p>iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+   iptables -t nat -A PREROUTING -p tcp -j REDSOCKS</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   व्याख्या:
+   - एक नई चेन बनाएं: `REDSOCKS`
+   - प्रॉक्सी ट्रैफ़िक को बाहर करें: सुनिश्चित करें कि प्रॉक्सी के लिए जाने वाला ट्रैफ़िक पुनर्निर्देशित न हो।
+   - अन्य TCP ट्रैफ़िक को पुनर्निर्देशित करें: अन्य TCP ट्रैफ़िक को Redsocks के सुनने वाले पोर्ट (`12345`) पर फॉरवर्ड करें।
+
+2. iptables नियम सहेजें:
+
+इन नियमों को रीबूट के बाद भी स्थायी बनाने के लिए, इन्हें फ़ायरवॉल कॉन्फ़िगरेशन में जोड़ें।
+
+```bash
+   vi /etc/firewall.user
+</code></pre></div></div>
+
+<p>iptables नियम जोड़ें:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="c"># सभी TCP ट्रैफ़िक को Redsocks पर रीडायरेक्ट करें (प्रॉक्सी को छोड़कर)</span>
+   iptables <span class="nt">-t</span> nat <span class="nt">-N</span> REDSOCKS
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-d</span> xxx.xxx.xxx.xxx <span class="nt">-p</span> tcp <span class="nt">--dport</span> xxxxx <span class="nt">-j</span> RETURN
+   iptables <span class="nt">-t</span> nat <span class="nt">-A</span> REDSOCKS <span class="nt">-p</span> tcp <span class="nt">-j</span> REDIRECT <span class="nt">--to-ports</span> 12345
+</code></pre></div></div>
+
+<p># REDSOCKS चेन लागू करें
+   iptables -t nat -A OUTPUT -p tcp -j REDSOCKS
+   iptables -t nat -A PREROUTING -p tcp -j REDSOCKS</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+   सहेजें और बाहर निकलें:
+   - `ESC` दबाएं, `:wq` टाइप करें, और `Enter` दबाएं।
+
+3. परिवर्तन लागू करने के लिए फ़ायरवॉल को पुनरारंभ करें:
+
+```bash
+   /etc/init.d/firewall restart
+</code></pre></div></div>
+
+<h3 id="चरण-2-सत्यापित-करें-कि-ट्रैफ़िक-पुनर्निर्देशित-हो-रहा-है">चरण 2: सत्यापित करें कि ट्रैफ़िक पुनर्निर्देशित हो रहा है</h3>
+
+<ol>
+  <li>Redsocks लॉग्स की जाँच करें:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cat</span> /var/log/redsocks.log
+</code></pre></div></div>
+
+<p>आपको लॉग्स दिखाई देने चाहिए जो यह संकेत देते हैं कि ट्रैफ़िक Redsocks के माध्यम से प्रोसेस हो रहा है।</p>
+
+<ol>
+  <li>क्लाइंट डिवाइस से टेस्ट करें:
+    <ul>
+      <li>अपने OpenWRT राउटर से एक डिवाइस को कनेक्ट करें।</li>
+      <li>एक वेबसाइट पर जाएं या कोई ऐसी क्रिया करें जो इंटरनेट का उपयोग करती हो।</li>
+      <li>यह सत्यापित करें कि ट्रैफ़िक Shadowsocks प्रॉक्सी के माध्यम से रूट हो रहा है, बाहरी आईपी पते की जांच करके (जैसे <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a> के माध्यम से) यह देखने के लिए कि क्या यह प्रॉक्सी के आईपी को दर्शाता है।</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="6-प्रॉक्सी-सेटअप-का-परीक्षण">6. प्रॉक्सी सेटअप का परीक्षण</h2>
+
+<p>निम्नलिखित परीक्षण करके सुनिश्चित करें कि पूरी सेटअप इच्छित रूप से काम कर रही है।</p>
+
+<h3 id="चरण-1-mac-पर-shadowsocks-कनेक्शन-सत्यापित-करें">चरण 1: Mac पर Shadowsocks कनेक्शन सत्यापित करें</h3>
+
+<ol>
+  <li>Shadowsocks क्लाइंट स्थिति की जाँच करें:
+    <ul>
+      <li>सुनिश्चित करें कि Shadowsocks-NG या Clash सक्रिय रूप से Shadowsocks सर्वर से जुड़ा हुआ है।</li>
+      <li>स्थानीय प्रॉक्सी (जैसे <code class="language-plaintext highlighter-rouge">xxx.xxx.xxx.xxx:xxxxx</code>) की पहुंच सुनिश्चित करें।</li>
+    </ul>
+  </li>
+  <li>प्रॉक्सी को स्थानीय रूप से टेस्ट करें:
+    <ul>
+      <li>अपने Mac पर, एक ब्राउज़र खोलें और इसे <code class="language-plaintext highlighter-rouge">localhost:1080</code> को SOCKS5 प्रॉक्सी के रूप में उपयोग करने के लिए कॉन्फ़िगर करें।</li>
+      <li><a href="https://www.whatismyip.com/">WhatIsMyIP.com</a> पर जाएं और पुष्टि करें कि IP Shadowsocks सर्वर से मेल खाता है।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="चरण-2-सत्यापित-करें-कि-openwrt-का-ट्रैफ़िक-प्रॉक्सी-के-माध्यम-से-रूट-हो-रहा-है">चरण 2: सत्यापित करें कि OpenWRT का ट्रैफ़िक प्रॉक्सी के माध्यम से रूट हो रहा है</h3>
+
+<ol>
+  <li>OpenWRT का बाहरी IP जांचें:
+    <ul>
+      <li>OpenWRT से जुड़े किसी डिवाइस से, <a href="https://www.whatismyip.com/">WhatIsMyIP.com</a> पर जाएं और देखें कि क्या IP Shadowsocks सर्वर के IP को दर्शाता है।</li>
+    </ul>
+  </li>
+  <li>Redsocks लॉग्स की निगरानी करें:
+    <ul>
+      <li>OpenWRT पर, यह सुनिश्चित करने के लिए कि ट्रैफ़िक रीडायरेक्ट हो रहा है, Redsocks लॉग्स की निगरानी करें।</li>
+    </ul>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">tail</span> <span class="nt">-f</span> /var/log/redsocks.log
+</code></pre></div>    </div>
+  </li>
+  <li>यदि आवश्यक हो तो समस्या निवारण करें:
+    <ul>
+      <li>यदि ट्रैफ़िक सही ढंग से रूट नहीं हो रहा है:
+        <ul>
+          <li>सुनिश्चित करें कि Mac पर Shadowsocks क्लाइंट चल रहा है और पहुंच योग्य है।</li>
+          <li>iptables नियमों की जांच करें कि वे सही ढंग से सेट हैं।</li>
+          <li>Mac और OpenWRT दोनों पर फ़ायरवॉल सेटिंग्स की जांच करें।</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="अतिरिक्त-विचार">अतिरिक्त विचार</h2>
+
+<h3 id="1-सुरक्षा">1. सुरक्षा</h3>
+
+<ul>
+  <li>अपने प्रॉक्सी को सुरक्षित करें:
+    <ul>
+      <li>सुनिश्चित करें कि केवल विश्वसनीय डिवाइस ही प्रॉक्सी तक पहुंच सकें। चूंकि आप सभी ट्रैफ़िक को Redsocks के माध्यम से रीडायरेक्ट कर रहे हैं, सुनिश्चित करें कि आपके Mac का फ़ायरवॉल केवल आपके OpenWRT राउटर से कनेक्शन की अनुमति देता है।</li>
+    </ul>
+  </li>
+</ul>
+
+<p>macOS पर:</p>
+
+<ul>
+  <li>सिस्टम प्राथमिकताएं &gt; सुरक्षा और गोपनीयता &gt; फ़ायरवॉल पर जाएं।</li>
+  <li>
+    <p>फ़ायरवॉल को कॉन्फ़िगर करें ताकि प्रॉक्सी पोर्ट (<code class="language-plaintext highlighter-rouge">xxxxx</code>) पर केवल OpenWRT राउटर के IP से आने वाले कनेक्शन की अनुमति दी जा सके।</p>
+  </li>
+  <li>प्रमाणीकरण:
+    <ul>
+      <li>Shadowsocks पहले से ही एन्क्रिप्शन के माध्यम से कुछ स्तर की सुरक्षा प्रदान करता है। मजबूत पासवर्ड और एन्क्रिप्शन विधियों का उपयोग सुनिश्चित करें।</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="2-प्रदर्शन">2. प्रदर्शन</h3>
+
+<ul>
+  <li>राउटर संसाधन:
+    <ul>
+      <li>Redsocks जैसी प्रॉक्सी सेवाएं चलाने से आपके OpenWRT राउटर पर अतिरिक्त CPU और मेमोरी का उपयोग हो सकता है। सुनिश्चित करें कि आपके राउटर में पर्याप्त संसाधन हैं।</li>
+    </ul>
+  </li>
+  <li>Mac प्रदर्शन:
+    <ul>
+      <li>यह सुनिश्चित करें कि आपका Mac प्रॉक्सी उपलब्धता बनाए रखने के लिए नेटवर्क से जुड़ा और चालू रहे।</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-रखरखाव">3. रखरखाव</h3>
+
+<ul>
+  <li>लॉग्स की निगरानी:
+    <ul>
+      <li>Redsocks और Shadowsocks के लॉग्स को नियमित रूप से जांचें कि कहीं कोई असामान्य गतिविधि या त्रुटि तो नहीं है।</li>
+    </ul>
+  </li>
+  <li>सॉफ़्टवेयर अपडेट करें:
+    <ul>
+      <li>OpenWRT, Redsocks, और अपने Shadowsocks क्लाइंट को अपडेट रखें ताकि सुरक्षा पैच और प्रदर्शन सुधारों का लाभ मिल सके।</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="4-वैकल्पिक-दृष्टिकोण">4. वैकल्पिक दृष्टिकोण</h3>
+
+<p>Mac को एक मध्यस्थ प्रॉक्सी सर्वर के रूप में उपयोग करना संभव है, लेकिन संभावित रूप से सरल सेटअप के लिए निम्नलिखित विकल्पों पर विचार करें:</p>
+
+<ul>
+  <li>OpenWRT को सीधे Shadowsocks क्लाइंट के रूप में कॉन्फ़िगर करें:
+    <ul>
+      <li>OpenWRT <code class="language-plaintext highlighter-rouge">shadowsocks-libev</code> जैसे पैकेज के माध्यम से सीधे Shadowsocks को सपोर्ट करता है। इस तरीके से Mac इंटरमीडिएरी की आवश्यकता नहीं होती है।</li>
+    </ul>
+  </li>
+  <li>एक समर्पित प्रॉक्सी/वीपीएन डिवाइस का उपयोग करें:
+    <ul>
+      <li>Raspberry Pi जैसे डिवाइस प्रॉक्सी सेवाएं चला सकते हैं और समर्पित गेटवे के रूप में कार्य कर सकते हैं।</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<h2 id="निष्कर्ष">निष्कर्ष</h2>
+
+<p>ऊपर बताए गए चरणों का पालन करके, आपने अपने Mac को Shadowsocks प्रॉक्सी सर्वर के रूप में सेट किया है और अपने OpenWRT राउटर को कॉन्फ़िगर किया है ताकि सभी कनेक्टेड डिवाइसों का ट्रैफ़िक इस प्रॉक्सी के माध्यम से रूट हो। यह सेटअप Shadowsocks प्रोटोकॉल का उपयोग करके आपके नेटवर्क की गोपनीयता और नियंत्रण को बढ़ाता है।</p>
+
+<p>मुख्य बिंदु सारांश:</p>
+
+<ol>
+  <li>Mac पर Shadowsocks क्लाइंट:
+    <ul>
+      <li>Shadowsocks-NG या Clash को आपके द्वारा प्रदान किए गए Shadowsocks URL के साथ इंस्टॉल और कॉन्फ़िगर किया गया।</li>
+      <li>क्लाइंट को Mac के LAN IP पर सुनने के लिए कॉन्फ़िगर किया गया।</li>
+    </ul>
+  </li>
+  <li>प्रॉक्सी पहुंच:
+    <ul>
+      <li>मैक को एक स्थिर IP प्रदान की गई ताकि प्रॉक्सी तक लगातार पहुंच सुनिश्चित हो सके।</li>
+      <li>macOS फ़ायरवॉल को कॉन्फ़िगर किया गया ताकि आने वाले प्रॉक्सी कनेक्शन की अनुमति दी जा सके।</li>
+    </ul>
+  </li>
+  <li>OpenWRT कॉन्फ़िगरेशन:
+    <ul>
+      <li>सभी आउटबाउंड TCP ट्रैफ़िक को Shadowsocks प्रॉक्सी के माध्यम से रीडायरेक्ट करने के लिए Redsocks को इंस्टॉल और कॉन्फ़िगर किया।</li>
+      <li>ट्रैफ़िक रीडायरेक्शन को लागू करने के लिए आवश्यक iptables नियम लागू किए।</li>
+    </ul>
+  </li>
+  <li>परीक्षण:
+    <ul>
+      <li>जुड़े उपकरणों से ट्रैफ़िक Shadowsocks प्रॉक्सी के माध्यम से रूट हो रहा है, इसकी पुष्टि करने के लिए बाहरी IP पतों की जाँच की गई।</li>
+    </ul>
+  </li>
+</ol>
+
+<p>सिफारिशें:</p>
+
+<ul>
+  <li>स्थिरता सुनिश्चित करें: प्रॉक्सी उपलब्धता बनाए रखने के लिए अपने Mac को पावर और कनेक्टेड रखें।</li>
+  <li>सुरक्षा पहले: अनधिकृत पहुंच से बचाव के लिए सभी घटकों को नियमित रूप से अपडेट करें और लॉग्स की निगरानी करें।</li>
+  <li>सीधे राउटर कॉन्फ़िगरेशन पर विचार करें: अधिक सुव्यवस्थित सेटअप के लिए, Shadowsocks को सीधे अपने OpenWRT राउटर पर कॉन्फ़िगर करने का विकल्प तलाशें।</li>
+</ul>
+
+<p>यदि आपको कोई समस्या आती है या विशिष्ट कॉन्फ़िगरेशन के साथ और सहायता की आवश्यकता है, तो बेझिझक संपर्क करें!</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>base {
+    log_debug = on;
+    log_info = on;
+    log = "file:/var/log/redsocks.log";
+    daemon = on;
+    redirector = generic;
+}
+</code></pre></div></div>
+
+<p>यह कोड ब्लॉक <code class="language-plaintext highlighter-rouge">redsocks</code> कॉन्फ़िगरेशन फ़ाइल का एक हिस्सा है। इसमें लॉगिंग और डेमन सेटिंग्स को परिभाषित किया गया है। इसे हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह एक तकनीकी कॉन्फ़िगरेशन है और इसे मूल रूप में ही रखना बेहतर है।</p>
+
+<p>redsocks {
+    local_ip = 0.0.0.0;
+    local_port = 7891;
+    ip = xxx.xxx.xxx.xxx;
+    port = xxxxx;
+    type = http-connect;
+    login = “”;
+    password = “”;
+}
+```</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

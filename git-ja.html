@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Git 高级操作与原理</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Git 高级操作与原理 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Git 高级操作与原理" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="このブログ記事は ChatGPT-4o の協力を得て整理されました。 Keynote は https://github.com/lzwjava/Keynotes でご覧いただけます。" />
+<meta property="og:description" content="このブログ記事は ChatGPT-4o の協力を得て整理されました。 Keynote は https://github.com/lzwjava/Keynotes でご覧いただけます。" />
+<link rel="canonical" href="https://lzwjava.github.io/git-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/git-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-03T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Git 高级操作与原理" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-03T00:00:00+08:00","datePublished":"2016-05-03T00:00:00+08:00","description":"このブログ記事は ChatGPT-4o の協力を得て整理されました。 Keynote は https://github.com/lzwjava/Keynotes でご覧いただけます。","headline":"Git 高级操作与原理","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/git-ja"},"url":"https://lzwjava.github.io/git-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Git 高级操作与原理 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2016-05-03-git-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2016-05-03-git-ja.md</span> -->
+      
+
+      <!-- <span>2016-05-03-git-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/git-en" >English</option>
+        <option value="/git-zh" >中文</option>
+        <option value="/git-ja" selected>日本語</option>
+        <option value="/git-es" >Español</option>
+        <option value="/git-hi" >हिंदी</option>
+        <option value="/git-fr" >Français</option>
+        <option value="/git-de" >Deutsch</option>
+        <option value="/git-ar" >العربية</option>
+        <option value="/git-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>このブログ記事は ChatGPT-4o の協力を得て整理されました。</em> Keynote は https://github.com/lzwjava/Keynotes でご覧いただけます。</p>
+
+<hr />
+
+<p><strong>取り消し</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git commit --amend 
+$ git add * 
+$ git status 
+$ git reset HEAD CONTRIBUTING.md 
+リセット後の未ステージングされた変更:
+M CONTRIBUTING.md 
+$ git status 
+$ git checkout -- CONTRIBUTING.md 
+</code></pre></div></div>
+
+<ul>
+  <li>再コミット</li>
+  <li>ステージングされたファイルを取り消す</li>
+  <li>ファイルへの変更を取り消す</li>
+</ul>
+
+<p><strong>コマンド</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">git revert</code>：ロールバックを行い、新しいコミットを作成して、以前の特定のコミットと相殺します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git cherry-pick</code>：複数のコミットから特定のコミットを選択します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git rebase</code>：ブランチのベースを変更し、コミット履歴を整理します。</li>
+</ul>
+
+<p><strong>filter-branch</strong></p>
+
+<ul>
+  <li>各コミットから特定のファイルを削除する</li>
+  <li>ファイルを削除したいが、履歴には残しておきたい</li>
+  <li>すべてのコミットからファイルを削除する方法は？</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git filter-branch --tree-filter 'rm -f passwords.txt' HEAD 
+Rewrite 6b9b3cf04e7c5686a9cb838c3f36a8cb6a0fc2bd (21/21) 
+Ref 'refs/heads/master' が書き換えられました
+</code></pre></div></div>
+
+<p><strong>検索</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git grep -n gmtime_r 
+compat/gmtime.c:3:#undef gmtime_r 
+compat/gmtime.c:8:return git_gmtime_r(timep, &amp;result); 
+compat/gmtime.c:11:struct tm *git_gmtime_r(const time_t *timep, struct tm *result) 
+compat/gmtime.c:16:ret = gmtime_r(timep, result); 
+compat/mingw.c:606:struct tm *gmtime_r(const time_t *timep, struct tm *result) 
+compat/mingw.h:162:struct tm *gmtime_r(const time_t *timep, struct tm *result); 
+date.c:429:if (gmtime_r(&amp;now, &amp;now_tm)) 
+date.c:492:if (gmtime_r(&amp;time, tm)) { 
+git-compat-util.h:721:struct tm *git_gmtime_r(const time_t *, struct tm *); 
+git-compat-util.h:723:#define gmtime_r git_gmtime_r 
+$ git log -SZLIB_BUF_MAX --oneline 
+e01503b zlib: 一度に4GB以上を供給できるようにする 
+ef49a7a zlib: zlibは一度に4GBまでしか処理できない 
+</code></pre></div></div>
+
+<p><strong>.Git ディレクトリ</strong></p>
+
+<ul>
+  <li>config：プロジェクトの設定</li>
+  <li>info：.gitignoreファイル</li>
+  <li>objects：Gitデータベース内のすべての内容</li>
+  <li>refs：ブランチのポインタ</li>
+  <li>HEAD：現在のブランチのポインタ</li>
+  <li>index：ステージングエリアの情報</li>
+</ul>
+
+<p><strong>Git オブジェクト</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git init test 
+空のGitリポジトリが/tmp/test/.git/に初期化されました
+$ cd test 
+$ find .git/objects 
+.git/objects 
+.git/objects/info 
+.git/objects/pack 
+$ find .git/objects -type f
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'test content' | git hash-object -w --stdin 
+d670460b4b4aece5915caf5c68d12f560a9fe3e4 
+$ find .git/objects -type f 
+.git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
+</code></pre></div></div>
+
+<p>上記のコードは、Gitの内部動作を示す一例です。<code class="language-plaintext highlighter-rouge">echo 'test content'</code>コマンドで生成された内容を、<code class="language-plaintext highlighter-rouge">git hash-object -w --stdin</code>コマンドを使ってGitのオブジェクトデータベースに保存しています。このコマンドは、指定されたデータのSHA-1ハッシュを計算し、そのハッシュ値を基にオブジェクトを<code class="language-plaintext highlighter-rouge">.git/objects</code>ディレクトリに保存します。その後、<code class="language-plaintext highlighter-rouge">find .git/objects -type f</code>コマンドで、保存されたオブジェクトファイルを確認しています。この例では、<code class="language-plaintext highlighter-rouge">d670460b4b4aece5915caf5c68d12f560a9fe3e4</code>というハッシュ値に対応するオブジェクトが<code class="language-plaintext highlighter-rouge">.git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4</code>というパスに保存されていることがわかります。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">hash-object</code>、データを .git ディレクトリに保存するコマンド</li>
+  <li><code class="language-plaintext highlighter-rouge">-w</code>、オブジェクトを書き込む。指定しない場合、単にキーを返す</li>
+  <li><code class="language-plaintext highlighter-rouge">--stdin</code>、標準入力から読み取る</li>
+  <li>d670…、40文字のチェックサム</li>
+  <li><code class="language-plaintext highlighter-rouge">cat-file</code>、Gitオブジェクトを確認するための万能ツール</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git cat-file -p d670460b4b4aece5915caf5c68d12f560a9fe3e4 
+test content
+</code></pre></div></div>
+
+<p>このコマンドは、指定されたオブジェクト（この場合は <code class="language-plaintext highlighter-rouge">d670460b4b4aece5915caf5c68d12f560a9fe3e4</code>）の内容を表示します。出力は <code class="language-plaintext highlighter-rouge">test content</code> です。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'version 1’ &gt; test.txt
+$ git hash-object -w test.txt
+83baae61804e65cc73a7201a7252750c76066a30
+$ echo 'version 2' &gt; test.txt
+$ git hash-object -w test.txt
+1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+$ find .git/objects -type f
+.git/objects/1f/7a7a472abf3dd9643fd615f6da379c4acb3e3a
+.git/objects/83/baae61804e65cc73a7201a7252750c76066a30
+.git/objects/d6/70460b4b4aece5915caf5c68d12f560a9fe3e4
+$ git cat-file -p 83baae61804e65cc73a7201a7252750c76066a30 &gt; test.txt
+$ cat test.txt
+version 1
+$ git cat-file -p 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a &gt; test.txt
+$ cat test.txt
+version 2
+$ git cat-file -t 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a
+blob
+$ git cat-file -p master^{tree}
+100644 blob a906cb2a4a904a152e80877d4088654daad0c859 README
+100644 blob 8f94139338f9404f26296befa88755fc2598c289 Rakefile
+040000 tree 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0 lib
+$ git cat-file -p 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0
+100644 blob 47c6340d6459e05787f644c2447d2595f5d3a54b simplegit.rb
+Tree Objects
+</code></pre></div></div>
+
+<p>上記のコードは、Gitのオブジェクトデータベースを操作する一連のコマンドを示しています。以下にその内容を日本語で説明します。</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">echo 'version 1’ &gt; test.txt</code><br />
+<code class="language-plaintext highlighter-rouge">test.txt</code>というファイルに「version 1」という内容を書き込みます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git hash-object -w test.txt</code><br />
+<code class="language-plaintext highlighter-rouge">test.txt</code>の内容をGitのオブジェクトデータベースに保存し、そのオブジェクトのハッシュ値（<code class="language-plaintext highlighter-rouge">83baae61804e65cc73a7201a7252750c76066a30</code>）を返します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">echo 'version 2' &gt; test.txt</code><br />
+<code class="language-plaintext highlighter-rouge">test.txt</code>の内容を「version 2」に更新します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git hash-object -w test.txt</code><br />
+更新された<code class="language-plaintext highlighter-rouge">test.txt</code>の内容をGitのオブジェクトデータベースに保存し、新しいハッシュ値（<code class="language-plaintext highlighter-rouge">1f7a7a472abf3dd9643fd615f6da379c4acb3e3a</code>）を返します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">find .git/objects -type f</code><br />
+<code class="language-plaintext highlighter-rouge">.git/objects</code>ディレクトリ内にあるすべてのファイル（Gitオブジェクト）を表示します。これにより、先ほど保存された2つのオブジェクトが確認できます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p 83baae61804e65cc73a7201a7252750c76066a30 &gt; test.txt</code><br />
+ハッシュ値<code class="language-plaintext highlighter-rouge">83baae61804e65cc73a7201a7252750c76066a30</code>に対応するオブジェクトの内容を<code class="language-plaintext highlighter-rouge">test.txt</code>に書き出します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">cat test.txt</code><br />
+<code class="language-plaintext highlighter-rouge">test.txt</code>の内容を表示します。ここでは「version 1」が表示されます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a &gt; test.txt</code><br />
+ハッシュ値<code class="language-plaintext highlighter-rouge">1f7a7a472abf3dd9643fd615f6da379c4acb3e3a</code>に対応するオブジェクトの内容を<code class="language-plaintext highlighter-rouge">test.txt</code>に書き出します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">cat test.txt</code><br />
+<code class="language-plaintext highlighter-rouge">test.txt</code>の内容を表示します。ここでは「version 2」が表示されます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -t 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a</code><br />
+ハッシュ値<code class="language-plaintext highlighter-rouge">1f7a7a472abf3dd9643fd615f6da379c4acb3e3a</code>に対応するオブジェクトのタイプを表示します。ここでは<code class="language-plaintext highlighter-rouge">blob</code>（ファイルの内容を表すオブジェクト）であることがわかります。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p master^{tree}</code><br />
+<code class="language-plaintext highlighter-rouge">master</code>ブランチの最新のコミットが指すツリーオブジェクトの内容を表示します。これにより、プロジェクトのルートディレクトリにあるファイルやディレクトリの一覧が表示されます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p 99f1a6d12cb4b6f19c8655fca46c3ecf317074e0</code><br />
+ツリーオブジェクト<code class="language-plaintext highlighter-rouge">99f1a6d12cb4b6f19c8655fca46c3ecf317074e0</code>の内容を表示します。これにより、<code class="language-plaintext highlighter-rouge">lib</code>ディレクトリ内のファイル（ここでは<code class="language-plaintext highlighter-rouge">simplegit.rb</code>）が表示されます。</p>
+  </li>
+</ol>
+
+<p>これらのコマンドは、Gitが内部的にどのようにデータを管理しているかを理解するのに役立ちます。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git update-index --add --cacheinfo 100644 \
+83baae61804e65cc73a7201a7252750c76066a30 test.txt
+update-index
+</code></pre></div></div>
+
+<p>このコマンドは、Gitのインデックスにファイルを追加するためのものです。具体的には、<code class="language-plaintext highlighter-rouge">test.txt</code>というファイルを指定したモード（100644）とオブジェクトID（83baae61804e65cc73a7201a7252750c76066a30）でインデックスに追加します。<code class="language-plaintext highlighter-rouge">update-index</code>は、インデックスを更新するためのGitのサブコマンドです。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">update-index</code>、ツリーを作成するコマンド</li>
+  <li><code class="language-plaintext highlighter-rouge">--add</code>、インデックスを作成</li>
+  <li><code class="language-plaintext highlighter-rouge">--cacheinfo</code>、Gitデータベースから読み取る</li>
+  <li><code class="language-plaintext highlighter-rouge">100644</code>、ファイルモード、通常ファイルを表す；100755は実行可能ファイル；120000はシンボリックリンク</li>
+  <li>83baae、以前の内容、version 1</li>
+  <li><code class="language-plaintext highlighter-rouge">\</code>、1行のコマンドを2行に分割</li>
+</ul>
+
+<p><strong>write-tree</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git write-tree
+d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+$ git cat-file -p d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+100644 blob 83baae61804e65cc73a7201a7252750c76066a30 test.txt
+$ git cat-file -t d8329fc1cc938780ffdd9f94e0d364e0ea74f579
+tree
+</code></pre></div></div>
+
+<p>このコードは、Gitの内部コマンドを使用してツリーオブジェクトを作成し、その内容を表示するものです。以下に各コマンドの説明を日本語で示します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">git write-tree</code>:
+    <ul>
+      <li>現在のインデックス（ステージングエリア）の状態を基に、ツリーオブジェクトを作成します。</li>
+      <li>このコマンドを実行すると、作成されたツリーオブジェクトのSHA-1ハッシュ値が表示されます。この例では、<code class="language-plaintext highlighter-rouge">d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code> がそのハッシュ値です。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -p d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code>:
+    <ul>
+      <li>指定されたオブジェクト（この場合はツリーオブジェクト）の内容を表示します。</li>
+      <li>この例では、ツリーオブジェクトが参照しているファイルのモード（<code class="language-plaintext highlighter-rouge">100644</code>）、タイプ（<code class="language-plaintext highlighter-rouge">blob</code>）、ハッシュ値（<code class="language-plaintext highlighter-rouge">83baae61804e65cc73a7201a7252750c76066a30</code>）、およびファイル名（<code class="language-plaintext highlighter-rouge">test.txt</code>）が表示されています。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -t d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code>:
+    <ul>
+      <li>指定されたオブジェクトのタイプを表示します。</li>
+      <li>この例では、<code class="language-plaintext highlighter-rouge">d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code> が <code class="language-plaintext highlighter-rouge">tree</code> タイプのオブジェクトであることが確認できます。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>これらのコマンドは、Gitの内部的な動作を理解するために役立ちます。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">write-tree</code>：ステージングエリアの内容をツリーオブジェクトに書き込みます</li>
+</ul>
+
+<p><strong>read-tree</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo 'new file' &gt; new.txt 
+$ git update-index test.txt 
+$ git update-index --add new.txt 
+$ git write-tree 
+0155eb4229851634a0f03eb265b69f5a2d56f341 
+$ git cat-file -p 0155eb4229851634a0f03eb265b69f5a2d56f341 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a test.txt 
+$ git read-tree --prefix=bak d8329fc1cc938780ffdd9f94e0d364e0ea74f579 
+$ git write-tree 
+3c4e9cd789d88d8d89c1073707c3585e41b0e614 
+$ git cat-file -p 3c4e9cd789d88d8d89c1073707c3585e41b0e614 
+040000 tree d8329fc1cc938780ffdd9f94e0d364e0ea74f579 bak 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 1f7a7a472abf3dd9643fd615f6da379c4acb3e3a test.txt
+</code></pre></div></div>
+
+<p>このコードは、Gitの低レベルコマンドを使用して、新しいファイルを作成し、インデックスに追加し、ツリーオブジェクトを作成し、既存のツリーを読み込んで新しいツリーに統合するプロセスを示しています。以下に各コマンドの説明を日本語で示します。</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">echo 'new file' &gt; new.txt</code><br />
+新しいファイル <code class="language-plaintext highlighter-rouge">new.txt</code> を作成し、その中にテキスト <code class="language-plaintext highlighter-rouge">new file</code> を書き込みます。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git update-index test.txt</code><br />
+既存のファイル <code class="language-plaintext highlighter-rouge">test.txt</code> をインデックスに追加します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git update-index --add new.txt</code><br />
+新しく作成したファイル <code class="language-plaintext highlighter-rouge">new.txt</code> をインデックスに追加します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git write-tree</code><br />
+現在のインデックスの状態を基に、新しいツリーオブジェクトを作成し、そのハッシュ値を出力します。この例では <code class="language-plaintext highlighter-rouge">0155eb4229851634a0f03eb265b69f5a2d56f341</code> が生成されました。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p 0155eb4229851634a0f03eb265b69f5a2d56f341</code><br />
+指定されたツリーオブジェクトの内容を表示します。このツリーには <code class="language-plaintext highlighter-rouge">new.txt</code> と <code class="language-plaintext highlighter-rouge">test.txt</code> の2つのファイルが含まれています。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git read-tree --prefix=bak d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code><br />
+既存のツリーオブジェクト <code class="language-plaintext highlighter-rouge">d8329fc1cc938780ffdd9f94e0d364e0ea74f579</code> を読み込み、<code class="language-plaintext highlighter-rouge">bak</code> というディレクトリに配置します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git write-tree</code><br />
+新しいツリーオブジェクトを作成し、そのハッシュ値を出力します。この例では <code class="language-plaintext highlighter-rouge">3c4e9cd789d88d8d89c1073707c3585e41b0e614</code> が生成されました。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">git cat-file -p 3c4e9cd789d88d8d89c1073707c3585e41b0e614</code><br />
+新しいツリーオブジェクトの内容を表示します。このツリーには <code class="language-plaintext highlighter-rouge">bak</code> ディレクトリ、<code class="language-plaintext highlighter-rouge">new.txt</code>、および <code class="language-plaintext highlighter-rouge">test.txt</code> が含まれています。</p>
+  </li>
+</ol>
+
+<p>このプロセスを通じて、Gitが内部的にどのようにファイルやディレクトリを管理しているかを理解することができます。</p>
+
+<p><strong>コミットオブジェクト</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ echo '初めてのコミット' | git commit-tree d8329f 
+d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+$ git cat-file -p d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+tree d8329fc1cc938780ffdd9f94
+</code></pre></div></div>
+
+<p>e0d364e0ea74f579
+author lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 1462090215 +0800
+committer lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 1462090215 +0800
+最初のコミット</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- ハッシュ値は異なります。なぜなら、作成時間と作成者が異なるためです。
+
+</code></pre></div></div>
+<p>$ echo ‘second commit’ | git commit-tree 0155eb -p d5ffe1aa4 
+e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ echo ‘third commit’ | git commit-tree 3c4e9c -p e946d6 
+09490bf051c34b3693dfd5c7fb63dfe27b295904 
+$ git log –stat 09490 
+commit 09490bf051c34b3693dfd5c7fb63dfe27b295904 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:38:55 2016 +0800 
+3番目のコミット 
+bak/test.txt | 1 + 
+1 file changed, 1 insertion(+) 
+commit e946d6367f07de45cac242dca7cd002f5eaa72b1 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:37:01 2016 +0800 
+2番目のコミット 
+new.txt | 1 + 
+test.txt | 2 +- 
+2 files changed, 2 insertions(+), 1 deletion(-) 
+commit d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 
+Author: lzwjava <a href="mailto:lzwjava@gmail.com">lzwjava@gmail.com</a> 
+Date: Sun May 1 16:10:15 2016 +0800 
+最初のコミット 
+test.txt | 1 + 
+1 file changed, 1 insertion(+)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- `commit-tree`、最初のパラメータは blob または tree を指します
+- `-p` は親ノードを指します
+
+</code></pre></div></div>
+<p>3番目のコミット
+2番目のコミット
+1番目のコミット
+ツリー
+ツリー
+ツリー
+“バージョン2”
+“新しいファイル”
+“バージョン1”
+09490b
+e946d6
+d5ffe1 d8329f
+0155eb
+3c4e9c
+83baae
+fa49b0
+1f7a7a
+test.txt
+new.txt
+test.txt
+new.txt
+test.txt
+バックアップ</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+**ブランチの原理**
+
+</code></pre></div></div>
+<p>$ find .git/refs<br />
+.git/refs 
+.git/refs/heads 
+.git/refs/tags 
+$ find .git/refs -type f<br />
+$ echo “09490bf051c34b3693dfd5c7fb63dfe27b295904” &gt; .git/refs/heads/master 
+$ git log –pretty=oneline master 
+09490bf051c34b3693dfd5c7fb63dfe27b295904 3番目のコミット 
+e946d6367f07de45cac242dca7cd002f5eaa72b1 2番目のコミット 
+d5ffe1aa4b7b089eee03dccea5e0439ad6d72037 最初のコミット 
+$ git update-ref refs/heads/master 09490bf051c34b3693dfd5c7fb63dfe27b295904 
+$ git update-ref refs/heads/test e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ git branch</p>
+<ul>
+  <li>
+    <p>master 
+test
+```</p>
+  </li>
+  <li>ポインタ参照を保存する</li>
+  <li><code class="language-plaintext highlighter-rouge">update-ref</code>、参照を変更または追加するために使用</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>3番目のコミット
+2番目のコミット
+最初のコミット
+ツリー
+ツリー
+ツリー
+“バージョン2”
+“新しいファイル”
+“バージョン1”
+09490b
+e946d6
+d5ffe1 d8329f
+0155eb
+3c4e9c
+83baae
+fa49b0
+1f7a7a
+test.txt
+new.txt
+test.txt
+new.txt
+test.txt
+bak
+refs/heads/master
+refs/heads/test
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ cat .git/HEAD 
+ref: refs/heads/master 
+$ git symbolic-ref HEAD 
+refs/heads/master 
+$ git symbolic-ref HEAD refs/heads/test 
+$ cat .git/HEAD 
+ref: refs/heads/test
+</code></pre></div></div>
+
+<p>上記のコードは、Gitのシンボリック参照（symbolic reference）を操作する例です。以下に日本語で説明します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">.git/HEAD</code> ファイルの内容を表示します。現在のブランチが <code class="language-plaintext highlighter-rouge">master</code> であることがわかります。</li>
+  <li><code class="language-plaintext highlighter-rouge">git symbolic-ref HEAD</code> コマンドを使用して、現在のHEADが指している参照を表示します。これも <code class="language-plaintext highlighter-rouge">master</code> ブランチを指しています。</li>
+  <li><code class="language-plaintext highlighter-rouge">git symbolic-ref HEAD refs/heads/test</code> コマンドを使用して、HEADを <code class="language-plaintext highlighter-rouge">test</code> ブランチに切り替えます。</li>
+  <li>再度 <code class="language-plaintext highlighter-rouge">.git/HEAD</code> ファイルの内容を表示します。HEADが <code class="language-plaintext highlighter-rouge">test</code> ブランチを指していることが確認できます。</li>
+</ol>
+
+<p>このように、<code class="language-plaintext highlighter-rouge">git symbolic-ref</code> コマンドを使用すると、HEADが指すブランチを簡単に変更することができます。</p>
+
+<p><strong>symbolic-ref</strong></p>
+
+<p><strong>タグの原理</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git update-ref refs/tags/v1.0 e946d6367f07de45cac242dca7cd002f5eaa72b1 
+$ git tag 
+v1.0 
+$ git tag -a v1.1 e946d6367f07de45cac242dca7cd002f5eaa72b1 -m 'テストタグ’ 
+$ cat .git/refs/tags/v1.1 
+2766532f03289bc5e158629a8b3faffa5f80b8b6 
+$ git cat-file -p 276653 
+object e946d6367f07de45cac242dca7cd002f5eaa72b1 
+type commit 
+tag v1.1 
+tagger lzwjava &lt;lzwjava@gmail.com&gt; 1462103203 +0800 
+テストタグ
+</code></pre></div></div>
+
+<p><strong>remotes</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add origin git@github.com:schacon/simplegit-progit.git 
+$ git push origin master 
+オブジェクトを数える: 11, 完了. 
+オブジェクトを圧縮する: 100% (5/5), 完了. 
+オブジェクトを書き込む: 100% (7/7), 716 バイト, 完了. 
+合計 7 (差分 2), 再利用 4 (差分 1) 
+To git@github.com:schacon/simplegit-progit.git 
+a11bef0..ca82a6d master -&gt; master 
+$ cat .git/refs/remotes/origin/master 
+ca82a6dff817ec66f44342007202690a93763949
+</code></pre></div></div>
+
+<ul>
+  <li>refs/remotes ディレクトリに配置される</li>
+  <li>Remotes の参照とブランチの違いは、それらが読み取り専用であること</li>
+  <li><code class="language-plaintext highlighter-rouge">git checkout</code> は可能だが、HEAD は変わらないため、commit では remotes の参照を変更できない</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ curl https://raw.githubusercontent.com/mojombo/grit/master/lib/grit/repo.rb &gt; repo.rb 
+$ git checkout master 
+$ git add repo.rb 
+$ git commit -m 'added repo.rb' 
+[master 484a592] added repo.rb 
+3 files changed, 709 insertions(+), 2 deletions(-) 
+delete mode 100644 bak/test.txt 
+create mode 100644 repo.rb 
+rewrite test.txt (100%) 
+$ git cat-file -p master^{tree} 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 repo.rb 
+100644 blob e3f094f522629ae358806b17daf78246c27c007b test.txt 
+$ git cat-file -s 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5 
+22044 
+$ echo '# testing' &gt;&gt; repo.rb 
+$ git commit -am 'modified repo a bit' 
+[master 2431da6] modified repo.rb a bit 
+1 file changed, 1 insertion(+) 
+$ git cat-file -p master^{tree} 
+100644 blob fa49b077972391ad58037050f2a75f74e3671e92 new.txt 
+100644 blob b042a60ef7dff760008df33cee372b945b6e884e repo.rb 
+100644 blob e3f094f522629ae358806b17daf78246c27c007b test.txt 
+$ git cat-file -s b042a60ef7dff760008df33cee372b945b6e884e 
+22054 
+$ git gc 
+Counting objects: 18, done. 
+Delta compression using up to 8 threads. 
+Compressing objects: 100% (14/14), done. 
+Writing objects: 100% (18/18), done. 
+Total 18 (delta 3), reused 0 (delta 0) 
+$ find .git/objects -type f 
+$ git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e30000905586.idx
+</code></pre></div></div>
+
+<p>この一連のコマンドは、Gitリポジトリ内でファイルを追加、変更、コミットし、その後Gitのガベージコレクション（<code class="language-plaintext highlighter-rouge">git gc</code>）を実行して、リポジトリ内のオブジェクトを最適化するプロセスを示しています。以下に各ステップの説明を日本語で示します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">curl</code>コマンドを使用して、<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルをリモートリポジトリからダウンロードし、ローカルに保存します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git checkout master</code>で、現在のブランチを<code class="language-plaintext highlighter-rouge">master</code>に切り替えます。</li>
+  <li><code class="language-plaintext highlighter-rouge">git add repo.rb</code>で、ダウンロードした<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルをステージングエリアに追加します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git commit -m 'added repo.rb'</code>で、<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルをコミットします。コミットメッセージは「added repo.rb」です。</li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -p master^{tree}</code>で、<code class="language-plaintext highlighter-rouge">master</code>ブランチの最新のツリーオブジェクトの内容を表示します。これにより、リポジトリ内のファイルの状態が確認できます。</li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -s 033b4468fa6b2a9547a70d88d1bbe8bf3f9ed0d5</code>で、<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルのサイズを確認します。</li>
+  <li><code class="language-plaintext highlighter-rouge">echo '# testing' &gt;&gt; repo.rb</code>で、<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルに「# testing」という行を追加します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git commit -am 'modified repo a bit'</code>で、変更をコミットします。コミットメッセージは「modified repo.rb a bit」です。</li>
+  <li>再度<code class="language-plaintext highlighter-rouge">git cat-file -p master^{tree}</code>で、変更後のツリーオブジェクトの内容を表示します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git cat-file -s b042a60ef7dff760008df33cee372b945b6e884e</code>で、変更後の<code class="language-plaintext highlighter-rouge">repo.rb</code>ファイルのサイズを確認します。</li>
+  <li><code class="language-plaintext highlighter-rouge">git gc</code>で、Gitのガベージコレクションを実行し、リポジトリ内の不要なオブジェクトを削除して最適化します。</li>
+  <li><code class="language-plaintext highlighter-rouge">find .git/objects -type f</code>で、<code class="language-plaintext highlighter-rouge">.git/objects</code>ディレクトリ内のファイルをリストアップします。</li>
+  <li><code class="language-plaintext highlighter-rouge">git verify-pack -v .git/objects/pack/pack-978e03944f5c581011e6998cd0e9e30000905586.idx</code>で、パックファイルの内容を検証します。</li>
+</ol>
+
+<p>このプロセスを通じて、Gitリポジトリ内のファイルの変更と最適化が行われます。</p>
+
+<p><strong>Refspec</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git remote add origin https://github.com/schacon/simplegit-progit 
+[remote "origin"] 
+url = https://github.com/schacon/simplegit-progit 
+fetch = +refs/heads/*:refs/remotes/origin/* 
+$ git log origin/master 
+$ git log remotes/origin/master 
+$ git log refs/remotes/origin/master 
+fetch = +refs/heads/master:refs/remotes/origin/master 
+[remote "origin"] 
+url = https://github.com/schacon/simplegit-progit 
+fetch = +refs/heads/master:refs/remotes/origin/master 
+fetch = +refs/heads/qa/*:refs/remotes/origin/qa/* 
+push = refs/heads/master:refs/heads
+</code></pre></div></div>
+
+<p>このコードは、Gitリポジトリのリモート設定と、リモートブランチのログを表示するためのコマンドを示しています。以下に各コマンドの説明を日本語で示します。</p>
+
+<ol>
+  <li><strong>リモートリポジトリの追加</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git remote add origin https://github.com/schacon/simplegit-progit
+</code></pre></div>    </div>
+    <p>このコマンドは、<code class="language-plaintext highlighter-rouge">origin</code>という名前でリモートリポジトリを追加します。リポジトリのURLは<code class="language-plaintext highlighter-rouge">https://github.com/schacon/simplegit-progit</code>です。</p>
+  </li>
+  <li><strong>リモート設定の確認</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>remote <span class="s2">"origin"</span><span class="o">]</span> 
+url <span class="o">=</span> https://github.com/schacon/simplegit-progit 
+fetch <span class="o">=</span> +refs/heads/<span class="k">*</span>:refs/remotes/origin/<span class="k">*</span>
+</code></pre></div>    </div>
+    <p>この設定は、<code class="language-plaintext highlighter-rouge">origin</code>リモートのURLとフェッチの設定を示しています。<code class="language-plaintext highlighter-rouge">fetch = +refs/heads/*:refs/remotes/origin/*</code>は、リモートのすべてのブランチをローカルの<code class="language-plaintext highlighter-rouge">refs/remotes/origin/</code>にフェッチすることを意味します。</p>
+  </li>
+  <li><strong>リモートブランチのログを表示</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git log origin/master 
+<span class="nv">$ </span>git log remotes/origin/master 
+<span class="nv">$ </span>git log refs/remotes/origin/master
+</code></pre></div>    </div>
+    <p>これらのコマンドは、<code class="language-plaintext highlighter-rouge">origin/master</code>ブランチのコミットログを表示します。<code class="language-plaintext highlighter-rouge">origin/master</code>、<code class="language-plaintext highlighter-rouge">remotes/origin/master</code>、<code class="language-plaintext highlighter-rouge">refs/remotes/origin/master</code>はすべて同じブランチを指しています。</p>
+  </li>
+  <li><strong>特定のブランチのみをフェッチする設定</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>fetch <span class="o">=</span> +refs/heads/master:refs/remotes/origin/master
+</code></pre></div>    </div>
+    <p>この設定は、リモートの<code class="language-plaintext highlighter-rouge">master</code>ブランチのみをローカルの<code class="language-plaintext highlighter-rouge">refs/remotes/origin/master</code>にフェッチすることを指定しています。</p>
+  </li>
+  <li><strong>複数のブランチをフェッチする設定</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>remote <span class="s2">"origin"</span><span class="o">]</span> 
+url <span class="o">=</span> https://github.com/schacon/simplegit-progit 
+fetch <span class="o">=</span> +refs/heads/master:refs/remotes/origin/master 
+fetch <span class="o">=</span> +refs/heads/qa/<span class="k">*</span>:refs/remotes/origin/qa/<span class="k">*</span>
+</code></pre></div>    </div>
+    <p>この設定は、<code class="language-plaintext highlighter-rouge">master</code>ブランチと<code class="language-plaintext highlighter-rouge">qa</code>ディレクトリ下のすべてのブランチをフェッチすることを指定しています。</p>
+  </li>
+  <li><strong>プッシュの設定</strong>:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>push <span class="o">=</span> refs/heads/master:refs/heads
+</code></pre></div>    </div>
+    <p>この設定は、ローカルの<code class="language-plaintext highlighter-rouge">master</code>ブランチをリモートの<code class="language-plaintext highlighter-rouge">refs/heads</code>にプッシュすることを指定しています。</p>
+  </li>
+</ol>
+
+<p>これらのコマンドと設定は、Gitリポジトリのリモート操作を管理するために使用されます。</p>
+
+<p>/qa/master</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+- `&lt;src&gt;:&lt;dst&gt;`
+- `refs/remotes` ローカルの位置
+
+</code></pre></div></div>
+<p>https://github.com/schacon/simplegit-progit
+https://github.com/schacon/simplegit-progit
+```</p>
+
+<p><strong>参考文献</strong></p>
+
+<ul>
+  <li><a href="https://git-scm.com/book">Pro Git</a></li>
+</ul>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

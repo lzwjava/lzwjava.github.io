@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Exploration de WebSocket</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Exploration de WebSocket | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Exploration de WebSocket" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o." />
+<meta property="og:description" content="Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/websocket-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/websocket-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Exploration de WebSocket" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-29T00:00:00+08:00","datePublished":"2016-05-29T00:00:00+08:00","description":"Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o.","headline":"Exploration de WebSocket","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/websocket-fr"},"url":"https://lzwjava.github.io/websocket-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Exploration de WebSocket | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2016-05-29-websocket-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2016-05-29-websocket-fr.md</span> -->
+      
+
+      <!-- <span>2016-05-29-websocket-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/websocket-en" >English</option>
+        <option value="/websocket-zh" >中文</option>
+        <option value="/websocket-ja" >日本語</option>
+        <option value="/websocket-es" >Español</option>
+        <option value="/websocket-hi" >हिंदी</option>
+        <option value="/websocket-fr" selected>Français</option>
+        <option value="/websocket-de" >Deutsch</option>
+        <option value="/websocket-ar" >العربية</option>
+        <option value="/websocket-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>Cet article de blog a été rédigé avec l’assistance de ChatGPT-4o.</em></p>
+
+<hr />
+
+<h3 id="introduction">Introduction</h3>
+<p>Bonjour à tous, je suis Li Zhiwei. En tant que fondateur et CTO de la plateforme CodeReview, ainsi qu’ancien ingénieur chez LeanCloud, j’ai une expérience approfondie dans le domaine de WebSocket, en particulier dans le développement de SDK IM.</p>
+
+<h3 id="limportance-de-websocket">L’importance de WebSocket</h3>
+<p>WebSocket est un protocole qui fournit un canal de communication full-duplex sur une seule connexion TCP. Il est largement utilisé dans les applications modernes nécessitant des interactions en temps réel, telles que la messagerie instantanée, les commentaires en temps réel, les jeux multijoueurs, l’édition collaborative et les cours boursiers en temps réel.</p>
+
+<h3 id="applications-modernes-de-websocket">Applications modernes de WebSocket</h3>
+<p>WebSocket est largement utilisé dans les domaines suivants :</p>
+<ul>
+  <li><strong>Messagerie instantanée (IM)</strong></li>
+  <li><strong>Commentaires en temps réel</strong></li>
+  <li><strong>Jeux multijoueurs</strong></li>
+  <li><strong>Édition collaborative</strong></li>
+  <li><strong>Prix des actions en temps réel</strong></li>
+</ul>
+
+<h3 id="lévolution-de-websocket">L’évolution de WebSocket</h3>
+<p><strong>Polling :</strong> Le client demande fréquemment des mises à jour au serveur.
+<strong>Long polling :</strong> Le serveur maintient la requête ouverte jusqu’à ce que de nouvelles informations soient disponibles.
+<strong>Connexion bidirectionnelle HTTP :</strong> Nécessite plusieurs connexions pour l’envoi et la réception, et chaque requête contient des en-têtes HTTP.
+<strong>Connexion TCP unique (WebSocket) :</strong> Surmonte les limitations de la connexion bidirectionnelle HTTP, offrant une meilleure capacité en temps réel et une latence plus faible.</p>
+
+<h3 id="implémentation-de-websocket-sur-ios">Implémentation de WebSocket sur iOS</h3>
+
+<p><strong>Bibliothèques WebSocket populaires pour iOS :</strong></p>
+<ul>
+  <li><strong>SocketRocket (Objective-C, 4910 étoiles)</strong></li>
+  <li><strong>Starscream (Swift, 1714 étoiles)</strong></li>
+  <li><strong>SwiftWebSocket (Swift, 435 étoiles)</strong></li>
+</ul>
+
+<h3 id="utilisation-de-srwebsocket">Utilisation de SRWebSocket</h3>
+
+<ol>
+  <li><strong>Initialisation et Connexion :</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SRWebSocket</span> <span class="o">*</span><span class="n">webSocket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SRWebSocket</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithURLRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"ws://echo.websocket.org"</span><span class="p">]]];</span>
+<span class="n">webSocket</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">[</span><span class="n">webSocket</span> <span class="nf">open</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Envoyer un message :</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">webSocket</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Hello, World!"</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Réception des messages :</strong>
+Implémentez les méthodes du protocole <code class="language-plaintext highlighter-rouge">SRWebSocketDelegate</code> pour gérer les messages entrants et les événements.</p>
+  </li>
+  <li><strong>Gestion des erreurs et notifications d’événements :</strong>
+Gérez correctement les erreurs et informez les utilisateurs des problèmes de connexion.</li>
+</ol>
+
+<h3 id="explication-détaillée-du-protocole-websocket">Explication détaillée du protocole WebSocket</h3>
+
+<p>Le protocole WebSocket est un protocole de communication bidirectionnelle qui permet une interaction en temps réel entre un client et un serveur. Contrairement à HTTP, qui est basé sur un modèle requête-réponse, WebSocket établit une connexion persistante entre le client et le serveur, permettant ainsi l’échange de données en temps réel sans avoir à renouveler la connexion à chaque requête.</p>
+
+<h4 id="fonctionnement-de-websocket">Fonctionnement de WebSocket</h4>
+
+<ol>
+  <li>
+    <p><strong>Établissement de la connexion (Handshake)</strong><br />
+La connexion WebSocket commence par un handshake HTTP. Le client envoie une requête HTTP spéciale au serveur, demandant une mise à niveau vers le protocole WebSocket. Cette requête contient des en-têtes spécifiques, tels que <code class="language-plaintext highlighter-rouge">Upgrade: websocket</code> et <code class="language-plaintext highlighter-rouge">Connection: Upgrade</code>, ainsi qu’une clé secrète générée par le client.</p>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+
+    <p>Le serveur répond avec une réponse HTTP 101 (Switching Protocols) et fournit une clé de réponse calculée à partir de la clé du client.</p>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Communication bidirectionnelle</strong><br />
+Une fois la connexion établie, le client et le serveur peuvent échanger des messages en temps réel. Les messages peuvent être de type texte ou binaire, et sont encapsulés dans des trames WebSocket.</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Exemple de code client WebSocket en JavaScript</span>
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://example.com/chat</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connexion WebSocket établie</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Server!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Message reçu du serveur : </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connexion WebSocket fermée</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>Fermeture de la connexion</strong><br />
+La connexion WebSocket peut être fermée par l’un des deux côtés (client ou serveur) en envoyant une trame de fermeture. Une fois la connexion fermée, aucune donnée ne peut plus être échangée.</p>
+
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// Fermeture de la connexion côté client</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nf">close</span><span class="p">();</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="avantages-de-websocket">Avantages de WebSocket</h4>
+
+<ul>
+  <li><strong>Communication en temps réel</strong> : WebSocket permet une communication en temps réel entre le client et le serveur, ce qui est idéal pour les applications comme les chats, les jeux en ligne, ou les tableaux de bord en temps réel.</li>
+  <li><strong>Réduction de la latence</strong> : Contrairement à HTTP, où chaque requête nécessite une nouvelle connexion, WebSocket maintient une connexion persistante, réduisant ainsi la latence.</li>
+  <li><strong>Efficacité</strong> : WebSocket utilise moins de bande passante et de ressources système par rapport à des techniques comme le polling ou le long polling.</li>
+</ul>
+
+<h4 id="cas-dutilisation-courants">Cas d’utilisation courants</h4>
+
+<ul>
+  <li><strong>Chats en ligne</strong> : Les applications de chat utilisent souvent WebSocket pour permettre aux utilisateurs de communiquer en temps réel.</li>
+  <li><strong>Jeux en ligne</strong> : Les jeux multijoueurs en temps réel peuvent utiliser WebSocket pour synchroniser les actions des joueurs.</li>
+  <li><strong>Notifications en temps réel</strong> : Les applications qui nécessitent des notifications instantanées, comme les réseaux sociaux, peuvent utiliser WebSocket pour informer les utilisateurs de nouveaux messages ou événements.</li>
+</ul>
+
+<p>En résumé, WebSocket est un protocole puissant pour les applications nécessitant une communication en temps réel entre le client et le serveur. Sa capacité à maintenir une connexion persistante et à réduire la latence en fait un choix privilégié pour de nombreuses applications modernes.</p>
+
+<p>WebSocket fonctionne sur TCP et introduit plusieurs améliorations :</p>
+<ul>
+  <li><strong>Modèle de sécurité :</strong> Ajoute un modèle de vérification de sécurité basé sur l’origine du navigateur.</li>
+  <li><strong>Adressage et nommage des protocoles :</strong> Prend en charge plusieurs services sur un seul port et plusieurs domaines sur une seule adresse IP.</li>
+  <li><strong>Mécanisme de trames :</strong> Améliore TCP avec un mécanisme de trames similaire aux paquets IP, sans limite de longueur.</li>
+  <li><strong>Poignée de main de fermeture :</strong> Assure une fermeture propre de la connexion.</li>
+</ul>
+
+<h3 id="le-cœur-du-protocole-websocket">Le cœur du protocole WebSocket</h3>
+
+<p><strong>1. Poignée de main :</strong>
+   La poignée de main WebSocket utilise le mécanisme de mise à niveau HTTP :</p>
+<ul>
+  <li><strong>Requête du client :</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Origin</span><span class="p">:</span> <span class="s">http://example.com</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat, superchat</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Réponse du serveur :</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. Transfert de données :</strong><br />
+   Les trames WebSocket peuvent contenir du texte UTF-8, des données binaires et des trames de contrôle telles que la fermeture, le ping et le pong.</p>
+
+<p><strong>3. Sécurité :</strong>
+   Le navigateur ajoute automatiquement l’en-tête Origin, qui ne peut pas être falsifié par d’autres clients.</p>
+
+<h3 id="uri-websocket">URI WebSocket</h3>
+
+<ul>
+  <li><strong>ws-URI :</strong> <code class="language-plaintext highlighter-rouge">ws://host:port/path?query</code></li>
+  <li><strong>wss-URI :</strong> <code class="language-plaintext highlighter-rouge">wss://host:port/path?query</code></li>
+</ul>
+
+<h3 id="protocole-de-trames-websocket">Protocole de trames WebSocket</h3>
+
+<p><strong>Structure de la trame :</strong></p>
+<ul>
+  <li><strong>FIN (1 bit) :</strong> Indique qu’il s’agit du dernier fragment du message.</li>
+  <li><strong>RSV1, RSV2, RSV3 (1 bit chacun) :</strong> Réservés pour une utilisation future.</li>
+  <li><strong>Opcode (4 bits) :</strong> Définit la manière dont les données de la charge utile doivent être interprétées.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0x0 :</code> Trame de continuation</li>
+      <li><code class="language-plaintext highlighter-rouge">0x1 :</code> Trame de texte</li>
+      <li><code class="language-plaintext highlighter-rouge">0x2 :</code> Trame binaire</li>
+      <li><code class="language-plaintext highlighter-rouge">0x8 :</code> Fermeture de la connexion</li>
+      <li><code class="language-plaintext highlighter-rouge">0x9 :</code> Ping</li>
+      <li><code class="language-plaintext highlighter-rouge">0xA :</code> Pong</li>
+    </ul>
+  </li>
+  <li><strong>Mask (1 bit) :</strong> Indique si les données de la charge utile sont masquées.</li>
+  <li><strong>Longueur de la charge utile (7 bits) :</strong> Longueur des données de la charge utile.</li>
+</ul>
+
+<p><strong>Clé de masquage :</strong> Utilisée pour empêcher les attaques de type “man-in-the-middle” en masquant les trames du client.</p>
+
+<h3 id="fermeture-de-la-poignée-de-main">Fermeture de la poignée de main</h3>
+
+<p><strong>Fermeture de la trame :</strong></p>
+<ul>
+  <li>Peut inclure un corps indiquant la raison de la fermeture.</li>
+  <li>Les deux parties doivent envoyer et répondre à la trame de fermeture.</li>
+</ul>
+
+<h3 id="exemple">Exemple</h3>
+
+<p><strong>Exemple 1 : Message texte non masqué sur une seule trame</strong></p>
+<pre><code class="language-hex">0x81 0x05 0x48 0x65 0x6c 0x6c 0x6f
+</code></pre>
+<p>Contient “Hello”</p>
+
+<p><strong>Exemple 2 : Message texte masqué sur une seule trame</strong></p>
+<pre><code class="language-hex">0x81 0x85 0x37 0xfa 0x21 0x3d 0x7f 0x9f 0x4d 0x51 0x58
+</code></pre>
+<p>Contient “Hello”, avec une clé de masquage</p>
+
+<p><strong>Exemple 3 : Message texte fragmenté non masqué</strong></p>
+<pre><code class="language-hex">0x01 0x03 0x48 0x65 0x6c
+0x80 0x02 0x6c 0x6f
+</code></pre>
+<p>Les fragments contiennent deux trames : “Hel” et “lo”.</p>
+
+<h3 id="sujets-avancés">Sujets avancés</h3>
+
+<p><strong>Masquage et Démasquage :</strong></p>
+<ul>
+  <li>Le masquage est utilisé pour prévenir les attaques de type “man-in-the-middle”.</li>
+  <li>Chaque trame provenant du client doit être masquée.</li>
+  <li>La clé de masquage pour chaque trame est choisie de manière aléatoire.</li>
+</ul>
+
+<p><strong>Fragmentation :</strong></p>
+<ul>
+  <li>Utilisé pour envoyer des données de longueur inconnue.</li>
+  <li>Un message fragmenté commence par une trame avec FIN à 0 et se termine par une trame avec FIN à 1.</li>
+</ul>
+
+<p><strong>Frames de contrôle :</strong></p>
+<ul>
+  <li>Les frames de contrôle (comme close, ping et pong) ont des codes d’opération spécifiques.</li>
+  <li>Ces frames sont utilisées pour gérer l’état de la connexion WebSocket.</li>
+</ul>
+
+<h3 id="extensibilité">Extensibilité</h3>
+
+<p><strong>Les données d’extension peuvent être placées avant les données d’application dans le corps du message :</strong></p>
+<ul>
+  <li>Les bits réservés peuvent contrôler chaque frame.</li>
+  <li>Certains codes d’opération sont réservés pour des définitions futures.</li>
+  <li>Si davantage de codes d’opération sont nécessaires, les bits réservés peuvent être utilisés.</li>
+</ul>
+
+<p><strong>Envoi :</strong></p>
+<ul>
+  <li>Il est impératif de s’assurer que la connexion est en état OPEN.</li>
+  <li>Les données sont encapsulées dans des trames, et en cas de données trop volumineuses, il est possible de choisir de les envoyer en fragments.</li>
+  <li>La valeur de la première trame doit être correcte, informant le récepteur du type de données (texte ou binaire).</li>
+  <li>Le FIN de la dernière trame doit être défini à 1.</li>
+</ul>
+
+<p><strong>Fermeture de la poignée de main :</strong></p>
+<ul>
+  <li>Les deux parties peuvent envoyer une trame de fermeture.</li>
+  <li>Après l’envoi de la trame de fermeture, aucune donnée supplémentaire ne doit être envoyée.</li>
+  <li>Après avoir reçu une trame de fermeture, toute donnée reçue par la suite doit être ignorée.</li>
+</ul>
+
+<p><strong>Fermeture de la connexion :</strong></p>
+<ul>
+  <li>Fermer la connexion WebSocket signifie fermer la connexion TCP sous-jacente.</li>
+  <li>Après l’envoi ou la réception d’une trame de fermeture, l’état de la connexion WebSocket passe à “en cours de fermeture”.</li>
+  <li>Lorsque la connexion TCP sous-jacente est fermée, l’état de la connexion WebSocket devient “fermée”.</li>
+</ul>
+
+<h3 id="références">Références</h3>
+
+<ul>
+  <li>WebSocket RFC : <a href="https://tools.ietf.org/html/rfc6455">RFC6455</a></li>
+  <li>Zhihu《WebSocket 是什么原理？》：<a href="https://www.zhihu.com/question/20215561">Lien Zhihu</a></li>
+  <li>SocketRocket: <a href="https://github.com/square/SocketRocket">Lien GitHub</a></li>
+</ul>
+
+<h3 id="remerciements">Remerciements</h3>
+
+<p>Merci à tous pour votre attention. Si vous avez d’autres questions ou souhaitez discuter, n’hésitez pas à me contacter sur GitHub ou Weibo.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

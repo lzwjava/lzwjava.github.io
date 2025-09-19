@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>WebSocketの探求</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>WebSocketの探求 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="WebSocketの探求" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="このブログ記事は、ChatGPT-4oの協力を得て整理されました。" />
+<meta property="og:description" content="このブログ記事は、ChatGPT-4oの協力を得て整理されました。" />
+<link rel="canonical" href="https://lzwjava.github.io/websocket-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/websocket-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="WebSocketの探求" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-29T00:00:00+08:00","datePublished":"2016-05-29T00:00:00+08:00","description":"このブログ記事は、ChatGPT-4oの協力を得て整理されました。","headline":"WebSocketの探求","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/websocket-ja"},"url":"https://lzwjava.github.io/websocket-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       WebSocketの探求 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2016-05-29-websocket-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2016-05-29-websocket-ja.md</span> -->
+      
+
+      <!-- <span>2016-05-29-websocket-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/websocket-en" >English</option>
+        <option value="/websocket-zh" >中文</option>
+        <option value="/websocket-ja" selected>日本語</option>
+        <option value="/websocket-es" >Español</option>
+        <option value="/websocket-hi" >हिंदी</option>
+        <option value="/websocket-fr" >Français</option>
+        <option value="/websocket-de" >Deutsch</option>
+        <option value="/websocket-ar" >العربية</option>
+        <option value="/websocket-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>このブログ記事は、ChatGPT-4oの協力を得て整理されました。</em></p>
+
+<hr />
+
+<h3 id="紹介">紹介</h3>
+<p>こんにちは、私は李智維です。CodeReviewプラットフォームの創設者兼CTO、そして元LeanCloudエンジニアとして、WebSocketに関して豊富な経験を持っています。特にIM SDKの開発プロセスにおいて深い知識を持っています。</p>
+
+<h3 id="websocketの重要性">WebSocketの重要性</h3>
+<p>WebSocketは、単一のTCP接続上で全二重通信チャネルを提供するプロトコルです。これは、インスタントメッセージング、リアルタイムコメント、マルチプレイヤーゲーム、共同編集、リアルタイム株価など、リアルタイムのインタラクションを必要とする現代のアプリケーションで広く使用されています。</p>
+
+<h3 id="websocketの現代的な応用">WebSocketの現代的な応用</h3>
+<p>WebSocketは以下の分野で広く利用されています：</p>
+<ul>
+  <li><strong>インスタントメッセージング（IM）</strong></li>
+  <li><strong>リアルタイムコメント</strong></li>
+  <li><strong>マルチプレイヤーゲーム</strong></li>
+  <li><strong>共同編集</strong></li>
+  <li><strong>リアルタイム株価</strong></li>
+</ul>
+
+<h3 id="websocketの進化">WebSocketの進化</h3>
+<p><strong>ポーリング：</strong> クライアントが頻繁にサーバーにリクエストを送り、更新を取得します。
+<strong>ロングポーリング：</strong> サーバーはリクエストを開いたままにし、新しい情報が利用可能になるまで待機します。
+<strong>HTTP双方向接続：</strong> 送信と受信のために複数の接続が必要で、各リクエストにはHTTPヘッダーが含まれます。
+<strong>単一TCP接続（WebSocket）：</strong> HTTP双方向接続の制限を克服し、より高いリアルタイム性と低遅延を提供します。</p>
+
+<h3 id="iosでwebsocketを実装する">iOSでWebSocketを実装する</h3>
+
+<p><strong>人気のiOS WebSocketライブラリ：</strong></p>
+<ul>
+  <li><strong>SocketRocket（Objective-C，4910 Stars）</strong></li>
+  <li><strong>Starscream（Swift，1714 Stars）</strong></li>
+  <li><strong>SwiftWebSocket（Swift，435 Stars）</strong></li>
+</ul>
+
+<h3 id="srwebsocketの使用">SRWebSocketの使用</h3>
+
+<ol>
+  <li><strong>初期化と接続：</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SRWebSocket</span> <span class="o">*</span><span class="n">webSocket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SRWebSocket</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithURLRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"ws://echo.websocket.org"</span><span class="p">]]];</span>
+<span class="n">webSocket</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">[</span><span class="n">webSocket</span> <span class="nf">open</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>メッセージの送信：</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">webSocket</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Hello, World!"</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>メッセージの受信：</strong>
+<code class="language-plaintext highlighter-rouge">SRWebSocketDelegate</code>メソッドを実装して、受信したメッセージやイベントを処理します。</p>
+  </li>
+  <li><strong>エラー処理とイベント通知：</strong>
+適切にエラーを処理し、接続問題をユーザーに通知します。</li>
+</ol>
+
+<h3 id="websocketプロトコルの詳細な解説">WebSocketプロトコルの詳細な解説</h3>
+
+<p>WebSocketはTCP上で動作し、いくつかの機能強化が導入されています：</p>
+<ul>
+  <li><strong>セキュリティモデル：</strong> ブラウザベースのオリジンセキュリティ検証モデルが追加されました。</li>
+  <li><strong>アドレスとプロトコルの命名：</strong> 単一のポート上での複数のサービスと、単一のIPアドレス上での複数のドメイン名をサポートします。</li>
+  <li><strong>フレームメカニズム：</strong> IPパケットに似たフレームメカニズムによりTCPを強化し、長さの制限がありません。</li>
+  <li><strong>クローズハンドシェイク：</strong> 接続のクリーンな終了を保証します。</li>
+</ul>
+
+<h3 id="websocketプロトコルの核心">WebSocketプロトコルの核心</h3>
+
+<p><strong>1. ハンドシェイク：</strong>
+   WebSocketのハンドシェイクはHTTPのアップグレードメカニズムを使用します：</p>
+<ul>
+  <li><strong>クライアントリクエスト：</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Origin</span><span class="p">:</span> <span class="s">http://example.com</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat, superchat</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>サーバー応答：</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. データ転送：</strong>
+   WebSocketフレームには、UTF-8テキスト、バイナリデータ、およびクローズ、ping、pongなどの制御フレームを含めることができます。</p>
+
+<p><strong>3. 安全性：</strong>
+   ブラウザは自動的にOriginヘッダーを追加しますが、これは他のクライアントによって偽造されることはありません。</p>
+
+<h3 id="websocket-uri">WebSocket URI</h3>
+
+<ul>
+  <li><strong>ws-URI：</strong> <code class="language-plaintext highlighter-rouge">ws://host:port/path?query</code></li>
+  <li><strong>wss-URI：</strong> <code class="language-plaintext highlighter-rouge">wss://host:port/path?query</code></li>
+</ul>
+
+<h3 id="websocketフレームプロトコル">WebSocketフレームプロトコル</h3>
+
+<p><strong>フレーム構造：</strong></p>
+<ul>
+  <li><strong>FIN（1ビット）：</strong> これがメッセージの最後のフラグメントであることを示します。</li>
+  <li><strong>RSV1, RSV2, RSV3（各1ビット）：</strong> 将来の使用のために予約されています。</li>
+  <li><strong>Opcode（4ビット）：</strong> ペイロードデータの解析方法を定義します。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0x0：</code> 継続フレーム</li>
+      <li><code class="language-plaintext highlighter-rouge">0x1：</code> テキストフレーム</li>
+      <li><code class="language-plaintext highlighter-rouge">0x2：</code> バイナリフレーム</li>
+      <li><code class="language-plaintext highlighter-rouge">0x8：</code> 接続終了</li>
+      <li><code class="language-plaintext highlighter-rouge">0x9：</code> ping</li>
+      <li><code class="language-plaintext highlighter-rouge">0xA：</code> pong</li>
+    </ul>
+  </li>
+  <li><strong>Mask（1ビット）：</strong> ペイロードデータがマスクされているかどうかを示します。</li>
+  <li><strong>ペイロード長（7ビット）：</strong> ペイロードデータの長さ。</li>
+</ul>
+
+<p><strong>マスキングキー:</strong> クライアントのフレームをマスクすることで、中間者攻撃を防ぐために使用されます。</p>
+
+<h3 id="クローズハンドシェイク">クローズハンドシェイク</h3>
+
+<p><strong>クローズフレーム:</strong></p>
+<ul>
+  <li>クローズの理由を示すボディを含むことができます。</li>
+  <li>両者はクローズフレームを送信し、応答する必要があります。</li>
+</ul>
+
+<h3 id="サンプル">サンプル</h3>
+
+<p><strong>例1：単一フレームのマスクなしテキストメッセージ</strong></p>
+<pre><code class="language-hex">0x81 0x05 0x48 0x65 0x6c 0x6c 0x6f
+</code></pre>
+<p>「Hello」を含む</p>
+
+<p><strong>例2：単一フレームのマスク付きテキストメッセージ</strong></p>
+<pre><code class="language-hex">0x81 0x85 0x37 0xfa 0x21 0x3d 0x7f 0x9f 0x4d 0x51 0x58
+</code></pre>
+<p>“Hello”を含み、マスクキーが付いています。</p>
+
+<p><strong>例3：分割された非マスクテキストメッセージ</strong></p>
+<pre><code class="language-hex">0x01 0x03 0x48 0x65 0x6c
+0x80 0x02 0x6c 0x6f
+</code></pre>
+<p>この分割メッセージは、「Hel」と「lo」の2つのフレームで構成されています。</p>
+
+<h3 id="上級トピック">上級トピック</h3>
+
+<p><strong>マスキングとアンマスキング：</strong></p>
+<ul>
+  <li>マスキングは中間者攻撃を防ぐために使用されます。</li>
+  <li>クライアントからの各フレームはマスクされなければなりません。</li>
+  <li>各フレームのマスクキーはランダムに選択されます。</li>
+</ul>
+
+<p><strong>フラグメンテーション（分片）：</strong></p>
+<ul>
+  <li>未知の長さのデータを送信するために使用されます。</li>
+  <li>フラグメント化されたメッセージは、FINが0のフレームから始まり、FINが1のフレームで終わります。</li>
+</ul>
+
+<p><strong>制御フレーム：</strong></p>
+<ul>
+  <li>制御フレーム（例：クローズ、ping、pong）には特定のオペコードがあります。</li>
+  <li>これらのフレームは、WebSocket接続の状態を管理するために使用されます。</li>
+</ul>
+
+<h3 id="拡張性">拡張性</h3>
+
+<p><strong>拡張データはメッセージボディのアプリケーションデータの前に配置できます：</strong></p>
+<ul>
+  <li>予約ビットを使用して各フレームを制御できます。</li>
+  <li>将来の定義のためにいくつかのオペコードを予約できます。</li>
+  <li>さらに多くのオペコードが必要な場合、予約ビットを使用できます。</li>
+</ul>
+
+<p><strong>送信：</strong></p>
+<ul>
+  <li>接続がOPEN状態であることを確認する必要があります。</li>
+  <li>データはフレームにカプセル化され、データが大きすぎる場合は分割して送信することができます。</li>
+  <li>最初のフレームの値は正しく設定し、受信側にデータのタイプ（テキストまたはバイナリ）を通知する必要があります。</li>
+  <li>最後のフレームのFINは1に設定する必要があります。</li>
+</ul>
+
+<p><strong>クローズハンドシェイク:</strong></p>
+<ul>
+  <li>両方の当事者がクローズフレームを送信できます。</li>
+  <li>クローズフレームを送信した後、それ以上のデータを送信しません。</li>
+  <li>クローズフレームを受信した後、それ以降に受信したデータは破棄します。</li>
+</ul>
+
+<p><strong>接続のクローズ：</strong></p>
+<ul>
+  <li>WebSocket接続を閉じることは、基盤となるTCP接続を閉じることを意味します。</li>
+  <li>クローズフレームを送信または受信した後、WebSocket接続の状態は「クローズ中」になります。</li>
+  <li>基盤となるTCP接続が閉じられると、WebSocket接続の状態は「クローズ済み」になります。</li>
+</ul>
+
+<h3 id="参考資料">参考資料</h3>
+
+<ul>
+  <li>WebSocket RFC : <a href="https://tools.ietf.org/html/rfc6455">RFC6455</a></li>
+  <li>知乎《WebSocket 是什么原理？》：<a href="https://www.zhihu.com/question/20215561">知乎リンク</a></li>
+  <li>SocketRocket: <a href="https://github.com/square/SocketRocket">GitHubリンク</a></li>
+</ul>
+
+<h3 id="謝辞">謝辞</h3>
+<p>皆さんのご関心に感謝します。もしさらに質問や議論があれば、GitHubやWeiboで私と交流してください。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

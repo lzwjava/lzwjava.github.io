@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>使用AI建構SQL查詢</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>使用AI建構SQL查詢 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="使用AI建構SQL查詢" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="資料庫架構 (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );" />
+<meta property="og:description" content="資料庫架構 (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );" />
+<link rel="canonical" href="https://lzwjava.github.io/ai-sql-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/ai-sql-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="使用AI建構SQL查詢" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-07-14T00:00:00+08:00","datePublished":"2025-07-14T00:00:00+08:00","description":"資料庫架構 (PostgreSQL): CREATE TABLE users ( id SERIAL PRIMARY KEY, username VARCHAR(50) UNIQUE NOT NULL, email VARCHAR(255) UNIQUE NOT NULL, password_hash VARCHAR(255) NOT NULL, first_name VARCHAR(100), last_name VARCHAR(100), date_of_birth DATE, gender VARCHAR(10), phone_number VARCHAR(20), address TEXT, city VARCHAR(100), state VARCHAR(100), country VARCHAR(100), zip_code VARCHAR(20), created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP WITH TIME ZONE, last_login TIMESTAMP WITH TIME ZONE, is_active BOOLEAN DEFAULT TRUE, role VARCHAR(50), profile_picture_url VARCHAR(255), bio TEXT, failed_login_attempts INTEGER DEFAULT 0, account_balance NUMERIC(10, 2) DEFAULT 0.00 );","headline":"使用AI建構SQL查詢","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ai-sql-hant"},"url":"https://lzwjava.github.io/ai-sql-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       使用AI建構SQL查詢 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2025-07-14-ai-sql-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2025-07-14-ai-sql-hant.md</span> -->
+      
+
+      <!-- <span>2025-07-14-ai-sql-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ai-sql-en" >English</option>
+        <option value="/ai-sql-zh" >中文</option>
+        <option value="/ai-sql-ja" >日本語</option>
+        <option value="/ai-sql-es" >Español</option>
+        <option value="/ai-sql-hi" >हिंदी</option>
+        <option value="/ai-sql-fr" >Français</option>
+        <option value="/ai-sql-de" >Deutsch</option>
+        <option value="/ai-sql-ar" >العربية</option>
+        <option value="/ai-sql-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><strong>資料庫架構 (PostgreSQL):</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">users</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">username</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">email</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">UNIQUE</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">password_hash</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">first_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">last_name</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">date_of_birth</span> <span class="nb">DATE</span><span class="p">,</span>
+    <span class="n">gender</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+    <span class="n">phone_number</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">address</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">city</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="k">state</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">country</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">zip_code</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+    <span class="n">created_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">updated_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">last_login</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">is_active</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">TRUE</span><span class="p">,</span>
+    <span class="k">role</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">),</span>
+    <span class="n">profile_picture_url</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">bio</span> <span class="nb">TEXT</span><span class="p">,</span>
+    <span class="n">failed_login_attempts</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">account_balance</span> <span class="nb">NUMERIC</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">.</span><span class="mi">00</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>以上是 Postgre 資料庫，以下是表格定義。以下是自然語言查詢指示。</p>
+
+<p>我要查詢一些用戶，其名字是 Andy，創建時間在上個月的某一天，且在 2025 年時年齡為 20 歲，並且最近一週有登入過，請給我查詢這些用戶的 SQL 語句。</p>
+
+<hr />
+
+<p><strong>生成的 SQL 查詢：</strong></p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">users</span>
+<span class="k">WHERE</span> <span class="n">first_name</span> <span class="k">ILIKE</span> <span class="s1">'andy'</span>
+  <span class="k">AND</span> <span class="k">CAST</span><span class="p">(</span><span class="n">created_at</span> <span class="k">AS</span> <span class="nb">DATE</span><span class="p">)</span> <span class="k">BETWEEN</span>
+      <span class="p">(</span><span class="k">CURRENT_DATE</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 MONTH'</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 DAY'</span><span class="p">)</span>
+      <span class="k">AND</span>
+      <span class="p">(</span><span class="k">CURRENT_DATE</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'1 MONTH'</span> <span class="o">+</span> <span class="n">INTERVAL</span> <span class="s1">'1 DAY'</span><span class="p">)</span>
+  <span class="k">AND</span> <span class="k">EXTRACT</span><span class="p">(</span><span class="nb">YEAR</span> <span class="k">FROM</span> <span class="n">AGE</span><span class="p">(</span><span class="n">date_of_birth</span><span class="p">))</span> <span class="o">=</span> <span class="mi">20</span>
+  <span class="k">AND</span> <span class="n">last_login</span> <span class="o">&gt;=</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'7 DAYS'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>以下是一個 PostgreSQL 表格定義，用於儲存用戶與類似 Grok 的 AI 系統的互動。該表格旨在追蹤對話，包括涉及的用戶、對話內容、時間戳記和相關元數據。</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">conversations</span> <span class="p">(</span>
+    <span class="n">id</span> <span class="nb">SERIAL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span>
+    <span class="n">user_id</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
+    <span class="n">conversation_type</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">'chat'</span><span class="p">,</span>
+    <span class="n">started_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">ended_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">status</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="s1">'active'</span><span class="p">,</span>
+    <span class="n">message_count</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">last_message_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="n">is_archived</span> <span class="nb">BOOLEAN</span> <span class="k">DEFAULT</span> <span class="k">FALSE</span><span class="p">,</span>
+    <span class="n">ai_model_version</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
+    <span class="n">total_tokens_used</span> <span class="nb">INTEGER</span> <span class="k">DEFAULT</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">created_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span> <span class="k">DEFAULT</span> <span class="k">CURRENT_TIMESTAMP</span><span class="p">,</span>
+    <span class="n">updated_at</span> <span class="nb">TIMESTAMP</span> <span class="k">WITH</span> <span class="nb">TIME</span> <span class="k">ZONE</span><span class="p">,</span>
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">user_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">users</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+<span class="p">);</span>
+</code></pre></div></div>
+
+<h3 id="說明">說明：</h3>
+<ul>
+  <li><strong>id</strong>：每個對話的唯一標識符。</li>
+  <li><strong>user_id</strong>：引用 <code class="language-plaintext highlighter-rouge">users</code> 表格，將對話與特定用戶連結。</li>
+  <li><strong>title</strong>：對話的可選標題（例如用戶自定義或自動生成的摘要）。</li>
+  <li><strong>conversation_type</strong>：指示對話類型（例如 ‘chat’、’query’、’voice’）。</li>
+  <li><strong>started_at</strong>：對話開始的時間戳記。</li>
+  <li><strong>ended_at</strong>：對話結束的時間戳記（如果進行中則為可空）。</li>
+  <li><strong>status</strong>：追蹤對話狀態（例如 ‘active’、’completed’、’paused’）。</li>
+  <li><strong>message_count</strong>：追蹤對話中交換的訊息數量。</li>
+  <li><strong>last_message_at</strong>：最新訊息的時間戳記。</li>
+  <li><strong>is_archived</strong>：布林值，表示對話是否已歸檔。</li>
+  <li><strong>ai_model_version</strong>：儲存使用的 AI 模型版本（例如 ‘Grok 3’）。</li>
+  <li><strong>total_tokens_used</strong>：追蹤對話的代幣使用量（對 API 計費或分析有用）。</li>
+  <li><strong>created_at</strong> 和 <strong>updated_at</strong>：對話記錄創建和最後更新的時間戳記。</li>
+  <li><strong>FOREIGN KEY</strong>：確保與 <code class="language-plaintext highlighter-rouge">users</code> 表格的參照完整性，並使用 <code class="language-plaintext highlighter-rouge">ON DELETE CASCADE</code> 在關聯用戶被刪除時刪除對話。</li>
+</ul>
+
+<p>此表格設計靈活，可根據特定需求擴展，例如在單獨的 <code class="language-plaintext highlighter-rouge">messages</code> 表格中儲存個別訊息，或添加用於情感分析或對話標籤的欄位。請告訴我如果需要相關表格（例如用於訊息的表格）或與此表格互動的查詢！</p>
+
+<hr />
+
+<p>為了實現一個前端，讓用戶可以使用自然語言查詢自己的對話（例如 “給我最新的 5 個對話” 或 “標題包含 java 字詞的對話”），您需要確保 SQL 查詢僅限於過濾到已驗證用戶的對話。這涉及將用戶身份（例如 <code class="language-plaintext highlighter-rouge">user_id</code>）納入查詢並將自然語言轉換為 SQL 條件。以下是針對 <code class="language-plaintext highlighter-rouge">conversations</code> 表格的提示和對應的 SQL 查詢，確保用戶只能訪問自己的數據。</p>
+
+<h3 id="關鍵考量">關鍵考量</h3>
+<ul>
+  <li><strong>用戶驗證</strong>：前端必須將已驗證的 <code class="language-plaintext highlighter-rouge">user_id</code> 傳遞給後端，以過濾對話。</li>
+  <li><strong>自然語言解析</strong>：自然語言輸入被解析以識別關鍵條件（例如 “最新 5” 或 “標題有 java 字詞”）。</li>
+  <li><strong>安全性</strong>：始終過濾 <code class="language-plaintext highlighter-rouge">user_id</code> 以防止用戶訪問他人的對話。</li>
+  <li><strong>表格參考</strong>：使用前面定義的 <code class="language-plaintext highlighter-rouge">conversations</code> 表格。</li>
+</ul>
+
+<h3 id="自然語言提示和-sql-查詢">自然語言提示和 SQL 查詢</h3>
+
+<h4 id="提示-1給我最新的-5-個對話">提示 1：”給我最新的 5 個對話”</h4>
+<p><strong>解析需求</strong>：</p>
+<ul>
+  <li>過濾對話以符合已驗證用戶的 <code class="language-plaintext highlighter-rouge">user_id</code>。</li>
+  <li>按 <code class="language-plaintext highlighter-rouge">started_at</code>（或 <code class="language-plaintext highlighter-rouge">last_message_at</code> 以獲取最新）降序排序。</li>
+  <li>限制為 5 個結果。</li>
+</ul>
+
+<p><strong>SQL 查詢</strong>：</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">started_at</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:authenticated_user_id</code> 是登入用戶 ID 的占位符，安全地從前端/後端傳遞。</li>
+  <li><code class="language-plaintext highlighter-rouge">started_at DESC</code> 確保返回最新的對話。</li>
+  <li><code class="language-plaintext highlighter-rouge">LIMIT 5</code> 將輸出限制為 5 個對話。</li>
+</ul>
+
+<h4 id="提示-2標題包含-java-字詞的對話">提示 2：”標題包含 java 字詞的對話”</h4>
+<p><strong>解析需求</strong>：</p>
+<ul>
+  <li>過濾對話以符合已驗證用戶的 <code class="language-plaintext highlighter-rouge">user_id</code>。</li>
+  <li>搜索標題中包含 “java” 的對話（不區分大小寫）。</li>
+  <li>在 PostgreSQL 中使用 <code class="language-plaintext highlighter-rouge">ILIKE</code> 進行部分、不區分大小寫的匹配。</li>
+</ul>
+
+<p><strong>SQL 查詢</strong>：</p>
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+  <span class="k">AND</span> <span class="n">title</span> <span class="k">ILIKE</span> <span class="s1">'%java%'</span><span class="p">;</span>
+</code></pre></div></div>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">:authenticated_user_id</code> 確保僅查詢用戶的對話。</li>
+  <li><code class="language-plaintext highlighter-rouge">ILIKE '%java%'</code> 匹配包含 “java” 的標題（例如 “Java 小技巧”、”關於 Java 程式設計”）。</li>
+</ul>
+
+<h3 id="前端實現注意事項">前端實現注意事項</h3>
+<ol>
+  <li><strong>用戶驗證</strong>：
+    <ul>
+      <li>前端必須從驗證的會話（例如 JWT 令牌或會話）中獲取用戶的 ID，並將其傳遞給後端 API。</li>
+      <li>後端應驗證 <code class="language-plaintext highlighter-rouge">user_id</code> 並在 <code class="language-plaintext highlighter-rouge">WHERE</code> 子句中使用它來過濾結果。</li>
+    </ul>
+  </li>
+  <li><strong>自然語言處理</strong>：
+    <ul>
+      <li>使用簡單的規則基礎解析器或 AI 模型（如 Grok）來解析自然語言查詢並提取：
+        <ul>
+          <li><strong>意圖</strong>：列出對話。</li>
+          <li><strong>篩選條件</strong>：關鍵字（例如 “java”）、排序（例如 “最新”）或限制（例如 “5”）。</li>
+        </ul>
+      </li>
+      <li>例如，將 “最新 5” 映射到 <code class="language-plaintext highlighter-rouge">ORDER BY started_at DESC LIMIT 5</code>，將 “標題有 java 字詞” 映射到 <code class="language-plaintext highlighter-rouge">title ILIKE '%java%'</code>。</li>
+    </ul>
+  </li>
+  <li><strong>API 設計</strong>：
+    <ul>
+      <li>創建一個端點（例如 <code class="language-plaintext highlighter-rouge">/api/conversations</code>），接受：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">user_id</code>：來自驗證的會話。</li>
+          <li><code class="language-plaintext highlighter-rouge">query</code>：自然語言輸入或結構化參數（例如 <code class="language-plaintext highlighter-rouge">{ filter: "title contains java" }</code>）。</li>
+        </ul>
+      </li>
+      <li>後端將查詢轉換為 SQL，確保 <code class="language-plaintext highlighter-rouge">user_id</code> 始終包含在 <code class="language-plaintext highlighter-rouge">WHERE</code> 子句中。</li>
+    </ul>
+  </li>
+  <li><strong>安全性</strong>：
+    <ul>
+      <li>不要允許用戶直接輸入 SQL 或修改 <code class="language-plaintext highlighter-rouge">user_id</code> 篩選條件。</li>
+      <li>使用參數化查詢（例如 <code class="language-plaintext highlighter-rouge">:authenticated_user_id</code>）來防止 SQL 注入。</li>
+      <li>驗證輸入以避免 <code class="language-plaintext highlighter-rouge">ILIKE</code> 搜索中的惡意模式。</li>
+    </ul>
+  </li>
+  <li><strong>前端顯示</strong>：
+    <ul>
+      <li>返回字段如 <code class="language-plaintext highlighter-rouge">id</code>、<code class="language-plaintext highlighter-rouge">title</code>、<code class="language-plaintext highlighter-rouge">started_at</code>、<code class="language-plaintext highlighter-rouge">last_message_at</code> 和 <code class="language-plaintext highlighter-rouge">status</code> 以顯示對話列表。</li>
+      <li>在 UI 中允許排序或篩選選項（例如下拉菜單用於 “最新” 或文本輸入用於標題搜索）。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="示例工作流程">示例工作流程</h3>
+<ol>
+  <li>用戶登入，前端獲取其 <code class="language-plaintext highlighter-rouge">user_id</code>（例如 <code class="language-plaintext highlighter-rouge">123</code>）。</li>
+  <li>用戶在搜索欄中輸入 “給我最新的 5 個對話”。</li>
+  <li>前端將請求發送到後端：<code class="language-plaintext highlighter-rouge">/api/conversations?user_id=123&amp;query=latest 5</code>。</li>
+  <li>後端解析查詢，生成 SQL：
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="mi">123</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">started_at</span> <span class="k">DESC</span>
+<span class="k">LIMIT</span> <span class="mi">5</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>後端以 JSON 格式返回結果，前端顯示對話。</li>
+</ol>
+
+<h3 id="其他說明">其他說明</h3>
+<ul>
+  <li>如果 <code class="language-plaintext highlighter-rouge">title</code> 為可空，請在第二個查詢中添加 <code class="language-plaintext highlighter-rouge">AND title IS NOT NULL</code> 以避免匹配空標題。</li>
+  <li>對於更複雜的查詢（例如 “上週關於 java 的對話”），合併條件：
+    <div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">conversations</span>
+<span class="k">WHERE</span> <span class="n">user_id</span> <span class="o">=</span> <span class="p">:</span><span class="n">authenticated_user_id</span>
+  <span class="k">AND</span> <span class="n">title</span> <span class="k">ILIKE</span> <span class="s1">'%java%'</span>
+  <span class="k">AND</span> <span class="n">started_at</span> <span class="o">&gt;=</span> <span class="k">CURRENT_TIMESTAMP</span> <span class="o">-</span> <span class="n">INTERVAL</span> <span class="s1">'7 DAYS'</span><span class="p">;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>如果需要更先進的自然語言解析器，請考慮整合 AI 模型（例如通過 xAI 的 API 使用 Grok）將複雜查詢映射到 SQL。有關 API 詳細信息，請訪問 <a href="https://x.ai/api">xAI API</a>。</li>
+</ul>
+
+<p>請告訴我如果需要幫助前端代碼、後端 API 設置或其他查詢示例！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Creak: Una biblioteca de análisis de HTML en Swift</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Creak: Una biblioteca de análisis de HTML en Swift | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Creak: Una biblioteca de análisis de HTML en Swift" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Creak está diseñado para analizar eficientemente documentos HTML y construir una estructura de árbol que representa los elementos del documento. El proceso de análisis involucra varios pasos y componentes clave que trabajan en conjunto para lograr este objetivo. A continuación, se presenta una explicación detallada de cómo Creak analiza el HTML:" />
+<meta property="og:description" content="Creak está diseñado para analizar eficientemente documentos HTML y construir una estructura de árbol que representa los elementos del documento. El proceso de análisis involucra varios pasos y componentes clave que trabajan en conjunto para lograr este objetivo. A continuación, se presenta una explicación detallada de cómo Creak analiza el HTML:" />
+<link rel="canonical" href="https://lzwjava.github.io/parser-es" />
+<meta property="og:url" content="https://lzwjava.github.io/parser-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-06-01T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Creak: Una biblioteca de análisis de HTML en Swift" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-06-01T00:00:00+08:00","datePublished":"2016-06-01T00:00:00+08:00","description":"Creak está diseñado para analizar eficientemente documentos HTML y construir una estructura de árbol que representa los elementos del documento. El proceso de análisis involucra varios pasos y componentes clave que trabajan en conjunto para lograr este objetivo. A continuación, se presenta una explicación detallada de cómo Creak analiza el HTML:","headline":"Creak: Una biblioteca de análisis de HTML en Swift","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/parser-es"},"url":"https://lzwjava.github.io/parser-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og12.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og12.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Creak: Una biblioteca de análisis de HTML en Swift | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2016-06-01-parser-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2016-06-01-parser-es.md</span> -->
+      
+
+      <!-- <span>2016-06-01-parser-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/parser-en" >English</option>
+        <option value="/parser-zh" >中文</option>
+        <option value="/parser-ja" >日本語</option>
+        <option value="/parser-es" selected>Español</option>
+        <option value="/parser-hi" >हिंदी</option>
+        <option value="/parser-fr" >Français</option>
+        <option value="/parser-de" >Deutsch</option>
+        <option value="/parser-ar" >العربية</option>
+        <option value="/parser-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><a href="https://github.com/lzwjava/Creak">Creak</a> está diseñado para analizar eficientemente documentos HTML y construir una estructura de árbol que representa los elementos del documento. El proceso de análisis involucra varios pasos y componentes clave que trabajan en conjunto para lograr este objetivo. A continuación, se presenta una explicación detallada de cómo Creak analiza el HTML:</p>
+
+<h3 id="resumen-del-proceso-de-análisis">Resumen del Proceso de Análisis</h3>
+
+<ol>
+  <li><strong>Inicialización</strong>: Cargar y limpiar la cadena HTML.</li>
+  <li><strong>Tokenización</strong>: Descomponer la cadena HTML en tokens que representan diferentes partes del HTML, como etiquetas y texto.</li>
+  <li><strong>Construcción del árbol</strong>: Utilizar los tokens para construir una estructura de árbol que represente los elementos y el texto del documento HTML.</li>
+</ol>
+
+<h3 id="componentes-clave">Componentes Clave</h3>
+
+<ul>
+  <li><strong>Clase Dom</strong>: Gestiona todo el proceso de análisis y almacena el nodo raíz del árbol HTML analizado.</li>
+  <li><strong>Clase Content</strong>: Proporciona funciones útiles para la tokenización de cadenas HTML.</li>
+  <li><strong>Clases HtmlNode y TextNode</strong>: Representan los elementos y nodos de texto en un documento HTML.</li>
+  <li><strong>Clase Tag</strong>: Representa las etiquetas HTML y sus atributos.</li>
+</ul>
+
+<h3 id="análisis-detallado-de-los-pasos">Análisis detallado de los pasos</h3>
+
+<h4 id="1-inicialización">1. Inicialización</h4>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">Dom</code> es responsable de inicializar el proceso de análisis. El método <code class="language-plaintext highlighter-rouge">loadStr</code> toma una cadena de HTML cruda, la limpia e inicializa un objeto <code class="language-plaintext highlighter-rouge">Content</code>.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">loadStr</span><span class="p">(</span><span class="nv">str</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Dom</span> <span class="p">{</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">str</span>
+    <span class="k">let</span> <span class="nv">html</span> <span class="o">=</span> <span class="nf">clean</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="kt">Content</span><span class="p">(</span><span class="nv">content</span><span class="p">:</span> <span class="n">html</span><span class="p">)</span>
+    <span class="nf">parse</span><span class="p">()</span>
+    <span class="k">return</span> <span class="k">self</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="2-tokenización">2. Tokenización</h4>
+
+<p>La clase <code class="language-plaintext highlighter-rouge">Content</code> proporciona funciones utilitarias para tokenizar cadenas HTML. Incluye métodos para copiar caracteres desde la posición actual del carácter, omitir caracteres y manejar tokens como etiquetas y atributos.</p>
+
+<ul>
+  <li><strong>copyUntil</strong>：Copia caracteres desde la posición actual hasta encontrar el carácter especificado.</li>
+  <li><strong>skipByToken</strong>：Salta caracteres según el token especificado.</li>
+</ul>
+
+<p>Estos métodos se utilizan para identificar y extraer diferentes partes de un HTML, como etiquetas, atributos y contenido de texto.</p>
+
+<h4 id="3-construcción-de-la-estructura-de-árbol">3. Construcción de la estructura de árbol</h4>
+
+<p>El método <code class="language-plaintext highlighter-rouge">parse</code> de la clase <code class="language-plaintext highlighter-rouge">Dom</code> recorre la cadena de HTML, identifica las etiquetas y el texto, y construye una estructura de árbol compuesta por <code class="language-plaintext highlighter-rouge">HtmlNode</code> y <code class="language-plaintext highlighter-rouge">TextNode</code>.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">parse</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="kt">HtmlNode</span><span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="s">"root"</span><span class="p">)</span>
+    <span class="k">var</span> <span class="nv">activeNode</span><span class="p">:</span> <span class="kt">InnerNode</span><span class="p">?</span> <span class="o">=</span> <span class="n">root</span>
+    <span class="k">while</span> <span class="n">activeNode</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">str</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyUntil</span><span class="p">(</span><span class="s">"&lt;"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">str</span> <span class="o">==</span> <span class="s">""</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">info</span> <span class="o">=</span> <span class="nf">parseTag</span><span class="p">()</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">info</span><span class="o">.</span><span class="n">status</span> <span class="p">{</span>
+                <span class="n">activeNode</span> <span class="o">=</span> <span class="kc">nil</span>
+                <span class="k">continue</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">closing</span> <span class="p">{</span>
+                <span class="k">let</span> <span class="nv">originalNode</span> <span class="o">=</span> <span class="n">activeNode</span>
+                <span class="k">while</span> <span class="n">activeNode</span><span class="p">?</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">name</span> <span class="o">!=</span> <span class="n">info</span><span class="o">.</span><span class="n">tag</span> <span class="p">{</span>
+                    <span class="n">activeNode</span> <span class="o">=</span> <span class="n">activeNode</span><span class="p">?</span><span class="o">.</span><span class="n">parent</span>
+                    <span class="k">if</span> <span class="n">activeNode</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+                        <span class="n">activeNode</span> <span class="o">=</span> <span class="n">originalNode</span>
+                        <span class="k">break</span>
+                    <span class="p">}</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="n">activeNode</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                    <span class="n">activeNode</span> <span class="o">=</span> <span class="n">activeNode</span><span class="p">?</span><span class="o">.</span><span class="n">parent</span>
+                <span class="p">}</span>
+                <span class="k">continue</span>
+            <span class="p">}</span>
+            
+            <span class="k">if</span> <span class="n">info</span><span class="o">.</span><span class="n">node</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="k">continue</span>
+            <span class="p">}</span>
+            
+            <span class="k">let</span> <span class="nv">node</span> <span class="o">=</span> <span class="n">info</span><span class="o">.</span><span class="n">node</span><span class="o">!</span>
+            <span class="n">activeNode</span><span class="o">!.</span><span class="nf">addChild</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">if</span> <span class="o">!</span><span class="n">node</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">selfClosing</span> <span class="p">{</span>
+                <span class="n">activeNode</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">trim</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">!=</span> <span class="s">""</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">let</span> <span class="nv">textNode</span> <span class="o">=</span> <span class="kt">TextNode</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="n">str</span><span class="p">)</span>
+            <span class="n">activeNode</span><span class="p">?</span><span class="o">.</span><span class="nf">addChild</span><span class="p">(</span><span class="n">textNode</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Nodo raíz</strong>: El análisis comienza desde el nodo raíz (<code class="language-plaintext highlighter-rouge">HtmlNode</code>, con la etiqueta “root”).</li>
+  <li><strong>Nodo activo</strong>: La variable <code class="language-plaintext highlighter-rouge">activeNode</code> rastrea el nodo que se está procesando actualmente.</li>
+  <li><strong>Contenido de texto</strong>: Si se detecta contenido de texto, se crea un <code class="language-plaintext highlighter-rouge">TextNode</code> y se añade al nodo actual.</li>
+  <li><strong>Análisis de etiquetas</strong>: Si se detecta una etiqueta, se llama al método <code class="language-plaintext highlighter-rouge">parseTag</code> para procesarla.</li>
+</ul>
+
+<h4 id="análisis-de-etiquetas">Análisis de Etiquetas</h4>
+
+<p>El método <code class="language-plaintext highlighter-rouge">parseTag</code> se encarga de la identificación y procesamiento de las etiquetas.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">parseTag</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ParseInfo</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">result</span> <span class="o">=</span> <span class="kt">ParseInfo</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">!=</span> <span class="p">(</span><span class="s">"&lt;"</span> <span class="k">as</span> <span class="kt">Character</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="p">}</span>
+    
+    <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">==</span> <span class="s">"/"</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">tag</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nf">copyByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Slash</span><span class="p">,</span> <span class="nv">char</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="nf">copyUntil</span><span class="p">(</span><span class="s">"&gt;"</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span><span class="o">.</span><span class="n">lowercaseString</span>
+        <span class="k">if</span> <span class="n">selfClosing</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">closing</span> <span class="o">=</span> <span class="kc">true</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">tag</span> <span class="o">=</span> <span class="n">tag</span>
+            <span class="k">return</span> <span class="n">result</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="k">let</span> <span class="nv">tag</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Slash</span><span class="p">,</span> <span class="nv">char</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span><span class="o">.</span><span class="n">lowercaseString</span>
+    <span class="k">let</span> <span class="nv">node</span> <span class="o">=</span> <span class="kt">HtmlNode</span><span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="n">tag</span><span class="p">)</span>
+    
+    <span class="k">while</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">!=</span> <span class="s">"&gt;"</span> <span class="o">&amp;&amp;</span>
+       <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">!=</span> <span class="s">"/"</span> <span class="p">{</span>
+        <span class="k">let</span> <span class="nv">space</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">skipByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Blank</span><span class="p">,</span> <span class="nv">copy</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">space</span><span class="p">?</span><span class="o">.</span><span class="n">characters</span><span class="o">.</span><span class="n">count</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">{</span>
+            <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        
+        <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Equal</span><span class="p">,</span> <span class="nv">char</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">"/"</span> <span class="p">{</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s">""</span> <span class="p">{</span>
+            <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        
+        <span class="n">content</span><span class="o">.</span><span class="nf">skipByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Blank</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">==</span> <span class="s">"="</span> <span class="p">{</span>
+            <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="nf">skipByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Blank</span><span class="p">)</span>
+            <span class="k">var</span> <span class="nv">attr</span> <span class="o">=</span> <span class="kt">AttrValue</span><span class="p">()</span>
+            <span class="k">let</span> <span class="nv">quote</span><span class="p">:</span> <span class="kt">Character</span><span class="p">?</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">quote</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="n">quote</span> <span class="o">==</span> <span class="s">"</span><span class="se">\"</span><span class="s">"</span> <span class="p">{</span>
+                    <span class="n">attr</span><span class="o">.</span><span class="n">doubleQuote</span> <span class="o">=</span> <span class="kc">true</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">attr</span><span class="o">.</span><span class="n">doubleQuote</span> <span class="o">=</span> <span class="kc">false</span>
+                <span class="p">}</span>
+                <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">var</span> <span class="nv">string</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyUntil</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="n">quote</span><span class="o">!</span><span class="p">),</span> <span class="nv">char</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nv">escape</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+                <span class="k">var</span> <span class="nv">moreString</span> <span class="o">=</span> <span class="s">""</span>
+                <span class="k">repeat</span> <span class="p">{</span>
+                    <span class="n">moreString</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyUntilUnless</span><span class="p">(</span><span class="kt">String</span><span class="p">(</span><span class="n">quote</span><span class="o">!</span><span class="p">),</span> <span class="nv">unless</span><span class="p">:</span> <span class="s">"=&gt;"</span><span class="p">)</span>
+                    <span class="n">string</span> <span class="o">+=</span> <span class="n">moreString</span>
+                <span class="p">}</span> <span class="k">while</span> <span class="n">moreString</span> <span class="o">!=</span> <span class="s">""</span>
+                <span class="n">attr</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">string</span>
+                <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="nf">setAttribute</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nv">attrValue</span><span class="p">:</span> <span class="n">attr</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">attr</span><span class="o">.</span><span class="n">doubleQuote</span> <span class="o">=</span> <span class="kc">true</span>
+                <span class="n">attr</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="nf">copyByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Attr</span><span class="p">,</span> <span class="nv">char</span><span class="p">:</span> <span class="kc">true</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="nf">setAttribute</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nv">attrValue</span><span class="p">:</span> <span class="n">attr</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="nf">setAttribute</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nv">attrValue</span><span class="p">:</span> <span class="kt">AttrValue</span><span class="p">(</span><span class="kc">nil</span><span class="p">,</span> <span class="nv">doubleQuote</span><span class="p">:</span> <span class="kc">true</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">!=</span> <span class="s">"&gt;"</span> <span class="p">{</span>
+                <span class="n">content</span><span class="o">.</span><span class="nf">rewind</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="n">content</span><span class="o">.</span><span class="nf">skipByToken</span><span class="p">(</span><span class="kt">Content</span><span class="o">.</span><span class="kt">Token</span><span class="o">.</span><span class="kt">Blank</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="nf">char</span><span class="p">()</span> <span class="o">==</span> <span class="s">"/"</span> <span class="p">{</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">selfClosing</span> <span class="o">=</span> <span class="kc">true</span>
+        <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="n">selfClosing</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">tag</span><span class="o">.</span><span class="n">selfClosing</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    
+    <span class="n">content</span><span class="o">.</span><span class="nf">fastForward</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="n">result</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="kc">true</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Identificación de etiquetas</strong>: Este método identifica si una etiqueta es de apertura o de cierre.</li>
+  <li><strong>Atributos</strong>: Analiza los atributos de la etiqueta y los añade al <code class="language-plaintext highlighter-rouge">HtmlNode</code>.</li>
+  <li><strong>Etiquetas auto-cerradas</strong>: Maneja adecuadamente las etiquetas que se cierran automáticamente.</li>
+</ul>
+
+<h3 id="conclusión">Conclusión</h3>
+
+<p>El proceso de análisis de Creak implica la inicialización del contenido HTML, su tokenización y la construcción de una estructura de árbol de nodos. La clase <code class="language-plaintext highlighter-rouge">Dom</code> gestiona el análisis general, mientras que la clase <code class="language-plaintext highlighter-rouge">Content</code> proporciona funciones útiles para tokenizar cadenas de HTML. Las clases <code class="language-plaintext highlighter-rouge">HtmlNode</code> y <code class="language-plaintext highlighter-rouge">TextNode</code> representan elementos y texto en un documento HTML, y la clase <code class="language-plaintext highlighter-rouge">Tag</code> gestiona los atributos de las etiquetas. Este enfoque eficiente y organizado convierte a Creak en una herramienta poderosa para analizar HTML en Swift.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>फ़ंक्शन कंप्यूट और OSS एकीकरण</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>फ़ंक्शन कंप्यूट और OSS एकीकरण | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="फ़ंक्शन कंप्यूट और OSS एकीकरण" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="यह कोड दर्शाता है कि अलीबाबा क्लाउड फ़ंक्शन कंप्यूट को OSS (ऑब्जेक्ट स्टोरेज सर्विस) के साथ कैसे एकीकृत किया जाए। यह एक निर्दिष्ट URL से एक फ़ाइल डाउनलोड करता है और उसे एक OSS बकेट में अपलोड करता है।" />
+<meta property="og:description" content="यह कोड दर्शाता है कि अलीबाबा क्लाउड फ़ंक्शन कंप्यूट को OSS (ऑब्जेक्ट स्टोरेज सर्विस) के साथ कैसे एकीकृत किया जाए। यह एक निर्दिष्ट URL से एक फ़ाइल डाउनलोड करता है और उसे एक OSS बकेट में अपलोड करता है।" />
+<link rel="canonical" href="https://lzwjava.github.io/fc-oss-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/fc-oss-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-24T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="फ़ंक्शन कंप्यूट और OSS एकीकरण" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-24T00:00:00+08:00","datePublished":"2025-01-24T00:00:00+08:00","description":"यह कोड दर्शाता है कि अलीबाबा क्लाउड फ़ंक्शन कंप्यूट को OSS (ऑब्जेक्ट स्टोरेज सर्विस) के साथ कैसे एकीकृत किया जाए। यह एक निर्दिष्ट URL से एक फ़ाइल डाउनलोड करता है और उसे एक OSS बकेट में अपलोड करता है।","headline":"फ़ंक्शन कंप्यूट और OSS एकीकरण","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/fc-oss-hi"},"url":"https://lzwjava.github.io/fc-oss-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       फ़ंक्शन कंप्यूट और OSS एकीकरण | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2025-01-24-fc-oss-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2025-01-24-fc-oss-hi.md</span> -->
+      
+
+      <!-- <span>2025-01-24-fc-oss-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/fc-oss-en" >English</option>
+        <option value="/fc-oss-zh" >中文</option>
+        <option value="/fc-oss-ja" >日本語</option>
+        <option value="/fc-oss-es" >Español</option>
+        <option value="/fc-oss-hi" selected>हिंदी</option>
+        <option value="/fc-oss-fr" >Français</option>
+        <option value="/fc-oss-de" >Deutsch</option>
+        <option value="/fc-oss-ar" >العربية</option>
+        <option value="/fc-oss-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>यह कोड दर्शाता है कि अलीबाबा क्लाउड फ़ंक्शन कंप्यूट को OSS (ऑब्जेक्ट स्टोरेज सर्विस) के साथ कैसे एकीकृत किया जाए। यह एक निर्दिष्ट URL से एक फ़ाइल डाउनलोड करता है और उसे एक OSS बकेट में अपलोड करता है।</p>
+
+<h2 id="कोड">कोड</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- coding: utf-8 -*-
+</span><span class="kn">import</span> <span class="n">oss2</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">os</span>
+
+<span class="k">def</span> <span class="nf">handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+    <span class="c1"># कॉन्फ़िगरेशन
+</span>    <span class="c1"># model_url = "https://huggingface.co/TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+</span>
+    <span class="n">model_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://storage.googleapis.com/lzwjava1/ss_urls.txt</span><span class="sh">"</span>
+    <span class="n">oss_bucket_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">lzw-download</span><span class="sh">"</span>  <span class="c1"># आपका बकेट नाम
+</span>    <span class="n">oss_endpoint</span> <span class="o">=</span> <span class="sh">"</span><span class="s">oss-cn-hangzhou.aliyuncs.com</span><span class="sh">"</span>  <span class="c1"># सार्वजनिक एंडपॉइंट
+</span>    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># प्रदान की गई भूमिका ARN का उपयोग करके प्रमाणीकरण ऑब्जेक्ट बनाएँ
+</span>        <span class="n">role_arn</span> <span class="o">=</span> <span class="sh">"</span><span class="s">acs:ram::1768386076294612:role/fc</span><span class="sh">"</span>
+        <span class="n">auth</span> <span class="o">=</span> <span class="n">oss2</span><span class="p">.</span><span class="nc">Auth</span><span class="p">(</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_KEY_ID</span><span class="sh">'</span><span class="p">],</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_KEY_SECRET</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">)</span>
+        
+        <span class="n">sts_auth</span> <span class="o">=</span> <span class="n">oss2</span><span class="p">.</span><span class="nc">StsAuth</span><span class="p">(</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_KEY_ID</span><span class="sh">'</span><span class="p">],</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_KEY_SECRET</span><span class="sh">'</span><span class="p">],</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_SECURITY_TOKEN</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 2. उचित एंडपॉइंट के साथ OSS क्लाइंट को इनिशियलाइज़ करें
+</span>        <span class="n">bucket</span> <span class="o">=</span> <span class="n">oss2</span><span class="p">.</span><span class="nc">Bucket</span><span class="p">(</span>
+            <span class="n">sts_auth</span><span class="p">,</span>
+            <span class="n">oss_endpoint</span><span class="p">,</span>
+            <span class="n">oss_bucket_name</span>
+        <span class="p">)</span>
+
+        <span class="c1"># 3. स्ट्रीम डाउनलोड और अपलोड
+</span>        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">डाउनलोड शुरू हो रहा है...</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">model_url</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+            
+            <span class="c1"># OSS में अपलोड करें
+</span>            <span class="n">result</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="nf">put_object</span><span class="p">(</span>
+                <span class="sh">'</span><span class="s">models/mistral-7b-instruct-v0.2.Q4_K_M.gguf</span><span class="sh">'</span><span class="p">,</span>
+                <span class="n">response</span><span class="p">.</span><span class="nf">iter_content</span><span class="p">(</span><span class="n">chunk_size</span><span class="o">=</span><span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="p">)</span>
+            <span class="p">)</span>
+            
+        <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">अपलोड सफल हुआ!</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="sh">"</span><span class="s">सफल</span><span class="sh">"</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">OSS अपलोड विफल: </span><span class="si">{</span><span class="n">result</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">त्रुटि: </span><span class="si">{</span><span class="nf">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">e</span>
+</code></pre></div></div>
+
+<h2 id="त्रुटि">त्रुटि</h2>
+
+<p>हमें पहले जैसी ही त्रुटि का सामना करना पड़ा। ऐसा प्रतीत होता है कि इस कार्य को पूरा करने के लिए VPN की आवश्यकता है।</p>
+
+<blockquote>
+  <p>2025-01-24 17:43:342025-01-24 17:43:34 1-679360a6-154b432a-15cadcce0c27 [त्रुटि] {
+   “errorMessage”: “HTTPSConnectionPool(host=’huggingface.co’, port=443): Max retries exceeded with url: /TheBloke/Mistral-7B-Instruct-v0.2-GGUF/resolve/main/mistral-7b-instruct-v0.2.Q4_K_M.gguf (Caused by NewConnectionError(‘&lt;urllib3.connection.HTTPSConnection object at 0x7f7d3c289f60&gt;: Failed to establish a new connection: [Errno 101] Network is unreachable’))”</p>
+</blockquote>
+
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

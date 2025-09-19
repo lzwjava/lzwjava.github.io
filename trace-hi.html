@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>एंड-टू-एंड ट्रेस आईडी कार्यान्वयन</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>एंड-टू-एंड ट्रेस आईडी कार्यान्वयन | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="एंड-टू-एंड ट्रेस आईडी कार्यान्वयन" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।" />
+<meta property="og:description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।" />
+<link rel="canonical" href="https://lzwjava.github.io/trace-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/trace-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="एंड-टू-एंड ट्रेस आईडी कार्यान्वयन" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-07-06T00:00:00+08:00","datePublished":"2024-07-06T00:00:00+08:00","description":"यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।","headline":"एंड-टू-एंड ट्रेस आईडी कार्यान्वयन","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/trace-hi"},"url":"https://lzwjava.github.io/trace-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       एंड-टू-एंड ट्रेस आईडी कार्यान्वयन | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2024-07-06-trace-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2024-07-06-trace-hi.md</span> -->
+      
+
+      <!-- <span>2024-07-06-trace-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/trace-en" >English</option>
+        <option value="/trace-zh" >中文</option>
+        <option value="/trace-ja" >日本語</option>
+        <option value="/trace-es" >Español</option>
+        <option value="/trace-hi" selected>हिंदी</option>
+        <option value="/trace-fr" >Français</option>
+        <option value="/trace-de" >Deutsch</option>
+        <option value="/trace-ar" >العربية</option>
+        <option value="/trace-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।</em></p>
+
+<hr />
+
+<p>मैंने एक एंड-टू-एंड ट्रेस ID समाधान पर काम किया है ताकि हमारे सिस्टम में हर अनुरोध और प्रतिक्रिया को फ्रंटएंड और बैकएंड में सुसंगत रूप से ट्रैक किया जा सके। यह समाधान डीबगिंग, मॉनिटरिंग और लॉगिंग में मदद करता है, क्योंकि यह हर ऑपरेशन को एक अद्वितीय ट्रेस ID के साथ जोड़ता है। नीचे इस समाधान के काम करने का विस्तृत विवरण दिया गया है, साथ ही कोड उदाहरण भी दिए गए हैं।</p>
+
+<h2 id="यह-कैसे-काम-करता-है">यह कैसे काम करता है</h2>
+
+<h3 id="फ्रंटएंड">फ्रंटएंड</h3>
+
+<p>इस समाधान के फ्रंटएंड भाग में प्रत्येक अनुरोध के लिए एक ट्रेस ID उत्पन्न करना और इसे क्लाइंट जानकारी के साथ बैकएंड पर भेजना शामिल है। यह ट्रेस ID बैकएंड पर प्रसंस्करण के विभिन्न चरणों के माध्यम से अनुरोध को ट्रैक करने के लिए उपयोग किया जाता है।</p>
+
+<ol>
+  <li>
+    <p>क्लाइंट जानकारी एकत्र करना: हम क्लाइंट से संबंधित जानकारी एकत्र करते हैं, जैसे स्क्रीन का आयाम, नेटवर्क प्रकार, समय क्षेत्र, और अन्य। यह जानकारी अनुरोध हेडर के साथ भेजी जाती है।</p>
+  </li>
+  <li>
+    <p>ट्रेस ID जनरेशन: प्रत्येक अनुरोध के लिए एक अद्वितीय ट्रेस ID जनरेट की जाती है। यह ट्रेस ID अनुरोध हेडर में शामिल होती है, जो हमें अनुरोध को उसके जीवनचक्र के माध्यम से ट्रेस करने की अनुमति देती है।</p>
+  </li>
+  <li>
+    <p>API Fetch: <code class="language-plaintext highlighter-rouge">apiFetch</code> फ़ंक्शन का उपयोग API कॉल करने के लिए किया जाता है। यह प्रत्येक अनुरोध के हेडर में ट्रेस ID और क्लाइंट जानकारी को शामिल करता है।</p>
+  </li>
+</ol>
+
+<h3 id="बैकएंड">बैकएंड</h3>
+
+<p>समाधान के बैकएंड भाग में प्रत्येक लॉग संदेश के साथ ट्रेस ID को लॉग करना और प्रतिक्रियाओं में ट्रेस ID को शामिल करना शामिल है। यह हमें बैकएंड प्रसंस्करण के माध्यम से अनुरोधों को ट्रेस करने और अनुरोधों के साथ प्रतिक्रियाओं को मिलाने की अनुमति देता है।</p>
+
+<ol>
+  <li>
+    <p>ट्रेस ID हैंडलिंग: बैकएंड अनुरोध हेडर से ट्रेस ID प्राप्त करता है या यदि यह प्रदान नहीं किया गया है तो एक नया ट्रेस ID जनरेट करता है। ट्रेस ID को अनुरोध जीवनचक्र के दौरान उपयोग के लिए Flask ग्लोबल ऑब्जेक्ट में संग्रहीत किया जाता है।</p>
+  </li>
+  <li>
+    <p>लॉगिंग: कस्टम लॉग फॉर्मेटर्स का उपयोग प्रत्येक लॉग संदेश में ट्रेस ID को शामिल करने के लिए किया जाता है। यह सुनिश्चित करता है कि किसी अनुरोध से संबंधित सभी लॉग संदेशों को ट्रेस ID का उपयोग करके सहसंबंधित किया जा सकता है।</p>
+  </li>
+  <li>
+    <p>प्रतिक्रिया प्रबंधन: ट्रेस ID को प्रतिक्रिया हेडर में शामिल किया जाता है। यदि कोई त्रुटि होती है, तो ट्रेस ID को डीबगिंग में सहायता के लिए त्रुटि प्रतिक्रिया बॉडी में भी शामिल किया जाता है।</p>
+  </li>
+</ol>
+
+<h3 id="kibana">Kibana</h3>
+
+<p>Kibana Elasticsearch में संग्रहीत लॉग डेटा को विज़ुअलाइज़ और खोजने के लिए एक शक्तिशाली टूल है। हमारे Trace ID समाधान के साथ, आप Kibana का उपयोग करके आसानी से अनुरोधों को ट्रैक और डीबग कर सकते हैं। ट्रेस ID, जो हर लॉग एंट्री में शामिल होता है, का उपयोग विशिष्ट लॉग्स को फ़िल्टर और खोजने के लिए किया जा सकता है।</p>
+
+<p>किसी विशिष्ट ट्रेस ID के साथ लॉग्स को खोजने के लिए, आप Kibana Query Language (KQL) का उपयोग कर सकते हैं। उदाहरण के लिए, आप किसी विशेष ट्रेस ID से संबंधित सभी लॉग्स को निम्नलिखित क्वेरी के साथ खोज सकते हैं:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<p>यह क्वेरी सभी लॉग एंट्रीज़ को वापस करेगी जिनमें ट्रेस आईडी “Lc6t” शामिल है, जिससे आप सिस्टम के माध्यम से अनुरोध के पथ का पता लगा सकते हैं। इसके अलावा, आप इस क्वेरी को अन्य मानदंडों के साथ जोड़कर खोज परिणामों को और संकीर्ण कर सकते हैं, जैसे कि लॉग स्तर, टाइमस्टैम्प, या लॉग संदेशों में विशिष्ट कीवर्ड के आधार पर फ़िल्टर करना।</p>
+
+<p>Kibana की विज़ुअलाइज़ेशन क्षमताओं का उपयोग करके, आप डैशबोर्ड भी बना सकते हैं जो ट्रेस IDs के आधार पर मेट्रिक्स और ट्रेंड्स प्रदर्शित करते हैं। उदाहरण के लिए, आप संसाधित अनुरोधों की संख्या, औसत प्रतिक्रिया समय और त्रुटि दरों को विज़ुअलाइज़ कर सकते हैं, जो उनके संबंधित ट्रेस IDs के साथ सहसंबद्ध होते हैं। यह आपके एप्लिकेशन के प्रदर्शन और विश्वसनीयता में पैटर्न और संभावित समस्याओं की पहचान करने में मदद करता है।</p>
+
+<p>हमारे Trace ID समाधान के साथ Kibana का उपयोग करने से आपके सिस्टम के व्यवहार की निगरानी, डिबगिंग और विश्लेषण करने के लिए एक व्यापक दृष्टिकोण प्रदान होता है, जिससे यह सुनिश्चित होता है कि हर अनुरोध को प्रभावी ढंग से ट्रैक और जांचा जा सकता है।</p>
+
+<h2 id="फ्रंटएंड-1">फ्रंटएंड</h2>
+
+<h3 id="apijs"><code class="language-plaintext highlighter-rouge">api.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">BASE_URL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">REACT_APP_BASE_URL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>// क्लाइंट जानकारी प्राप्त करने के लिए फ़ंक्शन
+const getClientInfo = () =&gt; {
+    const { language, platform, cookieEnabled, doNotTrack, onLine } = navigator;
+    const { width, height } = window.screen;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const networkType = connection ? connection.effectiveType : ‘unknown’;
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const referrer = document.referrer;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return {
+    screenWidth: width,
+    screenHeight: height,
+    networkType,
+    timeZone,
+    language,
+    platform,
+    cookieEnabled,
+    doNotTrack,
+    onLine,
+    referrer,
+    viewportWidth,
+    viewportHeight
+}; };
+</code></pre></div></div>
+
+<p>// एक अद्वितीय ट्रेस ID जनरेट करने के लिए फ़ंक्शन
+export const generateTraceId = (length = 4) =&gt; {
+    const characters = ‘ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789’;
+    let traceId = ‘’;
+    for (let i = 0; i &lt; length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        traceId += characters.charAt(randomIndex);
+    }
+    return traceId;
+};</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">BASE_URL</span><span class="p">}${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">clientInfo</span> <span class="o">=</span> <span class="nf">getClientInfo</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p>यह कोड एक <code class="language-plaintext highlighter-rouge">apiFetch</code> फ़ंक्शन को परिभाषित करता है जो एक एसिंक्रोनस (async) फ़ंक्शन है। यह फ़ंक्शन एक <code class="language-plaintext highlighter-rouge">endpoint</code> और वैकल्पिक <code class="language-plaintext highlighter-rouge">options</code> ऑब्जेक्ट को पैरामीटर के रूप में लेता है। फ़ंक्शन के अंदर, <code class="language-plaintext highlighter-rouge">BASE_URL</code> और <code class="language-plaintext highlighter-rouge">endpoint</code> को जोड़कर एक पूर्ण URL बनाया जाता है। इसके बाद, <code class="language-plaintext highlighter-rouge">getClientInfo()</code> फ़ंक्शन को कॉल करके क्लाइंट की जानकारी प्राप्त की जाती है।</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">traceId</span> <span class="o">||</span> <span class="nf">generateTraceId</span><span class="p">();</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">X-Client-Info</span><span class="dl">'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">clientInfo</span><span class="p">),</span>
+    <span class="dl">'</span><span class="s1">X-Trace-Id</span><span class="dl">'</span><span class="p">:</span> <span class="nx">traceId</span><span class="p">,</span>
+    <span class="p">...(</span><span class="nx">options</span><span class="p">.</span><span class="nx">headers</span> <span class="o">||</span> <span class="p">{})</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+        <span class="p">...</span><span class="nx">options</span><span class="p">,</span>
+        <span class="nx">headers</span>
+    <span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="appjs"><code class="language-plaintext highlighter-rouge">App.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
+    <span class="na">traceId</span><span class="p">:</span> <span class="nx">traceId</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="c1">//...        </span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">एक अज्ञात त्रुटि हुई</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">errorToastMessage</span> <span class="o">=</span> <span class="nx">errorMessage</span><span class="p">;</span>
+    <span class="nx">errorToastMessage</span> <span class="o">+=</span> <span class="s2">` (ट्रेस ID: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+    <span class="p">});</span>
+    <span class="nf">setError</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">errorString</span> <span class="o">=</span> <span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>const duration = (Date.now() - startTime) / 1000;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// अनुरोध किया गया था और सर्वर ने 2xx रेंज के बाहर एक स्टेटस कोड के साथ प्रतिक्रिया दी</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (HTTP </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रतिक्रिया त्रुटि डेटा:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// अनुरोध किया गया था लेकिन कोई प्रतिक्रिया प्राप्त नहीं हुई</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1"> (कोई प्रतिक्रिया प्राप्त नहीं हुई)</span><span class="dl">'</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">अनुरोध त्रुटि डेटा:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// अनुरोध सेटअप करने में कुछ गलत हुआ जिससे एक त्रुटि उत्पन्न हुई</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (अनुरोध सेटअप करने में त्रुटि: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>errorString += ` (Trace ID: ${traceId})`;</p>
+
+<p>(नोट: यह कोड ब्लॉक है, इसलिए इसे अनुवादित नहीं किया गया है।)</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">`\nStack: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">stack</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>हिंदी अनुवाद:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">`\nStack: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">stack</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>इस कोड में, यदि <code class="language-plaintext highlighter-rouge">error</code> एक <code class="language-plaintext highlighter-rouge">Error</code> ऑब्जेक्ट है, तो <code class="language-plaintext highlighter-rouge">errorString</code> में <code class="language-plaintext highlighter-rouge">error</code> का स्टैक ट्रेस जोड़ा जाता है।</p>
+
+<p>errorString += JSON.stringify(error);</p>
+
+<p>errorString += ` (अवधि: ${duration} सेकंड)`;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`त्रुटि: </span><span class="p">${</span><span class="nx">errorString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="p">});</span>
+  <span class="nf">setError</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nx">toastId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="बैकएंड-1">बैकएंड</h2>
+
+<h3 id="__init__py"><code class="language-plaintext highlighter-rouge">__init__.py</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- encoding: utf-8 -*-
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">uuid</span>
+<span class="kn">import</span> <span class="n">string</span>
+<span class="kn">import</span> <span class="n">random</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">has_request_context</span>
+<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+</code></pre></div></div>
+
+<p>यह कोड Flask वेब फ्रेमवर्क का उपयोग करता है और इसमें <code class="language-plaintext highlighter-rouge">Flask</code>, <code class="language-plaintext highlighter-rouge">request</code>, <code class="language-plaintext highlighter-rouge">Response</code>, <code class="language-plaintext highlighter-rouge">g</code>, और <code class="language-plaintext highlighter-rouge">has_request_context</code> को आयात किया गया है। साथ ही, <code class="language-plaintext highlighter-rouge">flask_cors</code> से <code class="language-plaintext highlighter-rouge">CORS</code> को भी आयात किया गया है। <code class="language-plaintext highlighter-rouge">CORS</code> (Cross-Origin Resource Sharing) का उपयोग वेब एप्लिकेशन को अलग-अलग डोमेन से संसाधनों को साझा करने की अनुमति देने के लिए किया जाता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+<span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="n">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
+</code></pre></div></div>
+
+<p>इस कोड को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह Python कोड है और इसे उसी रूप में रखा जाना चाहिए। यह कोड एक Flask एप्लिकेशन में उपयोग होने वाले विभिन्न मॉड्यूल और लाइब्रेरीज़ को इम्पोर्ट करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">app.config.from_object('api.config.BaseConfig')</code></p>
+
+<p>यह कोड Flask एप्लिकेशन के कॉन्फ़िगरेशन को <code class="language-plaintext highlighter-rouge">api.config</code> मॉड्यूल में परिभाषित <code class="language-plaintext highlighter-rouge">BaseConfig</code> क्लास से लोड करता है। इसका उपयोग एप्लिकेशन की सेटिंग्स और कॉन्फ़िगरेशन वैल्यूज़ को प्रबंधित करने के लिए किया जाता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">db</span><span class="p">.</span><span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="nf">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>CORS(app)</p>
+
+<p><code class="language-plaintext highlighter-rouge">migrate = Migrate(app, db)</code><br />
+यह कोड Flask-Migrate का उपयोग करके Flask एप्लिकेशन और SQLAlchemy डेटाबेस के बीच माइग्रेशन को प्रबंधित करने के लिए है। <code class="language-plaintext highlighter-rouge">Migrate</code> क्लास <code class="language-plaintext highlighter-rouge">app</code> और <code class="language-plaintext highlighter-rouge">db</code> को इनिशियलाइज़ करती है, जिससे डेटाबेस स्कीमा में परिवर्तनों को आसानी से माइग्रेट किया जा सकता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RequestFormatter</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड एक <code class="language-plaintext highlighter-rouge">RequestFormatter</code> क्लास को परिभाषित करता है जो <code class="language-plaintext highlighter-rouge">logging.Formatter</code> को इन्हेरिट करता है। इस क्लास में <code class="language-plaintext highlighter-rouge">format</code> मेथड को ओवरराइड किया गया है। यह मेथड लॉग रिकॉर्ड को फॉर्मेट करने से पहले चेक करता है कि क्या रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध है। यदि रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध है, तो यह <code class="language-plaintext highlighter-rouge">trace_id</code> को <code class="language-plaintext highlighter-rouge">g</code> ऑब्जेक्ट से प्राप्त करता है और इसे लॉग रिकॉर्ड में जोड़ता है। यदि रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध नहीं है, तो <code class="language-plaintext highlighter-rouge">trace_id</code> को ‘unknown’ के रूप में सेट किया जाता है। अंत में, यह मेथड पैरेंट क्लास के <code class="language-plaintext highlighter-rouge">format</code> मेथड को कॉल करता है और फॉर्मेटेड रिकॉर्ड को रिटर्न करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>इस कोड में, <code class="language-plaintext highlighter-rouge">CustomLogstashFormatter</code> नामक एक क्लास है जो <code class="language-plaintext highlighter-rouge">LogstashFormatterV1</code> को इनहेरिट करती है। इस क्लास में <code class="language-plaintext highlighter-rouge">format</code> नामक एक मेथड है जो <code class="language-plaintext highlighter-rouge">record</code> नामक एक पैरामीटर लेती है।</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">has_request_context()</code> फंक्शन का उपयोग करके यह जांचा जाता है कि क्या रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध है।</li>
+  <li>यदि रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध है, तो <code class="language-plaintext highlighter-rouge">record.trace_id</code> को <code class="language-plaintext highlighter-rouge">g</code> ऑब्जेक्ट से <code class="language-plaintext highlighter-rouge">trace_id</code> एट्रिब्यूट का मान दिया जाता है। यदि <code class="language-plaintext highlighter-rouge">trace_id</code> एट्रिब्यूट उपलब्ध नहीं है, तो डिफ़ॉल्ट मान <code class="language-plaintext highlighter-rouge">'unknown'</code> सेट किया जाता है।</li>
+  <li>यदि रिक्वेस्ट कॉन्टेक्स्ट उपलब्ध नहीं है, तो <code class="language-plaintext highlighter-rouge">record.trace_id</code> को <code class="language-plaintext highlighter-rouge">'unknown'</code> सेट किया जाता है।</li>
+  <li>अंत में, <code class="language-plaintext highlighter-rouge">super().format(record)</code> का उपयोग करके पैरेंट क्लास (<code class="language-plaintext highlighter-rouge">LogstashFormatterV1</code>) का <code class="language-plaintext highlighter-rouge">format</code> मेथड कॉल किया जाता है और उसका रिजल्ट रिटर्न किया जाता है।</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
+    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+        <span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">txt_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">plain.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">txt_formatter</span> <span class="o">=</span> <span class="nc">RequestFormatter</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d] [trace_id: %(trace_id)s]</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">txt_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड एक <code class="language-plaintext highlighter-rouge">RotatingFileHandler</code> बनाता है जो लॉग फ़ाइल को रोटेट करता है, यानी जब फ़ाइल का आकार 100,000,000 बाइट्स (लगभग 100 MB) तक पहुंच जाता है, तो यह एक बैकअप फ़ाइल बनाता है और नई फ़ाइल में लॉगिंग शुरू करता है। <code class="language-plaintext highlighter-rouge">backupCount=1</code> का मतलब है कि केवल एक बैकअप फ़ाइल रखी जाएगी।</p>
+
+<p><code class="language-plaintext highlighter-rouge">txt_handler.setLevel(logging.DEBUG)</code> लॉगिंग लेवल को DEBUG पर सेट करता है, जिसका अर्थ है कि सभी DEBUG और उससे ऊपर के लॉग संदेश (INFO, WARNING, ERROR, CRITICAL) लॉग किए जाएंगे।</p>
+
+<p><code class="language-plaintext highlighter-rouge">txt_formatter</code> एक कस्टम फॉर्मेटर है जो लॉग संदेशों को एक विशिष्ट प्रारूप में प्रदर्शित करता है। यह फॉर्मेटर समय (<code class="language-plaintext highlighter-rouge">asctime</code>), लॉग लेवल (<code class="language-plaintext highlighter-rouge">levelname</code>), संदेश (<code class="language-plaintext highlighter-rouge">message</code>), फ़ाइल का पथ (<code class="language-plaintext highlighter-rouge">pathname</code>), लाइन नंबर (<code class="language-plaintext highlighter-rouge">lineno</code>), और एक ट्रेस आईडी (<code class="language-plaintext highlighter-rouge">trace_id</code>) को शामिल करता है।</p>
+
+<p>अंत में, <code class="language-plaintext highlighter-rouge">txt_handler.setFormatter(txt_formatter)</code> फॉर्मेटर को हैंडलर से जोड़ता है, ताकि लॉग संदेश उसी प्रारूप में लिखे जाएं।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड <code class="language-plaintext highlighter-rouge">werkzeug</code> नामक लॉगर को सेट करता है और उसे <code class="language-plaintext highlighter-rouge">DEBUG</code> लेवल पर कॉन्फ़िगर करता है। फिर यह <code class="language-plaintext highlighter-rouge">logstash_handler</code> और <code class="language-plaintext highlighter-rouge">txt_handler</code> दोनों हैंडलर्स को इस लॉगर में जोड़ता है। इसका मतलब है कि <code class="language-plaintext highlighter-rouge">werkzeug</code> से संबंधित सभी लॉग संदेश <code class="language-plaintext highlighter-rouge">DEBUG</code> लेवल और उससे ऊपर के, दोनों हैंडलर्स को भेजे जाएंगे।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">setup_loggers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>यह फ़ंक्शन <code class="language-plaintext highlighter-rouge">generate_trace_id</code> एक यूनिक ट्रेस आईडी जनरेट करता है। यह आईडी <code class="language-plaintext highlighter-rouge">length</code> पैरामीटर द्वारा निर्धारित लंबाई की होती है, जिसका डिफ़ॉल्ट मान 4 है। आईडी बनाने के लिए यह <code class="language-plaintext highlighter-rouge">string.ascii_letters</code> और <code class="language-plaintext highlighter-rouge">string.digits</code> से यादृच्छिक वर्णों का चयन करता है और उन्हें जोड़कर एक स्ट्रिंग के रूप में लौटाता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.before_request</span>
+<span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">client_info</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Client-Info</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">client_info</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">client_info_json</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">client_info</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">क्लाइंट जानकारी: </span><span class="si">{</span><span class="n">client_info_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">X-Client-Info हेडर के लिए JSON फॉर्मेट अमान्य है</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.after_request</span>
+<span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+</code></pre></div></div>
+
+<p>यह कोड Flask एप्लिकेशन में एक <code class="language-plaintext highlighter-rouge">after_request</code> हुक को परिभाषित करता है। यह हुक हर HTTP अनुरोध के बाद चलता है और प्रतिक्रिया (response) के हेडर में <code class="language-plaintext highlighter-rouge">X-Trace-Id</code> नामक एक हेडर जोड़ता है। इस हेडर का मान <code class="language-plaintext highlighter-rouge">g.trace_id</code> से लिया जाता है, जो Flask के <code class="language-plaintext highlighter-rouge">g</code> ऑब्जेक्ट में संग्रहीत है। यह ट्रेस आईडी आमतौर पर अनुरोधों को ट्रैक करने के लिए उपयोग की जाती है।</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if response.status_code != 200:
+    logging.error(f'Response status code: {response.status_code}')
+    logging.error(f'Response body: {response.get_data(as_text=True)}')
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">content_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">application/json</span><span class="sh">'</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">get_json</span><span class="p">()</span>
+        <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">response_json</span><span class="p">))</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error adding trace_id to response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">return</span> <span class="n">response</span>
+</code></pre></div></div>
+
+<h2 id="लॉग">लॉग</h2>
+
+<p>आप निम्नलिखित क्वेरी का उपयोग करके किसी विशेष ट्रेस ID से संबंधित सभी लॉग्स को खोज सकते हैं:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flask-logs-2024.07.05"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_doc"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ae9zgZABqOMSOpxCZC5X"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request processed successfully"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="mf">685817.8744316101</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mf">1720158740.894831</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="mi">139715118360128</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thread-5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="mf">894.8309421539307</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MainProcess"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/app.log"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lc6t"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stack_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="mi">107613</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"levelname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">685817.9</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">894.83093</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">107613</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1720158700</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">139715118360128</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Request processed successfully"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">20</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">287</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Request processed successfully"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>जैसा कि ऊपर दिखाया गया है, आप लॉग में ट्रेस ID देख सकते हैं।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

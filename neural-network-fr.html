@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Comment fonctionne un réseau de neurones</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Comment fonctionne un réseau de neurones | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Comment fonctionne un réseau de neurones" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Parlons directement du cœur du fonctionnement des réseaux de neurones. À savoir, l’algorithme de rétropropagation :" />
+<meta property="og:description" content="Parlons directement du cœur du fonctionnement des réseaux de neurones. À savoir, l’algorithme de rétropropagation :" />
+<link rel="canonical" href="https://lzwjava.github.io/neural-network-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/neural-network-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-30T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Comment fonctionne un réseau de neurones" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-05-30T00:00:00+08:00","datePublished":"2023-05-30T00:00:00+08:00","description":"Parlons directement du cœur du fonctionnement des réseaux de neurones. À savoir, l’algorithme de rétropropagation :","headline":"Comment fonctionne un réseau de neurones","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/neural-network-fr"},"url":"https://lzwjava.github.io/neural-network-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Comment fonctionne un réseau de neurones | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2023-05-30-neural-network-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2023-05-30-neural-network-fr.md</span> -->
+      
+
+      <!-- <span>2023-05-30-neural-network-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/neural-network-en" >English</option>
+        <option value="/neural-network-zh" >中文</option>
+        <option value="/neural-network-ja" >日本語</option>
+        <option value="/neural-network-es" >Español</option>
+        <option value="/neural-network-hi" >हिंदी</option>
+        <option value="/neural-network-fr" selected>Français</option>
+        <option value="/neural-network-de" >Deutsch</option>
+        <option value="/neural-network-ar" >العربية</option>
+        <option value="/neural-network-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Parlons directement du cœur du fonctionnement des réseaux de neurones. À savoir, l’algorithme de rétropropagation :</p>
+
+<ol>
+  <li>Entrée x : Définir l’activation correspondante \(a^{1}\) pour la couche d’entrée.</li>
+  <li>Propagation avant : Pour chaque l=2,3,…,L, calculer \(z^{l} = w^l a^{l-1}+b^l\) et \(a^{l} = \sigma(z^{l})\)</li>
+  <li>Erreur de sortie \(\delta^{L}\) : Calculer le vecteur \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\)</li>
+  <li>Rétropropagation de l’erreur : Pour chaque l=L−1,L−2,…,2, calculer \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\)</li>
+  <li>Sortie : Le gradient de la fonction de coût est donné par \(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\) et \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\)</li>
+</ol>
+
+<p>Ceci est copié du livre <em>Neural Networks and Deep Learning</em> de Michael Nelson. Est-ce accablant ? Cela pourrait l’être la première fois que vous le voyez. Mais ce ne l’est plus après un mois d’étude autour de ce sujet. Laissez-moi vous expliquer.</p>
+
+<h2 id="entrée">Entrée</h2>
+
+<p>Il y a 5 phases. La première phase est l’<strong>Entrée</strong>. Ici, nous utilisons des chiffres manuscrits comme entrée. Notre tâche est de les reconnaître. Un chiffre manuscrit est composé de 784 pixels, soit 28*28. Dans chaque pixel, il y a une valeur en niveaux de gris qui varie de 0 à 255. L’activation signifie que nous utilisons une fonction pour l’activer, afin de transformer sa valeur d’origine en une nouvelle valeur pour faciliter le traitement.</p>
+
+<p>Supposons que nous ayons maintenant 1000 images de 784 pixels. Nous les utilisons pour entraîner un modèle à reconnaître le chiffre qu’elles représentent. Nous avons également 100 images pour tester l’efficacité de cet apprentissage. Si le programme parvient à reconnaître correctement les chiffres sur 97 images, nous disons que sa précision est de 97 %.</p>
+
+<p>Nous allons donc parcourir les 1000 images pour entraîner les poids et les biais. Nous rendons les poids et les biais plus précis à chaque fois que nous lui donnons une nouvelle image à apprendre.</p>
+
+<p>Le résultat d’un entraînement par lot doit être reflété dans 10 neurones. Ici, les 10 neurones représentent les chiffres de 0 à 9, et leur valeur varie de 0 à 1 pour indiquer leur niveau de confiance quant à la précision de leur prédiction.</p>
+
+<p>Et l’entrée est composée de 784 neurones. Comment pouvons-nous réduire 784 neurones à 10 neurones ? Voici la chose. Supposons que nous ayons deux couches. Que signifie une couche ? C’est-à-dire que dans la première couche, nous avons 784 neurones. Dans la deuxième couche, nous avons 10 neurones.</p>
+
+<p>Nous attribuons à chaque neurone parmi les 784 neurones un poids, disons,</p>
+
+\[w_1, w_2, w_3, w_4, ... , w_{784}\]
+
+<p>Et donnez à la première couche un biais, c’est-à-dire \(b_1\).</p>
+
+<p>Et donc, pour le premier neurone de la deuxième couche, sa valeur est :</p>
+
+\[w_1*a_1 + w_2*a_2+...+ w_{784}*a_{784}+b_1\]
+
+<p>Mais ces poids et ce biais sont pour \(neuron^2_{1}\) (le premier neurone de la deuxième couche). Pour \(neuron^2_{2}\), nous avons besoin d’un autre ensemble de poids et d’un biais.</p>
+
+<p>Et la fonction sigmoïde ? Nous utilisons la fonction sigmoïde pour mapper la valeur ci-dessus entre 0 et 1.</p>
+
+\[\begin{eqnarray} 
+  \sigma(z) \equiv \frac{1}{1+e^{-z}}
+\end{eqnarray}\]
+
+\[\begin{eqnarray} 
+  \frac{1}{1+\exp(-\sum_j w_j x_j-b)}
+\end{eqnarray}\]
+
+<p>Nous utilisons également la fonction sigmoïde pour activer la première couche. Cela dit, nous transformons cette valeur en niveaux de gris pour qu’elle soit comprise entre 0 et 1. Ainsi, chaque neurone dans chaque couche a maintenant une valeur comprise entre 0 et 1.</p>
+
+<p>Ainsi, pour notre réseau à deux couches, la première couche compte 784 neurones, et la deuxième couche en compte 10. Nous l’entraînons pour obtenir les poids et les biais.</p>
+
+<p>Nous avons 784 * 10 poids et 10 biais. Dans la deuxième couche, pour chaque neurone, nous utiliserons 784 poids et 1 biais pour calculer sa valeur. Le code ici ressemble à,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sizes</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">sizes</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+</code></pre></div></div>
+
+<h2 id="réseau-feedforward">Réseau Feedforward</h2>
+
+<blockquote>
+  <p>Propagation avant : Pour chaque l=2,3,…,L, calculez \(z^{l} = w^l a^{l-1}+b^l\) et \(a^{l} = \sigma(z^{l})\)</p>
+</blockquote>
+
+<p>Remarquez ici que nous utilisons la valeur de la dernière couche, c’est-à-dire \(a^{l-1}\), ainsi que le poids de la couche actuelle, \(w^l\), et son biais \(b^l\), pour appliquer la fonction sigmoïde et obtenir la valeur de la couche actuelle, \(a^{l}\).</p>
+
+<p>Code :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="c1"># propagation avant
+</span>        <span class="n">activation</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> 
+        <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">activation</span><span class="p">)</span><span class="o">+</span><span class="n">b</span>
+            <span class="n">zs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activations</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="erreur-de-sortie">Erreur de sortie</h2>
+
+<blockquote>
+  <p>Erreur de sortie \(\delta^{L}\) : Calculez le vecteur \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\)</p>
+</blockquote>
+
+<p>Voyons ce que signifie le \(\nabla\).</p>
+
+<blockquote>
+  <p>Del, ou nabla, est un opérateur utilisé en mathématiques (notamment en calcul vectoriel) comme un opérateur différentiel vectoriel, généralement représenté par le symbole nabla ∇.</p>
+</blockquote>
+
+\[\begin{eqnarray}
+  w_k &amp; \rightarrow &amp; w_k' = w_k-\eta \frac{\partial C}{\partial w_k} \\
+  b_l &amp; \rightarrow &amp; b_l' = b_l-\eta \frac{\partial C}{\partial b_l}
+\end{eqnarray}\]
+
+<p>Ici, \(\eta\) représente le taux d’apprentissage. Nous utilisons la dérivée de C par rapport aux poids et au biais, c’est-à-dire le taux de changement entre eux. Cela correspond à <code class="language-plaintext highlighter-rouge">sigmoid_prime</code> dans le code ci-dessous.</p>
+
+<p>Code :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">delta</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">cost_derivative</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+        <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">cost_derivative</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">output_activations</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">output_activations</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><em>Remarque : Le code est en anglais et ne nécessite pas de traduction, car il s’agit d’une fonction Python qui calcule la dérivée du coût entre les activations de sortie (<code class="language-plaintext highlighter-rouge">output_activations</code>) et les valeurs cibles (<code class="language-plaintext highlighter-rouge">y</code>).</em></p>
+
+<h2 id="rétropropager-lerreur">Rétropropager l’erreur</h2>
+
+<blockquote>
+  <p>Rétropropager l’erreur : Pour chaque ( l = L-1, L-2, \ldots, 2 ), calculer \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\)</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">sp</span> <span class="o">=</span> <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">(),</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">sp</span>
+            <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+            <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="sortie">Sortie</h2>
+
+<blockquote>
+  <p>Sortie : Le gradient de la fonction de coût est donné par \(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\)
+et \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\)</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">update_mini_batch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mini_batch</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">mini_batch</span><span class="p">:</span>
+            <span class="n">delta_nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_w</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">backprop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">nb</span><span class="o">+</span><span class="n">dnb</span> <span class="k">for</span> <span class="n">nb</span><span class="p">,</span> <span class="n">dnb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_b</span><span class="p">)]</span>
+            <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">nw</span><span class="o">+</span><span class="n">dnw</span> <span class="k">for</span> <span class="n">nw</span><span class="p">,</span> <span class="n">dnw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_w</span><span class="p">,</span> <span class="n">delta_nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+                       <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="final">Final</h2>
+
+<p>C’est un article court. Et pour la plupart, il montre simplement le code et des formules mathématiques. Mais cela me convient. Avant de l’écrire, je ne comprenais pas clairement. Après l’avoir écrit, ou simplement en copiant des extraits de code et de livre, j’ai compris la plupart des concepts. Après avoir gagné en confiance grâce à l’enseignant Yin Wang, en lisant environ 30% du livre <em>Neural Networks and Deep Learning</em>, en écoutant les cours de Stanford d’Andrej Karpathy et les cours d’Andrew Ng, en discutant avec mon ami Qi, et en bidouillant avec Anaconda, numpy, et les bibliothèques Theano pour faire fonctionner le code d’il y a des années, je comprends maintenant.</p>
+
+<p>L’un des points clés est la dimension. Nous devons connaître les dimensions de chaque symbole et variable. Et il effectue simplement le calcul différentiable. Terminons par les citations de Yin Wang :</p>
+
+<blockquote>
+  <p>L’apprentissage automatique est vraiment utile, on pourrait même dire que c’est une théorie magnifique, car ce n’est rien d’autre que du calcul différentiel après une métamorphose ! C’est l’ancienne et grande théorie de Newton et Leibniz, sous une forme plus simple, élégante et puissante. L’apprentissage automatique consiste essentiellement à utiliser le calcul pour dériver et ajuster certaines fonctions, et l’apprentissage profond consiste à ajuster des fonctions plus complexes.</p>
+</blockquote>
+
+<blockquote>
+  <p>Il n’y a pas d’« intelligence » dans l’intelligence artificielle, pas de « neurone » dans les réseaux de neurones, pas d’« apprentissage » dans l’apprentissage automatique, et pas de « profondeur » dans l’apprentissage profond. Ce qui fonctionne vraiment dans ce domaine s’appelle le « calcul ». Je préfère donc appeler ce domaine le « calcul différentiable », et le processus de construction de modèles est appelé « programmation différentiable ».</p>
+</blockquote>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

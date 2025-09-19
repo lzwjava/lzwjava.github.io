@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>End-to-End Trace-ID-Implementierung</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>End-to-End Trace-ID-Implementierung | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="End-to-End Trace-ID-Implementierung" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Dieser Blogbeitrag wurde mit Unterstützung von ChatGPT-4o verfasst." />
+<meta property="og:description" content="Dieser Blogbeitrag wurde mit Unterstützung von ChatGPT-4o verfasst." />
+<link rel="canonical" href="https://lzwjava.github.io/trace-de" />
+<meta property="og:url" content="https://lzwjava.github.io/trace-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-07-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="End-to-End Trace-ID-Implementierung" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-07-06T00:00:00+08:00","datePublished":"2024-07-06T00:00:00+08:00","description":"Dieser Blogbeitrag wurde mit Unterstützung von ChatGPT-4o verfasst.","headline":"End-to-End Trace-ID-Implementierung","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/trace-de"},"url":"https://lzwjava.github.io/trace-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       End-to-End Trace-ID-Implementierung | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2024-07-06-trace-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2024-07-06-trace-de.md</span> -->
+      
+
+      <!-- <span>2024-07-06-trace-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/trace-en" >English</option>
+        <option value="/trace-zh" >中文</option>
+        <option value="/trace-ja" >日本語</option>
+        <option value="/trace-es" >Español</option>
+        <option value="/trace-hi" >हिंदी</option>
+        <option value="/trace-fr" >Français</option>
+        <option value="/trace-de" selected>Deutsch</option>
+        <option value="/trace-ar" >العربية</option>
+        <option value="/trace-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>Dieser Blogbeitrag wurde mit Unterstützung von ChatGPT-4o verfasst.</em></p>
+
+<hr />
+
+<p>Ich habe an einer End-to-End-Trace-ID-Lösung gearbeitet, um sicherzustellen, dass jede Anfrage und jede Antwort in unserem System konsistent über das Frontend und das Backend hinweg verfolgt werden kann. Diese Lösung unterstützt das Debugging, die Überwachung und die Protokollierung, indem jeder Vorgang mit einer eindeutigen Trace-ID verknüpft wird. Im Folgenden finden Sie eine detaillierte Erklärung, wie die Lösung funktioniert, zusammen mit Codebeispielen.</p>
+
+<h2 id="wie-es-funktioniert">Wie es funktioniert</h2>
+
+<h3 id="frontend">Frontend</h3>
+
+<p>Der Frontend-Teil dieser Lösung umfasst die Generierung einer Trace-ID für jede Anfrage und das Senden dieser zusammen mit Client-Informationen an das Backend. Diese Trace-ID wird verwendet, um die Anfrage durch verschiedene Verarbeitungsstufen im Backend zu verfolgen.</p>
+
+<ol>
+  <li>
+    <p>Erfassung von Client-Informationen: Wir sammeln relevante Informationen vom Client, wie Bildschirmgröße, Netzwerktyp, Zeitzone und mehr. Diese Informationen werden zusammen mit den Anfrage-Headern gesendet.</p>
+  </li>
+  <li>
+    <p>Trace-ID-Generierung: Für jede Anfrage wird eine eindeutige Trace-ID generiert. Diese Trace-ID wird in den Anfrage-Headern enthalten sein, wodurch wir die Anfrage während ihres gesamten Lebenszyklus verfolgen können.</p>
+  </li>
+  <li>
+    <p>API Fetch: Die Funktion <code class="language-plaintext highlighter-rouge">apiFetch</code> wird verwendet, um API-Aufrufe durchzuführen. Sie fügt die Trace-ID und Client-Informationen in den Headern jeder Anfrage hinzu.</p>
+  </li>
+</ol>
+
+<h3 id="backend">Backend</h3>
+
+<p>Der Backend-Teil der Lösung beinhaltet das Protokollieren der Trace-ID mit jeder Log-Nachricht und das Einbeziehen der Trace-ID in die Antworten. Dies ermöglicht es uns, Anfragen durch die Backend-Verarbeitung zu verfolgen und Antworten den Anfragen zuzuordnen.</p>
+
+<ol>
+  <li>
+    <p>Trace-ID-Verarbeitung: Das Backend empfängt die Trace-ID aus den Anfrage-Headern oder generiert eine neue, falls keine bereitgestellt wird. Die Trace-ID wird in einem Flask-Global-Objekt gespeichert, um sie während des gesamten Anfragelebenszyklus zu verwenden.</p>
+  </li>
+  <li>
+    <p>Protokollierung: Benutzerdefinierte Log-Formate werden verwendet, um die Trace-ID in jede Log-Nachricht einzufügen. Dadurch wird sichergestellt, dass alle Log-Nachrichten, die zu einer Anfrage gehören, mithilfe der Trace-ID korreliert werden können.</p>
+  </li>
+  <li>
+    <p>Antwortverarbeitung: Die Trace-ID wird in den Antwort-Headern enthalten sein. Tritt ein Fehler auf, wird die Trace-ID auch im Fehlerantwort-Body enthalten sein, um das Debugging zu erleichtern.</p>
+  </li>
+</ol>
+
+<h3 id="kibana">Kibana</h3>
+
+<p>Kibana ist ein leistungsstarkes Tool zur Visualisierung und Suche von Log-Daten, die in Elasticsearch gespeichert sind. Mit unserer Trace-ID-Lösung können Sie Anfragen einfach mit Kibana verfolgen und debuggen. Die Trace-ID, die in jedem Log-Eintrag enthalten ist, kann verwendet werden, um spezifische Logs zu filtern und zu durchsuchen.</p>
+
+<p>Um nach Protokollen mit einer bestimmten Trace-ID zu suchen, können Sie die Kibana Query Language (KQL) verwenden. Beispielsweise können Sie nach allen Protokollen suchen, die mit einer bestimmten Trace-ID verknüpft sind, indem Sie die folgende Abfrage verwenden:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<p>Diese Abfrage gibt alle Log-Einträge zurück, die die Trace-ID “Lc6t” enthalten, sodass Sie den Pfad der Anfrage durch das System nachverfolgen können. Darüber hinaus können Sie diese Abfrage mit anderen Kriterien kombinieren, um die Suchergebnisse einzugrenzen, z. B. durch Filtern nach Log-Level, Zeitstempel oder spezifischen Schlüsselwörtern innerhalb der Log-Nachrichten.</p>
+
+<p>Durch die Nutzung der Visualisierungsfunktionen von Kibana können Sie auch Dashboards erstellen, die Metriken und Trends basierend auf den Trace-IDs anzeigen. Zum Beispiel können Sie die Anzahl der verarbeiteten Anfragen, die durchschnittlichen Antwortzeiten und die Fehlerraten visualisieren, die alle mit ihren jeweiligen Trace-IDs korreliert sind. Dies hilft dabei, Muster und potenzielle Probleme in der Leistung und Zuverlässigkeit Ihrer Anwendung zu identifizieren.</p>
+
+<p>Die Verwendung von Kibana in Verbindung mit unserer Trace-ID-Lösung bietet einen umfassenden Ansatz zur Überwachung, Fehlerbehebung und Analyse des Systemverhaltens, wodurch sichergestellt wird, dass jede Anfrage effektiv nachverfolgt und untersucht werden kann.</p>
+
+<h2 id="frontend-1">Frontend</h2>
+
+<h3 id="apijs"><code class="language-plaintext highlighter-rouge">api.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">BASE_URL</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">REACT_APP_BASE_URL</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>// Funktion zum Abrufen von Client-Informationen
+const getClientInfo = () =&gt; {
+    const { language, platform, cookieEnabled, doNotTrack, onLine } = navigator;
+    const { width, height } = window.screen;
+    const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    const networkType = connection ? connection.effectiveType : ‘unknown’;
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const referrer = document.referrer;
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>return {
+    screenWidth: width,
+    screenHeight: height,
+    networkType,
+    timeZone,
+    language,
+    platform,
+    cookieEnabled,
+    doNotTrack,
+    onLine,
+    referrer,
+    viewportWidth,
+    viewportHeight
+}; };
+</code></pre></div></div>
+
+<p>// Funktion zur Generierung einer eindeutigen Trace-ID
+export const generateTraceId = (length = 4) =&gt; {
+    const characters = ‘ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789’;
+    let traceId = ‘’;
+    for (let i = 0; i &lt; length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        traceId += characters.charAt(randomIndex);
+    }
+    return traceId;
+};</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">BASE_URL</span><span class="p">}${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">clientInfo</span> <span class="o">=</span> <span class="nf">getClientInfo</span><span class="p">();</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const traceId = options.traceId || generateTraceId();
+
+const headers = {
+    'Content-Type': 'application/json',
+    'X-Client-Info': JSON.stringify(clientInfo),
+    'X-Trace-Id': traceId,
+    ...(options.headers || {})
+};
+
+const response = await fetch(url, {
+    ...options,
+    headers
+});
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">return</span> <span class="nx">response</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h3 id="appjs"><code class="language-plaintext highlighter-rouge">App.js</code></h3>
+
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+      <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
+    <span class="na">traceId</span><span class="p">:</span> <span class="nx">traceId</span>
+  <span class="p">});</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="c1">//...        </span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">Ein unbekannter Fehler ist aufgetreten</span><span class="dl">'</span><span class="p">;</span>
+    <span class="kd">let</span> <span class="nx">errorToastMessage</span> <span class="o">=</span> <span class="nx">errorMessage</span><span class="p">;</span>
+    <span class="nx">errorToastMessage</span> <span class="o">+=</span> <span class="s2">` (Trace ID: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">,</span> <span class="p">{</span>
+      <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+    <span class="p">});</span>
+    <span class="nf">setError</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">errorString</span> <span class="o">=</span> <span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p>const duration = (Date.now() - startTime) / 1000;</p>
+
+<p>if (error.response) {
+    // Die Anfrage wurde gemacht und der Server antwortete mit einem Statuscode, der außerhalb des Bereichs von 2xx liegt
+    errorString += ` (HTTP ${error.response.status}: ${error.response.statusText})<code class="language-plaintext highlighter-rouge">;
+    console.error('Antwort-Fehlerdaten:', error.response.data);
+  } else if (error.request) {
+    // Die Anfrage wurde gemacht, aber es wurde keine Antwort empfangen
+    errorString += ' (Keine Antwort empfangen)';
+    console.error('Anfrage-Fehlerdaten:', error.request);
+  } else {
+    // Beim Einrichten der Anfrage ist etwas passiert, das einen Fehler ausgelöst hat
+    errorString += </code> (Fehler beim Einrichten der Anfrage: ${error.message})`;
+  }</p>
+
+<p>errorString += ` (Trace-ID: ${traceId})`;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if </span><span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">`\nStack: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">stack</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>errorString += JSON.stringify(error);</p>
+
+<p>errorString += ` (Dauer: ${duration} Sekunden)`;</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Fehler: </span><span class="p">${</span><span class="nx">errorString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
+  <span class="p">});</span>
+  <span class="nf">setError</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nx">toastId</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h2 id="backend-1">Backend</h2>
+
+<h3 id="__init__py"><code class="language-plaintext highlighter-rouge">__init__.py</code></h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- Kodierung: utf-8 -*-
+</span></code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="n">uuid</span>
+<span class="kn">import</span> <span class="n">string</span>
+<span class="kn">import</span> <span class="n">random</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">has_request_context</span>
+<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+<span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+<span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="n">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
+</code></pre></div></div>
+
+<p>Dieser Code importiert verschiedene Module und Funktionen, die für die Konfiguration und den Betrieb einer Flask-Anwendung benötigt werden. Hier ist eine kurze Erklärung der einzelnen Importe:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">initialize_routes</code>: Eine Funktion, die die Routen der Anwendung initialisiert.</li>
+  <li><code class="language-plaintext highlighter-rouge">db</code> und <code class="language-plaintext highlighter-rouge">insert_default_config</code>: Datenbankmodelle und eine Funktion zum Einfügen von Standardkonfigurationen.</li>
+  <li><code class="language-plaintext highlighter-rouge">logging</code>: Das Python-Modul für die Protokollierung.</li>
+  <li><code class="language-plaintext highlighter-rouge">RotatingFileHandler</code>: Ein Handler für die Protokollierung, der die Logdateien rotiert, um Speicherplatz zu sparen.</li>
+  <li><code class="language-plaintext highlighter-rouge">Counter</code>, <code class="language-plaintext highlighter-rouge">generate_latest</code>, <code class="language-plaintext highlighter-rouge">Gauge</code>: Funktionen und Klassen aus der <code class="language-plaintext highlighter-rouge">prometheus_client</code>-Bibliothek zur Überwachung und Metrikenerfassung.</li>
+  <li><code class="language-plaintext highlighter-rouge">Migrate</code>: Eine Erweiterung für Flask, die Datenbankmigrationen verwaltet.</li>
+  <li><code class="language-plaintext highlighter-rouge">LogstashFormatterV1</code>: Ein Formatter für die Protokollierung, der Logs im Logstash-Format ausgibt.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>app.config.from_object(‘api.config.BaseConfig’)</p>
+
+<p>db.init_app(app)
+initialize_routes(app)</p>
+
+<p>CORS(app)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">migrate</span> <span class="o">=</span> <span class="nc">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">RequestFormatter</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Diese Klasse <code class="language-plaintext highlighter-rouge">RequestFormatter</code> erweitert die <code class="language-plaintext highlighter-rouge">logging.Formatter</code>-Klasse und überschreibt die <code class="language-plaintext highlighter-rouge">format</code>-Methode. Wenn ein Request-Kontext vorhanden ist, wird die <code class="language-plaintext highlighter-rouge">trace_id</code> aus dem <code class="language-plaintext highlighter-rouge">g</code>-Objekt geholt und dem Logging-Record hinzugefügt. Falls kein Request-Kontext vorhanden ist, wird die <code class="language-plaintext highlighter-rouge">trace_id</code> auf <code class="language-plaintext highlighter-rouge">'unknown'</code> gesetzt. Schließlich wird die ursprüngliche <code class="language-plaintext highlighter-rouge">format</code>-Methode der übergeordneten Klasse aufgerufen, um den formatierten Log-Eintrag zurückzugeben.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Übersetzung:</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>In diesem Code wird eine benutzerdefinierte Klasse <code class="language-plaintext highlighter-rouge">CustomLogstashFormatter</code> erstellt, die von <code class="language-plaintext highlighter-rouge">LogstashFormatterV1</code> erbt. Die Methode <code class="language-plaintext highlighter-rouge">format</code> wird überschrieben, um sicherzustellen, dass der <code class="language-plaintext highlighter-rouge">trace_id</code>-Wert im Log-Datensatz gesetzt wird. Wenn ein Request-Kontext vorhanden ist, wird die <code class="language-plaintext highlighter-rouge">trace_id</code> aus dem globalen Objekt <code class="language-plaintext highlighter-rouge">g</code> geholt. Falls kein Request-Kontext vorhanden ist, wird der Wert auf <code class="language-plaintext highlighter-rouge">'unknown'</code> gesetzt. Schließlich wird die ursprüngliche <code class="language-plaintext highlighter-rouge">format</code>-Methode der Elternklasse aufgerufen, um den formatierten Log-Datensatz zurückzugeben.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
+    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+        <span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">txt_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">plain.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">txt_formatter</span> <span class="o">=</span> <span class="nc">RequestFormatter</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d] [trace_id: %(trace_id)s]</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">txt_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">txt_formatter</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">setup_loggers</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Übersetzung:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
+    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Die Funktion <code class="language-plaintext highlighter-rouge">generate_trace_id</code> generiert eine zufällige Zeichenkette (Trace-ID) mit einer Standardlänge von 4 Zeichen. Die Zeichenkette besteht aus einer Kombination von Buchstaben (Groß- und Kleinbuchstaben) und Ziffern. Die Länge der Zeichenkette kann durch den Parameter <code class="language-plaintext highlighter-rouge">length</code> angepasst werden.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.before_request</span>
+<span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">client_info</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Client-Info</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">client_info</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">client_info_json</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">client_info</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Client Info: </span><span class="si">{</span><span class="n">client_info_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Ungültiges JSON-Format für den X-Client-Info-Header</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.after_request</span>
+<span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if response.status_code != 200:
+    logging.error(f'Antwortstatuscode: {response.status_code}')
+    logging.error(f'Antworttext: {response.get_data(as_text=True)}')
+
+    if response.content_type == 'application/json':
+        try:
+            response_json = response.get_json()
+            response_json['trace_id'] = g.trace_id
+            response.set_data(json.dumps(response_json))
+        except Exception as e:
+            logging.error(f"Fehler beim Hinzufügen der trace_id zur Antwort: {e}")
+
+return response ```
+</code></pre></div></div>
+
+<h2 id="protokoll">Protokoll</h2>
+
+<p>Sie können nach allen Protokollen suchen, die mit einer bestimmten Trace-ID verknüpft sind, indem Sie die folgende Abfrage verwenden:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>trace_id:"Lc6t"
+</code></pre></div></div>
+
+<p>(Anmerkung: Der Code-Block bleibt unverändert, da es sich um eine technische ID handelt, die nicht übersetzt werden sollte.)</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"_index"</span><span class="p">:</span><span class="w"> </span><span class="s2">"flask-logs-2024.07.05"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_doc"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ae9zgZABqOMSOpxCZC5X"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_score"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"_source"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"post"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Anfrage erfolgreich verarbeitet"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="mf">685817.8744316101</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INFO"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="mf">1720158740.894831</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="mi">139715118360128</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thread-5"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="mf">894.8309421539307</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MainProcess"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="mi">287</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/home/project/project-name/app.log"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"generate"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lc6t"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"stack_info"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="mi">107613</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"levelname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"relativeCreated"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">685817.9</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"processName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"MainProcess"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@version"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"msecs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mf">894.83093</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"host.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"INFO"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"process"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">107613</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"source_host"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"ip-172-31-35-xxx.ec2.internal"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"created"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">1720158700</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"module.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"thread"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">139715118360128</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Anfrage erfolgreich verarbeitet"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"levelno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">20</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"trace_id.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Lc6t"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"threadName"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Thread-5"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"tags"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"_grokparsefailure"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"pathname.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/api/routes/generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"@timestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"2024-07-05T05:52:20.894Z"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"filename"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"generate.py"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"lineno"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="mi">287</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"message.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Anfrage erfolgreich verarbeitet"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"root"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"funcName.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"post"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"path.keyword"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"/home/project/project-name/app.log"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Wie oben gezeigt, können Sie die Trace-ID im Protokoll sehen.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

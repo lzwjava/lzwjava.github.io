@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="En el mundo de desarrollo rápido de hoy, la calidad del código es fundamental. Un proceso de revisión de código bien estructurado puede elevar la producción de un equipo y afilar las habilidades individuales. Recientemente, exploré un proyecto fascinante: un servicio de revisión de código construido con Vue.js que conecta a los desarrolladores con revisores expertos para refinar sus bases de código. Vamos a sumergirnos en los cimientos técnicos de esta plataforma, centrándonos en su arquitectura frontal, diseño de componentes y técnicas de estilo." />
+<meta property="og:description" content="En el mundo de desarrollo rápido de hoy, la calidad del código es fundamental. Un proceso de revisión de código bien estructurado puede elevar la producción de un equipo y afilar las habilidades individuales. Recientemente, exploré un proyecto fascinante: un servicio de revisión de código construido con Vue.js que conecta a los desarrolladores con revisores expertos para refinar sus bases de código. Vamos a sumergirnos en los cimientos técnicos de esta plataforma, centrándonos en su arquitectura frontal, diseño de componentes y técnicas de estilo." />
+<link rel="canonical" href="https://lzwjava.github.io/codereview-frontend-es" />
+<meta property="og:url" content="https://lzwjava.github.io/codereview-frontend-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-04-08T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-04-08T00:00:00+08:00","datePublished":"2016-04-08T00:00:00+08:00","description":"En el mundo de desarrollo rápido de hoy, la calidad del código es fundamental. Un proceso de revisión de código bien estructurado puede elevar la producción de un equipo y afilar las habilidades individuales. Recientemente, exploré un proyecto fascinante: un servicio de revisión de código construido con Vue.js que conecta a los desarrolladores con revisores expertos para refinar sus bases de código. Vamos a sumergirnos en los cimientos técnicos de esta plataforma, centrándonos en su arquitectura frontal, diseño de componentes y técnicas de estilo.","headline":"Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/codereview-frontend-es"},"url":"https://lzwjava.github.io/codereview-frontend-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Construyendo una Plataforma de Revisión de Código Eficiente con Vue.js | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2016-04-08-codereview-frontend-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2016-04-08-codereview-frontend-es.md</span> -->
+      
+
+      <!-- <span>2016-04-08-codereview-frontend-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.04</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/codereview-frontend-en" >English</option>
+        <option value="/codereview-frontend-zh" >中文</option>
+        <option value="/codereview-frontend-ja" >日本語</option>
+        <option value="/codereview-frontend-es" selected>Español</option>
+        <option value="/codereview-frontend-hi" >हिंदी</option>
+        <option value="/codereview-frontend-fr" >Français</option>
+        <option value="/codereview-frontend-de" >Deutsch</option>
+        <option value="/codereview-frontend-ar" >العربية</option>
+        <option value="/codereview-frontend-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>En el mundo de desarrollo rápido de hoy, la calidad del código es fundamental. Un proceso de revisión de código bien estructurado puede elevar la producción de un equipo y afilar las habilidades individuales. Recientemente, exploré un proyecto fascinante: un servicio de revisión de código construido con Vue.js que conecta a los desarrolladores con revisores expertos para refinar sus bases de código. Vamos a sumergirnos en los cimientos técnicos de esta plataforma, centrándonos en su arquitectura frontal, diseño de componentes y técnicas de estilo.</p>
+
+<h2 id="la-gran-imagen-vuejs-como-fundamento">La Gran Imagen: Vue.js como Fundamento</h2>
+
+<p>La plataforma aprovecha Vue.js, un marco de JavaScript progresivo, para crear una interfaz de usuario interactiva y modular. La base de código que examiné es una aplicación de una sola página (SPA) con una separación clara de preocupaciones: plantillas HTML para la estructura, JavaScript para la lógica y Stylus para el estilo. Esta tríada la convierte en un excelente caso de estudio para el desarrollo web moderno.</p>
+
+<p>En su núcleo, la aplicación presenta una página de inicio con secciones como un banner de héroe, destacados de características, presentación de revisores y ejemplos de revisiones. Cada sección está diseñada cuidadosamente para guiar a los usuarios a través de la propuesta de valor del servicio, desde descubrir revisores expertos hasta explorar casos de revisión de código del mundo real.</p>
+
+<h2 id="desglosando-la-plantilla-componentes-y-renderizado-dinámico">Desglosando la Plantilla: Componentes y Renderizado Dinámico</h2>
+
+<p>La plantilla HTML es una mezcla de contenido estático y componentes Vue dinámicos. Aquí hay un fragmento de la sección del héroe:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"slide"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"bg"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h1&gt;</span>最高效的代码审核服务<span class="nt">&lt;/h1&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>Code Review，迅速帮你提升核心竞争力<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"./belief.html"</span><span class="nt">&gt;&lt;button</span> <span class="na">class=</span><span class="s">"help"</span><span class="nt">&gt;</span>2016，想为大家做一点小事<span class="nt">&lt;/button&gt;&lt;/a&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<p>Esta sección es sencilla pero establece el tono con una imagen de fondo audaz y una llamada a la acción (CTA). Sin embargo, la verdadera magia ocurre en las secciones dinámicas, como las “Revisiones de Código de Ejemplo”:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;section</span> <span class="na">class=</span><span class="s">"example"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;h2&gt;</span>精选 Code Review 案例<span class="nt">&lt;/h2&gt;</span>
+    <span class="nt">&lt;ul</span> <span class="na">class=</span><span class="s">"list"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"row"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">"clo-1"</span> <span class="err">@</span><span class="na">click=</span><span class="s">"goDetail(reviews[0].reviewId)"</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"info"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">class=</span><span class="s">"author"</span> <span class="na">v-for=</span><span class="s">"author in reviews[0].authors"</span><span class="nt">&gt;&lt;/button&gt;</span>
+            <span class="nt">&lt;img</span> <span class="na">:src=</span><span class="s">"reviews[0].coverUrl"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"text"</span><span class="nt">&gt;</span>
+              <span class="nt">&lt;h6</span> <span class="na">class=</span><span class="s">"title"</span> <span class="na">v-html=</span><span class="s">"reviews[0].title"</span><span class="nt">&gt;&lt;/h6&gt;</span>
+              <span class="nt">&lt;h6</span> <span class="na">class=</span><span class="s">"tips"</span><span class="nt">&gt;</span>
+                <span class="nt">&lt;span</span> <span class="na">v-for=</span><span class="s">"tag in reviews[0].tags"</span><span class="nt">&gt;</span>#<span class="nt">&lt;/span&gt;</span>
+              <span class="nt">&lt;/h6&gt;</span>
+            <span class="nt">&lt;/div&gt;</span>
+          <span class="nt">&lt;/div&gt;</span>
+        <span class="nt">&lt;/li&gt;</span>
+        <span class="c">&lt;!-- Más elementos de la lista --&gt;</span>
+      <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/ul&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/section&gt;</span>
+</code></pre></div></div>
+
+<h3 id="características-clave">Características Clave:</h3>
+<ol>
+  <li><strong>Vinculación de Datos Dinámica</strong>: Las directivas <code class="language-plaintext highlighter-rouge">:src</code> y <code class="language-plaintext highlighter-rouge">v-html</code> vinculan datos del array <code class="language-plaintext highlighter-rouge">reviews</code> (definido en el script) a la plantilla. Esto permite que la aplicación renderice contenido dinámicamente basado en datos recuperados o codificados de manera rígida.</li>
+  <li><strong>Manejo de Eventos</strong>: La directiva <code class="language-plaintext highlighter-rouge">@click="goDetail(reviews[0].reviewId)"</code> activa un método para navegar a una vista detallada de la revisión, mostrando el sistema de eventos sin fisuras de Vue.</li>
+  <li><strong>Bucles con <code class="language-plaintext highlighter-rouge">v-for</code></strong>: La directiva <code class="language-plaintext highlighter-rouge">v-for</code> itera sobre arrays como <code class="language-plaintext highlighter-rouge">authors</code> y <code class="language-plaintext highlighter-rouge">tags</code>, renderizando múltiples elementos de manera eficiente. Esto es perfecto para mostrar múltiples colaboradores o metadatos sin codificación rígida.</li>
+</ol>
+
+<p>Los datos <code class="language-plaintext highlighter-rouge">reviews</code> están predefinidos en el script:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">reviews</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">reviewId</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="na">coverUrl</span><span class="p">:</span> <span class="dl">'</span><span class="s1">http://7xotd0.com1.z0.glb.clouddn.com/photo-1450849608880-6f787542c88a.jpeg</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">title</span><span class="p">:</span> <span class="dl">'</span><span class="s1">如何打造&lt;br&gt;令人愉悦的&lt;br&gt;开发环境</span><span class="dl">'</span><span class="p">,</span>
+    <span class="na">tags</span><span class="p">:</span> <span class="p">[{</span><span class="na">tagName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">XCode</span><span class="dl">'</span><span class="p">},</span> <span class="p">{</span><span class="na">tagName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">iOS</span><span class="dl">'</span><span class="p">}],</span>
+    <span class="na">authors</span><span class="p">:</span> <span class="p">[{</span><span class="na">authorName</span><span class="p">:</span> <span class="dl">'</span><span class="s1">叶孤城</span><span class="dl">'</span><span class="p">}]</span>
+  <span class="p">},</span>
+  <span class="c1">// Más objetos de revisión</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
+<p>Este array podría ser fácilmente reemplazado con una llamada a la API, haciendo que la aplicación sea escalable para su uso en el mundo real.</p>
+
+<h2 id="arquitectura-de-componentes-reutilización-y-modularidad">Arquitectura de Componentes: Reutilización y Modularidad</h2>
+
+<p>La aplicación hace un uso intensivo de componentes Vue, importados en la parte superior del script:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nx">reviewerCard</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../components/reviewer-card.vue</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Guide</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../components/guide.vue</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Overlay</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../components/overlay.vue</span><span class="dl">'</span><span class="p">;</span>
+<span class="k">import</span> <span class="nx">Contactus</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">../components/contactus.vue</span><span class="dl">'</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>Estos componentes se registran y se utilizan dentro de la plantilla, como <code class="language-plaintext highlighter-rouge">&lt;reviewer :reviewers="reviewers"&gt;&lt;/reviewer&gt;</code> y <code class="language-plaintext highlighter-rouge">&lt;guide&gt;&lt;/guide&gt;</code>. Este enfoque modular:</p>
+<ul>
+  <li><strong>Reduce la redundancia</strong>: Los elementos de la interfaz de usuario comunes (por ejemplo, tarjetas de revisores) se reutilizan en varias páginas.</li>
+  <li><strong>Mejora la mantenibilidad</strong>: Cada componente encapsula su propia lógica y estilos.</li>
+</ul>
+
+<p>Por ejemplo, el componente <code class="language-plaintext highlighter-rouge">Overlay</code> envuelve contenido dinámico:</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;overlay</span> <span class="na">:overlay.sync=</span><span class="s">"overlayStatus"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;component</span> <span class="na">:is=</span><span class="s">"currentView"</span><span class="nt">&gt;&lt;/component&gt;</span>
+<span class="nt">&lt;/overlay&gt;</span>
+</code></pre></div></div>
+
+<p>Aquí, <code class="language-plaintext highlighter-rouge">:overlay.sync</code> sincroniza la visibilidad del overlay con la propiedad de datos <code class="language-plaintext highlighter-rouge">overlayStatus</code>, mientras que <code class="language-plaintext highlighter-rouge">:is</code> renderiza dinámicamente el componente <code class="language-plaintext highlighter-rouge">currentView</code> (por ejemplo, <code class="language-plaintext highlighter-rouge">Contactus</code>). Esta es una manera poderosa de manejar modales o popups sin desordenar la plantilla principal.</p>
+
+<h2 id="obtención-de-datos-solicitudes-http-e-inicialización">Obtención de Datos: Solicitudes HTTP e Inicialización</h2>
+
+<p>El gancho de ciclo de vida <code class="language-plaintext highlighter-rouge">created</code> inicializa la página recuperando datos:</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">created</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$http</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">serviceUrl</span><span class="p">.</span><span class="nx">reviewers</span><span class="p">,</span> <span class="p">{</span> <span class="na">page</span><span class="p">:</span> <span class="dl">"</span><span class="s2">home</span><span class="dl">"</span> <span class="p">}).</span><span class="nf">then</span><span class="p">((</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nf">filterError</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">resp</span><span class="p">))</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">reviewers</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="nx">util</span><span class="p">.</span><span class="nf">httpErrorFn</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">$http</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="nx">serviceUrl</span><span class="p">.</span><span class="nx">reviewsGet</span><span class="p">,</span> <span class="p">{</span> <span class="na">limit</span><span class="p">:</span> <span class="mi">6</span> <span class="p">}).</span><span class="nf">then</span><span class="p">((</span><span class="nx">resp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if </span><span class="p">(</span><span class="nx">util</span><span class="p">.</span><span class="nf">filterError</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">resp</span><span class="p">))</span> <span class="p">{</span>
+      <span class="kd">var</span> <span class="nx">reviews</span> <span class="o">=</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">result</span><span class="p">;</span>
+      <span class="c1">// Actualiza las revisiones dinámicamente si es necesario</span>
+    <span class="p">}</span>
+  <span class="p">},</span> <span class="nx">util</span><span class="p">.</span><span class="nf">httpErrorFn</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+  <span class="k">this</span><span class="p">.</span><span class="nf">checkSessionToken</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong>Carga de Datos Asincrónica</strong>: La aplicación utiliza <code class="language-plaintext highlighter-rouge">$http</code> de Vue (probablemente Vue Resource o Axios) para recuperar datos de revisores y revisiones desde una API backend.</li>
+  <li><strong>Manejo de Errores</strong>: La utilidad <code class="language-plaintext highlighter-rouge">util.filterError</code> asegura un manejo de errores robusto, manteniendo la interfaz de usuario estable.</li>
+  <li><strong>Gestión de Sesiones</strong>: El método <code class="language-plaintext highlighter-rouge">checkSessionToken</code> maneja la autenticación del usuario a través de parámetros de consulta, estableciendo cookies y redirigiendo según sea necesario.</li>
+</ul>
+
+<h2 id="estilo-con-stylus-responsive-y-elegante">Estilo con Stylus: Responsive y Elegante</h2>
+
+<p>El estilo, escrito en Stylus, combina flexibilidad con estética. Tome la sección <code class="language-plaintext highlighter-rouge">.example</code>:</p>
+
+<pre><code class="language-stylus">.example
+  margin 0 auto
+  padding-top 5px
+  background #FDFFFF
+  .list
+    clearfix()
+    .row
+      clearfix()
+      li:first-child
+        margin-left 0
+    li
+      height 354px
+      margin-left 48px
+      pull-left()
+      margin-bottom 48px
+      .info
+        position relative
+        height 354px
+        width 100%
+        color white
+        box-shadow 0 4px 4px 1px rgba(135,135,135,.1)
+        overflow hidden
+        cursor pointer
+        &amp;:hover
+          img
+            transform scale(1.2,1.2)
+            -webkit-filter brightness(0.6)
+          .title
+            -webkit-transform translate(0, -20px)
+            opacity 1.0
+</code></pre>
+
+<h3 id="destacados">Destacados:</h3>
+<ul>
+  <li><strong>Efectos de Desplazamiento</strong>: La pseudo-clase <code class="language-plaintext highlighter-rouge">&amp;:hover</code> escala imágenes y desplaza texto, creando una experiencia interactiva suave.</li>
+  <li><strong>Flexibilidad</strong>: La mezcla <code class="language-plaintext highlighter-rouge">clearfix()</code> y la utilidad <code class="language-plaintext highlighter-rouge">pull-left()</code> aseguran un diseño de cuadrícula responsive.</li>
+  <li><strong>Pulido Visual</strong>: Sombras y transiciones (por ejemplo, <code class="language-plaintext highlighter-rouge">transition: all 0.35s ease 0s</code>) añaden profundidad y fluidez.</li>
+</ul>
+
+<p>El uso de variables de <code class="language-plaintext highlighter-rouge">variables.styl</code> (por ejemplo, colores como <code class="language-plaintext highlighter-rouge">#1CB2EF</code>) asegura la consistencia en toda la aplicación.</p>
+
+<h2 id="lecciones-para-tu-próximo-proyecto">Lecciones para tu Próximo Proyecto</h2>
+
+<p>Esta plataforma de revisión de código ofrece valiosas lecciones:</p>
+<ol>
+  <li><strong>Aprovecha la Reactividad de Vue</strong>: Vincula datos dinámicamente y usa componentes para mantener tu aplicación modular.</li>
+  <li><strong>Planifica para la Escalabilidad</strong>: Reemplaza datos codificados de manera rígida con llamadas a la API a medida que tu aplicación crece.</li>
+  <li><strong>Estilo Inteligentemente</strong>: Usa preprocesadores como Stylus para estilos mantenibles y reutilizables.</li>
+  <li><strong>Enfócate en la Experiencia del Usuario</strong>: Transiciones suaves y CTAs claras mejoran el compromiso del usuario.</li>
+</ol>
+
+<p>Ya estés construyendo una herramienta de revisión de código o una aplicación web diferente, estos principios pueden agilizar tu proceso de desarrollo y deleitar a tus usuarios. ¿Cuál es tu próximo proyecto? ¡Sigamos la conversación sobre la calidad del código!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

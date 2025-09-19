@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Complex Regular Expressions</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Complex Regular Expressions | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Complex Regular Expressions" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Recently, while researching HTML parsing, encountered a regular expression:" />
+<meta property="og:description" content="Recently, while researching HTML parsing, encountered a regular expression:" />
+<link rel="canonical" href="https://lzwjava.github.io/regex-en" />
+<meta property="og:url" content="https://lzwjava.github.io/regex-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Complex Regular Expressions" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-25T00:00:00+08:00","datePublished":"2016-05-25T00:00:00+08:00","description":"Recently, while researching HTML parsing, encountered a regular expression:","headline":"Complex Regular Expressions","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/regex-en"},"url":"https://lzwjava.github.io/regex-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Complex Regular Expressions | Original, translated by AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2016-05-25-regex-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2016-05-25-regex-en.md</span> -->
+      
+
+      <!-- <span>2016-05-25-regex-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/regex-en" selected>English</option>
+        <option value="/regex-zh" >中文</option>
+        <option value="/regex-ja" >日本語</option>
+        <option value="/regex-es" >Español</option>
+        <option value="/regex-hi" >हिंदी</option>
+        <option value="/regex-fr" >Français</option>
+        <option value="/regex-de" >Deutsch</option>
+        <option value="/regex-ar" >العربية</option>
+        <option value="/regex-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Recently, while researching HTML parsing, encountered a regular expression:</p>
+
+<p><code class="language-plaintext highlighter-rouge">/([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)/is</code></p>
+
+<p>It is used to match CSS selectors, such as <code class="language-plaintext highlighter-rouge">div &gt; ul</code>.</p>
+
+<p>In the past, I instinctively shied away from such complex expressions. Today, let’s thoroughly understand it! Sometimes you have to push yourself to the limit!</p>
+
+<h3 id="matching-div--ul">Matching <code class="language-plaintext highlighter-rouge">div &gt; ul</code></h3>
+
+<p>I found a website, https://regex101.com/, that allows online matching and provides explanations.</p>
+
+<p>Although the explanations on the right help clarify some aspects, the specifics of matching aren’t entirely clear. Let’s analyze a few examples.</p>
+
+<p>The code that uses this regular expression is:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$matches</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nb">preg_match_all</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">pattern</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$selector</span><span class="p">)</span><span class="mf">.</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">,</span> <span class="no">PREG_SET_ORDER</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">preg_match_all</code> is used to get all the strings that match the pattern. For example:</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">preg_match_all</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"abcdabc"</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The first parameter is the pattern, the second parameter is the string to be matched, and the third parameter is the result reference. After running, the <code class="language-plaintext highlighter-rouge">matches</code> array will contain two <code class="language-plaintext highlighter-rouge">abc</code>.</p>
+
+<p>With this understanding, the <code class="language-plaintext highlighter-rouge">div &gt; ul</code> in the example matches the first four characters <code class="language-plaintext highlighter-rouge">div &gt;</code>. <code class="language-plaintext highlighter-rouge">regex101</code> does not support <code class="language-plaintext highlighter-rouge">preg_match_all</code> directly, but adding the <code class="language-plaintext highlighter-rouge">g</code> modifier will achieve this:</p>
+
+<p>By adding <code class="language-plaintext highlighter-rouge">g</code>, it matches all occurrences instead of stopping at the first match.</p>
+
+<p>With the <code class="language-plaintext highlighter-rouge">g</code> modifier, we matched <code class="language-plaintext highlighter-rouge">div &gt; ul</code>:</p>
+
+<p>On the right, it shows that the first match, <code class="language-plaintext highlighter-rouge">div</code>, is matched by the first group rule, and the space ` ` is matched by the seventh group rule.</p>
+
+<p>Let’s look at the explanation for the first group rule:</p>
+
+<p>In this long expression, the first set of parentheses is the first group rule. This is a capturing group. Parentheses do not match themselves but are used for grouping. <code class="language-plaintext highlighter-rouge">[]</code> indicates a character set, and the rules inside define what characters can be matched. This character set includes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\w</code> represents letters, digits, and underscores.</li>
+  <li><code class="language-plaintext highlighter-rouge">-:</code> directly includes these two characters in the set.</li>
+  <li><code class="language-plaintext highlighter-rouge">\*</code> requires escaping because <code class="language-plaintext highlighter-rouge">*</code> is a special character in regular expressions. <code class="language-plaintext highlighter-rouge">\*</code> indicates a literal <code class="language-plaintext highlighter-rouge">*</code>.</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code> simply includes the <code class="language-plaintext highlighter-rouge">&gt;</code> character.</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">[\w-:\*&gt;]*</code> with the trailing <code class="language-plaintext highlighter-rouge">*</code> means the preceding characters can appear zero or more times, matching as many as possible. It matches <code class="language-plaintext highlighter-rouge">div</code> because <code class="language-plaintext highlighter-rouge">\w</code> matches <code class="language-plaintext highlighter-rouge">d</code>, <code class="language-plaintext highlighter-rouge">i</code>, <code class="language-plaintext highlighter-rouge">v</code>. It stops at the space because the space is not in the set <code class="language-plaintext highlighter-rouge">[]</code>. Capturing groups mean this match will appear in the result array. There are also non-capturing groups, denoted by <code class="language-plaintext highlighter-rouge">(?:)</code>. For example, <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> can be written as <code class="language-plaintext highlighter-rouge">(?:[\w-:\*&gt;]*)</code> if you don’t need the match result.</p>
+
+<p>Why use parentheses if not capturing? Parentheses are used for grouping, which is still meaningful. Refer to <a href="http://stackoverflow.com/questions/3512471/what-is-a-non-capturing-group">What is a non-capturing group? (?:) - StackOverflow</a>.</p>
+
+<p>After understanding how <code class="language-plaintext highlighter-rouge">div</code> matches the first group rule, let’s see why the space ` ` matches the seventh group rule.</p>
+
+<p><code class="language-plaintext highlighter-rouge">[\/, ]</code> means it matches any of these four characters, and <code class="language-plaintext highlighter-rouge">+</code> means one or more occurrences, matching as many as possible. The space matches because it is included. The next character after <code class="language-plaintext highlighter-rouge">div </code> is <code class="language-plaintext highlighter-rouge">&gt;</code>, so it stops matching the seventh group rule.</p>
+
+<p>Now we understand how <code class="language-plaintext highlighter-rouge">div</code> is matched. Why don’t groups 2 to 6 match the space, leaving it to group 7?</p>
+
+<p>The second part explanation:</p>
+
+<p>First, <code class="language-plaintext highlighter-rouge">(?:)</code> indicates a non-capturing group, and the trailing <code class="language-plaintext highlighter-rouge">?</code> means it can appear zero or one time. <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> can be present or absent. Removing the outermost <code class="language-plaintext highlighter-rouge">?:?</code>, we have <code class="language-plaintext highlighter-rouge">\#([\w-]+)|\.([\w-]+)</code>, and the <code class="language-plaintext highlighter-rouge">|</code> means “or,” matching either part. <code class="language-plaintext highlighter-rouge">\#([\w-]+)</code> matches <code class="language-plaintext highlighter-rouge">#</code> followed by other characters. <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code> matches <code class="language-plaintext highlighter-rouge">.</code> followed by other characters.</p>
+
+<p>Groups 2 to 6 are not matched because the space does not satisfy the initial characters of these groups. With the <code class="language-plaintext highlighter-rouge">?</code> modifier, they can be absent, so it moves to group 7.</p>
+
+<p>Next, <code class="language-plaintext highlighter-rouge">div &gt; ul</code> after the <code class="language-plaintext highlighter-rouge">&gt;</code> works the same way:</p>
+
+<p>The first group rule <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> matches <code class="language-plaintext highlighter-rouge">&gt;</code>, and the seventh group rule <code class="language-plaintext highlighter-rouge">([\/, ]+)</code> matches the space. Then <code class="language-plaintext highlighter-rouge">ul</code> matches like <code class="language-plaintext highlighter-rouge">div</code>.</p>
+
+<h3 id="matching-answer-4185009--table--tbody--tdanswercell--div--pre">Matching <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code></h3>
+
+<p>Now let’s look at a more complex selector <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code> (you can paste it into https://regex101.com/ to test):</p>
+
+<p>This was copied from Chrome:</p>
+
+<p>The first match:</p>
+
+<p>The first group rule <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> does not match <code class="language-plaintext highlighter-rouge">#</code>, so it matches zero times. The second group rule explanation:</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">|</code> means “or.” The part before the <code class="language-plaintext highlighter-rouge">|</code> is <code class="language-plaintext highlighter-rouge">\#([\w-]+)</code>, where <code class="language-plaintext highlighter-rouge">\#</code> matches <code class="language-plaintext highlighter-rouge">#</code> and <code class="language-plaintext highlighter-rouge">[\w-]+</code> matches <code class="language-plaintext highlighter-rouge">answer-4185009</code>. The second part, <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code>, would match if it were <code class="language-plaintext highlighter-rouge">.answer-4185009</code>.</p>
+
+<p>Now for <code class="language-plaintext highlighter-rouge">td.answercell</code>:</p>
+
+<p>The first group rule <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> matches <code class="language-plaintext highlighter-rouge">td</code>, and the second part <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> matches <code class="language-plaintext highlighter-rouge">.answercell</code> because of the <code class="language-plaintext highlighter-rouge">.</code>.</p>
+
+<h3 id="matching-ahrefhttpgooglecom">Matching <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code></h3>
+
+<p>Now let’s match the selector <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code>:</p>
+
+<p>The third part of the expression is:</p>
+
+<p>The third part is <code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code>. The outermost <code class="language-plaintext highlighter-rouge">(?:)</code> indicates a non-capturing group, and the trailing <code class="language-plaintext highlighter-rouge">?</code> means it can appear zero or one time. Removing <code class="language-plaintext highlighter-rouge">(?:)?</code>, we have <code class="language-plaintext highlighter-rouge">\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\]</code>. <code class="language-plaintext highlighter-rouge">\[</code>, <code class="language-plaintext highlighter-rouge">[</code> matches <code class="language-plaintext highlighter-rouge">[</code>. <code class="language-plaintext highlighter-rouge">@?</code> means <code class="language-plaintext highlighter-rouge">@</code> is optional. The group <code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code> matches <code class="language-plaintext highlighter-rouge">href</code>. The next part <code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)</code> is a non-capturing group, so removing <code class="language-plaintext highlighter-rouge">(?:)?</code>, we have <code class="language-plaintext highlighter-rouge">([!*^$]?=)["']?(.*?)["']?</code>. <code class="language-plaintext highlighter-rouge">([!*^$]?=)</code> means <code class="language-plaintext highlighter-rouge">[!*^$]?</code> matches zero or one of <code class="language-plaintext highlighter-rouge">!</code>, <code class="language-plaintext highlighter-rouge">*</code>, <code class="language-plaintext highlighter-rouge">^</code>, or <code class="language-plaintext highlighter-rouge">$</code>, followed by <code class="language-plaintext highlighter-rouge">=</code>. <code class="language-plaintext highlighter-rouge">["']?(.*?)["']?</code> matches <code class="language-plaintext highlighter-rouge">"http://google.com/"</code>, where <code class="language-plaintext highlighter-rouge">["']?</code> matches optional <code class="language-plaintext highlighter-rouge">"</code> or <code class="language-plaintext highlighter-rouge">'</code>. Removing <code class="language-plaintext highlighter-rouge">["']?</code>, we have <code class="language-plaintext highlighter-rouge">(.*?)</code>, which matches <code class="language-plaintext highlighter-rouge">http://google.com/</code>. The <code class="language-plaintext highlighter-rouge">*?</code> modifier means match as few as possible, ensuring that <code class="language-plaintext highlighter-rouge">"</code> or <code class="language-plaintext highlighter-rouge">'</code> is left for the next part. So the selector <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code> is fully matched.</p>
+
+<h3 id="summary">Summary</h3>
+
+<p>Finally understood! The complex expression <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)</code> consists of four main parts:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">([\/, ]+)</code></li>
+</ul>
+
+<p>The most complex third part has smaller components:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\[</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">\]</code></li>
+</ul>
+
+<p>These smaller parts can be tackled individually. By analyzing multiple examples and using the explanations from https://regex101.com/, we can understand this seemingly complex regular expression. It turns out to be just a paper tiger!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

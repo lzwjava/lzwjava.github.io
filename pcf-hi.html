@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Pivotal Cloud Foundry के साथ डिप्लॉय करना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Pivotal Cloud Foundry के साथ डिप्लॉय करना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Pivotal Cloud Foundry के साथ डिप्लॉय करना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।" />
+<meta property="og:description" content="यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।" />
+<link rel="canonical" href="https://lzwjava.github.io/pcf-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/pcf-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Pivotal Cloud Foundry के साथ डिप्लॉय करना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2022-11-07T00:00:00+08:00","datePublished":"2022-11-07T00:00:00+08:00","description":"यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।","headline":"Pivotal Cloud Foundry के साथ डिप्लॉय करना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/pcf-hi"},"url":"https://lzwjava.github.io/pcf-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Pivotal Cloud Foundry के साथ डिप्लॉय करना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2022-11-07-pcf-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2022-11-07-pcf-hi.md</span> -->
+      
+
+      <!-- <span>2022-11-07-pcf-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2022.11</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/pcf-en" >English</option>
+        <option value="/pcf-zh" >中文</option>
+        <option value="/pcf-ja" >日本語</option>
+        <option value="/pcf-es" >Español</option>
+        <option value="/pcf-hi" selected>हिंदी</option>
+        <option value="/pcf-fr" >Français</option>
+        <option value="/pcf-de" >Deutsch</option>
+        <option value="/pcf-ar" >العربية</option>
+        <option value="/pcf-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>यह ब्लॉग पोस्ट ChatGPT-4o की सहायता से लिखा गया है।</em></p>
+
+<hr />
+
+<h3 id="विषय-सूची">विषय सूची</h3>
+<ul>
+  <li><a href="#परिचय">परिचय</a></li>
+  <li><a href="#pivotal-cloud-foundry-के-साथ-शुरुआत">Pivotal Cloud Foundry के साथ शुरुआत</a></li>
+  <li><a href="#credhub-के-साथ-गोपनीय-जानकारी-को-सुरक्षित-करना">CredHub के साथ गोपनीय जानकारी को सुरक्षित करना</a></li>
+  <li><a href="#pivotal-cloud-foundry-पर-एप्लिकेशन-डिप्लॉय-करना">Pivotal Cloud Foundry पर एप्लिकेशन डिप्लॉय करना</a></li>
+  <li><a href="#मॉनिटरिंग-और-लॉग्स-प्राप्त-करना">मॉनिटरिंग और लॉग्स प्राप्त करना</a></li>
+  <li><a href="#निष्कर्ष">निष्कर्ष</a></li>
+</ul>
+
+<h3 id="परिचय">परिचय</h3>
+
+<p>Pivotal Cloud Foundry एक लोकप्रिय ओपन-सोर्स प्लेटफॉर्म-एज़-ए-सर्विस (PaaS) है जो डेवलपर्स को एप्लिकेशन्स को तेज़ी और कुशलता से डिप्लॉय, प्रबंधित और स्केल करने की सुविधा प्रदान करता है। CredHub के साथ मिलकर, जो कि सुरक्षित रूप से क्रेडेंशियल्स को स्टोर और एक्सेस करने के लिए एक सेवा है, यह एप्लिकेशन्स को बनाने और चलाने के लिए एक मजबूत वातावरण प्रदान करता है। इस ब्लॉग पोस्ट में, हम Pivotal Cloud Foundry को सेटअप करने, CredHub का उपयोग करके सीक्रेट्स को प्रबंधित करने, एक एप्लिकेशन को डिप्लॉय करने और <code class="language-plaintext highlighter-rouge">cf logs</code> का उपयोग करके इसे मॉनिटर करने के बारे में चरण-दर-चरण जानेंगे।</p>
+
+<h3 id="pivotal-cloud-foundry-के-साथ-शुरुआत-करना">Pivotal Cloud Foundry के साथ शुरुआत करना</h3>
+
+<p>Pivotal Cloud Foundry एप्लिकेशन के डिप्लॉयमेंट और स्केलिंग को सरल बनाता है। यहां शुरुआत करने का तरीका बताया गया है:</p>
+
+<ol>
+  <li>Pivotal Cloud Foundry CLI की स्थापना:
+    <ul>
+      <li><a href="https://docs.cloudfoundry.org/cf-cli/install-go-cli.html">आधिकारिक वेबसाइट</a> से Pivotal Cloud Foundry CLI डाउनलोड और इंस्टॉल करें।</li>
+      <li>स्थापना की पुष्टि करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf <span class="nt">--version</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>Pivotal Cloud Foundry में लॉग इन करना:
+    <ul>
+      <li>अपने Pivotal Cloud Foundry API एंडपॉइंट को टारगेट करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf api https://api.your-cloud-foundry-instance.com
+</code></pre></div>        </div>
+      </li>
+      <li>अपने क्रेडेंशियल्स का उपयोग करके लॉग इन करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf login
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>स्पेसेस और संगठन सेट करना:
+    <ul>
+      <li>एप्लिकेशन और संसाधनों को तार्किक रूप से अलग करने के लिए संगठन और स्पेसेस बनाएं और प्रबंधित करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="credhub-के-साथ-गोपनीय-जानकारी-को-सुरक्षित-करना">CredHub के साथ गोपनीय जानकारी को सुरक्षित करना</h3>
+
+<p>CredHub आपको अपने एप्लिकेशन में क्रेडेंशियल्स को सुरक्षित रूप से स्टोर, जनरेट और एक्सेस करने की अनुमति देता है। यहां बताया गया है कि Pivotal Cloud Foundry के साथ CredHub को कैसे इंटीग्रेट किया जाए:</p>
+
+<ol>
+  <li>CredHub सेट करना:
+    <ul>
+      <li>सुनिश्चित करें कि CredHub आपके Pivotal Cloud Foundry वातावरण में तैनात और कॉन्फ़िगर किया गया है।</li>
+      <li>CredHub के साथ इंटरैक्ट करने के लिए CredHub CLI का उपयोग करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub login <span class="nt">-s</span> https://credhub.your-cloud-foundry-instance.com <span class="nt">--ca-cert</span> &lt;path-to-ca-cert&gt;
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>गोपनीय जानकारी संग्रहित करना:
+    <ul>
+      <li>CredHub में एक गोपनीय जानकारी संग्रहित करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub <span class="nb">set</span> <span class="nt">-n</span> /cflab/db_password <span class="nt">-t</span> password <span class="nt">-w</span> s3cr3t
+</code></pre></div>        </div>
+      </li>
+      <li>गोपनीय जानकारी प्राप्त करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>credhub get <span class="nt">-n</span> /cflab/db_password
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>एप्लिकेशन के साथ CredHub को एकीकृत करना:
+    <ul>
+      <li>CredHub सीक्रेट्स को अपने Pivotal Cloud Foundry एप्लिकेशन से सर्विस बाइंडिंग या पर्यावरण चर (environment variables) का उपयोग करके बांधें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="pivotal-cloud-foundry-पर-एक-एप्लिकेशन-को-डिप्लॉय-करना">Pivotal Cloud Foundry पर एक एप्लिकेशन को डिप्लॉय करना</h3>
+
+<p>Pivotal Cloud Foundry पर एप्लिकेशन डिप्लॉय करना सीधा और सरल है। यहां एक चरण-दर-चरण मार्गदर्शिका दी गई है:</p>
+
+<ol>
+  <li>अपने एप्लिकेशन को तैयार करना:
+    <ul>
+      <li>सुनिश्चित करें कि आपके एप्लिकेशन में कॉन्फ़िगरेशन के लिए एक <code class="language-plaintext highlighter-rouge">manifest.yml</code> फ़ाइल है:
+```yaml
+applications:
+        <ul>
+          <li>name: my-app
+memory: 512M
+instances: 1
+path: .
+```</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>अपने एप्लिकेशन को पुश करना:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">cf push</code> कमांड का उपयोग करके एप्लिकेशन को डिप्लॉय करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf push my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>अपने एप्लिकेशन को स्केल करना:
+    <ul>
+      <li>इंस्टेंस की संख्या को स्केल करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf scale my-app <span class="nt">-i</span> 3
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>पर्यावरण चर प्रबंधित करना:
+    <ul>
+      <li>अपने एप्लिकेशन के लिए पर्यावरण चर सेट करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf set-env my-app DB_PASSWORD s3cr3t
+</code></pre></div>        </div>
+      </li>
+      <li>परिवर्तनों को लागू करने के लिए अपने एप्लिकेशन को पुनः स्टेज करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf restage my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="मॉनिटरिंग-और-लॉग्स-प्राप्त-करना">मॉनिटरिंग और लॉग्स प्राप्त करना</h3>
+
+<p>Pivotal Cloud Foundry आपके एप्लिकेशन्स की निगरानी करने में मदद करने के लिए मजबूत लॉगिंग क्षमताएं प्रदान करता है:</p>
+
+<ol>
+  <li>लॉग्स देखना:
+    <ul>
+      <li>अपने एप्लिकेशन के हाल के लॉग्स प्राप्त करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf logs my-app <span class="nt">--recent</span>
+</code></pre></div>        </div>
+      </li>
+      <li>लॉग्स को रियल-टाइम में स्ट्रीम करें:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cf logs my-app
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>लॉग्स का विश्लेषण करना:
+    <ul>
+      <li>लॉग्स का उपयोग करके समस्याओं का निवारण करें, प्रदर्शन की निगरानी करें, और एप्लिकेशन के व्यवहार के बारे में जानकारी प्राप्त करें।</li>
+    </ul>
+  </li>
+  <li>लॉग प्रबंधन सेट करना:
+    <ul>
+      <li>लॉग को एकत्रित और विश्लेषण करने के लिए Loggregator या तीसरे पक्ष की सेवाओं जैसे लॉग प्रबंधन उपकरणों के साथ एकीकृत करें।</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="निष्कर्ष">निष्कर्ष</h3>
+
+<p>Pivotal Cloud Foundry और CredHub का उपयोग करके, आप सुरक्षित रूप से एप्लिकेशन को आसानी से डिप्लॉय और प्रबंधित कर सकते हैं। Pivotal Cloud Foundry की PaaS क्षमताएँ डिप्लॉयमेंट प्रक्रिया को सरल बनाती हैं, जबकि CredHub यह सुनिश्चित करता है कि आपके एप्लिकेशन के गोपनीय डेटा सुरक्षित रूप से संग्रहीत हों। मजबूत लॉगिंग और मॉनिटरिंग टूल्स के साथ, आप अपने एप्लिकेशन के प्रदर्शन और स्वास्थ्य पर उच्च दृश्यता बनाए रख सकते हैं। यह सेटअप न केवल सुरक्षा को बढ़ाता है, बल्कि परिचालन दक्षता और स्केलेबिलिटी को भी सुधारता है।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>KQV, Transformateurs et GPT</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>KQV, Transformateurs et GPT | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="KQV, Transformateurs et GPT" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="```markdown Comment j’ai compris le mécanisme KQV dans les Transformers" />
+<meta property="og:description" content="```markdown Comment j’ai compris le mécanisme KQV dans les Transformers" />
+<link rel="canonical" href="https://lzwjava.github.io/kqv-transformers-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/kqv-transformers-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-07-16T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="KQV, Transformateurs et GPT" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-07-16T00:00:00+08:00","datePublished":"2025-07-16T00:00:00+08:00","description":"```markdown Comment j’ai compris le mécanisme KQV dans les Transformers","headline":"KQV, Transformateurs et GPT","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/kqv-transformers-fr"},"url":"https://lzwjava.github.io/kqv-transformers-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       KQV, Transformateurs et GPT | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2025-07-16-kqv-transformers-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2025-07-16-kqv-transformers-fr.md</span> -->
+      
+
+      <!-- <span>2025-07-16-kqv-transformers-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/kqv-transformers-en" >English</option>
+        <option value="/kqv-transformers-zh" >中文</option>
+        <option value="/kqv-transformers-ja" >日本語</option>
+        <option value="/kqv-transformers-es" >Español</option>
+        <option value="/kqv-transformers-hi" >हिंदी</option>
+        <option value="/kqv-transformers-fr" selected>Français</option>
+        <option value="/kqv-transformers-de" >Deutsch</option>
+        <option value="/kqv-transformers-ar" >العربية</option>
+        <option value="/kqv-transformers-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">## Comment j'ai compris le mécanisme KQV dans les Transformers</span>
+
+<span class="ge">*2025.07.16*</span>
+
+Après avoir lu <span class="p">[</span><span class="nv">Mécanisme K, Q, V dans les Transformers</span><span class="p">](</span><span class="sx">https://lzwjava.github.io/notes/2025-06-02-attention-kqv-en</span><span class="p">)</span>, j'ai plus ou moins compris comment fonctionnent K, Q et V.
+
+Q signifie <span class="ge">*Query*</span> (Requête), K signifie <span class="ge">*Key*</span> (Clé) et V signifie <span class="ge">*Value*</span> (Valeur). Pour une phrase, la Requête est une matrice qui stocke la valeur d'un token qui doit interroger les autres tokens. La Clé représente la description des tokens, et la Valeur représente la matrice de signification réelle des tokens.
+
+Ils ont des formes spécifiques, il faut donc connaître leurs dimensions et leurs détails.
+
+J'ai compris cela début juin 2025. J'en avais entendu parler pour la première fois fin 2023. À l'époque, j'avais lu des articles comme <span class="p">[</span><span class="nv">The Illustrated Transformer</span><span class="p">](</span><span class="sx">https://jalammar.github.io/illustrated-transformer/</span><span class="p">)</span>, mais je n'avais pas bien compris.
+
+Après environ deux ans, je trouve que c'est plus facile à comprendre maintenant. Pendant ces deux années, je me suis concentré sur le développement backend et la préparation de mes examens de licence, et je n'ai pas beaucoup lu ou appris sur le <span class="ge">*machine learning*</span>. Cependant, j'y ai réfléchi de temps en temps en conduisant ou en faisant autre chose.
+
+Cela me rappelle l'effet du temps. Nous pouvons apprendre beaucoup de choses en un premier contact, même si nous ne comprenons pas grand-chose. Mais d'une certaine manière, cela déclenche un point de départ pour notre réflexion.
+
+Avec le temps, j'ai remarqué que pour les connaissances et les découvertes, il est difficile de réfléchir ou de comprendre les choses dès la première fois. Mais plus tard, il semble plus facile d'apprendre et de savoir.
+
+Une des raisons est qu'à l'ère de l'IA, il est plus facile d'apprendre car on peut approfondir n'importe quel détail ou aspect pour résoudre ses doutes. Il y a aussi plus de vidéos sur l'IA disponibles. Plus important encore, on voit que tant de gens apprennent et construisent des projets sur cette base, comme <span class="p">[</span><span class="nv">llama.cpp</span><span class="p">](</span><span class="sx">https://github.com/ggml-org/llama.cpp</span><span class="p">)</span>.
+
+L'histoire de Georgi Gerganov est inspirante. En tant que nouvel apprenant en <span class="ge">*machine learning*</span> depuis environ 2021, il a eu un impact puissant dans la communauté de l'IA.
+
+Ce genre de chose se reproduira encore et encore. Donc, pour l'apprentissage par renforcement et les dernières connaissances en IA, même si je ne peux pas encore y consacrer beaucoup de temps, je pense pouvoir trouver un peu de temps pour apprendre rapidement et essayer d'y réfléchir souvent. Le cerveau fera son travail.
+<span class="p">
+---
+</span>
+<span class="gu">## Des réseaux de neurones à GPT</span>
+
+<span class="ge">*2023.09.28*</span>
+
+<span class="gu">### Vidéos YouTube</span>
+
+Andrej Karpathy - Construisons GPT : de zéro, en code, expliqué en détail.
+
+Umar Jamil - L'attention est tout ce dont vous avez besoin (Transformer) - Explication du modèle (y compris les mathématiques), Inférence et Entraînement
+
+StatQuest avec Josh Starmer - Réseaux de neurones Transformers, fondements de ChatGPT, Expliqué clairement !!!
+
+Pascal Poupart - CS480/680 Cours 19 : Attention et réseaux Transformers
+
+The A.I. Hacker - Michael Phi - Guide illustré des réseaux de neurones Transformers : une explication étape par étape
+
+<span class="gu">### Comment j'apprends</span>
+
+Après avoir lu la moitié du livre <span class="ge">*Neural Networks and Deep Learning*</span>, j'ai commencé à reproduire l'exemple de réseau de neurones pour la reconnaissance de chiffres manuscrits. J'ai créé un dépôt sur GitHub, <span class="p">[</span><span class="nv">https://github.com/lzwjava/neural-networks-and-zhiwei-learning</span><span class="p">](</span><span class="sx">https://github.com/lzwjava/neural-networks-and-zhiwei-learning</span><span class="p">)</span>.
+
+C'est là la partie vraiment difficile. Si quelqu'un peut l'écrire de zéro sans copier de code, c'est qu'il comprend très bien.
+
+Mon code de réplication manque encore de l'implémentation de <span class="ge">*update_mini_batch*</span> et de la rétropropagation. Cependant, en observant attentivement les variables lors des phases de chargement des données, de propagation avant et d'évaluation, j'ai beaucoup mieux compris les vecteurs, la dimensionnalité, les matrices et les formes des objets.
+
+Et j'ai commencé à apprendre l'implémentation de GPT et des Transformers. Grâce à l'encodage des mots et à l'encodage positionnel, le texte est transformé en nombres. Ensuite, en essence, cela ne diffère pas d'un simple réseau de neurones pour reconnaître des chiffres manuscrits.
+
+La conférence d'Andrej Karpathy <span class="ge">*« Let's build GPT »*</span> est très bonne. Il explique bien les choses.
+
+La première raison est qu'il part vraiment de zéro. On voit d'abord comment générer du texte. C'est un peu flou et aléatoire. La deuxième raison est qu'Andrej peut expliquer les choses de manière très intuitive. Andrej a travaillé sur le projet nanoGPT pendant plusieurs mois.
+
+J'ai eu une nouvelle idée pour juger de la qualité d'une conférence. L'auteur peut-il vraiment écrire ces codes ? Pourquoi est-ce que je ne comprends pas et quel sujet l'auteur a-t-il omis ? En plus de ces beaux schémas et animations, quels sont leurs défauts et leurs lacunes ?
+
+Revenons au sujet du <span class="ge">*machine learning*</span> lui-même. Comme le mentionne Andrej, le <span class="ge">*dropout*</span>, les connexions résiduelles, l'<span class="ge">*auto-attention*</span>, l'<span class="ge">*attention multi-têtes*</span>, l'<span class="ge">*attention masquée*</span>.
+
+En regardant plus de vidéos comme celles-ci, j'ai commencé à comprendre un peu.
+
+Grâce à l'encodage positionnel avec les fonctions sin et cos, nous obtenons certains poids. Grâce à l'encodage des mots, nous transformons les mots en nombres.
+
+$$
+    PE_{(pos,2i)} = <span class="se">\s</span>in(pos/10000^{2i/d_{model}}) <span class="se">\\</span>
+    PE_{(pos,2i+1)} = <span class="se">\c</span>os(pos/10000^{2i/d_{model}})
+$$
+<span class="gt">
+&gt; La pizza est sortie du four et elle avait bon goût.</span>
+
+Dans cette phrase, comment l'algorithme sait-il si cela fait référence à la pizza ou au four ? Comment calculons-nous les similarités pour chaque mot de la phrase ?
+
+Nous voulons un ensemble de poids. Si nous utilisons le réseau Transformer pour faire de la traduction, chaque fois que nous entrons une phrase, il peut sortir la phrase correspondante dans une autre langue.
+
+À propos du produit scalaire ici. Une raison pour laquelle nous utilisons le produit scalaire est qu'il prend en compte chaque nombre dans le vecteur. Que se passerait-il si nous utilisions le produit scalaire au carré ? Nous calculerions d'abord le carré des nombres, puis nous ferions le produit scalaire. Que se passerait-il si nous faisions un produit scalaire inversé ?
+
+En ce qui concerne le masquage, nous changeons les nombres de la moitié de la matrice en moins l'infini. Ensuite, nous utilisons la fonction <span class="ge">*softmax*</span> pour que les valeurs soient comprises entre 0 et 1. Que se passerait-il si nous changions les nombres en bas à gauche en moins l'infini ?
+
+<span class="gu">### Plan</span>
+
+Continuer à lire du code et des articles, et regarder des vidéos. Juste s'amuser et suivre ma curiosité.
+
+<span class="p">[</span><span class="nv">https://github.com/karpathy/nanoGPT</span><span class="p">](</span><span class="sx">https://github.com/karpathy/nanoGPT</span><span class="p">)</span>
+
+<span class="p">[</span><span class="nv">https://github.com/jadore801120/attention-is-all-you-need-pytorch</span><span class="p">](</span><span class="sx">https://github.com/jadore801120/attention-is-all-you-need-pytorch</span><span class="p">)</span>
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Nvidia ड्राइवर, LLaMA और ChatGPT</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nvidia ड्राइवर, LLaMA और ChatGPT | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Nvidia ड्राइवर, LLaMA और ChatGPT" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="LLaMA (लार्ज लैंग्वेज मॉडल मेटा AI) एक बड़े भाषा मॉडल (LLMs) का परिवार है, जिसे मेटा AI द्वारा फरवरी 2023 से जारी किया गया है।" />
+<meta property="og:description" content="LLaMA (लार्ज लैंग्वेज मॉडल मेटा AI) एक बड़े भाषा मॉडल (LLMs) का परिवार है, जिसे मेटा AI द्वारा फरवरी 2023 से जारी किया गया है।" />
+<link rel="canonical" href="https://lzwjava.github.io/llama-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/llama-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nvidia ड्राइवर, LLaMA और ChatGPT" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-08-18T00:00:00+08:00","datePublished":"2023-08-18T00:00:00+08:00","description":"LLaMA (लार्ज लैंग्वेज मॉडल मेटा AI) एक बड़े भाषा मॉडल (LLMs) का परिवार है, जिसे मेटा AI द्वारा फरवरी 2023 से जारी किया गया है।","headline":"Nvidia ड्राइवर, LLaMA और ChatGPT","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/llama-hi"},"url":"https://lzwjava.github.io/llama-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Nvidia ड्राइवर, LLaMA और ChatGPT | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2023-08-18-llama-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2023-08-18-llama-hi.md</span> -->
+      
+
+      <!-- <span>2023-08-18-llama-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.08</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/llama-en" >English</option>
+        <option value="/llama-zh" >中文</option>
+        <option value="/llama-ja" >日本語</option>
+        <option value="/llama-es" >Español</option>
+        <option value="/llama-hi" selected>हिंदी</option>
+        <option value="/llama-fr" >Français</option>
+        <option value="/llama-de" >Deutsch</option>
+        <option value="/llama-ar" >العربية</option>
+        <option value="/llama-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>LLaMA (लार्ज लैंग्वेज मॉडल मेटा AI) एक बड़े भाषा मॉडल (LLMs) का परिवार है, जिसे मेटा AI द्वारा फरवरी 2023 से जारी किया गया है।</p>
+
+<p>मैंने हाल ही में Nvidia GPU के साथ अपना कंप्यूटर बनाया है। आप यहां देख सकते हैं, कंप्यूटर कैसे बनाएं, <a href="https://lzwjava.github.io/computer">https://lzwjava.github.io/computer</a>।</p>
+
+<p>उसके बाद, मैंने LLaMA प्रोजेक्ट को चलाना शुरू किया। LLaMA प्रोजेक्ट का GitHub URL है <a href="https://github.com/facebookresearch/llama">https://github.com/facebookresearch/llama</a>।</p>
+
+<h2 id="nvidia-ड्राइवर-इंस्टॉल-करें">Nvidia ड्राइवर इंस्टॉल करें</h2>
+
+<p>जब आप कमांड चलाते हैं,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc_per_node</span> <span class="mi">1</span> <span class="n">example_text_completion</span><span class="p">.</span><span class="n">py</span> \
+    <span class="o">--</span><span class="n">ckpt_dir</span> <span class="n">llama</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">7</span><span class="n">b</span><span class="o">/</span> \
+    <span class="o">--</span><span class="n">tokenizer_path</span> <span class="n">tokenizer</span><span class="p">.</span><span class="n">model</span> \
+    <span class="o">--</span><span class="n">max_seq_len</span> <span class="mi">128</span> <span class="o">--</span><span class="n">max_batch_size</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक है और इसे अनुवादित नहीं किया जाना चाहिए।)</p>
+
+<p>यह त्रुटि दिखाता है, “RuntimeError: Distributed package doesn’t have NCCL built in”। आइए NCCL के बारे में जानें।</p>
+
+<blockquote>
+  <p>NVIDIA Collective Communication Library (NCCL) बहु-GPU और बहु-नोड संचार प्राइमिटिव्स को लागू करता है जो NVIDIA GPUs और नेटवर्किंग के लिए अनुकूलित हैं।<br />
+मैं NVIDIA ड्राइवरों को इंस्टॉल करने के लिए नीचे दिए गए वेबसाइटों का संदर्भ लेता हूँ।</p>
+</blockquote>
+
+<ul>
+  <li>CUDA टूलकिट 12.2 अपडेट 1 डाउनलोड, <a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></li>
+  <li>NVIDIA NCCL, <a href="https://developer.nvidia.com/nccl">https://developer.nvidia.com/nccl</a></li>
+  <li>NVIDIA डीप लर्निंग NCCL डॉक्यूमेंटेशन, <a href="https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html">https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html</a></li>
+  <li>NVIDIA CUDA इंस्टालेशन गाइड फॉर लिनक्स, <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html</a></li>
+  <li>Ubuntu इंस्टॉल करने के बाद, आप Perform MOK Management का सामना करते हैं, <a href="https://www.cnblogs.com/yutian-blogs/p/13019226.html">https://www.cnblogs.com/yutian-blogs/p/13019226.html</a></li>
+  <li>डीप लर्निंग के लिए Ubuntu 22.04, <a href="https://gist.github.com/amir-saniyan/b3d8e06145a8569c0d0e030af6d60bea">https://gist.github.com/amir-saniyan/b3d8e06145a8569c0d0e030af6d60bea</a></li>
+  <li>Ubuntu 22.04 नोट्स, <a href="https://github.com/kmcminn/thinkpad/tree/main/extreme3g">https://github.com/kmcminn/thinkpad/tree/main/extreme3g</a></li>
+</ul>
+
+<p>जब हम अपने ग्राफिक कार्ड के लिए NVIDIA ड्राइवर को सफलतापूर्वक इंस्टॉल करते हैं, और फिर हम <code class="language-plaintext highlighter-rouge">nvidia-smi</code> कमांड का उपयोग करके इसकी जानकारी दिखाते हैं, तो यह नीचे दी गई जानकारी प्रदर्शित कर सकता है।</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(base) lzw@lzw-MS-7E01:~$ nvidia-smi
+गुरुवार, 17 अगस्त 2023 04:15:43       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.86.10              ड्राइवर संस्करण: 535.86.10    CUDA संस्करण: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  नाम                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| फैन  तापमान   प्रदर्शन          पावर:उपयोग/कैप |         मेमोरी-उपयोग | GPU-उपयोग  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 4070        चालू  | 00000000:01:00.0  चालू |                  N/A |
+|  0%   34C    P8               9W / 215W |    666MiB / 12282MiB |     15%      डिफ़ॉल्ट |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| प्रक्रियाएं:                                                                            |
+|  GPU   GI   CI        PID   प्रकार   प्रक्रिया नाम                            GPU मेमोरी |
+|        ID   ID                                                             उपयोग      |
+|=======================================================================================|
+|    0   N/A  N/A      1926      G   /usr/lib/xorg/Xorg                          381MiB |
+|    0   N/A  N/A      2065      G   /usr/bin/gnome-shell                        120MiB |
+|    0   N/A  N/A      3482      G   gnome-control-center                          2MiB |
+|    0   N/A  N/A      3803      G   ...irefox/2987/usr/lib/firefox/firefox      149MiB |
++---------------------------------------------------------------------------------------+
+</code></pre></div></div>
+
+<p>वास्तव में, इस चरण तक पहुँचना कठिन है। कृपया यहाँ दिए गए लिंक को ध्यान से देखें, Ubuntu 22.04 नोट्स, <a href="https://github.com/kmcminn/thinkpad/tree/main/extreme3g">https://github.com/kmcminn/thinkpad/tree/main/extreme3g</a>।</p>
+
+<h2 id="llama-सीखें">LLaMA सीखें</h2>
+
+<p>मॉडल डाउनलोड करने के बाद, और कमांड चलाने का प्रयास करते समय, हम नीचे दी गई त्रुटि का सामना करेंगे,</p>
+
+<blockquote>
+  <p>torch.cuda.OutOfMemoryError: CUDA मेमोरी खत्म हो गई। 86.00 MiB आवंटित करने का प्रयास किया गया (GPU 0; 11.69 GiB कुल क्षमता; 9.70 GiB पहले से आवंटित; 64.81 MiB मुक्त; PyTorch द्वारा कुल 9.70 GiB आरक्षित)। यदि आरक्षित मेमोरी » आवंटित मेमोरी है, तो फ़्रैगमेंटेशन से बचने के लिए max_split_size_mb सेट करने का प्रयास करें।</p>
+</blockquote>
+
+<p>चूंकि हमारे ग्राफिक कार्ड की मेमोरी केवल 12 GB है, और llama-2-7b मॉडल का आकार लगभग 13GB है, इसलिए हम इसे अपने ग्राफिक कार्ड पर चलाने में सक्षम नहीं हैं।</p>
+
+<p>हमने दूसरे प्रोजेक्ट, open-llama-3b, <a href="https://huggingface.co/openlm-research/open_llama_3b">https://huggingface.co/openlm-research/open_llama_3b</a> का उपयोग करने का प्रयास किया।</p>
+
+<p>हमें नीचे दिया गया त्रुटि सामने आती है।</p>
+
+<blockquote>
+  <p>RuntimeError: अपेक्षा की गई थी कि सभी टेंसर एक ही डिवाइस पर होंगे, लेकिन कम से कम दो डिवाइस पाए गए, cuda:0 और cpu! (जब विधि wrapper_CUDA__index_select में तर्क index के लिए तर्क की जाँच की गई)</p>
+</blockquote>
+
+<p>और हम ChatGPT से इसके बारे में पूछते हैं।</p>
+
+<p>ChatGPT हमें एक बहुत ही सुंदर समाधान प्रदान करता है। हमें नीचे दिए गए कोड को जोड़ने की आवश्यकता है।</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input_ids = input_ids.to(model.device)
+</code></pre></div></div>
+
+<p>अंत में, हम इसे चला सकते हैं।</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(llama) lzw@lzw-MS-7E01:~/Projects/open_llama_3b$ python run.py 
+Q: सबसे बड़ा जानवर कौन सा है?   
+A: नीली व्हेल।   
+Q: सबसे बड़ा जानवर कौन सा है?    
+A: नीली व्हेल। यह पृथ्वी पर सबसे बड़ा जानवर है। यह भी  
+</code></pre></div></div>
+
+<p>हमने llama2.c प्रोजेक्ट, <a href="https://github.com/karpathy/llama2.c">https://github.com/karpathy/llama2.c</a>, को भी आज़माया।</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(base) lzw@lzw-MS-7E01:~/Projects/llama2.c$ ./run stories15M.bin 
+एक दिन, एक बड़ा शेर और एक छोटा खरगोश जंगल में थे। बड़े शेर ने कहा, "चलो नदी तक दौड़ लगाते हैं और कुछ पानी पीते हैं।" छोटे खरगोश ने सहमति दी, और वे दौड़ने लगे।
+शेर तेज़ था, लेकिन वह छोटे खरगोश को चोट न पहुंचाने का ध्यान रख रहा था। खरगोश नदी के करीब पहुंच रहा था, लेकिन बड़े शेर ने उसे नहीं देखा। जब शेर नदी पार कर रहा था, तो वह फिसल गया और नदी में गिर गया।
+छोटे खरगोश ने शेर को पानी में देखा और सोचा, "मुझे शेर को पीने से रोकना चाहिए।" उसने कहा, "शेर, नदी से पानी मत पीओ। यह सुरक्षित नहीं है।" लेकिन शेर ने नहीं सुना और नदी से पानी पी लिया।
+छोटे खरगोश ने शेर की मदद करने की कोशिश की, लेकिन वह नहीं कर सका। शेर ने बहुत ज्यादा पानी पी लिया और उसका पेट दर्द करने लगा। बड़ा शेर बहुत दुखी हुआ और बोला, "मैंने तुमसे कहा था कि नदी से पानी मत पीओ।" छोटा खरगोश रोता हुआ घर चला गया, और बड़ा शेर अभी भी मदद नहीं कर सका।
+achieved tok/s: 185.527329
+</code></pre></div></div>
+
+<h2 id="chatgpt-द्वारा-कोड-को-समझें">ChatGPT द्वारा कोड को समझें</h2>
+
+<p>ज़िवेई: क्या आप नीचे दिए गए कोड्स को समझा सकते हैं?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+        <span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड स्निपेट निम्नलिखित कार्य करता है:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">min_prompt_len</code> में <code class="language-plaintext highlighter-rouge">prompt_tokens</code> की सबसे छोटी लंबाई (टोकन की संख्या) को स्टोर करता है।</li>
+  <li><code class="language-plaintext highlighter-rouge">max_prompt_len</code> में <code class="language-plaintext highlighter-rouge">prompt_tokens</code> की सबसे बड़ी लंबाई (टोकन की संख्या) को स्टोर करता है।</li>
+  <li>यह सुनिश्चित करता है कि <code class="language-plaintext highlighter-rouge">max_prompt_len</code>, <code class="language-plaintext highlighter-rouge">params.max_seq_len</code> से कम या बराबर है। यदि ऐसा नहीं है, तो यह एक त्रुटि (assertion error) उत्पन्न करेगा।</li>
+  <li><code class="language-plaintext highlighter-rouge">total_len</code> में <code class="language-plaintext highlighter-rouge">params.max_seq_len</code> और <code class="language-plaintext highlighter-rouge">max_gen_len + max_prompt_len</code> के बीच की न्यूनतम मान को स्टोर करता है।</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
+<span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># केवल टोकन को बदलें यदि प्रॉम्प्ट पहले ही जनरेट हो चुका है
+</span><span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+    <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
+<span class="p">)</span>
+<span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
+<span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
+    <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+<span class="p">)</span>
+<span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
+<span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+    <span class="k">break</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+        <span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+            <span class="c1"># max gen len तक काटें
+</span>            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">echo</span> <span class="k">else</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="c1"># eos tok तक काटें, यदि कोई हो
+</span>            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span> <span class="ow">in</span> <span class="n">toks</span><span class="p">:</span>
+                <span class="n">eos_idx</span> <span class="o">=</span> <span class="n">toks</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span><span class="p">)</span>
+                <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="n">out_tokens</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span>
+            <span class="n">out_logprobs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>ChatGPT: ज़रूर, यहां दिए गए कोड की व्याख्या है:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
+    <span class="n">self</span><span class="p">,</span>
+    <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+    <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे मूल रूप में ही रहना चाहिए।)</p>
+
+<p>यह फ़ंक्शन <code class="language-plaintext highlighter-rouge">generate</code> नामक है और कई पैरामीटर्स को स्वीकार करता है:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">prompt_tokens</code> एक सूची है जिसमें प्रॉम्प्ट के लिए टोकन के अनुक्रम शामिल होते हैं।</li>
+  <li><code class="language-plaintext highlighter-rouge">max_gen_len</code> उत्पन्न पाठ की अधिकतम लंबाई है।</li>
+  <li><code class="language-plaintext highlighter-rouge">temperature</code> उत्पन्न करने के दौरान यादृच्छिकता को नियंत्रित करने के लिए उपयोग किया जाने वाला एक पैरामीटर है।</li>
+  <li><code class="language-plaintext highlighter-rouge">top_p</code> 0 और 1 के बीच एक संभाव्यता सीमा है जो नमूना लेने के दौरान विविधता को नियंत्रित करने के लिए उपयोग की जाती है।</li>
+  <li><code class="language-plaintext highlighter-rouge">logprobs</code> एक बूलियन है जो यह दर्शाता है कि उत्पन्न करने की प्रक्रिया के लॉग संभाव्यताओं को रिकॉर्ड करना है या नहीं।</li>
+  <li><code class="language-plaintext highlighter-rouge">echo</code> एक बूलियन है जो यह दर्शाता है कि उत्पन्न करने के दौरान इनपुट को प्रतिध्वनित करना है या नहीं।</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+<span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपरिवर्तित छोड़ दिया जाना चाहिए।)</p>
+
+<p>यहां, फ़ंक्शन मॉडल पैरामीटर्स प्राप्त करता है और प्रॉम्प्ट्स के बैच आकार की गणना करता है। यह सुनिश्चित करता है कि बैच आकार मॉडल पैरामीटर्स में निर्दिष्ट अधिकतम बैच आकार से अधिक न हो।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपने मूल रूप में ही रहना चाहिए।)</p>
+
+<p>ये लाइन्स प्रॉम्प्ट्स की न्यूनतम और अधिकतम लंबाई की गणना करती हैं और यह सुनिश्चित करती हैं कि प्रॉम्प्ट की अधिकतम लंबाई मॉडल पैरामीटर्स में निर्दिष्ट अधिकतम अनुक्रम लंबाई से अधिक न हो। कुल लंबाई की गणना अधिकतम उत्पन्न लंबाई और अधिकतम प्रॉम्प्ट लंबाई के आधार पर की जाती है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे मूल रूप में ही रखना चाहिए।)</p>
+
+<p>यह खंड <code class="language-plaintext highlighter-rouge">tokens</code> टेंसर को पैडिंग टोकन के साथ प्रारंभ करता है और इसे प्रॉम्प्ट्स से टोकन अनुक्रमों से भरता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक है, इसलिए इसे अनुवादित नहीं किया गया है।)</p>
+
+<p>यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो लॉग प्रायिकताओं को संग्रहीत करने के लिए एक टेंसर <code class="language-plaintext highlighter-rouge">token_logprobs</code> बनाया जाता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपरिवर्तित छोड़ा जाना चाहिए।)</p>
+
+<p>वेरिएबल्स <code class="language-plaintext highlighter-rouge">prev_pos</code> (पिछली स्थिति), <code class="language-plaintext highlighter-rouge">eos_reached</code> (क्या अनुक्रम के अंत के टोकन मिले हैं), और <code class="language-plaintext highlighter-rouge">input_text_mask</code> (पैडिंग से भरे नहीं गए स्थान) को आरंभ किया जाता है।</p>
+
+<p>निम्नलिखित लूप न्यूनतम प्रॉम्प्ट लंबाई से शुरू होकर कुल लंबाई तक टोकन उत्पन्न करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+        <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
+    <span class="p">)</span>
+    <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
+    <span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
+        <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+    <span class="p">)</span>
+    <span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
+    <span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<p>इस लूप के अंदर, मॉडल अगले टोकन के लिए एक प्रायिकता वितरण <code class="language-plaintext highlighter-rouge">logits</code> उत्पन्न करता है। यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो यह क्रॉस-एन्ट्रॉपी का उपयोग करके लॉग प्रायिकताओं की गणना करता है। <code class="language-plaintext highlighter-rouge">temperature</code> के आधार पर, यह अगले टोकन का चयन करने के लिए softmax या argmax का उपयोग करता है। फिर यह <code class="language-plaintext highlighter-rouge">tokens</code> टेंसर को अपडेट करता है और अनुक्रम के अंत (end-of-sequence) के टोकन की जांच करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपरिवर्तित छोड़ दिया जाना चाहिए।)</p>
+
+<p>यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो लॉग प्रायिकता टेंसर को Python लिस्ट में बदल दिया जाता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+    <span class="bp">...</span>
+</code></pre></div></div>
+
+<p>इस लूप में, प्रत्येक इनपुट सैंपल के लिए, यह आउटपुट टोकन अनुक्रम और संबंधित लॉग प्रायिकताएं उत्पन्न करता है।</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक है, इसे अनुवादित नहीं किया जाना चाहिए।)</p>
+
+<p>अंत में, फ़ंक्शन उत्पन्न टोकन अनुक्रम और उनके संबंधित लॉग प्रायिकताओं (यदि अनुरोध किया गया हो) को वापस करता है।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

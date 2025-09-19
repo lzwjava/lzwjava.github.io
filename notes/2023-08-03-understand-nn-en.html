@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Understanding Neural Network</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Understanding Neural Network | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Understanding Neural Network" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="李智维" />
+<meta property="og:description" content="李智维" />
+<link rel="canonical" href="https://lzwjava.github.io/notes/2023-08-03-understand-nn-en" />
+<meta property="og:url" content="https://lzwjava.github.io/notes/2023-08-03-understand-nn-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Understanding Neural Network" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Zhiwei Li"},"description":"李智维","headline":"Understanding Neural Network","url":"https://lzwjava.github.io/notes/2023-08-03-understand-nn-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Understanding Neural Network | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="notes/2023-08-03-understand-nn-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>notes2023-08-03-understand-nn-en.md</span> -->
+      
+
+      <!-- <span></span> -->
+
+      
+        <a href="#" class="button">2025.09</a>
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/understand-nn-en" selected>English</option>
+        <option value="/understand-nn-zh" >中文</option>
+        <option value="/understand-nn-ja" >日本語</option>
+        <option value="/understand-nn-es" >Español</option>
+        <option value="/understand-nn-hi" >हिंदी</option>
+        <option value="/understand-nn-fr" >Français</option>
+        <option value="/understand-nn-de" >Deutsch</option>
+        <option value="/understand-nn-ar" >العربية</option>
+        <option value="/understand-nn-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Zhiwei:</p>
+
+<p>Could you explain the code?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+                       <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>ChatGPT:</p>
+
+<p>Of course! The code you provided seems to be part of a machine learning algorithm, specifically an implementation of stochastic gradient descent (SGD) for updating the weights and biases in a neural network during the training process. Let’s break it down step by step:</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">self.weights</code> and <code class="language-plaintext highlighter-rouge">self.biases</code>:
+These variables are likely part of a neural network class, representing the weights and biases of the network. In a neural network, weights are parameters that adjust the strength of the connections between neurons in different layers, while biases are parameters that control the neuron’s activation threshold.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">nabla_w</code> and <code class="language-plaintext highlighter-rouge">nabla_b</code>:
+These variables likely store the gradients of the cost function with respect to the weights and biases, respectively. During the training process, gradients are computed to determine how the cost function changes concerning the weights and biases, and this information is used to update the parameters to minimize the cost.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">eta</code>:
+This is the learning rate, which controls the step size taken in the direction of the gradients during the parameter update. A higher learning rate can lead to faster convergence during training, but it can also cause instability. A smaller learning rate might improve stability but increase the training time.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">mini_batch</code>:
+This is a subset of the training data used for each iteration of the stochastic gradient descent. Mini-batch gradient descent is a variant of SGD where the entire training dataset is divided into smaller batches, and the parameter updates are performed using each mini-batch.</p>
+  </li>
+</ol>
+
+<p>Now, let’s look at the code itself:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>This line updates the weights of the neural network. It uses a list comprehension to loop through each weight <code class="language-plaintext highlighter-rouge">w</code> and its corresponding gradient <code class="language-plaintext highlighter-rouge">nw</code>. For each weight, it subtracts a portion of the gradient (scaled by the learning rate <code class="language-plaintext highlighter-rouge">eta</code> and the size of the mini-batch) from the original weight. This is how the weights are updated to minimize the cost function.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+               <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>This line updates the biases of the neural network in a similar way. It uses a list comprehension to loop through each bias <code class="language-plaintext highlighter-rouge">b</code> and its corresponding gradient <code class="language-plaintext highlighter-rouge">nb</code>. For each bias, it subtracts a portion of the gradient (scaled by the learning rate <code class="language-plaintext highlighter-rouge">eta</code> and the size of the mini-batch) from the original bias.</p>
+
+<p>In summary, these lines of code perform the weight and bias updates for the neural network using stochastic gradient descent. This process is repeated for each mini-batch during the training phase to optimize the network’s parameters and improve its performance on the given task.</p>
+
+<hr />
+
+<p>Zhiwei: What is SpaCy language model?</p>
+
+<p>ChatGPT: SpaCy is an open-source natural language processing (NLP) library developed by Explosion AI. It is designed to be efficient, fast, and production-ready, making it a popular choice for various NLP tasks. SpaCy provides pre-trained language models that can process and understand text, allowing developers to perform various NLP tasks such as part-of-speech tagging, named entity recognition, sentence parsing, and more.</p>
+
+<p>Key features of SpaCy language model include:</p>
+
+<ol>
+  <li>
+    <p>Tokenization: SpaCy can split a text into individual words or tokens, taking into account various linguistic rules and complexities.</p>
+  </li>
+  <li>
+    <p>Part-of-speech Tagging: The library can assign part-of-speech tags to each token, indicating whether it is a noun, verb, adjective, etc.</p>
+  </li>
+  <li>
+    <p>Named Entity Recognition (NER): SpaCy can identify and categorize entities such as names of people, organizations, locations, dates, etc.</p>
+  </li>
+  <li>
+    <p>Dependency Parsing: It can analyze the grammatical structure of a sentence and determine the relationships between words.</p>
+  </li>
+  <li>
+    <p>Lemmatization: SpaCy can convert words to their base or root form (lemmas).</p>
+  </li>
+  <li>
+    <p>Word Vectors: The library provides word vectors, also known as word embeddings, which are dense numerical representations of words that capture semantic meaning.</p>
+  </li>
+</ol>
+
+<p>SpaCy supports multiple languages and comes with pre-trained models for different languages, making it widely used in various NLP applications, including information extraction, sentiment analysis, chatbots, language translation, and more. Additionally, it allows developers to train custom models on their specific datasets if needed.</p>
+
+<hr />
+
+<p>Zhiwei: What is SpaCy language model?</p>
+
+<p>ChatGPT: SpaCy is an open-source natural language processing (NLP) library developed by Explosion AI. It is designed to be efficient, fast, and easy to use, making it a popular choice for various NLP tasks. SpaCy provides pre-trained language models for several languages, allowing users to perform tasks such as tokenization, part-of-speech tagging, named entity recognition, dependency parsing, and more.</p>
+
+<p>The core of SpaCy’s speed and efficiency lies in its optimized Cython implementations and data structures, which make it particularly suitable for production environments and real-world applications. The library is written in Python and comes with pre-trained models for various languages, including English, German, French, Spanish, and more.</p>
+
+<p>SpaCy language models use deep learning techniques to learn the underlying patterns in natural language data. These models are trained on large corpora of text, and the learned representations can then be used for various NLP tasks. The pre-trained models can be further fine-tuned on specific data to achieve better performance on domain-specific tasks.</p>
+
+<p>The architecture and ease of use have made SpaCy a popular choice among developers and researchers in the NLP community. It is often used for tasks like information extraction, text classification, named entity recognition, part-of-speech tagging, and syntactic parsing. Additionally, SpaCy’s modular design allows users to easily integrate it into their existing NLP workflows and pipelines.</p>
+
+<hr />
+
+<p>Zhiwei: Could you explain?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Llama</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span>
+        <span class="n">ckpt_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">tokenizer_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">max_seq_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">max_batch_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">model_parallel_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="bp">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="sh">"</span><span class="s">Llama</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="p">.</span><span class="n">distributed</span><span class="p">.</span><span class="nf">is_initialized</span><span class="p">():</span>
+            <span class="n">torch</span><span class="p">.</span><span class="n">distributed</span><span class="p">.</span><span class="nf">init_process_group</span><span class="p">(</span><span class="sh">"</span><span class="s">nccl</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nf">model_parallel_is_initialized</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">model_parallel_size</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">model_parallel_size</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">WORLD_SIZE</span><span class="sh">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="nf">initialize_model_parallel</span><span class="p">(</span><span class="n">model_parallel_size</span><span class="p">)</span>
+
+        <span class="n">local_rank</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">LOCAL_RANK</span><span class="sh">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="nf">set_device</span><span class="p">(</span><span class="n">local_rank</span><span class="p">)</span>
+
+        <span class="c1"># seed must be the same in all processes
+</span>        <span class="n">torch</span><span class="p">.</span><span class="nf">manual_seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">local_rank</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">devnull</span><span class="p">,</span> <span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="n">checkpoints</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="nc">Path</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">).</span><span class="nf">glob</span><span class="p">(</span><span class="sh">"</span><span class="s">*.pth</span><span class="sh">"</span><span class="p">))</span>
+        <span class="k">assert</span> <span class="nf">len</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">no checkpoint files found in </span><span class="si">{</span><span class="n">ckpt_dir</span><span class="si">}</span><span class="sh">"</span>
+        <span class="k">assert</span> <span class="n">model_parallel_size</span> <span class="o">==</span> <span class="nf">len</span><span class="p">(</span>
+            <span class="n">checkpoints</span>
+        <span class="p">),</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Loading a checkpoint for MP=</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">checkpoints</span><span class="p">)</span><span class="si">}</span><span class="s"> but world size is </span><span class="si">{</span><span class="n">model_parallel_size</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">ckpt_path</span> <span class="o">=</span> <span class="n">checkpoints</span><span class="p">[</span><span class="nf">get_model_parallel_rank</span><span class="p">()]</span>
+        <span class="n">checkpoint</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">ckpt_path</span><span class="p">,</span> <span class="n">map_location</span><span class="o">=</span><span class="sh">"</span><span class="s">cpu</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="nc">Path</span><span class="p">(</span><span class="n">ckpt_dir</span><span class="p">)</span> <span class="o">/</span> <span class="sh">"</span><span class="s">params.json</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">r</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>Run the command and then get the error log.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% torchrun <span class="nt">--nproc_per_node</span> 1 example_text_completion.py <span class="se">\</span>
+    <span class="nt">--ckpt_dir</span> llama-2-7b/ <span class="se">\</span>
+    <span class="nt">--tokenizer_path</span> tokenizer.model <span class="se">\</span>
+    <span class="nt">--max_seq_len</span> 128 <span class="nt">--max_batch_size</span> 4
+NOTE: Redirects are currently not supported <span class="k">in </span>Windows or MacOs.
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/Users/lzwjava/projects/llama/example_text_completion.py"</span>, line 55, <span class="k">in</span> &lt;module&gt;
+    fire.Fire<span class="o">(</span>main<span class="o">)</span>
+  File <span class="s2">"/Users/lzwjava/anaconda3/lib/python3.10/site-packages/fire/core.py"</span>, line 141, <span class="k">in </span>Fire
+    component_trace <span class="o">=</span> _Fire<span class="o">(</span>component, args, parsed_flag_args, context, name<span class="o">)</span>
+  File <span class="s2">"/Users/lzwjava/anaconda3/lib/python3.10/site-packages/fire/core.py"</span>, line 475, <span class="k">in </span>_Fire
+    component, remaining_args <span class="o">=</span> _CallAndUpdateTrace<span class="o">(</span>
+  File <span class="s2">"/Users/lzwjava/anaconda3/lib/python3.10/site-packages/fire/core.py"</span>, line 691, <span class="k">in </span>_CallAndUpdateTrace
+    component <span class="o">=</span> fn<span class="o">(</span><span class="k">*</span>varargs, <span class="k">**</span>kwargs<span class="o">)</span>
+  File <span class="s2">"/Users/lzwjava/projects/llama/example_text_completion.py"</span>, line 18, <span class="k">in </span>main
+    generator <span class="o">=</span> Llama.build<span class="o">(</span>
+  File <span class="s2">"/Users/lzwjava/projects/llama/llama/generation.py"</span>, line 62, <span class="k">in </span>build
+    torch.distributed.init_process_group<span class="o">(</span><span class="s2">"nccl"</span><span class="o">)</span>
+  File <span class="s2">"/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py"</span>, line 907, <span class="k">in </span>init_process_group
+    default_pg <span class="o">=</span> _new_process_group_helper<span class="o">(</span>
+  File <span class="s2">"/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py"</span>, line 1013, <span class="k">in </span>_new_process_group_helper
+    raise RuntimeError<span class="o">(</span><span class="s2">"Distributed package doesn't have NCCL "</span> <span class="s2">"built in"</span><span class="o">)</span>
+RuntimeError: Distributed package doesn<span class="s1">'t have NCCL built in
+ERROR:torch.distributed.elastic.multiprocessing.api:failed (exitcode: 1) local_rank: 0 (pid: 23273) of binary: /Users/lzwjava/anaconda3/bin/python
+
+Traceback (most recent call last):
+  File "/Users/lzwjava/anaconda3/bin/torchrun", line 33, in &lt;module&gt;
+    sys.exit(load_entry_point('</span><span class="nv">torch</span><span class="o">==</span>2.0.1<span class="s1">', '</span>console_scripts<span class="s1">', '</span>torchrun<span class="s1">')())
+  File "/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 346, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 794, in main
+    run(args)
+  File "/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/run.py", line 785, in run
+    elastic_launch(
+  File "/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 134, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/Users/lzwjava/anaconda3/lib/python3.10/site-packages/torch/distributed/launcher/api.py", line 250, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError:
+============================================================
+example_text_completion.py FAILED
+------------------------------------------------------------
+Failures:
+  &lt;NO_OTHER_FAILURES&gt;
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2023-08-03_15:35:37
+  host      : 1.0.0.127.in-addr.arpa
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 23273)
+  error_file: &lt;N/A&gt;
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+</span></code></pre></div></div>
+
+<p>Learn the error stack trace.</p>
+
+<p>Ask ChatGPT about what Backend.NCCL means in Pytorch?</p>
+
+<hr />
+
+<p>Zhiwei:</p>
+
+<p>code:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">LlamaTokenizer</span><span class="p">,</span> <span class="n">LlamaForCausalLM</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span>
+<span class="c1"># model_path = 'openlm-research/open_llama_7b'
+</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">LlamaTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LlamaForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_path</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="sh">'</span><span class="s">auto</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Q: What is the largest animal?</span><span class="se">\n</span><span class="s">A:</span><span class="sh">'</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">).</span><span class="n">input_ids</span>
+<span class="n">generation_output</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">32</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">generation_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>error:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/transformers/generation/utils.py:1445: UserWarning: You are calling .generate<span class="o">()</span> with the <span class="sb">`</span>input_ids<span class="sb">`</span> being on a device <span class="nb">type </span>different than your model<span class="s1">'s device. `input_ids` is on cpu, whereas the model is on cuda. You may experience unexpected behaviors or slower generation. Please make sure that you have put `input_ids` to the correct device by calling for example input_ids = input_ids.to('</span>cuda<span class="s1">') before running `.generate()`.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/lzw/Projects/open_llama_3b/run.py", line 17, in &lt;module&gt;
+    generation_output = model.generate(
+                        ^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/transformers/generation/utils.py", line 1515, in generate
+    return self.greedy_search(
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/transformers/generation/utils.py", line 2332, in greedy_search
+    outputs = self(
+              ^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 688, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 531, in forward
+    inputs_embeds = self.embed_tokens(input_ids)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/nn/modules/sparse.py", line 162, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "/home/lzw/anaconda3/envs/llama/lib/python3.11/site-packages/torch/nn/functional.py", line 2210, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument index in method wrapper_CUDA__index_select)
+</span></code></pre></div></div>
+
+<p>how to fix?</p>
+
+<p>ChatGPT:</p>
+
+<p>The error message you’re encountering indicates that there’s a mismatch in device types between your input tensor (<code class="language-plaintext highlighter-rouge">input_ids</code>) and your model (<code class="language-plaintext highlighter-rouge">LlamaForCausalLM</code>). The input tensor is on the CPU (<code class="language-plaintext highlighter-rouge">cpu</code>), while the model is on the GPU (<code class="language-plaintext highlighter-rouge">cuda</code>). To fix this, you need to ensure that the input tensor is on the same device as the model before generating text using the model.</p>
+
+<p>Here’s the modified code to fix the issue:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">LlamaTokenizer</span><span class="p">,</span> <span class="n">LlamaForCausalLM</span>
+
+<span class="n">model_path</span> <span class="o">=</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span>
+<span class="c1"># model_path = 'openlm-research/open_llama_7b'
+</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">LlamaTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LlamaForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_path</span><span class="p">,</span> <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">float16</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="sh">'</span><span class="s">auto</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="sh">'</span><span class="s">Q: What is the largest animal?</span><span class="se">\n</span><span class="s">A:</span><span class="sh">'</span>
+<span class="n">input_ids</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">).</span><span class="n">input_ids</span>
+
+<span class="c1"># Move the input_ids tensor to the same device as the model
+</span><span class="n">input_ids</span> <span class="o">=</span> <span class="n">input_ids</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="n">device</span><span class="p">)</span>
+
+<span class="n">generation_output</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">max_new_tokens</span><span class="o">=</span><span class="mi">32</span>
+<span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">generation_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</code></pre></div></div>
+
+<p>In this code, I’ve added the line <code class="language-plaintext highlighter-rouge">input_ids = input_ids.to(model.device)</code> after obtaining the <code class="language-plaintext highlighter-rouge">input_ids</code> tensor from the tokenizer. This line moves the <code class="language-plaintext highlighter-rouge">input_ids</code> tensor to the same device as the model (either CPU or GPU) before generating text. This should resolve the “Expected all tensors to be on the same device” error.</p>
+
+<p>Remember that if you’re running this code on a GPU-enabled machine and your model is on a GPU, it’s generally more efficient to keep both the model and input data on the GPU to take advantage of parallel processing capabilities.</p>
+
+<hr />
+
+<p>Zhiwei: Could you explain below codes?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+        <span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
+
+        <span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
+        <span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+
+        <span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+            <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+
+        <span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
+        <span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+            <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+                <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
+                    <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                    <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+                    <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+                    <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="c1"># only replace token if prompt has already been generated
+</span>            <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+                <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
+            <span class="p">)</span>
+            <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
+            <span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
+                <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+            <span class="p">)</span>
+            <span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
+            <span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+        <span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+            <span class="c1"># cut to max gen len
+</span>            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">echo</span> <span class="k">else</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="c1"># cut to eos tok if any
+</span>            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span> <span class="ow">in</span> <span class="n">toks</span><span class="p">:</span>
+                <span class="n">eos_idx</span> <span class="o">=</span> <span class="n">toks</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span><span class="p">)</span>
+                <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="n">out_tokens</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span>
+            <span class="n">out_logprobs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>ChatGPT: Certainly! The provided code is a method called <code class="language-plaintext highlighter-rouge">generate</code> that takes a prompt (input text) and generates text using a language model. This method is designed to work with a specific model and tokenizer and performs text generation using either greedy sampling or top-p sampling. Here’s a breakdown of how the method works:</p>
+
+<ol>
+  <li><strong>Method Parameters:</strong>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">prompt_tokens</code>: A list of tokenized prompts, where each prompt is represented as a list of integers (token IDs).</li>
+      <li><code class="language-plaintext highlighter-rouge">max_gen_len</code>: The maximum length of the generated output (in tokens).</li>
+      <li><code class="language-plaintext highlighter-rouge">temperature</code>: A parameter controlling the randomness of the generation. Higher values (e.g., 1.0) make the output more random, while lower values (e.g., 0.6) make it more deterministic.</li>
+      <li><code class="language-plaintext highlighter-rouge">top_p</code>: A parameter controlling the diversity of generated text. Higher values (e.g., 0.9) allow more diverse sampling.</li>
+      <li><code class="language-plaintext highlighter-rouge">logprobs</code>: If <code class="language-plaintext highlighter-rouge">True</code>, the method also returns the log-probabilities of generated tokens.</li>
+      <li><code class="language-plaintext highlighter-rouge">echo</code>: If <code class="language-plaintext highlighter-rouge">True</code>, the generated output will include the prompt itself.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Initialization:</strong>
+The method initializes variables such as <code class="language-plaintext highlighter-rouge">params</code>, <code class="language-plaintext highlighter-rouge">bsz</code> (batch size), <code class="language-plaintext highlighter-rouge">min_prompt_len</code>, and <code class="language-plaintext highlighter-rouge">max_prompt_len</code>. It also calculates <code class="language-plaintext highlighter-rouge">total_len</code> which is the total length of generated output including the prompt.</p>
+  </li>
+  <li>
+    <p><strong>Token Generation:</strong>
+The method generates tokens for the output text. It uses a loop to iterate over positions in the generated sequence, starting from the end of the prompt and moving forward.</p>
+
+    <ul>
+      <li>The logits for each position are obtained by passing the partial sequence to the model’s forward function.</li>
+      <li>If <code class="language-plaintext highlighter-rouge">temperature</code> is greater than 0, the logits are transformed into probabilities using softmax with the given temperature value. If <code class="language-plaintext highlighter-rouge">temperature</code> is 0, the token with the highest logit is selected using <code class="language-plaintext highlighter-rouge">torch.argmax</code>.</li>
+      <li>The next token is determined based on the generated probabilities or argmax, and it is placed in the corresponding position of the <code class="language-plaintext highlighter-rouge">tokens</code> tensor.</li>
+      <li>EOS (end-of-sequence) tokens are detected, and if all sequences have reached an EOS token, the generation process is stopped.</li>
+      <li>The generated tokens are kept in the <code class="language-plaintext highlighter-rouge">tokens</code> tensor.</li>
+    </ul>
+  </li>
+  <li><strong>Processing Generated Output:</strong>
+    <ul>
+      <li>The generated tokens are processed to trim the output to the desired maximum length (<code class="language-plaintext highlighter-rouge">max_gen_len</code>).</li>
+      <li>If <code class="language-plaintext highlighter-rouge">echo</code> is <code class="language-plaintext highlighter-rouge">True</code>, the prompt is included in the generated output.</li>
+      <li>If the <code class="language-plaintext highlighter-rouge">eos</code> token is encountered, the generated text is cut off at that point.</li>
+    </ul>
+  </li>
+  <li><strong>Return:</strong>
+The method returns a tuple containing the generated tokens and, if <code class="language-plaintext highlighter-rouge">logprobs</code> is <code class="language-plaintext highlighter-rouge">True</code>, the log-probabilities of the generated tokens.</li>
+</ol>
+
+<p>This method generates text by iteratively predicting tokens based on the context provided by the prompt and the previously generated tokens. It uses the specified generation parameters to control the randomness and diversity of the generated text. The method is designed to be used with a specific model architecture and tokenizer, as it relies on their properties and methods for text generation.</p>
+
+<hr />
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

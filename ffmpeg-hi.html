@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>FFmpeg को Android पर पोर्ट करना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>FFmpeg को Android पर पोर्ट करना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="FFmpeg को Android पर पोर्ट करना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="मूल लेख का लिंक (CSDN)" />
+<meta property="og:description" content="मूल लेख का लिंक (CSDN)" />
+<link rel="canonical" href="https://lzwjava.github.io/ffmpeg-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/ffmpeg-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-03-10T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="FFmpeg को Android पर पोर्ट करना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-03-10T00:00:00+08:00","datePublished":"2014-03-10T00:00:00+08:00","description":"मूल लेख का लिंक (CSDN)","headline":"FFmpeg को Android पर पोर्ट करना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ffmpeg-hi"},"url":"https://lzwjava.github.io/ffmpeg-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       FFmpeg को Android पर पोर्ट करना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2014-03-10-ffmpeg-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2014-03-10-ffmpeg-hi.md</span> -->
+      
+
+      <!-- <span>2014-03-10-ffmpeg-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ffmpeg-en" >English</option>
+        <option value="/ffmpeg-zh" >中文</option>
+        <option value="/ffmpeg-ja" >日本語</option>
+        <option value="/ffmpeg-es" >Español</option>
+        <option value="/ffmpeg-hi" selected>हिंदी</option>
+        <option value="/ffmpeg-fr" >Français</option>
+        <option value="/ffmpeg-de" >Deutsch</option>
+        <option value="/ffmpeg-ar" >العربية</option>
+        <option value="/ffmpeg-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><a href="https://blog.csdn.net/lzw_java/article/details/21564091">मूल लेख का लिंक (CSDN)</a></p>
+
+<hr />
+
+<h2 id="प्रारंभ">प्रारंभ</h2>
+
+<p>जो छात्र अभी तक FFmpeg के बारे में नहीं जानते हैं, वे पहले <a href="https://ffmpeg.org/ffmpeg.html">FFmpeg के सामान्य बुनियादी कमांड्स</a> को देख सकते हैं, और इसकी कार्यक्षमता का गहराई से अध्ययन कर सकते हैं—जैसे कि ऑडियो और वीडियो संश्लेषण, विभिन्न कोडेक्स का प्लेबैक, वीडियो कटिंग, कई छवियों से वीडियो बनाना और ऑडियो मिक्सिंग, फॉर्मेट परिवर्तन आदि। यह कई एप्लिकेशन परिदृश्यों में शक्तिशाली और मजेदार कार्यक्षमता प्रदान कर सकता है।</p>
+
+<p>“डबिंग शो” जैसे ऐप्स के उदाहरण के रूप में, डबिंग न केवल मनोरंजक है, बल्कि अक्सर उत्पाद को और अधिक आकर्षक बना देता है। हमने एक डबिंग मॉड्यूल विकसित करने की योजना बनाई, और इसके लिए FFmpeg को चुना, इसे Android प्लेटफॉर्म पर पोर्ट करने का प्रयास किया। इसमें लगभग 3-4 दिन लगे, कई संस्करणों का प्रयास किया, और ऑनलाइन कई लेखों में सफलता नहीं मिली, जब तक कि हमें “android में FFmpeg का उपयोग और इंटरफेस कॉल” नामक एक ट्यूटोरियल नहीं मिला, जिसके बाद हम इसे सफलतापूर्वक पूरा कर पाए। वास्तविक परीक्षण से पता चला कि केवल FFmpeg 1.2 और ndk-r9 का संयोजन ही सफलतापूर्वक पोर्ट किया जा सकता है।</p>
+
+<hr />
+
+<h2 id="विचार">विचार</h2>
+
+<p>FFmpeg एक C भाषा में लिखा गया प्रोजेक्ट है, जिसमें एक <code class="language-plaintext highlighter-rouge">main()</code> फ़ंक्शन शामिल है। हमारा लक्ष्य है:</p>
+
+<ol>
+  <li>Android NDK का उपयोग करके <code class="language-plaintext highlighter-rouge">libffmpeg.so</code> को कंपाइल करें।</li>
+  <li>इस लाइब्रेरी का उपयोग करके <code class="language-plaintext highlighter-rouge">ffmpeg.c</code> फ़ाइल को कंपाइल करें और इसमें संशोधन करें, मूल <code class="language-plaintext highlighter-rouge">main()</code> फ़ंक्शन का नाम बदलकर <code class="language-plaintext highlighter-rouge">video_merge(int argc, char **argv)</code> कर दें, ताकि JNI से सीधे इस फ़ंक्शन को कॉल करके वीडियो संयोजन जैसे ऑपरेशन किए जा सकें।</li>
+</ol>
+
+<p>उदाहरण के लिए, वीडियो संश्लेषण को निम्नलिखित तरीके से कार्यान्वित किया जा सकता है (जो कमांड लाइन <code class="language-plaintext highlighter-rouge">ffmpeg -i src1 -i src2 -y output</code> के अनुरूप है):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">video_merge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span> <span class="c1">// यहां argv कमांड लाइन पैरामीटर्स को सिम्युलेट करता है</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="पर्यावरण">पर्यावरण</h2>
+
+<ul>
+  <li>ऑपरेटिंग सिस्टम: Ubuntu 12.04</li>
+  <li>FFmpeg संस्करण: 1.2</li>
+  <li>NDK संस्करण: ndk-r9</li>
+</ul>
+
+<p>शुरू करने से पहले, कुछ संबंधित ट्यूटोरियल देखने की सलाह दी जाती है। यदि आपको कोई समस्या आती है, तो इस लेख को वापस देखें, ताकि आप बहुत अधिक गलत रास्ते पर न जाएं।</p>
+
+<hr />
+
+<h2 id="इंटरफ़ेस-और-androidmk-को-संशोधित-करना">इंटरफ़ेस और Android.mk को संशोधित करना</h2>
+
+<p>FFmpeg के लिए JNI इंटरफ़ेस लिखते समय, <code class="language-plaintext highlighter-rouge">Android.mk</code> फ़ाइल को लिखने की आवश्यकता होती है ताकि लाइब्रेरी को लिंक किया जा सके और उपयोग करने योग्य <code class="language-plaintext highlighter-rouge">.so</code> फ़ाइल उत्पन्न की जा सके। कुछ उदाहरण <code class="language-plaintext highlighter-rouge">Android.mk</code> फ़ाइलें अलग-अलग वातावरण में सीधे चलाने में सफल नहीं हो सकती हैं। इसका उद्देश्य NDK को यह बताना है कि कौन से स्रोत फ़ाइलों को संकलित करने की आवश्यकता है, किस लाइब्रेरी से लिंक करना है, आदि।</p>
+
+<p>मैंने एक “दो बार संकलन, फिर लिंक” की विधि अपनाई है:</p>
+
+<ol>
+  <li>पहले <code class="language-plaintext highlighter-rouge">myffmpeg</code> नामक एक साझा लाइब्रेरी को संकलित करें।</li>
+  <li>फिर एक अन्य मॉड्यूल <code class="language-plaintext highlighter-rouge">ffmpeg-jni</code> में, <code class="language-plaintext highlighter-rouge">myffmpeg</code> को लिंक करें और अंत में आवश्यक <code class="language-plaintext highlighter-rouge">.so</code> फ़ाइल उत्पन्न करें।</li>
+</ol>
+
+<p>इसके अलावा, कंपाइल किए गए <code class="language-plaintext highlighter-rouge">libffmpeg.so</code> को <code class="language-plaintext highlighter-rouge">jni</code> डायरेक्टरी में रखना आवश्यक है, ताकि लिंक करते समय इसे ढूंढा जा सके।</p>
+
+<hr />
+
+<h2 id="ffmpeg-को-डीबग-करना">FFmpeg को डीबग करना</h2>
+
+<p>FFmpeg को पोर्ट करने के बाद, JNI के माध्यम से फ़ंक्शन को कॉल करने के लिए, अक्सर C लेयर में डीबग करने की आवश्यकता होती है। यदि हम कमांड लाइन की तरह विस्तृत लॉग आउटपुट देख सकें, तो समस्याओं का पता लगाना और भी आसान हो जाएगा।</p>
+
+<p>Eclipse में, <kbd>Ctrl</kbd> दबाकर <code class="language-plaintext highlighter-rouge">av_log</code> जैसे कॉल स्थान पर क्लिक करने से, आप <code class="language-plaintext highlighter-rouge">ffmpeg/libavutil/log.c</code> में <code class="language-plaintext highlighter-rouge">av_log_default_callback</code> फ़ंक्शन के कार्यान्वयन को ट्रैक कर सकते हैं। यह Android के <code class="language-plaintext highlighter-rouge">__android_log_print</code> को कॉल करके Logcat में प्रिंट करता है। इन आउटपुट को देखकर, आप FFmpeg के आंतरिक स्थिति को जान सकते हैं, जिसका उपयोग संश्लेषण विफलता, विशिष्ट कोडेक का समर्थन न करने जैसी समस्याओं को हल करने के लिए किया जा सकता है।</p>
+
+<p>कभी-कभी, FFmpeg अपवाद (exception) फेंक सकता है जिससे ऐप क्रैश हो सकता है। इस समस्या का पता लगाने के लिए आप निम्नलिखित कमांड का उपयोग कर सकते हैं:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell logcat | ndk-stack <span class="nt">-sym</span> obj/local/armeabi
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक है और इसे अनुवादित नहीं किया जाना चाहिए।)</p>
+
+<p>यदि FFmpeg के मूल <code class="language-plaintext highlighter-rouge">main()</code> फ़ंक्शन के अंत में <code class="language-plaintext highlighter-rouge">exit(0)</code> है, तो कृपया इसे कमेंट कर दें, अन्यथा यह एप्लिकेशन को बंद कर देगा।</p>
+
+<h3 id="मेमोरी-लीक-और-सर्विस-समाधान">मेमोरी लीक और सर्विस समाधान</h3>
+
+<p>मेमोरी लीक एक सामान्य समस्या है जो सॉफ्टवेयर डेवलपमेंट में होती है, खासकर जब हम लंबे समय तक चलने वाले सर्विसेज (Services) का उपयोग करते हैं। यह समस्या तब होती है जब प्रोग्राम द्वारा आवंटित मेमोरी को सही ढंग से रिलीज़ नहीं किया जाता है, जिससे समय के साथ मेमोरी की खपत बढ़ती जाती है और अंततः सिस्टम की परफॉर्मेंस प्रभावित होती है।</p>
+
+<h4 id="मेमोरी-लीक-के-कारण">मेमोरी लीक के कारण</h4>
+
+<ol>
+  <li><strong>रिसोर्सेज का सही ढंग से रिलीज़ न होना</strong>: जब ऑब्जेक्ट्स या रिसोर्सेज को सही ढंग से डिस्पोज़ या रिलीज़ नहीं किया जाता है, तो वे मेमोरी में जमा होते रहते हैं।</li>
+  <li><strong>सर्विसेज का लंबे समय तक चलना</strong>: सर्विसेज जो लंबे समय तक चलती हैं, वे अक्सर मेमोरी लीक का कारण बनती हैं, खासकर यदि उनमें रिसोर्सेज का प्रबंधन सही ढंग से नहीं किया गया हो।</li>
+  <li><strong>इवेंट लिसनर्स का सही ढंग से न हटना</strong>: यदि इवेंट लिसनर्स को सही ढंग से नहीं हटाया जाता है, तो वे मेमोरी लीक का कारण बन सकते हैं।</li>
+</ol>
+
+<h4 id="समाधान">समाधान</h4>
+
+<ol>
+  <li>
+    <p><strong>सर्विसेज का सही प्रबंधन</strong>: सर्विसेज को सही ढंग से शुरू और बंद करना महत्वपूर्ण है। यह सुनिश्चित करें कि सर्विसेज द्वारा उपयोग की जाने वाली सभी रिसोर्सेज को सही ढंग से रिलीज़ किया जाए।</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyService</span> <span class="kd">extends</span> <span class="nc">Service</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="c1">// रिसोर्सेज को रिलीज़ करें</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>इवेंट लिसनर्स का सही प्रबंधन</strong>: इवेंट लिसनर्स को सही ढंग से हटाना सुनिश्चित करें, खासकर जब वे अब आवश्यक न हों।</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyActivity</span> <span class="kd">extends</span> <span class="nc">AppCompatActivity</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">MyListener</span> <span class="n">listener</span><span class="o">;</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDestroy</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">.</span><span class="na">onDestroy</span><span class="o">();</span>
+        <span class="n">listener</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span> <span class="c1">// लिसनर को हटाएं</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>मेमोरी प्रोफाइलिंग टूल्स का उपयोग</strong>: Android Studio जैसे टूल्स का उपयोग करके मेमोरी लीक की पहचान करें और उन्हें ठीक करें।</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell dumpsys meminfo &lt;package_name&gt;
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>WeakReference का उपयोग</strong>: यदि आपको किसी ऑब्जेक्ट को लंबे समय तक रखने की आवश्यकता है, तो <code class="language-plaintext highlighter-rouge">WeakReference</code> का उपयोग करें ताकि गार्बेज कलेक्टर उसे मेमोरी से हटा सके।</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">WeakReference</span><span class="o">&lt;</span><span class="nc">MyObject</span><span class="o">&gt;</span> <span class="n">weakRef</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WeakReference</span><span class="o">&lt;&gt;(</span><span class="n">myObject</span><span class="o">);</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>मेमोरी लीक को समझना और उन्हें ठीक करना एक महत्वपूर्ण कौशल है जो आपके एप्लिकेशन की परफॉर्मेंस और उपयोगकर्ता अनुभव को बेहतर बना सकता है। सही प्रबंधन और टूल्स का उपयोग करके आप मेमोरी लीक से बच सकते हैं और अपने एप्लिकेशन को अधिक कुशल बना सकते हैं।</p>
+
+<p>संश्लेषण पूरा होने के बाद, यदि फिर से कॉल करने पर <code class="language-plaintext highlighter-rouge">"INVALID HEAP ADDRESS IN dlfree ffmpeg"</code> त्रुटि आती है, तो यह अधिकतर FFmpeg के मेमोरी को पूरी तरह से मुक्त न करने के कारण होता है। एक समझौता समाधान यह है कि संश्लेषण प्रक्रिया को एक अलग <code class="language-plaintext highlighter-rouge">Service</code> में रखा जाए, और संश्लेषण पूरा होने के बाद उस Service को समाप्त कर दिया जाए, ताकि संसाधनों को साफ किया जा सके।</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- AndroidManifest.xml --&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">".FFmpegService"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">Receiver</code> को पंजीकृत करके और संश्लेषण पूरा होने के बाद स्वयं Service को समाप्त करके, आप बार-बार कॉल होने पर मेमोरी समस्याओं से बच सकते हैं।</p>
+
+<hr />
+
+<h2 id="संभावित-समस्याएं">संभावित समस्याएं</h2>
+
+<ul>
+  <li><strong>AAC फ़ाइल प्लेबैक में समस्या</strong><br />
+कुछ डिवाइस (जैसे Xiaomi 2s) में डिफ़ॉल्ट <code class="language-plaintext highlighter-rouge">MediaPlayer</code> के माध्यम से AAC एन्कोडेड ऑडियो प्ले करने में समस्या हो सकती है।</li>
+  <li><strong>एन्कोडर समर्थन की कमी</strong><br />
+यदि AMR-NB, MP3 आदि को सपोर्ट करना है, तो FFmpeg को कंपाइल करते समय संबंधित विकल्पों को मैन्युअल रूप से सक्षम करना होगा। यदि कंपाइल स्क्रिप्ट संबंधित लाइब्रेरी या हेडर फ़ाइल नहीं ढूंढ पाती है, तो यह त्रुटि के साथ समाप्त हो जाएगी।</li>
+  <li><strong>संश्लेषण गति</strong><br />
+10 सेकंड का 1280×720 वीडियो और ऑडियो मिक्स करने में कई सेकंड से लेकर एक मिनट तक का समय लग सकता है। उपयोगकर्ता अनुभव के लिए, शायद उपयोगकर्ता को पहले सुनने देना और फिर अंतिम संश्लेषण करने का निर्णय लेना बेहतर होगा।</li>
+</ul>
+
+<p>डबिंग शो के विशिष्ट कार्यान्वयन में, सामान्य प्रथाएं हैं:</p>
+<ol>
+  <li>मूल वीडियो, सबटाइटल्स, और “डबिंग के लिए आवश्यक खंडों को हटा दिया गया” ऑडियो फ़ाइल को पहले से डाउनलोड कर लें।</li>
+  <li>उपयोगकर्ता की आवाज़ रिकॉर्ड करें, संश्लेषण के दौरान केवल रिकॉर्डिंग और म्यूट खंडों को मर्ज करना आवश्यक होता है।</li>
+  <li>यदि स्थानीय संश्लेषण समय से संतुष्ट नहीं हैं, तो ऑडियो-वीडियो डेटा को सर्वर पर अपलोड करने का विकल्प चुन सकते हैं, जहां सर्वर साइड पर संश्लेषण किया जाता है, और पूरा होने के बाद इसे डाउनलोड कर लें।</li>
+</ol>
+
+<hr />
+
+<h2 id="eclipse-में-ndk-का-उपयोग-करना">Eclipse में NDK का उपयोग करना</h2>
+
+<p><code class="language-plaintext highlighter-rouge">ndk-build</code> को कमांड लाइन में दर्ज करना जरूरी नहीं है। बस Eclipse में प्रोजेक्ट पर राइट-क्लिक करें, <strong>Android Tools → Add Native Support</strong> चुनें, और फिर हर बार “Run” पर क्लिक करने पर <code class="language-plaintext highlighter-rouge">ndk-build</code> स्वचालित रूप से निष्पादित हो जाएगा।</p>
+
+<h3 id="एक-क्लिक-में-jni-हेडर-फ़ाइल-जनरेट-करें">एक क्लिक में JNI हेडर फ़ाइल जनरेट करें</h3>
+
+<p>JNI फ़ंक्शन हेडर फ़ाइल लिखना थोड़ा जटिल हो सकता है, लेकिन <code class="language-plaintext highlighter-rouge">javah</code> कमांड का उपयोग करके इसे स्वचालित रूप से जेनरेट किया जा सकता है।<br />
+Eclipse में, इसे एक एक्सटर्नल टूल के रूप में कॉन्फ़िगर किया जा सकता है, और निम्नलिखित कमांड का उपयोग करके हेडर फ़ाइल जेनरेट की जा सकती है:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javah <span class="nt">-jni</span> <span class="nt">-classpath</span> bin/classes <span class="nt">-d</span> jni com.example.ffmpeg.MyFFmpeg
+</code></pre></div></div>
+
+<p>(यह कमांड JNI हेडर फ़ाइल बनाने के लिए उपयोग की जाती है और इसे अनुवादित करने की आवश्यकता नहीं है।)</p>
+
+<p>निष्पादित करने के बाद, <code class="language-plaintext highlighter-rouge">jni</code> डायरेक्टरी में <code class="language-plaintext highlighter-rouge">com_example_ffmpeg_MyFFmpeg.h</code> जैसी फ़ाइल उत्पन्न होगी। फिर आपको बस अपने C कोड में <code class="language-plaintext highlighter-rouge">#include</code> करना होगा और संबंधित फ़ंक्शन को लागू करना होगा।</p>
+
+<hr />
+
+<h2 id="सारांश">सारांश</h2>
+
+<p>Android पर FFmpeg को पोर्ट करने में कई प्रकार के ज्ञान शामिल हैं, जैसे कि NDK वातावरण कॉन्फ़िगरेशन, C/C++ कंपाइल और लिंक, JNI कॉल, ऑडियो और वीडियो कोडेक आदि। यदि आपको संश्लेषण करने में समस्या हो रही है, कुछ प्रारूपों का समर्थन नहीं है, या लिंकिंग में त्रुटियां आ रही हैं, तो कॉन्फ़िगरेशन और लॉग आउटपुट की जांच करने की आवश्यकता है। आशा है कि यह लेख आपको कुछ समस्याओं से बचने में मदद करेगा। यदि आप भी FFmpeg का उपयोग कर रहे हैं, तो कृपया टिप्पणियों में अपने अनुभव या समस्याएं साझा करें, ताकि हम एक-दूसरे से सीख और सहयोग कर सकें।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

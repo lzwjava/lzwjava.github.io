@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Automatisierter Nachrichtenzusammenfassungs-Bot</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Automatisierter Nachrichtenzusammenfassungs-Bot | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Automatisierter Nachrichtenzusammenfassungs-Bot" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="Dieser Beitrag präsentiert einen Python-basierten News-Bot, der Top-Stories von Hacker News, GitHub Trending und NYTimes (Chinesisch) mithilfe der Mistral-API extrahiert und zusammenfasst. Er sendet täglich kompakte Berichte über Telegram, unterstützt durch einen GitHub Actions-Workflow für die automatisierte Ausführung. Ideal, um mühelos über Tech- und globale Nachrichten auf dem Laufenden zu bleiben." />
+<meta property="og:description" content="Dieser Beitrag präsentiert einen Python-basierten News-Bot, der Top-Stories von Hacker News, GitHub Trending und NYTimes (Chinesisch) mithilfe der Mistral-API extrahiert und zusammenfasst. Er sendet täglich kompakte Berichte über Telegram, unterstützt durch einen GitHub Actions-Workflow für die automatisierte Ausführung. Ideal, um mühelos über Tech- und globale Nachrichten auf dem Laufenden zu bleiben." />
+<link rel="canonical" href="https://lzwjava.github.io/news-bot-de" />
+<meta property="og:url" content="https://lzwjava.github.io/news-bot-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Automatisierter Nachrichtenzusammenfassungs-Bot" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-07T00:00:00+08:00","datePublished":"2025-06-07T00:00:00+08:00","description":"Dieser Beitrag präsentiert einen Python-basierten News-Bot, der Top-Stories von Hacker News, GitHub Trending und NYTimes (Chinesisch) mithilfe der Mistral-API extrahiert und zusammenfasst. Er sendet täglich kompakte Berichte über Telegram, unterstützt durch einen GitHub Actions-Workflow für die automatisierte Ausführung. Ideal, um mühelos über Tech- und globale Nachrichten auf dem Laufenden zu bleiben.","headline":"Automatisierter Nachrichtenzusammenfassungs-Bot","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/news-bot-de"},"url":"https://lzwjava.github.io/news-bot-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Automatisierter Nachrichtenzusammenfassungs-Bot | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2025-06-07-news-bot-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/de/2025-06-07-news-bot-de.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2025-06-07-news-bot-de.md</span> -->
+      
+
+      <!-- <span>2025-06-07-news-bot-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/news-bot-en" >English</option>
+        <option value="/news-bot-zh" >中文</option>
+        <option value="/news-bot-ja" >日本語</option>
+        <option value="/news-bot-es" >Español</option>
+        <option value="/news-bot-hi" >हिंदी</option>
+        <option value="/news-bot-fr" >Français</option>
+        <option value="/news-bot-de" selected>Deutsch</option>
+        <option value="/news-bot-ar" >العربية</option>
+        <option value="/news-bot-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Dieser Beitrag präsentiert einen Python-basierten News-Bot, der Top-Stories von Hacker News, GitHub Trending und NYTimes (Chinesisch) mithilfe der Mistral-API extrahiert und zusammenfasst. Er sendet täglich kompakte Berichte über Telegram, unterstützt durch einen GitHub Actions-Workflow für die automatisierte Ausführung. Ideal, um mühelos über Tech- und globale Nachrichten auf dem Laufenden zu bleiben.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">re</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="nf">load_dotenv</span><span class="p">()</span>
+
+<span class="n">TELEGRAM_BOT_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_CHAT_ID</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">610574272</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">4096</span>
+
+<span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">TELEGRAM_BOT_TOKEN</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: TELEGRAM_BOT_API_KEY or TELEGRAM_CHAT_ID not set.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">TELEGRAM_BOT_TOKEN</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="c1"># Entferne alle Sternchen (für Fett/Kursiv) aus der Nachricht
+</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+    <span class="c1"># Entferne Links aus der Nachricht
+</span>    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">message_no_links</span>
+    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="nf">rfind</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">split_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">split_idx</span> <span class="o">&lt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">split_idx</span> <span class="o">=</span> <span class="n">TELEGRAM_MAX_LENGTH</span>
+        <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="n">split_idx</span><span class="p">:]</span>
+    <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Telegram-Nachrichtenteil erfolgreich gesendet (</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> Zeichen).</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Senden der Telegram-Nachricht: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">success</span>
+
+<span class="k">def</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">HTML-Inhalt wird abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">HTML-Inhalt erfolgreich abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">URL konnte nicht abgerufen werden: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">extract_hacker_news_links</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">.titleline &gt; a</span><span class="sh">'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">url</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">item?id=</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://news.ycombinator.com/</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span>
+        <span class="k">if</span> <span class="n">url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">title</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+            <span class="n">seen</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> Links von Hacker News extrahiert.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="k">def</span> <span class="nf">extract_github_trending</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">article.Box-row h2 a</span><span class="sh">'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://github.com</span><span class="si">{</span><span class="n">repo</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s+</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">,</span> <span class="n">repo</span><span class="p">.</span><span class="n">text</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">title</span> <span class="ow">and</span> <span class="n">url</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> trendige Repositories von GitHub extrahiert.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">links</span>
+
+<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-small-latest</span><span class="sh">"</span><span class="p">):</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">MISTRAL_API_KEY</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fehler: MISTRAL_API_KEY Umgebungsvariable nicht gesetzt.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+    <span class="p">}</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+            <span class="p">}</span>
+        <span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API wird aufgerufen mit Modell: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gesendeter Prompt: </span><span class="si">{</span><span class="n">prompt</span><span class="p">[</span><span class="si">:</span><span class="mi">1000</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Antwort: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Inhalt: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">content</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Fehler: Ungültiges Antwortformat: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Fehler: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="sh">"</span><span class="s">response</span><span class="sh">"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Antwortstatuscode: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Antwortinhalt: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">fetch_and_summarize</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fallback_title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Zusammenfassung wird erstellt für: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">html</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Inhalt konnte nicht abgerufen werden.</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">}</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span> <span class="nf">else </span><span class="p">(</span><span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">)</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">p</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="nf">get_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">text_content</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">text_content</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+        <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text_content</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">title</span><span class="p">}</span>
+
+<span class="k">def</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span> <span class="o">+</span> <span class="sh">"</span><span class="s">...</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">MISTRAL_API_KEY</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Kein MISTRAL_API_KEY gesetzt. Erste 15 Wörter werden als Zusammenfassung zurückgegeben.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sh">"</span><span class="s">Wenn der Originaltext auf Chinesisch ist, fasse ihn auf Englisch zusammen. </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">Fasse den folgenden Webseiteninhalt in klarem, prägnantem Englisch zusammen. </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">Konzentriere dich auf den wichtigsten Punkt oder die wichtigste Erkenntnis. </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">Deine Zusammenfassung sollte etwa 300 Zeichen umfassen. </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">Gib nur den Zusammenfassungssatz aus:</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="s">Titel: </span><span class="si">{</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="sh">''</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="sh">'</span><span class="s">Original-Link</span><span class="si">:</span> <span class="sh">'</span><span class="s"> + url if url else </span><span class="sh">''</span><span class="si">}</span><span class="sh">"</span>
+    <span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">summary</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+    <span class="c1"># Kürze auf 300 Zeichen als letzten Ausweg
+</span>    <span class="k">return</span> <span class="n">summary</span><span class="p">.</span><span class="nf">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">source_name</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">source_name</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">summaries</span><span class="p">:</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">Keine Einträge gefunden.</span><span class="se">\n\n</span><span class="sh">"</span>
+        <span class="k">return</span> <span class="n">text</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\r</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">).strip()
+        summary = summary.replace(</span><span class="sh">'</span><span class="o">*</span><span class="sh">'</span><span class="s">, </span><span class="sh">''</span><span class="s">)
+        summary = url_pattern.sub(</span><span class="sh">''</span><span class="s">, summary)
+        # Kürze jede Zusammenfassung auf 300 Zeichen als letzten Ausweg
+        summary = summary[:300]
+        text += f</span><span class="sh">"</span><span class="s">{idx}. {summary}</span><span class="se">\n\n</span><span class="sh">"</span><span class="s">  # Füge eine zusätzliche Leerzeile zwischen den Zusammenfassungen ein
+    text += </span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="s">
+    return text
+
+# --- NYTimes (m.cn.nytimes.com) Integration ---
+
+def extract_nytimes_links(html, max_links=5):
+    </span><span class="sh">"""</span><span class="s">
+    Extrahiert Links von der Hauptseite von cn.nytimes.com.
+    Beinhaltet nur Links, die mit </span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="sh">'</span><span class="s"> beginnen.
+    </span><span class="sh">"""</span><span class="s">
+    soup = BeautifulSoup(html, </span><span class="sh">'</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="sh">'</span><span class="s">)
+    links = []
+    for a in soup.find_all(</span><span class="sh">'</span><span class="n">a</span><span class="sh">'</span><span class="s">, href=True):
+        url = a[</span><span class="sh">'</span><span class="n">href</span><span class="sh">'</span><span class="s">]
+        if url.startswith(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="sh">'</span><span class="s">):
+            links.append({
+                </span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">: url,
+                </span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">: a.text.strip()
+            })
+        if len(links) &gt;= max_links:
+            break
+    print(f</span><span class="sh">"</span><span class="s">{len(links)} Links von der Hauptseite extrahiert.</span><span class="sh">"</span><span class="s">)
+    return links
+
+def summarize_nytimes_article(url):
+    html = fetch_html_content(url)
+    if not html:
+        return {</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="s">: url, </span><span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="s">: </span><span class="sh">"</span><span class="s">Inhalt konnte nicht abgerufen werden.</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="s">: url}
+    soup = BeautifulSoup(html, </span><span class="sh">'</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="sh">'</span><span class="s">)
+    # Versuche, den Hauptartikeltitel zu extrahieren
+    title_element = soup.select_one(</span><span class="sh">'</span><span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">area</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">content</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">header</span> <span class="n">header</span> <span class="n">h1</span><span class="sh">'</span><span class="s">)
+    title = title_element.text.strip() if title_element else (soup.title.text.strip() if soup.title else url)
+    # Extrahiere den Hauptartikeltext
+    article_area = soup.find(</span><span class="sh">'</span><span class="n">section</span><span class="sh">'</span><span class="s">, class_=</span><span class="sh">'</span><span class="n">article</span><span class="o">-</span><span class="n">body</span><span class="sh">'</span><span class="s">)
+    if article_area:
+        article_text = article_area.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+    else:
+        article_text = soup.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+    if not article_text or len(article_text) &lt; 100:
+        article_text = soup.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+    if len(article_text) &gt; 3000:
+        article_text = article_text[:3000]
+    summary = ai_summarize(article_text, url, title)
+    return {</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="s">: url, </span><span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="s">: summary, </span><span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="s">: title}
+
+def main():
+    # Prüfe auf --test Argument
+    is_test = </span><span class="sh">"</span><span class="s">--test</span><span class="sh">"</span><span class="s"> in sys.argv
+
+    today = datetime.datetime.now().strftime(</span><span class="sh">"</span><span class="s">%Y-%m-%d</span><span class="sh">"</span><span class="s">)
+    report = f</span><span class="sh">"</span><span class="s">Tägliche Nachrichtenzusammenfassung - {today}</span><span class="se">\n\n</span><span class="sh">"</span><span class="s">
+
+    if is_test:
+        # Extrahiere nur einen Link und sende eine Zusammenfassung (NYTimes Chinesisch)
+        ny_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        ny_links = []
+        ny_summaries = []
+        if ny_html:
+            ny_links = extract_nytimes_links(ny_html, max_links=1)
+            if ny_links:
+                link = ny_links[0]
+                summary = summarize_nytimes_article(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">])
+                ny_summaries.append(summary)
+        report = generate_summarized_report(ny_summaries, </span><span class="sh">"</span><span class="s">NYTimes (Chinesisch)</span><span class="sh">"</span><span class="s">)
+        if ny_summaries:
+            if send_telegram_message(report):
+                print(</span><span class="sh">"</span><span class="s">Testzusammenfassung erfolgreich an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+                sys.exit(0)
+            else:
+                print(</span><span class="sh">"</span><span class="s">Testzusammenfassung konnte nicht an Telegram gesendet werden.</span><span class="sh">"</span><span class="s">)
+                sys.exit(1)
+        else:
+            print(</span><span class="sh">"</span><span class="s">Keine Nachrichten gesammelt, nichts an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+            sys.exit(1)
+    else:
+        # --- Hacker News ---
+        hn_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">news</span><span class="p">.</span><span class="n">ycombinator</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        hn_links = []
+        hn_summaries = []
+        if hn_html:
+            hn_links = extract_hacker_news_links(hn_html)
+            for link in hn_links:
+                summary = fetch_and_summarize(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">], fallback_title=link[</span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">])
+                hn_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(hn_summaries, </span><span class="sh">"</span><span class="s">Hacker News</span><span class="sh">"</span><span class="s">)
+
+        # --- GitHub Trending ---
+        gh_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">trending</span><span class="sh">'</span><span class="s">)
+        gh_links = []
+        gh_summaries = []
+        if gh_html:
+            gh_links = extract_github_trending(gh_html)
+            for link in gh_links:
+                summary = fetch_and_summarize(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">], fallback_title=link[</span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">])
+                gh_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(gh_summaries, </span><span class="sh">"</span><span class="s">GitHub Trending</span><span class="sh">"</span><span class="s">)
+
+        # --- NYTimes (cn.nytimes.com) ---
+        ny_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        ny_links = []
+        ny_summaries = []
+        if ny_html:
+            ny_links = extract_nytimes_links(ny_html, max_links=5)
+            for link in ny_links:
+                summary = summarize_nytimes_article(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">])
+                ny_summaries.append(summary)
+                time.sleep(2)
+        report += generate_summarized_report(ny_summaries, </span><span class="sh">"</span><span class="s">NYTimes (Chinesisch)</span><span class="sh">"</span><span class="s">)
+
+        if any([hn_summaries, gh_summaries, ny_summaries]):
+            if len(report) &gt; TELEGRAM_MAX_LENGTH:
+                print(f</span><span class="sh">"</span><span class="s">Bericht überschreitet {TELEGRAM_MAX_LENGTH} Zeichen, wird in mehrere Nachrichten aufgeteilt.</span><span class="sh">"</span><span class="s">)
+            if send_telegram_message(report):
+                print(</span><span class="sh">"</span><span class="s">Täglicher Nachrichtenbericht erfolgreich an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+                sys.exit(0)
+            else:
+                print(</span><span class="sh">"</span><span class="s">Täglicher Nachrichtenbericht konnte nicht an Telegram gesendet werden.</span><span class="sh">"</span><span class="s">)
+                sys.exit(1)
+        else:
+            print(</span><span class="sh">"</span><span class="s">Keine Nachrichten gesammelt, nichts an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+            sys.exit(1)
+
+if __name__ == </span><span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="s">:
+    main()
+</span></code></pre></div></div>
+
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">News Bot</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># Läuft täglich um 9 Uhr Pekinger Zeit (1 Uhr UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>  <span class="c1"># Ermöglicht manuelle Auslösung</span>
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="c1"># Wird nur ausgelöst, wenn BEIDE Dateien im selben Commit/Push geändert werden</span>
+    <span class="c1"># Erfordert einen Filter-Job unten, um beide Dateien zu prüfen</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">scripts/nytimes/news_bot.py</span>
+      <span class="pi">-</span> <span class="s">.github/workflows/news.yml</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">news'</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">send-news</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">environment</span><span class="pi">:</span> <span class="s">github-pages</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">TELEGRAM_BOT_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">MISTRAL_API_KEY</span><span class="pi">:</span> <span class="s">$</span>    
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Repository auschecken</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Python 3.10.x einrichten</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.10.x"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Abhängigkeiten installieren</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.simple.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">News-Bot-Skript ausführen</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/nytimes/news_bot.py</span>
+              
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

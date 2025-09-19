@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Androidにおけるカスタム描画の詳細解析</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Androidにおけるカスタム描画の詳細解析 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Androidにおけるカスタム描画の詳細解析" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="本ブログ記事はChatGPT-4oの助けを借りて作成されました。" />
+<meta property="og:description" content="本ブログ記事はChatGPT-4oの助けを借りて作成されました。" />
+<link rel="canonical" href="https://lzwjava.github.io/draw-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/draw-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-04-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Androidにおけるカスタム描画の詳細解析" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-04-25T00:00:00+08:00","datePublished":"2014-04-25T00:00:00+08:00","description":"本ブログ記事はChatGPT-4oの助けを借りて作成されました。","headline":"Androidにおけるカスタム描画の詳細解析","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/draw-ja"},"url":"https://lzwjava.github.io/draw-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Androidにおけるカスタム描画の詳細解析 | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2014-04-25-draw-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2014-04-25-draw-ja.md</span> -->
+      
+
+      <!-- <span>2014-04-25-draw-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.04</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/draw-en" >English</option>
+        <option value="/draw-zh" >中文</option>
+        <option value="/draw-ja" selected>日本語</option>
+        <option value="/draw-es" >Español</option>
+        <option value="/draw-hi" >हिंदी</option>
+        <option value="/draw-fr" >Français</option>
+        <option value="/draw-de" >Deutsch</option>
+        <option value="/draw-ar" >العربية</option>
+        <option value="/draw-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>本ブログ記事はChatGPT-4oの助けを借りて作成されました。</em></p>
+
+<hr />
+
+<h3 id="紹介">紹介</h3>
+
+<p>このブログでは、<code class="language-plaintext highlighter-rouge">DrawActivity</code> クラスについて探求します。これは、Androidアプリケーションでカスタム描画ビューを実装するための包括的な例です。各コンポーネントと使用されるアルゴリズムを分解し、それらがどのように連携して必要な機能を実現するのかを詳しく説明します。</p>
+
+<hr />
+
+<h3 id="目次">目次</h3>
+<p><a href="#DrawActivityの概要">DrawActivityの概要</a><br />
+<a href="#Activityの初期化">Activityの初期化</a><br />
+<a href="#画像操作の処理">画像操作の処理</a><br />
+<a href="#Fragmentの管理">Fragmentの管理</a><br />
+<a href="#イベント処理">イベント処理</a><br />
+<a href="#元に戻すとやり直しの機能">元に戻すとやり直しの機能</a><br />
+<a href="#カスタムDrawView">カスタムDrawView</a><br />
+<a href="#履歴管理">履歴管理</a><br />
+<a href="#結論">結論</a></p>
+
+<hr />
+
+<h3 id="drawactivityの概要">DrawActivityの概要</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawActivity</code> は、描画操作、画像の切り抜き、および他のコンポーネント（フラグメントや画像アップロードなど）とのやり取りを処理する主要なアクティビティです。ユーザーが描画、元に戻す、やり直す、画像を操作できるユーザーインターフェースを提供します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">DrawActivity</span> <span class="kd">extends</span> <span class="nc">Activity</span> <span class="kd">implements</span> <span class="nc">View</span><span class="o">.</span><span class="na">OnClickListener</span> <span class="o">{</span>
+  <span class="c1">// リクエストコードとフラグメントIDの定数</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CAMERA_RESULT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">CROP_RESULT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">DRAW_FRAGMENT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">RECOG_FRAGMENT</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">RESULT_FRAGMENT</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">WAIT_FRAGMENT</span> <span class="o">=</span> <span class="mi">3</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">MATERIAL_RESULT</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">RESULT_JSON</span> <span class="o">=</span> <span class="s">"resultJson"</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">INIT_FLOWER_ID</span> <span class="o">=</span> <span class="no">R</span><span class="o">.</span><span class="na">drawable</span><span class="o">.</span><span class="na">flower_b</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">LOGOUT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">IMAGE_RESULT</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="c1">// 画像と描画操作を処理する変数</span>
+  <span class="nc">String</span> <span class="n">baseUrl</span><span class="o">;</span>
+  <span class="nc">DrawView</span> <span class="n">drawView</span><span class="o">;</span>
+  <span class="nc">Bitmap</span> <span class="n">originImg</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="nc">DrawActivity</span> <span class="n">instance</span><span class="o">;</span>
+  <span class="nc">View</span> <span class="n">dir</span><span class="o">,</span> <span class="n">clear</span><span class="o">,</span> <span class="n">cameraView</span><span class="o">,</span> <span class="n">materialView</span><span class="o">,</span> <span class="n">scale</span><span class="o">;</span>
+  <span class="nc">ImageView</span> <span class="n">undoView</span><span class="o">,</span> <span class="n">redoView</span><span class="o">;</span>
+  <span class="nc">View</span> <span class="n">upload</span><span class="o">;</span>
+  <span class="nc">String</span> <span class="n">cropPath</span><span class="o">;</span>
+  <span class="nc">Tooltip</span> <span class="n">toolTip</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">curFragmentId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">serverId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Bitmap</span> <span class="n">resultBitmap</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">RadioGroup</span> <span class="n">radioGroup</span><span class="o">;</span>
+  <span class="nc">Fragment</span> <span class="n">curFragment</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">curDrawMode</span><span class="o">;</span>
+  <span class="nc">RadioButton</span> <span class="n">drawBackBtn</span><span class="o">;</span>
+  <span class="kd">private</span> <span class="nc">Activity</span> <span class="n">cxt</span><span class="o">;</span>
+  <span class="nc">Uri</span> <span class="n">curPicUri</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="activityの初期化">Activityの初期化</h3>
+
+<p>Activityの作成時に、さまざまな初期化操作を実行します。これには、ビューの設定、初期画像の読み込み、イベントリスナーの設定などが含まれます。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+  <span class="n">instance</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+  <span class="n">cxt</span> <span class="o">=</span> <span class="k">this</span><span class="o">;</span>
+  <span class="n">cropPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getCropPath</span><span class="o">();</span>
+  <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">draw_layout</span><span class="o">);</span>
+  <span class="n">findView</span><span class="o">();</span>
+  <span class="n">setSize</span><span class="o">();</span>
+  <span class="n">initOriginImage</span><span class="o">();</span>
+  <span class="n">toolTip</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Tooltip</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="n">initUndoRedoEnable</span><span class="o">();</span>
+  <span class="n">setIp</span><span class="o">();</span>
+  <span class="n">initDrawmode</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、Androidアプリケーションの<code class="language-plaintext highlighter-rouge">Activity</code>クラスにおける<code class="language-plaintext highlighter-rouge">onCreate</code>メソッドの実装です。以下に各ステップの説明を日本語で示します。</p>
+
+<ol>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">super.onCreate(savedInstanceState);</code></strong>: 親クラスの<code class="language-plaintext highlighter-rouge">onCreate</code>メソッドを呼び出し、アクティビティの基本的な初期化を行います。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">instance = this;</code></strong>: 現在のアクティビティインスタンスを<code class="language-plaintext highlighter-rouge">instance</code>変数に保存します。これにより、他のクラスやメソッドからこのアクティビティにアクセスできるようになります。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">cxt = this;</code></strong>: 現在のコンテキスト（この場合はアクティビティ自身）を<code class="language-plaintext highlighter-rouge">cxt</code>変数に保存します。コンテキストは、リソースやシステムサービスにアクセスするために使用されます。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">cropPath = PathUtils.getCropPath();</code></strong>: <code class="language-plaintext highlighter-rouge">PathUtils</code>クラスの<code class="language-plaintext highlighter-rouge">getCropPath</code>メソッドを呼び出して、画像の切り抜きパスを取得し、<code class="language-plaintext highlighter-rouge">cropPath</code>変数に保存します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">setContentView(R.layout.draw_layout);</code></strong>: <code class="language-plaintext highlighter-rouge">draw_layout</code>というレイアウトリソースをアクティビティのビューとして設定します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">findView();</code></strong>: レイアウト内のビュー（ボタン、テキストビューなど）を初期化するためのメソッドを呼び出します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">setSize();</code></strong>: ビューや画像のサイズを設定するためのメソッドを呼び出します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">initOriginImage();</code></strong>: 元の画像を初期化するためのメソッドを呼び出します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">toolTip = new Tooltip(this);</code></strong>: <code class="language-plaintext highlighter-rouge">Tooltip</code>クラスの新しいインスタンスを作成し、<code class="language-plaintext highlighter-rouge">toolTip</code>変数に保存します。ツールチップは、ユーザーに追加情報を提供するために使用されます。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">initUndoRedoEnable();</code></strong>: 元に戻す（Undo）とやり直す（Redo）の機能を初期化するためのメソッドを呼び出します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">setIp();</code></strong>: IPアドレスを設定するためのメソッドを呼び出します。</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">initDrawmode();</code></strong>: 描画モードを初期化するためのメソッドを呼び出します。</p>
+  </li>
+</ol>
+
+<p>このコードは、アクティビティが作成される際に、必要な初期化処理を一連のメソッド呼び出しを通じて行っています。</p>
+
+<p><strong>findView()</strong><br />
+このメソッドは、Activityで使用されるビューを初期化します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">findView</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">drawView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">drawView</span><span class="o">);</span>
+  <span class="n">undoView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">undo</span><span class="o">);</span>
+  <span class="n">redoView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">redo</span><span class="o">);</span>
+  <span class="n">scale</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">scale</span><span class="o">);</span>
+  <span class="n">upload</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">upload</span><span class="o">);</span>
+  <span class="n">clear</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">clear</span><span class="o">);</span>
+  <span class="n">dir</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">dir</span><span class="o">);</span>
+  <span class="n">materialView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">material</span><span class="o">);</span>
+  <span class="n">cameraView</span> <span class="o">=</span> <span class="n">findViewById</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">camera</span><span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dir</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">materialView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">undoView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">scale</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">redoView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">clear</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">cameraView</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">upload</span><span class="o">.</span><span class="na">setOnClickListener</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+<span class="n">initRadio</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>setSize()</strong><br />
+描画ビューのサイズを設定します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setSize</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">setSizeByResourceSize</span><span class="o">();</span>
+  <span class="n">setViewSize</span><span class="o">(</span><span class="n">drawView</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、Javaで書かれたメソッド<code class="language-plaintext highlighter-rouge">setSize()</code>の定義です。このメソッドは、リソースサイズに基づいてサイズを設定し、その後、指定されたビュー（<code class="language-plaintext highlighter-rouge">drawView</code>）のサイズを設定する役割を持っています。具体的な処理内容は、<code class="language-plaintext highlighter-rouge">setSizeByResourceSize()</code>と<code class="language-plaintext highlighter-rouge">setViewSize(drawView)</code>という別のメソッドに委ねられています。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setSizeByResourceSize</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">width</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">dimen</span><span class="o">.</span><span class="na">draw_width</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">height</span> <span class="o">=</span> <span class="n">getResources</span><span class="o">().</span><span class="na">getDimensionPixelSize</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">dimen</span><span class="o">.</span><span class="na">draw_height</span><span class="o">);</span>
+  <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">=</span> <span class="n">width</span><span class="o">;</span>
+  <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span> <span class="o">=</span> <span class="n">height</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このメソッドは、リソースから取得したサイズに基づいて描画サイズを設定するためのものです。具体的には、<code class="language-plaintext highlighter-rouge">R.dimen.draw_width</code> と <code class="language-plaintext highlighter-rouge">R.dimen.draw_height</code> で定義された寸法をピクセル単位で取得し、それらの値を <code class="language-plaintext highlighter-rouge">App</code> クラスの静的変数 <code class="language-plaintext highlighter-rouge">drawWidth</code> と <code class="language-plaintext highlighter-rouge">drawHeight</code> に設定しています。これにより、アプリケーション全体で使用される描画サイズがリソースファイルで定義された値に基づいて調整されます。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setViewSize</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">ViewGroup</span><span class="o">.</span><span class="na">LayoutParams</span> <span class="n">lp</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">getLayoutParams</span><span class="o">();</span>
+  <span class="n">lp</span><span class="o">.</span><span class="na">width</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span><span class="o">;</span>
+  <span class="n">lp</span><span class="o">.</span><span class="na">height</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">;</span>
+  <span class="n">v</span><span class="o">.</span><span class="na">setLayoutParams</span><span class="o">(</span><span class="n">lp</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>initOriginImage()</strong><br />
+描画に使用する初期画像を読み込みます。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">initOriginImage</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Bitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">BitmapFactory</span><span class="o">.</span><span class="na">decodeResource</span><span class="o">(</span><span class="n">getResources</span><span class="o">(),</span> <span class="no">INIT_FLOWER_ID</span><span class="o">);</span>
+  <span class="nc">String</span> <span class="n">imgPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getCameraPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">bitmap</span><span class="o">,</span> <span class="n">imgPath</span><span class="o">);</span>
+  <span class="nc">Uri</span> <span class="n">uri1</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">imgPath</span><span class="o">));</span>
+  <span class="n">setImageByUri</span><span class="o">(</span><span class="n">uri1</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、初期の画像を設定するためのメソッドです。以下にその内容を説明します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Bitmap bitmap = BitmapFactory.decodeResource(getResources(), INIT_FLOWER_ID);</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">INIT_FLOWER_ID</code> で指定されたリソースIDからビットマップ画像をデコードします。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">String imgPath = PathUtils.getCameraPath();</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">PathUtils.getCameraPath()</code> メソッドを使用して、画像を保存するためのパスを取得します。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">BitmapUtils.saveBitmapToPath(bitmap, imgPath);</code>
+    <ul>
+      <li>デコードされたビットマップ画像を指定されたパスに保存します。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Uri uri1 = Uri.fromFile(new File(imgPath));</code>
+    <ul>
+      <li>保存された画像ファイルのURIを生成します。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">setImageByUri(uri1);</code>
+    <ul>
+      <li>生成されたURIを使用して、画像を設定します。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>このメソッドは、指定されたリソースから画像を読み込み、それを指定されたパスに保存し、その画像を表示するために使用されます。</p>
+
+<hr />
+
+<h3 id="画像操作の処理">画像操作の処理</h3>
+
+<p>Activityは、URIを介した画像の設定、切り抜き、描画されたビットマップの保存など、さまざまな画像操作を処理します。</p>
+
+<p><strong>setImageByUri(Uri uri)</strong><br />
+指定されたURIから画像を読み込み、描画の準備を行います。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setImageByUri</span><span class="o">(</span><span class="kd">final</span> <span class="nc">Uri</span> <span class="n">uri</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">new</span> <span class="nf">Handler</span><span class="o">().</span><span class="na">postDelayed</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">curPicUri</span> <span class="o">=</span> <span class="n">uri</span><span class="o">;</span>
+      <span class="nc">Bitmap</span> <span class="n">bitmap</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+      <span class="k">try</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">uri</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">getBitmapByUri</span><span class="o">(</span><span class="nc">DrawActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="n">uri</span><span class="o">);</span>
+        <span class="o">}</span>
+      <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+      <span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">originW</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getWidth</span><span class="o">();</span>
+<span class="kt">int</span> <span class="n">originH</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">.</span><span class="na">getHeight</span><span class="o">();</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">originW</span> <span class="o">!=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">||</span> <span class="n">originH</span> <span class="o">!=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">float</span> <span class="n">originRadio</span> <span class="o">=</span> <span class="n">originW</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">originH</span><span class="o">;</span>
+    <span class="kt">float</span> <span class="n">radio</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="nc">Math</span><span class="o">.</span><span class="na">abs</span><span class="o">(</span><span class="n">originRadio</span> <span class="o">-</span> <span class="n">radio</span><span class="o">)</span> <span class="o">&lt;</span> <span class="mf">0.01</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Bitmap</span> <span class="n">originBm</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">;</span>
+        <span class="n">bitmap</span> <span class="o">=</span> <span class="nc">Bitmap</span><span class="o">.</span><span class="na">createScaledBitmap</span><span class="o">(</span><span class="n">originBm</span><span class="o">,</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawWidth</span><span class="o">,</span> <span class="nc">App</span><span class="o">.</span><span class="na">drawHeight</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">originBm</span><span class="o">.</span><span class="na">recycle</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">cropIt</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+        <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="nc">ImageLoader</span> <span class="n">imageLoader</span> <span class="o">=</span> <span class="nc">ImageLoader</span><span class="o">.</span><span class="na">getInstance</span><span class="o">();</span>
+<span class="n">imageLoader</span><span class="o">.</span><span class="na">addOrReplaceToMemoryCache</span><span class="o">(</span><span class="s">"origin"</span><span class="o">,</span> <span class="n">bitmap</span><span class="o">);</span>
+<span class="n">originImg</span> <span class="o">=</span> <span class="n">bitmap</span><span class="o">;</span>
+<span class="n">serverId</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p>このコードは、ビットマップのサイズが指定された描画サイズ（<code class="language-plaintext highlighter-rouge">App.drawWidth</code> と <code class="language-plaintext highlighter-rouge">App.drawHeight</code>）と異なる場合に、ビットマップをスケーリングまたはクロップする処理を行っています。以下にその内容を説明します。</p>
+
+<ol>
+  <li><strong>オリジナルのビットマップサイズを取得</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">originW</code> と <code class="language-plaintext highlighter-rouge">originH</code> にビットマップの幅と高さを取得します。</li>
+    </ul>
+  </li>
+  <li><strong>サイズが異なる場合の処理</strong>:
+    <ul>
+      <li>オリジナルのビットマップサイズが指定された描画サイズと異なる場合、以下の処理を行います。</li>
+      <li>オリジナルのアスペクト比 (<code class="language-plaintext highlighter-rouge">originRadio</code>) と指定された描画サイズのアスペクト比 (<code class="language-plaintext highlighter-rouge">radio</code>) を計算します。</li>
+      <li>両者のアスペクト比がほぼ同じ場合（差が0.01未満）、ビットマップを指定された描画サイズにスケーリングします。</li>
+      <li>アスペクト比が異なる場合、<code class="language-plaintext highlighter-rouge">cropIt(uri)</code> を呼び出してビットマップをクロップし、処理を終了します。</li>
+    </ul>
+  </li>
+  <li><strong>スケーリング後のビットマップをキャッシュに保存</strong>:
+    <ul>
+      <li>スケーリングされたビットマップを <code class="language-plaintext highlighter-rouge">ImageLoader</code> のメモリキャッシュに保存します。</li>
+      <li><code class="language-plaintext highlighter-rouge">originImg</code> にスケーリングされたビットマップを設定し、<code class="language-plaintext highlighter-rouge">serverId</code> を -1 に設定します。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>このコードは、ビットマップのサイズを調整して、指定された描画サイズに合わせるための処理を行っています。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">drawView</span><span class="o">.</span><span class="na">setSrcBitmap</span><span class="o">(</span><span class="n">originImg</span><span class="o">);</span>
+<span class="n">showDrawFragment</span><span class="o">(</span><span class="nc">App</span><span class="o">.</span><span class="na">ALL_INFO</span><span class="o">);</span>
+<span class="n">curDrawMode</span> <span class="o">=</span> <span class="nc">App</span><span class="o">.</span><span class="na">DRAW_FORE</span><span class="o">;</span>
+</code></pre></div></div>
+<p>}, 500);
+}</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+上記のコードは、`drawView`に元の画像(`originImg`)を設定し、`App.ALL_INFO`を表示する描画フラグメントを表示し、現在の描画モードを`App.DRAW_FORE`に設定しています。この処理は500ミリ秒後に実行されます。
+
+**cropIt(Uri uri)**  
+画像の切り抜きアクティビティを開始します。
+
+```java
+public void cropIt(Uri uri) {
+  Crop.startPhotoCrop(this, uri, cropPath, CROP_RESULT);
+}
+</code></pre></div></div>
+
+<p>このコードは、指定されたURIの画像をトリミングするためのメソッドです。<code class="language-plaintext highlighter-rouge">Crop.startPhotoCrop</code>メソッドを呼び出して、トリミング処理を開始します。<code class="language-plaintext highlighter-rouge">this</code>は現在のコンテキストを指し、<code class="language-plaintext highlighter-rouge">uri</code>はトリミングする画像のURI、<code class="language-plaintext highlighter-rouge">cropPath</code>はトリミング後の画像の保存パス、<code class="language-plaintext highlighter-rouge">CROP_RESULT</code>はトリミング結果を受け取るためのリクエストコードです。</p>
+
+<p><strong>saveBitmap()</strong><br />
+描画したビットマップをファイルに保存し、サーバーにアップロードします。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveBitmap</span><span class="o">()</span> <span class="o">{</span>
+  <span class="nc">Bitmap</span> <span class="n">handBitmap</span> <span class="o">=</span> <span class="n">drawView</span><span class="o">.</span><span class="na">getHandBitmap</span><span class="o">();</span>
+  <span class="nc">Bitmap</span> <span class="n">originBitmap</span> <span class="o">=</span> <span class="n">drawView</span><span class="o">.</span><span class="na">getSrcBitmap</span><span class="o">();</span>
+  <span class="n">saveBitmapToFileAndUpload</span><span class="o">(</span><span class="n">handBitmap</span><span class="o">,</span> <span class="n">originBitmap</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">drawView</code>から手書きのビットマップ(<code class="language-plaintext highlighter-rouge">handBitmap</code>)と元のビットマップ(<code class="language-plaintext highlighter-rouge">originBitmap</code>)を取得し、それらをファイルに保存してアップロードするメソッド<code class="language-plaintext highlighter-rouge">saveBitmap</code>を定義しています。コード自体は日本語に翻訳する必要はありませんが、その機能を説明すると以下のようになります。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">drawView.getHandBitmap()</code>: <code class="language-plaintext highlighter-rouge">drawView</code>から手書きのビットマップを取得します。</li>
+  <li><code class="language-plaintext highlighter-rouge">drawView.getSrcBitmap()</code>: <code class="language-plaintext highlighter-rouge">drawView</code>から元のビットマップを取得します。</li>
+  <li><code class="language-plaintext highlighter-rouge">saveBitmapToFileAndUpload(handBitmap, originBitmap)</code>: 取得した2つのビットマップをファイルに保存し、アップロードします。</li>
+</ul>
+
+<p>このメソッドは、ユーザーが描画した内容と元の画像を保存してサーバーにアップロードするために使用されることが想定されます。</p>
+
+<p><strong>saveBitmapToFileAndUpload(Bitmap handBitmap, Bitmap originBitmap)</strong><br />
+ビットマップをファイルに保存し、非同期でアップロードします。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">saveBitmapToFileAndUpload</span><span class="o">(</span><span class="nc">Bitmap</span> <span class="n">handBitmap</span><span class="o">,</span> <span class="nc">Bitmap</span> <span class="n">originBitmap</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">final</span> <span class="nc">String</span> <span class="n">originPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getOriginPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">originBitmap</span><span class="o">,</span> <span class="n">originPath</span><span class="o">);</span>
+  <span class="kd">final</span> <span class="nc">String</span> <span class="n">handPath</span> <span class="o">=</span> <span class="nc">PathUtils</span><span class="o">.</span><span class="na">getHandPath</span><span class="o">();</span>
+  <span class="nc">BitmapUtils</span><span class="o">.</span><span class="na">saveBitmapToPath</span><span class="o">(</span><span class="n">handBitmap</span><span class="o">,</span> <span class="n">handPath</span><span class="o">);</span>
+  <span class="k">new</span> <span class="nc">AsyncTask</span><span class="o">&lt;</span><span class="nc">Void</span><span class="o">,</span> <span class="nc">Void</span><span class="o">,</span> <span class="nc">Void</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="n">res</span><span class="o">;</span>
+    <span class="nc">Bitmap</span> <span class="n">foreBitmap</span><span class="o">;</span>
+    <span class="nc">Bitmap</span> <span class="n">backBitmap</span><span class="o">;</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPreExecute</span><span class="o">()</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onPreExecute</span><span class="o">();</span>
+  <span class="n">showWaitFragment</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>上記のコードは、<code class="language-plaintext highlighter-rouge">onPreExecute</code>メソッドをオーバーライドしています。このメソッドは、バックグラウンドタスクが実行される前に呼び出されます。<code class="language-plaintext highlighter-rouge">super.onPreExecute()</code>を呼び出して親クラスの処理を実行した後、<code class="language-plaintext highlighter-rouge">showWaitFragment()</code>メソッドを呼び出して待機フラグメントを表示しています。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="nc">Void</span> <span class="nf">doInBackground</span><span class="o">(</span><span class="nc">Void</span><span class="o">...</span> <span class="n">params</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">baseUrl</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">Exception</span><span class="o">(</span><span class="s">"baseUrlがnullです"</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="nc">String</span> <span class="n">jsonRes</span> <span class="o">=</span> <span class="nc">UploadImage</span><span class="o">.</span><span class="na">upload</span><span class="o">(</span><span class="n">baseUrl</span><span class="o">,</span> <span class="n">serverId</span><span class="o">,</span> <span class="nc">Web</span><span class="o">.</span><span class="na">STATUS_CONTINUE</span><span class="o">,</span> <span class="n">originPath</span><span class="o">,</span> <span class="n">handPath</span><span class="o">,</span> <span class="kc">null</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="n">getJsonData</span><span class="o">(</span><span class="n">jsonRes</span><span class="o">);</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、バックグラウンドで実行される非同期タスクの一部です。<code class="language-plaintext highlighter-rouge">baseUrl</code>がnullの場合に例外をスローし、それ以外の場合は<code class="language-plaintext highlighter-rouge">UploadImage.upload</code>メソッドを呼び出して画像をアップロードし、その結果を処理しています。エラーが発生した場合は<code class="language-plaintext highlighter-rouge">res</code>を<code class="language-plaintext highlighter-rouge">false</code>に設定し、例外のスタックトレースを出力します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">getJsonData</span><span class="o">(</span><span class="nc">String</span> <span class="n">jsonRes</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+    <span class="nc">JSONObject</span> <span class="n">json</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">JSONObject</span><span class="o">(</span><span class="n">jsonRes</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">serverId</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">serverId</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getInt</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">ID</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nc">String</span> <span class="n">foreUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">FORE</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">backUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">BACK</span><span class="o">);</span>
+    <span class="nc">String</span> <span class="n">resultUrl</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="na">getString</span><span class="o">(</span><span class="nc">Web</span><span class="o">.</span><span class="na">RESULT</span><span class="o">);</span>
+    <span class="n">foreBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">foreUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="n">backBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">backUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+    <span class="n">resultBitmap</span> <span class="o">=</span> <span class="nc">Web</span><span class="o">.</span><span class="na">getBitmapFromUrlByStream1</span><span class="o">(</span><span class="n">resultUrl</span><span class="o">,</span> <span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onPostExecute</span><span class="o">(</span><span class="nc">Void</span> <span class="n">aVoid</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kd">super</span><span class="o">.</span><span class="na">onPostExecute</span><span class="o">(</span><span class="n">aVoid</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">res</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">showRecogFragment</span><span class="o">(</span><span class="n">foreBitmap</span><span class="o">,</span> <span class="n">backBitmap</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="nc">Utils</span><span class="o">.</span><span class="na">toast</span><span class="o">(</span><span class="nc">DrawActivity</span><span class="o">.</span><span class="na">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">server_error</span><span class="o">);</span>
+        <span class="n">recogNo</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、非同期タスクの実行が完了した後に呼び出される<code class="language-plaintext highlighter-rouge">onPostExecute</code>メソッドをオーバーライドしています。<code class="language-plaintext highlighter-rouge">res</code>が<code class="language-plaintext highlighter-rouge">true</code>の場合、<code class="language-plaintext highlighter-rouge">showRecogFragment</code>メソッドを呼び出して認識フラグメントを表示します。<code class="language-plaintext highlighter-rouge">res</code>が<code class="language-plaintext highlighter-rouge">false</code>の場合、サーバーエラーのメッセージを表示し、<code class="language-plaintext highlighter-rouge">recogNo</code>メソッドを呼び出します。</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="p">}.</span><span class="nf">execute</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="フラグメント管理">フラグメント管理</h3>
+
+<p>Activityは、描画、認識、待機など、アプリケーションのさまざまな状態を処理するために、異なるfragmentを管理します。</p>
+
+<p><strong>showDrawFragment(int infoId)</strong><br />
+描画フラグメントを表示します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showDrawFragment</span><span class="o">(</span><span class="kt">int</span> <span class="n">infoId</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">curFragmentId</span> <span class="o">=</span> <span class="no">DRAW_FRAGMENT</span><span class="o">;</span>
+  <span class="n">curFragment</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">DrawFragment</span><span class="o">(</span><span class="n">infoId</span><span class="o">);</span>
+  <span class="n">showFragment</span><span class="o">(</span><span class="n">curFragment</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">DrawFragment</code>を表示するためのメソッドです。<code class="language-plaintext highlighter-rouge">infoId</code>を引数として受け取り、新しい<code class="language-plaintext highlighter-rouge">DrawFragment</code>インスタンスを作成し、それを表示します。<code class="language-plaintext highlighter-rouge">curFragmentId</code>には<code class="language-plaintext highlighter-rouge">DRAW_FRAGMENT</code>が設定され、<code class="language-plaintext highlighter-rouge">curFragment</code>には新しく作成された<code class="language-plaintext highlighter-rouge">DrawFragment</code>が代入されます。その後、<code class="language-plaintext highlighter-rouge">showFragment</code>メソッドを呼び出して、フラグメントを表示します。</p>
+
+<p><strong>showWaitFragment()</strong><br />
+待機フラグメントを表示します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showWaitFragment</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">curFragmentId</span> <span class="o">=</span> <span class="no">WAIT_FRAGMENT</span><span class="o">;</span>
+  <span class="n">showFragment</span><span class="o">(</span><span class="k">new</span> <span class="nc">WaitFragment</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">showWaitFragment</code>というプライベートメソッドを定義しています。このメソッドは、<code class="language-plaintext highlighter-rouge">curFragmentId</code>に<code class="language-plaintext highlighter-rouge">WAIT_FRAGMENT</code>という定数を設定し、<code class="language-plaintext highlighter-rouge">WaitFragment</code>という新しいフラグメントを表示するために<code class="language-plaintext highlighter-rouge">showFragment</code>メソッドを呼び出します。</p>
+
+<p><strong>showFragment(Fragment fragment)</strong><br />
+指定されたfragmentで現在のfragmentを置き換えます。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">showFragment</span><span class="o">(</span><span class="nc">Fragment</span> <span class="n">fragment</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">FragmentTransaction</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">getFragmentManager</span><span class="o">().</span><span class="na">beginTransaction</span><span class="o">();</span>
+  <span class="n">trans</span><span class="o">.</span><span class="na">replace</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">rightLayout</span><span class="o">,</span> <span class="n">fragment</span><span class="o">);</span>
+  <span class="n">trans</span><span class="o">.</span><span class="na">commit</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、指定されたフラグメントを表示するためのメソッドです。<code class="language-plaintext highlighter-rouge">FragmentTransaction</code>を使用して、<code class="language-plaintext highlighter-rouge">R.id.rightLayout</code>に指定されたレイアウト内の現在のフラグメントを新しいフラグメントに置き換え、変更をコミットしています。</p>
+
+<hr />
+
+<h3 id="イベント処理">イベント処理</h3>
+
+<p>Activityは、ボタンクリックやメニュー選択など、さまざまなユーザーインタラクションを処理します。</p>
+
+<p><strong>onClick(View v)</strong><br />
+異なるビューのクリックイベントを処理します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">(</span><span class="nc">View</span> <span class="n">v</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">id</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="na">getId</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">drawOk</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">isDrawFinish</span><span class="o">())</span> <span class="o">{</span>
+      <span class="n">saveBitmap</span><span class="o">();</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+      <span class="nc">Utils</span><span class="o">.</span><span class="na">alertDialog</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="no">R</span><span class="o">.</span><span class="na">string</span><span class="o">.</span><span class="na">please_draw_finish</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">recogOk</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">recogOk</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">recogNo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">recogNo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">dir</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Utils</span><span class="o">.</span><span class="na">getGalleryPhoto</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="no">IMAGE_RESULT</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">clear</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">clearEverything</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">undo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">drawView</span><span class="o">.</span><span class="na">undo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">redo</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">drawView</span><span class="o">.</span><span class="na">redo</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">camera</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Utils</span><span class="o">.</span><span class="na">takePhoto</span><span class="o">(</span><span class="n">cxt</span><span class="o">,</span> <span class="no">CAMERA_RESULT</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">material</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">goMaterial</span><span class="o">();</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">upload</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">com</span><span class="o">.</span><span class="na">lzw</span><span class="o">.</span><span class="na">commons</span><span class="o">.</span><span class="na">Utils</span><span class="o">.</span><span class="na">goActivity</span><span class="o">(</span><span class="n">cxt</span><span class="o">,</span> <span class="nc">PhotoActivity</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">id</span> <span class="o">==</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">scale</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">cropIt</span><span class="o">(</span><span class="n">curPicUri</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、Androidアプリケーションにおけるボタンクリックイベントを処理するための<code class="language-plaintext highlighter-rouge">onClick</code>メソッドの実装です。各ボタンのIDに応じて異なるアクションが実行されます。以下に各条件分岐の説明を日本語で示します。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">R.id.drawOk</code>: 描画が完了しているかどうかを確認し、完了していればビットマップを保存します。完了していない場合は、ユーザーに描画を完了するよう促すダイアログを表示します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.recogOk</code>: <code class="language-plaintext highlighter-rouge">recogOk</code>メソッドを呼び出します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.recogNo</code>: <code class="language-plaintext highlighter-rouge">recogNo</code>メソッドを呼び出します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.dir</code>: ギャラリーから写真を取得します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.clear</code>: すべてをクリアします。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.undo</code>: 描画ビューで最後の操作を取り消します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.redo</code>: 描画ビューで最後に取り消した操作を再実行します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.camera</code>: カメラで写真を撮影します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.material</code>: <code class="language-plaintext highlighter-rouge">goMaterial</code>メソッドを呼び出します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.upload</code>: <code class="language-plaintext highlighter-rouge">PhotoActivity</code>に遷移します。</li>
+  <li><code class="language-plaintext highlighter-rouge">R.id.scale</code>: 現在の画像URIをトリミングします。</li>
+</ul>
+
+<p>このコードは、ユーザーの操作に応じて適切な処理を行うための典型的なパターンを示しています。</p>
+
+<p><strong>onActivityResult(int requestCode, int resultCode, Intent data)</strong><br />
+他のアクティビティの結果を処理します。例えば、画像の選択やトリミングなどです。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onActivityResult</span><span class="o">(</span><span class="kt">int</span> <span class="n">requestCode</span><span class="o">,</span> <span class="kt">int</span> <span class="n">resultCode</span><span class="o">,</span> <span class="nc">Intent</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">resultCode</span> <span class="o">!=</span> <span class="no">RESULT_CANCELED</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Uri</span> <span class="n">uri</span><span class="o">;</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">requestCode</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nl">IMAGE_RESULT:</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">setImageByUri</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">CAMERA_RESULT:</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="nc">Utils</span><span class="o">.</span><span class="na">getCameraUri</span><span class="o">());</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">CROP_RESULT:</span>
+        <span class="n">uri</span> <span class="o">=</span> <span class="nc">Uri</span><span class="o">.</span><span class="na">fromFile</span><span class="o">(</span><span class="k">new</span> <span class="nc">File</span><span class="o">(</span><span class="n">cropPath</span><span class="o">));</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="n">uri</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">MATERIAL_RESULT:</span>
+        <span class="n">setImageByUri</span><span class="o">(</span><span class="n">data</span><span class="o">.</span><span class="na">getData</span><span class="o">());</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、Androidアプリケーションでのアクティビティ結果を処理するためのメソッドです。以下にその内容を説明します。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">onActivityResult</code> メソッドは、他のアクティビティから結果を受け取ったときに呼び出されます。</li>
+  <li><code class="language-plaintext highlighter-rouge">resultCode</code> が <code class="language-plaintext highlighter-rouge">RESULT_CANCELED</code> でない場合、つまり結果がキャンセルされていない場合に処理が行われます。</li>
+  <li><code class="language-plaintext highlighter-rouge">requestCode</code> に応じて、どのアクティビティからの結果かを判断し、適切な処理を行います。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">IMAGE_RESULT</code>: 画像選択の結果を受け取り、選択された画像のURIを使って画像を設定します。</li>
+      <li><code class="language-plaintext highlighter-rouge">CAMERA_RESULT</code>: カメラで撮影した画像のURIを使って画像を設定します。</li>
+      <li><code class="language-plaintext highlighter-rouge">CROP_RESULT</code>: 切り抜き処理が行われた画像のURIを使って画像を設定します。</li>
+      <li><code class="language-plaintext highlighter-rouge">MATERIAL_RESULT</code>: マテリアルデザイン関連の結果を受け取り、そのURIを使って画像を設定します。</li>
+    </ul>
+  </li>
+</ul>
+
+<p>このメソッドは、画像選択やカメラ撮影、画像の切り抜きなど、ユーザーが画像を操作した後の処理を行うために使用されます。</p>
+
+<hr />
+
+<h3 id="元に戻すとやり直しの機能">元に戻すとやり直しの機能</h3>
+
+<p>Activityは、描画操作の取り消し（Undo）とやり直し（Redo）の機能を提供します。</p>
+
+<p><strong>initUndoRedoEnable()</strong><br />
+コールバック関数を設定して、元に戻す（Undo）とやり直す（Redo）機能を初期化します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">initUndoRedoEnable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">setCallBack</span><span class="o">(</span><span class="k">new</span> <span class="nc">History</span><span class="o">.</span><span class="na">CallBack</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onHistoryChanged</span><span class="o">()</span> <span class="o">{</span>
+      <span class="n">setUndoRedoEnable</span><span class="o">();</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">curFragmentId</span> <span class="o">!=</span> <span class="no">DRAW_FRAGMENT</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">showDrawFragment</span><span class="o">(</span><span class="n">curDrawMode</span><span class="o">);</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">initUndoRedoEnable</code>メソッドを定義しています。このメソッドは、<code class="language-plaintext highlighter-rouge">drawView.history</code>にコールバックを設定し、履歴が変更されたときに<code class="language-plaintext highlighter-rouge">setUndoRedoEnable</code>メソッドを呼び出し、現在のフラグメントが<code class="language-plaintext highlighter-rouge">DRAW_FRAGMENT</code>でない場合に<code class="language-plaintext highlighter-rouge">showDrawFragment</code>メソッドを呼び出して描画フラグメントを表示します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">setUndoRedoEnable</span><span class="o">()</span> <span class="o">{</span>
+  <span class="n">redoView</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">canRedo</span><span class="o">());</span>
+  <span class="n">undoView</span><span class="o">.</span><span class="na">setEnabled</span><span class="o">(</span><span class="n">drawView</span><span class="o">.</span><span class="na">history</span><span class="o">.</span><span class="na">canUndo</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="カスタムdrawview">カスタムDrawView</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawView</code> は、描画操作、タッチイベント、およびズームを処理するためのカスタムビューです。</p>
+
+<p><strong>onTouchEvent(MotionEvent event)</strong><br />
+描画とスケーリングのためのタッチイベントを処理します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">onTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(!</span><span class="n">scaleMode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">handleDrawTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">handleScaleTouchEvent</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">onTouchEvent</code>メソッドをオーバーライドしており、タッチイベントを処理するためのものです。<code class="language-plaintext highlighter-rouge">scaleMode</code>が<code class="language-plaintext highlighter-rouge">false</code>の場合、<code class="language-plaintext highlighter-rouge">handleDrawTouchEvent</code>メソッドが呼び出され、<code class="language-plaintext highlighter-rouge">scaleMode</code>が<code class="language-plaintext highlighter-rouge">true</code>の場合、<code class="language-plaintext highlighter-rouge">handleScaleTouchEvent</code>メソッドが呼び出されます。最後に、<code class="language-plaintext highlighter-rouge">true</code>を返すことで、イベントが処理されたことを示しています。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleDrawTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">action</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getAction</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">x</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">y</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_DOWN</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">moveTo</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_MOVE</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">quadTo</span><span class="o">(</span><span class="n">preX</span><span class="o">,</span> <span class="n">preY</span><span class="o">,</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">action</span> <span class="o">==</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_UP</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Matrix</span> <span class="n">matrix1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Matrix</span><span class="o">();</span>
+    <span class="n">matrix</span><span class="o">.</span><span class="na">invert</span><span class="o">(</span><span class="n">matrix1</span><span class="o">);</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">transform</span><span class="o">(</span><span class="n">matrix1</span><span class="o">);</span>
+    <span class="n">paint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="n">strokeWidth</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">totalRatio</span><span class="o">);</span>
+    <span class="n">history</span><span class="o">.</span><span class="na">saveToStack</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="n">cacheCanvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="n">paint</span><span class="o">.</span><span class="na">setStrokeWidth</span><span class="o">(</span><span class="n">strokeWidth</span><span class="o">);</span>
+    <span class="n">path</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">setPrev</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、タッチイベントを処理して描画を行うメソッドです。以下にその動作を説明します。</p>
+
+<ol>
+  <li><strong>タッチイベントの取得</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">event.getAction()</code> でタッチイベントのアクション（押下、移動、離す）を取得します。</li>
+      <li><code class="language-plaintext highlighter-rouge">event.getX()</code> と <code class="language-plaintext highlighter-rouge">event.getY()</code> でタッチ位置の座標を取得します。</li>
+    </ul>
+  </li>
+  <li><strong>ACTION_DOWN</strong>:
+    <ul>
+      <li>タッチが開始された場合、<code class="language-plaintext highlighter-rouge">path.moveTo(x, y)</code> でパスの開始点を設定します。</li>
+    </ul>
+  </li>
+  <li><strong>ACTION_MOVE</strong>:
+    <ul>
+      <li>タッチが移動した場合、<code class="language-plaintext highlighter-rouge">path.quadTo(preX, preY, x, y)</code> で前回の座標から現在の座標までの曲線を描画します。</li>
+    </ul>
+  </li>
+  <li><strong>ACTION_UP</strong>:
+    <ul>
+      <li>タッチが終了した場合、以下の処理を行います：
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">Matrix</code> オブジェクトを作成し、現在のマトリックスを反転させます。</li>
+          <li>パスに反転したマトリックスを適用します。</li>
+          <li>ペイントのストローク幅を調整し、履歴にパスとペイントを保存します。</li>
+          <li>キャンバスにパスを描画し、ペイントのストローク幅を元に戻します。</li>
+          <li>パスをリセットします。</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>前回の座標を更新</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">setPrev(event)</code> で前回の座標を更新します。</li>
+    </ul>
+  </li>
+  <li><strong>再描画</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">invalidate()</code> を呼び出して、ビューを再描画します。</li>
+    </ul>
+  </li>
+</ol>
+
+<p>このメソッドは、ユーザーが画面に指で描画する際の動作を制御し、描画結果をキャンバスに反映します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleScaleTouchEvent</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="k">switch</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getActionMasked</span><span class="o">())</span> <span class="o">{</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_POINTER_DOWN</span><span class="o">:</span>
+      <span class="n">lastFingerDist</span> <span class="o">=</span> <span class="n">calFingerDistance</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_MOVE</span><span class="o">:</span>
+      <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getPointerCount</span><span class="o">()</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handleMove</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">event</span><span class="o">.</span><span class="na">getPointerCount</span><span class="o">()</span> <span class="o">==</span> <span class="mi">2</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">handleZoom</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+      <span class="o">}</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_UP</span><span class="o">:</span>
+    <span class="k">case</span> <span class="nc">MotionEvent</span><span class="o">.</span><span class="na">ACTION_POINTER_UP</span><span class="o">:</span>
+      <span class="n">lastMoveX</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="n">lastMoveY</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="k">break</span><span class="o">;</span>
+    <span class="k">default</span><span class="o">:</span>
+      <span class="k">break</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、タッチイベントを処理するためのメソッドです。以下に各ケースの説明を日本語で示します。</p>
+
+<ul>
+  <li><strong>ACTION_POINTER_DOWN</strong>: 2本目の指が画面に触れたときに、指の間の距離を計算して <code class="language-plaintext highlighter-rouge">lastFingerDist</code> に保存します。</li>
+  <li><strong>ACTION_MOVE</strong>: 指が動いたときに、指の本数に応じて処理を分岐します。1本の場合は <code class="language-plaintext highlighter-rouge">handleMove</code> メソッドを呼び出し、2本の場合は <code class="language-plaintext highlighter-rouge">handleZoom</code> メソッドを呼び出します。</li>
+  <li><strong>ACTION_UP</strong> および <strong>ACTION_POINTER_UP</strong>: 指が離れたときに、最後の移動位置をリセットします。</li>
+  <li><strong>default</strong>: その他のアクションでは何も処理しません。</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleMove</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">float</span> <span class="n">moveX</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getX</span><span class="o">();</span>
+  <span class="kt">float</span> <span class="n">moveY</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="na">getY</span><span class="o">();</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">lastMoveX</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">lastMoveY</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">lastMoveX</span> <span class="o">=</span> <span class="n">moveX</span><span class="o">;</span>
+    <span class="n">lastMoveY</span> <span class="o">=</span> <span class="n">moveY</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">moveDistX</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">moveX</span> <span class="o">-</span> <span class="n">lastMoveX</span><span class="o">);</span>
+  <span class="n">moveDistY</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">moveY</span> <span class="o">-</span> <span class="n">lastMoveY</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span> <span class="o">+</span> <span class="n">curBitmapWidth</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">moveDistX</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span> <span class="o">+</span> <span class="n">curBitmapHeight</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">moveDistY</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_MOVE</span><span class="o">;</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+  <span class="n">lastMoveX</span> <span class="o">=</span> <span class="n">moveX</span><span class="o">;</span>
+  <span class="n">lastMoveY</span> <span class="o">=</span> <span class="n">moveY</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、タッチイベントを処理してビットマップの移動を制御するメソッドです。以下にその動作を説明します。</p>
+
+<ol>
+  <li>
+    <p><strong>イベント座標の取得</strong>: <code class="language-plaintext highlighter-rouge">event.getX()</code> と <code class="language-plaintext highlighter-rouge">event.getY()</code> を使用して、現在のタッチ位置を取得します。</p>
+  </li>
+  <li>
+    <p><strong>初期位置の設定</strong>: <code class="language-plaintext highlighter-rouge">lastMoveX</code> と <code class="language-plaintext highlighter-rouge">lastMoveY</code> が初期値（-1）の場合、現在の位置を初期位置として設定します。</p>
+  </li>
+  <li>
+    <p><strong>移動距離の計算</strong>: 現在の位置と前回の位置の差を計算し、<code class="language-plaintext highlighter-rouge">moveDistX</code> と <code class="language-plaintext highlighter-rouge">moveDistY</code> に格納します。</p>
+  </li>
+  <li>
+    <p><strong>移動範囲の制限</strong>: ビットマップが画面の境界を超えないように、移動距離を調整します。もし移動後の位置が画面の外に出る場合、移動距離を0に設定します。</p>
+  </li>
+  <li>
+    <p><strong>状態の更新</strong>: 移動中であることを示すために、<code class="language-plaintext highlighter-rouge">status</code> を <code class="language-plaintext highlighter-rouge">STATUS_MOVE</code> に設定します。</p>
+  </li>
+  <li>
+    <p><strong>再描画の要求</strong>: <code class="language-plaintext highlighter-rouge">invalidate()</code> を呼び出して、ビューを再描画します。</p>
+  </li>
+  <li>
+    <p><strong>前回の位置の更新</strong>: 現在の位置を <code class="language-plaintext highlighter-rouge">lastMoveX</code> と <code class="language-plaintext highlighter-rouge">lastMoveY</code> に保存し、次のイベント処理に備えます。</p>
+  </li>
+</ol>
+
+<p>このメソッドは、ユーザーが画面をタッチしてビットマップを移動させる際に、ビットマップが画面の外に出ないように制御する役割を果たします。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">handleZoom</span><span class="o">(</span><span class="nc">MotionEvent</span> <span class="n">event</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kt">float</span> <span class="n">fingerDist</span> <span class="o">=</span> <span class="n">calFingerDistance</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="n">calFingerCenter</span><span class="o">(</span><span class="n">event</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">fingerDist</span> <span class="o">&gt;</span> <span class="n">lastFingerDist</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_ZOOM_OUT</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="no">STATUS_ZOOM_IN</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">scaledRatio</span> <span class="o">=</span> <span class="n">fingerDist</span> <span class="o">*</span> <span class="mf">1.0f</span> <span class="o">/</span> <span class="n">lastFingerDist</span><span class="o">;</span>
+  <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">totalRatio</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">totalRatio</span> <span class="o">&lt;</span> <span class="n">initRatio</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">initRatio</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">totalRatio</span> <span class="o">&gt;</span> <span class="n">initRatio</span> <span class="o">*</span> <span class="mi">4</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">totalRatio</span> <span class="o">=</span> <span class="n">initRatio</span> <span class="o">*</span> <span class="mi">4</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="n">lastFingerDist</span> <span class="o">=</span> <span class="n">fingerDist</span><span class="o">;</span>
+  <span class="n">invalidate</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>onDraw(Canvas canvas)</strong><br />
+ビューの現在の状態を描画します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onDraw</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="kd">super</span><span class="o">.</span><span class="na">onDraw</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">scaleMode</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">switch</span> <span class="o">(</span><span class="n">status</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">case</span> <span class="nl">STATUS_MOVE:</span>
+        <span class="n">move</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">case</span> <span class="nl">STATUS_ZOOM_IN:</span>
+      <span class="k">case</span> <span class="nl">STATUS_ZOOM_OUT:</span>
+        <span class="n">zoom</span><span class="o">(</span><span class="n">canvas</span><span class="o">);</span>
+        <span class="k">break</span><span class="o">;</span>
+      <span class="k">default</span><span class="o">:</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">cacheBm</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+          <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+          <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">cacheBm</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+      <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">path</span><span class="o">,</span> <span class="n">paint</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、Javaで書かれた<code class="language-plaintext highlighter-rouge">onDraw</code>メソッドのオーバーライドです。このメソッドは、<code class="language-plaintext highlighter-rouge">Canvas</code>オブジェクトを使用して描画を行います。<code class="language-plaintext highlighter-rouge">scaleMode</code>が有効な場合、<code class="language-plaintext highlighter-rouge">status</code>に応じて異なる描画処理を行います。<code class="language-plaintext highlighter-rouge">STATUS_MOVE</code>の場合は<code class="language-plaintext highlighter-rouge">move</code>メソッドを、<code class="language-plaintext highlighter-rouge">STATUS_ZOOM_IN</code>または<code class="language-plaintext highlighter-rouge">STATUS_ZOOM_OUT</code>の場合は<code class="language-plaintext highlighter-rouge">zoom</code>メソッドを呼び出します。それ以外の場合は、<code class="language-plaintext highlighter-rouge">cacheBm</code>が<code class="language-plaintext highlighter-rouge">null</code>でなければ、<code class="language-plaintext highlighter-rouge">cacheBm</code>を<code class="language-plaintext highlighter-rouge">matrix</code>に従って描画し、<code class="language-plaintext highlighter-rouge">path</code>を<code class="language-plaintext highlighter-rouge">paint</code>で描画します。<code class="language-plaintext highlighter-rouge">scaleMode</code>が無効な場合も同様に、<code class="language-plaintext highlighter-rouge">cacheBm</code>が<code class="language-plaintext highlighter-rouge">null</code>でなければ、<code class="language-plaintext highlighter-rouge">cacheBm</code>と<code class="language-plaintext highlighter-rouge">path</code>を描画します。</p>
+
+<p><strong>move(Canvas canvas)</strong><br />
+ズーム中の移動操作を処理します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">move</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postScale</span><span class="o">(</span><span class="n">totalRatio</span><span class="o">,</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="n">totalTranslateX</span> <span class="o">=</span> <span class="n">moveDistX</span> <span class="o">+</span> <span class="n">totalTranslateX</span><span class="o">;</span>
+  <span class="n">totalTranslateY</span> <span class="o">=</span> <span class="n">moveDistY</span> <span class="o">+</span> <span class="n">totalTranslateY</span><span class="o">;</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postTranslate</span><span class="o">(</span><span class="n">totalTranslateX</span><span class="o">,</span> <span class="n">totalTranslateY</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、JavaでCanvas上にビットマップを移動させるためのメソッドです。以下にその内容を説明します。</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">matrix.reset();</code><br />
+行列（Matrix）をリセットして初期状態に戻します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">matrix.postScale(totalRatio, totalRatio);</code><br />
+行列にスケーリング（拡大縮小）を適用します。<code class="language-plaintext highlighter-rouge">totalRatio</code>は現在の拡大率を表します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">totalTranslateX = moveDistX + totalTranslateX;</code><br />
+X軸方向の移動距離を更新します。<code class="language-plaintext highlighter-rouge">moveDistX</code>は今回の移動量で、<code class="language-plaintext highlighter-rouge">totalTranslateX</code>は累積された移動量です。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">totalTranslateY = moveDistY + totalTranslateY;</code><br />
+Y軸方向の移動距離を更新します。<code class="language-plaintext highlighter-rouge">moveDistY</code>は今回の移動量で、<code class="language-plaintext highlighter-rouge">totalTranslateY</code>は累積された移動量です。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">matrix.postTranslate(totalTranslateX, totalTranslateY);</code><br />
+行列に平行移動を適用します。<code class="language-plaintext highlighter-rouge">totalTranslateX</code>と<code class="language-plaintext highlighter-rouge">totalTranslateY</code>は、それぞれX軸とY軸方向の累積移動量です。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">canvas.drawBitmap(cacheBm, matrix, null);</code><br />
+更新された行列を使用して、キャッシュされたビットマップ（<code class="language-plaintext highlighter-rouge">cacheBm</code>）をCanvasに描画します。</p>
+  </li>
+</ol>
+
+<p>このメソッドは、ビットマップを指定された距離だけ移動させ、Canvas上に描画するための処理を行います。</p>
+
+<p><strong>zoom(Canvas canvas)</strong><br />
+ズーム操作を処理します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">void</span> <span class="nf">zoom</span><span class="o">(</span><span class="nc">Canvas</span> <span class="n">canvas</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">reset</span><span class="o">();</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postScale</span><span class="o">(</span><span class="n">totalRatio</span><span class="o">,</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">scaledWidth</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">cacheBm</span><span class="o">.</span><span class="na">getWidth</span><span class="o">()</span> <span class="o">*</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">scaledHeight</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">cacheBm</span><span class="o">.</span><span class="na">getHeight</span><span class="o">()</span> <span class="o">*</span> <span class="n">totalRatio</span><span class="o">);</span>
+  <span class="kt">int</span> <span class="n">translateX</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">translateY</span><span class="o">;</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">curBitmapWidth</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">translateX</span> <span class="o">=</span> <span class="o">(</span><span class="n">width</span> <span class="o">-</span> <span class="n">scaledWidth</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">translateX</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">centerPointX</span> <span class="o">+</span> <span class="o">(</span><span class="n">totalTranslateX</span> <span class="o">-</span> <span class="n">centerPointX</span><span class="o">)</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">translateX</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateX</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">scaledWidth</span> <span class="o">+</span> <span class="n">translateX</span> <span class="o">&lt;</span> <span class="n">width</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateX</span> <span class="o">=</span> <span class="n">width</span> <span class="o">-</span> <span class="n">scaledWidth</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">curBitmapHeight</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">translateY</span> <span class="o">=</span> <span class="o">(</span><span class="n">height</span> <span class="o">-</span> <span class="n">scaledHeight</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">translateY</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="o">(</span><span class="n">centerPointY</span> <span class="o">+</span> <span class="o">(</span><span class="n">totalTranslateY</span> <span class="o">-</span> <span class="n">centerPointY</span><span class="o">)</span> <span class="o">*</span> <span class="n">scaledRatio</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">translateY</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateY</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">scaledHeight</span> <span class="o">+</span> <span class="n">translateY</span> <span class="o">&lt;</span> <span class="n">height</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">translateY</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">scaledHeight</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postTranslate</span><span class="o">(</span><span class="n">translateX</span><span class="o">,</span> <span class="n">translateY</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Y</span> <span class="o">=</span> <span class="n">height</span> <span class="o">-</span> <span class="n">scaledHeight</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  <span class="n">totalTranslateX</span> <span class="o">=</span> <span class="n">translateX</span><span class="o">;</span>
+  <span class="n">totalTranslateY</span> <span class="o">=</span> <span class="n">translateY</span><span class="o">;</span>
+  <span class="n">curBitmapWidth</span> <span class="o">=</span> <span class="n">scaledWidth</span><span class="o">;</span>
+  <span class="n">curBitmapHeight</span> <span class="o">=</span> <span class="n">scaledHeight</span><span class="o">;</span>
+  <span class="n">matrix</span><span class="o">.</span><span class="na">postTranslate</span><span class="o">(</span><span class="n">translateX</span><span class="o">,</span> <span class="n">translateY</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">drawBitmap</span><span class="o">(</span><span class="n">cacheBm</span><span class="o">,</span> <span class="n">matrix</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>上記のコードは、画像のスケーリングと位置調整を行い、キャンバスに描画する処理を行っています。具体的には、<code class="language-plaintext highlighter-rouge">Y = height - scaledHeight;</code> で画像のY座標を調整し、<code class="language-plaintext highlighter-rouge">matrix.postTranslate(translateX, translateY);</code> で画像を指定された位置に移動させています。最後に、<code class="language-plaintext highlighter-rouge">canvas.drawBitmap(cacheBm, matrix, null);</code> で調整された画像をキャンバスに描画しています。</p>
+
+<hr />
+
+<h3 id="ヒストリ管理">ヒストリ管理</h3>
+
+<p><code class="language-plaintext highlighter-rouge">History</code> クラスは、描画の履歴を管理し、元に戻す（Undo）とやり直す（Redo）機能を実現します。</p>
+
+<p><strong>saveToStack(Path path, Paint paint)</strong><br />
+現在のパスとペイントをスタックに保存します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveToStack</span><span class="o">(</span><span class="nc">Path</span> <span class="n">path</span><span class="o">,</span> <span class="nc">Paint</span> <span class="n">paint</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Draw</span> <span class="n">draw</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Draw</span><span class="o">();</span>
+  <span class="n">draw</span><span class="o">.</span><span class="na">path</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Path</span><span class="o">(</span><span class="n">path</span><span class="o">);</span>
+  <span class="n">draw</span><span class="o">.</span><span class="na">paint</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Paint</span><span class="o">(</span><span class="n">paint</span><span class="o">);</span>
+  <span class="n">saveToStack</span><span class="o">(</span><span class="n">draw</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、指定された<code class="language-plaintext highlighter-rouge">Path</code>と<code class="language-plaintext highlighter-rouge">Paint</code>オブジェクトを使用して新しい<code class="language-plaintext highlighter-rouge">Draw</code>オブジェクトを作成し、それをスタックに保存するメソッドです。<code class="language-plaintext highlighter-rouge">Draw</code>クラスは、<code class="language-plaintext highlighter-rouge">path</code>と<code class="language-plaintext highlighter-rouge">paint</code>というフィールドを持っていると推測されます。このメソッドは、<code class="language-plaintext highlighter-rouge">Draw</code>オブジェクトをスタックに保存するために、別の<code class="language-plaintext highlighter-rouge">saveToStack</code>メソッドを呼び出しています。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">saveToStack</span><span class="o">(</span><span class="nc">Draw</span> <span class="n">draw</span><span class="o">)</span> <span class="o">{</span>
+  <span class="n">curPos</span><span class="o">++;</span>
+  <span class="k">while</span> <span class="o">(</span><span class="n">histroy</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">curPos</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">histroy</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+  <span class="o">}</span>
+  <span class="n">histroy</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">draw</span><span class="o">);</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">Draw</code>オブジェクトをスタックに保存するメソッドです。以下にその動作を説明します。</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">curPos</code>をインクリメントします。これは、現在の位置を更新するためです。</li>
+  <li><code class="language-plaintext highlighter-rouge">histroy</code>のサイズが<code class="language-plaintext highlighter-rouge">curPos</code>より大きい場合、<code class="language-plaintext highlighter-rouge">histroy</code>から要素を取り除きます。これにより、新しい<code class="language-plaintext highlighter-rouge">Draw</code>オブジェクトを追加する前に、古い履歴をクリアします。</li>
+  <li><code class="language-plaintext highlighter-rouge">histroy</code>に新しい<code class="language-plaintext highlighter-rouge">Draw</code>オブジェクトをプッシュします。</li>
+  <li><code class="language-plaintext highlighter-rouge">callBack</code>が<code class="language-plaintext highlighter-rouge">null</code>でない場合、<code class="language-plaintext highlighter-rouge">callBack.onHistoryChanged()</code>を呼び出して、履歴が変更されたことを通知します。</li>
+</ol>
+
+<p>このメソッドは、履歴管理を行う際に使用されることが多いです。</p>
+
+<p><strong>getBitmapAtDraw(int n)</strong><br />
+指定されたポイントの状態を表すビットマップを返します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Canvas</span> <span class="n">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Canvas</span><span class="o">();</span>
+  <span class="nc">Bitmap</span> <span class="n">bm</span> <span class="o">=</span> <span class="nc">Utils</span><span class="o">.</span><span class="na">getCopyBitmap</span><span class="o">(</span><span class="n">srcBitmap</span><span class="o">);</span>
+  <span class="n">canvas</span><span class="o">.</span><span class="na">setBitmap</span><span class="o">(</span><span class="n">bm</span><span class="o">);</span>
+  <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="nc">Draw</span> <span class="n">draw</span> <span class="o">=</span> <span class="n">histroy</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+    <span class="n">canvas</span><span class="o">.</span><span class="na">drawPath</span><span class="o">(</span><span class="n">draw</span><span class="o">.</span><span class="na">path</span><span class="o">,</span> <span class="n">draw</span><span class="o">.</span><span class="na">paint</span><span class="o">);</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="n">bm</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>undo()</strong><br />
+元に戻す操作を実行します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">undo</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnsupportedOperationException</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">canUndo</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">curPos</span><span class="o">--;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="n">curPos</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">(</span><span class="s">"取り消す記録がありません"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>redo()</strong><br />
+再実行操作を実行します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">Bitmap</span> <span class="nf">redo</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">UnsupportedOperationException</span> <span class="o">{</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">canRedo</span><span class="o">())</span> <span class="o">{</span>
+    <span class="n">curPos</span><span class="o">++;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">callBack</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">callBack</span><span class="o">.</span><span class="na">onHistoryChanged</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="nf">getBitmapAtDraw</span><span class="o">(</span><span class="n">curPos</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nf">UnsupportedOperationException</span><span class="o">(</span><span class="s">"リドゥ可能な記録がありません"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong>canUndo()</strong><br />
+アンドゥが可能かどうかを確認します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canUndo</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">curPos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">canUndo</code>メソッドを定義しています。このメソッドは、<code class="language-plaintext highlighter-rouge">curPos</code>（現在の位置）が0より大きい場合に<code class="language-plaintext highlighter-rouge">true</code>を返し、それ以外の場合に<code class="language-plaintext highlighter-rouge">false</code>を返します。これにより、元に戻す操作が可能かどうかを判定します。</p>
+
+<p><strong>canRedo()</strong><br />
+再実行が可能かどうかを確認します。</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">canRedo</span><span class="o">()</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="n">curPos</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">histroy</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>このコードは、<code class="language-plaintext highlighter-rouge">canRedo</code>メソッドを定義しています。このメソッドは、現在の位置（<code class="language-plaintext highlighter-rouge">curPos</code>）に1を加えた値が履歴（<code class="language-plaintext highlighter-rouge">histroy</code>）のサイズよりも小さいかどうかをチェックします。もし小さい場合、<code class="language-plaintext highlighter-rouge">true</code>を返し、それ以外の場合は<code class="language-plaintext highlighter-rouge">false</code>を返します。これは、ユーザーが「やり直し」操作を行えるかどうかを判断するために使用されます。</p>
+
+<hr />
+
+<h3 id="結論">結論</h3>
+
+<p><code class="language-plaintext highlighter-rouge">DrawActivity</code>とその関連クラスは、Androidでカスタム描画ビューを実装するための包括的な例を提供します。これには、タッチイベントの処理、描画履歴の管理、そしてfragmentや非同期タスクなどの他のコンポーネントとの統合など、さまざまな技術が含まれています。各コンポーネントとアルゴリズムを理解することで、これらの技術を活用して、強力でインタラクティブな描画機能を自身のアプリに組み込むことができます。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

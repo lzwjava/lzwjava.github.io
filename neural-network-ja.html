@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>neural network</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>neural network | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="neural network" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="ニューラルネットワークの核心に直接触れていきましょう。つまり、バックプロパゲーション（逆伝播）アルゴリズムについてです。" />
+<meta property="og:description" content="ニューラルネットワークの核心に直接触れていきましょう。つまり、バックプロパゲーション（逆伝播）アルゴリズムについてです。" />
+<link rel="canonical" href="https://lzwjava.github.io/neural-network-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/neural-network-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-30T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="neural network" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-05-30T00:00:00+08:00","datePublished":"2023-05-30T00:00:00+08:00","description":"ニューラルネットワークの核心に直接触れていきましょう。つまり、バックプロパゲーション（逆伝播）アルゴリズムについてです。","headline":"neural network","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/neural-network-ja"},"url":"https://lzwjava.github.io/neural-network-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       neural network | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2023-05-30-neural-network-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2023-05-30-neural-network-ja.md</span> -->
+      
+
+      <!-- <span>2023-05-30-neural-network-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/neural-network-en" >English</option>
+        <option value="/neural-network-zh" >中文</option>
+        <option value="/neural-network-ja" selected>日本語</option>
+        <option value="/neural-network-es" >Español</option>
+        <option value="/neural-network-hi" >हिंदी</option>
+        <option value="/neural-network-fr" >Français</option>
+        <option value="/neural-network-de" >Deutsch</option>
+        <option value="/neural-network-ar" >العربية</option>
+        <option value="/neural-network-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>ニューラルネットワークの核心に直接触れていきましょう。つまり、バックプロパゲーション（逆伝播）アルゴリズムについてです。</p>
+
+<ol>
+  <li>入力 x: 入力層に対応する活性化 \(a^{1}\) を設定します。</li>
+  <li>順伝播: 各 l=2,3,…,L に対して、\(z^{l} = w^l a^{l-1}+b^l\) と \(a^{l} = \sigma(z^{l})\) を計算します。</li>
+  <li>出力誤差 \(\delta^{L}\): ベクトル \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\) を計算します。</li>
+  <li>誤差の逆伝播: 各 l=L−1,L−2,…,2 に対して、\(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\) を計算します。</li>
+  <li>出力: コスト関数の勾配は、\(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\) と \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\) で与えられます。</li>
+</ol>
+
+<p>これはMichael Nelsonの著書『Neural Networks and Deep Learning』から引用したものです。圧倒されるでしょうか？初めて見たときはそうかもしれません。しかし、1か月ほど勉強すればそうではなくなります。説明させてください。</p>
+
+<h2 id="入力">入力</h2>
+
+<p>5つのフェーズがあります。最初のフェーズは入力です。ここでは手書きの数字を入力として使用します。私たちのタスクはそれらを認識することです。1つの手書き数字は784ピクセル、つまり28*28で構成されています。各ピクセルには、0から255の範囲のグレースケール値があります。活性化とは、処理を容易にするために、何らかの関数を使用して元の値を新しい値に変更することを意味します。</p>
+
+<p>例えば、784ピクセルの画像が1000枚あるとします。これを使って、画像が示す数字を認識するように訓練します。そして、学習効果をテストするために100枚の画像を使います。もしプログラムが97枚の画像の数字を正しく認識できた場合、その精度は97%であると言います。</p>
+
+<p>したがって、1000枚の画像をループして、重みとバイアスを訓練します。新しい画像を学習させるたびに、重みとバイアスをより正確に調整していきます。</p>
+
+<p>1回のバッチトレーニングの結果は、10個のニューロンに反映されます。ここで、10個のニューロンは0から9を表し、その値は0から1の範囲で、その精度に対する自信度を示します。</p>
+
+<p>そして入力は784個のニューロンです。784個のニューロンを10個のニューロンに減らすにはどうすればいいでしょうか？ここで重要なのは、2つの層があると仮定することです。層とは何を意味するのでしょうか？最初の層には784個のニューロンがあり、2番目の層には10個のニューロンがあります。</p>
+
+<p>784個のニューロンそれぞれに重みを与えます。例えば、</p>
+
+\[w_1, w_2, w_3, w_4, ... , w_{784}\]
+
+<p>そして、最初の層にバイアス、つまり \(b_1\) を与えます。</p>
+
+<p>そして、2層目の最初のニューロンの値は次のようになります：</p>
+
+\[w_1*a_1 + w_2*a_2+...+ w_{784}*a_{784}+b_1\]
+
+<p>しかし、これらの重みとバイアスは \(neuron^2_{1}\)（第2層の最初のニューロン）のためのものです。\(neuron^2_{2}\) には、別の重みとバイアスのセットが必要です。</p>
+
+<p>シグモイド関数はどうでしょうか？シグモイド関数を使用して、上記の値を0から1にマッピングします。</p>
+
+\[\begin{eqnarray} 
+  \sigma(z) \equiv \frac{1}{1+e^{-z}}
+\end{eqnarray}\]
+
+\[\begin{eqnarray} 
+  \frac{1}{1+\exp(-\sum_j w_j x_j-b)}
+\end{eqnarray}\]
+
+<p>また、最初の層を活性化するためにシグモイド関数を使用します。これにより、グレースケールの値を0から1の範囲に変換します。これで、すべての層のすべてのニューロンが0から1の範囲の値を持つようになります。</p>
+
+<p>さて、私たちの2層ネットワークでは、最初の層に784個のニューロンがあり、2番目の層には10個のニューロンがあります。重みとバイアスを取得するためにそれを訓練します。</p>
+
+<p>784 * 10個の重みと10個のバイアスがあります。第2層では、各ニューロンに対して784個の重みと1個のバイアスを使用してその値を計算します。ここでのコードは次のようになります。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sizes</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">sizes</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+</code></pre></div></div>
+
+<p>このコードは、ニューラルネットワークの初期化を行うためのPythonのメソッドです。以下にその内容を日本語で説明します。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">__init__(self, sizes)</code>: これはクラスのコンストラクタで、ニューラルネットワークの初期化を行います。<code class="language-plaintext highlighter-rouge">sizes</code>はネットワークの各層のニューロン数を表すリストです。</li>
+  <li><code class="language-plaintext highlighter-rouge">self.num_layers = len(sizes)</code>: ネットワークの層の数を<code class="language-plaintext highlighter-rouge">sizes</code>リストの長さから取得し、<code class="language-plaintext highlighter-rouge">num_layers</code>属性に保存します。</li>
+  <li><code class="language-plaintext highlighter-rouge">self.sizes = sizes</code>: ネットワークの各層のニューロン数を<code class="language-plaintext highlighter-rouge">sizes</code>属性に保存します。</li>
+  <li><code class="language-plaintext highlighter-rouge">self.biases = [np.random.randn(y, 1) for y in sizes[1:]]</code>: 各層のバイアスをランダムに初期化します。<code class="language-plaintext highlighter-rouge">sizes[1:]</code>は入力層を除いた層のニューロン数で、それぞれの層のバイアスは正規分布に従うランダムな値で初期化されます。</li>
+  <li><code class="language-plaintext highlighter-rouge">self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]</code>: 各層の重みをランダムに初期化します。<code class="language-plaintext highlighter-rouge">sizes[:-1]</code>と<code class="language-plaintext highlighter-rouge">sizes[1:]</code>はそれぞれ前の層と次の層のニューロン数で、それぞれの層の重みは正規分布に従うランダムな値で初期化されます。</li>
+</ul>
+
+<p>このコードは、ニューラルネットワークの初期化を行うための基本的な部分であり、バイアスと重みをランダムに設定することで、ネットワークの学習が進むための基盤を提供します。</p>
+
+<h2 id="フィードフォワード">フィードフォワード</h2>
+
+<blockquote>
+  <p>フィードフォワード: 各層 ( l = 2, 3, \ldots, L ) に対して、次のように計算します。
+\(z^{l} = w^l a^{l-1} + b^l\)
+そして
+\(a^{l} = \sigma(z^{l})\)</p>
+</blockquote>
+
+<p>ここで注目すべきは、前の層の値、つまり \(a^{l-1}\) と、現在の層の重み \(w^l\) およびバイアス \(b^l\) を使用して、シグモイド関数を適用し、現在の層の値 \(a^{l}\) を取得している点です。</p>
+
+<p>コード:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="c1"># 順伝播
+</span>        <span class="n">activation</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> 
+        <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">activation</span><span class="p">)</span><span class="o">+</span><span class="n">b</span>
+            <span class="n">zs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activations</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="出力エラー">出力エラー</h2>
+
+<blockquote>
+  <p>出力誤差 \(\delta^{L}\): ベクトル \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\) を計算する</p>
+</blockquote>
+
+<p>\(\nabla\) の意味を見てみましょう。</p>
+
+<blockquote>
+  <p>Del（デル）、またはナブラは、数学（特にベクトル解析）で使用される演算子で、ベクトル微分演算子として機能します。通常、ナブラ記号∇で表されます。</p>
+</blockquote>
+
+\[\begin{eqnarray}
+  w_k &amp; \rightarrow &amp; w_k' = w_k-\eta \frac{\partial C}{\partial w_k} \\
+  b_l &amp; \rightarrow &amp; b_l' = b_l-\eta \frac{\partial C}{\partial b_l}
+\end{eqnarray}\]
+
+<p>上記の数式は、ニューラルネットワークにおける重み ( w_k ) とバイアス ( b_l ) の更新規則を示しています。ここで、( \eta ) は学習率、( C ) はコスト関数です。この更新規則は、勾配降下法を用いてネットワークのパラメータを最適化するためのものです。</p>
+
+<p>ここで、\(\eta\) は学習率です。C に対する重みとバイアスの微分、つまりそれらの間の変化率を使用します。これは以下の <code class="language-plaintext highlighter-rouge">sigmoid_prime</code> です。</p>
+
+<p>コード:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">delta</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">cost_derivative</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+        <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>このコードは、ニューラルネットワークのバックプロパゲーション（逆伝播）アルゴリズムの一部です。以下に日本語で説明します。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">delta</code> は、出力層の誤差を表します。これは、コスト関数の導関数 <code class="language-plaintext highlighter-rouge">self.cost_derivative(activations[-1], y)</code> と、シグモイド関数の導関数 <code class="language-plaintext highlighter-rouge">sigmoid_prime(zs[-1])</code> の積として計算されます。</li>
+  <li><code class="language-plaintext highlighter-rouge">nabla_b[-1]</code> は、出力層のバイアスに対する勾配を表し、<code class="language-plaintext highlighter-rouge">delta</code> をそのまま代入します。</li>
+  <li><code class="language-plaintext highlighter-rouge">nabla_w[-1]</code> は、出力層の重みに対する勾配を表し、<code class="language-plaintext highlighter-rouge">delta</code> と前の層の活性化値 <code class="language-plaintext highlighter-rouge">activations[-2]</code> の転置行列とのドット積として計算されます。</li>
+</ul>
+
+<p>このコードは、ニューラルネットワークの学習において、誤差を逆伝播させて各パラメータ（重みとバイアス）の勾配を計算するために使用されます。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">cost_derivative</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">output_activations</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">output_activations</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>このコードブロックは、Pythonで定義された関数 <code class="language-plaintext highlighter-rouge">cost_derivative</code> を示しています。この関数は、ニューラルネットワークの出力活性化値 <code class="language-plaintext highlighter-rouge">output_activations</code> と目標値 <code class="language-plaintext highlighter-rouge">y</code> の差を計算し、その結果を返します。この差は、コスト関数の導関数として使用されることが一般的です。</p>
+
+<h2 id="誤差を逆伝播させる">誤差を逆伝播させる</h2>
+
+<blockquote>
+  <p>誤差を逆伝播する: 各層 ( l = L-1, L-2, \ldots, 2 ) に対して、次式を計算する:</p>
+
+  <p>[
+\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma’(z^{l})
+]</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">sp</span> <span class="o">=</span> <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">(),</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">sp</span>
+            <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+            <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>このコードは、ニューラルネットワークのバックプロパゲーション（逆伝播）アルゴリズムの一部です。各層の重みとバイアスの勾配を計算しています。具体的には、以下のように動作します：</p>
+
+<ol>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">for l in range(2, self.num_layers):</code><br />
+2番目の層から最後の層までループします。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">z = zs[-l]</code><br />
+現在の層の入力（活性化関数を通す前の値）を取得します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">sp = sigmoid_prime(z)</code><br />
+シグモイド関数の導関数を計算します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">delta = np.dot(self.weights[-l+1].transpose(), delta) * sp</code><br />
+次の層の誤差を現在の層に伝播させ、シグモイド関数の導関数を掛け合わせて現在の層の誤差を計算します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">nabla_b[-l] = delta</code><br />
+現在の層のバイアスの勾配を更新します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">nabla_w[-l] = np.dot(delta, activations[-l-1].transpose())</code><br />
+現在の層の重みの勾配を更新します。</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">return (nabla_b, nabla_w)</code><br />
+計算されたバイアスと重みの勾配を返します。</p>
+  </li>
+</ol>
+
+<p>このコードは、ニューラルネットワークの学習プロセスにおいて、誤差を逆伝播させて各パラメータの勾配を計算するために使用されます。</p>
+
+<h2 id="出力">出力</h2>
+
+<blockquote>
+  <p>出力: コスト関数の勾配は次のように与えられます:
+\(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\)
+そして
+\(\frac{\partial C}{\partial b^l_j} = \delta^l_j\)</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">update_mini_batch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mini_batch</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="c1"># バイアスと重みの勾配を初期化
+</span>        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        
+        <span class="c1"># ミニバッチ内の各データに対して逆伝播を行い、勾配を累積
+</span>        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">mini_batch</span><span class="p">:</span>
+            <span class="n">delta_nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_w</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">backprop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">nb</span><span class="o">+</span><span class="n">dnb</span> <span class="k">for</span> <span class="n">nb</span><span class="p">,</span> <span class="n">dnb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_b</span><span class="p">)]</span>
+            <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">nw</span><span class="o">+</span><span class="n">dnw</span> <span class="k">for</span> <span class="n">nw</span><span class="p">,</span> <span class="n">dnw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_w</span><span class="p">,</span> <span class="n">delta_nabla_w</span><span class="p">)]</span>
+        
+        <span class="c1"># 重みとバイアスを更新
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+                       <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<h2 id="最終版">最終版</h2>
+
+<p>これは短い記事です。そして、その大部分はコードと数式を示しているだけです。しかし、私にとってはそれで十分です。これを書く前は、はっきりと理解していませんでした。書いたり、コードや本からスニペットをコピーしたりした後、その大部分を理解しました。Yin Wang先生からの自信を得て、<em>Neural Networks and Deep Learning</em>という本の約30%を読み、Andrej Karpathyのスタンフォード講義とAndrew Ngのコースを聞き、友人Qiと議論し、Anaconda、numpy、Theanoライブラリをいじって数年前のコードを動かすことで、今では理解しています。</p>
+
+<p>重要なポイントの一つは、次元です。すべての記号と変数の次元を知る必要があります。そして、それは単に微分可能な計算を行うだけです。最後に、Yin Wangの引用で締めくくりましょう：</p>
+
+<blockquote>
+  <p>機械学習は非常に有用で、ある意味で美しい理論です。なぜなら、それは単に化粧を施した微積分学だからです！それはニュートンやライプニッツの古くて偉大な理論を、よりシンプルでエレガントで強力な形にしたものです。機械学習は基本的に微積分学を使って関数を導出し、フィットさせることであり、ディープラーニングはより複雑な関数をフィットさせることです。</p>
+</blockquote>
+
+<blockquote>
+  <p>人工知能には「知能」はなく、ニューラルネットワークには「ニューラル」はなく、機械学習には「学習」はなく、ディープラーニングには「深さ」はありません。ディープラーニングには「深さ」はないのです。この分野で実際に機能しているのは「微積分」と呼ばれるものです。ですから、私はこの分野を「微分可能な計算」と呼び、モデルを構築するプロセスを「微分可能なプログラミング」と呼ぶことを好みます。</p>
+</blockquote>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

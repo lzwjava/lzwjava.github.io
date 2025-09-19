@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>将 FFmpeg 移植到 Android</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>将 FFmpeg 移植到 Android | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="将 FFmpeg 移植到 Android" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="原文链接（CSDN）" />
+<meta property="og:description" content="原文链接（CSDN）" />
+<link rel="canonical" href="https://lzwjava.github.io/ffmpeg-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/ffmpeg-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-03-10T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="将 FFmpeg 移植到 Android" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-03-10T00:00:00+08:00","datePublished":"2014-03-10T00:00:00+08:00","description":"原文链接（CSDN）","headline":"将 FFmpeg 移植到 Android","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ffmpeg-zh"},"url":"https://lzwjava.github.io/ffmpeg-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       将 FFmpeg 移植到 Android | 原创
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2014-03-10-ffmpeg-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2014-03-10-ffmpeg-zh.md</span> -->
+      
+
+      <!-- <span>2014-03-10-ffmpeg-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ffmpeg-en" >English</option>
+        <option value="/ffmpeg-zh" selected>中文</option>
+        <option value="/ffmpeg-ja" >日本語</option>
+        <option value="/ffmpeg-es" >Español</option>
+        <option value="/ffmpeg-hi" >हिंदी</option>
+        <option value="/ffmpeg-fr" >Français</option>
+        <option value="/ffmpeg-de" >Deutsch</option>
+        <option value="/ffmpeg-ar" >العربية</option>
+        <option value="/ffmpeg-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><a href="https://blog.csdn.net/lzw_java/article/details/21564091">原文链接（CSDN）</a></p>
+
+<hr />
+
+<h2 id="缘起">缘起</h2>
+
+<p>对于尚未了解 FFmpeg 的同学，可以先去看看 <a href="https://ffmpeg.org/ffmpeg.html">FFmpeg 常用基本命令</a>，仔细研究其功能——如音视频合成、播放各类编码、视频截取、多图合成视频与音频混流、格式转换等。它能为很多应用场景带来强大且有趣的功能。</p>
+
+<p>以“配音秀”类应用为例，配音不仅趣味十足，也往往能让产品更具吸引力。我们计划开发一个配音模块，进而看中了 FFmpeg，尝试将其移植到 Android 平台。前后花了 3～4 天，尝试了多个版本，网上不少文章都没能成功，直到发现一篇名为《android 使用ffmpeg 并调用接口》的教程，才最终搞定。实测表明，只有 FFmpeg 1.2 搭配 ndk-r9 的组合才能成功移植。</p>
+
+<hr />
+
+<h2 id="思路">思路</h2>
+
+<p>FFmpeg 是一个用 C 语言编写的项目，其中包含一个 <code class="language-plaintext highlighter-rouge">main()</code> 函数。我们的目标是：</p>
+
+<ol>
+  <li>使用 Android NDK 编译出 <code class="language-plaintext highlighter-rouge">libffmpeg.so</code>。</li>
+  <li>借助该库编译并修改 <code class="language-plaintext highlighter-rouge">ffmpeg.c</code> 文件，将原本的 <code class="language-plaintext highlighter-rouge">main()</code> 函数改名为 <code class="language-plaintext highlighter-rouge">video_merge(int argc, char **argv)</code>，这样就能从 JNI 里直接调用它来完成视频合成等操作。</li>
+</ol>
+
+<p>例如，可通过类似以下方式来实现视频合成（对应命令行 <code class="language-plaintext highlighter-rouge">ffmpeg -i src1 -i src2 -y output</code>）：</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">video_merge</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">argv</span><span class="p">);</span> <span class="c1">// 其中 argv 模拟命令行参数</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="环境">环境</h2>
+
+<ul>
+  <li>操作系统：Ubuntu 12.04</li>
+  <li>FFmpeg 版本：1.2</li>
+  <li>NDK 版本：ndk-r9</li>
+</ul>
+
+<p>在动手之前，建议先参考一些相关教程，碰到问题再回来比照本文，避免走太多弯路。</p>
+
+<hr />
+
+<h2 id="修改接口与-androidmk">修改接口与 Android.mk</h2>
+
+<p>在为 FFmpeg 编写 JNI 接口时，需要编写 <code class="language-plaintext highlighter-rouge">Android.mk</code> 文件来链接库，进而生成可用的 <code class="language-plaintext highlighter-rouge">.so</code> 文件。一些示例的 <code class="language-plaintext highlighter-rouge">Android.mk</code> 在不同环境下可能无法直接运行成功。其作用是告诉 NDK 哪些源文件需要编译、链接到哪个库等信息。</p>
+
+<p>我采用了一种“两次编译、再链接”的方法：</p>
+
+<ol>
+  <li>先编译得到一个名为 <code class="language-plaintext highlighter-rouge">myffmpeg</code> 的共享库。</li>
+  <li>在另一个模块 <code class="language-plaintext highlighter-rouge">ffmpeg-jni</code> 中，再将 <code class="language-plaintext highlighter-rouge">myffmpeg</code> 链接进去，最终生成所需的 <code class="language-plaintext highlighter-rouge">.so</code>。</li>
+</ol>
+
+<p>另外，需要将编译好的 <code class="language-plaintext highlighter-rouge">libffmpeg.so</code> 放置在 <code class="language-plaintext highlighter-rouge">jni</code> 目录下，以保证链接时能够找到它。</p>
+
+<hr />
+
+<h2 id="调试-ffmpeg">调试 FFmpeg</h2>
+
+<p>移植 FFmpeg 之后，为了通过 JNI 调用函数，往往需要在 C 层调试。如果能像在命令行一样看到详细的日志输出，就能更轻松地定位问题。</p>
+
+<p>在 Eclipse 下，按住 <kbd>Ctrl</kbd> 点击类似 <code class="language-plaintext highlighter-rouge">av_log</code> 的调用位置，可以追踪到 <code class="language-plaintext highlighter-rouge">ffmpeg/libavutil/log.c</code> 里 <code class="language-plaintext highlighter-rouge">av_log_default_callback</code> 函数的实现。它会调用 Android 的 <code class="language-plaintext highlighter-rouge">__android_log_print</code> 打印到 Logcat。通过查看这些输出，就能获知 FFmpeg 的内部状态，用来排查合成失败、不支持特定编码等问题。</p>
+
+<p>有时，FFmpeg 会抛出异常导致 App 崩溃，可以使用以下命令来定位：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>adb shell logcat | ndk-stack <span class="nt">-sym</span> obj/local/armeabi
+</code></pre></div></div>
+
+<p>如果 FFmpeg 原始的 <code class="language-plaintext highlighter-rouge">main()</code> 最后有一个 <code class="language-plaintext highlighter-rouge">exit(0)</code>，请记得注释掉，否则会导致应用退出。</p>
+
+<h3 id="内存泄漏与-service-方案">内存泄漏与 Service 方案</h3>
+
+<p>合成完成后，若再次调用时出现 <code class="language-plaintext highlighter-rouge">"INVALID HEAP ADDRESS IN dlfree ffmpeg"</code> 错误，多半是 FFmpeg 内存释放不完全导致。一个折中办法是将合成过程放在一个单独的 <code class="language-plaintext highlighter-rouge">Service</code> 里，合成完毕后杀掉该 Service，以清理资源。</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- AndroidManifest.xml --&gt;</span>
+<span class="nt">&lt;service</span> <span class="na">android:name=</span><span class="s">".FFmpegService"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>通过注册 <code class="language-plaintext highlighter-rouge">Receiver</code> 等方式，在合成完成后自行结束 Service，即可避免重复调用时的内存问题。</p>
+
+<hr />
+
+<h2 id="可能遇到的问题">可能遇到的问题</h2>
+
+<ul>
+  <li><strong>AAC 文件播放异常</strong><br />
+有些机型（如小米 2s）可能无法通过默认的 <code class="language-plaintext highlighter-rouge">MediaPlayer</code> 播放 AAC 编码的音频。</li>
+  <li><strong>编码器支持不足</strong><br />
+如果要支持 AMR-NB、MP3 等，需要在编译 FFmpeg 时手动启用相应的选项。如果编译脚本无法找到相关库或头文件，会报错终止。</li>
+  <li><strong>合成速度</strong><br />
+合成一个 10 秒的 1280×720 视频并混合音频，可能要花费几十秒到一分钟不等。用户体验上，或许先让用户试听再决定是否最终合成会更好。</li>
+</ul>
+
+<p>在配音秀的具体实现中，常见的做法是：</p>
+<ol>
+  <li>提前下载好原始视频、字幕，以及“已去除需配音片段”的音频文件。</li>
+  <li>录制用户声音，合成时仅需将录音与静音片段合并即可。</li>
+  <li>若对本地合成时间不满意，可选择将音视频数据上传到服务器，由服务器端进行合成，完成后再下载。</li>
+</ol>
+
+<hr />
+
+<h2 id="在-eclipse-中使用-ndk">在 Eclipse 中使用 NDK</h2>
+
+<p>不一定要在命令行输入 <code class="language-plaintext highlighter-rouge">ndk-build</code>。只需在 Eclipse 中右键项目，选择 <strong>Android Tools → Add Native Support</strong>，之后每次点击“Run”都会自动执行 <code class="language-plaintext highlighter-rouge">ndk-build</code>。</p>
+
+<h3 id="一键生成-jni-头文件">一键生成 JNI 头文件</h3>
+
+<p>编写 JNI 函数头文件比较繁琐，可以通过 <code class="language-plaintext highlighter-rouge">javah</code> 命令自动生成。<br />
+在 Eclipse 里，可以配置为一个外部工具，用类似如下命令来生成头文件：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>javah <span class="nt">-jni</span> <span class="nt">-classpath</span> bin/classes <span class="nt">-d</span> jni com.example.ffmpeg.MyFFmpeg
+</code></pre></div></div>
+
+<p>执行后，会在 <code class="language-plaintext highlighter-rouge">jni</code> 目录下产生类似 <code class="language-plaintext highlighter-rouge">com_example_ffmpeg_MyFFmpeg.h</code> 的文件，然后只需在你的 C 代码中 <code class="language-plaintext highlighter-rouge">#include</code> 并实现对应函数即可。</p>
+
+<hr />
+
+<h2 id="小结">小结</h2>
+
+<p>FFmpeg 在 Android 上的移植涉及多方知识，包括 NDK 环境配置、C/C++ 编译链接、JNI 调用、音视频编解码等。若遇到无法合成、不支持某些格式或链接报错等问题，需要仔细排查配置与日志输出。希望本文能够帮助你避开一些坑。如果你也在使用 FFmpeg，欢迎在评论区分享经验或问题，互相交流与学习。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

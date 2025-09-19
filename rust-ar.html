@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>تجربة البرمجة باستخدام Rust</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>تجربة البرمجة باستخدام Rust | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="تجربة البرمجة باستخدام Rust" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="Rust هي لغة برمجة شهدت شعبية كبيرة في السنوات الأخيرة. في عام 2006، بدأ موظف في Mozilla العمل على مشروع شخصي، والذي لاحقًا حصل على دعم من الشركة، وتم إصدار المشروع في عام 2010. هذا المشروع يُدعى Rust." />
+<meta property="og:description" content="Rust هي لغة برمجة شهدت شعبية كبيرة في السنوات الأخيرة. في عام 2006، بدأ موظف في Mozilla العمل على مشروع شخصي، والذي لاحقًا حصل على دعم من الشركة، وتم إصدار المشروع في عام 2010. هذا المشروع يُدعى Rust." />
+<link rel="canonical" href="https://lzwjava.github.io/rust-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/rust-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-03-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="تجربة البرمجة باستخدام Rust" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2021-03-06T00:00:00+08:00","datePublished":"2021-03-06T00:00:00+08:00","description":"Rust هي لغة برمجة شهدت شعبية كبيرة في السنوات الأخيرة. في عام 2006، بدأ موظف في Mozilla العمل على مشروع شخصي، والذي لاحقًا حصل على دعم من الشركة، وتم إصدار المشروع في عام 2010. هذا المشروع يُدعى Rust.","headline":"تجربة البرمجة باستخدام Rust","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/rust-ar"},"url":"https://lzwjava.github.io/rust-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og6.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       تجربة البرمجة باستخدام Rust | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2021-03-06-rust-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2021-03-06-rust-ar.md</span> -->
+      
+
+      <!-- <span>2021-03-06-rust-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2021.03</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/rust-en" >English</option>
+        <option value="/rust-zh" >中文</option>
+        <option value="/rust-ja" >日本語</option>
+        <option value="/rust-es" >Español</option>
+        <option value="/rust-hi" >हिंदी</option>
+        <option value="/rust-fr" >Français</option>
+        <option value="/rust-de" >Deutsch</option>
+        <option value="/rust-ar" selected>العربية</option>
+        <option value="/rust-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Rust هي لغة برمجة شهدت شعبية كبيرة في السنوات الأخيرة. في عام 2006، بدأ موظف في Mozilla العمل على مشروع شخصي، والذي لاحقًا حصل على دعم من الشركة، وتم إصدار المشروع في عام 2010. هذا المشروع يُدعى Rust.</p>
+
+<p>لنبدأ بتشغيل أول برنامج بلغة Rust. افتح الموقع الرسمي وشاهد كيفية تشغيل البرنامج.</p>
+
+<p>الموقع الرسمي يوفر نصًا برمجيًا:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">--proto</span> <span class="s1">'=https'</span> <span class="nt">--tlsv1</span>.2 <span class="nt">-sSf</span> https://sh.rustup.rs | sh
+</code></pre></div></div>
+
+<p>على نظام Mac، يمكنك أيضًا استخدام أداة إدارة الحزم Homebrew لتثبيت البرنامج. يمكنك تشغيل الأمر التالي:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rust
+</code></pre></div></div>
+
+<p>أنا هنا أستخدم Homebrew لتثبيت Rust. أثناء التثبيت، دعونا نواصل الاطلاع على الموقع الرسمي.</p>
+
+<p>ثم نلاحظ ظهور أداة Cargo على الموقع الرسمي، وهي أداة بناء وإدارة الحزم لـ Rust.</p>
+
+<p>الموقع الرسمي يقول:</p>
+
+<ul>
+  <li>بناء مشروعك باستخدام <code class="language-plaintext highlighter-rouge">cargo build</code></li>
+  <li>تشغيل مشروعك باستخدام <code class="language-plaintext highlighter-rouge">cargo run</code></li>
+  <li>اختبار مشروعك باستخدام <code class="language-plaintext highlighter-rouge">cargo test</code></li>
+</ul>
+
+<p>يخبرنا كيفية بناء وتشغيل واختبار برامج Cargo.</p>
+
+<p>تشغيل:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew <span class="nb">install </span>rust
+</code></pre></div></div>
+
+<p>الإخراج:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">==&gt;</span> تنزيل https://homebrew.bintray.com/bottles/rust-1.49.0_1.big_sur.bottle.tar.gz
+<span class="o">==&gt;</span> التنزيل من https://d29vzk4ow07wi7.cloudfront.net/5a238d58c3fa775fed4e12ad74109deff54a82a06cb6a3a4f51b5d37587fb319?response-content-disposition<span class="o">=</span>a
+<span class="c">######################################################################## 100.0%</span>
+<span class="o">==&gt;</span> صب rust-1.49.0_1.big_sur.bottle.tar.gz
+<span class="o">==&gt;</span> ملاحظات
+تم تثبيت إكمال Bash في:
+  /usr/local/etc/bash_completion.d
+<span class="o">==&gt;</span> الملخص
+🍺  /usr/local/Cellar/rust/1.49.0_1: 15,736 ملفًا، 606.2 ميجابايت
+</code></pre></div></div>
+
+<p>تم التثبيت بنجاح.</p>
+
+<p>عند تشغيل <code class="language-plaintext highlighter-rouge">cargo</code> في الطرفية، يكون الناتج كما يلي:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>مدير حزم Rust
+</code></pre></div></div>
+
+<p>الاستخدام:
+    cargo [خيارات] [أمر فرعي]</p>
+
+<p>الخيارات:
+    -V, –version           طباعة معلومات الإصدار والخروج
+        –list              عرض قائمة الأوامر المثبتة
+        –explain <code>    تشغيل `rustc --explain CODE`
+    -v, --verbose           استخدام الإخراج التفصيلي (-vv تفصيلي جدًا/إخراج build.rs)
+    -q, --quiet             عدم طباعة أي إخراج على stdout
+        --color <WHEN>      التلوين: تلقائي، دائمًا، أبدًا
+        --frozen            يتطلب أن يكون Cargo.lock والذاكرة المؤقتة محدثين
+        --locked            يتطلب أن يكون Cargo.lock محدثًا
+        --offline           التشغيل دون الوصول إلى الشبكة
+    -Z <FLAG>...            أعلام غير مستقرة (للإصدارات الليلية فقط) لـ Cargo، انظر 'cargo -Z help' للتفاصيل
+    -h, --help              طباعة معلومات المساعدة</FLAG></WHEN></code></p>
+
+<p>بعض أوامر Cargo الشائعة هي (راجع جميع الأوامر باستخدام –list):
+    build, b    تجميع الحزمة الحالية
+    check, c    تحليل الحزمة الحالية والإبلاغ عن الأخطاء، ولكن دون إنشاء ملفات كائن
+    clean       إزالة دليل الهدف
+    doc         بناء توثيق هذه الحزمة والتبعيات الخاصة بها
+    new         إنشاء حزمة Cargo جديدة
+    init        إنشاء حزمة Cargo جديدة في دليل موجود
+    run, r      تشغيل ملف ثنائي أو مثال من الحزمة المحلية
+    test, t     تشغيل الاختبارات
+    bench       تشغيل المقاييس
+    update      تحديث التبعيات المدرجة في Cargo.lock
+    search      البحث في السجل عن الصناديق
+    publish     تعبئة الحزمة وتحميلها إلى السجل
+    install     تثبيت ملف ثنائي لـ Rust. الموقع الافتراضي هو $HOME/.cargo/bin
+    uninstall   إلغاء تثبيت ملف ثنائي لـ Rust</p>
+
+<p>راجع ‘cargo help <command />’ للحصول على مزيد من المعلومات حول أمر معين.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+لا تحتاج إلى فهم جميع الأوامر. يكفي أن تعرف الأوامر الشائعة. أوامر `build` و `run` مهمة جدًا.
+
+استمر في قراءة وثائق الموقع الرسمي:
+
+```c
+لنكتب تطبيقًا صغيرًا باستخدام بيئة تطوير Rust الجديدة التي أعددناها. للبدء، سنستخدم Cargo لإنشاء مشروع جديد لنا. في الطرفية التي تفضلها، قم بتشغيل:
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cargo new hello-rust
+</code></pre></div></div>
+
+<p>سيؤدي هذا إلى إنشاء دليل جديد باسم <code class="language-plaintext highlighter-rouge">hello-rust</code> يحتوي على الملفات التالية:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>hello-rust
+|- Cargo.toml
+|- src
+  |- main.rs
+</code></pre></div></div>
+
+<p>ملف <code class="language-plaintext highlighter-rouge">Cargo.toml</code> هو ملف البيان (manifest) لـ Rust. إنه المكان الذي تحتفظ فيه ببيانات التعريف (metadata) لمشروعك، بالإضافة إلى التبعيات (dependencies).</p>
+
+<p><code class="language-plaintext highlighter-rouge">src/main.rs</code> هو المكان الذي سنكتب فيه كود التطبيق الخاص بنا.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>هذا يشرح كيفية إنشاء المشروع. بعد ذلك، سنقوم بإنشائه.
+</code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cargo new hello-rust
+</code></pre></div></div>
+
+<p>تم إنشاء حزمة ثنائية (تطبيق) <code class="language-plaintext highlighter-rouge">hello-rust</code></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+نستخدم VSCode لفتح المشروع.
+
+main.rs:
+
+```rust
+fn main() {
+    println!("Hello, world!");
+}
+</code></pre></div></div>
+
+<p>ملاحظة: الكود أعلاه مكتوب بلغة البرمجة Rust ويقوم بطباعة “Hello, world!” عند تنفيذه. لا يحتاج إلى ترجمة لأنه جزء من التعليمات البرمجية.</p>
+
+<p>بعد ذلك، من الطبيعي أن نفكر في بناء وتشغيل البرنامج.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cargo build
+</code></pre></div></div>
+
+<p>خطأ: تعذر العثور على ملف <code class="language-plaintext highlighter-rouge">Cargo.toml</code> في <code class="language-plaintext highlighter-rouge">/Users/lzw/ideas/curious-courses/program/run/rust</code> أو أي دليل أب</p>
+
+<p>حدث خطأ. لماذا؟ هذا يشير إلى أن <code class="language-plaintext highlighter-rouge">cargo</code> يمكنه العمل فقط داخل دليل المشروع. بعد ذلك، تم الانتقال إلى الدليل الفرعي عن طريق تشغيل الأمر <code class="language-plaintext highlighter-rouge">cd hello-rust</code>.</p>
+
+<p>في هذه اللحظة، تساءلت: ماذا سيحدث إذا قمت بتشغيله مباشرة؟</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cargo run
+   
+   يتم تجميع hello-rust v0.1.0 <span class="o">(</span>/Users/lzw/ideas/curious-courses/program/run/rust/hello-rust<span class="o">)</span>
+    تم الانتهاء من التجميع <span class="o">[</span>بدون تحسين + معلومات تصحيح] target<span class="o">(</span>s<span class="o">)</span> في 4.43 ثانية
+     تشغيل <span class="sb">`</span>target/debug/hello-rust<span class="sb">`</span>
+مرحبًا بالعالم!
+</code></pre></div></div>
+
+<p>حسنًا، لقد نجحت. تم إخراج السلسلة النصية، والبرنامج بدأ يعمل الآن.</p>
+
+<p>جرب تعديل البرنامج.</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>بعد تشغيل <code class="language-plaintext highlighter-rouge">cargo run</code>، ظهر:</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   يتم تجميع hello-rust v0.1.0 <span class="o">(</span>/Users/lzw/ideas/curious-courses/program/run/rust/hello-rust<span class="o">)</span>
+خطأ: وسيط التنسيق يجب أن يكون نصًا حرفيًا
+ <span class="nt">--</span><span class="o">&gt;</span> src/main.rs:2:14
+  |
+2 |     println!<span class="o">(</span>2+3<span class="o">)</span><span class="p">;</span>
+  |              ^^^
+  |
+مساعدة: قد تكون ناقصًا نصًا حرفيًا للتنسيق معه
+  |
+2 |     println!<span class="o">(</span><span class="s2">"{}"</span>, 2+3<span class="o">)</span><span class="p">;</span>
+  |              ^^^^^
+</code></pre></div></div>
+
+<p>خطأ: إيقاف العملية بسبب خطأ سابق</p>
+
+<p>خطأ: تعذر تجميع <code class="language-plaintext highlighter-rouge">hello-rust</code></p>
+
+<p>لمعرفة المزيد، قم بتشغيل الأمر مرة أخرى مع الخيار <code class="language-plaintext highlighter-rouge">--verbose</code>.</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+لم أتعلم أي قواعد لغة Rust بعد. بناءً على حدسنا، قمنا بتعديل الكود وحدث خطأ. رسالة الخطأ هذه جيدة جدًا، حيث أخبرتنا بالفعل كيف يمكننا إصلاحه.
+
+```rust
+fn main() {
+    println!("{}", 2+3);
+}
+</code></pre></div></div>
+
+<p><strong>ترجمة الكود:</strong></p>
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nd">println!</span><span class="p">(</span><span class="s">"{}"</span><span class="p">,</span> <span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><strong>ملاحظة:</strong> الكود مكتوب بلغة Rust ولا يحتاج إلى ترجمة حيث أن الأكواد البرمجية تُكتب عادةً بالإنجليزية. ومع ذلك، يمكن شرح الكود باللغة العربية:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">fn main() { ... }</code>: تعريف الدالة الرئيسية التي يتم تنفيذها عند تشغيل البرنامج.</li>
+  <li><code class="language-plaintext highlighter-rouge">println!("{}", 2+3);</code>: طباعة نتيجة عملية الجمع بين الرقمين 2 و 3. العلامة <code class="language-plaintext highlighter-rouge">{}</code> تُستخدم لوضع القيمة التي سيتم طباعتها.</li>
+</ul>
+
+<p>هذه المرة تم التصحيح بشكل صحيح، وتم بالفعل إخراج الرقم 5.</p>
+
+<p>بالمناسبة، ماذا عن الأمر <code class="language-plaintext highlighter-rouge">build</code>؟</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>cargo build
+    Finished dev <span class="o">[</span>unoptimized + debuginfo] target<span class="o">(</span>s<span class="o">)</span> <span class="k">in </span>0.00s
+</code></pre></div></div>
+
+<p>لماذا نحتاج إلى عملية البناء (build)؟ لأنه قد نرغب فقط في إنشاء البرنامج القابل للتنفيذ دون الرغبة في تنفيذه مباشرة. ربما بالنسبة لبعض البرامج الكبيرة، يكون التنفيذ مكلفًا من حيث الوقت. أو ربما نريد إنشاء البرنامج محليًا ثم نقله إلى خادم بعيد للتنفيذ.</p>
+
+<p>لقد نجحنا في تشغيل برنامج Rust. الخطوة التالية هي التعرف على المزيد من قواعد لغة Rust، حتى نتمكن من العثور على التمثيلات الرمزية للمفاهيم التي ناقشناها في “حل ألغاز علوم الكمبيوتر”، مثل المتغيرات والدوال واستدعاء الدوال والتعابير.</p>
+
+<hr />
+
+<h5 id="تمرين-صغير">تمرين صغير</h5>
+
+<ul>
+  <li>حاول أن تجرب برمجة Rust على جهاز الكمبيوتر الخاص بك كما هو موضح أعلاه.</li>
+  <li>بعد الانتهاء من التمرين، يمكنك تقديم ملخص لا يتجاوز مائة كلمة أو إضافة إلى هذه المقالة.</li>
+</ul>
+
+<hr />
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

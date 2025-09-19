@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>SSH Tunneling</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>SSH Tunneling | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="SSH Tunneling" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Tunneling with Proxy" />
+<meta property="og:description" content="Tunneling with Proxy" />
+<link rel="canonical" href="https://lzwjava.github.io/ssh-en" />
+<meta property="og:url" content="https://lzwjava.github.io/ssh-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-02T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="SSH Tunneling" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-02T00:00:00+08:00","datePublished":"2025-02-02T00:00:00+08:00","description":"Tunneling with Proxy","headline":"SSH Tunneling","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ssh-en"},"url":"https://lzwjava.github.io/ssh-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       SSH Tunneling | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2025-02-02-ssh-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2025-02-02-ssh-en.md</span> -->
+      
+
+      <!-- <span>2025-02-02-ssh-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.02</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ssh-en" selected>English</option>
+        <option value="/ssh-zh" >中文</option>
+        <option value="/ssh-ja" >日本語</option>
+        <option value="/ssh-es" >Español</option>
+        <option value="/ssh-hi" >हिंदी</option>
+        <option value="/ssh-fr" >Français</option>
+        <option value="/ssh-de" >Deutsch</option>
+        <option value="/ssh-ar" >العربية</option>
+        <option value="/ssh-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <h2 id="tunneling-with-proxy">Tunneling with Proxy</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code> % <span class="nv">GIT_TRACE</span><span class="o">=</span>1 <span class="nv">GIT_CURL_VERBOSE</span><span class="o">=</span>1 git push
+21:32:14.216308 exec-cmd.c:139          trace: resolved executable path from Darwin stack: /Applications/Xcode.app/Contents/Developer/usr/bin/git
+21:32:14.216594 exec-cmd.c:238          trace: resolved executable <span class="nb">dir</span>: /Applications/Xcode.app/Contents/Developer/usr/bin
+21:32:14.216949 git.c:460               trace: built-in: git push
+21:32:14.218655 run-command.c:655       trace: run_command: <span class="nb">unset </span>GIT_PREFIX<span class="p">;</span> ssh git@github.com <span class="s1">'git-receive-pack '</span><span class="se">\'</span><span class="s1">'lzwjava/lzwjava.github.io.git'</span><span class="se">\'</span><span class="s1">''</span>
+Everything up-to-date
+</code></pre></div></div>
+
+<p>I experienced slow <code class="language-plaintext highlighter-rouge">git push</code> operations, with delays occurring during the <code class="language-plaintext highlighter-rouge">ssh git@github.com</code> phase. To address this, I configured SSH to use a proxy.</p>
+
+<p>To use <code class="language-plaintext highlighter-rouge">corkscrew</code> for SSH tunneling, you’ll first need to install it. On macOS, you can use Homebrew with the command: <code class="language-plaintext highlighter-rouge">brew install corkscrew</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">~/.ssh/config</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa
+    ProxyCommand corkscrew localhost 7890 %h %p
+</code></pre></div></div>
+
+<p>Log:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% ssh root@138.201.174.0 <span class="nt">-vvv</span>
+🚀 <span class="k">**</span>Proxy Settings Detected:<span class="k">**</span>
+   - HTTP_PROXY: http://127.0.0.1:7890
+   - HTTPS_PROXY: http://127.0.0.1:7890
+
+OpenSSH_9.8p1, LibreSSL 3.3.6
+debug1: Reading configuration data /Users/lzwjava/.ssh/config
+debug1: /Users/lzwjava/.ssh/config line 1: Applying options <span class="k">for</span> <span class="k">*</span>
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 21: include /etc/ssh/ssh_config.d/<span class="k">*</span> matched no files
+debug1: /etc/ssh/ssh_config line 54: Applying options <span class="k">for</span> <span class="k">*</span>
+debug2: resolve_canonicalize: <span class="nb">hostname </span>138.201.174.0 is address
+debug3: expanded UserKnownHostsFile <span class="s1">'~/.ssh/known_hosts'</span> -&gt; <span class="s1">'/Users/lzwjava/.ssh/known_hosts'</span>
+debug3: expanded UserKnownHostsFile <span class="s1">'~/.ssh/known_hosts2'</span> -&gt; <span class="s1">'/Users/lzwjava/.ssh/known_hosts2'</span>
+debug1: Authenticator provider <span class="nv">$SSH_SK_PROVIDER</span> did not resolve<span class="p">;</span> disabling
+debug3: channel_clear_timeouts: clearing
+debug1: Executing proxy <span class="nb">command</span>: <span class="nb">exec </span>corkscrew localhost 7890 138.201.174.0 22
+debug1: identity file /Users/lzwjava/.ssh/id_rsa <span class="nb">type </span>0
+debug1: identity file /Users/lzwjava/.ssh/id_rsa-cert <span class="nb">type</span> <span class="nt">-1</span>
+debug1: Local version string SSH-2.0-OpenSSH_9.8
+debug1: Remote protocol version 2.0, remote software version OpenSSH_9.6p1 Ubuntu-3ubuntu13.5
+debug1: compat_banner: match: OpenSSH_9.6p1 Ubuntu-3ubuntu13.5 pat OpenSSH<span class="k">*</span> compat 0x04000000
+debug2: fd 5 setting O_NONBLOCK
+debug2: fd 4 setting O_NONBLOCK
+debug1: Authenticating to 138.201.174.0:22 as <span class="s1">'root'</span>
+debug3: record_hostkey: found key <span class="nb">type </span>ED25519 <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:164
+debug3: record_hostkey: found key <span class="nb">type </span>RSA <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:165
+debug3: record_hostkey: found key <span class="nb">type </span>ECDSA <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:166
+debug3: load_hostkeys_file: loaded 3 keys from 138.201.174.0
+debug1: load_hostkeys: fopen /Users/lzwjava/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug3: order_hostkeyalgs: have matching best-preference key <span class="nb">type </span>ssh-ed25519-cert-v01@openssh.com, using HostkeyAlgorithms verbatim
+debug3: send packet: <span class="nb">type </span>20
+debug1: SSH2_MSG_KEXINIT sent
+debug3: receive packet: <span class="nb">type </span>20
+debug1: SSH2_MSG_KEXINIT received
+debug2: <span class="nb">local </span>client KEXINIT proposal
+debug2: KEX algorithms: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c,kex-strict-c-v00@openssh.com
+debug2: host key algorithms: ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: compression ctos: none,zlib@openssh.com,zlib
+debug2: compression stoc: none,zlib@openssh.com,zlib
+debug2: languages ctos:
+debug2: languages stoc:
+debug2: first_kex_follows 0
+debug2: reserved 0
+debug2: peer server KEXINIT proposal
+debug2: KEX algorithms: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-s,kex-strict-s-v00@openssh.com
+debug2: host key algorithms: rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519
+debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: compression ctos: none,zlib@openssh.com
+debug2: compression stoc: none,zlib@openssh.com
+debug2: languages ctos:
+debug2: languages stoc:
+debug2: first_kex_follows 0
+debug2: reserved 0
+debug3: kex_choose_conf: will use strict KEX ordering
+debug1: kex: algorithm: sntrup761x25519-sha512@openssh.com
+debug1: kex: host key algorithm: ssh-ed25519
+debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none
+debug3: send packet: <span class="nb">type </span>30
+debug1: expecting SSH2_MSG_KEX_ECDH_REPLY
+debug3: receive packet: <span class="nb">type </span>31
+debug1: SSH2_MSG_KEX_ECDH_REPLY received
+debug1: Server host key: ssh-ed25519 SHA256:+5SaMkJXG9yZrsYjXgxFfRZpvb6qjc/arFG2Nk4Vv48
+debug3: record_hostkey: found key <span class="nb">type </span>ED25519 <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:164
+debug3: record_hostkey: found key <span class="nb">type </span>RSA <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:165
+debug3: record_hostkey: found key <span class="nb">type </span>ECDSA <span class="k">in </span>file /Users/lzwjava/.ssh/known_hosts:166
+debug3: load_hostkeys_file: loaded 3 keys from 138.201.174.0
+debug1: load_hostkeys: fopen /Users/lzwjava/.ssh/known_hosts2: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts: No such file or directory
+debug1: load_hostkeys: fopen /etc/ssh/ssh_known_hosts2: No such file or directory
+debug1: Host <span class="s1">'138.201.174.0'</span> is known and matches the ED25519 host key.
+debug1: Found key <span class="k">in</span> /Users/lzwjava/.ssh/known_hosts:164
+debug3: send packet: <span class="nb">type </span>21
+debug1: ssh_packet_send2_wrapped: resetting send seqnr 3
+debug2: ssh_set_newkeys: mode 1
+debug1: rekey out after 134217728 blocks
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: Sending SSH2_MSG_EXT_INFO
+debug3: send packet: <span class="nb">type </span>7
+debug1: expecting SSH2_MSG_NEWKEYS
+debug3: receive packet: <span class="nb">type </span>21
+debug1: ssh_packet_read_poll2: resetting <span class="nb">read </span>seqnr 3
+debug1: SSH2_MSG_NEWKEYS received
+debug2: ssh_set_newkeys: mode 0
+debug1: rekey <span class="k">in </span>after 134217728 blocks
+debug2: KEX algorithms: sntrup761x25519-sha512@openssh.com,curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,ext-info-c,kex-strict-c-v00@openssh.com
+debug2: host key algorithms: ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-512-cert-v01@openssh.com,rsa-sha2-256-cert-v01@openssh.com,ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256
+debug2: ciphers ctos: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: ciphers stoc: chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+debug2: MACs ctos: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: MACs stoc: umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+debug2: compression ctos: none,zlib@openssh.com,zlib
+debug2: compression stoc: none,zlib@openssh.com,zlib
+debug2: languages ctos:
+debug2: languages stoc:
+debug2: first_kex_follows 0
+debug2: reserved 0
+debug3: send packet: <span class="nb">type </span>5
+debug3: receive packet: <span class="nb">type </span>7
+debug1: SSH2_MSG_EXT_INFO received
+debug3: kex_input_ext_info: extension server-sig-algs
+debug1: kex_ext_info_client_parse: server-sig-algs<span class="o">=</span>&lt;ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256&gt;
+debug3: kex_input_ext_info: extension publickey-hostbound@openssh.com
+debug1: kex_ext_info_check_ver: publickey-hostbound@openssh.com<span class="o">=</span>&lt;0&gt;
+debug3: kex_input_ext_info: extension ping@openssh.com
+debug1: kex_ext_info_check_ver: ping@openssh.com<span class="o">=</span>&lt;0&gt;
+debug3: receive packet: <span class="nb">type </span>6
+debug2: service_accept: ssh-userauth
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug3: send packet: <span class="nb">type </span>50
+debug3: receive packet: <span class="nb">type </span>7
+debug1: SSH2_MSG_EXT_INFO received
+debug3: kex_input_ext_info: extension server-sig-algs
+debug1: kex_ext_info_client_parse: server-sig-algs<span class="o">=</span>&lt;ssh-ed25519,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,rsa-sha2-512,rsa-sha2-256&gt;
+debug3: receive packet: <span class="nb">type </span>51
+debug1: Authentications that can <span class="k">continue</span>: publickey,password
+debug3: start over, passed a different list publickey,password
+debug3: preferred publickey,keyboard-interactive,password
+debug3: authmethod_lookup publickey
+debug3: remaining preferred: keyboard-interactive,password
+debug3: authmethod_is_enabled publickey
+debug1: Next authentication method: publickey
+debug3: ssh_get_authentication_socket_path: path <span class="s1">'/private/tmp/com.apple.launchd.cTjjogIh4V/Listeners'</span>
+debug1: get_agent_identities: bound agent to hostkey
+debug1: get_agent_identities: agent returned 3 keys
+debug1: Will attempt key: /Users/lzwjava/.ssh/id_rsa RSA SHA256:bF6g9+hPW6crim36xewb/0Pvl/Y34 explicit agent
+debug1: Will attempt key: lzwjava@Zhiweis-MacBook-Air.local RSA SHA256:ibpUGVDyOYKOQArPUs5ZSnp0oECaZJWSPWAthOYBX/8 agent
+debug1: Will attempt key: /Users/lzwjava/Downloads/LightsailDefaultKey-ap-northeast-1.pem RSA SHA256:AQCwUpsEP8cawJtCQNidQq0poQgAgkUuFYQMjxw8evI agent
+debug2: pubkey_prepare: <span class="k">done
+</span>debug1: Offering public key: /Users/lzwjava/.ssh/id_rsa RSA SHA256:bF6g9+hPW6crim36xewb/0Pvl/Y34 explicit agent
+debug3: send packet: <span class="nb">type </span>50
+debug2: we sent a publickey packet, <span class="nb">wait </span><span class="k">for </span>reply
+debug3: receive packet: <span class="nb">type </span>60
+debug1: Server accepts key: /Users/lzwjava/.ssh/id_rsa RSA SHA256:bF6g9+hPW6crim36xewb/0Pvl/Y34 explicit agent
+debug3: sign_and_send_pubkey: using publickey-hostbound-v00@openssh.com with RSA SHA256:bF6g9+hPW6crim36xewb/0Pvl/Y34
+debug3: sign_and_send_pubkey: signing using rsa-sha2-512 SHA256:bF6g9+hPW6crim36xewb/0Pvl/Y34
+debug3: send packet: <span class="nb">type </span>50
+debug3: receive packet: <span class="nb">type </span>52
+Authenticated to 138.201.174.0 <span class="o">(</span>via proxy<span class="o">)</span> using <span class="s2">"publickey"</span><span class="nb">.</span>
+debug1: channel 0: new session <span class="o">[</span>client-session] <span class="o">(</span>inactive <span class="nb">timeout</span>: 0<span class="o">)</span>
+debug3: ssh_session2_open: channel_new: 0
+debug2: channel 0: send open
+debug3: send packet: <span class="nb">type </span>90
+debug1: Requesting no-more-sessions@openssh.com
+debug3: send packet: <span class="nb">type </span>80
+debug1: Entering interactive session.
+debug1: pledge: filesystem
+debug3: client_repledge: enter
+debug3: receive packet: <span class="nb">type </span>80
+debug1: client_input_global_request: rtype hostkeys-00@openssh.com want_reply 0
+debug3: client_input_hostkeys: received RSA key SHA256:iw5lLSMAuL30RZCUe+w7sbdXV0DI/gJ+Jwua+mmBVGw
+debug3: client_input_hostkeys: received ECDSA key SHA256:XKwEiSX70VqFOFCxJ0sUl/Au0bbyOSUaaQz/9WSe8Gc
+debug3: client_input_hostkeys: received ED25519 key SHA256:+5SaMkJXG9yZrsYjXgxFfRZpvb6qjc/arFG2Nk4Vv48
+debug1: client_input_hostkeys: searching /Users/lzwjava/.ssh/known_hosts <span class="k">for </span>138.201.174.0 / <span class="o">(</span>none<span class="o">)</span>
+debug3: hostkeys_foreach: reading file <span class="s2">"/Users/lzwjava/.ssh/known_hosts"</span>
+debug3: hostkeys_find: found ssh-ed25519 key at /Users/lzwjava/.ssh/known_hosts:164
+debug3: hostkeys_find: found ssh-rsa key at /Users/lzwjava/.ssh/known_hosts:165
+debug3: hostkeys_find: found ecdsa-sha2-nistp256 key at /Users/lzwjava/.ssh/known_hosts:166
+debug1: client_input_hostkeys: searching /Users/lzwjava/.ssh/known_hosts2 <span class="k">for </span>138.201.174.0 / <span class="o">(</span>none<span class="o">)</span>
+debug1: client_input_hostkeys: hostkeys file /Users/lzwjava/.ssh/known_hosts2 does not exist
+debug3: client_input_hostkeys: 3 server keys: 0 new, 3 retained, 0 incomplete match. 0 to remove
+debug1: client_input_hostkeys: no new or deprecated keys from server
+debug3: client_repledge: enter
+debug3: receive packet: <span class="nb">type </span>4
+debug1: Remote: /root/.ssh/authorized_keys:1: key options: agent-forwarding port-forwarding pty user-rc x11-forwarding
+debug3: receive packet: <span class="nb">type </span>4
+debug1: Remote: /root/.ssh/authorized_keys:1: key options: agent-forwarding port-forwarding pty user-rc x11-forwarding
+debug3: receive packet: <span class="nb">type </span>91
+debug2: channel_input_open_confirmation: channel 0: callback start
+debug2: client_session2_setup: <span class="nb">id </span>0
+debug2: channel 0: request pty-req confirm 1
+debug3: send packet: <span class="nb">type </span>98
+debug1: Sending environment.
+debug3: Ignored <span class="nb">env </span>TERM_SESSION_ID
+debug3: Ignored <span class="nb">env </span>SSH_AUTH_SOCK
+debug1: channel 0: setting <span class="nb">env </span>LC_TERMINAL_VERSION <span class="o">=</span> <span class="s2">"3.4.19"</span>
+debug2: channel 0: request <span class="nb">env </span>confirm 0
+debug3: send packet: <span class="nb">type </span>98
+debug3: Ignored <span class="nb">env </span>COLORFGBG
+debug3: Ignored <span class="nb">env </span>ITERM_PROFILE
+debug3: Ignored <span class="nb">env </span>XPC_FLAGS
+debug3: Ignored <span class="nb">env </span>PWD
+debug3: Ignored <span class="nb">env </span>SHELL
+debug3: Ignored <span class="nb">env </span>__CFBundleIdentifier
+debug1: channel 0: setting <span class="nb">env </span>LC_CTYPE <span class="o">=</span> <span class="s2">"UTF-8"</span>
+debug2: channel 0: request <span class="nb">env </span>confirm 0
+debug3: send packet: <span class="nb">type </span>98
+debug3: Ignored <span class="nb">env </span>TERM_PROGRAM_VERSION
+debug3: Ignored <span class="nb">env </span>TERM_PROGRAM
+debug3: Ignored <span class="nb">env </span>PATH
+debug1: channel 0: setting <span class="nb">env </span>LC_TERMINAL <span class="o">=</span> <span class="s2">"iTerm2"</span>
+debug2: channel 0: request <span class="nb">env </span>confirm 0
+debug3: send packet: <span class="nb">type </span>98
+debug3: Ignored <span class="nb">env </span>COLORTERM
+debug3: Ignored <span class="nb">env </span>COMMAND_MODE
+debug3: Ignored <span class="nb">env </span>TERM
+debug3: Ignored <span class="nb">env </span>HOME
+debug3: Ignored <span class="nb">env </span>TMPDIR
+debug3: Ignored <span class="nb">env </span>USER
+debug3: Ignored <span class="nb">env </span>XPC_SERVICE_NAME
+debug3: Ignored <span class="nb">env </span>LOGNAME
+debug3: Ignored <span class="nb">env </span>ITERM_SESSION_ID
+debug3: Ignored <span class="nb">env </span>__CF_USER_TEXT_ENCODING
+debug3: Ignored <span class="nb">env </span>SHLVL
+debug3: Ignored <span class="nb">env </span>OLDPWD
+debug3: Ignored <span class="nb">env </span>GLOBAL_PROXY
+debug3: Ignored <span class="nb">env </span>NO_PROXY
+debug3: Ignored <span class="nb">env </span>HOMEBREW_PREFIX
+debug3: Ignored <span class="nb">env </span>HOMEBREW_CELLAR
+debug3: Ignored <span class="nb">env </span>HOMEBREW_REPOSITORY
+debug3: Ignored <span class="nb">env </span>INFOPATH
+debug3: Ignored <span class="nb">env </span>HTTP_PROXY
+debug3: Ignored <span class="nb">env </span>HTTPS_PROXY
+debug3: Ignored <span class="nb">env </span>http_proxy
+debug3: Ignored <span class="nb">env </span>https_proxy
+debug3: Ignored <span class="nb">env </span>HTTP_PROXY_REQUEST_FULLURI
+debug3: Ignored <span class="nb">env </span>HTTPS_PROXY_REQUEST_FULLURI
+debug3: Ignored <span class="nb">env </span>ALL_PROXY
+debug3: Ignored <span class="nb">env </span>SSL_CERT_FILE
+debug3: Ignored <span class="nb">env </span>HOMEBREW_NO_AUTO_UPDATE
+debug3: Ignored <span class="nb">env </span>GOOGLE_APPLICATION_CREDENTIALS
+debug3: Ignored <span class="nb">env </span>DEEPSEEK_API_KEY
+debug3: Ignored <span class="nb">env </span>MISTRAL_API_KEY
+debug3: Ignored <span class="nb">env </span>CODESTRAL_API_KEY
+debug3: Ignored <span class="nb">env </span>SPEECH_ENDPOINT
+debug3: Ignored <span class="nb">env </span>DO_API_KEY
+debug3: Ignored <span class="nb">env </span>GEMINI_API_KEY
+debug3: Ignored <span class="nb">env </span>HERTZNER_API_KEY
+debug3: Ignored <span class="nb">env </span>GROK_API_KEY
+debug3: Ignored <span class="nb">env </span>_
+debug2: channel 0: request shell confirm 1
+debug3: send packet: <span class="nb">type </span>98
+debug3: client_repledge: enter
+debug1: pledge: fork
+debug2: channel_input_open_confirmation: channel 0: callback <span class="k">done
+</span>debug2: channel 0: open confirm rwindow 0 rmax 32768
+debug3: receive packet: <span class="nb">type </span>99
+debug2: channel_input_status_confirm: <span class="nb">type </span>99 <span class="nb">id </span>0
+debug2: PTY allocation request accepted on channel 0
+debug2: channel 0: rcvd adjust 2097152
+debug3: receive packet: <span class="nb">type </span>99
+debug2: channel_input_status_confirm: <span class="nb">type </span>99 <span class="nb">id </span>0
+debug2: shell request accepted on channel 0
+</code></pre></div></div>
+
+<h2 id="set-up-ssh">Set Up SSH</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>openssh-server
+
+<span class="nb">sudo </span>systemctl start ssh
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>ssh
+
+<span class="nb">sudo </span>systemctl status ssh
+</code></pre></div></div>
+
+<h2 id="install-dependencies-for-outline-client">Install Dependencies for Outline Client</h2>
+
+<p>The Outline Client requires <code class="language-plaintext highlighter-rouge">fuse</code> to run. Install it using the following commands:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>apt update
+<span class="nb">sudo </span>apt <span class="nb">install </span>fuse
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

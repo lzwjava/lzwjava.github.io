@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Configuración de un Servidor en Azure</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuración de un Servidor en Azure | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Configuración de un Servidor en Azure" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Configurar un servidor en Microsoft Azure y configurarlo para abrir puertos específicos es esencial para diversas aplicaciones, como servicios de alojamiento, proxies y más. Esta guía te llevará paso a paso a través del proceso de creación de una Máquina Virtual (VM) en Azure y la configuración del firewall para abrir el puerto 1080." />
+<meta property="og:description" content="Configurar un servidor en Microsoft Azure y configurarlo para abrir puertos específicos es esencial para diversas aplicaciones, como servicios de alojamiento, proxies y más. Esta guía te llevará paso a paso a través del proceso de creación de una Máquina Virtual (VM) en Azure y la configuración del firewall para abrir el puerto 1080." />
+<link rel="canonical" href="https://lzwjava.github.io/azure-vm-es" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-vm-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuración de un Servidor en Azure" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Configurar un servidor en Microsoft Azure y configurarlo para abrir puertos específicos es esencial para diversas aplicaciones, como servicios de alojamiento, proxies y más. Esta guía te llevará paso a paso a través del proceso de creación de una Máquina Virtual (VM) en Azure y la configuración del firewall para abrir el puerto 1080.","headline":"Configuración de un Servidor en Azure","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-vm-es"},"url":"https://lzwjava.github.io/azure-vm-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og9.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og9.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Configuración de un Servidor en Azure | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2024-12-20-azure-vm-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2024-12-20-azure-vm-es.md</span> -->
+      
+
+      <!-- <span>2024-12-20-azure-vm-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-vm-en" >English</option>
+        <option value="/azure-vm-zh" >中文</option>
+        <option value="/azure-vm-ja" >日本語</option>
+        <option value="/azure-vm-es" selected>Español</option>
+        <option value="/azure-vm-hi" >हिंदी</option>
+        <option value="/azure-vm-fr" >Français</option>
+        <option value="/azure-vm-de" >Deutsch</option>
+        <option value="/azure-vm-ar" >العربية</option>
+        <option value="/azure-vm-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Configurar un servidor en Microsoft Azure y configurarlo para abrir puertos específicos es esencial para diversas aplicaciones, como servicios de alojamiento, proxies y más. Esta guía te llevará paso a paso a través del proceso de creación de una Máquina Virtual (VM) en Azure y la configuración del firewall para abrir el puerto 1080.</p>
+
+<h2 id="tabla-de-contenidos">Tabla de Contenidos</h2>
+
+<ol>
+  <li><a href="#prerequisites">Requisitos previos</a></li>
+  <li><a href="#creating-an-azure-virtual-machine">Creación de una máquina virtual en Azure</a></li>
+  <li><a href="#configuring-the-firewall-to-open-port-1080">Configuración del firewall para abrir el puerto 1080</a></li>
+  <li><a href="#testing-the-configuration">Prueba de la configuración</a></li>
+  <li><a href="#conclusion">Conclusión</a></li>
+</ol>
+
+<h2 id="requisitos-previos">Requisitos Previos</h2>
+
+<p>Antes de comenzar, asegúrate de tener lo siguiente:</p>
+
+<ul>
+  <li>Una cuenta activa de <a href="https://azure.microsoft.com/">Microsoft Azure</a>.</li>
+  <li>Conocimientos básicos sobre el uso del Portal de Azure.</li>
+  <li>Un cliente SSH (como Terminal en macOS/Linux o PuTTY en Windows) para acceder a la máquina virtual.</li>
+</ul>
+
+<h2 id="creación-de-una-máquina-virtual-en-azure">Creación de una Máquina Virtual en Azure</h2>
+
+<ol>
+  <li>
+    <p>Inicia sesión en el Portal de Azure:
+Dirígete al <a href="https://portal.azure.com/">Portal de Azure</a> e inicia sesión con tus credenciales.</p>
+  </li>
+  <li>Crear una nueva máquina virtual:
+    <ul>
+      <li>Haz clic en “Crear un recurso” en la esquina superior izquierda.</li>
+      <li>Selecciona “Máquina virtual” de la lista de recursos disponibles.</li>
+    </ul>
+  </li>
+  <li>Configurar los aspectos básicos de la VM:
+    <ul>
+      <li>Suscripción: Elige tu suscripción de Azure.</li>
+      <li>Grupo de recursos: Crea un nuevo grupo de recursos o selecciona uno existente.</li>
+      <li>Nombre de la máquina virtual: Ingresa un nombre para tu VM (por ejemplo, <code class="language-plaintext highlighter-rouge">AzureServer</code>).</li>
+      <li>Región: Selecciona la región más cercana a tu audiencia objetivo.</li>
+      <li>Imagen: Elige una imagen del sistema operativo (por ejemplo, Ubuntu 22.04 LTS).</li>
+      <li>Tamaño: Selecciona un tamaño de VM según tus necesidades de rendimiento.</li>
+      <li>Autenticación: Elige la clave pública SSH para un acceso seguro. Sube tu clave pública SSH.</li>
+    </ul>
+  </li>
+  <li>Configurar la red:
+    <ul>
+      <li>Asegúrate de que la máquina virtual esté colocada en la red virtual y subred adecuadas.</li>
+      <li>Deja habilitada la IP pública para permitir el acceso externo.</li>
+    </ul>
+  </li>
+  <li>Revisar y Crear:
+    <ul>
+      <li>Revisa tus configuraciones.</li>
+      <li>Haz clic en “Crear” para desplegar la VM. La implementación puede tardar unos minutos.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="configuración-del-firewall-para-abrir-el-puerto-1080">Configuración del Firewall para Abrir el Puerto 1080</h2>
+
+<p>Una vez que tu máquina virtual esté en funcionamiento, deberás configurar el Grupo de Seguridad de Red (NSG) de Azure para permitir el tráfico en el puerto 1080.</p>
+
+<ol>
+  <li>Navega a la Configuración de Red de tu VM:
+    <ul>
+      <li>En el Portal de Azure, ve a “Máquinas virtuales”.</li>
+      <li>Selecciona tu VM (<code class="language-plaintext highlighter-rouge">AzureServer</code>).</li>
+      <li>Haz clic en “Redes” en la barra lateral izquierda.</li>
+    </ul>
+  </li>
+  <li>Identifica el Grupo de Seguridad de Red (NSG):
+    <ul>
+      <li>En “Interfaz de Red”, localiza el NSG asociado.</li>
+      <li>Haz clic en el NSG para gestionar sus reglas.</li>
+    </ul>
+  </li>
+  <li>Agregar una regla de seguridad de entrada:
+    <ul>
+      <li>En la configuración del NSG, ve a “Reglas de seguridad de entrada”.</li>
+      <li>Haz clic en “Agregar” para crear una nueva regla.</li>
+    </ul>
+  </li>
+  <li>Configura la Regla:
+    <ul>
+      <li>Origen: Cualquiera (o especifica un rango para mayor seguridad).</li>
+      <li>Rangos de puertos de origen: <code class="language-plaintext highlighter-rouge">*</code></li>
+      <li>Destino: Cualquiera</li>
+      <li>Rangos de puertos de destino: <code class="language-plaintext highlighter-rouge">1080</code></li>
+      <li>Protocolo: TCP</li>
+      <li>Acción: Permitir</li>
+      <li>Prioridad: <code class="language-plaintext highlighter-rouge">1000</code> (asegúrate de que no entre en conflicto con reglas existentes).</li>
+      <li>Nombre: <code class="language-plaintext highlighter-rouge">Allow-1080-TCP</code></li>
+    </ul>
+  </li>
+  <li>Guardar la Regla:
+    <ul>
+      <li>Haz clic en “Agregar” para aplicar la nueva regla.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="probando-la-configuración">Probando la Configuración</h2>
+
+<p>Después de configurar el firewall, es esencial verificar que el puerto 1080 esté abierto y accesible.</p>
+
+<ol>
+  <li>Usa Telnet para Verificar la Accesibilidad del Puerto:
+Desde tu máquina local, ejecuta:</li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet &lt;TU_IP_VM&gt; 1080
+</code></pre></div></div>
+
+<ul>
+  <li>Reemplaza <code class="language-plaintext highlighter-rouge">&lt;YOUR_VM_IP&gt;</code> con la dirección IP pública de tu máquina virtual.</li>
+  <li>Si la conexión es exitosa, el puerto está abierto y accesible.</li>
+</ul>
+
+<ol>
+  <li>Herramientas Alternativas para Verificar Puertos:
+    <ul>
+      <li>Netcat (<code class="language-plaintext highlighter-rouge">nc</code>):
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-zv</span> &lt;TU_IP_VM&gt; 1080
+</code></pre></div>        </div>
+      </li>
+      <li>Verificadores de Puertos en Línea:
+Utiliza servicios en línea como <a href="https://canyouseeme.org/">canyouseeme.org</a> para verificar si el puerto 1080 está abierto.</li>
+    </ul>
+  </li>
+  <li>Resolución de problemas:
+    <ul>
+      <li>Problemas de conexión: Verifica que las reglas del NSG estén configuradas correctamente y que cualquier firewall local en la VM esté configurado para permitir tráfico en el puerto 1080.</li>
+      <li>IP incorrecta: Asegúrate de estar utilizando la dirección IP pública correcta de tu VM.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="conclusión">Conclusión</h2>
+
+<p>Siguiendo esta guía, has configurado con éxito una Máquina Virtual de Azure y has configurado el firewall para abrir el puerto 1080. Esta configuración sienta las bases para implementar diversas aplicaciones o servicios que requieren acceso a puertos específicos.</p>
+
+<p>Para configuraciones adicionales, como configurar servicios de proxy u otras aplicaciones en el puerto 1080, consulta nuestras publicaciones dedicadas sobre <a href="#">Configuración de Proxy V2Ray</a> y <a href="#">Generación de una URL vmess personalizada</a>.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

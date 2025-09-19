@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Eclipse を Emacs に変える</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Eclipse を Emacs に変える | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Eclipse を Emacs に変える" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="エマックスユーザーとして半年間、標準位置から手を離してマウスをクリックしたり矢印キーを押したりすることを想像するのが難しいです。友人に「Alt+PとAlt+Nのショートカットを設定してXMLファイルとグラフィカルレイアウト間を迅速に切り替える」と言ったとき、彼らの反応は「なるほど」でした。マウスを使って切り替えることも問題ないと思っているようです。 しかし、私にとってそれは悪夢です。速すぎない！エマックスユーザーなら分かると思います…" />
+<meta property="og:description" content="エマックスユーザーとして半年間、標準位置から手を離してマウスをクリックしたり矢印キーを押したりすることを想像するのが難しいです。友人に「Alt+PとAlt+Nのショートカットを設定してXMLファイルとグラフィカルレイアウト間を迅速に切り替える」と言ったとき、彼らの反応は「なるほど」でした。マウスを使って切り替えることも問題ないと思っているようです。 しかし、私にとってそれは悪夢です。速すぎない！エマックスユーザーなら分かると思います…" />
+<link rel="canonical" href="https://lzwjava.github.io/eclipse-emacs-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/eclipse-emacs-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2013-11-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Eclipse を Emacs に変える" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2013-11-29T00:00:00+08:00","datePublished":"2013-11-29T00:00:00+08:00","description":"エマックスユーザーとして半年間、標準位置から手を離してマウスをクリックしたり矢印キーを押したりすることを想像するのが難しいです。友人に「Alt+PとAlt+Nのショートカットを設定してXMLファイルとグラフィカルレイアウト間を迅速に切り替える」と言ったとき、彼らの反応は「なるほど」でした。マウスを使って切り替えることも問題ないと思っているようです。 しかし、私にとってそれは悪夢です。速すぎない！エマックスユーザーなら分かると思います…","headline":"Eclipse を Emacs に変える","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/eclipse-emacs-ja"},"url":"https://lzwjava.github.io/eclipse-emacs-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og1.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og1.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Eclipse を Emacs に変える | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2013-11-29-eclipse-emacs-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2013-11-29-eclipse-emacs-ja.md</span> -->
+      
+
+      <!-- <span>2013-11-29-eclipse-emacs-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2013.11</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/eclipse-emacs-en" >English</option>
+        <option value="/eclipse-emacs-zh" >中文</option>
+        <option value="/eclipse-emacs-ja" selected>日本語</option>
+        <option value="/eclipse-emacs-es" >Español</option>
+        <option value="/eclipse-emacs-hi" >हिंदी</option>
+        <option value="/eclipse-emacs-fr" >Français</option>
+        <option value="/eclipse-emacs-de" >Deutsch</option>
+        <option value="/eclipse-emacs-ar" >العربية</option>
+        <option value="/eclipse-emacs-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>エマックスユーザーとして半年間、標準位置から手を離してマウスをクリックしたり矢印キーを押したりすることを想像するのが難しいです。友人に「Alt+PとAlt+Nのショートカットを設定してXMLファイルとグラフィカルレイアウト間を迅速に切り替える」と言ったとき、彼らの反応は「なるほど」でした。マウスを使って切り替えることも問題ないと思っているようです。
+しかし、私にとってそれは悪夢です。速すぎない！エマックスユーザーなら分かると思います…</p>
+
+<p>この記事は、迅速なEclipse「編集」環境を構築するための簡単なテクニックを説明しています。基本的には、手が標準位置に留まり、最大の効率でコーディングできるようになります！</p>
+
+<p>最も重要なのは、Emacs+プラグインをインストールすることです。「Emacs+: EclipseでのEmacs体験」を参照してください。</p>
+
+<p>コードアシスタントを有効にするためには、任意の文字でトリガーされるようにし、スペースまたは＝を押したときに自動的に補完しないようにする必要があります。CSDNからこのjarファイルをダウンロードすることをお勧めします。これにより、簡単なGoogle検索でパッケージをインポートできます。</p>
+
+<p>次に、いくつかのショートカットをカスタマイズしましょう：</p>
+
+<p>1) Alt+Pを「前のサブタブ」に、Alt+Nを「次のサブタブ」にバインドします。</p>
+
+<p>サブタブは、エディタの下のタブバーです。XMLファイルを編集するときの「グラフィカルレイアウト」と「XML」のタブです。これにより、レイアウトを瞬間的に表示できます。</p>
+
+<p>2) Ctrl+C, Ctrl+Cを「実行」にバインドします。</p>
+
+<p>これはsbclの設定からコピーしたものです。デフォルトはCtrl+F11ですが、頻繁に使用されるショートカットとしては位置が遠すぎて、エマックスユーザーにとって辛いです！私は数日間をCtrl+F11を押してから変更しました。</p>
+
+<p>3) Ctrl+X, Ctrl+Oを「次のビュー」にバインドします。（ウィンドウ内とテキストの編集中）</p>
+
+<p>これにより、Javaコードを書く際に、エディタからコンソールに瞬間的にジャンプできます。</p>
+
+<p>4) Ctrl+X, Oを「次のエディタ」にバインドします。（ウィンドウ内とテキストの編集中）</p>
+
+<p>これにより、Javaファイル間を迅速に切り替えることができます。</p>
+
+<p>5) Ctrl+Qを「クイックフィックス」にバインドします。</p>
+
+<p>これにより、<code class="language-plaintext highlighter-rouge">@string/xx</code>をタイプし、カーソルを<code class="language-plaintext highlighter-rouge">xx</code>に置いた状態でCtrl+Qを押し、Enterを押すと、<code class="language-plaintext highlighter-rouge">string.xml</code>に瞬間的にジャンプし、<code class="language-plaintext highlighter-rouge">&lt;string name="xx"&gt;TODO&lt;/string&gt;</code>内の<code class="language-plaintext highlighter-rouge">TODO</code>にカーソルが位置するようになります。</p>
+
+<p>6) Ctrl+Shift+Wを「閉じる」（ウィンドウ内）にバインドし、元のバインド（すべて閉じる）を削除します。
+元の閉じるショートカットはCtrl+Wですが、Webブラウザ、チャットボックス、ファイルエクスプローラーなどの習慣に一致します。しかし、Emacsの切り取りコマンドと衝突します。実際には、Ctrl+Shift+Wを2秒間押すと多くのファイルを閉じることができます。したがって、Ctrl+Shift+Wを「すべて閉じる」から「閉じる」に変更しても損はありません。</p>
+
+<p>問題は一つあります：Emacs+をインストールした後、コードを編集し、コードアシスタントが表示されたときに、上下矢印キーを押してもコードアシスタントの候補リストの項目を選択するのではなく、編集されているコードを上下に移動します。デフォルトではF2でアクティブ化されます。コードアシスタントをアクティブ化すると、コードアシスタントにフォーカスが移動し、上下矢印キーを使用して選択できるようになります。Ctrl+PとCtrl+Nを使ってコードの編集がまるで光のように速くなります！しかし、問題はEmacs+プラグインをインストールした後、EclipseがEmacsに似てきて、この機能が失われることです。清潔なEclipseで、Emacs（Emacs+Schemeではなく）のキーボードレイアウトを選択すると、コードアシスタントが表示されたときにCtrl+NとCtrl+Pを使用して補完項目を選択できます。誰かがStack Overflowでこれを尋ねたが、まだ答えはありません。</p>
+
+<p>もしCtrl+PとCtrl+Nを使用して補完項目を選択できるようにすれば、本当に素晴らしいですね！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Desbordamiento Gráfico Circular en el Portal de GreptimeDB</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Desbordamiento Gráfico Circular en el Portal de GreptimeDB | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Desbordamiento Gráfico Circular en el Portal de GreptimeDB" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="He presentado un problema en GitHub, https://github.com/GreptimeTeam/docs/issues/1455, titulado “GreptimeDB Portal: El gráfico circular púrpura grande excede los límites del viewport en pantallas más pequeñas.”" />
+<meta property="og:description" content="He presentado un problema en GitHub, https://github.com/GreptimeTeam/docs/issues/1455, titulado “GreptimeDB Portal: El gráfico circular púrpura grande excede los límites del viewport en pantallas más pequeñas.”" />
+<link rel="canonical" href="https://lzwjava.github.io/greptime-portal-es" />
+<meta property="og:url" content="https://lzwjava.github.io/greptime-portal-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-09T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Desbordamiento Gráfico Circular en el Portal de GreptimeDB" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-09T00:00:00+08:00","datePublished":"2025-01-09T00:00:00+08:00","description":"He presentado un problema en GitHub, https://github.com/GreptimeTeam/docs/issues/1455, titulado “GreptimeDB Portal: El gráfico circular púrpura grande excede los límites del viewport en pantallas más pequeñas.”","headline":"Desbordamiento Gráfico Circular en el Portal de GreptimeDB","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/greptime-portal-es"},"url":"https://lzwjava.github.io/greptime-portal-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og3.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Desbordamiento Gráfico Circular en el Portal de GreptimeDB | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2025-01-09-greptime-portal-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2025-01-09-greptime-portal-es.md</span> -->
+      
+
+      <!-- <span>2025-01-09-greptime-portal-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/greptime-portal-en" >English</option>
+        <option value="/greptime-portal-zh" >中文</option>
+        <option value="/greptime-portal-ja" >日本語</option>
+        <option value="/greptime-portal-es" selected>Español</option>
+        <option value="/greptime-portal-hi" >हिंदी</option>
+        <option value="/greptime-portal-fr" >Français</option>
+        <option value="/greptime-portal-de" >Deutsch</option>
+        <option value="/greptime-portal-ar" >العربية</option>
+        <option value="/greptime-portal-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>He presentado un problema en GitHub, https://github.com/GreptimeTeam/docs/issues/1455, titulado “GreptimeDB Portal: El gráfico circular púrpura grande excede los límites del viewport en pantallas más pequeñas.”</p>
+
+<p><img src="https://github.com/user-attachments/assets/d191f9c7-a8c6-4ba6-96c5-9388f69bef30" alt="gt_1" /></p>
+
+<p>Este problema afecta significativamente la experiencia del usuario. Hace que toda la página de inicio o pantalla sea fácilmente arrastrable y difícil de controlar, especialmente en la zona inferior. El problema se vuelve notable después de desplazarse un rato en la página de inicio.</p>
+
+<p>ChatGPT:</p>
+
+<p>El problema principal con la respuesta móvil del portal GreptimeDB es que el gráfico circular púrpura grande excede los límites del viewport en pantallas más pequeñas. Este problema surge debido a los siguientes factores:</p>
+
+<ol>
+  <li>
+    <p><strong>Posicionamiento Fijo Sin Ajustes Responsivos</strong>: La forma púrpura probablemente se posiciona utilizando valores fijos o absolutos que no se adaptan a diferentes tamaños de pantalla. Sin consideraciones de diseño responsivo, estos elementos pueden desbordar el viewport en dispositivos móviles.</p>
+  </li>
+  <li>
+    <p><strong>Falta de Consultas de Medios</strong>: Las consultas de medios son esenciales para aplicar diferentes estilos según las dimensiones de la pantalla. La ausencia de consultas de medios significa que los mismos estilos se aplican en todos los dispositivos, lo que lleva a problemas de diseño en pantallas más pequeñas.</p>
+  </li>
+  <li>
+    <p><strong>Falta de Etiqueta Meta de Viewport</strong>: La ausencia de una etiqueta meta de viewport puede causar un escalado incorrecto en dispositivos móviles. Incluir <code class="language-plaintext highlighter-rouge">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code> en la sección <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> asegura que la página se adapte a diferentes tamaños de pantalla.</p>
+  </li>
+</ol>
+
+<p><strong>Recomendaciones para Abordar el Problema:</strong></p>
+
+<ul>
+  <li>
+    <p><strong>Implementar Posicionamiento Responsivo</strong>: Utilice unidades relativas (por ejemplo, porcentajes) y técnicas de diseño responsivo para asegurar que la forma púrpura se escala adecuadamente en diferentes tamaños de pantalla.</p>
+  </li>
+  <li>
+    <p><strong>Aplicar Consultas de Medios</strong>: Incorpore consultas de medios CSS para ajustar el tamaño y la posición de la forma púrpura según las dimensiones de la pantalla del dispositivo. Este enfoque permite un estilo personalizado que mejora la experiencia de visualización móvil.</p>
+  </li>
+  <li>
+    <p><strong>Agregar Etiqueta Meta de Viewport</strong>: Asegúrese de incluir la etiqueta meta de viewport en la sección <code class="language-plaintext highlighter-rouge">&lt;head&gt;</code> del HTML para facilitar un escalado y renderizado adecuados en dispositivos móviles.</p>
+  </li>
+</ul>
+
+<p>Al abordar estos aspectos, el portal GreptimeDB puede lograr una apariencia más pulida y amigable para el usuario en navegadores móviles.</p>
+
+<h2 id="actualización">Actualización</h2>
+
+<p>Ha sido solucionado por el equipo de GreptimeDB.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

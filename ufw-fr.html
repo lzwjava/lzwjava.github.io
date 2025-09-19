@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Configuration d'UFW</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuration d’UFW | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Configuration d’UFW" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Si vous rencontrez des difficultés pour vous connecter à certains services, voici quelques conseils pour configurer UFW (Uncomplicated Firewall)." />
+<meta property="og:description" content="Si vous rencontrez des difficultés pour vous connecter à certains services, voici quelques conseils pour configurer UFW (Uncomplicated Firewall)." />
+<link rel="canonical" href="https://lzwjava.github.io/ufw-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/ufw-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuration d’UFW" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"Si vous rencontrez des difficultés pour vous connecter à certains services, voici quelques conseils pour configurer UFW (Uncomplicated Firewall).","headline":"Configuration d’UFW","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/ufw-fr"},"url":"https://lzwjava.github.io/ufw-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og12.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og12.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Configuration d'UFW | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2024-12-20-ufw-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2024-12-20-ufw-fr.md</span> -->
+      
+
+      <!-- <span>2024-12-20-ufw-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/ufw-en" >English</option>
+        <option value="/ufw-zh" >中文</option>
+        <option value="/ufw-ja" >日本語</option>
+        <option value="/ufw-es" >Español</option>
+        <option value="/ufw-hi" >हिंदी</option>
+        <option value="/ufw-fr" selected>Français</option>
+        <option value="/ufw-de" >Deutsch</option>
+        <option value="/ufw-ar" >العربية</option>
+        <option value="/ufw-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Si vous rencontrez des difficultés pour vous connecter à certains services, voici quelques conseils pour configurer UFW (Uncomplicated Firewall).</p>
+
+<h3 id="autoriser-le-trafic-ssh-port-22">Autoriser le trafic SSH (Port 22)</h3>
+
+<p>Si SSH est bloqué, autorisez-le avec :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw allow ssh
+</code></pre></div></div>
+
+<h3 id="autoriser-le-trafic-v2ray-port-1080-ou-443">Autoriser le trafic V2Ray (Port 1080 ou 443)</h3>
+
+<p>Pour V2Ray ou d’autres services, autorisez les ports nécessaires :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw allow 1080/tcp
+</code></pre></div></div>
+
+<p>ou</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw allow 443/tcp
+</code></pre></div></div>
+
+<h3 id="vérifier-létat-dufw">Vérifier l’état d’UFW</h3>
+
+<p>Pour afficher les règles actives du pare-feu, utilisez :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw status verbose
+</code></pre></div></div>
+
+<h3 id="réactiver-ufw">Réactiver UFW</h3>
+
+<p>Si UFW est désactivé, activez-le avec :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw <span class="nb">enable</span>
+</code></pre></div></div>
+
+<h3 id="réinitialiser-ufw">Réinitialiser UFW</h3>
+
+<p>Si vous avez besoin de réinitialiser les règles de UFW (Uncomplicated Firewall) à leur état par défaut, vous pouvez suivre les étapes ci-dessous. Cela peut être utile si vous avez configuré des règles complexes et que vous souhaitez repartir de zéro.</p>
+
+<h4 id="étape-1--désactiver-ufw">Étape 1 : Désactiver UFW</h4>
+
+<p>Avant de réinitialiser UFW, il est recommandé de le désactiver pour éviter tout conflit ou problème pendant le processus de réinitialisation.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw disable
+</code></pre></div></div>
+
+<h4 id="étape-2--réinitialiser-ufw">Étape 2 : Réinitialiser UFW</h4>
+
+<p>Pour réinitialiser UFW à ses paramètres par défaut, vous pouvez utiliser la commande suivante :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw reset
+</code></pre></div></div>
+
+<p>Cette commande supprimera toutes les règles personnalisées et réinitialisera UFW à son état d’origine.</p>
+
+<h4 id="étape-3--réactiver-ufw">Étape 3 : Réactiver UFW</h4>
+
+<p>Après avoir réinitialisé UFW, vous pouvez le réactiver pour appliquer les paramètres par défaut.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw <span class="nb">enable</span>
+</code></pre></div></div>
+
+<h4 id="étape-4--vérifier-létat-de-ufw">Étape 4 : Vérifier l’état de UFW</h4>
+
+<p>Pour vérifier que UFW a bien été réinitialisé et qu’il fonctionne correctement, vous pouvez utiliser la commande suivante :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw status verbose
+</code></pre></div></div>
+
+<p>Cela affichera l’état actuel de UFW ainsi que les règles actives.</p>
+
+<h4 id="remarque">Remarque</h4>
+
+<p>La réinitialisation de UFW supprimera toutes les règles personnalisées que vous avez configurées. Assurez-vous de sauvegarder vos règles actuelles si vous pensez en avoir besoin ultérieurement.</p>
+
+<p>Pour sauvegarder vos règles UFW avant de les réinitialiser, vous pouvez utiliser la commande suivante :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw status numbered <span class="o">&gt;</span> ufw_rules_backup.txt
+</code></pre></div></div>
+
+<p>Cela enregistrera vos règles actuelles dans un fichier texte nommé <code class="language-plaintext highlighter-rouge">ufw_rules_backup.txt</code>.</p>
+
+<p>En suivant ces étapes, vous pouvez facilement réinitialiser UFW à ses paramètres par défaut et repartir sur une base propre.</p>
+
+<p>Pour repartir à zéro, réinitialisez UFW :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw reset
+</code></pre></div></div>
+
+<h3 id="ports-personnalisés">Ports personnalisés</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>ufw allow 1024:65535/tcp
+<span class="nb">sudo </span>ufw allow 1024:65535/udp
+</code></pre></div></div>
+
+<p>Faites-moi savoir si vous avez besoin d’aide pour des configurations spécifiques d’UFW !</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

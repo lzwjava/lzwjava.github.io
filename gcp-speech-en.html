@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Getting Started with Google Text-to-Speech API</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Getting Started with Google Text-to-Speech API | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Getting Started with Google Text-to-Speech API" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="I plan to convert some of Yin Wang’s articles into audio using the Google Text-to-Speech API. Below is a step-by-step guide, along with some helpful tutorials provided by ChatGPT. Once everything is ready, I will upload the audio here for you to listen to." />
+<meta property="og:description" content="I plan to convert some of Yin Wang’s articles into audio using the Google Text-to-Speech API. Below is a step-by-step guide, along with some helpful tutorials provided by ChatGPT. Once everything is ready, I will upload the audio here for you to listen to." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-speech-en" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-speech-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Getting Started with Google Text-to-Speech API" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"I plan to convert some of Yin Wang’s articles into audio using the Google Text-to-Speech API. Below is a step-by-step guide, along with some helpful tutorials provided by ChatGPT. Once everything is ready, I will upload the audio here for you to listen to.","headline":"Getting Started with Google Text-to-Speech API","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-speech-en"},"url":"https://lzwjava.github.io/gcp-speech-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og1.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og1.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Getting Started with Google Text-to-Speech API | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2024-12-18-gcp-speech-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/en/2024-12-18-gcp-speech-en.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2024-12-18-gcp-speech-en.md</span> -->
+      
+
+      <!-- <span>2024-12-18-gcp-speech-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-speech-en" selected>English</option>
+        <option value="/gcp-speech-zh" >中文</option>
+        <option value="/gcp-speech-ja" >日本語</option>
+        <option value="/gcp-speech-es" >Español</option>
+        <option value="/gcp-speech-hi" >हिंदी</option>
+        <option value="/gcp-speech-fr" >Français</option>
+        <option value="/gcp-speech-de" >Deutsch</option>
+        <option value="/gcp-speech-ar" >العربية</option>
+        <option value="/gcp-speech-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>I plan to convert some of Yin Wang’s articles into audio using the Google Text-to-Speech API. Below is a step-by-step guide, along with some helpful tutorials provided by ChatGPT. Once everything is ready, I will upload the audio here for you to listen to.</p>
+
+<hr />
+
+<h3 id="step-1-set-up-google-cloud-account">Step 1: Set Up Google Cloud Account</h3>
+
+<ol>
+  <li>
+    <p>Create a Google Cloud Account<br />
+If you don’t have one, sign up at the <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</p>
+  </li>
+  <li>Create a New Project
+    <ul>
+      <li>In the Cloud Console, click on the project dropdown menu (top left).</li>
+      <li>Choose New Project, give it a name, and create the project.</li>
+    </ul>
+  </li>
+  <li>Enable the Text-to-Speech API
+    <ul>
+      <li>Visit the <a href="https://cloud.google.com/text-to-speech">Google Cloud Text-to-Speech API page</a>.</li>
+      <li>Click Enable to activate the API for your project.</li>
+    </ul>
+  </li>
+  <li>Create API Credentials
+    <ul>
+      <li>Navigate to APIs &amp; Services &gt; Credentials in the Cloud Console.</li>
+      <li>Click Create Credentials, then select Service Account.</li>
+      <li>Follow the prompts to create the service account and download the private key file in JSON format.</li>
+      <li>Keep this JSON file secure as it’s used to authenticate your API requests.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="step-2-install-google-cloud-sdk-and-client-library">Step 2: Install Google Cloud SDK and Client Library</h3>
+
+<ol>
+  <li>
+    <p>Install Google Cloud SDK<br />
+If you haven’t yet, follow the instructions to install the <a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK</a> for your operating system.</p>
+  </li>
+  <li>
+    <p>Install the Python Client Library<br />
+If you’re using Python, install the <code class="language-plaintext highlighter-rouge">google-cloud-texttospeech</code> library with:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>google-cloud-texttospeech
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="step-3-set-up-authentication">Step 3: Set Up Authentication</h3>
+
+<p>Before using the API, you need to authenticate with your credentials. Set the environment variable to the path of your credentials file:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">"/path/to/your/service-account-file.json"</span>
+</code></pre></div></div>
+
+<p>Replace the path with the actual location of your downloaded JSON file.</p>
+
+<hr />
+
+<h3 id="step-4-implement-text-to-speech-conversion">Step 4: Implement Text-to-Speech Conversion</h3>
+
+<p>Here’s a Python example to convert text into speech using the Google Cloud Text-to-Speech API:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+
+<span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
+    <span class="c1"># Initialize the Text-to-Speech client
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+
+    <span class="c1"># Set up the synthesis input
+</span>    <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+
+    <span class="c1"># Set voice parameters (using 'en-US-Journey-D')
+</span>    <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">VoiceSelectionParams</span><span class="p">(</span>
+        <span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># English (United States)
+</span>        <span class="n">name</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US-Journey-D</span><span class="sh">"</span>  <span class="c1"># Specific voice model (Journey)
+</span>    <span class="p">)</span>
+
+    <span class="c1"># Set audio configuration
+</span>    <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">AudioConfig</span><span class="p">(</span>
+        <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">MP3</span><span class="p">,</span>  <span class="c1"># MP3 format
+</span>        <span class="n">effects_profile_id</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">small-bluetooth-speaker-class-device</span><span class="sh">"</span><span class="p">],</span>  <span class="c1"># Optimized for Bluetooth speakers
+</span>        <span class="n">pitch</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>  <span class="c1"># No pitch modification
+</span>        <span class="n">speaking_rate</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>  <span class="c1"># Adjusted speech rate (can modify as needed)
+</span>        <span class="n">volume_gain_db</span><span class="o">=</span><span class="mf">5.0</span>  <span class="c1"># Louder volume
+</span>    <span class="p">)</span>
+
+    <span class="c1"># Perform the text-to-speech request
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">synthesize_speech</span><span class="p">(</span>
+        <span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Write the audio content to a file
+</span>    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="sh">"</span><span class="s">wb</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Audio content written to </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Example usage
+</span><span class="n">article_text</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Movies, oh my gosh, I just absolutely love them. They</span><span class="sh">'</span><span class="s">re like time machines taking you to different worlds and landscapes, and I just can</span><span class="sh">'</span><span class="s">t get enough of it.</span><span class="sh">"</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="sh">"</span><span class="s">output_audio.mp3</span><span class="sh">"</span>  <span class="c1"># Output in MP3 format
+</span>
+<span class="c1"># Convert text to speech
+</span><span class="nf">text_to_speech</span><span class="p">(</span><span class="n">article_text</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="step-5-run-the-script">Step 5: Run the Script</h3>
+
+<ol>
+  <li>Save the script as <code class="language-plaintext highlighter-rouge">text_to_speech.py</code>.</li>
+  <li>
+    <p>Run the script with:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python text_to_speech.py
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>This will generate an audio file (<code class="language-plaintext highlighter-rouge">output_audio.mp3</code>) from the provided text.</p>
+
+<hr />
+
+<h3 id="step-6-service-account-key">Step 6: Service Account Key</h3>
+
+<p>The JSON key for your service account should look similar to this:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_account"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-project-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-private-key"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-service-account-email@your-project-id.iam.gserviceaccount.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oauth2.googleapis.com/token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_provider_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/oauth2/v1/certs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"your-client-cert-url"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="why-choose-journey">Why Choose Journey?</h3>
+
+<p>Google Cloud Text-to-Speech offers several voices, but Journey stands out for its natural, human-like sound. Unlike other models that often sound robotic, Journey excels in expressiveness and lifelike delivery. It is particularly suited for long-form content such as podcasts, audiobooks, or any application requiring a more conversational tone.</p>
+
+<p>Key Features of Journey:</p>
+<ul>
+  <li>Natural Speech: Sounds closer to a human voice.</li>
+  <li>Expressiveness: Adjusts tone and inflection based on context.</li>
+  <li>Ideal for Long-Form Content: Perfect for podcasts and narrations.</li>
+</ul>
+
+<p>For more details on the benefits of Google Cloud Text-to-Speech, check out the <a href="https://cloud.google.com/text-to-speech#benefits">Google Cloud overview</a>.</p>
+
+<hr />
+
+<h3 id="step-7-generate-a-new-service-account-key-if-needed">Step 7: Generate a New Service Account Key (if needed)</h3>
+
+<p>If your service account key doesn’t match the example above, you can generate a new one from the Google Cloud Console.</p>
+
+<p>To generate a new key:</p>
+<ol>
+  <li>Go to the <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</li>
+  <li>Navigate to IAM &amp; Admin &gt; Service Accounts.</li>
+  <li>Create a new service account:
+    <ul>
+      <li>Click Create Service Account and assign appropriate roles.</li>
+      <li>Click Create.</li>
+    </ul>
+  </li>
+  <li>Generate a key:
+    <ul>
+      <li>After creating the service account, click it.</li>
+      <li>Go to the Keys tab, click Add Key, and choose JSON. Then download the key.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="example-audio-output">Example Audio Output</h3>
+
+<p>Once everything is set up, you can generate an audio file, which will be available here:<br />
+<a href="assets/audios/output-audio.mp3">Download the audio file</a>.</p>
+
+<hr />
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>The Google Cloud Text-to-Speech API makes it easy to convert text into natural-sounding speech. Whether you’re building an app that needs voice output or just experimenting with text-to-speech, this API offers powerful features and customization options. Explore the full documentation for additional voice selections, languages, and advanced features.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

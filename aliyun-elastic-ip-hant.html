@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>管理阿里雲彈性IP</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>管理阿里雲彈性IP | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="管理阿里雲彈性IP" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="本腳本提供一個命令列介面來管理阿里雲彈性公網 IP (EIP)。它允許您使用阿里雲 Python SDK 來建立、綁定、解綁和釋放 EIP。腳本接收要執行的作業和 EIP 的分配 ID 作為參數。" />
+<meta property="og:description" content="本腳本提供一個命令列介面來管理阿里雲彈性公網 IP (EIP)。它允許您使用阿里雲 Python SDK 來建立、綁定、解綁和釋放 EIP。腳本接收要執行的作業和 EIP 的分配 ID 作為參數。" />
+<link rel="canonical" href="https://lzwjava.github.io/aliyun-elastic-ip-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/aliyun-elastic-ip-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-03T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="管理阿里雲彈性IP" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-03T00:00:00+08:00","datePublished":"2025-02-03T00:00:00+08:00","description":"本腳本提供一個命令列介面來管理阿里雲彈性公網 IP (EIP)。它允許您使用阿里雲 Python SDK 來建立、綁定、解綁和釋放 EIP。腳本接收要執行的作業和 EIP 的分配 ID 作為參數。","headline":"管理阿里雲彈性IP","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/aliyun-elastic-ip-hant"},"url":"https://lzwjava.github.io/aliyun-elastic-ip-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og13.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og13.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       管理阿里雲彈性IP | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2025-02-03-aliyun-elastic-ip-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/hant/2025-02-03-aliyun-elastic-ip-hant.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2025-02-03-aliyun-elastic-ip-hant.md</span> -->
+      
+
+      <!-- <span>2025-02-03-aliyun-elastic-ip-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.02</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/aliyun-elastic-ip-en" >English</option>
+        <option value="/aliyun-elastic-ip-zh" >中文</option>
+        <option value="/aliyun-elastic-ip-ja" >日本語</option>
+        <option value="/aliyun-elastic-ip-es" >Español</option>
+        <option value="/aliyun-elastic-ip-hi" >हिंदी</option>
+        <option value="/aliyun-elastic-ip-fr" >Français</option>
+        <option value="/aliyun-elastic-ip-de" >Deutsch</option>
+        <option value="/aliyun-elastic-ip-ar" >العربية</option>
+        <option value="/aliyun-elastic-ip-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>本腳本提供一個命令列介面來管理阿里雲彈性公網 IP (EIP)。它允許您使用阿里雲 Python SDK 來建立、綁定、解綁和釋放 EIP。腳本接收要執行的作業和 EIP 的分配 ID 作為參數。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python aliyun_elastic_ip_manager.py unbind <span class="nt">--allocation_id</span> eip-j6c2olvsa7jk9l42iaaa
+python aliyun_elastic_ip_manager.py <span class="nb">bind</span> <span class="nt">--allocation_id</span> eip-j6c7mhenamvy6zao3haaa
+python aliyun_elastic_ip_manager.py release <span class="nt">--allocation_id</span> eip-j6c2olvsa7jk9l42aaa
+python aliyun_elastic_ip_manager.py describe
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- coding: utf-8 -*-
+# 此檔案為自動生成，請勿編輯。謝謝。
+</span><span class="kn">import</span> <span class="n">logging</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">from</span> <span class="n">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+<span class="kn">import</span> <span class="n">json</span>
+
+<span class="kn">from</span> <span class="n">alibabacloud_vpc20160428.client</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">Vpc20160428Client</span>
+<span class="kn">from</span> <span class="n">alibabacloud_tea_openapi</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">open_api_models</span>
+<span class="kn">from</span> <span class="n">alibabacloud_vpc20160428</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">vpc_20160428_models</span>
+<span class="kn">from</span> <span class="n">alibabacloud_tea_util</span> <span class="kn">import</span> <span class="n">models</span> <span class="k">as</span> <span class="n">util_models</span>
+<span class="kn">from</span> <span class="n">alibabacloud_tea_util.client</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">UtilClient</span>
+<span class="kn">from</span> <span class="n">alibabacloud_ecs20140526.client</span> <span class="kn">import</span> <span class="n">Client</span> <span class="k">as</span> <span class="n">Ecs20140526Client</span>
+
+
+<span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="sh">'</span><span class="s">%(asctime)s - %(levelname)s - %(message)s</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Sample</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_client</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Vpc20160428Client</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">open_api_models</span><span class="p">.</span><span class="nc">Config</span><span class="p">(</span>
+            <span class="n">access_key_id</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_ID_API_KEY</span><span class="sh">'</span><span class="p">],</span>
+            <span class="n">access_key_secret</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">'</span><span class="s">ALIBABA_CLOUD_ACCESS_API_KEY</span><span class="sh">'</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">config</span><span class="p">.</span><span class="n">endpoint</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">vpc.cn-hongkong.aliyuncs.com</span><span class="sh">'</span>
+        <span class="k">return</span> <span class="nc">Vpc20160428Client</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">bind_eip</span><span class="p">(</span>
+        <span class="n">region_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">allocation_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">instance_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">associate_eip_address_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">AssociateEipAddressRequest</span><span class="p">(</span>
+            <span class="n">region_id</span><span class="o">=</span><span class="n">region_id</span><span class="p">,</span>
+            <span class="n">allocation_id</span><span class="o">=</span><span class="n">allocation_id</span><span class="p">,</span>
+            <span class="n">instance_id</span><span class="o">=</span><span class="n">instance_id</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">(</span><span class="n">read_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">associate_eip_address_with_options</span><span class="p">(</span><span class="n">associate_eip_address_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功綁定 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s"> 到實例 </span><span class="si">{</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。結果：</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">綁定 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s"> 到實例 </span><span class="si">{</span><span class="n">instance_id</span><span class="si">}</span><span class="s"> 時發生錯誤：</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">錯誤訊息：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建議：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">False</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">unbind_eip</span><span class="p">(</span>
+        <span class="n">region_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">allocation_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">instance_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">unassociate_eip_address_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">UnassociateEipAddressRequest</span><span class="p">(</span>
+            <span class="n">region_id</span><span class="o">=</span><span class="n">region_id</span><span class="p">,</span>
+            <span class="n">allocation_id</span><span class="o">=</span><span class="n">allocation_id</span><span class="p">,</span>
+            <span class="n">instance_id</span><span class="o">=</span><span class="n">instance_id</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">(</span><span class="n">read_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">unassociate_eip_address_with_options</span><span class="p">(</span><span class="n">unassociate_eip_address_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功解除綁定 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s"> 與實例 </span><span class="si">{</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。結果：</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">解除綁定 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s"> 與實例 </span><span class="si">{</span><span class="n">instance_id</span><span class="si">}</span><span class="s"> 時發生錯誤：</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">錯誤訊息：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建議：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">create_eip</span><span class="p">(</span>
+        <span class="n">region_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">allocate_eip_address_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">AllocateEipAddressRequest</span><span class="p">(</span>
+            <span class="n">region_id</span><span class="o">=</span> <span class="n">region_id</span><span class="p">,</span>
+            <span class="n">instance_charge_type</span><span class="o">=</span><span class="sh">'</span><span class="s">PostPaid</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">internet_charge_type</span><span class="o">=</span><span class="sh">'</span><span class="s">PayByBandwidth</span><span class="sh">'</span><span class="p">,</span>
+            <span class="n">bandwidth</span><span class="o">=</span><span class="sh">'</span><span class="s">200</span><span class="sh">'</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">(</span><span class="n">read_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">allocate_eip_address_with_options</span><span class="p">(</span><span class="n">allocate_eip_address_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">)</span>
+            <span class="n">allocation_id</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">allocation_id</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功建立 EIP。分配 ID：</span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">allocation_id</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建立 EIP 時發生錯誤：</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">錯誤訊息：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建議：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">release_eip</span><span class="p">(</span>
+        <span class="n">allocation_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">release_eip_address_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">ReleaseEipAddressRequest</span><span class="p">(</span>
+            <span class="n">allocation_id</span><span class="o">=</span><span class="n">allocation_id</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">(</span><span class="n">read_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">release_eip_address_with_options</span><span class="p">(</span><span class="n">release_eip_address_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功釋放 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">。結果：</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">True</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">釋放 EIP </span><span class="si">{</span><span class="n">allocation_id</span><span class="si">}</span><span class="s"> 時發生錯誤：</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">錯誤訊息：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建議：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">describe_eip</span><span class="p">(</span>
+        <span class="n">region_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">describe_eip_addresses_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">DescribeEipAddressesRequest</span><span class="p">(</span>
+            <span class="n">region_id</span><span class="o">=</span><span class="n">region_id</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">(</span><span class="n">read_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">,</span> <span class="n">connect_timeout</span><span class="o">=</span><span class="mi">60000</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">describe_eip_addresses_with_options</span><span class="p">(</span><span class="n">describe_eip_addresses_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功描述 EIP。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="nf">to_map</span><span class="p">(),</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">eip_addresses</span> <span class="ow">and</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">eip_addresses</span><span class="p">,</span> <span class="sh">'</span><span class="s">eip_address</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">eip_addresses</span><span class="p">.</span><span class="n">eip_address</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">eip_addresses</span><span class="p">.</span><span class="n">eip_address</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">first_allocation_id</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">eip_addresses</span><span class="p">.</span><span class="n">eip_address</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">allocation_id</span>
+                    <span class="k">return</span> <span class="n">first_allocation_id</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">沒有找到任何 EIP 位址。</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="bp">None</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">沒有找到任何 EIP 位址。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">None</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">描述 EIP 時發生錯誤：</span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">錯誤訊息：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建議：</span><span class="si">{</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">Recommend</span><span class="sh">'</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">main</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">region_id</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cn-hongkong</span><span class="sh">"</span>
+        <span class="n">instance_id</span> <span class="o">=</span> <span class="sh">"</span><span class="s">i-j6c44l4zpphv7u7agdbk</span><span class="sh">"</span>
+
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">'</span><span class="s">管理阿里雲彈性公網 IP。</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">job</span><span class="sh">'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">create</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">bind</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unbind</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">release</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">describe</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">all</span><span class="sh">'</span><span class="p">],</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">要執行的作業：create、bind 或 unbind。</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--allocation_id</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">EIP 的分配 ID。</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--instance_id</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="n">instance_id</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">要綁定/解綁 EIP 的實例 ID。</span><span class="sh">'</span><span class="p">)</span>
+
+        <span class="n">parsed_args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">create</span><span class="sh">'</span><span class="p">:</span>
+            <span class="n">new_allocation_id</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 建立程序已成功啟動。分配 ID：</span><span class="si">{</span><span class="n">new_allocation_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">EIP 建立程序失敗。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">bind</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">錯誤：bind 作業需要 --allocation_id。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">bind_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 綁定程序已成功啟動，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">，實例為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 綁定程序失敗，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">，實例為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">unbind</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">錯誤：unbind 作業需要 --allocation_id。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">unbind_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 解綁程序已成功啟動，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">，實例為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 解綁程序失敗，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">，實例為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">release</span><span class="sh">'</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">錯誤：release 作業需要 --allocation_id。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">release_eip</span><span class="p">(</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="p">):</span>
+                 <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 釋放程序已成功啟動，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 釋放程序失敗，EIP 為 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">allocation_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">describe</span><span class="sh">'</span><span class="p">:</span>
+            <span class="n">Sample</span><span class="p">.</span><span class="nf">describe_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">all</span><span class="sh">'</span><span class="p">:</span>
+            <span class="c1"># 查詢以取得目前的分配 ID
+</span>            <span class="n">current_allocation_id</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">describe_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">目前的分配 ID：</span><span class="si">{</span><span class="n">current_allocation_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">沒有找到任何 EIP 可處理。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="c1"># 解除綁定目前的 EIP
+</span>            <span class="k">if</span> <span class="n">current_allocation_id</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">unbind_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">,</span> <span class="n">current_allocation_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="p">):</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功解除綁定 EIP </span><span class="si">{</span><span class="n">current_allocation_id</span><span class="si">}</span><span class="s"> 與實例 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">解除綁定 EIP </span><span class="si">{</span><span class="n">current_allocation_id</span><span class="si">}</span><span class="s"> 與實例 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s"> 失敗。</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">return</span>
+            
+            <span class="c1"># 建立新的 EIP
+</span>            <span class="n">new_allocation_id</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">new_allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">EIP 建立程序已成功啟動。新的分配 ID：</span><span class="si">{</span><span class="n">new_allocation_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">EIP 建立程序失敗。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="c1"># 綁定新的 EIP
+</span>            <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">bind_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">,</span> <span class="n">new_allocation_id</span><span class="p">,</span> <span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功綁定新的 EIP </span><span class="si">{</span><span class="n">new_allocation_id</span><span class="si">}</span><span class="s"> 到實例 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">綁定新的 EIP </span><span class="si">{</span><span class="n">new_allocation_id</span><span class="si">}</span><span class="s"> 到實例 </span><span class="si">{</span><span class="n">parsed_args</span><span class="p">.</span><span class="n">instance_id</span><span class="si">}</span><span class="s"> 失敗。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span>
+            
+            <span class="c1"># 釋放舊的 EIP
+</span>            <span class="k">if</span> <span class="n">current_allocation_id</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">release_eip</span><span class="p">(</span><span class="n">current_allocation_id</span><span class="p">):</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功釋放舊的 EIP </span><span class="si">{</span><span class="n">current_allocation_id</span><span class="si">}</span><span class="s">。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">釋放舊的 EIP </span><span class="si">{</span><span class="n">current_allocation_id</span><span class="si">}</span><span class="s"> 失敗。</span><span class="sh">"</span><span class="p">)</span>
+            
+            <span class="c1"># 再次查詢以顯示最終狀態
+</span>            <span class="n">final_allocation_id</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">describe_eip</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">final_allocation_id</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">最終分配 ID：</span><span class="si">{</span><span class="n">final_allocation_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">處理後沒有找到任何 EIP。</span><span class="sh">"</span><span class="p">)</span>
+
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">main_async</span><span class="p">(</span>
+        <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">.</span><span class="nf">create_client</span><span class="p">()</span>
+        <span class="n">associate_eip_address_request</span> <span class="o">=</span> <span class="n">vpc_20160428_models</span><span class="p">.</span><span class="nc">AssociateEipAddressRequest</span><span class="p">(</span>
+            <span class="n">region_id</span><span class="o">=</span><span class="sh">'</span><span class="s">cn-hongkong</span><span class="sh">'</span>
+        <span class="p">)</span>
+        <span class="n">runtime</span> <span class="o">=</span> <span class="n">util_models</span><span class="p">.</span><span class="nc">RuntimeOptions</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">client</span><span class="p">.</span><span class="nf">associate_eip_address_with_options_async</span><span class="p">(</span><span class="n">associate_eip_address_request</span><span class="p">,</span> <span class="n">runtime</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">)</span> <span class="ow">and</span> <span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">Recommend</span><span class="sh">"</span><span class="p">):</span>
+                <span class="nf">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">Recommend</span><span class="sh">"</span><span class="p">))</span>
+            <span class="n">UtilClient</span><span class="p">.</span><span class="nf">assert_as_string</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="n">Sample</span><span class="p">.</span><span class="nf">main</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+<span class="c1"># python scripts/auto-ss-config/aliyun_elastic_ip_manager.py create
+# python scripts/auto-ss-config/aliyun_elastic_ip_manager.py unbind --allocation_id eip-j6c2olvsa7jk9l42i1aaa
+# python scripts/auto-ss-config/aliyun_elastic_ip_manager.py bind --allocation_id eip-j6c7mhenamvy6zao3haaa
+# python scripts/auto-ss-config/aliyun_elastic_ip_manager.py release --allocation_id "eip-j6c2olvsa7jk9l42i"
+# python scripts/auto-ss-config/aliyun_elastic_ip_manager.py describe
+</span></code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Vamos a sumergirnos en el uso de Simple Realtime Server (SRS) para desplegar un servidor de borde para la transmisión RTMP, con un enfoque en entenderlo y configurarlo de manera efectiva, incluyendo el archivo rtmp.conf. SRS es un servidor de medios potente y de alto rendimiento diseñado para protocolos de transmisión en tiempo real como RTMP, HLS y HTTP-FLV. Es particularmente adecuado para escenarios que requieren escalabilidad, como redes de entrega de contenido (CDN), donde un servidor de borde puede distribuir eficientemente flujos a muchos clientes mientras recupera contenido de un servidor de origen. Te guiaré a través del proceso paso a paso, explicaré el concepto de despliegue de borde y aclararé cómo trabajar con configuraciones como rtmp.conf." />
+<meta property="og:description" content="Vamos a sumergirnos en el uso de Simple Realtime Server (SRS) para desplegar un servidor de borde para la transmisión RTMP, con un enfoque en entenderlo y configurarlo de manera efectiva, incluyendo el archivo rtmp.conf. SRS es un servidor de medios potente y de alto rendimiento diseñado para protocolos de transmisión en tiempo real como RTMP, HLS y HTTP-FLV. Es particularmente adecuado para escenarios que requieren escalabilidad, como redes de entrega de contenido (CDN), donde un servidor de borde puede distribuir eficientemente flujos a muchos clientes mientras recupera contenido de un servidor de origen. Te guiaré a través del proceso paso a paso, explicaré el concepto de despliegue de borde y aclararé cómo trabajar con configuraciones como rtmp.conf." />
+<link rel="canonical" href="https://lzwjava.github.io/srs-streaming-es" />
+<meta property="og:url" content="https://lzwjava.github.io/srs-streaming-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-01-06T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2017-01-06T00:00:00+08:00","datePublished":"2017-01-06T00:00:00+08:00","description":"Vamos a sumergirnos en el uso de Simple Realtime Server (SRS) para desplegar un servidor de borde para la transmisión RTMP, con un enfoque en entenderlo y configurarlo de manera efectiva, incluyendo el archivo rtmp.conf. SRS es un servidor de medios potente y de alto rendimiento diseñado para protocolos de transmisión en tiempo real como RTMP, HLS y HTTP-FLV. Es particularmente adecuado para escenarios que requieren escalabilidad, como redes de entrega de contenido (CDN), donde un servidor de borde puede distribuir eficientemente flujos a muchos clientes mientras recupera contenido de un servidor de origen. Te guiaré a través del proceso paso a paso, explicaré el concepto de despliegue de borde y aclararé cómo trabajar con configuraciones como rtmp.conf.","headline":"Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/srs-streaming-es"},"url":"https://lzwjava.github.io/srs-streaming-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Servidor Simple en Tiempo Real (SRS) para Transmisión RTMP | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2017-01-06-srs-streaming-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2017-01-06-srs-streaming-es.md</span> -->
+      
+
+      <!-- <span>2017-01-06-srs-streaming-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2017.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/srs-streaming-en" >English</option>
+        <option value="/srs-streaming-zh" >中文</option>
+        <option value="/srs-streaming-ja" >日本語</option>
+        <option value="/srs-streaming-es" selected>Español</option>
+        <option value="/srs-streaming-hi" >हिंदी</option>
+        <option value="/srs-streaming-fr" >Français</option>
+        <option value="/srs-streaming-de" >Deutsch</option>
+        <option value="/srs-streaming-ar" >العربية</option>
+        <option value="/srs-streaming-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Vamos a sumergirnos en el uso de Simple Realtime Server (SRS) para desplegar un servidor de borde para la transmisión RTMP, con un enfoque en entenderlo y configurarlo de manera efectiva, incluyendo el archivo <code class="language-plaintext highlighter-rouge">rtmp.conf</code>. SRS es un servidor de medios potente y de alto rendimiento diseñado para protocolos de transmisión en tiempo real como RTMP, HLS y HTTP-FLV. Es particularmente adecuado para escenarios que requieren escalabilidad, como redes de entrega de contenido (CDN), donde un servidor de borde puede distribuir eficientemente flujos a muchos clientes mientras recupera contenido de un servidor de origen. Te guiaré a través del proceso paso a paso, explicaré el concepto de despliegue de borde y aclararé cómo trabajar con configuraciones como <code class="language-plaintext highlighter-rouge">rtmp.conf</code>.</p>
+
+<h3 id="qué-es-srs-y-el-despliegue-de-borde">¿Qué es SRS y el Despliegue de Borde?</h3>
+<p>SRS es un servidor de código abierto construido para manejar la transmisión de medios en tiempo real con un enfoque en la simplicidad y la eficiencia. Soporta RTMP (Real-Time Messaging Protocol) para la transmisión en vivo de baja latencia, junto con otros protocolos como HLS y WebRTC. En SRS, un servidor de “borde” actúa como intermediario entre los clientes (espectadores o editores) y un servidor de “origen” (donde se origina el flujo). El borde recupera flujos del origen solo cuando se solicitan por los clientes, reduciendo la carga en el origen y habilitando la distribución escalable—piensa en ello como una capa de caché de CDN adaptada para flujos en vivo.</p>
+
+<p>Desplegar un servidor de borde con SRS es ideal cuando necesitas:</p>
+<ul>
+  <li>Servir a un gran número de espectadores sin abrumar al origen.</li>
+  <li>Permitir que los editores envíen flujos al borde, que luego los reenvía al origen.</li>
+  <li>Minimizar el uso de ancho de banda en costosos servidores de origen aprovechando nodos de borde más económicos.</li>
+</ul>
+
+<h3 id="paso-a-paso-desplegando-un-servidor-de-borde-con-srs-para-rtmp">Paso a Paso: Desplegando un Servidor de Borde con SRS para RTMP</h3>
+<p>Aquí te muestro cómo configurar SRS como un servidor de borde para la transmisión RTMP. Supongo que estás trabajando en un sistema Linux (por ejemplo, Ubuntu), ya que SRS está optimizado para tales entornos.</p>
+
+<h4 id="1-instalar-srs">1. Instalar SRS</h4>
+<p>Primero, necesitas ejecutar SRS en tu máquina:</p>
+<ul>
+  <li><strong>Descargar SRS</strong>: Obtén la última versión estable desde el repositorio oficial de GitHub (github.com/ossrs/srs). Hasta la fecha, 26 de febrero de 2025, generalmente clonarías el repositorio:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/ossrs/srs.git
+cd srs
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Compilar SRS</strong>: SRS utiliza un proceso de compilación sencillo con <code class="language-plaintext highlighter-rouge">./configure</code> y <code class="language-plaintext highlighter-rouge">make</code>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./configure
+make
+</code></pre></div>    </div>
+    <p>Esto compila el servidor en el directorio <code class="language-plaintext highlighter-rouge">objs</code> (por ejemplo, <code class="language-plaintext highlighter-rouge">objs/srs</code>).</p>
+  </li>
+  <li><strong>Probar el Binario</strong>: Ejecútalo con la configuración predeterminada para asegurarte de que funcione:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/srs.conf
+</code></pre></div>    </div>
+    <p>Por defecto, escucha en el puerto 1935 para RTMP. Verifica la salida de la consola para la confirmación.</p>
+  </li>
+</ul>
+
+<h4 id="2-entender-el-concepto-de-borde">2. Entender el Concepto de Borde</h4>
+<p>En SRS, un servidor de borde opera en “modo remoto”, lo que significa que no genera flujos por sí mismo, sino que los recupera de un servidor de origen cuando un cliente los solicita (para la reproducción) o envía flujos al origen (para la publicación). Esta recuperación bajo demanda es lo que hace que los servidores de borde sean eficientes para escalar la entrega de RTMP.</p>
+
+<ul>
+  <li><strong>Servidor de Origen</strong>: La fuente del flujo (por ejemplo, donde un codificador como OBS envía un flujo RTMP).</li>
+  <li><strong>Servidor de Borde</strong>: Un relay al que se conectan los clientes, recuperando del origen solo cuando sea necesario.</li>
+</ul>
+
+<p>Para este ejemplo, supongamos que ya tienes un servidor de origen ejecutando SRS en <code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code> (reemplaza esto con tu IP de origen real).</p>
+
+<h4 id="3-configurar-el-servidor-de-borde">3. Configurar el Servidor de Borde</h4>
+<p>SRS utiliza archivos de configuración para definir su comportamiento. La <code class="language-plaintext highlighter-rouge">srs.conf</code> predeterminada es un buen punto de partida, pero para el despliegue de borde, crearás una configuración específica—llamémosla <code class="language-plaintext highlighter-rouge">edge.conf</code>. Aquí te muestro cómo configurarla:</p>
+
+<ul>
+  <li><strong>Crear <code class="language-plaintext highlighter-rouge">edge.conf</code></strong>:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cd conf
+nano edge.conf
+</code></pre></div>    </div>
+  </li>
+  <li><strong>Agregar Configuración de Borde</strong>:
+Aquí tienes una <code class="language-plaintext highlighter-rouge">edge.conf</code> mínima para el despliegue de borde RTMP:
+    <div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">srs_log_tank</span>        <span class="n">file</span>;
+<span class="n">srs_log_file</span>        ./<span class="n">objs</span>/<span class="n">edge</span>.<span class="n">log</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">cluster</span> {
+        <span class="n">mode</span>        <span class="n">remote</span>;
+        <span class="n">origin</span>      <span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">100</span>:<span class="m">1935</span>;
+    }
+}
+</code></pre></div>    </div>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">listen 1935</code>: El borde escucha conexiones RTMP en el puerto 1935.</li>
+      <li><code class="language-plaintext highlighter-rouge">max_connections 1000</code>: Limita las conexiones concurrentes (ajusta según la capacidad de tu servidor).</li>
+      <li><code class="language-plaintext highlighter-rouge">srs_log_file</code>: Registra en un archivo para la depuración.</li>
+      <li><code class="language-plaintext highlighter-rouge">vhost __defaultVhost__</code>: La configuración predeterminada del host virtual.</li>
+      <li><code class="language-plaintext highlighter-rouge">cluster { mode remote; origin 192.168.1.100:1935; }</code>: Configura este servidor como un borde (<code class="language-plaintext highlighter-rouge">mode remote</code>) y lo apunta al servidor de origen.</li>
+    </ul>
+  </li>
+  <li><strong>Guardar y Salir</strong>: Ctrl+O, Enter, Ctrl+X en nano.</li>
+</ul>
+
+<h4 id="4-iniciar-el-servidor-de-borde">4. Iniciar el Servidor de Borde</h4>
+<p>Ejecuta SRS con tu configuración de borde:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>./objs/srs -c conf/edge.conf
+</code></pre></div></div>
+<p>Verifica los registros (<code class="language-plaintext highlighter-rouge">./objs/edge.log</code>) para confirmar que está en funcionamiento y conectado al origen.</p>
+
+<h4 id="5-probar-la-configuración">5. Probar la Configuración</h4>
+<ul>
+  <li><strong>Publicar un Flujo</strong>: Usa una herramienta como OBS o FFmpeg para enviar un flujo RTMP al servidor de origen:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ffmpeg -re -i input.mp4 -c copy -f flv rtmp://192.168.1.100/live/livestream
+</code></pre></div>    </div>
+    <p>Aquí, <code class="language-plaintext highlighter-rouge">live</code> es el nombre de la aplicación y <code class="language-plaintext highlighter-rouge">livestream</code> es la clave del flujo.</p>
+  </li>
+  <li><strong>Reproducir desde el Borde</strong>: Usa VLC u otro cliente RTMP para reproducir el flujo desde el borde:
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rtmp://&lt;edge-server-ip&gt;/live/livestream
+</code></pre></div>    </div>
+    <p>Reemplaza <code class="language-plaintext highlighter-rouge">&lt;edge-server-ip&gt;</code> con la IP de tu servidor de borde (por ejemplo, <code class="language-plaintext highlighter-rouge">192.168.1.101</code>). El borde recuperará el flujo del origen y te lo servirá.</p>
+  </li>
+</ul>
+
+<h4 id="6-explorar-rtmpconf">6. Explorar <code class="language-plaintext highlighter-rouge">rtmp.conf</code></h4>
+<p>SRS no incluye un archivo <code class="language-plaintext highlighter-rouge">rtmp.conf</code> por defecto, pero podrías encontrar referencias a él en tutoriales o configuraciones personalizadas. Es esencialmente una convención de nombres para un archivo de configuración específico de RTMP. Por ejemplo, la documentación de SRS (ossrs.net) proporciona una muestra <code class="language-plaintext highlighter-rouge">rtmp.conf</code> para la transmisión RTMP en tiempo real:</p>
+<div class="language-conf highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">listen</span>              <span class="m">1935</span>;
+<span class="n">max_connections</span>     <span class="m">1000</span>;
+<span class="n">vhost</span> <span class="err">__</span><span class="n">defaultVhost__</span> {
+    <span class="n">tcp_nodelay</span>     <span class="n">on</span>;
+    <span class="n">min_latency</span>     <span class="n">on</span>;
+    <span class="n">play</span> {
+        <span class="n">gop_cache</span>   <span class="n">off</span>;
+        <span class="n">queue_length</span> <span class="m">10</span>;
+    }
+    <span class="n">publish</span> {
+        <span class="n">mr</span>          <span class="n">off</span>;
+    }
+}
+</code></pre></div></div>
+<ul>
+  <li><strong>Propósito</strong>: Esta configuración optimiza para la transmisión RTMP de baja latencia en un servidor de origen, no en un borde. Para el despliegue de borde, adaptarías agregando el bloque <code class="language-plaintext highlighter-rouge">cluster</code> del paso 3.</li>
+  <li><strong>Configuraciones Clave</strong>:
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tcp_nodelay on</code>: Reduce la latencia deshabilitando el algoritmo de Nagle.</li>
+      <li><code class="language-plaintext highlighter-rouge">min_latency on</code>: Prioriza la baja latencia sobre el almacenamiento en búfer.</li>
+      <li><code class="language-plaintext highlighter-rouge">gop_cache off</code>: Deshabilita la caché de Group of Pictures para la reproducción en tiempo real.</li>
+      <li><code class="language-plaintext highlighter-rouge">mr off</code>: Deshabilita “merge read” para evitar retrasos en la publicación.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Para un borde, combinarías esto con las configuraciones <code class="language-plaintext highlighter-rouge">cluster</code> en lugar de usarlo de manera independiente.</p>
+
+<h3 id="explicando-más-mecánica-del-borde-y-rtmp">Explicando Más: Mecánica del Borde y RTMP</h3>
+<ul>
+  <li><strong>Cómo Funciona el Borde</strong>: Cuando un cliente solicita <code class="language-plaintext highlighter-rouge">rtmp://&lt;edge-ip&gt;/live/livestream</code>, el borde verifica si tiene el flujo. Si no, lo recupera del origen (<code class="language-plaintext highlighter-rouge">192.168.1.100:1935</code>) y lo almacena en caché localmente para servir a otros clientes. Si un editor envía al borde, este reenvía el flujo al origen.</li>
+  <li><strong>Especificaciones de RTMP</strong>: RTMP es un protocolo de baja latencia ideal para la transmisión en vivo. SRS maneja RTMP de manera eficiente, soportando características como el codificación de tiempo absoluto (ATC) para la sincronización entre servidores, aunque está desactivado por defecto en el modo borde a menos que se especifique.</li>
+  <li><strong>Escalabilidad</strong>: Agrega múltiples bordes apuntando al mismo origen para manejar a miles de clientes. SRS soporta la recuperación automática listando múltiples orígenes (por ejemplo, <code class="language-plaintext highlighter-rouge">origin 192.168.1.100:1935 192.168.1.200:1935;</code>).</li>
+</ul>
+
+<h3 id="consejos-y-solución-de-problemas">Consejos y Solución de Problemas</h3>
+<ul>
+  <li><strong>Firewall</strong>: Asegúrate de que el puerto 1935 esté abierto en ambos servidores de origen y borde.</li>
+  <li><strong>Registros</strong>: Verifica <code class="language-plaintext highlighter-rouge">edge.log</code> para errores como fallos de conexión al origen.</li>
+  <li><strong>Latencia</strong>: El borde añade una latencia mínima (generalmente &lt;1s) si el origen también es de baja latencia.</li>
+  <li><strong>Múltiples Bordes</strong>: Despliega bordes adicionales con la misma configuración, ajustando puertos o IPs según sea necesario.</li>
+</ul>
+
+<h3 id="conclusión">Conclusión</h3>
+<p>Desplegar un servidor de borde SRS para RTMP es sencillo una vez que entiendes la relación origen-borde. La <code class="language-plaintext highlighter-rouge">edge.conf</code> configura el borde para recuperar o enviar flujos dinámicamente, mientras que una configuración estilo <code class="language-plaintext highlighter-rouge">rtmp.conf</code> podría ajustar el rendimiento de RTMP si es necesario. Con esta configuración, estás listo para escalar la transmisión en vivo de manera eficiente—ya sea para unos pocos espectadores o una audiencia global. ¿Quieres ajustarlo más o integrar HLS junto con RTMP? ¡Solo házmelo saber!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

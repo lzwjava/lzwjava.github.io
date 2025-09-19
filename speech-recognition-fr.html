@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Reconnaissance vocale en temps réel</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Reconnaissance vocale en temps réel | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Reconnaissance vocale en temps réel" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Ce code Python implémente une reconnaissance vocale en temps réel utilisant l’API Google Cloud Speech-to-Text et la bibliothèque PyAudio. Il capture l’audio depuis le microphone, le transmet en continu à l’API Speech-to-Text et affiche le texte transcrit. La classe MicrophoneStream gère l’entrée audio, et la fonction main configure le client de reconnaissance vocale et traite le flux audio." />
+<meta property="og:description" content="Ce code Python implémente une reconnaissance vocale en temps réel utilisant l’API Google Cloud Speech-to-Text et la bibliothèque PyAudio. Il capture l’audio depuis le microphone, le transmet en continu à l’API Speech-to-Text et affiche le texte transcrit. La classe MicrophoneStream gère l’entrée audio, et la fonction main configure le client de reconnaissance vocale et traite le flux audio." />
+<link rel="canonical" href="https://lzwjava.github.io/speech-recognition-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/speech-recognition-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-04T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Reconnaissance vocale en temps réel" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-04T00:00:00+08:00","datePublished":"2025-02-04T00:00:00+08:00","description":"Ce code Python implémente une reconnaissance vocale en temps réel utilisant l’API Google Cloud Speech-to-Text et la bibliothèque PyAudio. Il capture l’audio depuis le microphone, le transmet en continu à l’API Speech-to-Text et affiche le texte transcrit. La classe MicrophoneStream gère l’entrée audio, et la fonction main configure le client de reconnaissance vocale et traite le flux audio.","headline":"Reconnaissance vocale en temps réel","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/speech-recognition-fr"},"url":"https://lzwjava.github.io/speech-recognition-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Reconnaissance vocale en temps réel | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2025-02-04-speech-recognition-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!-- 
+    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/fr/2025-02-04-speech-recognition-fr.md">Audio</a>
+     -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2025-02-04-speech-recognition-fr.md</span> -->
+      
+
+      <!-- <span>2025-02-04-speech-recognition-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.02</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/speech-recognition-en" >English</option>
+        <option value="/speech-recognition-zh" >中文</option>
+        <option value="/speech-recognition-ja" >日本語</option>
+        <option value="/speech-recognition-es" >Español</option>
+        <option value="/speech-recognition-hi" >हिंदी</option>
+        <option value="/speech-recognition-fr" selected>Français</option>
+        <option value="/speech-recognition-de" >Deutsch</option>
+        <option value="/speech-recognition-ar" >العربية</option>
+        <option value="/speech-recognition-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Ce code Python implémente une reconnaissance vocale en temps réel utilisant l’API Google Cloud Speech-to-Text et la bibliothèque PyAudio. Il capture l’audio depuis le microphone, le transmet en continu à l’API Speech-to-Text et affiche le texte transcrit. La classe <code class="language-plaintext highlighter-rouge">MicrophoneStream</code> gère l’entrée audio, et la fonction <code class="language-plaintext highlighter-rouge">main</code> configure le client de reconnaissance vocale et traite le flux audio.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+<span class="kn">import</span> <span class="n">io</span>
+<span class="kn">import</span> <span class="n">sys</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">speech</span>
+
+<span class="kn">import</span> <span class="n">pyaudio</span>
+<span class="kn">from</span> <span class="n">six.moves</span> <span class="kn">import</span> <span class="n">queue</span>
+
+
+<span class="c1"># Paramètres d'enregistrement audio
+</span><span class="n">RATE</span> <span class="o">=</span> <span class="mi">16000</span>
+<span class="n">CHUNK</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">RATE</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 100ms
+</span>
+
+<span class="k">class</span> <span class="nc">MicrophoneStream</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Ouvre un flux d</span><span class="sh">'</span><span class="s">enregistrement en tant que générateur produisant les blocs audio.</span><span class="sh">"""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_rate</span> <span class="o">=</span> <span class="n">rate</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="n">chunk</span>
+
+        <span class="c1"># Créer une interface audio utilisant PyAudio
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="p">.</span><span class="nc">PyAudio</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_audio_stream</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span>
+            <span class="nb">format</span><span class="o">=</span><span class="n">pyaudio</span><span class="p">.</span><span class="n">paInt16</span><span class="p">,</span>
+            <span class="c1"># L'API ne supporte actuellement que l'audio 1 canal (mono)
+</span>            <span class="c1"># https://goo.gl/z726ff
+</span>            <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_rate</span><span class="p">,</span>
+            <span class="nb">input</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">frames_per_buffer</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_chunk</span><span class="p">,</span>
+            <span class="c1"># Exécuter le flux audio de manière asynchrone pour remplir l'objet buffer.
+</span>            <span class="c1"># Ceci est nécessaire pour que le buffer du périphérique d'entrée ne
+</span>            <span class="c1"># déborde pas pendant que le thread appelant effectue des requêtes réseau, etc.
+</span>            <span class="n">stream_callback</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_fill_buffer</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="nc">Queue</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_fill_buffer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_data</span><span class="p">,</span> <span class="n">frame_count</span><span class="p">,</span> <span class="n">time_info</span><span class="p">,</span> <span class="n">status_flags</span><span class="p">):</span>
+        <span class="sh">"""</span><span class="s">Collecte continuellement les données du flux audio, dans le buffer.</span><span class="sh">"""</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">in_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="n">pyaudio</span><span class="p">.</span><span class="n">paContinue</span>
+
+    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record_seconds</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="ow">and</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">record_seconds</span><span class="p">:</span>
+            <span class="c1"># Utiliser un get() bloquant pour s'assurer qu'il y a au moins un bloc de
+</span>            <span class="c1"># données, et arrêter l'itération si le bloc est None, indiquant la
+</span>            <span class="c1"># fin du flux audio.
+</span>            <span class="n">chunk</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">chunk</span><span class="p">]</span>
+
+            <span class="c1"># Maintenant, consommer toutes les autres données encore en buffer.
+</span>            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">chunk</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                        <span class="k">return</span>
+                    <span class="n">data</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                <span class="k">except</span> <span class="n">queue</span><span class="p">.</span><span class="n">Empty</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="k">yield</span> <span class="sa">b</span><span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="c1"># Signaler au générateur de terminer afin que la méthode
+</span>        <span class="c1"># streaming recognize du client ne bloque pas la terminaison du processus.
+</span>        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_audio_stream</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span>
+
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="sh">'</span><span class="s">fr-FR</span><span class="sh">'</span><span class="p">):</span>
+    <span class="c1"># Voir http://g.co/cloud/speech/docs/languages
+</span>    <span class="c1"># pour une liste des langues prises en charge.
+</span>    <span class="c1"># language_code = 'fr-FR'  # une balise de langue BCP-47
+</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">SpeechClient</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">RecognitionConfig</span><span class="p">(</span>
+        <span class="n">encoding</span><span class="o">=</span><span class="n">speech</span><span class="p">.</span><span class="n">RecognitionConfig</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">LINEAR16</span><span class="p">,</span>
+        <span class="n">sample_rate_hertz</span><span class="o">=</span><span class="n">RATE</span><span class="p">,</span>
+        <span class="n">language_code</span><span class="o">=</span><span class="n">language_code</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">latest_long</span><span class="sh">"</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">streaming_config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">StreamingRecognitionConfig</span><span class="p">(</span>
+        <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+        <span class="n">interim_results</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nc">MicrophoneStream</span><span class="p">(</span><span class="n">RATE</span><span class="p">,</span> <span class="n">CHUNK</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="n">audio_generator</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="nf">generator</span><span class="p">(</span><span class="n">record_seconds</span><span class="p">)</span>
+        <span class="n">requests</span> <span class="o">=</span> <span class="p">(</span><span class="n">speech</span><span class="p">.</span><span class="nc">StreamingRecognizeRequest</span><span class="p">(</span><span class="n">audio_content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">audio_generator</span><span class="p">)</span>
+
+        <span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">streaming_recognize</span><span class="p">(</span><span class="n">streaming_config</span><span class="p">,</span> <span class="n">requests</span><span class="p">)</span>
+
+        <span class="c1"># Maintenant, utiliser les réponses de transcription.
+</span>        <span class="n">transcript</span> <span class="o">=</span> <span class="sh">""</span>
+        <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="c1"># Une fois la transcription terminée, afficher le résultat.
+</span>            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">results</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">is_final</span><span class="p">:</span>
+                    <span class="n">alternative</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">alternatives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="n">transcript</span> <span class="o">+=</span> <span class="n">alternative</span><span class="p">.</span><span class="n">transcript</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> </span><span class="sh">"</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">u</span><span class="sh">'</span><span class="s">Transcription : {}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">transcript</span><span class="p">))</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Reconnaissance vocale en temps réel avec durée ajustable.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--duration</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Durée de l</span><span class="sh">'</span><span class="s">enregistrement en secondes.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--language_code</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">fr-FR</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Code de langue pour la transcription.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Veuillez parler...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">language_code</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

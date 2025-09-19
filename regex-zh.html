@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>复杂正则表达式</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>复杂正则表达式 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="复杂正则表达式" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="zh" />
+<meta name="description" content="最近在研究 HTML 解析，遇到一个正则表达式：" />
+<meta property="og:description" content="最近在研究 HTML 解析，遇到一个正则表达式：" />
+<link rel="canonical" href="https://lzwjava.github.io/regex-zh" />
+<meta property="og:url" content="https://lzwjava.github.io/regex-zh" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-25T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="复杂正则表达式" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-25T00:00:00+08:00","datePublished":"2016-05-25T00:00:00+08:00","description":"最近在研究 HTML 解析，遇到一个正则表达式：","headline":"复杂正则表达式","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/regex-zh"},"url":"https://lzwjava.github.io/regex-zh"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       复杂正则表达式 | 原创
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/zh/2016-05-25-regex-zh.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postszh2016-05-25-regex-zh.md</span> -->
+      
+
+      <!-- <span>2016-05-25-regex-zh.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/regex-en" >English</option>
+        <option value="/regex-zh" selected>中文</option>
+        <option value="/regex-ja" >日本語</option>
+        <option value="/regex-es" >Español</option>
+        <option value="/regex-hi" >हिंदी</option>
+        <option value="/regex-fr" >Français</option>
+        <option value="/regex-de" >Deutsch</option>
+        <option value="/regex-ar" >العربية</option>
+        <option value="/regex-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>最近在研究 HTML 解析，遇到一个正则表达式：</p>
+
+<p><code class="language-plaintext highlighter-rouge">/([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)/is</code></p>
+
+<p>它用来匹配 CSS 选择器，比如 <code class="language-plaintext highlighter-rouge">div &gt; ul</code>。</p>
+
+<p>过去见过很多这样复杂的表达式，我都本能地退缩了。今天就来彻底搞明白它！男人，该对自己狠一点！</p>
+
+<h3 id="匹配-div--ul">匹配 <code class="language-plaintext highlighter-rouge">div &gt; ul</code></h3>
+
+<p>我找了一个网站 https://regex101.com/ ，能在线匹配，还有解释。</p>
+
+<p>虽然有了右边的说明，清楚了一些。但还是不清楚具体匹配起来是怎样的。那就找几个例子，逐个分析。</p>
+
+<p>具体出现这个正则表达式的代码是：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$matches</span> <span class="o">=</span> <span class="p">[];</span>
+<span class="nb">preg_match_all</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="n">pattern</span><span class="p">,</span> <span class="nb">trim</span><span class="p">(</span><span class="nv">$selector</span><span class="p">)</span><span class="mf">.</span><span class="s1">' '</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">,</span> <span class="no">PREG_SET_ORDER</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">preg_match_all</code> 的意思是获取所有满足模式的串。如果有：</p>
+
+<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">preg_match_all</span><span class="p">(</span><span class="s2">"abc"</span><span class="p">,</span> <span class="s2">"abcdabc"</span><span class="p">,</span> <span class="nv">$matches</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>第一个参数是模式，第二个参数是要匹配的字符串，第三个参数是结果引用。运行后，<code class="language-plaintext highlighter-rouge">$matches</code> 数组里会包含两个 <code class="language-plaintext highlighter-rouge">abc</code>。</p>
+
+<p>有了这个理解之后，上图的 <code class="language-plaintext highlighter-rouge">div &gt; ul</code> 只匹配了前面四个字符 <code class="language-plaintext highlighter-rouge">div &gt;</code>。<code class="language-plaintext highlighter-rouge">regex101</code> 不支持 <code class="language-plaintext highlighter-rouge">preg_match_all</code>？还好加个叫 <code class="language-plaintext highlighter-rouge">g</code> 的修饰符就行了：</p>
+
+<p>加了 <code class="language-plaintext highlighter-rouge">g</code> 后，会匹配所有的，而不是匹配到第一个就返回。</p>
+
+<p>加了之后，我们匹配到了 <code class="language-plaintext highlighter-rouge">div &gt; ul</code>：</p>
+
+<p>右边显示，第一个匹配中，即 <code class="language-plaintext highlighter-rouge">div</code>，我们用第一组的规则匹配到了 <code class="language-plaintext highlighter-rouge">div</code>，然后用第七组的规则匹配到了空格 ` `。</p>
+
+<p>我们接着来看第一组规则的解释：</p>
+
+<p>在这一大串表达式中，第一个括号括起来的叫第一组规则。这是一个捕获组。括号自身不匹配，而是用来分组。<code class="language-plaintext highlighter-rouge">[]</code> 表示一个字符集合，里面的规则说明这是一个怎样的字符集合。这个字符集合里有：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\w</code> 表示大小写字母和 0 到 9 以及下划线。</li>
+  <li><code class="language-plaintext highlighter-rouge">-:</code> 直接表示这两个字符在集合里。</li>
+  <li><code class="language-plaintext highlighter-rouge">\*</code> 因为 <code class="language-plaintext highlighter-rouge">*</code> 是正则表达式中的保留字符，有特殊含义，所以要用 <code class="language-plaintext highlighter-rouge">\</code> 来转义，表示这是一个普通的 <code class="language-plaintext highlighter-rouge">*</code> 字符。</li>
+  <li><code class="language-plaintext highlighter-rouge">&gt;</code> 简单地表示 <code class="language-plaintext highlighter-rouge">&gt;</code> 这个字符。</li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">[\w-:\*&gt;]*</code> 最后的 <code class="language-plaintext highlighter-rouge">*</code> 表示前面的字符能出现 0 次或无数次，但要匹配尽可能多的次数。之所以能匹配 <code class="language-plaintext highlighter-rouge">div</code> 是因为，<code class="language-plaintext highlighter-rouge">\w</code> 匹配了 <code class="language-plaintext highlighter-rouge">d</code>、<code class="language-plaintext highlighter-rouge">i</code>、<code class="language-plaintext highlighter-rouge">v</code>。之所以不再继续匹配后面的空格，是因为空格没有出现在 <code class="language-plaintext highlighter-rouge">[]</code> 中。捕获组的意思是，这组匹配会出现在结果数组中。相对应的还有非捕获组，语法是 <code class="language-plaintext highlighter-rouge">(?:)</code>。上面的 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> 如果不需要这组结果，可以记为 <code class="language-plaintext highlighter-rouge">(?:[\w-:\*&gt;]*)</code>。</p>
+
+<p>那么不出现在结果中，直接不用括号不就行了？括号是为了分组，分组还是很有意义的。可以参考 <a href="http://stackoverflow.com/questions/3512471/what-is-a-non-capturing-group">《What is a non capturing group? (?:) - StackOverflow》</a>。</p>
+
+<p>接着讲完了 <code class="language-plaintext highlighter-rouge">div</code> 满足第一组规则后，讲下空格 ` ` 为什么满足第七组的规则。</p>
+
+<p><code class="language-plaintext highlighter-rouge">[\/, ]</code> 的意思是匹配这四个字符的任意一个，<code class="language-plaintext highlighter-rouge">+</code> 表示前面的匹配出现一次或无数次，次数要尽可能多。所以因为这四个字符包含空格，就匹配了我们的空格。又因为 <code class="language-plaintext highlighter-rouge">div </code> 之后下一个字符是 <code class="language-plaintext highlighter-rouge">&gt;</code>，所以不再满足第七组的规则，不继续匹配了。</p>
+
+<p>搞明白了 <code class="language-plaintext highlighter-rouge">div</code> 的匹配。那为什么第二到第六组的规则没有匹配这里的空格，而是留给了第七组？</p>
+
+<p>第二部分的解释：</p>
+
+<p>首先 <code class="language-plaintext highlighter-rouge">(?:)</code> 表示这是一个非捕获组。最后面的 <code class="language-plaintext highlighter-rouge">?</code> 表示前面的匹配可以出现 0 次或 1 次。所以上面的 <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> 可以有或没有。去掉外层的修饰符后，剩下的是 <code class="language-plaintext highlighter-rouge">\#([\w-]+)|\.([\w-]+)</code>，中间的 <code class="language-plaintext highlighter-rouge">|</code> 表示或，满足其中一个即可。<code class="language-plaintext highlighter-rouge">\#([\w-]+)</code> 中的 <code class="language-plaintext highlighter-rouge">\#</code> 匹配 <code class="language-plaintext highlighter-rouge">#</code> 字符，<code class="language-plaintext highlighter-rouge">[\w-]+</code> 匹配其他字符。再看后一半，<code class="language-plaintext highlighter-rouge">\.([\w-]+)</code> 中的 <code class="language-plaintext highlighter-rouge">.</code> 匹配 <code class="language-plaintext highlighter-rouge">.</code> 字符。</p>
+
+<p>所以 2 到 6 组都可能因为空格不是这些组要求的开头字符而不满足，又因为这些组有个 <code class="language-plaintext highlighter-rouge">?</code> 修饰符，不满足也可以，因此跳到了第七组。</p>
+
+<p>接着 <code class="language-plaintext highlighter-rouge">div &gt; ul</code> 后面的 <code class="language-plaintext highlighter-rouge">&gt;</code>，还是一样：</p>
+
+<p>第一组规则 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> 匹配了 <code class="language-plaintext highlighter-rouge">&gt;</code>，第七组规则 <code class="language-plaintext highlighter-rouge">([\/, ]+)</code> 匹配了空格。接着 <code class="language-plaintext highlighter-rouge">ul</code> 像 <code class="language-plaintext highlighter-rouge">div</code> 一样。</p>
+
+<h3 id="匹配-answer-4185009--table--tbody--tdanswercell--div--pre">匹配 <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code></h3>
+
+<p>接着来一个稍微复杂一点的选择器 <code class="language-plaintext highlighter-rouge">#answer-4185009 &gt; table &gt; tbody &gt; td.answercell &gt; div &gt; pre</code>（你也可以打开 https://regex101.com/ 把这个粘贴到那里去来测试）：</p>
+
+<p>这是从 Chrome 里复制粘贴的：</p>
+
+<p>第一个匹配：</p>
+
+<p>因为第一组的规则 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> 中 <code class="language-plaintext highlighter-rouge">[]</code> 里的字符集没有一个能匹配 <code class="language-plaintext highlighter-rouge">#</code>，接着因为最后面的 <code class="language-plaintext highlighter-rouge">*</code> 支持匹配 0 次或无数次，这里是 0 次。接着第二组规则的描述是：</p>
+
+<p>上面已经分析过。直接来看 <code class="language-plaintext highlighter-rouge">|</code> 前的 <code class="language-plaintext highlighter-rouge">\#([\w-]+)</code>，<code class="language-plaintext highlighter-rouge">\#</code> 把 <code class="language-plaintext highlighter-rouge">#</code> 匹配了，<code class="language-plaintext highlighter-rouge">[\w-]+</code> 匹配了 <code class="language-plaintext highlighter-rouge">answer-4185009</code>。后面的 <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code>，如果是 <code class="language-plaintext highlighter-rouge">.answer-4185009</code> 就会应用这个匹配。</p>
+
+<p>接着来看 <code class="language-plaintext highlighter-rouge">td.answercell</code> 这个匹配，</p>
+
+<p>第一组的规则 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code> 匹配了 <code class="language-plaintext highlighter-rouge">td</code>，第二大部分的 <code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code> 的后面部分，即 <code class="language-plaintext highlighter-rouge">\.([\w-]+)</code>，匹配了 <code class="language-plaintext highlighter-rouge">.answercell</code>。</p>
+
+<p>这个选择器的分析也到此结束。</p>
+
+<h3 id="匹配-ahrefhttpgooglecom">匹配 <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code></h3>
+
+<p>接着我们来匹配选择器 <code class="language-plaintext highlighter-rouge">a[href="http://google.com/"]</code>：</p>
+
+<p>看看第三大块：</p>
+
+<p>第三大块的表达式为 <code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code>，首先最外层 <code class="language-plaintext highlighter-rouge">(?:)</code> 表示这是一个非捕获组，最后面的 <code class="language-plaintext highlighter-rouge">?</code> 表示这整个大的可以匹配 0 次或 1 次。去掉之后为 <code class="language-plaintext highlighter-rouge">\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\]</code>。<code class="language-plaintext highlighter-rouge">\[</code> 匹配 <code class="language-plaintext highlighter-rouge">[</code> 字符。<code class="language-plaintext highlighter-rouge">@?</code> 表示 <code class="language-plaintext highlighter-rouge">@</code> 字符可有可无。那么接下来的一组 <code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code>，<code class="language-plaintext highlighter-rouge">!</code> 可有可无，<code class="language-plaintext highlighter-rouge">[\w-:]+</code> 匹配 <code class="language-plaintext highlighter-rouge">href</code>。接着的一组 <code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)</code> 是非捕获组，去掉最外层后是 <code class="language-plaintext highlighter-rouge">([!*^$]?=)["']?(.*?)["']?</code>。这里的 <code class="language-plaintext highlighter-rouge">([!*^$]?=)</code>，<code class="language-plaintext highlighter-rouge">[!*^$]?</code> 表示匹配 0 个或 1 个 <code class="language-plaintext highlighter-rouge">[]</code> 里的字符。接着 <code class="language-plaintext highlighter-rouge">=</code> 直接匹配。接着 <code class="language-plaintext highlighter-rouge">["']?(.*?)["']?</code>，匹配 <code class="language-plaintext highlighter-rouge">"http://google.com/"</code>，<code class="language-plaintext highlighter-rouge">["']?</code> 表示匹配 <code class="language-plaintext highlighter-rouge">"</code> 或 <code class="language-plaintext highlighter-rouge">'</code> 或者两个都不匹配，去掉这个最外层后是 <code class="language-plaintext highlighter-rouge">(.*?)</code> 匹配 <code class="language-plaintext highlighter-rouge">http://google.com/</code>，这里的 <code class="language-plaintext highlighter-rouge">*?</code> 表示尽可能少的匹配，也就是说，如果有 <code class="language-plaintext highlighter-rouge">"</code> 或 <code class="language-plaintext highlighter-rouge">'</code>，要留给后面的表达式 <code class="language-plaintext highlighter-rouge">["']?</code> 来匹配。所以不至于匹配到 <code class="language-plaintext highlighter-rouge">http://google.com/"</code>，而是只匹配 <code class="language-plaintext highlighter-rouge">http://google.com/</code>。所以整个选择器 `a[href=”http://google.com/</p>
+
+<p>”]` 就匹配结束了。</p>
+
+<h3 id="总结">总结</h3>
+
+<p>终于搞懂了！再让我们理清一次，首先整个复杂的表达式 <code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)(?:\#([\w-]+)|\.([\w-]+))?(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?([\/, ]+)</code> 由四大部分组成：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">([\w-:\*&gt;]*)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\#([\w-]+)|\.([\w-]+))?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:\[@?(!?[\w-:]+)(?:([!*^$]?=)["']?(.*?)["']?)?\])?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">([\/, ]+)</code></li>
+</ul>
+
+<p>最复杂的第三部分又由这几个部分组成：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\[</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(!?[\w-:]+)</code></li>
+  <li><code class="language-plaintext highlighter-rouge">(?:([!*^$]?=)["']?(.*?)["']?)?</code></li>
+  <li><code class="language-plaintext highlighter-rouge">\]</code></li>
+</ul>
+
+<p>所以这些足够小的部分都可以逐个击破。然后找多一点例子，看看每个例子是怎么匹配的，同时结合 https://regex101.com/ 的解释来分析。就把这个看似复杂的正则表达式搞懂了，原来它是个纸老虎！</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-zh" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

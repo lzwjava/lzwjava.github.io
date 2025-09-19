@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>揭示 GitHub 之 Xcode 插件</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>揭示 GitHub 之 Xcode 插件 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="揭示 GitHub 之 Xcode 插件" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="這是來自 GitHub 專案 https://github.com/lzwjava/Reveal-In-GitHub 的 README.md。" />
+<meta property="og:description" content="這是來自 GitHub 專案 https://github.com/lzwjava/Reveal-In-GitHub 的 README.md。" />
+<link rel="canonical" href="https://lzwjava.github.io/reveal-in-github-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/reveal-in-github-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="揭示 GitHub 之 Xcode 插件" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2015-10-23T00:00:00+08:00","datePublished":"2015-10-23T00:00:00+08:00","description":"這是來自 GitHub 專案 https://github.com/lzwjava/Reveal-In-GitHub 的 README.md。","headline":"揭示 GitHub 之 Xcode 插件","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/reveal-in-github-hant"},"url":"https://lzwjava.github.io/reveal-in-github-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       揭示 GitHub 之 Xcode 插件 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2015-10-23-reveal-in-github-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2015-10-23-reveal-in-github-hant.md</span> -->
+      
+
+      <!-- <span>2015-10-23-reveal-in-github-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2015.10</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/reveal-in-github-en" >English</option>
+        <option value="/reveal-in-github-zh" >中文</option>
+        <option value="/reveal-in-github-ja" >日本語</option>
+        <option value="/reveal-in-github-es" >Español</option>
+        <option value="/reveal-in-github-hi" >हिंदी</option>
+        <option value="/reveal-in-github-fr" >Français</option>
+        <option value="/reveal-in-github-de" >Deutsch</option>
+        <option value="/reveal-in-github-ar" >العربية</option>
+        <option value="/reveal-in-github-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>這是來自 GitHub 專案 <a href="https://github.com/lzwjava/Reveal-In-GitHub">https://github.com/lzwjava/Reveal-In-GitHub</a> 的 README.md。</p>
+
+<hr />
+
+<h1 id="reveal-in-github">Reveal-In-GitHub</h1>
+
+<p>一個設計用於在 Xcode 中無縫導航到當前儲存庫的關鍵 GitHub 功能的插件。僅需一個點擊，幾秒鐘內即可輕鬆訪問 GitHub History、Blame、Pull Requests、Issues 和 Notifications。</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/5022872/10867703/96e980be-80ab-11e5-9aaa-a06ef476b7f7.gif" alt="plugin" /></p>
+
+<p>我的公司在 GitHub 上工作。我經常打開 GitHub。有時候我在 Xcode 中編輯並不理解某些代碼，所以我會去 GitHub 進行 Blame。有時候，我會查找有關某個文件的最新提交，以幫助我了解代碼的演變。因此，我想知道是否有工具可以幫助我快速從 Xcode 打開 GitHub。因此，我編寫了這個插件。當您在 Xcode 中編輯某個源文件時，很容易知道您正在哪個 GitHub 儲存庫中工作，並知道您正在編輯的文件。這樣可以快速跳轉到 GitHub 上的文件，快速跳轉到當前編輯行的 GitHub Blame，快速跳轉到您正在 Xcode 上工作的當前儲存庫的 Issues 或 PRs。</p>
+
+<h2 id="選單項目">選單項目</h2>
+
+<p><img width="700" alt="2015-11-01 12 56 35" src="https://cloud.githubusercontent.com/assets/5022872/10864813/5df3f05e-8034-11e5-9f3e-03ae3fbc3cfc.png" /></p>
+
+<p>它有六個選單項目：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>選單標題</th>
+      <th>快捷方式</th>
+      <th>GitHub URL 模式（當我正在編輯 LZAlbumManager.m 行 40 時）</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>設定</td>
+      <td>⌃⇧⌘S</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>儲存庫</td>
+      <td>⌃⇧⌘R</td>
+      <td>https://github.com/lzwjava/LZAlbum</td>
+    </tr>
+    <tr>
+      <td>Issues</td>
+      <td>⌃⇧⌘I</td>
+      <td>https://github.com/lzwjava/LZAlbum/issues</td>
+    </tr>
+    <tr>
+      <td>PRs</td>
+      <td>⌃⇧⌘P</td>
+      <td>https://github.com/lzwjava/LZAlbum/pulls</td>
+    </tr>
+    <tr>
+      <td>快速文件</td>
+      <td>⌃⇧⌘Q</td>
+      <td>https://github.com/lzwjava/LZAlbum/blob/fd7224/LZAlbum/manager/LZAlbumManager.m#L40</td>
+    </tr>
+    <tr>
+      <td>歷史記錄</td>
+      <td>⌃⇧⌘L</td>
+      <td>https://github.com/lzwjava/LZAlbum/commits/fd7224/LZAlbum/manager/LZAlbumManager.m</td>
+    </tr>
+    <tr>
+      <td>Blame</td>
+      <td>⌃⇧⌘B</td>
+      <td>https://github.com/lzwjava/LZAlbum/blame/fd7224/LZAlbum/manager/LZAlbumManager.m#L40</td>
+    </tr>
+    <tr>
+      <td>通知</td>
+      <td>⌃⇧⌘N</td>
+      <td>https://github.com/leancloud/LZAlbum/notifications?all=1</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>這些快捷方式經過精心設計，不會與 Xcode 默認快捷方式衝突。快捷方式模式是 ⌃⇧⌘（Ctrl+Shift+Command），加上選單標題的第一個字母。</p>
+
+<h2 id="自訂">自訂</h2>
+
+<p>有時候，您可能想快速跳轉到 Wiki。以下是方法，打開設定：</p>
+
+<p><img width="500" alt="2015-11-01 12 56 35" src="https://cloud.githubusercontent.com/assets/5022872/10864939/fa83f286-8037-11e5-97d7-e9549485b11d.png" /></p>
+
+<p>例如：</p>
+
+<p>快速文件，模式和實際 URL：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           {git_remote_url}      /blob/{commit}/         {file_path}         #{selection}
+https://github.com/lzwjava/LZAlbum/blob/fd7224/LZAlbum/manager/LZAlbumManager.m#L40-L43
+</code></pre></div></div>
+
+<p>{commit} 是當前分支的最新提交哈希值。它比使用分支更好，因為分支的 HEAD 可能會變化。因此，#L40-L43 中的代碼也可能會變化。</p>
+
+<p>因此，如果您想為當前儲存庫的 Wiki 添加一個快捷方式，只需添加一個選單項目並將模式設置為 <code class="language-plaintext highlighter-rouge">{git_remote_url}/wiki</code>。</p>
+
+<p>在設定中，<code class="language-plaintext highlighter-rouge">Clear Default Repos</code> 表示如果您有多個 git 傳輸，當首次觸發時，它會提示您選擇其中一個：</p>
+
+<p><img width="400" src="https://cloud.githubusercontent.com/assets/5022872/10865120/5794994a-803c-11e5-9527-965f7e617e8f.png" /></p>
+
+<p>然後插件會記住您的選擇。因此，當您再次觸發選單時，將打開該遠程儲存庫作為默認。按鈕 <code class="language-plaintext highlighter-rouge">Clear Default Repos</code> 將清除此設置，將再次提示您選擇。</p>
+
+<h2 id="安裝">安裝</h2>
+
+<p>推薦使用 <a href="http://alcatraz.io/">Alcatraz</a>，</p>
+
+<p><img src="https://cloud.githubusercontent.com/assets/5022872/10867743/0ce351c6-80ae-11e5-82e2-f740887153f7.jpg" alt="qq20151101-1 2x" /></p>
+
+<p>或者</p>
+
+<ol>
+  <li>克隆此儲存庫。</li>
+  <li>打開 <code class="language-plaintext highlighter-rouge">Reveal-In-GitHub.xcodeproj</code>，並構建它。</li>
+  <li>Reveal-In-GitHub.xcplugin 应該位於 <code class="language-plaintext highlighter-rouge">~/Library/Application Support/Developer/Shared/Xcode/Plug-ins</code></li>
+  <li>重新啟動 Xcode。</li>
+  <li>打開任何 GitHub 專案並按下 ⌃⇧⌘B（Ctrl+Shift+Command+B）以 Blame 代碼。</li>
+</ol>
+
+<h2 id="安裝-1">安裝</h2>
+
+<p>建議使用 <a href="http://alcatraz.io/">Alcatraz</a>，可參考巧神的一遍<a href="http://blog.devtang.com/blog/2014/03/05/use-alcatraz-to-manage-xcode-plugins/">博客</a>。安裝好後，按照上圖搜索 <code class="language-plaintext highlighter-rouge">Reveal In GitHub</code>，點擊 <code class="language-plaintext highlighter-rouge">Install</code> 即可。</p>
+
+<p>如果不使用這個工具，那麼也只需三步：</p>
+
+<ul>
+  <li>克隆該專案到本地。</li>
+  <li>打開 xcodeproj，點擊 Build 构建。這將在目錄 <code class="language-plaintext highlighter-rouge">~/Library/Application Support/Developer/Shared/Xcode/Plug-ins</code> 生成 Reveal-In-GitHub.xcplugin 文件。</li>
+  <li>重啟 Xcode，打開任意一個放在 GitHub 上的專案。按下 <code class="language-plaintext highlighter-rouge">Ctrl+Shift+Command+B</code> 即可。</li>
+</ul>
+
+<h2 id="致謝">致謝</h2>
+
+<p>在開發過程中，發現另一個插件 <a href="https://github.com/larsxschneider/ShowInGitHub">ShowInGitHub</a> 做了類似的事情。我從中學到了一些技術。感謝這個。</p>
+
+<h2 id="許可證">許可證</h2>
+
+<p>MIT</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

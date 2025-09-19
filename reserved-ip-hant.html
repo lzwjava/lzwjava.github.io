@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>管理DigitalOcean保留IP</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>管理DigitalOcean保留IP | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="管理DigitalOcean保留IP" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="伺服器的IP地址容易被防火長城（GFW）封鎖，這是一個常見的挑戰，尤其是對於雲端伺服器而言。為了解決這個問題，一個策略是使用DigitalOcean的保留IP，並在當前IP被封鎖時將其重新分配給你的droplet。這篇文章介紹了一個Python腳本來自動化這個過程。該腳本也已開源，可以在GitHub上找到。" />
+<meta property="og:description" content="伺服器的IP地址容易被防火長城（GFW）封鎖，這是一個常見的挑戰，尤其是對於雲端伺服器而言。為了解決這個問題，一個策略是使用DigitalOcean的保留IP，並在當前IP被封鎖時將其重新分配給你的droplet。這篇文章介紹了一個Python腳本來自動化這個過程。該腳本也已開源，可以在GitHub上找到。" />
+<link rel="canonical" href="https://lzwjava.github.io/reserved-ip-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/reserved-ip-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-14T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="管理DigitalOcean保留IP" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-14T00:00:00+08:00","datePublished":"2025-01-14T00:00:00+08:00","description":"伺服器的IP地址容易被防火長城（GFW）封鎖，這是一個常見的挑戰，尤其是對於雲端伺服器而言。為了解決這個問題，一個策略是使用DigitalOcean的保留IP，並在當前IP被封鎖時將其重新分配給你的droplet。這篇文章介紹了一個Python腳本來自動化這個過程。該腳本也已開源，可以在GitHub上找到。","headline":"管理DigitalOcean保留IP","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/reserved-ip-hant"},"url":"https://lzwjava.github.io/reserved-ip-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       管理DigitalOcean保留IP | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2025-01-14-reserved-ip-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2025-01-14-reserved-ip-hant.md</span> -->
+      
+
+      <!-- <span>2025-01-14-reserved-ip-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/reserved-ip-en" >English</option>
+        <option value="/reserved-ip-zh" >中文</option>
+        <option value="/reserved-ip-ja" >日本語</option>
+        <option value="/reserved-ip-es" >Español</option>
+        <option value="/reserved-ip-hi" >हिंदी</option>
+        <option value="/reserved-ip-fr" >Français</option>
+        <option value="/reserved-ip-de" >Deutsch</option>
+        <option value="/reserved-ip-ar" >العربية</option>
+        <option value="/reserved-ip-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>伺服器的IP地址容易被防火長城（GFW）封鎖，這是一個常見的挑戰，尤其是對於雲端伺服器而言。為了解決這個問題，一個策略是使用DigitalOcean的保留IP，並在當前IP被封鎖時將其重新分配給你的droplet。這篇文章介紹了一個Python腳本來自動化這個過程。該腳本也已開源，可以在<a href="https://github.com/lzwjava/auto-ss-config">GitHub</a>上找到。</p>
+
+<p>這個腳本允許你：</p>
+
+<ul>
+  <li>檢查保留IP是否分配給特定的droplet。</li>
+  <li>如果當前的IP被封鎖，則將新的保留IP重新分配給droplet。</li>
+  <li>檢查保留IP的80端口是否開放（這是一個簡單的方法來檢查IP是否有效）。</li>
+</ul>
+
+<p>以下是Python腳本：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">socket</span>
+<span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">time</span>
+
+<span class="c1"># 獲取DigitalOcean API頭部的函數
+</span><span class="k">def</span> <span class="nf">get_digitalocean_headers</span><span class="p">():</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">DO_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">錯誤：環境變量中未找到DO_API_KEY。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span>
+    <span class="p">}</span>
+
+<span class="c1"># 從DigitalOcean獲取所有保留IP的函數
+</span><span class="k">def</span> <span class="nf">fetch_reserved_ips</span><span class="p">():</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips</span><span class="sh">"</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="n">reserved_ips_data</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="nf">json</span><span class="p">().</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">reserved_ips</span><span class="sh">"</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">response.json</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">reserved_ips_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># 將響應保存到文件中以便調試
+</span>        <span class="k">return</span> <span class="n">reserved_ips_data</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">獲取保留IP地址時出錯：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="c1"># 從droplet取消分配保留IP的函數
+</span><span class="k">def</span> <span class="nf">unassign_ip_from_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功從droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">中刪除IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">從droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">中刪除IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">時出錯：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="c1"># 將保留IP分配給droplet的函數
+</span><span class="k">def</span> <span class="nf">assign_ip_to_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">/actions</span><span class="sh">"</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">assign</span><span class="sh">"</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">droplet_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">droplet_id</span>
+        <span class="p">}</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功將IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">分配給droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">將IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">分配給droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">時出錯：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="c1"># 處理保留IP、檢查分配並在需要時重新分配的函數
+</span><span class="k">def</span> <span class="nf">process_reserved_ips</span><span class="p">(</span><span class="n">reserved_ips</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">,</span> <span class="n">only_check</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">reserved_ips</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">您的帳戶中未找到保留IP。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+    <span class="k">for</span> <span class="n">reserved_ip</span> <span class="ow">in</span> <span class="n">reserved_ips</span><span class="p">:</span>
+        <span class="n">ip_address</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">ip</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ip_address</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">未找到保留IP的IP地址。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">continue</span>
+
+        <span class="n">droplet</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">droplet</span><span class="sh">"</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">droplet_name</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">droplet</span> <span class="ow">and</span> <span class="n">droplet</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">)</span> <span class="o">==</span> <span class="n">droplet_name</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">保留IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">已分配給droplet：</span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">only_check</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nf">check_port_80</span><span class="p">(</span><span class="n">ip_address</span><span class="p">):</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">的IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">的80端口已開放</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">的IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">的80端口已關閉</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">ip_address</span>
+                <span class="n">droplet_id</span> <span class="o">=</span> <span class="n">droplet</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">id</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">droplet_id</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nf">unassign_ip_from_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+                        <span class="c1"># 取消分配後嘗試分配新的IP
+</span>                        
+                        <span class="n">new_ip</span> <span class="o">=</span> <span class="nf">create_new_reserved_ip</span><span class="p">(</span><span class="n">droplet_id</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="n">new_ip</span><span class="p">:</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">分配新IP前等待10秒...</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="nf">assign_ip_to_droplet</span><span class="p">(</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+                                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功將新IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s">分配給droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">未能將新IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s">重新分配給droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">沒有可分配的IP</span><span class="sh">"</span><span class="p">)</span>
+                    
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">無法取消分配IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">，因為未找到droplet ID。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">None</span>
+            <span class="k">elif</span> <span class="n">droplet</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">保留IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">未分配給droplet：</span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">沒有droplet分配給保留IP：</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ip_address</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="c1"># 創建新的保留IP的函數
+</span><span class="k">def</span> <span class="nf">create_new_reserved_ip</span><span class="p">(</span><span class="n">droplet_id</span><span class="p">):</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">獲取DigitalOcean頭部失敗。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips</span><span class="sh">"</span>
+        <span class="n">req</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">region</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">sgp1</span><span class="sh">"</span><span class="p">,</span> <span class="c1"># 如果需要，可以更改區域
+</span>        <span class="p">}</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">嘗試為droplet ID </span><span class="si">{</span><span class="n">droplet_id</span><span class="si">}</span><span class="s">創建新的保留IP</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="n">new_ip</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="nf">json</span><span class="p">().</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">reserved_ip</span><span class="sh">"</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">ip</span><span class="sh">"</span><span class="p">)</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">成功創建新的保留IP：</span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_ip</span>
+    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">創建新的保留IP時出錯：</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="c1"># 檢查IP地址的80端口是否開放的函數
+</span><span class="k">def</span> <span class="nf">check_port_80</span><span class="p">(</span><span class="n">ip_address</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">.</span><span class="nf">settimeout</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="n">ip_address</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+            <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+<span class="c1"># 獲取保留IP的主函數
+</span><span class="k">def</span> <span class="nf">get_reserved_ip</span><span class="p">(</span><span class="n">droplet_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">only_check</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="n">reserved_ips</span> <span class="o">=</span> <span class="nf">fetch_reserved_ips</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">reserved_ips</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="k">return</span> <span class="nf">process_reserved_ips</span><span class="p">(</span><span class="n">reserved_ips</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">,</span> <span class="n">only_check</span><span class="p">)</span>
+    
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">獲取DigitalOcean保留IP地址。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--droplet-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">要檢查保留IP是否分配給的droplet名稱。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--only-check</span><span class="sh">"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">"</span><span class="s">store_true</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">僅檢查IP是否分配給droplet，不重新分配。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+    <span class="n">reserved_ip</span> <span class="o">=</span> <span class="nf">get_reserved_ip</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">droplet_name</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">only_check</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">reserved_ip</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">保留IP地址為：</span><span class="si">{</span><span class="n">reserved_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>解釋：</strong></p>
+
+<ol>
+  <li><strong>導入庫：</strong> 導入必要的庫，用於網絡操作、環境變量、參數解析、JSON處理、HTTP請求和時間延遲。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">get_digitalocean_headers()</code>：</strong> 從環境變量中獲取DigitalOcean API密鑰，並構建API請求所需的頭部。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">fetch_reserved_ips()</code>：</strong> 使用API獲取與您的DigitalOcean帳戶關聯的所有保留IP。它還將原始響應保存到<code class="language-plaintext highlighter-rouge">response.json</code>以便調試。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">unassign_ip_from_droplet()</code>：</strong> 從指定的droplet中取消分配給定的保留IP。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">assign_ip_to_droplet()</code>：</strong> 將給定的保留IP分配給指定的droplet。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">process_reserved_ips()</code>：</strong> 這是核心邏輯：
+    <ul>
+      <li>它遍歷所有保留IP。</li>
+      <li>如果提供了<code class="language-plaintext highlighter-rouge">droplet_name</code>，則檢查IP是否分配給該droplet。</li>
+      <li>如果<code class="language-plaintext highlighter-rouge">only_check</code>為真，則檢查80端口是否開放並返回IP。</li>
+      <li>如果不是<code class="language-plaintext highlighter-rouge">only_check</code>，則取消分配當前IP，創建一個新的IP，並將新IP分配給droplet。</li>
+    </ul>
+  </li>
+  <li><strong><code class="language-plaintext highlighter-rouge">create_new_reserved_ip()</code>：</strong> 在<code class="language-plaintext highlighter-rouge">sgp1</code>區域創建一個新的保留IP（您可以更改此區域）。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">check_port_80()</code>：</strong> 檢查給定IP地址的80端口是否開放。這是驗證IP是否可訪問的簡單方法。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">get_reserved_ip()</code>：</strong> 協調獲取和處理保留IP的過程。</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">if __name__ == '__main__':</code>：</strong> 解析命令行參數（<code class="language-plaintext highlighter-rouge">--droplet-name</code>和<code class="language-plaintext highlighter-rouge">--only-check</code>）並調用<code class="language-plaintext highlighter-rouge">get_reserved_ip</code>來執行腳本。</li>
+</ol>
+
+<p><strong>使用方法：</strong></p>
+
+<ol>
+  <li><strong>設置DigitalOcean API密鑰：</strong> 使用您的DigitalOcean API密鑰設置<code class="language-plaintext highlighter-rouge">DO_API_KEY</code>環境變量。</li>
+  <li><strong>運行腳本：</strong>
+    <ul>
+      <li>要檢查IP是否分配給droplet以及80端口是否開放：
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python your_script_name.py <span class="nt">--droplet-name</span> your_droplet_name <span class="nt">--only-check</span>
+</code></pre></div>        </div>
+      </li>
+      <li>要將新的IP重新分配給droplet：
+        <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python your_script_name.py <span class="nt">--droplet-name</span> your_droplet_name
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<p>這個腳本提供了一個管理保留IP的基本框架。您可以根據具體需求進一步擴展它。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

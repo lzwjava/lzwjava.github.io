@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Streamline Reminders via Telegram</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Streamline Reminders via Telegram | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Streamline Reminders via Telegram" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="In this project, I set up an automated reminder system using GitHub Actions and a Telegram bot to keep my daily and monthly tasks on track. By leveraging cron schedules, I configured reminders for work-related tasks like punching in on WeCom, submitting timesheets, and checking salaries, as well as personal tasks such as visiting family, shopping on JD.com, and even watching TV with my partner. The system uses a Python script to send messages via Telegram’s Bot API, with environment variables securely stored in GitHub Secrets. This setup ensures I never miss critical deadlines or personal commitments, blending technology with everyday life for maximum efficiency." />
+<meta property="og:description" content="In this project, I set up an automated reminder system using GitHub Actions and a Telegram bot to keep my daily and monthly tasks on track. By leveraging cron schedules, I configured reminders for work-related tasks like punching in on WeCom, submitting timesheets, and checking salaries, as well as personal tasks such as visiting family, shopping on JD.com, and even watching TV with my partner. The system uses a Python script to send messages via Telegram’s Bot API, with environment variables securely stored in GitHub Secrets. This setup ensures I never miss critical deadlines or personal commitments, blending technology with everyday life for maximum efficiency." />
+<link rel="canonical" href="https://lzwjava.github.io/reminders-en" />
+<meta property="og:url" content="https://lzwjava.github.io/reminders-en" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-05T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Streamline Reminders via Telegram" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-05T00:00:00+08:00","datePublished":"2025-06-05T00:00:00+08:00","description":"In this project, I set up an automated reminder system using GitHub Actions and a Telegram bot to keep my daily and monthly tasks on track. By leveraging cron schedules, I configured reminders for work-related tasks like punching in on WeCom, submitting timesheets, and checking salaries, as well as personal tasks such as visiting family, shopping on JD.com, and even watching TV with my partner. The system uses a Python script to send messages via Telegram’s Bot API, with environment variables securely stored in GitHub Secrets. This setup ensures I never miss critical deadlines or personal commitments, blending technology with everyday life for maximum efficiency.","headline":"Streamline Reminders via Telegram","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/reminders-en"},"url":"https://lzwjava.github.io/reminders-en"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Streamline Reminders via Telegram | Original
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/en/2025-06-05-reminders-en.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsen2025-06-05-reminders-en.md</span> -->
+      
+
+      <!-- <span>2025-06-05-reminders-en.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/reminders-en" selected>English</option>
+        <option value="/reminders-zh" >中文</option>
+        <option value="/reminders-ja" >日本語</option>
+        <option value="/reminders-es" >Español</option>
+        <option value="/reminders-hi" >हिंदी</option>
+        <option value="/reminders-fr" >Français</option>
+        <option value="/reminders-de" >Deutsch</option>
+        <option value="/reminders-ar" >العربية</option>
+        <option value="/reminders-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>In this project, I set up an automated reminder system using GitHub Actions and a Telegram bot to keep my daily and monthly tasks on track. By leveraging cron schedules, I configured reminders for work-related tasks like punching in on WeCom, submitting timesheets, and checking salaries, as well as personal tasks such as visiting family, shopping on JD.com, and even watching TV with my partner. The system uses a Python script to send messages via Telegram’s Bot API, with environment variables securely stored in GitHub Secrets. This setup ensures I never miss critical deadlines or personal commitments, blending technology with everyday life for maximum efficiency.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Reminders</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># Runs every 2 hours from 12 PM to 8 PM (Beijing time, UTC+8) from Wednesday to Friday.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">4,6,8,10,12</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3-5'</span>
+    <span class="c1"># Runs on the 27th of every month at 12 PM (Beijing time, UTC+8).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">27</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Runs on the 30th of every month at 2 PM (Beijing time, UTC+8).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">30</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Runs every day at 1 AM Beijing time (5 PM UTC the previous day).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">17</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Runs every day at 11 AM Beijing time (3 AM UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Reminds to go to parents' house next day: 9 PM Beijing Time (1 PM UTC) on Tue, Wed, Thu.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">2-4'</span>
+    <span class="c1"># Reminds to go to own house next day: 9 PM Beijing Time (1 PM UTC) on Sun, Mon, Fri, Sat.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">0,1,5,6'</span>
+    <span class="c1"># Reminds to buy fresh produce direct from the source in JD.com: 9 PM Beijing Time (1 PM UTC) on Wednesday.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3'</span>
+    <span class="c1"># Reminds to buy quick delivery food from JD.com: 9 PM Beijing Time (1 PM UTC) on Friday.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5'</span>
+    <span class="c1"># Reminds about associate degree exam in March, April, September, and October every Monday at 1 PM Beijing Time (5 AM UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">5</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3,4,9,10</span><span class="nv"> </span><span class="s">1'</span>
+    <span class="c1"># Reminds to submit weekly timesheet every Friday at 5 PM Taipei time (9 AM UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">9</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5'</span>
+    <span class="c1"># Reminds to submit vendor timesheet on the 25th of every month at 12 AM Taipei time (4 PM UTC previous day).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">16</span><span class="nv"> </span><span class="s">25</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Reminds to ask family to support mortgage payment on the 16th of every month at 9 PM Taipei time (1 PM UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">13</span><span class="nv"> </span><span class="s">16</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*'</span>
+    <span class="c1"># Reminds to watch TV with partner every Friday, Saturday, and Sunday at 10 PM Taipei time (2 PM UTC).</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">14</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">5,6,0'</span>
+    <span class="c1"># Reminds to remove parking permit sticker at 2 AM Beijing time (6 PM UTC) on Wed, Thu, Fri.</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0</span><span class="nv"> </span><span class="s">18</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">3,4,5'</span>
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>  <span class="c1"># Allows manual triggering</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">reminders'</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">send-reminders</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">environment</span><span class="pi">:</span> <span class="s">github-pages</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">TELEGRAM_BOT2_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Set up Python 3.10.x</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.10.x"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Install dependencies</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.simple.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for daily punch card reminders</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Punch card in WeCom"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 4,6,8,10,12 * * 3-5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for monthly mortgage reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Prepare house mortgage deduction"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 4 27 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for monthly salary check reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Check salary"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 6 30 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for sleep reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Time to sleep!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 17 * * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for wake up reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Time to wake up!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 3 * * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for parents' house reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Go to house of parents tomorrow!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 2-4'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for own house reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Go to your house tomorrow!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 0,1,5,6'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for JD.com fresh produce reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Buy fresh produce direct from the source in JD.com!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 3'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for JD.com quick delivery food reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Buy quick delivery food from JD.com!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 * * 5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for associate degree exam reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Register associate degree exam"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 5 * 3,4,9,10 1'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for weekly timesheet reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Submit weekly timesheet"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 9 * * 5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for vendor timesheet reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Submit vendor timesheet"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 16 25 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for family mortgage support reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Ask family to support mortgage payment"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 13 16 * *'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for watch TV with partner reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Time to watch TV with your partner!"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 14 * * 5,6,0'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for car window paper stick reminder</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "Remove parking permit sticker from car window"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event.schedule == '0 18 * * 3,4,5'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Run Telegram script for test message</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/release/reminders_bot.py --job send_message --message "This is a test message from GitHub Actions."</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'workflow_dispatch'</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">json</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+
+<span class="nf">load_dotenv</span><span class="p">()</span>
+
+<span class="n">TELEGRAM_BOT2_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT2_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="sh">"</span><span class="s">610574272</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">bot_token</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Sends a message to a Telegram chat using the Telegram Bot API.</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">message</span>
+    <span class="p">}</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error sending Telegram message: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">get_chat_id</span><span class="p">(</span><span class="n">bot_token</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Retrieves the chat ID of the last message sent to the bot.</span><span class="sh">"""</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/getUpdates</span><span class="sh">"</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="n">updates</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">updates</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">updates</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">]:</span>
+            <span class="n">chat_id</span> <span class="o">=</span> <span class="n">updates</span><span class="p">[</span><span class="sh">'</span><span class="s">result</span><span class="sh">'</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">chat</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">id</span><span class="sh">'</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">chat_id</span>
+    <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">send_reminder</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Sends a reminder message to Telegram.</span><span class="sh">"""</span>
+    <span class="k">if</span> <span class="n">TELEGRAM_BOT2_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+        <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_BOT2_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Reminder: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT2_API_KEY and TELEGRAM_CHAT_ID are not set.</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Telegram Bot Script</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--job</span><span class="sh">'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">get_chat_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">send_message</span><span class="sh">'</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Job to perform</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--message</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Custom message to send</span><span class="sh">"</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">get_chat_id</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">bot_token</span> <span class="o">=</span> <span class="n">TELEGRAM_BOT2_API_KEY</span>
+        <span class="n">chat_id</span> <span class="o">=</span> <span class="nf">get_chat_id</span><span class="p">(</span><span class="n">bot_token</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">chat_id</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Chat ID: </span><span class="si">{</span><span class="n">chat_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Could not retrieve chat ID.</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">send_message</span><span class="sh">'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span><span class="p">:</span>
+            <span class="nf">send_reminder</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No message provided for send_message job.</span><span class="sh">"</span><span class="p">)</span>
+            
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-en" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

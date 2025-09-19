@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="V2Ray एक बहुमुखी प्लेटफॉर्म है जो नेटवर्क प्रतिबंधों को बायपास करने और ऑनलाइन गोपनीयता को बढ़ाने के लिए प्रॉक्सी बनाने के लिए उपयोग किया जाता है। इस गाइड में, हम आपको एक Ubuntu सर्वर पर V2Ray को इंस्टॉल और कॉन्फ़िगर करने के बारे में चरण-दर-चरण बताएंगे। हम इंस्टॉलेशन चरण, कॉन्फ़िगरेशन फ़ाइलें, सामान्य समस्याएं और सत्यापन विधियों को कवर करेंगे ताकि यह सुनिश्चित किया जा सके कि सब कुछ सुचारू रूप से चले।" />
+<meta property="og:description" content="V2Ray एक बहुमुखी प्लेटफॉर्म है जो नेटवर्क प्रतिबंधों को बायपास करने और ऑनलाइन गोपनीयता को बढ़ाने के लिए प्रॉक्सी बनाने के लिए उपयोग किया जाता है। इस गाइड में, हम आपको एक Ubuntu सर्वर पर V2Ray को इंस्टॉल और कॉन्फ़िगर करने के बारे में चरण-दर-चरण बताएंगे। हम इंस्टॉलेशन चरण, कॉन्फ़िगरेशन फ़ाइलें, सामान्य समस्याएं और सत्यापन विधियों को कवर करेंगे ताकि यह सुनिश्चित किया जा सके कि सब कुछ सुचारू रूप से चले।" />
+<link rel="canonical" href="https://lzwjava.github.io/v2ray-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/v2ray-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-19T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-19T00:00:00+08:00","datePublished":"2024-12-19T00:00:00+08:00","description":"V2Ray एक बहुमुखी प्लेटफॉर्म है जो नेटवर्क प्रतिबंधों को बायपास करने और ऑनलाइन गोपनीयता को बढ़ाने के लिए प्रॉक्सी बनाने के लिए उपयोग किया जाता है। इस गाइड में, हम आपको एक Ubuntu सर्वर पर V2Ray को इंस्टॉल और कॉन्फ़िगर करने के बारे में चरण-दर-चरण बताएंगे। हम इंस्टॉलेशन चरण, कॉन्फ़िगरेशन फ़ाइलें, सामान्य समस्याएं और सत्यापन विधियों को कवर करेंगे ताकि यह सुनिश्चित किया जा सके कि सब कुछ सुचारू रूप से चले।","headline":"V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/v2ray-hi"},"url":"https://lzwjava.github.io/v2ray-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og13.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og13.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       V2Ray आज़माएं: एक चरण-दर-चरण मार्गदर्शिका | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2024-12-19-v2ray-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2024-12-19-v2ray-hi.md</span> -->
+      
+
+      <!-- <span>2024-12-19-v2ray-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/v2ray-en" >English</option>
+        <option value="/v2ray-zh" >中文</option>
+        <option value="/v2ray-ja" >日本語</option>
+        <option value="/v2ray-es" >Español</option>
+        <option value="/v2ray-hi" selected>हिंदी</option>
+        <option value="/v2ray-fr" >Français</option>
+        <option value="/v2ray-de" >Deutsch</option>
+        <option value="/v2ray-ar" >العربية</option>
+        <option value="/v2ray-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>V2Ray एक बहुमुखी प्लेटफॉर्म है जो नेटवर्क प्रतिबंधों को बायपास करने और ऑनलाइन गोपनीयता को बढ़ाने के लिए प्रॉक्सी बनाने के लिए उपयोग किया जाता है। इस गाइड में, हम आपको एक Ubuntu सर्वर पर V2Ray को इंस्टॉल और कॉन्फ़िगर करने के बारे में चरण-दर-चरण बताएंगे। हम इंस्टॉलेशन चरण, कॉन्फ़िगरेशन फ़ाइलें, सामान्य समस्याएं और सत्यापन विधियों को कवर करेंगे ताकि यह सुनिश्चित किया जा सके कि सब कुछ सुचारू रूप से चले।</p>
+
+<h2 id="विषय-सूची">विषय-सूची</h2>
+<ol>
+  <li><a href="#स्थापना">स्थापना</a></li>
+  <li><a href="#कॉन्फ़िगरेशन">कॉन्फ़िगरेशन</a>
+    <ul>
+      <li><a href="#v2ray-कॉन्फ़िगरेशन-configjson">V2Ray कॉन्फ़िगरेशन (<code class="language-plaintext highlighter-rouge">config.json</code>)</a></li>
+      <li><a href="#प्रॉक्सी-कॉन्फ़िगरेशन-configyaml">प्रॉक्सी कॉन्फ़िगरेशन (<code class="language-plaintext highlighter-rouge">config.yaml</code>)</a></li>
+    </ul>
+  </li>
+  <li><a href="#v2ray-सेवा-प्रबंधन">V2Ray सेवा प्रबंधन</a></li>
+  <li><a href="#सामान्य-समस्याएं-और-समस्या-निवारण">सामान्य समस्याएं और समस्या निवारण</a></li>
+  <li><a href="#सत्यापन">सत्यापन</a></li>
+  <li><a href="#निष्कर्ष">निष्कर्ष</a></li>
+  <li><a href="#अतिरिक्त-सुझाव">अतिरिक्त सुझाव</a></li>
+</ol>
+
+<hr />
+
+<h2 id="इंस्टॉलेशन">इंस्टॉलेशन</h2>
+
+<p>V2Ray को डाउनलोड और इंस्टॉल करने के लिए दिए गए इंस्टॉलेशन स्क्रिप्ट का उपयोग करके शुरुआत करें।</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ubuntu@ip-172-26-0-236:~<span class="nv">$ </span>curl <span class="nt">-L</span> https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh <span class="o">&gt;</span> <span class="k">in</span>.sh
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में ट्रांसलेट नहीं किया जाएगा क्योंकि यह एक कमांड है जो टर्मिनल में चलाई जाती है।)</p>
+
+<p>इंस्टॉलेशन स्क्रिप्ट चलाएं:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">chmod</span> +x <span class="k">in</span>.sh
+<span class="nb">sudo</span> ./in.sh
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक है और इसे अनुवादित नहीं किया जाना चाहिए।)</p>
+
+<p>स्थापना आउटपुट:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>[Install]
+WantedBy=multi-user.target
+</code></pre></div></div>
+
+<p>जानकारी: V2Ray v5.22.0 स्थापित है।</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+नोट: स्क्रिप्ट आवश्यकता पड़ने पर निर्भर सॉफ़्टवेयर को हटाने का सुझाव देती है:
+
+```bash
+apt purge curl unzip
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="कॉन्फ़िगरेशन">कॉन्फ़िगरेशन</h2>
+
+<h3 id="v2ray-कॉन्फ़िगरेशन-configjson">V2Ray कॉन्फ़िगरेशन (<code class="language-plaintext highlighter-rouge">config.json</code>)</h3>
+
+<p>यह JSON फ़ाइल V2Ray के लिए इनबाउंड और आउटबाउंड सेटिंग्स को परिभाषित करती है।</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"inbounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">1080</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"listen"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.0.0.0"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vmess"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"clients"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9f02f6b2-1d7d-4b10-aada-69e050f1be6b"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"level"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"alterId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@v2ray.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nl">"security"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"streamSettings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"network"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tcp"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"sniffing"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nl">"destOverride"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"http"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"tls"</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vmess-inbound"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"udp"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"outbounds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nl">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"freedom"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nl">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"outbound-freedom"</span><span class="p">,</span><span class="w">
+            </span><span class="nl">"udp"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nl">"log"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"loglevel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debug"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/log/v2ray/access.log"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/var/log/v2ray/error.log"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"stats"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"environment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"v2ray.vmess.aead.forced"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>मुख्य बिंदु:</p>
+<ul>
+  <li>इनबाउंड: आने वाले कनेक्शन के लिए प्रवेश बिंदुओं को परिभाषित करता है। यहां, इसे पोर्ट <code class="language-plaintext highlighter-rouge">1080</code> पर <code class="language-plaintext highlighter-rouge">vmess</code> प्रोटोकॉल का उपयोग करने के लिए सेट किया गया है।</li>
+  <li>आउटबाउंड: यह निर्दिष्ट करता है कि ट्रैफ़िक को कहां भेजा जाना चाहिए। <code class="language-plaintext highlighter-rouge">freedom</code> प्रोटोकॉल ट्रैफ़िक को बिना किसी प्रतिबंध के गुजरने की अनुमति देता है।</li>
+  <li>लॉगिंग: डिबगिंग के उद्देश्य से एक्सेस और त्रुटि जानकारी को लॉग करने के लिए कॉन्फ़िगर किया गया है।</li>
+  <li>सुरक्षा: बेहतर एन्क्रिप्शन के लिए <code class="language-plaintext highlighter-rouge">security</code> फ़ील्ड को <code class="language-plaintext highlighter-rouge">aes-256-gcm</code> पर सेट किया गया है।</li>
+</ul>
+
+<h3 id="प्रॉक्सी-कॉन्फ़िगरेशन-configyaml">प्रॉक्सी कॉन्फ़िगरेशन (<code class="language-plaintext highlighter-rouge">config.yaml</code>)</h3>
+
+<p>यह YAML फ़ाइल प्रॉक्सी सेटिंग्स, DNS, और ट्रैफ़िक रूटिंग के लिए नियमों को कॉन्फ़िगर करती है।</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">port</span><span class="pi">:</span> <span class="m">7890</span>
+<span class="na">socks-port</span><span class="pi">:</span> <span class="m">7891</span>
+<span class="na">mixed-port</span><span class="pi">:</span> <span class="m">7892</span>
+<span class="na">allow-lan</span><span class="pi">:</span> <span class="kc">true</span>
+<span class="na">mode</span><span class="pi">:</span> <span class="s">Rule</span>
+<span class="na">log-level</span><span class="pi">:</span> <span class="s">info</span>
+<span class="na">external-controller</span><span class="pi">:</span> <span class="s">0.0.0.0:9090</span>
+<span class="na">experimental</span><span class="pi">:</span>
+  <span class="na">ignore-resolve-fail</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">dns</span><span class="pi">:</span>
+  <span class="na">enable</span><span class="pi">:</span> <span class="kc">false</span>
+  <span class="na">listen</span><span class="pi">:</span> <span class="s">0.0.0.0:53</span>
+  <span class="na">enhanced-mode</span><span class="pi">:</span> <span class="s">fake-ip</span>
+  <span class="na">fake-ip-range</span><span class="pi">:</span> <span class="s">198.18.0.1/16</span>
+  <span class="na">default-nameserver</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">119.29.29.29</span>
+    <span class="pi">-</span> <span class="s">223.5.5.5</span>
+  <span class="na">nameserver</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">https://223.5.5.5/dns-query</span>
+    <span class="pi">-</span> <span class="s">https://1.12.12.12/dns-query</span>
+  <span class="na">fake-ip-filter</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.lan"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.localdomain"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.example"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.invalid"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.localhost"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.test"</span>
+    <span class="pi">-</span> <span class="s2">"</span><span class="s">*.local"</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">proxies</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">VMess</span><span class="nv"> </span><span class="s">Proxy"</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">vmess</span>
+    <span class="na">server</span><span class="pi">:</span> <span class="s">54.254.0.0</span>
+    <span class="na">port</span><span class="pi">:</span> <span class="m">1080</span>
+    <span class="na">uuid</span><span class="pi">:</span> <span class="s2">"</span><span class="s">9f02f6b2-1d7d-4b10-aada-0000"</span>
+    <span class="na">alterId</span><span class="pi">:</span> <span class="m">0</span>
+    <span class="na">cipher</span><span class="pi">:</span> <span class="s2">"</span><span class="s">aes-128-gcm"</span>
+    <span class="na">udp</span><span class="pi">:</span> <span class="kc">true</span>
+</code></pre></div></div>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">proxy-groups</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s2">"</span><span class="s">Proxy"</span>
+    <span class="na">type</span><span class="pi">:</span> <span class="s">select</span>
+    <span class="na">proxies</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s2">"</span><span class="s">My</span><span class="nv"> </span><span class="s">VMess</span><span class="nv"> </span><span class="s">Proxy"</span>
+</code></pre></div></div>
+
+<p>नियम:</p>
+<ul>
+  <li>IP-CIDR,192.168.0.0/16,DIRECT</li>
+  <li>IP-CIDR,10.0.0.0/8,DIRECT</li>
+  <li>IP-CIDR,127.0.0.0/8,DIRECT</li>
+  <li>GEOIP,CN,DIRECT</li>
+  <li>MATCH,Proxy
+```</li>
+</ul>
+
+<p>मुख्य बिंदु:</p>
+<ul>
+  <li>पोर्ट्स: HTTP, SOCKS, और मिश्रित ट्रैफ़िक के लिए विभिन्न पोर्ट्स को कॉन्फ़िगर करता है।</li>
+  <li>DNS: फेक IP रेंज और निर्दिष्ट नेमसर्वर के साथ DNS सेटिंग्स को सेट करता है।</li>
+  <li>प्रॉक्सी: <code class="language-plaintext highlighter-rouge">aes-128-gcm</code> का उपयोग करके एन्क्रिप्शन के साथ एक VMess प्रॉक्सी को परिभाषित करता है।</li>
+  <li>प्रॉक्सी ग्रुप्स: विभिन्न प्रॉक्सी विकल्पों के बीच चयन करने की अनुमति देता है।</li>
+  <li>नियम: IP रेंज और भौगोलिक स्थानों के आधार पर ट्रैफ़िक को निर्देशित करता है।</li>
+</ul>
+
+<p>नोट: सुनिश्चित करें कि प्रॉक्सी कॉन्फ़िगरेशन में <code class="language-plaintext highlighter-rouge">cipher</code>, <code class="language-plaintext highlighter-rouge">config.json</code> में <code class="language-plaintext highlighter-rouge">security</code> सेटिंग से मेल खाता हो।</p>
+
+<hr />
+
+<h2 id="v2ray-सेवा-प्रबंधन">V2Ray सेवा प्रबंधन</h2>
+
+<p>इंस्टॉलेशन और कॉन्फ़िगरेशन के बाद, आपको <code class="language-plaintext highlighter-rouge">systemctl</code> का उपयोग करके V2Ray सेवा को प्रबंधित करने की आवश्यकता है।</p>
+
+<h3 id="v2ray-को-सक्षम-और-प्रारंभ-करना">V2Ray को सक्षम और प्रारंभ करना</h3>
+
+<p>V2Ray को बूट पर शुरू करने के लिए सक्षम करें:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>v2ray
+</code></pre></div></div>
+
+<p>V2Ray सेवा शुरू करें:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl start v2ray
+</code></pre></div></div>
+
+<p>(नोट: यह एक कमांड है जिसे टर्मिनल में चलाया जाता है। इसे हिंदी में अनुवादित करने की आवश्यकता नहीं है।)</p>
+
+<p>अपेक्षित आउटपुट:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>सिमलिंक बनाया गया /etc/systemd/system/multi-user.target.wants/v2ray.service → /etc/systemd/system/v2ray.service.
+</code></pre></div></div>
+
+<p>सेवा स्थिति सत्यापित करें:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl status v2ray
+</code></pre></div></div>
+
+<p>(यह कमांड V2Ray सेवा की स्थिति की जांच करने के लिए है। इसे हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह एक टर्मिनल कमांड है और इसे वैसे ही रहना चाहिए।)</p>
+
+<p>नमूना आउटपुट:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>● v2ray.service - V2Ray सेवा
+   लोड किया गया: लोड किया गया (/etc/systemd/system/v2ray.service; सक्षम; विक्रेता प्रीसेट: सक्षम)
+   सक्रिय: सक्रिय (चल रहा है) सोम 2024-04-27 12:55:00 UTC से; 1 मिनट 30 सेकंड पहले
+ मुख्य PID: 14425 (v2ray)
+    कार्य: 8 (सीमा: 4915)
+   मेमोरी: 36.7M
+   CGroup: /system.slice/v2ray.service
+           └─14425 /usr/local/bin/v2ray run -config /usr/local/etc/v2ray/config.json
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="सामान्य-समस्याएं-और-समस्या-निवारण">सामान्य समस्याएं और समस्या निवारण</h2>
+
+<h3 id="v2ray-सक्षम-करते-समय-प्रमाणीकरण-विफलता">V2Ray सक्षम करते समय प्रमाणीकरण विफलता</h3>
+
+<p>त्रुटि संदेश:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>==== org.freedesktop.systemd1.manage-unit-files के लिए प्रमाणीकरण ====
+सिस्टम सेवा या यूनिट फ़ाइलों को प्रबंधित करने के लिए प्रमाणीकरण आवश्यक है।
+प्रमाणीकरण: Ubuntu (ubuntu)
+पासवर्ड:
+polkit-agent-helper-1: pam_authenticate विफल: प्रमाणीकरण विफल
+==== प्रमाणीकरण विफल ====
+यूनिट सक्षम करने में विफल: पहुंच अस्वीकृत
+</code></pre></div></div>
+
+<p>समाधान:</p>
+
+<p>सुनिश्चित करें कि आप प्रशासनिक विशेषाधिकारों की आवश्यकता वाले कमांड को निष्पादित करने के लिए <code class="language-plaintext highlighter-rouge">sudo</code> का उपयोग कर रहे हैं।</p>
+
+<p>सही कमांड:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>v2ray
+</code></pre></div></div>
+
+<p>(यह कमांड V2Ray सेवा को सिस्टम स्टार्टअप पर स्वचालित रूप से शुरू करने के लिए सक्षम करती है।)</p>
+
+<hr />
+
+<h2 id="सत्यापन">सत्यापन</h2>
+
+<p>V2Ray सेवा शुरू करने के बाद, यह सुनिश्चित करें कि यह सही ढंग से चल रहा है।</p>
+
+<h3 id="चल-रही-प्रक्रियाओं-की-जांच-करें">चल रही प्रक्रियाओं की जांच करें</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux | <span class="nb">grep </span>v2ray
+</code></pre></div></div>
+
+<p>(यह कमांड सिस्टम में चल रहे v2ray प्रक्रियाओं को खोजने के लिए है। इसे हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह एक टर्मिनल कमांड है।)</p>
+
+<p>नमूना आउटपुट:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nobody     14425  4.4  8.6 5460552 36736 ?       Ssl  12:55   0:00 /usr/local/bin/v2ray run -config /usr/local/etc/v2ray/config.json
+ubuntu     14433  0.0  0.5   7076  2176 pts/1    S+   12:55   0:00 grep --color=auto v2ray
+</code></pre></div></div>
+
+<h3 id="telnet-का-उपयोग-करके-कनेक्टिविटी-का-परीक्षण-करें">Telnet का उपयोग करके कनेक्टिविटी का परीक्षण करें</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>telnet your_server_ip 1080
+</code></pre></div></div>
+
+<p>अपेक्षित व्यवहार:</p>
+
+<ul>
+  <li>यदि कनेक्शन सफल होता है, तो आपको V2Ray सेवा से एक प्रतिक्रिया दिखाई देगी।</li>
+  <li>Telnet से बाहर निकलने के लिए, <code class="language-plaintext highlighter-rouge">Ctrl + ]</code> दबाएं और फिर <code class="language-plaintext highlighter-rouge">quit</code> टाइप करें।</li>
+</ul>
+
+<hr />
+
+<h2 id="निष्कर्ष">निष्कर्ष</h2>
+
+<p>Ubuntu सर्वर पर V2Ray सेटअप करने में सॉफ़्टवेयर इंस्टॉल करना, इनबाउंड और आउटबाउंड सेटिंग्स कॉन्फ़िगर करना, <code class="language-plaintext highlighter-rouge">systemctl</code> के साथ सेवा प्रबंधित करना, और इसके संचालन को सत्यापित करना शामिल है। इस गाइड का पालन करके, आपके पास एक कार्यात्मक V2Ray सेटअप होना चाहिए जो आपकी नेटवर्क गोपनीयता को बढ़ाता है और प्रतिबंधों को प्रभावी ढंग से दरकिनार करता है।</p>
+
+<p>यदि आपको कोई समस्या आती है या कोई प्रश्न है, तो बेझिझक नीचे टिप्पणी करें!</p>
+
+<hr />
+
+<h2 id="अतिरिक्त-सुझाव">अतिरिक्त सुझाव</h2>
+
+<ul>
+  <li>सुरक्षा: हमेशा सुनिश्चित करें कि आपका V2Ray UUID और पासवर्ड सुरक्षित रखे गए हैं।</li>
+  <li>अपडेट: नवीनतम सुविधाओं और सुरक्षा पैचों का लाभ उठाने के लिए V2Ray को नियमित रूप से अपडेट करें।</li>
+  <li>मॉनिटरिंग: प्रदर्शन की निगरानी और समस्याओं का निवारण करने के लिए <code class="language-plaintext highlighter-rouge">/var/log/v2ray/</code> पर स्थित लॉग्स का उपयोग करें।</li>
+</ul>
+
+<p>खुश प्रॉक्सीइंग!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

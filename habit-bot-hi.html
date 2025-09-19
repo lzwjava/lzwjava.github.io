@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>मिस्ट्रल के साथ एक आदत बॉट बनाना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>मिस्ट्रल के साथ एक आदत बॉट बनाना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="मिस्ट्रल के साथ एक आदत बॉट बनाना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="इस ब्लॉग पोस्ट में, हम पायथन और GitHub Actions का उपयोग करके स्वचालित अनुस्मारक भेजने के लिए डिज़ाइन किए गए एक हैबिट बॉट के निर्माण का पता लगाते हैं। यह बॉट मैसेजिंग के लिए टेलीग्राम API का उपयोग करता है और संदर्भ-संबंधित प्रॉम्प्ट उत्पन्न करने के लिए Mistral AI के साथ एकीकृत होता है। GitHub Actions के साथ कार्यों को शेड्यूल करके, यह बॉट समय पर नोटिफिकेशन के माध्यम से निरंतर आदतों को प्रोत्साहित करता है। हम सेटअप से लेकर स्क्रिप्टिंग और डिप्लॉयमेंट तक, आपके हैबिट ट्रैकिंग सिस्टम को स्वचालित करने के लिए एक व्यावहारिक गाइड प्रदान करते हुए चलेंगे।" />
+<meta property="og:description" content="इस ब्लॉग पोस्ट में, हम पायथन और GitHub Actions का उपयोग करके स्वचालित अनुस्मारक भेजने के लिए डिज़ाइन किए गए एक हैबिट बॉट के निर्माण का पता लगाते हैं। यह बॉट मैसेजिंग के लिए टेलीग्राम API का उपयोग करता है और संदर्भ-संबंधित प्रॉम्प्ट उत्पन्न करने के लिए Mistral AI के साथ एकीकृत होता है। GitHub Actions के साथ कार्यों को शेड्यूल करके, यह बॉट समय पर नोटिफिकेशन के माध्यम से निरंतर आदतों को प्रोत्साहित करता है। हम सेटअप से लेकर स्क्रिप्टिंग और डिप्लॉयमेंट तक, आपके हैबिट ट्रैकिंग सिस्टम को स्वचालित करने के लिए एक व्यावहारिक गाइड प्रदान करते हुए चलेंगे।" />
+<link rel="canonical" href="https://lzwjava.github.io/habit-bot-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/habit-bot-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-06-13T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="मिस्ट्रल के साथ एक आदत बॉट बनाना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-06-13T00:00:00+08:00","datePublished":"2025-06-13T00:00:00+08:00","description":"इस ब्लॉग पोस्ट में, हम पायथन और GitHub Actions का उपयोग करके स्वचालित अनुस्मारक भेजने के लिए डिज़ाइन किए गए एक हैबिट बॉट के निर्माण का पता लगाते हैं। यह बॉट मैसेजिंग के लिए टेलीग्राम API का उपयोग करता है और संदर्भ-संबंधित प्रॉम्प्ट उत्पन्न करने के लिए Mistral AI के साथ एकीकृत होता है। GitHub Actions के साथ कार्यों को शेड्यूल करके, यह बॉट समय पर नोटिफिकेशन के माध्यम से निरंतर आदतों को प्रोत्साहित करता है। हम सेटअप से लेकर स्क्रिप्टिंग और डिप्लॉयमेंट तक, आपके हैबिट ट्रैकिंग सिस्टम को स्वचालित करने के लिए एक व्यावहारिक गाइड प्रदान करते हुए चलेंगे।","headline":"मिस्ट्रल के साथ एक आदत बॉट बनाना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/habit-bot-hi"},"url":"https://lzwjava.github.io/habit-bot-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       मिस्ट्रल के साथ एक आदत बॉट बनाना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2025-06-13-habit-bot-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2025-06-13-habit-bot-hi.md</span> -->
+      
+
+      <!-- <span>2025-06-13-habit-bot-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.06</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/habit-bot-en" >English</option>
+        <option value="/habit-bot-zh" >中文</option>
+        <option value="/habit-bot-ja" >日本語</option>
+        <option value="/habit-bot-es" >Español</option>
+        <option value="/habit-bot-hi" selected>हिंदी</option>
+        <option value="/habit-bot-fr" >Français</option>
+        <option value="/habit-bot-de" >Deutsch</option>
+        <option value="/habit-bot-ar" >العربية</option>
+        <option value="/habit-bot-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>इस ब्लॉग पोस्ट में, हम पायथन और GitHub Actions का उपयोग करके स्वचालित अनुस्मारक भेजने के लिए डिज़ाइन किए गए एक हैबिट बॉट के निर्माण का पता लगाते हैं। यह बॉट मैसेजिंग के लिए टेलीग्राम API का उपयोग करता है और संदर्भ-संबंधित प्रॉम्प्ट उत्पन्न करने के लिए Mistral AI के साथ एकीकृत होता है। GitHub Actions के साथ कार्यों को शेड्यूल करके, यह बॉट समय पर नोटिफिकेशन के माध्यम से निरंतर आदतों को प्रोत्साहित करता है। हम सेटअप से लेकर स्क्रिप्टिंग और डिप्लॉयमेंट तक, आपके हैबिट ट्रैकिंग सिस्टम को स्वचालित करने के लिए एक व्यावहारिक गाइड प्रदान करते हुए चलेंगे।</p>
+
+<h2 id="कोड">कोड</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
+<span class="kn">import</span> <span class="n">requests</span>
+<span class="kn">import</span> <span class="n">argparse</span>
+<span class="kn">import</span> <span class="n">re</span>
+<span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="n">random</span>
+
+<span class="c1"># .env फ़ाइल से पर्यावरण चर लोड करें
+</span><span class="nf">load_dotenv</span><span class="p">()</span>
+
+<span class="c1"># पर्यावरण चर
+</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_HABIT_BOT_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_CHAT_ID</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># टेलीग्राम संदेश की अधिकतम लंबाई
+</span><span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">4096</span>
+
+<span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">bot_token</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">टेलीग्राम बॉट API का उपयोग करके टेलीग्राम चैट में एक संदेश भेजता है।</span><span class="sh">"""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bot_token</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">chat_id</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: TELEGRAM_HABIT_BOT_API_KEY या TELEGRAM_CHAT_ID सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">False</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="c1"># टेलीग्राम संगतता सुनिश्चित करने के लिए मार्कडाउन एस्टरिस्क और URL हटाएं
+</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
+    <span class="c1"># यदि संदेश टेलीग्राम की लंबाई सीमा से अधिक है, तो इसे विभाजित करें
+</span>    <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">message_no_links</span>
+    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="nf">rfind</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">split_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">split_idx</span> <span class="o">&lt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">split_idx</span> <span class="o">=</span> <span class="n">TELEGRAM_MAX_LENGTH</span>
+        <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="n">split_idx</span><span class="p">:]</span>
+    <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
+            <span class="sh">"</span><span class="s">parse_mode</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Markdown</span><span class="sh">"</span>
+        <span class="p">}</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">टेलीग्राम संदेश भाग (</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> वर्ण) सफलतापूर्वक भेजा गया।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">टेलीग्राम संदेश भेजने में त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">return</span> <span class="n">success</span>
+
+
+<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-large-latest</span><span class="sh">"</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Mistral API को कॉल करके एक प्रतिक्रिया उत्पन्न करता है।</span><span class="sh">"""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">MISTRAL_API_KEY</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: MISTRAL_API_KEY पर्यावरण चर सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">MISTRAL_API_KEY</span><span class="si">}</span><span class="sh">"</span>
+    <span class="p">}</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
+                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+            <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="sh">"</span><span class="s">temperature</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>  <span class="c1"># रचनात्मकता के लिए तापमान समायोजित करें
+</span>        <span class="sh">"</span><span class="s">max_tokens</span><span class="sh">"</span><span class="p">:</span> <span class="mi">300</span>  <span class="c1"># प्रतिक्रिया की लंबाई सीमित करें
+</span>    <span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API को मॉडल के साथ कॉल कर रहा है: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API सामग्री: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">content</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">None</span>
+
+<span class="k">def</span> <span class="nf">generate_copilot_message</span><span class="p">():</span>
+    <span class="sh">"""</span><span class="s">Mistral API के माध्यम से Copilot उपयोग को प्रोत्साहित करने वाला एक तकनीकी प्रॉम्प्ट वाक्य उत्पन्न करता है।</span><span class="sh">"""</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="sh">"</span><span class="s">एक यूजर बैकएंड इंजीनियर के लिए एक अद्वितीय, विशिष्ट तकनीकी प्रॉम्प्ट वाक्य उत्पन्न करें</span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">निम्नलिखित में से एक तकनीक को यादृच्छिक रूप से चुनें: Java, Spring Boot, Control-M, IBM WebSphere, Maven, मल्टीथ्रेडिंग, Nexus, Windows, JVM, Service-NOW, Python, AI या DevOps, Linux. एल्गोरिदम और बैंकिंग </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">इसे </span><span class="sh">'</span><span class="s">क्या आप [विशिष्ट चुनौती] पर अटके हैं? Copilot से पूछें!</span><span class="sh">'</span><span class="s"> या </span><span class="sh">'</span><span class="s">[कार्य] से जूझ रहे हैं? Copilot की मदद लें!</span><span class="sh">'</span><span class="s"> के रूप में फॉर्मेट करें। </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">चुनौतियों में विविधता सुनिश्चित करें (जैसे, कॉन्फ़िगरेशन, डिबगिंग, ऑप्टिमाइज़ेशन)। </span><span class="sh">"</span>
+        <span class="sh">"</span><span class="s">इसे 300 वर्णों से कम रखें, मार्कडाउन या URL से बचें, और केवल वाक्य आउटपुट करें।</span><span class="sh">"</span>
+    <span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">message</span><span class="p">.</span><span class="nf">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
+    <span class="k">return</span> <span class="sh">"</span><span class="s">क्या आप Control-M ऑर्डर डेट कॉन्फ़िगर करने में अटके हैं? Copilot से पूछें!</span><span class="sh">"</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">टेलीग्राम हैबिट अनुस्मारक बॉट</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--job</span><span class="sh">"</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">send_reminder</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">send_message</span><span class="sh">"</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">करने के लिए कार्य</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--message</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"'</span><span class="s">send_message</span><span class="sh">'</span><span class="s"> कार्य के लिए भेजने का संदेश</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">send_reminder</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="nf">generate_copilot_message</span><span class="p">()</span>
+            <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: TELEGRAM_HABIT_BOT_API_KEY या TELEGRAM_CHAT_ID सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">send_message</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">else</span> <span class="sh">"</span><span class="s">बॉट से डिफ़ॉल्ट टेस्ट संदेश!</span><span class="sh">"</span>
+            <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: TELEGRAM_HABIT_BOT_API_KEY या TELEGRAM_CHAT_ID सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="nf">main</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h2 id="github-action">GitHub Action</h2>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">name</span><span class="pi">:</span> <span class="s">Habit</span>
+
+<span class="na">on</span><span class="pi">:</span>
+  <span class="na">schedule</span><span class="pi">:</span>
+    <span class="c1"># हर 10 मिनट में चलाएं (0, 10, 20, 30, 40, 50 मिनट) 05:00–13:00 UTC, सोम–शुक्र</span>
+    <span class="c1"># 05:00–13:00 UTC = 13:00–21:00 बीजिंग समय (UTC+8)</span>
+    <span class="pi">-</span> <span class="na">cron</span><span class="pi">:</span> <span class="s1">'</span><span class="s">0,10,20,30,40,50</span><span class="nv"> </span><span class="s">5-13</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">*</span><span class="nv"> </span><span class="s">1-5'</span>
+
+  <span class="na">workflow_dispatch</span><span class="pi">:</span>
+    <span class="c1"># परीक्षण के लिए मैनुअल ट्रिगर की अनुमति दें</span>
+    <span class="na">inputs</span><span class="pi">:</span>
+      <span class="na">message</span><span class="pi">:</span>
+        <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">परीक्षण</span><span class="nv"> </span><span class="s">के</span><span class="nv"> </span><span class="s">लिए</span><span class="nv"> </span><span class="s">कस्टम</span><span class="nv"> </span><span class="s">संदेश</span><span class="nv"> </span><span class="s">(वैकल्पिक)'</span>
+        <span class="na">required</span><span class="pi">:</span> <span class="kc">false</span>
+        <span class="na">default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">GitHub</span><span class="nv"> </span><span class="s">Actions</span><span class="nv"> </span><span class="s">से</span><span class="nv"> </span><span class="s">टेस्ट</span><span class="nv"> </span><span class="s">संदेश।'</span>
+      <span class="na">job</span><span class="pi">:</span>
+        <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">चलाने</span><span class="nv"> </span><span class="s">के</span><span class="nv"> </span><span class="s">लिए</span><span class="nv"> </span><span class="s">कार्य</span><span class="nv"> </span><span class="s">(वैकल्पिक)'</span>
+        <span class="na">required</span><span class="pi">:</span> <span class="kc">false</span>
+        <span class="na">default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">send_message'</span>
+
+  <span class="na">push</span><span class="pi">:</span>
+    <span class="na">branches</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">main"</span><span class="pi">]</span>
+    <span class="na">paths</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">scripts/bot/habit_bot.py'</span>
+      <span class="pi">-</span> <span class="s1">'</span><span class="s">.github/workflows/habit_reminder.yml'</span>
+
+<span class="na">concurrency</span><span class="pi">:</span>
+  <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">habit_reminder'</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+
+<span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">habit_reminder_job</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+    <span class="na">environment</span><span class="pi">:</span> <span class="s">github-pages</span>
+    <span class="na">env</span><span class="pi">:</span>
+      <span class="na">TELEGRAM_HABIT_BOT_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">TELEGRAM_CHAT_ID</span><span class="pi">:</span> <span class="s">$</span>
+      <span class="na">MISTRAL_API_KEY</span><span class="pi">:</span> <span class="s">$</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">रिपॉजिटरी चेकआउट करें</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">fetch-depth</span><span class="pi">:</span> <span class="m">5</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Python 3.13 सेटअप करें</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/setup-python@v4</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">python-version</span><span class="pi">:</span> <span class="s2">"</span><span class="s">3.13"</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">निर्भरताएँ इंस्टॉल करें</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">python -m pip install --upgrade pip</span>
+          <span class="s">pip install -r requirements.txt</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">हैबिट अनुस्मारक स्क्रिप्ट चलाएं (शेड्यूल्ड)</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/bot/habit_bot.py --job send_reminder</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'schedule'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">हैबिट अनुस्मारक स्क्रिप्ट चलाएं (मैनुअल ट्रिगर)</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/bot/habit_bot.py --job $ --message "$"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'workflow_dispatch'</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">मुख्य शाखा में पुश पर नोटिफाई करें</span>
+        <span class="na">run</span><span class="pi">:</span> <span class="s">python scripts/bot/habit_bot.py --job send_message --message "हैबिट बॉट के लिए कोड परिवर्तन मुख्य शाखा में पुश किए गए।"</span>
+        <span class="na">if</span><span class="pi">:</span> <span class="s">github.event_name == 'push'</span>
+</code></pre></div></div>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

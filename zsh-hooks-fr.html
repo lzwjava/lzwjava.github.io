@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Crochets Zsh</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Crochets Zsh | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Crochets Zsh" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Après avoir exploré “Faire en sorte que Zsh affiche les paramètres de proxy avant d’exécuter des commandes réseau”, j’ai approfondi les hooks de Zsh avec ChatGPT. Voici un aperçu concis pour référence future." />
+<meta property="og:description" content="Après avoir exploré “Faire en sorte que Zsh affiche les paramètres de proxy avant d’exécuter des commandes réseau”, j’ai approfondi les hooks de Zsh avec ChatGPT. Voici un aperçu concis pour référence future." />
+<link rel="canonical" href="https://lzwjava.github.io/zsh-hooks-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/zsh-hooks-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-17T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Crochets Zsh" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-17T00:00:00+08:00","datePublished":"2024-12-17T00:00:00+08:00","description":"Après avoir exploré “Faire en sorte que Zsh affiche les paramètres de proxy avant d’exécuter des commandes réseau”, j’ai approfondi les hooks de Zsh avec ChatGPT. Voici un aperçu concis pour référence future.","headline":"Crochets Zsh","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/zsh-hooks-fr"},"url":"https://lzwjava.github.io/zsh-hooks-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og9.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og9.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Crochets Zsh | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2024-12-17-zsh-hooks-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2024-12-17-zsh-hooks-fr.md</span> -->
+      
+
+      <!-- <span>2024-12-17-zsh-hooks-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/zsh-hooks-en" >English</option>
+        <option value="/zsh-hooks-zh" >中文</option>
+        <option value="/zsh-hooks-ja" >日本語</option>
+        <option value="/zsh-hooks-es" >Español</option>
+        <option value="/zsh-hooks-hi" >हिंदी</option>
+        <option value="/zsh-hooks-fr" selected>Français</option>
+        <option value="/zsh-hooks-de" >Deutsch</option>
+        <option value="/zsh-hooks-ar" >العربية</option>
+        <option value="/zsh-hooks-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Après avoir exploré “Faire en sorte que Zsh affiche les paramètres de proxy avant d’exécuter des commandes réseau”, j’ai approfondi les hooks de Zsh avec ChatGPT. Voici un aperçu concis pour référence future.</p>
+
+<hr />
+
+<p>Dans Zsh, les hooks vous permettent d’exécuter des fonctions personnalisées à des moments spécifiques lors des opérations du shell. Au-delà de <code class="language-plaintext highlighter-rouge">preexec</code>, Zsh propose plusieurs hooks pour améliorer votre environnement :</p>
+
+<h3 id="1-precmd">1. <code class="language-plaintext highlighter-rouge">precmd</code></h3>
+<ul>
+  <li>Quand : Avant que l’invite ne soit affichée.</li>
+  <li>Utilisation : Mettre à jour l’invite ou effectuer un nettoyage.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precmd<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Prêt pour la prochaine commande !"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="2-chpwd">2. <code class="language-plaintext highlighter-rouge">chpwd</code></h3>
+<ul>
+  <li>Quand : Lorsque le répertoire courant change.</li>
+  <li>Utilisation : Mettre à jour les variables d’environnement ou déclencher des actions en fonction du répertoire.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chpwd<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Changement vers : </span><span class="nv">$PWD</span><span class="s2">"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="3-preexec_functions--precmd_functions">3. <code class="language-plaintext highlighter-rouge">preexec_functions</code> &amp; <code class="language-plaintext highlighter-rouge">precmd_functions</code></h3>
+<ul>
+  <li>Quand : Similaire à <code class="language-plaintext highlighter-rouge">preexec</code> et <code class="language-plaintext highlighter-rouge">precmd</code>, mais prend en charge plusieurs fonctions.</li>
+  <li>Utilisation : Ajouter plusieurs actions sans écraser les hooks existants.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>precmd_functions+<span class="o">=(</span>additional_precmd<span class="o">)</span>
+  
+additional_precmd<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Tâche precmd supplémentaire."</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="4-trapdebug">4. <code class="language-plaintext highlighter-rouge">TRAPDEBUG</code></h3>
+<ul>
+  <li>Quand : Après chaque commande, avant l’affichage des résultats.</li>
+  <li>Utilisation : Débogage, journalisation des commandes.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRAPDEBUG<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Exécuté : </span><span class="nv">$1</span><span class="s2">"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="5-trapexit">5. <code class="language-plaintext highlighter-rouge">TRAPEXIT</code></h3>
+<ul>
+  <li>Quand : Lorsque le shell se termine.</li>
+  <li>Utilisation : Tâches de nettoyage ou affichage de messages de sortie.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>TRAPEXIT<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Au revoir !"</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="6-hooks-zle">6. Hooks <code class="language-plaintext highlighter-rouge">zle</code></h3>
+<ul>
+  <li>Quand : Pendant l’édition de ligne.</li>
+  <li>Utilisation : Personnaliser le comportement de la ligne de commande.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zle-line-init<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Édition d'une nouvelle commande."</span>
+<span class="o">}</span>
+zle <span class="nt">-N</span> zle-line-init
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="7-hooks-dhistorique-zshaddhistory-zshremovehistory">7. Hooks d’Historique (<code class="language-plaintext highlighter-rouge">zshaddhistory</code>, <code class="language-plaintext highlighter-rouge">zshremovehistory</code>)</h3>
+<ul>
+  <li>Quand : Lors de l’ajout ou de la suppression d’entrées dans l’historique.</li>
+  <li>Utilisation : Filtrer ou gérer l’historique.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>zshaddhistory<span class="o">()</span> <span class="o">{</span>
+  <span class="o">[[</span> <span class="nv">$1</span> <span class="o">==</span> <span class="k">*</span><span class="s2">"secret"</span><span class="k">*</span> <span class="o">]]</span> <span class="o">&amp;&amp;</span> <span class="k">return </span>1
+  <span class="k">return </span>0
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="8-periodic">8. <code class="language-plaintext highlighter-rouge">periodic</code></h3>
+<ul>
+  <li>Quand : À des intervalles définis par <code class="language-plaintext highlighter-rouge">period</code>.</li>
+  <li>Utilisation : Vérifications ou mises à jour régulières.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>periodic<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Exécution de la tâche périodique..."</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="9-add-zsh-hook">9. <code class="language-plaintext highlighter-rouge">add-zsh-hook</code></h3>
+<ul>
+  <li>Objectif : Ajouter des fonctions de manière sécurisée à des hooks.</li>
+  <li>Utilisation : Ajouter plusieurs fonctions sans écraser les précédentes.</li>
+  <li>Exemple :
+    <div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add-zsh-hook precmd another_precmd
+  
+another_precmd<span class="o">()</span> <span class="o">{</span>
+  <span class="nb">echo</span> <span class="s2">"Une autre fonction precmd."</span>
+<span class="o">}</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="résumé">Résumé</h3>
+
+<p>Le système de hooks de Zsh est polyvalent, permettant l’automatisation et la personnalisation :</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">preexec</code> : Avant l’exécution de la commande.</li>
+  <li><code class="language-plaintext highlighter-rouge">precmd</code> : Avant l’affichage de l’invite de commande.</li>
+  <li><code class="language-plaintext highlighter-rouge">chpwd</code> : Lors du changement de répertoire.</li>
+  <li><code class="language-plaintext highlighter-rouge">TRAPDEBUG</code> : Post-commande pour le débogage.</li>
+  <li><code class="language-plaintext highlighter-rouge">TRAPEXIT</code> : À la sortie du shell.</li>
+  <li>Hooks <code class="language-plaintext highlighter-rouge">zle</code> : Pendant l’édition de ligne.</li>
+  <li>Hooks d’historique : Gestion de l’historique des commandes.</li>
+  <li><code class="language-plaintext highlighter-rouge">periodic</code> : À des intervalles définis.</li>
+  <li><code class="language-plaintext highlighter-rouge">add-zsh-hook</code> : Ajout de plusieurs fonctions de hook.</li>
+</ul>
+
+<p>L’utilisation de ces hooks peut grandement améliorer votre expérience avec Zsh, rendant votre shell plus efficace et adapté à votre flux de travail.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

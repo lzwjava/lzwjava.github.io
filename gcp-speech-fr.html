@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Débuter avec l'API Google Text-to-Speech</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Débuter avec l’API Google Text-to-Speech | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Débuter avec l’API Google Text-to-Speech" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Je prévois de convertir certains articles de Yin Wang en audio en utilisant l’API Google Text-to-Speech. Voici un guide étape par étape, accompagné de quelques tutoriels utiles fournis par ChatGPT. Une fois que tout sera prêt, je téléverserai l’audio ici pour que vous puissiez l’écouter." />
+<meta property="og:description" content="Je prévois de convertir certains articles de Yin Wang en audio en utilisant l’API Google Text-to-Speech. Voici un guide étape par étape, accompagné de quelques tutoriels utiles fournis par ChatGPT. Une fois que tout sera prêt, je téléverserai l’audio ici pour que vous puissiez l’écouter." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-speech-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-speech-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Débuter avec l’API Google Text-to-Speech" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-18T00:00:00+08:00","datePublished":"2024-12-18T00:00:00+08:00","description":"Je prévois de convertir certains articles de Yin Wang en audio en utilisant l’API Google Text-to-Speech. Voici un guide étape par étape, accompagné de quelques tutoriels utiles fournis par ChatGPT. Une fois que tout sera prêt, je téléverserai l’audio ici pour que vous puissiez l’écouter.","headline":"Débuter avec l’API Google Text-to-Speech","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-speech-fr"},"url":"https://lzwjava.github.io/gcp-speech-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og2.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Débuter avec l'API Google Text-to-Speech | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2024-12-18-gcp-speech-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2024-12-18-gcp-speech-fr.md</span> -->
+      
+
+      <!-- <span>2024-12-18-gcp-speech-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-speech-en" >English</option>
+        <option value="/gcp-speech-zh" >中文</option>
+        <option value="/gcp-speech-ja" >日本語</option>
+        <option value="/gcp-speech-es" >Español</option>
+        <option value="/gcp-speech-hi" >हिंदी</option>
+        <option value="/gcp-speech-fr" selected>Français</option>
+        <option value="/gcp-speech-de" >Deutsch</option>
+        <option value="/gcp-speech-ar" >العربية</option>
+        <option value="/gcp-speech-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Je prévois de convertir certains articles de Yin Wang en audio en utilisant l’API Google Text-to-Speech. Voici un guide étape par étape, accompagné de quelques tutoriels utiles fournis par ChatGPT. Une fois que tout sera prêt, je téléverserai l’audio ici pour que vous puissiez l’écouter.</p>
+
+<hr />
+
+<h3 id="étape-1--configurer-un-compte-google-cloud">Étape 1 : Configurer un compte Google Cloud</h3>
+
+<ol>
+  <li>
+    <p>Créez un compte Google Cloud<br />
+Si vous n’en avez pas encore, inscrivez-vous sur la <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</p>
+  </li>
+  <li>Créer un Nouveau Projet
+    <ul>
+      <li>Dans la Console Cloud, cliquez sur le menu déroulant des projets (en haut à gauche).</li>
+      <li>Sélectionnez “Nouveau projet”, donnez-lui un nom, puis créez le projet.</li>
+    </ul>
+  </li>
+  <li>Activer l’API Text-to-Speech
+    <ul>
+      <li>Rendez-vous sur la <a href="https://cloud.google.com/text-to-speech">page de l’API Google Cloud Text-to-Speech</a>.</li>
+      <li>Cliquez sur “Activer” pour activer l’API pour votre projet.</li>
+    </ul>
+  </li>
+  <li>Créer des identifiants API
+    <ul>
+      <li>Accédez à APIs &amp; Services &gt; Credentials dans la Cloud Console.</li>
+      <li>Cliquez sur Create Credentials, puis sélectionnez Service Account.</li>
+      <li>Suivez les instructions pour créer le compte de service et téléchargez le fichier de clé privée au format JSON.</li>
+      <li>Conservez ce fichier JSON en lieu sûr, car il est utilisé pour authentifier vos requêtes API.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="étape-2--installer-google-cloud-sdk-et-la-bibliothèque-cliente">Étape 2 : Installer Google Cloud SDK et la bibliothèque cliente</h3>
+
+<ol>
+  <li>
+    <p>Installez Google Cloud SDK<br />
+Si vous ne l’avez pas encore fait, suivez les instructions pour installer le <a href="https://cloud.google.com/sdk/docs/install">Google Cloud SDK</a> pour votre système d’exploitation.</p>
+  </li>
+  <li>
+    <p>Installez la bibliothèque cliente Python<br />
+Si vous utilisez Python, installez la bibliothèque <code class="language-plaintext highlighter-rouge">google-cloud-texttospeech</code> avec :</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>google-cloud-texttospeech
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="étape-3--configurer-lauthentification">Étape 3 : Configurer l’authentification</h3>
+
+<p>Avant d’utiliser l’API, vous devez vous authentifier avec vos identifiants. Définissez la variable d’environnement sur le chemin de votre fichier d’identifiants :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">"/chemin/vers/votre/fichier-de-compte-de-service.json"</span>
+</code></pre></div></div>
+
+<p>Remplacez le chemin par l’emplacement réel de votre fichier JSON téléchargé.</p>
+
+<hr />
+
+<h3 id="étape-4--mettre-en-œuvre-la-conversion-texte-parole">Étape 4 : Mettre en œuvre la conversion texte-parole</h3>
+
+<p>Voici un exemple en Python pour convertir du texte en parole en utilisant l’API Google Cloud Text-to-Speech :</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
+    <span class="c1"># Initialiser le client de synthèse vocale
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Configurer l'entrée de synthèse
+synthesis_input = texttospeech.SynthesisInput(text=text)
+
+# Définir les paramètres de la voix (en utilisant 'en-US-Journey-D')
+voice = texttospeech.VoiceSelectionParams(
+    language_code="en-US",  # Anglais (États-Unis)
+    name="en-US-Journey-D"  # Modèle de voix spécifique (Journey)
+)
+
+# Configuration de l'audio
+audio_config = texttospeech.AudioConfig(
+    audio_encoding=texttospeech.AudioEncoding.MP3,  # Format MP3
+    effects_profile_id=["small-bluetooth-speaker-class-device"],  # Optimisé pour les enceintes Bluetooth
+    pitch=0.0,  # Aucune modification de la hauteur
+    speaking_rate=0.9,  # Vitesse de parole ajustée (peut être modifiée si nécessaire)
+    volume_gain_db=5.0  # Volume plus élevé
+)
+
+# Effectuer la requête de synthèse vocale
+response = client.synthesize_speech(
+    input=synthesis_input, voice=voice, audio_config=audio_config
+)
+
+# Écrire le contenu audio dans un fichier
+with open(output_filename, "wb") as out:
+    out.write(response.audio_content)
+
+print(f"Contenu audio écrit dans {output_filename}")
+</code></pre></div></div>
+
+<h1 id="exemple-dutilisation">Exemple d’utilisation</h1>
+<p>article_text = “Les films, oh mon Dieu, je les adore absolument. Ils sont comme des machines à voyager dans le temps qui vous emmènent dans des mondes et des paysages différents, et je ne m’en lasse jamais.”
+output_file = “output_audio.mp3”  # Sortie au format MP3</p>
+
+<h1 id="convertir-du-texte-en-parole">Convertir du texte en parole</h1>
+<p>text_to_speech(article_text, output_file)</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+---
+
+### Étape 5 : Exécuter le Script
+
+1. Enregistrez le script sous le nom `text_to_speech.py`.
+2. Exécutez le script avec :
+
+```bash
+python text_to_speech.py
+</code></pre></div></div>
+
+<p>Cela générera un fichier audio (<code class="language-plaintext highlighter-rouge">output_audio.mp3</code>) à partir du texte fourni.</p>
+
+<hr />
+
+<h3 id="étape-6--clé-de-compte-de-service">Étape 6 : Clé de compte de service</h3>
+
+<p>La clé JSON de votre compte de service devrait ressembler à ceci :</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_account"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"project_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-project-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-private-key-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"private_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-private-key"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-service-account-email@votre-project-id.iam.gserviceaccount.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-client-id"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://accounts.google.com/o/oauth2/auth"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"token_uri"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://oauth2.googleapis.com/token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"auth_provider_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.googleapis.com/oauth2/v1/certs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"client_x509_cert_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"votre-client-cert-url"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h3 id="pourquoi-choisir-journey-">Pourquoi choisir Journey ?</h3>
+
+<p>Google Cloud Text-to-Speech propose plusieurs voix, mais Journey se distingue par son son naturel et proche de celui d’un humain. Contrairement à d’autres modèles qui ont souvent un ton robotique, Journey excelle dans l’expressivité et la livraison réaliste. Il est particulièrement adapté pour les contenus longs tels que les podcasts, les livres audio ou toute application nécessitant un ton plus conversationnel.</p>
+
+<p>Caractéristiques clés de Journey :</p>
+<ul>
+  <li>Parole naturelle : Sonne plus proche d’une voix humaine.</li>
+  <li>Expressivité : Ajuste le ton et l’intonation en fonction du contexte.</li>
+  <li>Idéal pour le contenu long : Parfait pour les podcasts et les narrations.</li>
+</ul>
+
+<p>Pour plus de détails sur les avantages de Google Cloud Text-to-Speech, consultez la <a href="https://cloud.google.com/text-to-speech#benefits">présentation de Google Cloud</a>.</p>
+
+<hr />
+
+<h3 id="étape-7--générer-une-nouvelle-clé-de-compte-de-service-si-nécessaire">Étape 7 : Générer une nouvelle clé de compte de service (si nécessaire)</h3>
+
+<p>Si votre clé de compte de service ne correspond pas à l’exemple ci-dessus, vous pouvez en générer une nouvelle depuis la Google Cloud Console.</p>
+
+<p>Pour générer une nouvelle clé :</p>
+<ol>
+  <li>Allez sur la <a href="https://console.cloud.google.com/">Google Cloud Console</a>.</li>
+  <li>Accédez à IAM &amp; Admin &gt; Comptes de service.</li>
+  <li>Créez un nouveau compte de service :
+    <ul>
+      <li>Cliquez sur Créer un compte de service et attribuez les rôles appropriés.</li>
+      <li>Cliquez sur Créer.</li>
+    </ul>
+  </li>
+  <li>Générez une clé :
+    <ul>
+      <li>Après avoir créé le compte de service, cliquez dessus.</li>
+      <li>Allez dans l’onglet Clés, cliquez sur Ajouter une clé, et choisissez JSON. Ensuite, téléchargez la clé.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h3 id="exemple-de-sortie-audio">Exemple de sortie audio</h3>
+
+<p>Une fois que tout est configuré, vous pouvez générer un fichier audio, qui sera disponible ici :<br />
+<a href="assets/audios/output-audio.mp3">Télécharger le fichier audio</a>.</p>
+
+<hr />
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>L’API Google Cloud Text-to-Speech permet de convertir facilement du texte en une voix naturelle. Que vous développiez une application nécessitant une sortie vocale ou que vous expérimentiez simplement la synthèse vocale, cette API propose des fonctionnalités puissantes et des options de personnalisation. Consultez la documentation complète pour découvrir des sélections de voix supplémentaires, des langues et des fonctionnalités avancées.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

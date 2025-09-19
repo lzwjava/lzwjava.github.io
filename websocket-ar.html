@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>استكشاف WebSocket</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>استكشاف WebSocket | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="استكشاف WebSocket" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ar" />
+<meta name="description" content="تمت مساعدة هذه المدونة بواسطة ChatGPT-4o." />
+<meta property="og:description" content="تمت مساعدة هذه المدونة بواسطة ChatGPT-4o." />
+<link rel="canonical" href="https://lzwjava.github.io/websocket-ar" />
+<meta property="og:url" content="https://lzwjava.github.io/websocket-ar" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2016-05-29T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="استكشاف WebSocket" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2016-05-29T00:00:00+08:00","datePublished":"2016-05-29T00:00:00+08:00","description":"تمت مساعدة هذه المدونة بواسطة ChatGPT-4o.","headline":"استكشاف WebSocket","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/websocket-ar"},"url":"https://lzwjava.github.io/websocket-ar"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og7.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       استكشاف WebSocket | أصلي، ترجم بواسطة AI
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ar/2016-05-29-websocket-ar.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsar2016-05-29-websocket-ar.md</span> -->
+      
+
+      <!-- <span>2016-05-29-websocket-ar.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2016.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/websocket-en" >English</option>
+        <option value="/websocket-zh" >中文</option>
+        <option value="/websocket-ja" >日本語</option>
+        <option value="/websocket-es" >Español</option>
+        <option value="/websocket-hi" >हिंदी</option>
+        <option value="/websocket-fr" >Français</option>
+        <option value="/websocket-de" >Deutsch</option>
+        <option value="/websocket-ar" selected>العربية</option>
+        <option value="/websocket-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>تمت مساعدة هذه المدونة بواسطة ChatGPT-4o.</em></p>
+
+<hr />
+
+<h3 id="مقدمة">مقدمة</h3>
+<p>مرحبًا بالجميع، أنا Li Zhiwei. بصفتي المؤسس والمدير التقني لمنصة CodeReview، ومهندس سابق في LeanCloud، لدي خبرة واسعة في مجال WebSocket، خاصة أثناء تطوير SDK للرسائل الفورية (IM).</p>
+
+<h3 id="أهمية-websocket">أهمية WebSocket</h3>
+<p>WebSocket هو بروتوكول يوفر قناة اتصال ثنائية الاتجاه عبر اتصال TCP واحد. يتم استخدامه على نطاق واسع في التطبيقات الحديثة التي تتطلب تفاعلًا في الوقت الفعلي، مثل المراسلة الفورية، التعليقات الفورية، الألعاب متعددة اللاعبين، التحرير التعاوني، وأسعار الأسهم الفورية.</p>
+
+<h3 id="التطبيقات-الحديثة-لـ-websocket">التطبيقات الحديثة لـ WebSocket</h3>
+<p>يُستخدم WebSocket على نطاق واسع في المجالات التالية:</p>
+<ul>
+  <li><strong>المراسلة الفورية (IM)</strong></li>
+  <li><strong>التعليقات في الوقت الفعلي</strong></li>
+  <li><strong>الألعاب متعددة اللاعبين</strong></li>
+  <li><strong>التعديل التعاوني</strong></li>
+  <li><strong>أسعار الأسهم في الوقت الفعلي</strong></li>
+</ul>
+
+<h3 id="تطور-websocket">تطور WebSocket</h3>
+<p><strong>الاستطلاع (Polling):</strong> يقوم العميل بطلب الخادم بشكل متكرر للحصول على التحديثات.
+<strong>الاستطلاع الطويل (Long Polling):</strong> يحتفظ الخادم بالطلب مفتوحًا حتى تتوفر معلومات جديدة.
+<strong>اتصال HTTP ثنائي الاتجاه:</strong> يتطلب اتصالات متعددة للإرسال والاستقبال، ويحتوي كل طلب على رؤوس HTTP.
+<strong>اتصال TCP واحد (WebSocket):</strong> يتغلب على قيود اتصال HTTP ثنائي الاتجاه، ويوفر قدرات في الوقت الفعلي أعلى وزمن انتقال أقل.</p>
+
+<h3 id="تنفيذ-websocket-على-ios">تنفيذ WebSocket على iOS</h3>
+
+<p>WebSocket هو بروتوكول اتصال يوفر قناة اتصال ثنائية الاتجاه بين العميل والخادم. في تطبيقات iOS، يمكن استخدام WebSocket لإنشاء اتصالات في الوقت الفعلي مع الخادم، مما يسمح بتبادل البيانات بسرعة وكفاءة. في هذا المقال، سنتعرف على كيفية تنفيذ WebSocket في تطبيق iOS باستخدام Swift.</p>
+
+<h4 id="الخطوة-1-إضافة-مكتبة-starscream">الخطوة 1: إضافة مكتبة Starscream</h4>
+
+<p>أولاً، نحتاج إلى إضافة مكتبة <a href="https://github.com/daltoniam/Starscream">Starscream</a> إلى مشروعنا. Starscream هي مكتبة شائعة لتنفيذ WebSocket في Swift.</p>
+
+<ol>
+  <li>
+    <p>افتح ملف <code class="language-plaintext highlighter-rouge">Podfile</code> وأضف السطر التالي:</p>
+
+    <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pod</span> <span class="s1">'Starscream'</span><span class="p">,</span> <span class="s1">'~&gt; 4.0.0'</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>قم بتشغيل الأمر التالي في Terminal لتثبيت المكتبة:</p>
+
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pod <span class="nb">install</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h4 id="الخطوة-2-إنشاء-اتصال-websocket">الخطوة 2: إنشاء اتصال WebSocket</h4>
+
+<p>بعد تثبيت المكتبة، يمكننا البدء في إنشاء اتصال WebSocket.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">Starscream</span>
+
+<span class="kd">class</span> <span class="kt">WebSocketManager</span><span class="p">:</span> <span class="kt">WebSocketDelegate</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">socket</span><span class="p">:</span> <span class="kt">WebSocket</span><span class="o">!</span>
+
+    <span class="nf">init</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">var</span> <span class="nv">request</span> <span class="o">=</span> <span class="kt">URLRequest</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"wss://yourserver.com"</span><span class="p">)</span><span class="o">!</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">timeoutInterval</span> <span class="o">=</span> <span class="mi">5</span>
+        <span class="n">socket</span> <span class="o">=</span> <span class="kt">WebSocket</span><span class="p">(</span><span class="nv">request</span><span class="p">:</span> <span class="n">request</span><span class="p">)</span>
+        <span class="n">socket</span><span class="o">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="k">self</span>
+        <span class="n">socket</span><span class="o">.</span><span class="nf">connect</span><span class="p">()</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">didReceive</span><span class="p">(</span><span class="nv">event</span><span class="p">:</span> <span class="kt">WebSocketEvent</span><span class="p">,</span> <span class="nv">client</span><span class="p">:</span> <span class="kt">WebSocket</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="n">event</span> <span class="p">{</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">connected</span><span class="p">(</span><span class="k">let</span> <span class="nv">headers</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket is connected: </span><span class="se">\(</span><span class="n">headers</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">disconnected</span><span class="p">(</span><span class="k">let</span> <span class="nv">reason</span><span class="p">,</span> <span class="k">let</span> <span class="nv">code</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket is disconnected: </span><span class="se">\(</span><span class="n">reason</span><span class="se">)</span><span class="s"> with code: </span><span class="se">\(</span><span class="n">code</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">text</span><span class="p">(</span><span class="k">let</span> <span class="nv">string</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Received text: </span><span class="se">\(</span><span class="n">string</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">binary</span><span class="p">(</span><span class="k">let</span> <span class="nv">data</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"Received data: </span><span class="se">\(</span><span class="n">data</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">ping</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">pong</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">viabilityChanged</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">reconnectSuggested</span><span class="p">(</span><span class="n">_</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nv">cancelled</span><span class="p">:</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket is cancelled"</span><span class="p">)</span>
+        <span class="k">case</span> <span class="o">.</span><span class="nf">error</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="s">"WebSocket encountered an error: </span><span class="se">\(</span><span class="kt">String</span><span class="p">(</span><span class="nv">describing</span><span class="p">:</span> <span class="n">error</span><span class="p">)</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">sendMessage</span><span class="p">(</span><span class="n">_</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">socket</span><span class="o">.</span><span class="nf">write</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="n">message</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kd">func</span> <span class="nf">disconnect</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">socket</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h4 id="الخطوة-3-استخدام-websocketmanager">الخطوة 3: استخدام WebSocketManager</h4>
+
+<p>الآن بعد أن أنشأنا <code class="language-plaintext highlighter-rouge">WebSocketManager</code>، يمكننا استخدامه في أي جزء من التطبيق لإرسال واستقبال الرسائل.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">webSocketManager</span> <span class="o">=</span> <span class="kt">WebSocketManager</span><span class="p">()</span>
+
+<span class="c1">// إرسال رسالة</span>
+<span class="n">webSocketManager</span><span class="o">.</span><span class="nf">sendMessage</span><span class="p">(</span><span class="s">"Hello, Server!"</span><span class="p">)</span>
+
+<span class="c1">// قطع الاتصال</span>
+<span class="n">webSocketManager</span><span class="o">.</span><span class="nf">disconnect</span><span class="p">()</span>
+</code></pre></div></div>
+
+<h4 id="الخلاصة">الخلاصة</h4>
+
+<p>في هذا المقال، تعلمنا كيفية تنفيذ WebSocket في تطبيق iOS باستخدام مكتبة Starscream. يمكن استخدام WebSocket لإنشاء اتصالات في الوقت الفعلي مع الخادم، مما يسمح بتبادل البيانات بسرعة وكفاءة. يمكن توسيع هذا المثال ليشمل المزيد من الميزات مثل إعادة الاتصال التلقائي وإدارة الأخطاء.</p>
+
+<p><strong>مكتبات WebSocket الشهيرة لنظام iOS:</strong></p>
+<ul>
+  <li><strong>SocketRocket (Objective-C، 4910 نجوم)</strong></li>
+  <li><strong>Starscream (Swift، 1714 نجوم)</strong></li>
+  <li><strong>SwiftWebSocket (Swift، 435 نجوم)</strong></li>
+</ul>
+
+<h3 id="استخدام-srwebsocket">استخدام SRWebSocket</h3>
+
+<ol>
+  <li><strong>التهيئة والاتصال:</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SRWebSocket</span> <span class="o">*</span><span class="n">webSocket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SRWebSocket</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithURLRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"ws://echo.websocket.org"</span><span class="p">]]];</span>
+<span class="n">webSocket</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+<span class="p">[</span><span class="n">webSocket</span> <span class="nf">open</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>إرسال الرسالة:</strong>
+    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">webSocket</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Hello, World!"</span><span class="p">];</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>استقبال الرسائل:</strong>
+قم بتنفيذ طرق <code class="language-plaintext highlighter-rouge">SRWebSocketDelegate</code> للتعامل مع الرسائل الواردة والأحداث.</p>
+  </li>
+  <li><strong>معالجة الأخطاء وإشعارات الأحداث:</strong>
+قم بمعالجة الأخطاء بشكل مناسب وأخبر المستخدمين بأي مشاكل في الاتصال.</li>
+</ol>
+
+<h3 id="شرح-مفصل-لبروتوكول-websocket">شرح مفصل لبروتوكول WebSocket</h3>
+
+<p>WebSocket هو بروتوكول اتصالات يوفر قناة اتصال ثنائية الاتجاه (Full-Duplex) عبر اتصال TCP واحد. تم تصميمه ليتم تنفيذه في المتصفحات وخوادم الويب، ولكنه يمكن استخدامه أيضًا في أي تطبيق عميل/خادم. يتميز WebSocket بإمكانية إرسال البيانات بين العميل والخادم في الوقت الفعلي دون الحاجة إلى إجراء طلبات HTTP متكررة.</p>
+
+<h4 id="كيف-يعمل-websocket">كيف يعمل WebSocket؟</h4>
+
+<ol>
+  <li><strong>مصافحة اليد (Handshake):</strong>
+    <ul>
+      <li>يبدأ الاتصال بمصافحة HTTP تُعرف بـ “Upgrade Request”. يرسل العميل طلب HTTP إلى الخادم مع طلب ترقية الاتصال إلى WebSocket.</li>
+      <li>إذا وافق الخادم على الطلب، فإنه يرد برسالة تأكيد ترقية الاتصال إلى WebSocket.</li>
+    </ul>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>نقل البيانات:</strong>
+    <ul>
+      <li>بعد إتمام المصافحة، يتم إنشاء قناة اتصال ثنائية الاتجاه يمكن من خلالها إرسال البيانات بين العميل والخادم.</li>
+      <li>يتم إرسال البيانات في شكل إطارات (Frames) صغيرة، والتي يمكن أن تحتوي على نصوص أو بيانات ثنائية.</li>
+    </ul>
+  </li>
+  <li><strong>إغلاق الاتصال:</strong>
+    <ul>
+      <li>يمكن لأي من الطرفين (العميل أو الخادم) إغلاق الاتصال بإرسال إطار إغلاق (Close Frame).</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="مميزات-websocket">مميزات WebSocket:</h4>
+
+<ul>
+  <li><strong>الاتصال المستمر:</strong> على عكس HTTP الذي يعتمد على طلبات فردية، فإن WebSocket يحافظ على اتصال مفتوح طوال فترة التفاعل.</li>
+  <li><strong>الكفاءة:</strong> يتم تقليل النفقات العامة (Overhead) مقارنة بطلبات HTTP المتكررة.</li>
+  <li><strong>الدعم للبيانات الثنائية:</strong> يمكن إرسال البيانات الثنائية (Binary Data) بالإضافة إلى النصوص.</li>
+</ul>
+
+<h4 id="استخدامات-websocket">استخدامات WebSocket:</h4>
+
+<ul>
+  <li>التطبيقات التي تتطلب تحديثات في الوقت الفعلي مثل تطبيقات الدردشة.</li>
+  <li>الألعاب متعددة اللاعبين عبر الإنترنت.</li>
+  <li>التطبيقات المالية التي تتطلب تحديثات سريعة للأسعار.</li>
+</ul>
+
+<h4 id="مثال-بسيط-باستخدام-javascript">مثال بسيط باستخدام JavaScript:</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// إنشاء اتصال WebSocket</span>
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://example.com/socket</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// فتح الاتصال</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connection established</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Server!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// استقبال الرسائل من الخادم</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Message from server:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// إغلاق الاتصال</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connection closed</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// على جانب الخادم (Node.js مع مكتبة ws)</span>
+<span class="kd">const</span> <span class="nx">WebSocket</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">wss</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">.</span><span class="nc">Server</span><span class="p">({</span> <span class="na">port</span><span class="p">:</span> <span class="mi">8080</span> <span class="p">});</span>
+
+<span class="nx">wss</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">connection</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="nf">connection</span><span class="p">(</span><span class="nx">ws</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">ws</span><span class="p">.</span><span class="nf">on</span><span class="p">(</span><span class="dl">'</span><span class="s1">message</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="nf">incoming</span><span class="p">(</span><span class="nx">message</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">received: %s</span><span class="dl">'</span><span class="p">,</span> <span class="nx">message</span><span class="p">);</span>
+    <span class="p">});</span>
+
+    <span class="nx">ws</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Client!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div></div>
+
+<p>WebSocket هو أداة قوية لبناء تطبيقات تفاعلية في الوقت الفعلي، ويوفر تحسينات كبيرة في الأداء مقارنة بالطرق التقليدية مثل HTTP Long Polling.</p>
+
+<p>يعمل WebSocket فوق بروتوكول TCP ويقدم عدة تحسينات:</p>
+<ul>
+  <li><strong>نموذج الأمان:</strong> تمت إضافة نموذج أمان يعتمد على التحقق من المصدر في المتصفحات.</li>
+  <li><strong>تسمية العناوين والبروتوكولات:</strong> يدعم خدمات متعددة على منفذ واحد وأسماء نطاقات متعددة على عنوان IP واحد.</li>
+  <li><strong>آلية الإطارات:</strong> تم تعزيز TCP بآلية إطارات مشابهة لحزم IP، دون قيود على الطول.</li>
+  <li><strong>مصافحة الإغلاق:</strong> يضمن إغلاق الاتصال بشكل نظيف.</li>
+</ul>
+
+<h3 id="أساسيات-بروتوكول-websocket">أساسيات بروتوكول WebSocket</h3>
+
+<p>WebSocket هو بروتوكول اتصالات يوفر قناة اتصال ثنائية الاتجاه (Full-Duplex) عبر اتصال TCP واحد. تم تصميمه ليتم تنفيذه في المتصفحات وخوادم الويب، ولكنه يمكن استخدامه أيضًا في أي تطبيق عميل/خادم. تم تقديم WebSocket كجزء من HTML5، وهو يعمل على تحسين الاتصال بين العميل والخادم مقارنةً بالتقنيات القديمة مثل HTTP Long Polling.</p>
+
+<h4 id="الميزات-الرئيسية-لـ-websocket">الميزات الرئيسية لـ WebSocket:</h4>
+
+<ol>
+  <li><strong>ثنائية الاتجاه (Full-Duplex)</strong>: يمكن للعميل والخادم إرسال البيانات في نفس الوقت دون الحاجة إلى انتظار الطرف الآخر.</li>
+  <li><strong>اتصال مستمر</strong>: بمجرد إنشاء الاتصال، يبقى مفتوحًا حتى يتم إغلاقه من قبل أحد الطرفين.</li>
+  <li><strong>نقل البيانات الخفيف</strong>: يتم إرسال البيانات بتنسيق خفيف الوزن، مما يقلل من النفقات العامة (overhead) مقارنةً ببروتوكولات أخرى مثل HTTP.</li>
+  <li><strong>دعم للبيانات النصية والثنائية</strong>: يمكن إرسال البيانات النصية والثنائية عبر WebSocket.</li>
+</ol>
+
+<h4 id="كيفية-عمل-websocket">كيفية عمل WebSocket:</h4>
+
+<ol>
+  <li>
+    <p><strong>مصافحة (Handshake)</strong>: يبدأ الاتصال بمصافحة HTTP تُعرف باسم “Upgrade Request”، حيث يطلب العميل من الخادم ترقية الاتصال إلى بروتوكول WebSocket.</p>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+
+    <p>يقوم الخادم بالرد بالموافقة على الترقية:</p>
+
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">Switching Protocols</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>نقل البيانات</strong>: بعد إنشاء الاتصال، يمكن للعميل والخادم إرسال البيانات بشكل مستقل. يتم تقسيم البيانات إلى إطارات (frames) صغيرة يتم إرسالها عبر الاتصال.</p>
+  </li>
+  <li>
+    <p><strong>إغلاق الاتصال</strong>: يمكن لأي من الطرفين إغلاق الاتصال بإرسال إطار إغلاق (Close Frame).</p>
+  </li>
+</ol>
+
+<h4 id="مثال-بسيط-باستخدام-javascript-1">مثال بسيط باستخدام JavaScript:</h4>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// إنشاء اتصال WebSocket</span>
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://example.com/socket</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="c1">// عند فتح الاتصال</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connection opened</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Server!</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// عند استقبال رسالة من الخادم</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Message from server:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// عند إغلاق الاتصال</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Connection closed</span><span class="dl">'</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// عند حدوث خطأ</span>
+<span class="nx">socket</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">WebSocket error:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<h4 id="استخدامات-websocket-1">استخدامات WebSocket:</h4>
+
+<ul>
+  <li><strong>التطبيقات التفاعلية</strong>: مثل الدردشة الحية، الألعاب متعددة اللاعبين.</li>
+  <li><strong>التحديثات الفورية</strong>: مثل تحديثات الأسهم، الإشعارات الفورية.</li>
+  <li><strong>التحكم في الوقت الحقيقي</strong>: مثل التحكم في الأجهزة عن بعد.</li>
+</ul>
+
+<p>WebSocket يوفر طريقة فعالة ومرنة للتواصل في الوقت الحقيقي بين العميل والخادم، مما يجعله خيارًا مثاليًا للعديد من التطبيقات الحديثة.</p>
+
+<p><strong>1. المصافحة:</strong>
+   تستخدم WebSocket آلية الترقية الخاصة بـ HTTP لإتمام المصافحة:</p>
+<ul>
+  <li><strong>طلب العميل:</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">GET</span> <span class="nn">/chat</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">server.example.com</span>
+<span class="na">Upgrade</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">Connection</span><span class="p">:</span> <span class="s">Upgrade</span>
+<span class="na">Sec-WebSocket-Key</span><span class="p">:</span> <span class="s">dGhlIHNhbXBsZSBub25jZQ==</span>
+<span class="na">Origin</span><span class="p">:</span> <span class="s">http://example.com</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat, superchat</span>
+<span class="na">Sec-WebSocket-Version</span><span class="p">:</span> <span class="s">13</span>
+</code></pre></div>    </div>
+  </li>
+  <li><strong>استجابة الخادم:</strong>
+    <div class="language-http highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">101</span> <span class="ne">تبديل البروتوكولات</span>
+<span class="na">الترقية</span><span class="p">:</span> <span class="s">websocket</span>
+<span class="na">الاتصال</span><span class="p">:</span> <span class="s">الترقية</span>
+<span class="na">Sec-WebSocket-Accept</span><span class="p">:</span> <span class="s">s3pPLMBiTxaQ9kYGzzhZRbK+xOo=</span>
+<span class="na">Sec-WebSocket-Protocol</span><span class="p">:</span> <span class="s">chat</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p><strong>2. نقل البيانات:</strong>
+   يمكن أن تحتوي إطارات WebSocket على نصوص بتنسيق UTF-8، وبيانات ثنائية، وإطارات تحكم مثل الإغلاق، وping، وpong.</p>
+
+<p><strong>3. الأمان:</strong>
+   يقوم المتصفح تلقائيًا بإضافة رأس <code class="language-plaintext highlighter-rouge">Origin</code>، والذي لا يمكن تزويره من قبل العملاء الآخرين.</p>
+
+<h3 id="عنوان-websocket">عنوان WebSocket</h3>
+
+<ul>
+  <li><strong>ws-URI:</strong> <code class="language-plaintext highlighter-rouge">ws://host:port/path?query</code></li>
+  <li><strong>wss-URI:</strong> <code class="language-plaintext highlighter-rouge">wss://host:port/path?query</code></li>
+</ul>
+
+<h3 id="بروتوكول-إطارات-websocket">بروتوكول إطارات WebSocket</h3>
+
+<p>WebSocket هو بروتوكول اتصال ثنائي الاتجاه يعمل فوق اتصال TCP واحد. يتم تقسيم البيانات المرسلة عبر WebSocket إلى إطارات (frames) صغيرة، حيث يتم إرسال كل إطار بشكل مستقل. يتكون بروتوكول إطارات WebSocket من عدة أجزاء رئيسية:</p>
+
+<ol>
+  <li><strong>البت الأول (FIN)</strong>: يشير إلى ما إذا كانت هذه هي الإطار الأخير في الرسالة.</li>
+  <li><strong>بتات التحكم (Opcode)</strong>: تحدد نوع الإطار (مثل نص، بيانات ثنائية، إغلاق، إلخ).</li>
+  <li><strong>بت الإخفاء (Mask)</strong>: يشير إلى ما إذا كانت البيانات مخفية.</li>
+  <li><strong>طول الحمولة (Payload Length)</strong>: يحدد طول البيانات المرسلة.</li>
+  <li><strong>مفتاح الإخفاء (Masking Key)</strong>: يستخدم لإخفاء البيانات إذا كان بت الإخفاء مضبوطًا.</li>
+  <li><strong>البيانات (Payload Data)</strong>: البيانات الفعلية المرسلة.</li>
+</ol>
+
+<h4 id="مثال-على-إطار-websocket">مثال على إطار WebSocket</h4>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 0                   1                   2                   3
+ 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-+-+-+-+-------+-+-------------+-------------------------------+
+|F|R|R|R| opcode|M| Payload len |    Extended payload length    |
+|I|S|S|S|  (4)  |A|     (7)     |             (16/64)           |
+|N|V|V|V|       |S|             |   (if payload len==126/127)   |
+| |1|2|3|       |K|             |                               |
++-+-+-+-+-------+-+-------------+ - - - - - - - - - - - - - - - +
+|     Extended payload length continued, if payload len == 127  |
++ - - - - - - - - - - - - - - - +-------------------------------+
+|                               |Masking-key, if MASK set to 1  |
++-------------------------------+-------------------------------+
+| Masking-key (continued)       |          Payload Data         |
++-------------------------------- - - - - - - - - - - - - - - - +
+:                     Payload Data continued ...                :
++ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+|                     Payload Data continued ...                |
++---------------------------------------------------------------+
+</code></pre></div></div>
+
+<p>في هذا المثال، يتم تقسيم الإطار إلى أجزاء مختلفة تحدد خصائص الإطار والبيانات المرسلة. يتم استخدام هذا التنسيق لضمان نقل البيانات بشكل فعال وآمن عبر اتصال WebSocket.</p>
+
+<p><strong>هيكل الإطار:</strong></p>
+<ul>
+  <li><strong>FIN (1 بت):</strong> يشير إلى أن هذا هو الجزء الأخير من الرسالة.</li>
+  <li><strong>RSV1, RSV2, RSV3 (1 بت لكل منهما):</strong> محجوزة للاستخدام المستقبلي.</li>
+  <li><strong>Opcode (4 بتات):</strong> يحدد كيفية تحليل بيانات الحمولة.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">0x0:</code> إطار متابعة</li>
+      <li><code class="language-plaintext highlighter-rouge">0x1:</code> إطار نصي</li>
+      <li><code class="language-plaintext highlighter-rouge">0x2:</code> إطار ثنائي</li>
+      <li><code class="language-plaintext highlighter-rouge">0x8:</code> إغلاق الاتصال</li>
+      <li><code class="language-plaintext highlighter-rouge">0x9:</code> ping</li>
+      <li><code class="language-plaintext highlighter-rouge">0xA:</code> pong</li>
+    </ul>
+  </li>
+  <li><strong>Mask (1 بت):</strong> يشير إلى ما إذا كانت بيانات الحمولة مقنعة أم لا.</li>
+  <li><strong>طول الحمولة (7 بتات):</strong> طول بيانات الحمولة.</li>
+</ul>
+
+<p><strong>مفتاح القناع (Masking Key):</strong> يُستخدم لمنع هجمات الرجل في المنتصف (Man-in-the-Middle) عن طريق إخفاء إطارات العميل.</p>
+
+<h3 id="إغلاق-المصافحة">إغلاق المصافحة</h3>
+
+<p><strong>إطار الإغلاق (Close Frame):</strong></p>
+<ul>
+  <li>يمكن أن يحتوي على نص يوضح سبب الإغلاق.</li>
+  <li>يجب على كلا الطرفين إرسال واستقبال إطار الإغلاق.</li>
+</ul>
+
+<h3 id="مثال">مثال</h3>
+
+<p><strong>المثال 1: رسالة نصية غير مقنعة بإطار واحد</strong></p>
+<pre><code class="language-hex">0x81 0x05 0x48 0x65 0x6c 0x6c 0x6f
+</code></pre>
+<p>تحتوي على “Hello”</p>
+
+<p><strong>المثال الثاني: رسالة نصية بإطار واحد مع قناع</strong></p>
+<pre><code class="language-hex">0x81 0x85 0x37 0xfa 0x21 0x3d 0x7f 0x9f 0x4d 0x51 0x58
+</code></pre>
+<p>تحتوي على “Hello” مع مفتاح القناع.</p>
+
+<p><strong>المثال الثالث: رسالة نصية مجزأة بدون قناع</strong></p>
+<pre><code class="language-hex">0x01 0x03 0x48 0x65 0x6c
+0x80 0x02 0x6c 0x6f
+</code></pre>
+<p>الرسالة المجزأة تحتوي على إطارين: “Hel” و “lo”.</p>
+
+<h3 id="الموضوعات-المتقدمة">الموضوعات المتقدمة</h3>
+
+<p><strong>التعتيم وإزالة التعتيم:</strong></p>
+<ul>
+  <li>يُستخدم التعتيم لمنع هجمات الرجل في المنتصف (Man-in-the-Middle).</li>
+  <li>يجب تعتيم كل إطار (frame) يأتي من العميل.</li>
+  <li>يتم اختيار مفتاح التعتيم لكل إطار بشكل عشوائي.</li>
+</ul>
+
+<p><strong>التجزئة (Fragmentation):</strong></p>
+<ul>
+  <li>تُستخدم لإرسال بيانات ذات طول غير معروف.</li>
+  <li>تبدأ رسائل التجزئة بإطار ذو علامة FIN تساوي 0، وتنتهي بإطار ذو علامة FIN تساوي 1.</li>
+</ul>
+
+<p><strong>إطارات التحكم:</strong></p>
+<ul>
+  <li>تحتوي إطارات التحكم (مثل إغلاق الاتصال، ping، وpong) على أكواد تشغيل محددة.</li>
+  <li>تُستخدم هذه الإطارات لإدارة حالة اتصال WebSocket.</li>
+</ul>
+
+<h3 id="قابلية-التوسع">قابلية التوسع</h3>
+
+<p><strong>يمكن وضع البيانات الموسعة قبل بيانات التطبيق في جسم الرسالة:</strong></p>
+<ul>
+  <li>يمكن التحكم في كل إطار باستخدام البتات المحجوزة.</li>
+  <li>يتم حجز بعض رموز العمليات للتعريفات المستقبلية.</li>
+  <li>إذا كانت هناك حاجة إلى المزيد من رموز العمليات، يمكن استخدام البتات المحجوزة.</li>
+</ul>
+
+<p><strong>الإرسال:</strong></p>
+<ul>
+  <li>يجب التأكد من أن الاتصال في حالة OPEN.</li>
+  <li>يتم تغليف البيانات في إطارات، ويمكن اختيار إرسالها مجزأة إذا كانت البيانات كبيرة.</li>
+  <li>يجب أن تكون قيمة الإطار الأول صحيحة، لإعلام الطرف المستقبل بنوع البيانات (نص أو ثنائي).</li>
+  <li>يجب تعيين FIN للإطار الأخير إلى 1.</li>
+</ul>
+
+<p><strong>إغلاق المصافحة:</strong></p>
+<ul>
+  <li>يمكن لكلا الطرفين إرسال إطار الإغلاق.</li>
+  <li>بعد إرسال إطار الإغلاق، لا يتم إرسال أي بيانات أخرى.</li>
+  <li>عند استلام إطار الإغلاق، يتم تجاهل أي بيانات يتم تلقيها بعد ذلك.</li>
+</ul>
+
+<p><strong>إغلاق الاتصال:</strong></p>
+<ul>
+  <li>إغلاق اتصال WebSocket يعني إغلاق الاتصال TCP الأساسي.</li>
+  <li>بعد إرسال أو استقبال إطار الإغلاق، تصبح حالة اتصال WebSocket في طور الإغلاق.</li>
+  <li>عند إغلاق الاتصال TCP الأساسي، تصبح حالة اتصال WebSocket مغلقًا.</li>
+</ul>
+
+<h3 id="المراجع">المراجع</h3>
+
+<ul>
+  <li>WebSocket RFC: <a href="https://tools.ietf.org/html/rfc6455">RFC6455</a></li>
+  <li>مقالة “ما هو مبدأ WebSocket؟” على Zhihu: <a href="https://www.zhihu.com/question/20215561">رابط Zhihu</a></li>
+  <li>SocketRocket: <a href="https://github.com/square/SocketRocket">رابط GitHub</a></li>
+</ul>
+
+<h3 id="الشكر-والتقدير">الشكر والتقدير</h3>
+
+<p>شكرًا لكم جميعًا على اهتمامكم. إذا كانت لديكم المزيد من الأسئلة أو النقاشات، فلا تترددوا في التواصل معي على GitHub أو Weibo.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ar" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

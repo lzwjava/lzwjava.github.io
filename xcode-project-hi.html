@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Xcode Project Files को समझना</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Xcode Project Files को समझना | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Xcode Project Files को समझना" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="अगर आपने कभी एक Xcode प्रोजेक्ट के नीचे देखा है, तो आपने शायद एक .pbxproj फ़ाइल से मिला होगा—एक रहस्यमय, संरचित पाठ फ़ाइल जो आपके ऐप या प्लगइन को कैसे बनाया जाता है, यह परिभाषित करती है। आज, हम एक ऐसी फ़ाइल का उदाहरण “Reveal-In-GitHub” नामक एक उपयोगी Xcode प्लगइन से ले रहे हैं। चिंता मत करें—हम हर लाइन को तोड़ने नहीं जाएंगे (वह भारी हो जाएगा!)। बजाय इसके, हम उस फ़ाइल को चलाने वाले मुख्य अवधारणाओं और पैटर्नों को खोजेंगे, आपको किसी भी Xcode प्रोजेक्ट फ़ाइल को समझने के लिए एक मजबूत आधार प्रदान करेंगे।" />
+<meta property="og:description" content="अगर आपने कभी एक Xcode प्रोजेक्ट के नीचे देखा है, तो आपने शायद एक .pbxproj फ़ाइल से मिला होगा—एक रहस्यमय, संरचित पाठ फ़ाइल जो आपके ऐप या प्लगइन को कैसे बनाया जाता है, यह परिभाषित करती है। आज, हम एक ऐसी फ़ाइल का उदाहरण “Reveal-In-GitHub” नामक एक उपयोगी Xcode प्लगइन से ले रहे हैं। चिंता मत करें—हम हर लाइन को तोड़ने नहीं जाएंगे (वह भारी हो जाएगा!)। बजाय इसके, हम उस फ़ाइल को चलाने वाले मुख्य अवधारणाओं और पैटर्नों को खोजेंगे, आपको किसी भी Xcode प्रोजेक्ट फ़ाइल को समझने के लिए एक मजबूत आधार प्रदान करेंगे।" />
+<link rel="canonical" href="https://lzwjava.github.io/xcode-project-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/xcode-project-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Xcode Project Files को समझना" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2015-10-23T00:00:00+08:00","datePublished":"2015-10-23T00:00:00+08:00","description":"अगर आपने कभी एक Xcode प्रोजेक्ट के नीचे देखा है, तो आपने शायद एक .pbxproj फ़ाइल से मिला होगा—एक रहस्यमय, संरचित पाठ फ़ाइल जो आपके ऐप या प्लगइन को कैसे बनाया जाता है, यह परिभाषित करती है। आज, हम एक ऐसी फ़ाइल का उदाहरण “Reveal-In-GitHub” नामक एक उपयोगी Xcode प्लगइन से ले रहे हैं। चिंता मत करें—हम हर लाइन को तोड़ने नहीं जाएंगे (वह भारी हो जाएगा!)। बजाय इसके, हम उस फ़ाइल को चलाने वाले मुख्य अवधारणाओं और पैटर्नों को खोजेंगे, आपको किसी भी Xcode प्रोजेक्ट फ़ाइल को समझने के लिए एक मजबूत आधार प्रदान करेंगे।","headline":"Xcode Project Files को समझना","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/xcode-project-hi"},"url":"https://lzwjava.github.io/xcode-project-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og14.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Xcode Project Files को समझना | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2015-10-23-xcode-project-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2015-10-23-xcode-project-hi.md</span> -->
+      
+
+      <!-- <span>2015-10-23-xcode-project-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2015.10</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/xcode-project-en" >English</option>
+        <option value="/xcode-project-zh" >中文</option>
+        <option value="/xcode-project-ja" >日本語</option>
+        <option value="/xcode-project-es" >Español</option>
+        <option value="/xcode-project-hi" selected>हिंदी</option>
+        <option value="/xcode-project-fr" >Français</option>
+        <option value="/xcode-project-de" >Deutsch</option>
+        <option value="/xcode-project-ar" >العربية</option>
+        <option value="/xcode-project-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>अगर आपने कभी एक Xcode प्रोजेक्ट के नीचे देखा है, तो आपने शायद एक <code class="language-plaintext highlighter-rouge">.pbxproj</code> फ़ाइल से मिला होगा—एक रहस्यमय, संरचित पाठ फ़ाइल जो आपके ऐप या प्लगइन को कैसे बनाया जाता है, यह परिभाषित करती है। आज, हम एक ऐसी फ़ाइल का उदाहरण “Reveal-In-GitHub” नामक एक उपयोगी Xcode प्लगइन से ले रहे हैं। चिंता मत करें—हम हर लाइन को तोड़ने नहीं जाएंगे (वह भारी हो जाएगा!)। बजाय इसके, हम उस फ़ाइल को चलाने वाले मुख्य अवधारणाओं और पैटर्नों को खोजेंगे, आपको किसी भी Xcode प्रोजेक्ट फ़ाइल को समझने के लिए एक मजबूत आधार प्रदान करेंगे।</p>
+
+<hr />
+
+<h4 id="pbxproj-फ़ाइल-क्या-है"><code class="language-plaintext highlighter-rouge">.pbxproj</code> फ़ाइल क्या है?</h4>
+
+<p>अपने कोर में, <code class="language-plaintext highlighter-rouge">.pbxproj</code> फ़ाइल एक Xcode प्रोजेक्ट का दिल है। यह एक सीरियलाइज़्ड फ़ॉर्मेट में लिखी गई है (Apple के NeXTSTEP जड़ों का एक विरासत) और यह सब कुछ परिभाषित करती है जो Xcode को आपके ऐप को बनाने के लिए चाहिए: स्रोत फ़ाइलें, फ्रेमवर्क, बिल्ड सेटिंग्स, और अधिक। इसे एक ब्लूप्रिंट के रूप में सोचें—Xcode इसे पढ़ता है ताकि यह समझ सके कि क्या कोम्पाइल करना है, कैसे इसे लिंक करना है, और अंतिम उत्पाद को कहाँ रखना है।</p>
+
+<p>आपने दिए गए फ़ाइल “Reveal-In-GitHub” के लिए है, एक Xcode प्लगइन (<code class="language-plaintext highlighter-rouge">.xcplugin</code>) जो शायद Xcode IDE में GitHub से संबंधित फीचर्स जोड़ता है। हम बड़े पैमाने पर विचार और दोहराव वाले पैटर्न को तोड़ने जा रहे हैं।</p>
+
+<hr />
+
+<h4 id="फ़ाइल-में-मुख्य-अवधारणाएँ">फ़ाइल में मुख्य अवधारणाएँ</h4>
+
+<ol>
+  <li>
+    <p><strong>ऑब्जेक्ट्स और UUIDs</strong>
+फ़ाइल एक बड़ा डिक्शनरी (या “ऑब्जेक्ट ग्राफ”) है जो <code class="language-plaintext highlighter-rouge">objects = { ... };</code> से शुरू होती है। हर एंटिटी—चाहे वह फ़ाइल हो, एक बिल्ड फेज हो, या एक टारगेट हो—एक यूनिक आइडेंटिफायर (UUID) जैसे <code class="language-plaintext highlighter-rouge">706F254E1BE7C76E00CA15B4</code> प्राप्त करता है। ये आईडी सब कुछ को एक साथ जोड़ते हैं। उदाहरण के लिए, एक स्रोत फ़ाइल का UUID <code class="language-plaintext highlighter-rouge">PBXFileReference</code> सेक्शन में <code class="language-plaintext highlighter-rouge">PBXBuildFile</code> सेक्शन में संदर्भित हो सकता है ताकि, “हे, इसे कोम्पाइल करें!” कह सके।</p>
+  </li>
+  <li><strong>संगठन के लिए सेक्शन</strong>
+फ़ाइल को लेबल किए गए सेक्शन में विभाजित किया गया है, प्रत्येक बिल्ड प्रक्रिया का एक विशिष्ट हिस्सा संभालता है:
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXBuildFile</code></strong>: कोम्पाइल या प्रोसेस करने के लिए फ़ाइलों की सूची (उदाहरण के लिए, Objective-C स्रोत के लिए <code class="language-plaintext highlighter-rouge">.m</code> फ़ाइलें).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXFileReference</code></strong>: प्रोजेक्ट में सभी फ़ाइलें—स्रोत कोड, हेडर्स, रिसोर्स (जैसे <code class="language-plaintext highlighter-rouge">.xib</code> फ़ाइलें), और फ्रेमवर्क.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXFrameworksBuildPhase</code></strong>: लिंक करने के लिए बाहरी लाइब्रेरी (उदाहरण के लिए, Cocoa और Foundation फ्रेमवर्क) को परिभाषित करता है।</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXGroup</code></strong>: फ़ाइलों को एक वर्चुअल फ़ोल्डर संरचना में संगठित करता है, जो Xcode के प्रोजेक्ट नाविगेटर में दिखता है।</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXNativeTarget</code></strong>: अंतिम उत्पाद (यहाँ, <code class="language-plaintext highlighter-rouge">Reveal-In-GitHub.xcplugin</code> बंडल) को परिभाषित करता है।</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXProject</code></strong>: टॉप-लेवल प्रोजेक्ट सेटिंग्स, जैसे संगठन नाम (<code class="language-plaintext highlighter-rouge">lzwjava</code>) और टारगेट सूची.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">PBXResourcesBuildPhase</code> और <code class="language-plaintext highlighter-rouge">PBXSourcesBuildPhase</code></strong>: रिसोर्स (उदाहरण के लिए, UI फ़ाइलें) और स्रोत कोड के लिए अलग बिल्ड स्टेप.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XCBuildConfiguration</code> और <code class="language-plaintext highlighter-rouge">XCConfigurationList</code></strong>: डिबग और रिलीज मोड के लिए बिल्ड सेटिंग्स को स्टोर करता है।</li>
+    </ul>
+  </li>
+  <li><strong>बिल्ड फेज</strong>
+एक ऐप को बिल्ड करना सिर्फ “सब कोम्पाइल करें” नहीं है। यह एक फेज्ड प्रक्रिया है:
+    <ul>
+      <li><strong>स्रोत</strong>: <code class="language-plaintext highlighter-rouge">.m</code> फ़ाइलें को कोम्पाइल करें (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">RIGConfig.m</code>).</li>
+      <li><strong>फ्रेमवर्क</strong>: लाइब्रेरी जैसे <code class="language-plaintext highlighter-rouge">Cocoa.framework</code> को लिंक करें।</li>
+      <li><strong>रिसोर्स</strong>: एसेट्स जैसे <code class="language-plaintext highlighter-rouge">RIGSettingWindowController.xib</code> (एक UI फ़ाइल) को बंडल करें।
+इन फेजों से सुनिश्चित होता है कि सही चीजें सही क्रम में होती हैं।</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>फ़ाइल टाइप और भूमिकाएँ</strong>
+प्लगइन Objective-C (<code class="language-plaintext highlighter-rouge">.h</code> और <code class="language-plaintext highlighter-rouge">.m</code> फ़ाइलें) का उपयोग करता है और एक सेटिंग्स विंडो के लिए एक <code class="language-plaintext highlighter-rouge">.xib</code> शामिल करता है। <code class="language-plaintext highlighter-rouge">.xcplugin</code> एक्सटेंशन हमें बताता है कि यह एक Xcode प्लगइन है, एक विशेष प्रकार का macOS बंडल। फ्रेमवर्क जैसे <code class="language-plaintext highlighter-rouge">Foundation</code> (कोर यूटिलिटीज) और <code class="language-plaintext highlighter-rouge">Cocoa</code> (UI और ऐप-लेवल टूल्स) macOS विकास के लिए मानक हैं।</p>
+  </li>
+  <li><strong>बिल्ड कॉन्फ़िगरेशन</strong>
+फ़ाइल दो बिल्ड फ्लेवर परिभाषित करती है: <code class="language-plaintext highlighter-rouge">डिबग</code> और <code class="language-plaintext highlighter-rouge">रिलीज</code>। डिबग मोड में अतिरिक्त चेक (उदाहरण के लिए, <code class="language-plaintext highlighter-rouge">DEBUG=1</code>) और अन-ऑप्टिमाइज़्ड कोड शामिल होते हैं, जिससे डिबगिंग आसान हो जाता है, जबकि रिलीज मोड डिबग इन्फो को हटा देता है और प्रदर्शन के लिए ऑप्टिमाइज़ करता है। सेटिंग्स जैसे <code class="language-plaintext highlighter-rouge">MACOSX_DEPLOYMENT_TARGET = 10.10</code> macOS संस्करणों के साथ संगतता सुनिश्चित करते हैं।</li>
+</ol>
+
+<hr />
+
+<h4 id="ध्यान-रखने-वाले-पैटर्न">ध्यान रखने वाले पैटर्न</h4>
+
+<ol>
+  <li>
+    <p><strong>UUID संदर्भ</strong>
+देखें कि UUID कैसे डॉट्स को जोड़ते हैं? <code class="language-plaintext highlighter-rouge">PBXBuildFile</code> में एक फ़ाइल जैसे <code class="language-plaintext highlighter-rouge">RIGConfig.m</code> को उसके <code class="language-plaintext highlighter-rouge">PBXFileReference</code> एंट्री के साथ उसी UUID के माध्यम से बांधा जाता है। यह मॉड्यूलर लिंकिंग फ़ाइल को संरचित और स्केलेबल बनाता है।</p>
+  </li>
+  <li>
+    <p><strong>हायरार्किकल ग्रुपिंग</strong>
+<code class="language-plaintext highlighter-rouge">PBXGroup</code> सेक्शन एक फ़ाइल ट्री का अनुकरण करता है। टॉप-लेवल ग्रुप में फ्रेमवर्क, प्लगइन के स्रोत फ़ाइलें, और एक “प्रोडक्ट्स” फ़ोल्डर शामिल हैं, जो आउटपुट (<code class="language-plaintext highlighter-rouge">Reveal-In-GitHub.xcplugin</code>) के लिए है। यह हायरार्की Xcode को डेवलपर्स को एक साफ UI प्रदान करने में मदद करता है।</p>
+  </li>
+  <li>
+    <p><strong>उद्देश्य के साथ दोहराव</strong>
+फ़ाइलें कई बार दिखाई देती हैं—एक बार <code class="language-plaintext highlighter-rouge">PBXFileReference</code> में (उनका परिभाषित करना), फिर <code class="language-plaintext highlighter-rouge">PBXBuildFile</code> में (उनको कोम्पाइल करने के लिए चिह्नित करना), और बिल्ड फेज में (उनकी भूमिका को परिभाषित करना)। यह दोहराव सुनिश्चित करता है कि हर फ़ाइल की भूमिका स्पष्ट है।</p>
+  </li>
+  <li>
+    <p><strong>कॉन्फ़िगरेशन फ्लेक्सिबिलिटी</strong>
+बिल्ड सेटिंग्स चरों जैसे <code class="language-plaintext highlighter-rouge">$(inherited)</code> या <code class="language-plaintext highlighter-rouge">$(TARGET_NAME)</code> का उपयोग करते हैं ताकि फ्लेक्सिबल रहें। यह उन सेटिंग्स को अलग-अलग टारगेट या पर्यावरणों में अनुकूलित होने देता है बिना हार्डकोडिंग के।</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="reveal-in-github-क्या-करता-है">Reveal-In-GitHub क्या करता है?</h4>
+
+<p>फ़ाइल नामों—<code class="language-plaintext highlighter-rouge">RIGGitRepo</code>, <code class="language-plaintext highlighter-rouge">RIGPlugin</code>, <code class="language-plaintext highlighter-rouge">RIGSettingWindowController</code>—से हम अनुमान लगा सकते हैं कि यह प्लगइन Xcode में GitHub इंटीग्रेशन जोड़ता है। शायद यह आपको एक फ़ाइल के GitHub पेज को IDE से सीधे खोलने देता है या एक कस्टम विंडो (<code class="language-plaintext highlighter-rouge">.xib</code> फ़ाइल) के माध्यम से रिपोजिटरी सेटिंग्स को प्रबंधित करने देता है। Cocoa का उपयोग करने से एक macOS-नेटिव UI सुझाया जाता है, जो एक Xcode प्लगइन के लिए फिट है।</p>
+
+<hr />
+
+<h4 id="यह-क्यों-महत्वपूर्ण-है">यह क्यों महत्वपूर्ण है</h4>
+
+<p>एक <code class="language-plaintext highlighter-rouge">.pbxproj</code> फ़ाइल को समझना सिर्फ त्रिविया नहीं है—यह व्यावहारिक है। अगर आप एक बिल्ड त्रुटि को सुलझा रहे हैं, एक नई फ़ाइल जोड़ रहे हैं, या ऑटोमेशन स्क्रिप्टिंग कर रहे हैं, तो आपको यहाँ क्या चल रहा है, यह जानना होगा। इसके अलावा, एक वास्तविक प्रोजेक्ट जैसे Reveal-In-GitHub कैसे संरचित है, यह आपके अपने काम को प्रेरित कर सकता है।</p>
+
+<p>अगली बार जब आप Xcode खोलेंगे, याद रखें: उस स्लीक इंटरफ़ेस के पीछे एक <code class="language-plaintext highlighter-rouge">.pbxproj</code> फ़ाइल है, जो चुपचाप जादू को संचालित कर रही है। यह जितना डरावना लगता है, उतना नहीं है—एक बार पैटर्न को देख लेने के बाद, यह सिर्फ आपके ऐप के लिए एक अच्छी तरह से संगठित रेसिपी है।</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

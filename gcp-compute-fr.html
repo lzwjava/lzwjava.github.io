@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Configuration d'un serveur Google Cloud</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Configuration d’un serveur Google Cloud | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Configuration d’un serveur Google Cloud" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="La configuration d’un serveur proxy dans Google Cloud vous permet de router votre trafic internet de manière sécurisée via une instance cloud, améliorant ainsi la confidentialité et contournant les restrictions. Dans ce guide, nous allons vous expliquer étape par étape comment configurer un serveur proxy de base dans Google Cloud et définir les règles de pare-feu nécessaires pour autoriser le trafic." />
+<meta property="og:description" content="La configuration d’un serveur proxy dans Google Cloud vous permet de router votre trafic internet de manière sécurisée via une instance cloud, améliorant ainsi la confidentialité et contournant les restrictions. Dans ce guide, nous allons vous expliquer étape par étape comment configurer un serveur proxy de base dans Google Cloud et définir les règles de pare-feu nécessaires pour autoriser le trafic." />
+<link rel="canonical" href="https://lzwjava.github.io/gcp-compute-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/gcp-compute-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-12-20T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Configuration d’un serveur Google Cloud" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2024-12-20T00:00:00+08:00","datePublished":"2024-12-20T00:00:00+08:00","description":"La configuration d’un serveur proxy dans Google Cloud vous permet de router votre trafic internet de manière sécurisée via une instance cloud, améliorant ainsi la confidentialité et contournant les restrictions. Dans ce guide, nous allons vous expliquer étape par étape comment configurer un serveur proxy de base dans Google Cloud et définir les règles de pare-feu nécessaires pour autoriser le trafic.","headline":"Configuration d’un serveur Google Cloud","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/gcp-compute-fr"},"url":"https://lzwjava.github.io/gcp-compute-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og8.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Configuration d'un serveur Google Cloud | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2024-12-20-gcp-compute-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2024-12-20-gcp-compute-fr.md</span> -->
+      
+
+      <!-- <span>2024-12-20-gcp-compute-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2024.12</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/gcp-compute-en" >English</option>
+        <option value="/gcp-compute-zh" >中文</option>
+        <option value="/gcp-compute-ja" >日本語</option>
+        <option value="/gcp-compute-es" >Español</option>
+        <option value="/gcp-compute-hi" >हिंदी</option>
+        <option value="/gcp-compute-fr" selected>Français</option>
+        <option value="/gcp-compute-de" >Deutsch</option>
+        <option value="/gcp-compute-ar" >العربية</option>
+        <option value="/gcp-compute-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>La configuration d’un serveur proxy dans Google Cloud vous permet de router votre trafic internet de manière sécurisée via une instance cloud, améliorant ainsi la confidentialité et contournant les restrictions. Dans ce guide, nous allons vous expliquer étape par étape comment configurer un serveur proxy de base dans Google Cloud et définir les règles de pare-feu nécessaires pour autoriser le trafic.</p>
+
+<h2 id="table-des-matières">Table des matières</h2>
+<ol>
+  <li><a href="#création-dune-instance-de-machine-virtuelle-google-cloud">Création d’une instance de machine virtuelle Google Cloud</a></li>
+  <li><a href="#configuration-du-serveur-proxy">Configuration du serveur proxy</a></li>
+  <li><a href="#configuration-des-règles-de-pare-feu">Configuration des règles de pare-feu</a></li>
+  <li><a href="#test-du-serveur-proxy">Test du serveur proxy</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ol>
+
+<hr />
+
+<h2 id="création-dune-instance-de-machine-virtuelle-sur-google-cloud">Création d’une instance de machine virtuelle sur Google Cloud</h2>
+
+<p>Avant de configurer le serveur proxy, vous devrez créer une instance de machine virtuelle (VM) dans Google Cloud.</p>
+
+<ol>
+  <li>
+    <p>Connectez-vous à Google Cloud Console : Rendez-vous sur <a href="https://console.cloud.google.com/">Google Cloud Console</a> et connectez-vous à votre compte.</p>
+  </li>
+  <li>Créez une nouvelle instance de machine virtuelle (VM) :
+    <ul>
+      <li>Accédez à Compute Engine &gt; Instances de VM.</li>
+      <li>Cliquez sur Créer une instance.</li>
+      <li>Choisissez la région et le type de machine souhaités. Pour simplifier, vous pouvez utiliser les paramètres par défaut ou opter pour une configuration légère comme l’instance <code class="language-plaintext highlighter-rouge">e2-micro</code>.</li>
+      <li>Dans la section Pare-feu, cochez à la fois Autoriser le trafic HTTP et Autoriser le trafic HTTPS pour permettre l’accès web.</li>
+    </ul>
+  </li>
+  <li>Configurez l’accès SSH :
+    <ul>
+      <li>Dans la section Clés SSH, ajoutez votre clé publique SSH pour accéder à distance à l’instance. Cela est essentiel pour configurer votre serveur proxy ultérieurement.</li>
+    </ul>
+  </li>
+  <li>Cliquez sur Créer pour lancer votre VM.</li>
+</ol>
+
+<p>Une fois la machine virtuelle configurée, vous pouvez vous y connecter en utilisant SSH depuis la Google Cloud Console ou via le terminal avec :</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcloud compute ssh &lt;nom-de-votre-vm&gt;
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="configuration-du-serveur-proxy">Configuration du serveur proxy</h2>
+
+<p>Une fois votre machine virtuelle configurée, vous pouvez configurer n’importe quel logiciel de serveur proxy de votre choix. Le logiciel proxy doit être installé et configuré pour accepter les connexions sur le port souhaité (par exemple, <code class="language-plaintext highlighter-rouge">3128</code> pour les configurations proxy courantes). Assurez-vous que le logiciel autorise les connexions depuis des clients distants.</p>
+
+<hr />
+
+<h2 id="configuration-des-règles-de-pare-feu">Configuration des règles de pare-feu</h2>
+
+<p>Pour autoriser le trafic vers votre serveur proxy, vous devrez configurer les règles de pare-feu de Google Cloud afin d’ouvrir le port nécessaire.</p>
+
+<ol>
+  <li>Accédez aux règles de pare-feu dans la console Google Cloud :
+    <ul>
+      <li>Allez dans Réseau VPC &gt; Règles de pare-feu dans la console Google Cloud.</li>
+    </ul>
+  </li>
+  <li>Créez une nouvelle règle de pare-feu :
+    <ul>
+      <li>Cliquez sur Créer une règle de pare-feu.</li>
+      <li>Entrez un nom pour la règle, par exemple <code class="language-plaintext highlighter-rouge">allow-proxy-access</code>.</li>
+      <li>Définissez la Direction du trafic sur Entrant (trafic entrant).</li>
+      <li>Définissez l’Action en cas de correspondance sur Autoriser.</li>
+      <li>Définissez les Cibles sur Toutes les instances du réseau ou Balises de cible spécifiées (si vous préférez un contrôle plus précis).</li>
+      <li>Sous Plages d’adresses IP sources, vous pouvez définir <code class="language-plaintext highlighter-rouge">0.0.0.0/0</code> pour autoriser l’accès depuis toutes les adresses IP, ou le limiter à des IP ou plages spécifiques pour une meilleure sécurité.</li>
+      <li>Sous Protocoles et ports, sélectionnez Protocoles et ports spécifiés et entrez le port utilisé par votre serveur proxy (par exemple, <code class="language-plaintext highlighter-rouge">tcp:3128</code>).</li>
+    </ul>
+  </li>
+  <li>Enregistrer la règle de pare-feu :
+Après avoir configuré la règle, cliquez sur Créer pour activer le pare-feu.</li>
+</ol>
+
+<hr />
+
+<h2 id="tester-le-serveur-proxy">Tester le serveur proxy</h2>
+
+<p>Après avoir configuré le pare-feu, il est temps de tester votre serveur proxy.</p>
+
+<ol>
+  <li>Tester le Proxy depuis votre Machine Locale :</li>
+</ol>
+
+<p>Vous pouvez configurer les paramètres du proxy de votre navigateur ou système sur votre machine locale pour utiliser l’adresse IP externe de votre machine virtuelle Google Cloud et le port sur lequel votre serveur proxy écoute (par exemple, <code class="language-plaintext highlighter-rouge">3128</code>).</p>
+
+<ol>
+  <li>
+    <p>Tester avec la ligne de commande :</p>
+
+    <p>Vous pouvez également tester le proxy avec <code class="language-plaintext highlighter-rouge">curl</code> en définissant les variables d’environnement du proxy :</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">http_proxy</span><span class="o">=</span>http://&lt;votre-ip-externe-vm&gt;:3128
+<span class="nb">export </span><span class="nv">https_proxy</span><span class="o">=</span>http://&lt;votre-ip-externe-vm&gt;:3128
+curl <span class="nt">-I</span> http://example.com
+</code></pre></div></div>
+
+<p>Si la connexion est réussie, vous devriez voir une réponse du site web.</p>
+
+<hr />
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>En suivant ce guide, vous avez appris à configurer un serveur proxy sur Google Cloud et à définir des règles de pare-feu pour autoriser le trafic entrant. Cette configuration offre un moyen simple de router votre trafic internet de manière sécurisée via le cloud, de contourner les restrictions réseau et d’améliorer votre confidentialité.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

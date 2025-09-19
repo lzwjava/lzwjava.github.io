@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Azure でスケーラブルなアプリケーションを構築する</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Azure でスケーラブルなアプリケーションを構築する | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Azure でスケーラブルなアプリケーションを構築する" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="ja" />
+<meta name="description" content="このブログ記事は、ChatGPT-4oのアシストで執筆されました。" />
+<meta property="og:description" content="このブログ記事は、ChatGPT-4oのアシストで執筆されました。" />
+<link rel="canonical" href="https://lzwjava.github.io/azure-ja" />
+<meta property="og:url" content="https://lzwjava.github.io/azure-ja" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-07T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Azure でスケーラブルなアプリケーションを構築する" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-07-07T00:00:00+08:00","datePublished":"2023-07-07T00:00:00+08:00","description":"このブログ記事は、ChatGPT-4oのアシストで執筆されました。","headline":"Azure でスケーラブルなアプリケーションを構築する","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/azure-ja"},"url":"https://lzwjava.github.io/azure-ja"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Azure でスケーラブルなアプリケーションを構築する | オリジナル、AI翻訳
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/ja/2023-07-07-azure-ja.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsja2023-07-07-azure-ja.md</span> -->
+      
+
+      <!-- <span>2023-07-07-azure-ja.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/azure-en" >English</option>
+        <option value="/azure-zh" >中文</option>
+        <option value="/azure-ja" selected>日本語</option>
+        <option value="/azure-es" >Español</option>
+        <option value="/azure-hi" >हिंदी</option>
+        <option value="/azure-fr" >Français</option>
+        <option value="/azure-de" >Deutsch</option>
+        <option value="/azure-ar" >العربية</option>
+        <option value="/azure-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p><em>このブログ記事は、ChatGPT-4oのアシストで執筆されました。</em></p>
+
+<hr />
+
+<h3 id="目次">目次</h3>
+<ul>
+  <li><a href="#はじめに">はじめに</a></li>
+  <li><a href="#azureサブスクリプションの開始">Azureサブスクリプションの開始</a></li>
+  <li><a href="#azure-kubernetes-service-aks-でアプリケーションをデプロイ">Azure Kubernetes Service (AKS) でアプリケーションをデプロイ</a>
+    <ul>
+      <li><a href="#aksクラスターの作成と管理">AKSクラスターの作成と管理</a></li>
+      <li><a href="#アプリケーションのデプロイ">アプリケーションのデプロイ</a></li>
+    </ul>
+  </li>
+  <li><a href="#podからのログの取得">Podからのログの取得</a></li>
+  <li><a href="#azure-application-insightsによる監視と診断">Azure Application Insightsによる監視と診断</a></li>
+  <li><a href="#azure-virtual-machines-vms-の活用">Azure Virtual Machines (VMs) の活用</a></li>
+  <li><a href="#azure-event-hubsによるリアルタイムデータの取り込み">Azure Event Hubsによるリアルタイムデータの取り込み</a></li>
+  <li><a href="#azure-api-management-servicesによるapiの管理">Azure API Management ServicesによるAPIの管理</a></li>
+  <li><a href="#azure-sqlデータベースの活用">Azure SQLデータベースの活用</a></li>
+  <li><a href="#kusto-query-language-kql-でのログのクエリ">Kusto Query Language (KQL) でのログのクエリ</a></li>
+  <li><a href="#プロアクティブ監視のためのアラート設定">プロアクティブ監視のためのアラート設定</a></li>
+  <li><a href="#まとめ">まとめ</a></li>
+</ul>
+
+<h3 id="はじめに">はじめに</h3>
+
+<p>クラウドコンピューティングの世界では、Microsoft Azureはアプリケーションの構築、デプロイ、管理に強力なプラットフォームとして注目されています。最近のプロジェクトでは、Azureサブスクリプション、Azure Kubernetes Service (AKS)、Application Insights、Virtual Machines (VMs)、Event Hubs、API Management Services、SQLデータベースなどのAzureサービスを活用し、スケーラブルで監視可能なアプリケーションインフラを構築しました。このブログ記事では、私たちのアプローチ、使用したツール、ベストプラクティス、クラスターの管理、ログの取得、ログのクエリに関する詳細な手順を紹介します。</p>
+
+<h3 id="azureサブスクリプションの開始">Azureサブスクリプションの開始</h3>
+
+<p>Azureサブスクリプションは、Azureサービスにアクセスするためのゲートウェイです。仮想マシン、データベース、Kubernetesクラスターなどのリソースを格納するコンテナとして機能します。</p>
+
+<ol>
+  <li>Azureサブスクリプションの設定:
+    <ul>
+      <li>サインアップ: Azureアカウントをお持ちでない場合は、<a href="https://portal.azure.com/">Azureポータル</a>でサインアップしてください。</li>
+      <li>サブスクリプションの作成: 「サブスクリプション」セクションに移動し、新しいサブスクリプションを作成します。これは、請求と管理のコンテナとなります。</li>
+    </ul>
+  </li>
+  <li>リソースの整理:
+    <ul>
+      <li>リソースグループ: リソースのライフサイクルや管理基準に基づいてリソースグループに整理します。</li>
+      <li>タグ: 追加のメタデータとしてタグを使用し、リソース管理と請求を容易にします。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-kubernetes-service-aks-でアプリケーションをデプロイ">Azure Kubernetes Service (AKS) でアプリケーションをデプロイ</h3>
+
+<p>Azure Kubernetes Service (AKS) は、コンテナ化されたアプリケーションのデプロイ、管理、スケーリングを簡素化するマネージドKubernetesサービスです。</p>
+
+<h4 id="aksクラスターの作成と管理">AKSクラスターの作成と管理</h4>
+
+<ol>
+  <li>AzureポータルでAKSクラスターを作成:
+    <ul>
+      <li>設定: AzureポータルでAKSを検索し、新しいKubernetesクラスターを作成します。</li>
+      <li>構成: クラスターのサイズを選択し、ノードプールを構成し、ネットワークを設定します。</li>
+      <li>認証: セキュアなアクセス制御のためにAzure Active Directory (AAD) を使用します。</li>
+      <li>監視: 設定プロセス中に監視とログ記録を有効にします。</li>
+    </ul>
+  </li>
+  <li>Azure CLIでAKSクラスターを作成:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks create <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 3 <span class="se">\</span>
+  <span class="nt">--enable-addons</span> monitoring <span class="se">\</span>
+  <span class="nt">--generate-ssh-keys</span>
+</code></pre></div>    </div>
+  </li>
+  <li>AKSクラスターの管理:
+    <ul>
+      <li>クラスターのスケーリング:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks scale <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--node-count</span> 5
+</code></pre></div>        </div>
+      </li>
+      <li>クラスターのアップグレード:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>az aks upgrade <span class="se">\</span>
+  <span class="nt">--resource-group</span> myResourceGroup <span class="se">\</span>
+  <span class="nt">--name</span> myAKSCluster <span class="se">\</span>
+  <span class="nt">--kubernetes-version</span> 1.21.2
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="アプリケーションのデプロイ">アプリケーションのデプロイ</h4>
+
+<ol>
+  <li>Kubernetesマニフェストの使用: デプロイメント、サービス、その他のKubernetesオブジェクト用のYAMLファイルを記述します。
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">apiVersion</span><span class="pi">:</span> <span class="s">apps/v1</span>
+<span class="na">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="na">metadata</span><span class="pi">:</span>
+  <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+<span class="na">spec</span><span class="pi">:</span>
+  <span class="na">replicas</span><span class="pi">:</span> <span class="m">2</span>
+  <span class="na">selector</span><span class="pi">:</span>
+    <span class="na">matchLabels</span><span class="pi">:</span>
+      <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+  <span class="na">template</span><span class="pi">:</span>
+    <span class="na">metadata</span><span class="pi">:</span>
+      <span class="na">labels</span><span class="pi">:</span>
+        <span class="na">app</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">spec</span><span class="pi">:</span>
+      <span class="na">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+        <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+        <span class="na">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="na">containerPort</span><span class="pi">:</span> <span class="m">80</span>
+</code></pre></div>    </div>
+  </li>
+  <li>kubectlでデプロイ:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl apply <span class="nt">-f</span> myapp-deployment.yaml
+</code></pre></div>    </div>
+  </li>
+  <li>Helmチャート: Helmを使用してKubernetesアプリケーションを管理し、バージョン管理を行います。
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>helm <span class="nb">install </span>myapp ./mychart
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="podからのログの取得">Podからのログの取得</h3>
+
+<ol>
+  <li>Podにアタッチしてログを取得:
+    <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt;
+</code></pre></div>    </div>
+    <ul>
+      <li>ログをストリーミング:
+        <div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>kubectl logs &lt;pod-name&gt; <span class="nt">-f</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li>ログ収集用のサイドカーの使用:
+    <ul>
+      <li>Pod仕様にログ収集用のサイドカーコンテナを作成し、ログを中央集権的なロギングサービスに送信します。</li>
+    </ul>
+
+    <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spec</span><span class="pi">:</span>
+  <span class="na">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">myapp</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">myregistry.azurecr.io/myapp:latest</span>
+    <span class="s">...</span>
+  <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">log-shipper</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">log-shipper:latest</span>
+    <span class="s">...</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="azure-application-insightsによる監視と診断">Azure Application Insightsによる監視と診断</h3>
+
+<p>Application Insightsは、アプリケーションの監視と診断に強力な機能を提供します。</p>
+
+<ol>
+  <li>Application Insightsの設定:
+    <ul>
+      <li>統合: アプリケーションコードにApplication Insights SDKを追加します。</li>
+      <li>計測キー: Application Insightsリソースからの計測キーでアプリケーションを構成します。</li>
+    </ul>
+  </li>
+  <li>パフォーマンスの追跡:
+    <ul>
+      <li>メトリクス: 応答時間、失敗率、アプリケーション依存関係を監視します。</li>
+      <li>ライブメトリクスストリーム: 即時の洞察のためにリアルタイムのパフォーマンスメトリクスを表示します。</li>
+    </ul>
+  </li>
+  <li>診断とトラブルシューティング:
+    <ul>
+      <li>アプリケーションマップ: 依存関係を可視化し、パフォーマンスボトルネックを特定します。</li>
+      <li>トランザクション診断: 分散トレーシングを使用して、サービス間のリクエストをトレースします。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-virtual-machines-vms-の活用">Azure Virtual Machines (VMs) の活用</h3>
+
+<p>Azure VMは、コンテナ化されていないカスタムアプリケーションやサービスを実行するための柔軟性を提供します。</p>
+
+<ol>
+  <li>仮想マシンのプロビジョニング:
+    <ul>
+      <li>VMの作成: Azureポータルで新しい仮想マシンを作成し、適切なサイズとオペレーティングシステムを選択します。</li>
+      <li>ネットワーク構成: トラフィックを制御するために仮想ネットワーク、サブネット、セキュリティグループを設定します。</li>
+    </ul>
+  </li>
+  <li>VMの構成:
+    <ul>
+      <li>ソフトウェアのインストール: 必要なソフトウェアと依存関係をインストールします。</li>
+      <li>セキュリティ: 定期的にパッチと更新を適用し、ファイアウォールを構成し、ネットワークセキュリティグループ（NSGs）を使用します。</li>
+    </ul>
+  </li>
+  <li>VMの管理:
+    <ul>
+      <li>バックアップと復元: Azure Backupを使用してVMのバックアップを行います。</li>
+      <li>監視: Azure Monitorを使用してVMのパフォーマンスを監視します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-event-hubsによるリアルタイムデータの取り込み">Azure Event Hubsによるリアルタイムデータの取り込み</h3>
+
+<p>Azure Event Hubsは、1秒間に数百万のイベントを受信および処理できるビッグデータストリーミングプラットフォームおよびイベントインゲストサービスです。</p>
+
+<ol>
+  <li>Event Hubsの設定:
+    <ul>
+      <li>Event Hubネームスペースの作成: AzureポータルでEvent Hubネームスペースを作成し、Event Hubsを格納します。</li>
+      <li>Event Hubsの作成: ネームスペース内で、データストリームをキャプチャするために1つ以上のEvent Hubsを作成します。</li>
+    </ul>
+  </li>
+  <li>データの取り込み:
+    <ul>
+      <li>プロデューサ: SDK（.NET、Java、Pythonなど）を使用して、アプリケーションやサービスを設定し、イベントをEvent Hubsに送信します。</li>
+      <li>パーティション: イベント処理をスケールアップし、高いスループットと並列処理を確保するためにパーティションを使用します。</li>
+    </ul>
+  </li>
+  <li>イベントの処理:
+    <ul>
+      <li>コンシューマ: コンシューマーグループを使用してイベントを読み取り、処理します。Azureは、Azure Stream Analytics、Azure Functions、Event Hubs SDKを使用したカスタム処理など、処理に複数のオプションを提供します。</li>
+    </ul>
+  </li>
+  <li>Event Hubsの監視:
+    <ul>
+      <li>メトリクス: Azureポータルを通じてスループット、レイテンシ、イベント処理メトリクスを監視します。</li>
+      <li>アラート: 高いレイテンシやドロップされたメッセージなどの問題を通知するためにアラートを設定します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-api-management-servicesによるapiの管理">Azure API Management ServicesによるAPIの管理</h3>
+
+<p>Azure API Management Servicesは、既存のバックエンドサービスに対して一貫性のあるモダンなAPIゲートウェイを作成する方法を提供します。</p>
+
+<ol>
+  <li>API Managementの設定:
+    <ul>
+      <li>API Managementサービスの作成: AzureポータルでAPI Managementを検索し、新しいサービスを作成します。</li>
+      <li>APIの構成: OpenAPI仕様、Azure Functions、またはその他のバックエンドからAPIを定義およびインポートします。</li>
+    </ul>
+  </li>
+  <li>APIのセキュリティ:
+    <ul>
+      <li>認証と認可: OAuth2、JWT検証などのメカニズムを使用してAPIをセキュリティ保護します。</li>
+      <li>レート制限とスロットリング: APIを悪用から保護するためのポリシーを実装します。</li>
+    </ul>
+  </li>
+  <li>監視と分析:
+    <ul>
+      <li>API Insights: 使用状況を追跡し、パフォーマンスを監視し、ログを分析します。</li>
+      <li>デベロッパーポータル: デベロッパーがAPIを発見し、使用できるポータルを提供します。</li>
+    </ul>
+  </li>
+  <li>ライフサイクルの管理:
+    <ul>
+      <li>バージョニングとリビジョン: APIの異なるバージョンとリビジョンをシームレスに管理します。</li>
+      <li>ポリシーマネジメント: リクエストとレスポンスの変換、検証、ルーティングのためのポリシーを適用します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="azure-sqlデータベースの活用">Azure SQLデータベースの活用</h3>
+
+<p>Azure SQL Databaseは、組み込みのインテリジェンス、高可用性、スケーラビリティを備えた完全マネージドのリレーショナルデータベースです。</p>
+
+<ol>
+  <li>Azure SQL Databaseの設定:
+    <ul>
+      <li>SQLデータベースの作成: AzureポータルでSQLデータベースに移動し、新しいデータベースを作成します。</li>
+      <li>データベースの構成: データベースのサイズ、パフォーマンスレベルを設定し、ネットワーキング設定を構成します。</li>
+    </ul>
+  </li>
+  <li>SQLデータベースへの接続:
+    <ul>
+      <li>接続文字列: 提供された接続文字列を使用して、アプリケーションをSQLデータベースに接続します。</li>
+      <li>ファイアウォール規則: アプリケーションまたはローカルマシンからのアクセスを許可するためにファイアウォール規則を構成します。</li>
+    </ul>
+  </li>
+  <li>データベースの管理:
+    <ul>
+      <li>バックアップと復元: 自動バックアップとポイントインタイム復元を使用してデータを保護します。</li>
+      <li>スケーリング: パフォーマンス要件に基づいてデータベースをアップまたはダウンします。</li>
+    </ul>
+  </li>
+  <li>監視とパフォーマンスチューニング:
+    <ul>
+      <li>クエリパフォーマンスインサイト: クエリパフォーマンスを監視し、最適化します。</li>
+      <li>自動チューニング: パフォーマンスを向上させるために自動チューニング機能を有効にします。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="kusto-query-language-kql-でのログのクエリ">Kusto Query Language (KQL) でのログのクエリ</h3>
+
+<p>Kusto Query Language (KQL) は、Azure Monitor Logsをクエリするために使用され、ログデータに関する強力な洞察を提供します。</p>
+
+<ol>
+  <li>基本的なKQLクエリ:
+    <pre><code class="language-kql">// 特定のテーブルからレコードを取得
+LogTableName
+| where TimeGenerated &gt; ago(1h)
+| project TimeGenerated, Level, Message
+</code></pre>
+  </li>
+  <li>データのフィルタリングと集約:
+    <pre><code class="language-kql">LogTableName
+| where TimeGenerated &gt; ago(1h) and Level == "Error"
+| summarize Count=count() by bin(TimeGenerated, 5m)
+</code></pre>
+  </li>
+  <li>テーブルの結合:
+    <pre><code class="language-kql">Table1
+| join kind=inner (Table2) on $left.UserId == $right.UserId
+| project Table1.TimeGenerated, Table1.Message, Table2.AdditionalInfo
+</code></pre>
+  </li>
+  <li>クエリに基づくアラートの作成:
+    <ul>
+      <li>Azureポータルに移動し、Log Analyticsワークスペースにアクセスします。</li>
+      <li>「ログ」をクリックし、KQLクエリを入力します。</li>
+      <li>「新しいアラートルール」をクリックし、クエリ結果に基づいてアラートを作成します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="プロアクティブ監視のためのアラート設定">プロアクティブ監視のためのアラート設定</h3>
+
+<p>Azure Alertsは、リソースの健全性とパフォーマンスについて通知を受け取るのに役立ちます。</p>
+
+<ol>
+  <li>アラートの作成:
+    <ul>
+      <li>メトリクスアラート: CPU使用率、メモリ使用率、応答時間などのメトリクスに基づいてアラートを設定します。</li>
+      <li>ログアラート: KQLを使用したログ検索クエリに基づいてアラートを作成します。</li>
+    </ul>
+  </li>
+  <li>アクションの構成:
+    <ul>
+      <li>アクショングループ: 通知を受け取る人と方法（メール、SMS、Webhook）を指定するアクショングループを定義します。</li>
+      <li>統合: ServiceNowなどのITSMツールと統合し、インシデント管理を自動化します。</li>
+    </ul>
+  </li>
+  <li>アラートへの対応:
+    <ul>
+      <li>ダッシュボード: アラートの中央集権的なビューを提供するAzureダッシュボードを設定します。</li>
+      <li>自動化: Azure Automationを使用して特定のアラートに自動的に対応します。</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="まとめ">まとめ</h3>
+
+<p>Azureサブスクリプション、AKS、Application Insights、Virtual Machines、Event Hubs、API Management Services、SQLデータベースを活用することで、スケーラブルで堅牢で監視可能なアプリケーションインフラを構築しました。Azureの包括的なツールセットにより、アプリケーションを効率的にデプロイ、管理、監視できました。この設定は、アプリケーションのパフォーマンスを向上させるだけでなく、リソースをプロアクティブに維持し、最適化するために必要な洞察を提供しました。</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-ja" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

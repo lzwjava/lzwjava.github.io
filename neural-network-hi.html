@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>न्यूरल नेटवर्क कैसे काम करता </title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>न्यूरल नेटवर्क कैसे काम करता | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="न्यूरल नेटवर्क कैसे काम करता" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hi" />
+<meta name="description" content="आइए सीधे तौर पर न्यूरल नेटवर्क के मूल पर चर्चा करते हैं। यानी, बैकप्रोपेगेशन एल्गोरिदम:" />
+<meta property="og:description" content="आइए सीधे तौर पर न्यूरल नेटवर्क के मूल पर चर्चा करते हैं। यानी, बैकप्रोपेगेशन एल्गोरिदम:" />
+<link rel="canonical" href="https://lzwjava.github.io/neural-network-hi" />
+<meta property="og:url" content="https://lzwjava.github.io/neural-network-hi" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-05-30T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="न्यूरल नेटवर्क कैसे काम करता" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-05-30T00:00:00+08:00","datePublished":"2023-05-30T00:00:00+08:00","description":"आइए सीधे तौर पर न्यूरल नेटवर्क के मूल पर चर्चा करते हैं। यानी, बैकप्रोपेगेशन एल्गोरिदम:","headline":"न्यूरल नेटवर्क कैसे काम करता","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/neural-network-hi"},"url":"https://lzwjava.github.io/neural-network-hi"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       न्यूरल नेटवर्क कैसे काम करता  | मूल, AI द्वारा अनुवादित
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hi/2023-05-30-neural-network-hi.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshi2023-05-30-neural-network-hi.md</span> -->
+      
+
+      <!-- <span>2023-05-30-neural-network-hi.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.05</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/neural-network-en" >English</option>
+        <option value="/neural-network-zh" >中文</option>
+        <option value="/neural-network-ja" >日本語</option>
+        <option value="/neural-network-es" >Español</option>
+        <option value="/neural-network-hi" selected>हिंदी</option>
+        <option value="/neural-network-fr" >Français</option>
+        <option value="/neural-network-de" >Deutsch</option>
+        <option value="/neural-network-ar" >العربية</option>
+        <option value="/neural-network-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>आइए सीधे तौर पर न्यूरल नेटवर्क के मूल पर चर्चा करते हैं। यानी, बैकप्रोपेगेशन एल्गोरिदम:</p>
+
+<ol>
+  <li>इनपुट x: इनपुट लेयर के लिए संबंधित एक्टिवेशन \(a^{1}\) सेट करें।</li>
+  <li>फीडफॉरवर्ड: प्रत्येक l=2,3,…,L के लिए \(z^{l} = w^l a^{l-1}+b^l\) और \(a^{l} = \sigma(z^{l})\) की गणना करें।</li>
+  <li>आउटपुट एरर \(\delta^{L}\): वेक्टर \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\) की गणना करें।</li>
+  <li>एरर को बैकप्रोपेगेट करें: प्रत्येक l=L−1,L−2,…,2 के लिए, \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\) की गणना करें।</li>
+  <li>आउटपुट: कॉस्ट फंक्शन का ग्रेडिएंट \(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\) और \(\frac{\partial C}{\partial b^l_j} = \delta^l_j\) द्वारा दिया जाता है।</li>
+</ol>
+
+<p>यह Michael Nelson की पुस्तक <em>Neural Networks and Deep Learning</em> से लिया गया है। क्या यह भारी लग रहा है? हो सकता है कि पहली बार देखने पर ऐसा लगे। लेकिन इसे लगभग एक महीने तक पढ़ने के बाद ऐसा नहीं लगेगा। मैं समझाता हूँ।</p>
+
+<h2 id="इनपुट">इनपुट</h2>
+
+<p>5 चरण हैं। पहला चरण इनपुट है। यहां हम इनपुट के रूप में हस्तलिखित अंकों का उपयोग करते हैं। हमारा कार्य उन्हें पहचानना है। एक हस्तलिखित अंक में 784 पिक्सेल होते हैं, जो 28*28 होते हैं। हर पिक्सेल में एक ग्रेस्केल मान होता है जो 0 से 255 तक होता है। इसलिए, सक्रियण का मतलब है कि हम इसे सक्रिय करने के लिए कुछ फ़ंक्शन का उपयोग करते हैं, ताकि प्रसंस्करण की सुविधा के लिए इसके मूल मान को एक नए मान में बदल सकें।</p>
+
+<p>मान लीजिए, हमारे पास अब 784 पिक्सेल की 1000 तस्वीरें हैं। अब हम इसे प्रशिक्षित करते हैं कि वे कौन सा अंक दिखाती हैं। अब हमारे पास उस सीखने के प्रभाव को परखने के लिए 100 तस्वीरें हैं। यदि प्रोग्राम 97 तस्वीरों के अंकों को पहचान सकता है, तो हम कहते हैं कि इसकी सटीकता 97% है।</p>
+
+<p>इसलिए हम 1000 चित्रों पर लूप करेंगे, ताकि वज़न और पूर्वाग्रहों को प्रशिक्षित किया जा सके। हर बार जब हम इसे सीखने के लिए एक नया चित्र देते हैं, तो हम वज़न और पूर्वाग्रहों को और अधिक सही बनाते हैं।</p>
+
+<p>एक बैच प्रशिक्षण का परिणाम 10 न्यूरॉन्स में प्रतिबिंबित होना है। यहां, 10 न्यूरॉन्स 0 से 9 तक का प्रतिनिधित्व करते हैं और उनका मान 0 से 1 के बीच होता है, जो उनकी सटीकता के बारे में आत्मविश्वास को दर्शाता है।</p>
+
+<p>और इनपुट 784 न्यूरॉन्स है। हम 784 न्यूरॉन्स को 10 न्यूरॉन्स में कैसे कम कर सकते हैं? यहां बात यह है। मान लीजिए हमारे पास दो लेयर्स हैं। लेयर का क्या मतलब है? वह पहली लेयर है, जिसमें हमारे पास 784 न्यूरॉन्स हैं। दूसरी लेयर में, हमारे पास 10 न्यूरॉन्स हैं।</p>
+
+<p>हम 784 न्यूरॉन्स में से प्रत्येक न्यूरॉन को एक वजन (weight) देते हैं, मान लीजिए,</p>
+
+\[w_1, w_2, w_3, w_4, ... , w_{784}\]
+
+<p>और पहली परत को एक पूर्वाग्रह (bias) दें, जो है, \(b_1\)।</p>
+
+<p>और इसलिए दूसरी परत के पहले न्यूरॉन के लिए, इसका मान है:</p>
+
+\[w_1*a_1 + w_2*a_2+...+ w_{784}*a_{784}+b_1\]
+
+<p>लेकिन ये वज़न और बायस \(neuron^2_{1}\) (दूसरी परत में पहला न्यूरॉन) के लिए हैं। \(neuron^2_{2}\) के लिए, हमें एक और सेट वज़न और बायस की आवश्यकता होगी।</p>
+
+<p>सिग्मॉइड फ़ंक्शन के बारे में क्या विचार है? हम सिग्मॉइड फ़ंक्शन का उपयोग करते हैं ताकि उपरोक्त मान को 0 से 1 के बीच मैप किया जा सके।</p>
+
+\[\begin{eqnarray} 
+  \sigma(z) \equiv \frac{1}{1+e^{-z}}
+\end{eqnarray}\]
+
+\[\begin{eqnarray} 
+  \frac{1}{1+\exp(-\sum_j w_j x_j-b)}
+\end{eqnarray}\]
+
+<p>(यह एक गणितीय समीकरण है, जिसे हिंदी में अनुवादित करने की आवश्यकता नहीं है।)</p>
+
+<p>हम पहली परत को सक्रिय करने के लिए सिग्मॉइड फ़ंक्शन का भी उपयोग करते हैं। इसका मतलब है कि हम उस ग्रेस्केल मान को 0 से 1 की सीमा में बदल देते हैं। इसलिए अब, हर परत में हर न्यूरॉन का मान 0 से 1 के बीच होता है।</p>
+
+<p>तो अब हमारे दो-परत नेटवर्क के लिए, पहली परत में 784 न्यूरॉन्स हैं, और दूसरी परत में 10 न्यूरॉन्स हैं। हम इसे वज़न और बायस प्राप्त करने के लिए प्रशिक्षित करते हैं।</p>
+
+<p>हमारे पास 784 * 10 वज़न और 10 बायस हैं। दूसरी लेयर में, हर न्यूरॉन के लिए, हम 784 वज़न और 1 बायस का उपयोग करेंगे ताकि उसका मान गणना कर सकें। यहाँ कोड इस प्रकार है,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">sizes</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">sizes</span> <span class="o">=</span> <span class="n">sizes</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">sizes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sizes</span><span class="p">[</span><span class="mi">1</span><span class="p">:])]</span>
+</code></pre></div></div>
+
+<p>यह कोड एक न्यूरल नेटवर्क के लिए इनिशियलाइज़ेशन (प्रारंभिककरण) करता है। इसमें <code class="language-plaintext highlighter-rouge">sizes</code> एक सूची है जो नेटवर्क के प्रत्येक लेयर में न्यूरॉन्स की संख्या को दर्शाती है।</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">self.num_layers</code> नेटवर्क में लेयर्स की कुल संख्या को स्टोर करता है।</li>
+  <li><code class="language-plaintext highlighter-rouge">self.sizes</code> लेयर्स के आकार को स्टोर करता है।</li>
+  <li><code class="language-plaintext highlighter-rouge">self.biases</code> प्रत्येक लेयर के लिए यादृच्छिक बायस (पूर्वाग्रह) मान उत्पन्न करता है।</li>
+  <li><code class="language-plaintext highlighter-rouge">self.weights</code> प्रत्येक लेयर के लिए यादृच्छिक वेट (भार) मान उत्पन्न करता है।</li>
+</ul>
+
+<p>इस प्रकार, यह कोड न्यूरल नेटवर्क के वेट और बायस को यादृच्छिक मानों से प्रारंभ करता है।</p>
+
+<h2 id="फीडफॉरवर्ड">फीडफॉरवर्ड</h2>
+
+<blockquote>
+  <p>फीडफॉरवर्ड: प्रत्येक l=2,3,…,L के लिए गणना करें \(z^{l} = w^l a^{l-1}+b^l\) और \(a^{l} = \sigma(z^{l})\)</p>
+</blockquote>
+
+<p>यहां ध्यान दें, हम अंतिम परत का मान, यानी \(a^{l-1}\) और वर्तमान परत के वजन, \(w^l\) और इसके पूर्वाग्रह \(b^l\) का उपयोग करते हैं, ताकि सिग्मॉइड फ़ंक्शन का उपयोग करके वर्तमान परत का मान, \(a^{l}\) प्राप्त किया जा सके।</p>
+
+<p>कोड:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="c1"># फीडफॉरवर्ड
+</span>        <span class="n">activation</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">activations</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="p">]</span> 
+        <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">activation</span><span class="p">)</span><span class="o">+</span><span class="n">b</span>
+            <span class="n">zs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activation</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">activations</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+</code></pre></div></div>
+<h2 id="आउटपुट-त्रुटि">आउटपुट त्रुटि</h2>
+
+<blockquote>
+  <p>आउटपुट त्रुटि \(\delta^{L}\): वेक्टर \(\delta^{L} = \nabla_a C \odot \sigma'(z^L)\) की गणना करें</p>
+</blockquote>
+
+<p>आइए देखें कि \(\nabla\) का क्या अर्थ है।</p>
+
+<blockquote>
+  <p>डेल, या नैबला, एक ऑपरेटर है जिसका उपयोग गणित में (विशेष रूप से वेक्टर कैलकुलस में) एक वेक्टर डिफरेंशियल ऑपरेटर के रूप में किया जाता है, जिसे आमतौर पर नैबला प्रतीक ∇ द्वारा दर्शाया जाता है।</p>
+</blockquote>
+
+\[\begin{eqnarray}
+  w_k &amp; \rightarrow &amp; w_k' = w_k-\eta \frac{\partial C}{\partial w_k} \\
+  b_l &amp; \rightarrow &amp; b_l' = b_l-\eta \frac{\partial C}{\partial b_l}
+\end{eqnarray}\]
+
+<p>यहां \(\eta\) सीखने की दर (learning rate) है। हम उस डेरिवेटिव का उपयोग करते हैं जो C का वजन और बायस के संबंध में होता है, यानी उनके बीच परिवर्तन की दर। यह नीचे दिए गए <code class="language-plaintext highlighter-rouge">sigmoid_prime</code> में है।</p>
+
+<p>कोड:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">delta</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">cost_derivative</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> \
+            <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+        <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+</code></pre></div></div>
+
+<p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपरिवर्तित छोड़ दिया जाना चाहिए।)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">cost_derivative</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">output_activations</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">output_activations</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड एक पायथन फ़ंक्शन को दिखाता है जो <code class="language-plaintext highlighter-rouge">cost_derivative</code> नामक है। यह फ़ंक्शन दो इनपुट लेता है: <code class="language-plaintext highlighter-rouge">output_activations</code> और <code class="language-plaintext highlighter-rouge">y</code>। यह फ़ंक्शन <code class="language-plaintext highlighter-rouge">output_activations</code> और <code class="language-plaintext highlighter-rouge">y</code> के बीच का अंतर (difference) लौटाता है। यह अंतर आमतौर पर न्यूरल नेटवर्क में कॉस्ट फ़ंक्शन (cost function) के ग्रेडिएंट (gradient) की गणना करने के लिए उपयोग किया जाता है।</p>
+
+<h2 id="त्रुटि-को-बैकप्रोपेगेट-करें">त्रुटि को बैकप्रोपेगेट करें</h2>
+
+<blockquote>
+  <p>त्रुटि को पीछे की ओर प्रसारित करें: प्रत्येक l=L−1,L−2,…,2 के लिए, \(\delta^{l} = ((w^{l+1})^T \delta^{l+1}) \odot \sigma'(z^{l})\) की गणना करें।</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">num_layers</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">zs</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">sp</span> <span class="o">=</span> <span class="nf">sigmoid_prime</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+            <span class="n">delta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">(),</span> <span class="n">delta</span><span class="p">)</span> <span class="o">*</span> <span class="n">sp</span>
+            <span class="n">nabla_b</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">delta</span>
+            <span class="n">nabla_w</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">activations</span><span class="p">[</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">transpose</span><span class="p">())</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>यह कोड एक न्यूरल नेटवर्क के बैकप्रोपेगेशन (backpropagation) एल्गोरिदम का हिस्सा है। इसमें, <code class="language-plaintext highlighter-rouge">for</code> लूप का उपयोग करके नेटवर्क के विभिन्न लेयर्स (layers) के लिए ग्रेडिएंट्स (gradients) की गणना की जाती है। <code class="language-plaintext highlighter-rouge">zs</code> और <code class="language-plaintext highlighter-rouge">activations</code> पिछले लेयर्स के आउटपुट और एक्टिवेशन्स को स्टोर करते हैं। <code class="language-plaintext highlighter-rouge">sigmoid_prime</code> फ़ंक्शन सिग्मॉइड फ़ंक्शन का डेरिवेटिव (derivative) है। <code class="language-plaintext highlighter-rouge">nabla_b</code> और <code class="language-plaintext highlighter-rouge">nabla_w</code> बायस (bias) और वेट (weight) के ग्रेडिएंट्स को स्टोर करते हैं। अंत में, यह फ़ंक्शन <code class="language-plaintext highlighter-rouge">nabla_b</code> और <code class="language-plaintext highlighter-rouge">nabla_w</code> को रिटर्न करता है।</p>
+
+<h2 id="आउटपुट">आउटपुट</h2>
+
+<blockquote>
+  <p>आउटपुट: लागत फ़ंक्शन का ग्रेडिएंट निम्नलिखित है:
+\(\frac{\partial C}{\partial w^l_{jk}} = a^{l-1}_k \delta^l_j\)
+और
+\(\frac{\partial C}{\partial b^l_j} = \delta^l_j\)</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">update_mini_batch</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mini_batch</span><span class="p">,</span> <span class="n">eta</span><span class="p">):</span>
+        <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">]</span>
+        <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">(</span><span class="n">w</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">mini_batch</span><span class="p">:</span>
+            <span class="n">delta_nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_w</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">backprop</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+            <span class="n">nabla_b</span> <span class="o">=</span> <span class="p">[</span><span class="n">nb</span><span class="o">+</span><span class="n">dnb</span> <span class="k">for</span> <span class="n">nb</span><span class="p">,</span> <span class="n">dnb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_b</span><span class="p">,</span> <span class="n">delta_nabla_b</span><span class="p">)]</span>
+            <span class="n">nabla_w</span> <span class="o">=</span> <span class="p">[</span><span class="n">nw</span><span class="o">+</span><span class="n">dnw</span> <span class="k">for</span> <span class="n">nw</span><span class="p">,</span> <span class="n">dnw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">nabla_w</span><span class="p">,</span> <span class="n">delta_nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nw</span>
+                        <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">weights</span><span class="p">,</span> <span class="n">nabla_w</span><span class="p">)]</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">biases</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span><span class="o">-</span><span class="p">(</span><span class="n">eta</span><span class="o">/</span><span class="nf">len</span><span class="p">(</span><span class="n">mini_batch</span><span class="p">))</span><span class="o">*</span><span class="n">nb</span>
+                       <span class="k">for</span> <span class="n">b</span><span class="p">,</span> <span class="n">nb</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">biases</span><span class="p">,</span> <span class="n">nabla_b</span><span class="p">)]</span>
+</code></pre></div></div>
+
+<p>यह कोड एक न्यूरल नेटवर्क के मिनी-बैच को अपडेट करने के लिए है। यहां <code class="language-plaintext highlighter-rouge">mini_batch</code> ट्रेनिंग डेटा का एक छोटा सा हिस्सा है, और <code class="language-plaintext highlighter-rouge">eta</code> लर्निंग रेट है।</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">nabla_b</code> और <code class="language-plaintext highlighter-rouge">nabla_w</code> को शुरू में शून्य मैट्रिक्स के रूप में इनिशियलाइज़ किया जाता है, जो क्रमशः बायस और वेट के ग्रेडिएंट को स्टोर करेंगे।</li>
+  <li>फिर, <code class="language-plaintext highlighter-rouge">mini_batch</code> में प्रत्येक डेटा पॉइंट <code class="language-plaintext highlighter-rouge">(x, y)</code> के लिए, <code class="language-plaintext highlighter-rouge">backprop</code> मेथड का उपयोग करके ग्रेडिएंट <code class="language-plaintext highlighter-rouge">delta_nabla_b</code> और <code class="language-plaintext highlighter-rouge">delta_nabla_w</code> की गणना की जाती है।</li>
+  <li>इन ग्रेडिएंट्स को <code class="language-plaintext highlighter-rouge">nabla_b</code> और <code class="language-plaintext highlighter-rouge">nabla_w</code> में जोड़ दिया जाता है।</li>
+  <li>अंत में, वेट और बायस को अपडेट किया जाता है, जहां <code class="language-plaintext highlighter-rouge">eta/len(mini_batch)</code> स्केलिंग फैक्टर के रूप में काम करता है।</li>
+</ol>
+
+<p>यह प्रक्रिया न्यूरल नेटवर्क को ट्रेन करने के लिए ग्रेडिएंट डिसेंट का उपयोग करती है।</p>
+
+<h2 id="अंतिम">अंतिम</h2>
+
+<p>यह एक छोटा लेख है। और अधिकांश भाग में, यह सिर्फ कोड और गणितीय सूत्र दिखाता है। लेकिन मेरे लिए यह ठीक है। इसे लिखने से पहले, मैं स्पष्ट रूप से समझ नहीं पा रहा था। लिखने या सिर्फ कोड और किताब से स्निपेट्स कॉपी करने के बाद, मैं इसका अधिकांश हिस्सा समझ गया। शिक्षक Yin Wang से आत्मविश्वास प्राप्त करने, <em>Neural Networks and Deep Learning</em> किताब का लगभग 30% पढ़ने, Andrej Karpathy के Stanford व्याख्यान और Andrew Ng के कोर्स सुनने, अपने दोस्त Qi के साथ चर्चा करने, और Anaconda, numpy, और Theano लाइब्रेरीज़ के साथ छेड़छाड़ करके सालों पुराने कोड को काम करने लायक बनाने के बाद, अब मैं इसे समझ गया हूँ।</p>
+
+<p>मुख्य बिंदुओं में से एक आयाम हैं। हमें हर प्रतीक और चर के आयाम जानने चाहिए। और यह सिर्फ अवकलनीय गणना करता है। आइए यिन वांग के उद्धरणों के साथ समाप्त करें:</p>
+
+<blockquote>
+  <p>मशीन लर्निंग वास्तव में उपयोगी है, कोई यहां तक कह सकता है कि यह एक सुंदर सिद्धांत है, क्योंकि यह मेकओवर के बाद केवल कैलकुलस है! यह न्यूटन, लाइबनिट्स का पुराना और महान सिद्धांत है, लेकिन एक सरल, सुंदर और शक्तिशाली रूप में। मशीन लर्निंग मूल रूप से कुछ फ़ंक्शन्स को व्युत्पन्न और फिट करने के लिए कैलकुलस का उपयोग है, और डीप लर्निंग अधिक जटिल फ़ंक्शन्स को फिट करने का तरीका है।</p>
+</blockquote>
+
+<blockquote>
+  <p>कृत्रिम बुद्धिमत्ता में कोई ‘बुद्धिमत्ता’ नहीं है, न्यूरल नेटवर्क में कोई ‘न्यूरल’ नहीं है, मशीन लर्निंग में कोई ‘लर्निंग’ नहीं है, और डीप लर्निंग में कोई ‘गहराई’ नहीं है। डीप लर्निंग में कोई ‘गहराई’ नहीं है। इस क्षेत्र में जो वास्तव में काम करता है उसे ‘कैलकुलस’ कहा जाता है। इसलिए मैं इस क्षेत्र को ‘डिफरेंशिएबल कंप्यूटिंग’ कहना पसंद करता हूं, और मॉडल बनाने की प्रक्रिया को ‘डिफरेंशिएबल प्रोग्रामिंग’ कहता हूं।</p>
+</blockquote>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hi" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

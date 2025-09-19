@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Décodage du fichier Info.plist</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Décodage du fichier Info.plist | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Décodage du fichier Info.plist" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="fr" />
+<meta name="description" content="Si vous avez travaillé avec le développement macOS ou iOS, vous avez probablement déjà rencontré un fichier Info.plist. Ce fichier basé sur XML est une partie clé de toute application ou plugin Apple, agissant comme un passeport qui indique au système qui il est, ce qu’il fait et comment il devrait se comporter. Aujourd’hui, nous explorons le Info.plist de “Reveal-In-GitHub”, un plugin Xcode que nous avons introduit dans un précédent article. Plutôt que de disséquer chaque ligne, nous nous concentrerons sur les concepts et les schémas de base qui définissent son but et sa fonctionnalité." />
+<meta property="og:description" content="Si vous avez travaillé avec le développement macOS ou iOS, vous avez probablement déjà rencontré un fichier Info.plist. Ce fichier basé sur XML est une partie clé de toute application ou plugin Apple, agissant comme un passeport qui indique au système qui il est, ce qu’il fait et comment il devrait se comporter. Aujourd’hui, nous explorons le Info.plist de “Reveal-In-GitHub”, un plugin Xcode que nous avons introduit dans un précédent article. Plutôt que de disséquer chaque ligne, nous nous concentrerons sur les concepts et les schémas de base qui définissent son but et sa fonctionnalité." />
+<link rel="canonical" href="https://lzwjava.github.io/info-plist-fr" />
+<meta property="og:url" content="https://lzwjava.github.io/info-plist-fr" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2015-10-23T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Décodage du fichier Info.plist" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2015-10-23T00:00:00+08:00","datePublished":"2015-10-23T00:00:00+08:00","description":"Si vous avez travaillé avec le développement macOS ou iOS, vous avez probablement déjà rencontré un fichier Info.plist. Ce fichier basé sur XML est une partie clé de toute application ou plugin Apple, agissant comme un passeport qui indique au système qui il est, ce qu’il fait et comment il devrait se comporter. Aujourd’hui, nous explorons le Info.plist de “Reveal-In-GitHub”, un plugin Xcode que nous avons introduit dans un précédent article. Plutôt que de disséquer chaque ligne, nous nous concentrerons sur les concepts et les schémas de base qui définissent son but et sa fonctionnalité.","headline":"Décodage du fichier Info.plist","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/info-plist-fr"},"url":"https://lzwjava.github.io/info-plist-fr"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Décodage du fichier Info.plist | Original, traduit par l'IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/fr/2015-10-23-info-plist-fr.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsfr2015-10-23-info-plist-fr.md</span> -->
+      
+
+      <!-- <span>2015-10-23-info-plist-fr.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2015.10</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/info-plist-en" >English</option>
+        <option value="/info-plist-zh" >中文</option>
+        <option value="/info-plist-ja" >日本語</option>
+        <option value="/info-plist-es" >Español</option>
+        <option value="/info-plist-hi" >हिंदी</option>
+        <option value="/info-plist-fr" selected>Français</option>
+        <option value="/info-plist-de" >Deutsch</option>
+        <option value="/info-plist-ar" >العربية</option>
+        <option value="/info-plist-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Si vous avez travaillé avec le développement macOS ou iOS, vous avez probablement déjà rencontré un fichier <code class="language-plaintext highlighter-rouge">Info.plist</code>. Ce fichier basé sur XML est une partie clé de toute application ou plugin Apple, agissant comme un passeport qui indique au système qui il est, ce qu’il fait et comment il devrait se comporter. Aujourd’hui, nous explorons le <code class="language-plaintext highlighter-rouge">Info.plist</code> de “Reveal-In-GitHub”, un plugin Xcode que nous avons introduit dans un précédent article. Plutôt que de disséquer chaque ligne, nous nous concentrerons sur les concepts et les schémas de base qui définissent son but et sa fonctionnalité.</p>
+
+<hr />
+
+<h4 id="quest-ce-quun-fichier-infoplist-">Qu’est-ce qu’un fichier <code class="language-plaintext highlighter-rouge">Info.plist</code> ?</h4>
+
+<p>Le <code class="language-plaintext highlighter-rouge">Info.plist</code> (abréviation de “Information Property List”) est un fichier structuré qui contient des métadonnées sur une application, un plugin ou un bundle. Écrit en XML (avec un schéma défini par Apple), il utilise des paires clé-valeur pour décrire des éléments essentiels comme le nom de l’application, sa version et sa compatibilité. Pour “Reveal-In-GitHub”, ce fichier l’identifie comme un plugin Xcode et assure son intégration fluide avec l’IDE.</p>
+
+<p>Contrairement au fichier <code class="language-plaintext highlighter-rouge">.pbxproj</code>, qui concerne <em>comment</em> construire quelque chose, le <code class="language-plaintext highlighter-rouge">Info.plist</code> concerne <em>ce que</em> c’est. C’est une déclaration d’identité et d’intention.</p>
+
+<hr />
+
+<h4 id="concepts-clés-dans-le-fichier">Concepts clés dans le fichier</h4>
+
+<ol>
+  <li><strong>Bases du Bundle</strong>
+Plusieurs clés définissent le plugin comme un bundle macOS :
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleExecutable</code></strong> : défini sur <code class="language-plaintext highlighter-rouge">$(EXECUTABLE_NAME)</code>, un espace réservé pour le nom du binaire compilé (défini pendant le processus de construction).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleIdentifier</code></strong> : <code class="language-plaintext highlighter-rouge">$(PRODUCT_BUNDLE_IDENTIFIER)</code> se résout en <code class="language-plaintext highlighter-rouge">com.lzwjava.Reveal-In-GitHub</code>, un identifiant unique au format DNS inversé qui distingue ce plugin des autres.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundlePackageType</code></strong> : <code class="language-plaintext highlighter-rouge">BNDL</code> marque ceci comme un bundle, un format courant pour les plugins et les bibliothèques sur macOS.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleName</code></strong> : <code class="language-plaintext highlighter-rouge">$(PRODUCT_NAME)</code> deviendra “Reveal-In-GitHub”, le nom convivial.</li>
+    </ul>
+  </li>
+  <li><strong>Versioning et Propriété</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleShortVersionString</code></strong> : “1.0” est la version visible par l’utilisateur.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleVersion</code></strong> : “1” est un numéro de build interne.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">NSHumanReadableCopyright</code></strong> : “Copyright © 2015年 lzwjava. Tous droits réservés.” crédite le créateur, <code class="language-plaintext highlighter-rouge">lzwjava</code>, et date le plugin à 2015.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleSignature</code></strong> : “????” est un espace réservé (généralement un code de quatre caractères), bien que ce soit moins critique pour les plugins.</li>
+    </ul>
+  </li>
+  <li><strong>Localisation</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">CFBundleDevelopmentRegion</code></strong> : “en” définit l’anglais comme langue par défaut, affectant la manière dont les ressources (le cas échéant) sont localisées.</li>
+    </ul>
+  </li>
+  <li>
+    <p><strong>Compatibilité du Plugin Xcode</strong>
+La caractéristique marquante ici est <strong><code class="language-plaintext highlighter-rouge">DVTPlugInCompatibilityUUIDs</code></strong>, un long tableau d’UUID. Ceux-ci correspondent à des versions spécifiques de Xcode (par exemple, Xcode 6, 7, etc.), assurant que le plugin ne se charge que dans les IDE compatibles. Cette liste est inhabituellement large, suggérant que “Reveal-In-GitHub” a été conçu pour fonctionner sur de nombreuses versions de Xcode — un signe de compatibilité avant et arrière réfléchie.</p>
+  </li>
+  <li><strong>Paramètres spécifiques au Plugin</strong>
+    <ul>
+      <li><strong><code class="language-plaintext highlighter-rouge">NSPrincipalClass</code></strong> : laissé vide (<code class="language-plaintext highlighter-rouge">&lt;string&gt;&lt;/string&gt;</code>), suggérant que le plugin pourrait définir dynamiquement son point d’entrée ou s’appuyer sur les conventions de Xcode.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XC4Compatible</code> et <code class="language-plaintext highlighter-rouge">XC5Compatible</code></strong> : tous deux <code class="language-plaintext highlighter-rouge">&lt;true/&gt;</code>, confirmant la compatibilité avec Xcode 4 et 5.</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XCGCReady</code></strong> : <code class="language-plaintext highlighter-rouge">&lt;true/&gt;</code> indique la préparation pour la collecte des déchets, une ancienne fonction de gestion de la mémoire macOS (majoritairement obsolète en 2015 au profit d’ARC).</li>
+      <li><strong><code class="language-plaintext highlighter-rouge">XCPluginHasUI</code></strong> : <code class="language-plaintext highlighter-rouge">&lt;false/&gt;</code> suggère qu’il n’y a pas d’interface utilisateur personnalisée au-delà de ce qui est intégré à Xcode — bien que cela semble entrer en conflit avec le fichier <code class="language-plaintext highlighter-rouge">.xib</code> dans le <code class="language-plaintext highlighter-rouge">.pbxproj</code>. Peut-être que l’interface utilisateur est minimale ou gérée différemment.</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="schémas-à-remarquer">Schémas à remarquer</h4>
+
+<ol>
+  <li>
+    <p><strong>Espaces réservés pour la flexibilité</strong>
+Les clés comme <code class="language-plaintext highlighter-rouge">$(EXECUTABLE_NAME)</code> et <code class="language-plaintext highlighter-rouge">$(PRODUCT_BUNDLE_IDENTIFIER)</code> utilisent des variables liées au système de construction (définies dans le <code class="language-plaintext highlighter-rouge">.pbxproj</code>). Cela garde le <code class="language-plaintext highlighter-rouge">Info.plist</code> réutilisable à travers les configurations (par exemple, Debug vs. Release).</p>
+  </li>
+  <li>
+    <p><strong>Conception minimaliste</strong>
+Le fichier est épuré, se concentrant sur les essentiels. Pas d’icônes sophistiquées, d’autorisations ou de paramètres spécifiques à l’application — juste ce dont un plugin Xcode a besoin pour fonctionner. Cette simplicité est typique pour les plugins qui étendent une application existante (Xcode) plutôt que des programmes autonomes.</p>
+  </li>
+  <li>
+    <p><strong>Focalisation sur la compatibilité</strong>
+La longue liste de <code class="language-plaintext highlighter-rouge">DVTPlugInCompatibilityUUIDs</code> et les drapeaux comme <code class="language-plaintext highlighter-rouge">XC4Compatible</code> montrent un plugin conçu pour durer. Ce schéma est courant dans les outils de développement, où les utilisateurs pourraient s’accrocher à des versions plus anciennes de Xcode pour la stabilité.</p>
+  </li>
+  <li>
+    <p><strong>Métadonnées sur le comportement</strong>
+Contrairement aux fichiers de code, le <code class="language-plaintext highlighter-rouge">Info.plist</code> ne <em>fait</em> rien — il décrit. Son rôle est passif, fournissant des informations que Xcode et macOS interprètent en temps d’exécution.</p>
+  </li>
+</ol>
+
+<hr />
+
+<h4 id="que-nous-dit-cela-sur-reveal-in-github-">Que nous dit cela sur Reveal-In-GitHub ?</h4>
+
+<p>Ce <code class="language-plaintext highlighter-rouge">Info.plist</code> présente “Reveal-In-GitHub” comme un plugin Xcode léger et focalisé de 2015, probablement créé par un développeur solo (<code class="language-plaintext highlighter-rouge">lzwjava</code>). Sa large compatibilité suggère qu’il était destiné à être largement utilisable, tandis que l’absence d’un drapeau d’interface utilisateur (malgré un <code class="language-plaintext highlighter-rouge">.xib</code> dans le projet) laisse supposer une intégration subtile — peut-être un élément de menu ou une action contextuelle plutôt qu’une interface flashy. Étant donné le nom et le contexte du <code class="language-plaintext highlighter-rouge">.pbxproj</code>, il est probable qu’il optimise les flux de travail GitHub, comme le lien des fichiers Xcode à leurs dépôts en ligne.</p>
+
+<hr />
+
+<h4 id="pourquoi-cela-importe">Pourquoi cela importe</h4>
+
+<p>Le <code class="language-plaintext highlighter-rouge">Info.plist</code> est la poignée de main de votre application avec le système. Pour les développeurs, le comprendre signifie que vous pouvez ajuster la compatibilité, le versioning ou le comportement sans toucher au code. Pour “Reveal-In-GitHub”, c’est la clé pour s’intégrer parfaitement dans Xcode. La prochaine fois que vous déboguez un plugin ou que vous en créez un, ce fichier sera votre point de départ — petit mais puissant.</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-fr" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Entendiendo el archivo AndroidManifest.xml</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Entendiendo el archivo AndroidManifest.xml | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Entendiendo el archivo AndroidManifest.xml" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="es" />
+<meta name="description" content="Si estás sumergiéndote en el desarrollo de Android, uno de los primeros archivos que encontrarás es el AndroidManifest.xml. Es como el plano de tu aplicación: le dice al sistema Android todo lo que necesita saber sobre tu aplicación antes de que incluso se ejecute. Hoy, desglosaremos un archivo de manifiesto de ejemplo de una aplicación llamada “Flower” (nombre del paquete: com.lzw.flower) y exploraremos sus componentes clave, conceptos y patrones." />
+<meta property="og:description" content="Si estás sumergiéndote en el desarrollo de Android, uno de los primeros archivos que encontrarás es el AndroidManifest.xml. Es como el plano de tu aplicación: le dice al sistema Android todo lo que necesita saber sobre tu aplicación antes de que incluso se ejecute. Hoy, desglosaremos un archivo de manifiesto de ejemplo de una aplicación llamada “Flower” (nombre del paquete: com.lzw.flower) y exploraremos sus componentes clave, conceptos y patrones." />
+<link rel="canonical" href="https://lzwjava.github.io/android-manifest-es" />
+<meta property="og:url" content="https://lzwjava.github.io/android-manifest-es" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2014-07-27T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Entendiendo el archivo AndroidManifest.xml" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2014-07-27T00:00:00+08:00","datePublished":"2014-07-27T00:00:00+08:00","description":"Si estás sumergiéndote en el desarrollo de Android, uno de los primeros archivos que encontrarás es el AndroidManifest.xml. Es como el plano de tu aplicación: le dice al sistema Android todo lo que necesita saber sobre tu aplicación antes de que incluso se ejecute. Hoy, desglosaremos un archivo de manifiesto de ejemplo de una aplicación llamada “Flower” (nombre del paquete: com.lzw.flower) y exploraremos sus componentes clave, conceptos y patrones.","headline":"Entendiendo el archivo AndroidManifest.xml","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/android-manifest-es"},"url":"https://lzwjava.github.io/android-manifest-es"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og11.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Entendiendo el archivo AndroidManifest.xml | Original, traducido por IA
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/es/2014-07-27-android-manifest-es.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postses2014-07-27-android-manifest-es.md</span> -->
+      
+
+      <!-- <span>2014-07-27-android-manifest-es.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2014.07</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/android-manifest-en" >English</option>
+        <option value="/android-manifest-zh" >中文</option>
+        <option value="/android-manifest-ja" >日本語</option>
+        <option value="/android-manifest-es" selected>Español</option>
+        <option value="/android-manifest-hi" >हिंदी</option>
+        <option value="/android-manifest-fr" >Français</option>
+        <option value="/android-manifest-de" >Deutsch</option>
+        <option value="/android-manifest-ar" >العربية</option>
+        <option value="/android-manifest-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>Si estás sumergiéndote en el desarrollo de Android, uno de los primeros archivos que encontrarás es el <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code>. Es como el plano de tu aplicación: le dice al sistema Android todo lo que necesita saber sobre tu aplicación antes de que incluso se ejecute. Hoy, desglosaremos un archivo de manifiesto de ejemplo de una aplicación llamada “Flower” (nombre del paquete: <code class="language-plaintext highlighter-rouge">com.lzw.flower</code>) y exploraremos sus componentes clave, conceptos y patrones.</p>
+
+<hr />
+
+<h4 id="qué-es-el-androidmanifestxml">¿Qué es el AndroidManifest.xml?</h4>
+
+<p>El archivo <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> es un archivo de configuración requerido para cada aplicación de Android. Se encuentra en el directorio raíz de tu proyecto y declara información esencial como el nombre del paquete de la aplicación, permisos, componentes (por ejemplo, actividades) y características de hardware/software que necesita. Piensa en él como la tarjeta de identidad de la aplicación que lee el sistema operativo Android.</p>
+
+<p>Vamos a recorrer el ejemplo paso a paso.</p>
+
+<hr />
+
+<h3 id="la-estructura-del-manifiesto">La estructura del manifiesto</h3>
+
+<p>Aquí está el manifiesto con el que estamos trabajando (slightly simplified for readability):</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span>
+<span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">package=</span><span class="s">"com.lzw.flower"</span>
+    <span class="na">android:versionCode=</span><span class="s">"8"</span>
+    <span class="na">android:versionName=</span><span class="s">"1.5.2"</span><span class="nt">&gt;</span>
+
+    <span class="nt">&lt;uses-sdk</span> <span class="na">android:minSdkVersion=</span><span class="s">"14"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.CAMERA"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WRITE_EXTERNAL_STORAGE"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-feature</span> <span class="na">android:name=</span><span class="s">"android.hardware.camera"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-feature</span> <span class="na">android:name=</span><span class="s">"android.hardware.camera.autofocus"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.READ_PHONE_STATE"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_WIFI_STATE"</span> <span class="nt">/&gt;</span>
+
+    <span class="nt">&lt;application</span>
+        <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+        <span class="na">android:icon=</span><span class="s">"@drawable/icon128"</span>
+        <span class="na">android:name=</span><span class="s">".base.App"</span>
+        <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span>
+
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".deprecated.CameraActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".base.SplashActivity"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;intent-filter&gt;</span>
+                <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.MAIN"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.LAUNCHER"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/intent-filter&gt;</span>
+        <span class="nt">&lt;/activity&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".draw.DrawActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".result.ResultActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".material.MaterialActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".activity.PhotoActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;activity</span> <span class="na">android:name=</span><span class="s">".activity.LoginActivity"</span> <span class="na">android:screenOrientation=</span><span class="s">"portrait"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/application&gt;</span>
+<span class="nt">&lt;/manifest&gt;</span>
+</code></pre></div></div>
+
+<p>Ahora, desglosémoslo en sus secciones principales y expliquemos los conceptos detrás de ellos.</p>
+
+<hr />
+
+<h3 id="1-el-elemento-raíz-manifest">1. El elemento raíz <code class="language-plaintext highlighter-rouge">&lt;manifest&gt;</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;manifest</span> <span class="na">xmlns:android=</span><span class="s">"http://schemas.android.com/apk/res/android"</span>
+    <span class="na">package=</span><span class="s">"com.lzw.flower"</span>
+    <span class="na">android:versionCode=</span><span class="s">"8"</span>
+    <span class="na">android:versionName=</span><span class="s">"1.5.2"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">xmlns:android</code></strong>: Define el espacio de nombres XML para atributos específicos de Android. Es una plantilla estándar que verás en cada manifiesto.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">package</code></strong>: Es el identificador único para tu aplicación (por ejemplo, <code class="language-plaintext highlighter-rouge">com.lzw.flower</code>). También es el espacio de nombres predeterminado para tus clases Java/Kotlin.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:versionCode</code></strong>: Un entero interno (aquí, <code class="language-plaintext highlighter-rouge">8</code>) utilizado para rastrear versiones. Incrementa con cada actualización.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:versionName</code></strong>: Una cadena de versión legible por humanos (aquí, <code class="language-plaintext highlighter-rouge">1.5.2</code>) mostrada a los usuarios.</li>
+</ul>
+
+<p><strong>Concepto</strong>: La etiqueta <code class="language-plaintext highlighter-rouge">&lt;manifest&gt;</code> establece la identidad y la versión de la aplicación, asegurando que el sistema sepa con qué aplicación está tratando y cómo manejar las actualizaciones.</p>
+
+<hr />
+
+<h3 id="2-versión-del-sdk-con-uses-sdk">2. Versión del SDK con <code class="language-plaintext highlighter-rouge">&lt;uses-sdk&gt;</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-sdk</span> <span class="na">android:minSdkVersion=</span><span class="s">"14"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:minSdkVersion</code></strong>: Especifica el nivel mínimo de API de Android que la aplicación admite. La API 14 corresponde a Android 4.0 (Ice Cream Sandwich).</li>
+</ul>
+
+<p><strong>Concepto</strong>: Esto asegura la compatibilidad. Los dispositivos que ejecutan versiones de Android inferiores a 4.0 no pueden instalar esta aplicación. No hay <code class="language-plaintext highlighter-rouge">targetSdkVersion</code> o <code class="language-plaintext highlighter-rouge">maxSdkVersion</code> aquí, pero podrían añadirse para afinar la compatibilidad aún más.</p>
+
+<hr />
+
+<h3 id="3-permisos-con-uses-permission">3. Permisos con <code class="language-plaintext highlighter-rouge">&lt;uses-permission&gt;</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.CAMERA"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.WRITE_EXTERNAL_STORAGE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.INTERNET"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_NETWORK_STATE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.READ_PHONE_STATE"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">"android.permission.ACCESS_WIFI_STATE"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<p>Esta aplicación solicita varios permisos:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">CAMERA</code>: Para acceder a la cámara del dispositivo.</li>
+  <li><code class="language-plaintext highlighter-rouge">WRITE_EXTERNAL_STORAGE</code>: Para guardar archivos (por ejemplo, fotos) en el almacenamiento externo.</li>
+  <li><code class="language-plaintext highlighter-rouge">INTERNET</code>: Para el acceso a la red.</li>
+  <li><code class="language-plaintext highlighter-rouge">ACCESS_NETWORK_STATE</code>: Para verificar la conectividad de la red.</li>
+  <li><code class="language-plaintext highlighter-rouge">READ_PHONE_STATE</code>: Para acceder a la información del dispositivo (por ejemplo, IMEI).</li>
+  <li><code class="language-plaintext highlighter-rouge">ACCESS_WIFI_STATE</code>: Para verificar el estado de Wi-Fi.</li>
+</ul>
+
+<p><strong>Concepto</strong>: Android utiliza un sistema de permisos para proteger la privacidad y la seguridad del usuario. Estas declaraciones le dicen al sistema (y al usuario) qué características sensibles necesita la aplicación. A partir de Android 6.0 (API 23), los permisos peligrosos (como <code class="language-plaintext highlighter-rouge">CAMERA</code>) también requieren solicitudes en tiempo de ejecución en el código de la aplicación.</p>
+
+<hr />
+
+<h3 id="4-características-con-uses-feature">4. Características con <code class="language-plaintext highlighter-rouge">&lt;uses-feature&gt;</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;uses-feature</span> <span class="na">android:name=</span><span class="s">"android.hardware.camera"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-feature</span> <span class="na">android:name=</span><span class="s">"android.hardware.camera.autofocus"</span> <span class="nt">/&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">android.hardware.camera</code></strong>: Declara que la aplicación requiere una cámara.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android.hardware.camera.autofocus</code></strong>: Especifica que la cámara debe soportar autofoco.</li>
+</ul>
+
+<p><strong>Concepto</strong>: A diferencia de los permisos, las etiquetas <code class="language-plaintext highlighter-rouge">&lt;uses-feature&gt;</code> filtran la aplicación en la Google Play Store. Si un dispositivo carece de una cámara o autofoco, la aplicación ni siquiera aparecerá como instalable a menos que estas se marquen como opcionales con <code class="language-plaintext highlighter-rouge">android:required="false"</code>.</p>
+
+<hr />
+
+<h3 id="5-el-elemento-application">5. El elemento <code class="language-plaintext highlighter-rouge">&lt;application&gt;</code></h3>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;application</span>
+    <span class="na">android:label=</span><span class="s">"@string/app_name"</span>
+    <span class="na">android:icon=</span><span class="s">"@drawable/icon128"</span>
+    <span class="na">android:name=</span><span class="s">".base.App"</span>
+    <span class="na">android:theme=</span><span class="s">"@style/AppTheme"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:label</code></strong>: El nombre de la aplicación, extraído de un recurso de cadena (<code class="language-plaintext highlighter-rouge">@string/app_name</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:icon</code></strong>: El icono de la aplicación, haciendo referencia a un recurso de dibujo (<code class="language-plaintext highlighter-rouge">@drawable/icon128</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:name</code></strong>: Una clase de aplicación personalizada (<code class="language-plaintext highlighter-rouge">.base.App</code>), que extiende la clase <code class="language-plaintext highlighter-rouge">Application</code> de Android para la lógica de la aplicación en general.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:theme</code></strong>: El tema visual predeterminado para la aplicación (<code class="language-plaintext highlighter-rouge">@style/AppTheme</code>).</li>
+</ul>
+
+<p><strong>Concepto</strong>: La etiqueta <code class="language-plaintext highlighter-rouge">&lt;application&gt;</code> define la configuración de la aplicación en general. Los recursos como <code class="language-plaintext highlighter-rouge">@string</code> y <code class="language-plaintext highlighter-rouge">@drawable</code> se almacenan en carpetas <code class="language-plaintext highlighter-rouge">res/</code>, promoviendo la reutilización y la localización.</p>
+
+<hr />
+
+<h3 id="6-actividades-con-activity">6. Actividades con <code class="language-plaintext highlighter-rouge">&lt;activity&gt;</code></h3>
+
+<p>El manifiesto enumera varias actividades, que son las pantallas de la interfaz de usuario de la aplicación:</p>
+
+<h4 id="ejemplo-1-pantalla-de-inicio-actividad-de-lanzador">Ejemplo 1: Pantalla de inicio (Actividad de lanzador)</h4>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;activity</span>
+    <span class="na">android:name=</span><span class="s">".base.SplashActivity"</span>
+    <span class="na">android:theme=</span><span class="s">"@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;intent-filter&gt;</span>
+        <span class="nt">&lt;action</span> <span class="na">android:name=</span><span class="s">"android.intent.action.MAIN"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;category</span> <span class="na">android:name=</span><span class="s">"android.intent.category.LAUNCHER"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/intent-filter&gt;</span>
+<span class="nt">&lt;/activity&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:name</code></strong>: El nombre de la clase (<code class="language-plaintext highlighter-rouge">.base.SplashActivity</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">intent-filter</code></strong>: Marca esto como el punto de entrada de la aplicación (<code class="language-plaintext highlighter-rouge">MAIN</code> acción + <code class="language-plaintext highlighter-rouge">LAUNCHER</code> categoría), por lo que aparece en el lanzador de aplicaciones del dispositivo.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:theme</code></strong>: Un tema de pantalla completa sin barra de acción.</li>
+</ul>
+
+<p><strong>Patrón</strong>: La actividad de lanzador es un punto de partida común, a menudo una pantalla de inicio o pantalla de inicio.</p>
+
+<h4 id="ejemplo-2-actividad-de-la-cámara">Ejemplo 2: Actividad de la cámara</h4>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;activity</span>
+    <span class="na">android:name=</span><span class="s">".deprecated.CameraActivity"</span>
+    <span class="na">android:screenOrientation=</span><span class="s">"landscape"</span><span class="nt">&gt;</span>
+</code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">android:screenOrientation</code></strong>: Fuerza el modo paisaje.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">.deprecated</code></strong>: Sugiere que esta actividad podría estar desactualizada pero aún incluida.</li>
+</ul>
+
+<p><strong>Patrón</strong>: Las actividades a menudo imponen la orientación para casos de uso específicos (por ejemplo, las aplicaciones de cámara funcionan mejor en modo paisaje).</p>
+
+<h4 id="otras-actividades">Otras actividades</h4>
+<p>El manifiesto enumera más actividades como <code class="language-plaintext highlighter-rouge">DrawActivity</code>, <code class="language-plaintext highlighter-rouge">ResultActivity</code>, <code class="language-plaintext highlighter-rouge">PhotoActivity</code>, etc., con patrones similares:</p>
+<ul>
+  <li>La mayoría están orientadas en modo paisaje, sugiriendo una aplicación centrada en lo visual o multimedia.</li>
+  <li>Algunas anulan el tema predeterminado de la aplicación (por ejemplo, <code class="language-plaintext highlighter-rouge">Theme.Holo.Light</code>).</li>
+</ul>
+
+<p><strong>Concepto</strong>: Las actividades son los bloques de construcción de la interfaz de usuario de una aplicación de Android. Cada etiqueta <code class="language-plaintext highlighter-rouge">&lt;activity&gt;</code> registra una pantalla con el sistema.</p>
+
+<hr />
+
+<h3 id="patrones-clave-en-este-manifiesto">Patrones clave en este manifiesto</h3>
+
+<ol>
+  <li><strong>Diseño centrado en medios</strong>: Los permisos y características para la cámara, almacenamiento y autofoco sugieren una aplicación de fotos o dibujo (quizás identificando flores, dado el nombre del paquete <code class="language-plaintext highlighter-rouge">com.lzw.flower</code>).</li>
+  <li><strong>Control de orientación</strong>: El uso intensivo de <code class="language-plaintext highlighter-rouge">android:screenOrientation="landscape"</code> sugiere un enfoque en tareas visuales.</li>
+  <li><strong>Actividades modulares</strong>: Múltiples actividades (<code class="language-plaintext highlighter-rouge">CameraActivity</code>, <code class="language-plaintext highlighter-rouge">DrawActivity</code>, <code class="language-plaintext highlighter-rouge">ResultActivity</code>) indican un flujo de trabajo de varios pasos.</li>
+  <li><strong>Uso de recursos</strong>: Referencias a <code class="language-plaintext highlighter-rouge">@string</code>, <code class="language-plaintext highlighter-rouge">@drawable</code> y <code class="language-plaintext highlighter-rouge">@style</code> muestran una estructura limpia y mantenible.</li>
+</ol>
+
+<hr />
+
+<h3 id="conclusión">Conclusión</h3>
+
+<p>El <code class="language-plaintext highlighter-rouge">AndroidManifest.xml</code> es más que solo un archivo de configuración: es una ventana a la finalidad y comportamiento de una aplicación. En este caso, “Flower” parece ser una aplicación multimedia con funcionalidad de cámara, características de dibujo y capacidades de red, posiblemente para subir o procesar imágenes. Al entender sus componentes: permisos, características y actividades, puedes ver cómo se estructuran las aplicaciones de Android y cómo diseñar las tuyas propias.</p>
+
+<p>¿Quieres construir algo similar? Empieza con un propósito claro (como la identificación de flores), define tus permisos y características, y traza tus actividades. El manifiesto lo unirá todo!</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-es" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

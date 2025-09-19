@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>Nvidia-Treiber, LLaMA und ChatGPT</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Nvidia-Treiber, LLaMA und ChatGPT | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Nvidia-Treiber, LLaMA und ChatGPT" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="de" />
+<meta name="description" content="LLaMA (Large Language Model Meta AI) ist eine Familie von großen Sprachmodellen (LLMs), die ab Februar 2023 von Meta AI veröffentlicht wurde." />
+<meta property="og:description" content="LLaMA (Large Language Model Meta AI) ist eine Familie von großen Sprachmodellen (LLMs), die ab Februar 2023 von Meta AI veröffentlicht wurde." />
+<link rel="canonical" href="https://lzwjava.github.io/llama-de" />
+<meta property="og:url" content="https://lzwjava.github.io/llama-de" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-18T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Nvidia-Treiber, LLaMA und ChatGPT" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2023-08-18T00:00:00+08:00","datePublished":"2023-08-18T00:00:00+08:00","description":"LLaMA (Large Language Model Meta AI) ist eine Familie von großen Sprachmodellen (LLMs), die ab Februar 2023 von Meta AI veröffentlicht wurde.","headline":"Nvidia-Treiber, LLaMA und ChatGPT","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/llama-de"},"url":"https://lzwjava.github.io/llama-de"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       Nvidia-Treiber, LLaMA und ChatGPT | Original, von KI übersetzt
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/de/2023-08-18-llama-de.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postsde2023-08-18-llama-de.md</span> -->
+      
+
+      <!-- <span>2023-08-18-llama-de.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2023.08</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/llama-en" >English</option>
+        <option value="/llama-zh" >中文</option>
+        <option value="/llama-ja" >日本語</option>
+        <option value="/llama-es" >Español</option>
+        <option value="/llama-hi" >हिंदी</option>
+        <option value="/llama-fr" >Français</option>
+        <option value="/llama-de" selected>Deutsch</option>
+        <option value="/llama-ar" >العربية</option>
+        <option value="/llama-hant" >繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>LLaMA (Large Language Model Meta AI) ist eine Familie von großen Sprachmodellen (LLMs), die ab Februar 2023 von Meta AI veröffentlicht wurde.</p>
+
+<p>Ich habe kürzlich meinen Computer mit einer Nvidia-GPU zusammengebaut. Sie können hier nachlesen, wie man einen Computer baut: <a href="https://lzwjava.github.io/computer">https://lzwjava.github.io/computer</a>.</p>
+
+<p>Danach begann ich, das LLaMA-Projekt auszuführen. Die GitHub-URL des LLaMA-Projekts ist <a href="https://github.com/facebookresearch/llama">https://github.com/facebookresearch/llama</a>.</p>
+
+<h2 id="nvidia-treiber-installieren">Nvidia-Treiber installieren</h2>
+
+<p>Wenn Sie den Befehl ausführen,</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">torchrun</span> <span class="o">--</span><span class="n">nproc_per_node</span> <span class="mi">1</span> <span class="n">example_text_completion</span><span class="p">.</span><span class="n">py</span> \
+    <span class="o">--</span><span class="n">ckpt_dir</span> <span class="n">llama</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">7</span><span class="n">b</span><span class="o">/</span> \
+    <span class="o">--</span><span class="n">tokenizer_path</span> <span class="n">tokenizer</span><span class="p">.</span><span class="n">model</span> \
+    <span class="o">--</span><span class="n">max_seq_len</span> <span class="mi">128</span> <span class="o">--</span><span class="n">max_batch_size</span> <span class="mi">4</span>
+</code></pre></div></div>
+
+<p><em>Hinweis: Der Code wurde nicht übersetzt, da es sich um eine technische Anweisung handelt, die in der Regel in der Originalsprache belassen wird.</em></p>
+
+<p>Es zeigt den Fehler: “RuntimeError: Distributed package doesn’t have NCCL built in”. Lassen Sie uns etwas über NCCL lernen.</p>
+
+<blockquote>
+  <p>Die NVIDIA Collective Communication Library (NCCL) implementiert Multi-GPU- und Multi-Node-Kommunikationsprimitive, die für NVIDIA-GPUs und Netzwerke optimiert sind.
+Ich verweise auf die folgenden Websites, um NVIDIA-Treiber zu installieren.</p>
+</blockquote>
+
+<ul>
+  <li>CUDA Toolkit 12.2 Update 1 Downloads, <a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a></li>
+  <li>NVIDIA NCCL, <a href="https://developer.nvidia.com/nccl">https://developer.nvidia.com/nccl</a></li>
+  <li>NVIDIA Deep Learning NCCL Dokumentation, <a href="https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html">https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html</a></li>
+  <li>NVIDIA CUDA Installationshandbuch für Linux, <a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html">https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html</a></li>
+  <li>Nach der Installation von Ubuntu stoßen Sie auf “Perform MOK Management”, <a href="https://www.cnblogs.com/yutian-blogs/p/13019226.html">https://www.cnblogs.com/yutian-blogs/p/13019226.html</a></li>
+  <li>Ubuntu 22.04 für Deep Learning, <a href="https://gist.github.com/amir-saniyan/b3d8e06145a8569c0d0e030af6d60bea">https://gist.github.com/amir-saniyan/b3d8e06145a8569c0d0e030af6d60bea</a></li>
+  <li>Ubuntu 22.04 Notizen, <a href="https://github.com/kmcminn/thinkpad/tree/main/extreme3g">https://github.com/kmcminn/thinkpad/tree/main/extreme3g</a></li>
+</ul>
+
+<p>Wenn wir den NVIDIA-Treiber für unsere Grafikkarte erfolgreich installiert haben und dann den Befehl <code class="language-plaintext highlighter-rouge">nvidia-smi</code> verwenden, um die Details anzuzeigen, kann er die folgenden Informationen anzeigen.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(base) lzw@lzw-MS-7E01:~$ nvidia-smi
+Do Aug 17 04:15:43 2023       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.86.10              Treiber-Version: 535.86.10    CUDA-Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Speicherverbrauch | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 4070        On  | 00000000:01:00.0  On |                  N/A |
+|  0%   34C    P8               9W / 215W |    666MiB / 12282MiB |     15%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Prozesse:                                                                             |
+|  GPU   GI   CI        PID   Typ   Prozessname                            GPU-Speicher |
+|        ID   ID                                                             Verbrauch   |
+|=======================================================================================|
+|    0   N/A  N/A      1926      G   /usr/lib/xorg/Xorg                          381MiB |
+|    0   N/A  N/A      2065      G   /usr/bin/gnome-shell                        120MiB |
+|    0   N/A  N/A      3482      G   gnome-control-center                          2MiB |
+|    0   N/A  N/A      3803      G   ...irefox/2987/usr/lib/firefox/firefox      149MiB |
++---------------------------------------------------------------------------------------+
+</code></pre></div></div>
+
+<p>Tatsächlich ist es schwierig, diese Phase zu erreichen. Bitte beziehen Sie sich sorgfältig auf den Link hier, Ubuntu 22.04 Notes, <a href="https://github.com/kmcminn/thinkpad/tree/main/extreme3g">https://github.com/kmcminn/thinkpad/tree/main/extreme3g</a>.</p>
+
+<h2 id="lerne-llama">Lerne LLaMA</h2>
+
+<p>Nachdem wir die Modelle heruntergeladen haben und versuchen, den Befehl auszuführen, werden wir auf den folgenden Fehler stoßen:</p>
+
+<blockquote>
+  <p>torch.cuda.OutOfMemoryError: CUDA-Speicher erschöpft. Es wurde versucht, 86.00 MiB zuzuweisen (GPU 0; 11.69 GiB Gesamtkapazität; 9.70 GiB bereits zugewiesen; 64.81 MiB frei; 9.70 GiB insgesamt von PyTorch reserviert). Wenn der reservierte Speicher deutlich größer ist als der zugewiesene Speicher, versuchen Sie, max_split_size_mb zu setzen, um Fragmentierung zu vermeiden.</p>
+</blockquote>
+
+<p>Da der Speicher unserer Grafikkarte nur 12 GB beträgt und die Größe des llama-2-7b-Modells etwa 13 GB umfasst, können wir es nicht mit unserer Grafikkarte ausführen.</p>
+
+<p>Wir versuchen, das andere Projekt, open-llama-3b, zu verwenden, <a href="https://huggingface.co/openlm-research/open_llama_3b">https://huggingface.co/openlm-research/open_llama_3b</a>.</p>
+
+<p>Wir stoßen auf den folgenden Fehler.</p>
+
+<blockquote>
+  <p>RuntimeError: Es wurde erwartet, dass alle Tensoren auf demselben Gerät liegen, aber es wurden mindestens zwei Geräte gefunden, cuda:0 und cpu! (beim Überprüfen des Arguments für das Argument index in der Methode wrapper_CUDA__index_select)</p>
+</blockquote>
+
+<p>Und wir fragen ChatGPT danach.</p>
+
+<p>ChatGPT bietet uns eine sehr elegante Lösung. Wir müssen den folgenden Code hinzufügen:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>input_ids = input_ids.to(model.device)
+</code></pre></div></div>
+
+<p>Schließlich können wir es hochfahren.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(llama) lzw@lzw-MS-7E01:~/Projects/open_llama_3b$ python run.py 
+F: Was ist das größte Tier?   
+A: Der Blauwal.   
+F: Was ist das größte Tier?    
+A: Der Blauwal. Es ist das größte Tier auf der Erde. Es ist auch das  
+</code></pre></div></div>
+
+<p>Wir haben auch das Projekt llama2.c ausprobiert, <a href="https://github.com/karpathy/llama2.c">https://github.com/karpathy/llama2.c</a>.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>(base) lzw@lzw-MS-7E01:~/Projects/llama2.c$ ./run stories15M.bin 
+Eines Tages waren ein großer Löwe und ein kleiner Hase im Wald. Der große Löwe sagte: "Lass uns zum Fluss rennen und etwas Wasser trinken." Der kleine Hase stimmte zu, und sie begannen zu rennen.
+Der Löwe war schnell, aber er war vorsichtig, den kleinen Hasen nicht zu verletzen. Der Hase kam dem Fluss immer näher, aber der große Löwe sah ihn nicht. Als der Löwe den Fluss überquerte, rutschte er aus und fiel in den Fluss.
+Der kleine Hase sah den Löwen im Wasser und dachte: "Ich sollte dem Löwen sagen, dass er nicht trinken soll." Er sagte: "Löwe, trink nicht aus dem Fluss. Es ist nicht sicher." Aber der Löwe hörte nicht zu und trank aus dem Fluss.
+Der kleine Hase versuchte, dem Löwen zu helfen, aber er konnte es nicht. Der Löwe trank zu viel und sein Bauch begann zu schmerzen. Der große Löwe war sehr traurig und sagte: "Ich habe dir gesagt, du sollst nicht aus dem Fluss trinken." Der kleine Hase ging weinend nach Hause, und der große Löwe konnte immer noch nicht helfen.
+erreichte tok/s: 185.527329
+</code></pre></div></div>
+
+<h2 id="code-verstehen-mit-chatgpt">Code verstehen mit ChatGPT</h2>
+
+<p>Zhiwei: Könnten Sie den folgenden Code erklären?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
+        <span class="n">self</span><span class="p">,</span>
+        <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+        <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+        <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+        <span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
+<span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        next_token = next_token.reshape(-1)
+        # Token nur ersetzen, wenn der Prompt bereits generiert wurde
+        next_token = torch.where(
+            input_text_mask[:, cur_pos], tokens[:, cur_pos], next_token
+        )
+        tokens[:, cur_pos] = next_token
+        eos_reached |= (~input_text_mask[:, cur_pos]) &amp; (
+            next_token == self.tokenizer.eos_id
+        )
+        prev_pos = cur_pos
+        if all(eos_reached):
+            break
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+        <span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+            <span class="c1"># auf maximale Generierungslänge kürzen
+</span>            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">echo</span> <span class="k">else</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="n">probs</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+            <span class="c1"># auf EOS-Token kürzen, falls vorhanden
+</span>            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span> <span class="ow">in</span> <span class="n">toks</span><span class="p">:</span>
+                <span class="n">eos_idx</span> <span class="o">=</span> <span class="n">toks</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span><span class="p">)</span>
+                <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span>
+            <span class="n">out_tokens</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span>
+            <span class="n">out_logprobs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+        <span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>ChatGPT: Sicher, hier ist eine Erklärung des bereitgestellten Codes:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
+    <span class="n">self</span><span class="p">,</span>
+    <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+    <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
+    <span class="n">top_p</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+    <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
+</code></pre></div></div>
+
+<p>Diese Funktion heißt <code class="language-plaintext highlighter-rouge">generate</code> und akzeptiert mehrere Parameter:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">prompt_tokens</code> ist eine Liste, die Sequenzen von Tokens für Eingabeaufforderungen enthält.</li>
+  <li><code class="language-plaintext highlighter-rouge">max_gen_len</code> ist die maximale Länge des generierten Textes.</li>
+  <li><code class="language-plaintext highlighter-rouge">temperature</code> ist ein Parameter, der zur Steuerung der Zufälligkeit während der Generierung verwendet wird.</li>
+  <li><code class="language-plaintext highlighter-rouge">top_p</code> ist ein Wahrscheinlichkeitsschwellenwert zwischen 0 und 1, der zur Steuerung der Vielfalt während des Samplings verwendet wird.</li>
+  <li><code class="language-plaintext highlighter-rouge">logprobs</code> ist ein boolescher Wert, der angibt, ob die Log-Wahrscheinlichkeiten des Generierungsprozesses aufgezeichnet werden sollen.</li>
+  <li><code class="language-plaintext highlighter-rouge">echo</code> ist ein boolescher Wert, der angibt, ob die Eingabe während der Generierung wiedergegeben werden soll.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+<span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><em>(Der Code bleibt unverändert, da es sich um eine technische Implementierung handelt, die nicht übersetzt werden muss.)</em></p>
+
+<p>Hier erhält die Funktion die Modellparameter und berechnet die Batch-Größe der Eingabeaufforderungen. Sie stellt sicher, dass die Batch-Größe nicht größer ist als die im Modell angegebene maximale Batch-Größe.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Diese Zeilen berechnen die minimalen und maximalen Längen der Prompts und stellen sicher, dass die maximale Prompt-Länge die im Modell angegebene maximale Sequenzlänge nicht überschreitet. Die Gesamtlänge wird basierend auf der maximalen generierten Länge und der maximalen Prompt-Länge berechnet.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><em>Hinweis: Der Code wurde nicht übersetzt, da es sich um eine Programmiersprache handelt, die in der Regel nicht übersetzt wird.</em></p>
+
+<p>Dieser Abschnitt initialisiert den <code class="language-plaintext highlighter-rouge">tokens</code>-Tensor mit Padding-Tokens und füllt ihn mit den Token-Sequenzen aus den Prompts.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Wenn <code class="language-plaintext highlighter-rouge">logprobs</code> True ist, wird ein Tensor <code class="language-plaintext highlighter-rouge">token_logprobs</code> erstellt, um die Log-Wahrscheinlichkeiten zu speichern.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
+</code></pre></div></div>
+
+<p><em>Hinweis: Der Code wurde nicht übersetzt, da es sich um eine Programmiersprache handelt, die in der Regel nicht übersetzt wird.</em></p>
+
+<p>Die Variablen <code class="language-plaintext highlighter-rouge">prev_pos</code> (vorherige Position), <code class="language-plaintext highlighter-rouge">eos_reached</code> (ob End-of-Sequence-Token erkannt wurden) und <code class="language-plaintext highlighter-rouge">input_text_mask</code> (Positionen, die nicht mit Padding gefüllt sind) werden initialisiert.</p>
+
+<p>Die folgende Schleife erzeugt Token, beginnend bei der minimalen Eingabelänge bis zur Gesamtlänge.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+        <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
+    <span class="p">)</span>
+    <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
+    <span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
+        <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+    <span class="p">)</span>
+    <span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
+    <span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+        <span class="k">break</span>
+</code></pre></div></div>
+
+<p>Innerhalb dieser Schleife generiert das Modell eine Wahrscheinlichkeitsverteilung <code class="language-plaintext highlighter-rouge">logits</code> für das nächste Token. Wenn <code class="language-plaintext highlighter-rouge">logprobs</code> auf True gesetzt ist, werden die logarithmierten Wahrscheinlichkeiten mithilfe der Kreuzentropie berechnet. Abhängig von der <code class="language-plaintext highlighter-rouge">temperature</code> wird entweder Softmax oder Argmax verwendet, um das nächste Token auszuwählen. Anschließend wird der <code class="language-plaintext highlighter-rouge">tokens</code>-Tensor aktualisiert und auf End-of-Sequence-Tokens überprüft.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><em>Hinweis: Der Code bleibt unverändert, da es sich um eine Programmiersprache handelt und keine Übersetzung erforderlich ist.</em></p>
+
+<p>Wenn <code class="language-plaintext highlighter-rouge">logprobs</code> True ist, wird der Log-Wahrscheinlichkeiten-Tensor in eine Python-Liste umgewandelt.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+    <span class="bp">...</span>
+</code></pre></div></div>
+
+<p>In dieser Schleife wird für jede Eingabeprobe die Ausgabe-Token-Sequenz und die zugehörigen Log-Wahrscheinlichkeiten generiert.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Schließlich gibt die Funktion die generierten Token-Sequenzen und ihre entsprechenden Log-Wahrscheinlichkeiten zurück (falls angefordert).</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-de" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>

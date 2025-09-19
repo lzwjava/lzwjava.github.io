@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=" en-US">
+
+<head>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
+    href="https://lzwjava.github.io/feeds/feed.xml" />
+
+  <title>一篇關於DeepSeek V3的AI生成對話</title>
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
+          data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
+  </script>
+
+  <!-- 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-66656236-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-66656236-1');
+  </script>
+   -->
+  <meta charset="UTF-8">
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>一篇關於DeepSeek V3的AI生成對話 | Zhiwei Li</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="一篇關於DeepSeek V3的AI生成對話" />
+<meta name="author" content="Zhiwei Li" />
+<meta property="og:locale" content="hant" />
+<meta name="description" content="DeepSeek v3 在此探討，參考影片《Multi-Head Latent Attention and Multi-token Prediction in Deepseek v3》https://youtu.be/jL49fLOJYNg?si=4uE2kfe-BlKC1ngO。我們使用了 Google Cloud Speech-to-Text 來轉錄影片內容，並搭配一些程式碼來整理字幕。" />
+<meta property="og:description" content="DeepSeek v3 在此探討，參考影片《Multi-Head Latent Attention and Multi-token Prediction in Deepseek v3》https://youtu.be/jL49fLOJYNg?si=4uE2kfe-BlKC1ngO。我們使用了 Google Cloud Speech-to-Text 來轉錄影片內容，並搭配一些程式碼來整理字幕。" />
+<link rel="canonical" href="https://lzwjava.github.io/deepseek-v3-conv-hant" />
+<meta property="og:url" content="https://lzwjava.github.io/deepseek-v3-conv-hant" />
+<meta property="og:site_name" content="Zhiwei Li" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-01-24T00:00:00+08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="一篇關於DeepSeek V3的AI生成對話" />
+<meta name="twitter:site" content="@lzwjava" />
+<meta name="twitter:creator" content="@lzwjava" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-01-24T00:00:00+08:00","datePublished":"2025-01-24T00:00:00+08:00","description":"DeepSeek v3 在此探討，參考影片《Multi-Head Latent Attention and Multi-token Prediction in Deepseek v3》https://youtu.be/jL49fLOJYNg?si=4uE2kfe-BlKC1ngO。我們使用了 Google Cloud Speech-to-Text 來轉錄影片內容，並搭配一些程式碼來整理字幕。","headline":"一篇關於DeepSeek V3的AI生成對話","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/deepseek-v3-conv-hant"},"url":"https://lzwjava.github.io/deepseek-v3-conv-hant"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#157878">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <!-- Facebook Meta Tags -->
+  <!-- <meta property="og:url" content="https://lzwjava.github.io"> -->
+  <meta property="og:type" content="website">
+  <!-- <meta property="og:title" content="Zhiwei Li's Blog">
+  <meta property="og:description" content="A personal blog featuring programming insights and projects."> -->
+  
+  
+  <meta property="og:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@lzwjava">
+  <meta property="twitter:domain" content="lzwjava.github.io">
+  <!-- <meta property="twitter:url" content="https://lzwjava.github.io"> -->
+  <!-- <meta name="twitter:title" content="Zhiwei Li's Blog">
+  <meta name="twitter:description" content="A personal blog featuring programming insights and projects."> -->
+  <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og10.jpg">
+
+
+  <link rel="stylesheet" href="/assets/css/style.css?v=">
+
+  <!-- for mathjax support -->
+  <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+          tex2jax: {
+            inlineMath: [ ['\\(','\\)'], ['$', '$']],
+            displayMath: [ ['$$','$$'], ['\\[','\\]']],
+            processEscapes: false
+          },
+          "HTML-CSS": { linebreaks: { automatic: true } },
+          "CommonHTML": {
+            linebreaks: { automatic: true }
+          },
+          TeX: { equationNumbers: { autoNumber: "AMS" } }
+        });
+      </script>
+
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+</head>
+
+<body>
+  <main id="content" class="main-content post-content" role="main">
+  
+
+  
+
+  
+
+
+  <div class="title-row post-title-row">
+    <h2 class="title post-title">
+       一篇關於DeepSeek V3的AI生成對話 | 原創，AI翻譯
+    </h2>
+  </div>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Home</a>
+
+    <!-- PDF Button -->
+     
+    <!-- <a href="#" id="downloadPdfButton" class="button pdf-button" data-file-path="_posts/hant/2025-01-24-deepseek-v3-conv-hant.md">PDF</a> -->
+
+    <!-- Audio Button -->
+
+
+
+    <!--  -->
+
+        <!-- Date Button -->
+    
+      
+      <!-- <span>_postshant2025-01-24-deepseek-v3-conv-hant.md</span> -->
+      
+
+      <!-- <span>2025-01-24-deepseek-v3-conv-hant.md</span> -->
+
+      
+        
+
+        
+          
+          <a href="#" class="button">2025.01</a>
+        
+
+      
+    
+
+    <button id="themeTogglePost" class="button icon-button" aria-label="Toggle Theme" style="float: right;margin-bottom: 5px;">
+      <!-- theme-icons.html -->
+<svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+
+<svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor"
+    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"></path>
+</svg>
+    </button>    
+
+    <!-- Language Select Section -->
+    
+    
+    
+    
+    
+    
+    
+
+    
+    <select id="languageSelect" class="button right-button">
+        
+        <option value="/deepseek-v3-conv-en" >English</option>
+        <option value="/deepseek-v3-conv-zh" >中文</option>
+        <option value="/deepseek-v3-conv-ja" >日本語</option>
+        <option value="/deepseek-v3-conv-es" >Español</option>
+        <option value="/deepseek-v3-conv-hi" >हिंदी</option>
+        <option value="/deepseek-v3-conv-fr" >Français</option>
+        <option value="/deepseek-v3-conv-de" >Deutsch</option>
+        <option value="/deepseek-v3-conv-ar" >العربية</option>
+        <option value="/deepseek-v3-conv-hant" selected>繁體中文</option>
+    </select>
+  </div>
+
+  <!-- Audio player for text-to-speech -->
+  <div class="audio-container">
+    <audio id="audioPlayer" controls loop style="display:none;">
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <hr>
+
+  <p>DeepSeek v3 在此探討，參考影片《Multi-Head Latent Attention and Multi-token Prediction in Deepseek v3》<a href="https://youtu.be/jL49fLOJYNg?si=4uE2kfe-BlKC1ngO">https://youtu.be/jL49fLOJYNg?si=4uE2kfe-BlKC1ngO</a>。我們使用了 Google Cloud Speech-to-Text 來轉錄影片內容，並搭配一些程式碼來整理字幕。</p>
+
+<hr />
+
+<p>A：歡迎回到 Deep tag。今天我們要深入探討大型語言模型的世界。沒錯，具體來說就是 DeepSeek V3。</p>
+
+<p>B：聽起來很棒。這是一個擁有 6710 億參數的模型，以其獨特的效率與性能方法引起廣泛關注，對吧？</p>
+
+<p>A：而且你分享了一篇詳細介紹其架構的學術論文。</p>
+
+<p>B：是的。</p>
+
+<p>A：作為一位機器學習專家，你希望了解 DeepSeek V3 如何同時實現高效能與經濟型的訓練。</p>
+
+<p>B：沒錯，正是如此。</p>
+
+<p>A：哦，嘿，有什麼事嗎？</p>
+
+<p>C：MLA，細節，MLA 及其運作方式。</p>
+
+<p>A：哦，當然。這是個好主意。是的，我們絕對可以更深入探討多頭潛在注意力（Multi-Head Latent Attention，MLA）。所以你對 MLA 的具體細節感興趣。那麼，讓我們一步步解析。我們提到 DeepSeek V3 的效率關鍵之一是其混合專家（Mixture of Experts，MoE）架構，沒錯吧？其中每個 token 只激活一部分參數。而 DeepSeek V3 更進一步，採用了 MLA 和 DeepSeek Mo。</p>
+
+<p>B：沒錯。所以我們現在先專注於 MLA。</p>
+
+<p>A：好的。在即時應用中，速度至關重要。</p>
+
+<p>B：的確。而推理過程中所需的鍵值快取（KV cache）可能成為主要瓶頸。</p>
+
+<p>A：正是如此。這就是 MLA 的用武之地。傳統注意力機制需要儲存大量關於先前 token 的資訊。</p>
+
+<p>B：是的，你可以想像，這在處理長文本序列時會成為問題，對吧？</p>
+
+<p>A：但 MLA 巧妙地壓縮這些資訊，顯著減少快取流並大幅提升推理速度。這就像把一本厚重的百科全書濃縮成關鍵要點。</p>
+
+<p>B：這個比喻很好。它保留了核心資訊，同時去掉了不必要的負擔。是的，這對即時應用非常有用。</p>
+
+<p>A：沒錯。現在讓我們談談它實際上是如何運作的。MLA 是如何實現這種壓縮的？</p>
+
+<p>B：它使用了對注意力鍵和值的低秩聯合壓縮。</p>
+
+<p>A：好的，所以它壓縮了鍵和值，但這具體意味著什麼呢？讓我們稍微技術性一點。MLA 機制會接收一個隱藏表示（hidden representation）輸入，並將其投影為查詢（query）、鍵（key）與值（value）向量。這裡開始變得有趣了。MLA 將查詢解耦為兩部分。</p>
+
+<p>B：兩部分？</p>
+
+<p>A：是的。一部分用於內容，另一部分用於位置資訊，通過稱為 Rope 的方法實現。</p>
+
+<p>B：Rope？聽起來很技術性。</p>
+
+<p>A：它代表旋轉位置嵌入（Rotary Position Embeddings），幫助模型理解 token 在序列中的位置。接著，鍵和值會被壓縮到一個更低維度的潛在空間（latent space）。就像數據被縮小，節省了記憶體。</p>
+
+<p>B：完全正確。重要的資訊被保留，多餘的部分則被捨棄。這種壓縮表示使推理時的 KV cache 變得更小，從而加速推理。</p>
+
+<p>A：而且它還使用了多頭處理。</p>
+
+<p>B：是的，就像傳統注意力機制一樣，MLA 也採用多頭機制。</p>
+
+<p>A：哦，請繼續。</p>
+
+<p>C：因此，這裡有兩個潛在空間和一個隱藏輸入。</p>
+
+<p>A：很好的觀察。沒錯，你的理解是正確的。實際上存在兩個潛在空間：內容潛在空間（content latent space）和鍵值潛在空間（key-value latent space）。</p>
+
+<p>B：沒錯。這些潛在空間會透過 Rope（旋轉位置嵌入）進行處理。</p>
+
+<p>A：所以 Rope 是它們獲取位置資訊的方式？</p>
+
+<p>B：是的，它會同時應用於內容潛在空間和鍵值潛在空間。這種壓縮後的表示被處理後，最終會重新組合在一起。</p>
+
+<p>A：是的，而快取優化進一步降低了序列處理的開銷。這就是 MLA 加速的核心機制。</p>
+
+<p>B：沒錯。這是一種巧妙的方法，能在不犧牲性能的情況下實現高效注意力。</p>
+
+<p>A：這確實是個很聰明的技巧。但你知道嗎？</p>
+
+<p>B：什麼？</p>
+
+<p>A：我們接著談談 DeepSeek Mo 吧。它與傳統 MoE 模型有何不同？</p>
+
+<p>B：DeepSeek Mo 使用了……哦，我們的聽眾，你想問什麼？</p>
+
+<p>C：我們再談談隱藏空間。關於隱藏空間，那是什麼？</p>
+
+<p>A：完全明白你的問題。隱藏空間確實很有趣。你是想了解我們剛才提到的潛在空間，對吧？你想知道這些潛在空間內部發生了什麼？沒錯，這不僅僅是關於潛在空間的數量，更是其中進行的處理。</p>
+
+<p>B：這很酷。</p>
+
+<p>A：沒錯。MLA 內部確實有兩個獨特的潛在空間，一個用於內容，一個用於鍵值。就像有兩個獨立的資訊儲存單元。這些潛在空間</p>
+
+
+  <hr>
+
+  <div class="button-container">
+    <a href="/" class="button left-button">Back</a>
+
+
+    
+
+    
+    
+    <a href="/donate-hant" class="button right-button">Donate</a>
+  </div>
+</main>
+
+<script src="/assets/js/dark-mode.js"></script>
+<script src="/assets/js/audio.js" defer></script>
+<script src="/assets/js/pdf.js" defer></script>
+<script>
+    document.getElementById('languageSelect').addEventListener('change', function() {
+        var selectedValue = this.value;
+        if (selectedValue) {
+            window.location.href = selectedValue;
+        }
+    });
+</script>
+
+</body>
+
+</html>
