@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Word2Vec Script with Gensim | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Word2Vec Script with Gensim" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -230,36 +230,36 @@
 
 <p><strong>Python Script (<code class="language-plaintext highlighter-rouge">word2vec_gensim_example.py</code>):</strong></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">gensim</span>
-<span class="kn">from</span> <span class="n">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
-<span class="kn">from</span> <span class="n">gensim.utils</span> <span class="kn">import</span> <span class="n">simple_preprocess</span>
-<span class="kn">import</span> <span class="n">logging</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gensim</span>
+<span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span>
+<span class="kn">from</span> <span class="nn">gensim.utils</span> <span class="kn">import</span> <span class="n">simple_preprocess</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="c1"># Configure logging to see training progress
-</span><span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="sh">'</span><span class="s">%(asctime)s : %(levelname)s : %(message)s</span><span class="sh">'</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
+</span><span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="nb">format</span><span class="o">=</span><span class="s">'%(asctime)s : %(levelname)s : %(message)s'</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">)</span>
 
 <span class="c1"># --- 1. Prepare Sample Text Data ---
 # In a real-world scenario, you would load your text data from files.
 # Here, we use a simple list of sentences.
 </span><span class="n">raw_sentences</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="sh">"</span><span class="s">I love natural language processing.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Word embeddings are a fascinating topic.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Machine learning revolutionizes many industries.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Deep learning is a subset of machine learning.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Natural language processing uses various techniques.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Computers understand human language better with word vectors.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">The quick brown fox jumps over the lazy dog.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Dog and cat are common pets.</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">King is to Queen as Man is to Woman.</span><span class="sh">"</span>
+    <span class="s">"I love natural language processing."</span><span class="p">,</span>
+    <span class="s">"Word embeddings are a fascinating topic."</span><span class="p">,</span>
+    <span class="s">"Machine learning revolutionizes many industries."</span><span class="p">,</span>
+    <span class="s">"Deep learning is a subset of machine learning."</span><span class="p">,</span>
+    <span class="s">"Natural language processing uses various techniques."</span><span class="p">,</span>
+    <span class="s">"Computers understand human language better with word vectors."</span><span class="p">,</span>
+    <span class="s">"The quick brown fox jumps over the lazy dog."</span><span class="p">,</span>
+    <span class="s">"Dog and cat are common pets."</span><span class="p">,</span>
+    <span class="s">"King is to Queen as Man is to Woman."</span>
 <span class="p">]</span>
 
 <span class="c1"># Preprocess the sentences: tokenize and convert to lowercase
 # gensim's simple_preprocess is convenient for this
-</span><span class="n">tokenized_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="nf">simple_preprocess</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">raw_sentences</span><span class="p">]</span>
+</span><span class="n">tokenized_sentences</span> <span class="o">=</span> <span class="p">[</span><span class="n">simple_preprocess</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span> <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">raw_sentences</span><span class="p">]</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Tokenized Sentences ---</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Tokenized Sentences ---"</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">tokenized_sentences</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
 
 <span class="c1"># --- 2. Train the Word2Vec Model ---
 # Parameters explained:
@@ -269,7 +269,7 @@
 #   sg: Training algorithm: 0 for CBOW, 1 for Skip-gram. Skip-gram is generally better for rare words.
 #   workers: Use these many worker threads to train the model (=faster training).
 #   epochs: Number of iterations (epochs) over the corpus.
-</span><span class="n">model</span> <span class="o">=</span> <span class="nc">Word2Vec</span><span class="p">(</span>
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span>
     <span class="n">sentences</span><span class="o">=</span><span class="n">tokenized_sentences</span><span class="p">,</span>
     <span class="n">vector_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>      <span class="c1"># Example: 100-dimensional vectors
 </span>    <span class="n">window</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>             <span class="c1"># Context window of 5 words on either side
@@ -279,91 +279,91 @@
 </span>    <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span>             <span class="c1"># Train for 10 epochs
 </span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Model Training Complete ---</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Model Training Complete ---"</span><span class="p">)</span>
 
 <span class="c1"># --- 3. Explore the Model ---
 </span>
 <span class="c1"># Get the vector for a specific word
 </span><span class="k">try</span><span class="p">:</span>
-    <span class="n">word_vector</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">[</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Vector for </span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> (first 10 dimensions): </span><span class="si">{</span><span class="n">word_vector</span><span class="p">[</span><span class="si">:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Vector for </span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> shape: </span><span class="si">{</span><span class="n">word_vector</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">word_vector</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">[</span><span class="s">'machine'</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Vector for 'machine' (first 10 dimensions): </span><span class="si">{</span><span class="n">word_vector</span><span class="p">[</span><span class="si">:</span><span class="mi">10</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Vector for 'machine' shape: </span><span class="si">{</span><span class="n">word_vector</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">'machine' not found in vocabulary."</span><span class="p">)</span>
 
 <span class="c1"># Find the most similar words
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Most Similar Words to </span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Most Similar Words to 'machine' ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similar_words</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">similar_words</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s">'machine'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="n">similar_words</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">'machine' not found in vocabulary."</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Most Similar Words to </span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Most Similar Words to 'dog' ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similar_words_dog</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">similar_words_dog</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s">'dog'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="n">similar_words_dog</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="s"> not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">'dog' not found in vocabulary."</span><span class="p">)</span>
 
 
 <span class="c1"># Perform word analogies (e.g., King - Man + Woman = Queen)
 # This may not work perfectly with very small datasets, but demonstrates the concept.
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Word Analogies (King - Man + Woman = ?) ---</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Word Analogies (King - Man + Woman = ?) ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">king</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">woman</span><span class="sh">'</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">man</span><span class="sh">'</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s">'king'</span><span class="p">,</span> <span class="s">'woman'</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s">'man'</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">King - Man + Woman is similar to: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> (similarity: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"King - Man + Woman is similar to: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> (similarity: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">)"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No result for analogy. Vocabulary might be too small.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"No result for analogy. Vocabulary might be too small."</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">One or more words for analogy not found in vocabulary: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"One or more words for analogy not found in vocabulary: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">An error occurred during analogy: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"An error occurred during analogy: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># Check similarity between two words
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Similarity between </span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> and </span><span class="sh">'</span><span class="s">learning</span><span class="sh">'</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Similarity between 'machine' and 'learning' ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similarity</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">similarity</span><span class="p">(</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">learning</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Similarity: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">similarity</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'machine'</span><span class="p">,</span> <span class="s">'learning'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Similarity: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">One or both words not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"One or both words not found in vocabulary."</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Similarity between </span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="s"> and </span><span class="sh">'</span><span class="s">cat</span><span class="sh">'</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Similarity between 'dog' and 'cat' ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similarity_pets</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">similarity</span><span class="p">(</span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">cat</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Similarity: </span><span class="si">{</span><span class="n">similarity_pets</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">similarity_pets</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'dog'</span><span class="p">,</span> <span class="s">'cat'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Similarity: </span><span class="si">{</span><span class="n">similarity_pets</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">One or both words not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"One or both words not found in vocabulary."</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Similarity between </span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="s"> and </span><span class="sh">'</span><span class="s">computer</span><span class="sh">'</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Similarity between 'dog' and 'computer' ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similarity_diff</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">similarity</span><span class="p">(</span><span class="sh">'</span><span class="s">dog</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">computer</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Similarity: </span><span class="si">{</span><span class="n">similarity_diff</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">similarity_diff</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">similarity</span><span class="p">(</span><span class="s">'dog'</span><span class="p">,</span> <span class="s">'computer'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Similarity: </span><span class="si">{</span><span class="n">similarity_diff</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">One or both words not found in vocabulary.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"One or both words not found in vocabulary."</span><span class="p">)</span>
 
 <span class="c1"># --- 4. Save and Load the Model ---
-</span><span class="n">model_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">word2vec_model.bin</span><span class="sh">"</span>
-<span class="n">model</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Model saved to </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">model_path</span> <span class="o">=</span> <span class="s">"word2vec_model.bin"</span>
+<span class="n">model</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Model saved to </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># Load the model back
-</span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Model loaded from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">loaded_model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">model_path</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Model loaded from </span><span class="si">{</span><span class="n">model_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># Verify loaded model
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">--- Verify Loaded Model (Most Similar Words to </span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> using loaded model) ---</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">--- Verify Loaded Model (Most Similar Words to 'machine' using loaded model) ---"</span><span class="p">)</span>
 <span class="k">try</span><span class="p">:</span>
-    <span class="n">similar_words_loaded</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="nf">most_similar</span><span class="p">(</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">similar_words_loaded</span> <span class="o">=</span> <span class="n">loaded_model</span><span class="p">.</span><span class="n">wv</span><span class="p">.</span><span class="n">most_similar</span><span class="p">(</span><span class="s">'machine'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">word</span><span class="p">,</span> <span class="n">similarity</span> <span class="ow">in</span> <span class="n">similar_words_loaded</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">word</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">similarity</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="nb">KeyError</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="sh">'</span><span class="s">machine</span><span class="sh">'</span><span class="s"> not found in vocabulary in loaded model.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">'machine' not found in vocabulary in loaded model."</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">Script execution complete.</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Script execution complete."</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>How to Run the Script:</strong></p>

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Parse Mozilla Bookmark File | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Parse Mozilla Bookmark File" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -230,29 +230,29 @@
 
 <p>Then run this Python script:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">lz4.block</span>
-<span class="kn">import</span> <span class="n">sys</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">lz4.block</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 <span class="k">def</span> <span class="nf">decompress_jsonlz4</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="c1"># Read the first 8 bytes - header magic
-</span>        <span class="n">magic</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">magic</span> <span class="o">!=</span> <span class="sa">b</span><span class="sh">'</span><span class="s">mozLz40</span><span class="se">\0</span><span class="sh">'</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Invalid file header - not a JSON-LZ4 file</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">magic</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">magic</span> <span class="o">!=</span> <span class="sa">b</span><span class="s">'mozLz40</span><span class="se">\0</span><span class="s">'</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Invalid file header - not a JSON-LZ4 file"</span><span class="p">)</span>
 
         <span class="c1"># Read the rest of the file and decompress
-</span>        <span class="n">compressed_data</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-        <span class="n">json_bytes</span> <span class="o">=</span> <span class="n">lz4</span><span class="p">.</span><span class="n">block</span><span class="p">.</span><span class="nf">decompress</span><span class="p">(</span><span class="n">compressed_data</span><span class="p">)</span>
-        <span class="n">json_str</span> <span class="o">=</span> <span class="n">json_bytes</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
+</span>        <span class="n">compressed_data</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">json_bytes</span> <span class="o">=</span> <span class="n">lz4</span><span class="p">.</span><span class="n">block</span><span class="p">.</span><span class="n">decompress</span><span class="p">(</span><span class="n">compressed_data</span><span class="p">)</span>
+        <span class="n">json_str</span> <span class="o">=</span> <span class="n">json_bytes</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_str</span><span class="p">)</span>
 
 <span class="c1"># Example usage
-</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="n">sys</span>
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">sys</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="nf">decompress_jsonlz4</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">decompress_jsonlz4</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>Save it as <code class="language-plaintext highlighter-rouge">parse_bookmarks.py</code>, then run:</p>

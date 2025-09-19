@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Gestión automatizada de borradores de blogs con reinicio de VSCode | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Gestión automatizada de borradores de blogs con reinicio de VSCode" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="es" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -213,75 +213,75 @@
 
 <p>El script realiza las siguientes tareas clave:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">publish_drafts_to_posts</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Verifica los archivos de borrador creados hoy y los mueve al directorio _posts/en.</span><span class="sh">"""</span>
-    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">.</span><span class="nf">today</span><span class="p">()</span>
-    <span class="n">date_str</span> <span class="o">=</span> <span class="n">today</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">'</span><span class="s">%Y-%m-%d</span><span class="sh">'</span><span class="p">)</span>
+    <span class="s">"""Verifica los archivos de borrador creados hoy y los mueve al directorio _posts/en."""</span>
+    <span class="n">today</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">.</span><span class="n">date</span><span class="p">.</span><span class="n">today</span><span class="p">()</span>
+    <span class="n">date_str</span> <span class="o">=</span> <span class="n">today</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">'%Y-%m-%d'</span><span class="p">)</span>
 
-    <span class="n">drafts_dir</span> <span class="o">=</span> <span class="sh">'</span><span class="s">_drafts</span><span class="sh">'</span>
-    <span class="n">posts_en_dir</span> <span class="o">=</span> <span class="sh">"</span><span class="s">original</span><span class="sh">"</span>
+    <span class="n">drafts_dir</span> <span class="o">=</span> <span class="s">'_drafts'</span>
+    <span class="n">posts_en_dir</span> <span class="o">=</span> <span class="s">"original"</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">drafts_dir</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">El directorio de borradores </span><span class="sh">'</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="sh">'</span><span class="s"> no existe. No hay archivos para publicar.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">drafts_dir</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"El directorio de borradores '</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="s">' no existe. No hay archivos para publicar."</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">):</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">):</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">)</span>
 
     <span class="c1"># Patrón para encontrar archivos en el directorio de borradores que comienzan con la fecha de hoy y terminan con -en.md
-</span>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">drafts_dir</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s">-*-en.md</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">pattern</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">drafts_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s">-*-en.md"</span><span class="p">)</span>
 
-    <span class="n">found_files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+    <span class="n">found_files</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_files</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">No se encontraron archivos de borrador en </span><span class="sh">'</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="sh">'</span><span class="s"> que comiencen con </span><span class="sh">'</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="sh">'</span><span class="s"> para publicar.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"No se encontraron archivos de borrador en '</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="s">' que comiencen con '</span><span class="si">{</span><span class="n">date_str</span><span class="si">}</span><span class="s">' para publicar."</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">found_files</span><span class="p">:</span>
-        <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
-        <span class="n">destination_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">destination_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">posts_en_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">shutil</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">destination_path</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Movido </span><span class="sh">'</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> desde </span><span class="sh">'</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="sh">'</span><span class="s"> a </span><span class="sh">'</span><span class="si">{</span><span class="n">posts_en_dir</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">destination_path</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Movido '</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">' desde '</span><span class="si">{</span><span class="n">drafts_dir</span><span class="si">}</span><span class="s">' a '</span><span class="si">{</span><span class="n">posts_en_dir</span><span class="si">}</span><span class="s">'."</span><span class="p">)</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al mover </span><span class="sh">'</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="sh">'</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error al mover '</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">': </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-    <span class="nf">restart_vscode</span><span class="p">()</span>
+    <span class="n">restart_vscode</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">restart_vscode</span><span class="p">():</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Reiniciando VSCode de manera elegante para evitar la recreación accidental de archivos de borrador...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Reiniciando VSCode de manera elegante para evitar la recreación accidental de archivos de borrador..."</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">==</span> <span class="sh">'</span><span class="s">win32</span><span class="sh">'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">'win32'</span><span class="p">:</span>
             <span class="c1"># Cierre elegante sin /f
-</span>            <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">taskkill /im Code.exe /t</span><span class="sh">'</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Retraso para la limpieza
-</span>            <span class="n">subprocess</span><span class="p">.</span><span class="nc">Popen</span><span class="p">([</span><span class="sh">'</span><span class="s">code</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">])</span>  <span class="c1"># Reabrir
-</span>        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">==</span> <span class="sh">'</span><span class="s">darwin</span><span class="sh">'</span><span class="p">:</span>
+</span>            <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">'taskkill /im Code.exe /t'</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Retraso para la limpieza
+</span>            <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'code'</span><span class="p">,</span> <span class="s">'.'</span><span class="p">])</span>  <span class="c1"># Reabrir
+</span>        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">'darwin'</span><span class="p">:</span>
             <span class="c1"># Usar AppleScript para salir de manera elegante
-</span>            <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">osascript -e </span><span class="se">\'</span><span class="s">quit app </span><span class="sh">"</span><span class="s">Visual Studio Code</span><span class="sh">"</span><span class="se">\'</span><span class="sh">'</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nf">call</span><span class="p">([</span><span class="sh">'</span><span class="s">open</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-a</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Visual Studio Code</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">])</span>
-        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">linux</span><span class="sh">'</span><span class="p">):</span>
+</span>            <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">'osascript -e </span><span class="se">\'</span><span class="s">quit app "Visual Studio Code"</span><span class="se">\'</span><span class="s">'</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="p">.</span><span class="n">call</span><span class="p">([</span><span class="s">'open'</span><span class="p">,</span> <span class="s">'-a'</span><span class="p">,</span> <span class="s">'Visual Studio Code'</span><span class="p">,</span> <span class="s">'.'</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">platform</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'linux'</span><span class="p">):</span>
             <span class="c1"># SIGTERM para terminación elegante
-</span>            <span class="n">os</span><span class="p">.</span><span class="nf">system</span><span class="p">(</span><span class="sh">'</span><span class="s">killall code</span><span class="sh">'</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nc">Popen</span><span class="p">([</span><span class="sh">'</span><span class="s">code</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">])</span>
+</span>            <span class="n">os</span><span class="p">.</span><span class="n">system</span><span class="p">(</span><span class="s">'killall code'</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="s">'code'</span><span class="p">,</span> <span class="s">'.'</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Plataforma no soportada para reiniciar VSCode.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Plataforma no soportada para reiniciar VSCode."</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error durante el reinicio: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">. Por favor, reinicia VSCode manualmente.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error durante el reinicio: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">. Por favor, reinicia VSCode manualmente."</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">publish_drafts_to_posts</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">publish_drafts_to_posts</span><span class="p">()</span>
 </code></pre></div></div>
 
 

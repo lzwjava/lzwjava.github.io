@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>WebSocket की खोज | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="WebSocket की खोज" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -369,14 +369,14 @@
 
 <ol>
   <li><strong>आरंभीकरण और कनेक्शन:</strong>
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SRWebSocket</span> <span class="o">*</span><span class="n">webSocket</span> <span class="o">=</span> <span class="p">[[</span><span class="n">SRWebSocket</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithURLRequest</span><span class="p">:[</span><span class="n">NSURLRequest</span> <span class="nf">requestWithURL</span><span class="p">:[</span><span class="n">NSURL</span> <span class="nf">URLWithString</span><span class="p">:</span><span class="s">@"ws://echo.websocket.org"</span><span class="p">]]];</span>
-<span class="n">webSocket</span><span class="p">.</span><span class="n">delegate</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
-<span class="p">[</span><span class="n">webSocket</span> <span class="nf">open</span><span class="p">];</span>
-</code></pre></div>    </div>
+    <pre><code class="language-objective-c">SRWebSocket *webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://echo.websocket.org"]]];
+webSocket.delegate = self;
+[webSocket open];
+</code></pre>
   </li>
   <li><strong>संदेश भेजें:</strong>
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">webSocket</span> <span class="nf">send</span><span class="p">:</span><span class="s">@"Hello, World!"</span><span class="p">];</span>
-</code></pre></div>    </div>
+    <pre><code class="language-objective-c">[webSocket send:@"Hello, World!"];
+</code></pre>
   </li>
   <li>
     <p><strong>संदेश प्राप्त करें:</strong>
@@ -423,34 +423,34 @@
 <h4 id="websocket-उपयोग-के-उदाहरण">WebSocket उपयोग के उदाहरण:</h4>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// क्लाइंट साइड JavaScript उदाहरण</span>
-<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://example.com/socket</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">const</span> <span class="nx">socket</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">WebSocket</span><span class="p">(</span><span class="dl">'</span><span class="s1">ws://example.com/socket</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="nx">socket</span><span class="p">.</span><span class="nx">onopen</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">WebSocket कनेक्शन स्थापित</span><span class="dl">'</span><span class="p">);</span>
-    <span class="nx">socket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Server!</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">WebSocket कनेक्शन स्थापित</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">socket</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="dl">'</span><span class="s1">Hello Server!</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="nx">socket</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">सर्वर से प्राप्त संदेश: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">सर्वर से प्राप्त संदेश: </span><span class="dl">'</span> <span class="o">+</span> <span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
 <span class="p">};</span>
 
 <span class="nx">socket</span><span class="p">.</span><span class="nx">onclose</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">WebSocket कनेक्शन बंद</span><span class="dl">'</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">WebSocket कनेक्शन बंद</span><span class="dl">'</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># सर्वर साइड Python उदाहरण (websockets लाइब्रेरी का उपयोग करके)
-</span><span class="kn">import</span> <span class="n">asyncio</span>
-<span class="kn">import</span> <span class="n">websockets</span>
+</span><span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">websockets</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">echo</span><span class="p">(</span><span class="n">websocket</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
     <span class="k">async</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">websocket</span><span class="p">:</span>
-        <span class="k">await</span> <span class="n">websocket</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">await</span> <span class="n">websocket</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 
-<span class="n">start_server</span> <span class="o">=</span> <span class="n">websockets</span><span class="p">.</span><span class="nf">serve</span><span class="p">(</span><span class="n">echo</span><span class="p">,</span> <span class="sh">"</span><span class="s">localhost</span><span class="sh">"</span><span class="p">,</span> <span class="mi">8765</span><span class="p">)</span>
+<span class="n">start_server</span> <span class="o">=</span> <span class="n">websockets</span><span class="p">.</span><span class="n">serve</span><span class="p">(</span><span class="n">echo</span><span class="p">,</span> <span class="s">"localhost"</span><span class="p">,</span> <span class="mi">8765</span><span class="p">)</span>
 
-<span class="n">asyncio</span><span class="p">.</span><span class="nf">get_event_loop</span><span class="p">().</span><span class="nf">run_until_complete</span><span class="p">(</span><span class="n">start_server</span><span class="p">)</span>
-<span class="n">asyncio</span><span class="p">.</span><span class="nf">get_event_loop</span><span class="p">().</span><span class="nf">run_forever</span><span class="p">()</span>
+<span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">().</span><span class="n">run_until_complete</span><span class="p">(</span><span class="n">start_server</span><span class="p">)</span>
+<span class="n">asyncio</span><span class="p">.</span><span class="n">get_event_loop</span><span class="p">().</span><span class="n">run_forever</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>WebSocket प्रोटोकॉल का उपयोग करके, डेवलपर्स अधिक कुशल और रीयल-टाइम संचार सुविधाओं वाले एप्लिकेशन बना सकते हैं।</p>

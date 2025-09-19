@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Image Compression using Linear Algebra | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Image Compression using Linear Algebra" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -202,66 +202,66 @@
 
 <p>The following Python code demonstrates how to compress an image using SVD. The process involves decomposing the image into its constituent components, compressing these components by retaining only a subset of the most significant features, and then reconstructing the compressed image. This approach can be applied to both grayscale and color images, offering a flexible and mathematically sound method for reducing image size.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">compress_image</span><span class="p">(</span><span class="n">image_path</span><span class="p">,</span> <span class="n">compression_factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
     <span class="c1"># Open the image and convert it to a numpy array
-</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-    <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">img_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 
     <span class="c1"># Check if the image is grayscale or color
-</span>    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Grayscale image
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># Grayscale image
 </span>        <span class="c1"># Perform SVD on the image array
-</span>        <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">svd</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span>        <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">svd</span><span class="p">(</span><span class="n">img_array</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
         <span class="c1"># Compress the image by keeping only the top singular values
-</span>        <span class="n">k</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">compression_factor</span> <span class="o">*</span> <span class="nf">min</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
-        <span class="n">S_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+</span>        <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">compression_factor</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+        <span class="n">S_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
         <span class="n">U_compressed</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>
         <span class="n">Vt_compressed</span> <span class="o">=</span> <span class="n">Vt</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="c1"># Reconstruct the compressed image
-</span>        <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">U_compressed</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">S_compressed</span><span class="p">,</span> <span class="n">Vt_compressed</span><span class="p">))</span>
+</span>        <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U_compressed</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_compressed</span><span class="p">,</span> <span class="n">Vt_compressed</span><span class="p">))</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># Color image
 </span>        <span class="c1"># Perform SVD on each channel separately
-</span>        <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>  <span class="c1"># Iterate over each channel
+</span>        <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">img_array</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">img_array</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>  <span class="c1"># Iterate over each channel
 </span>            <span class="n">channel</span> <span class="o">=</span> <span class="n">img_array</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span>
-            <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">svd</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+            <span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">svd</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
             <span class="c1"># Compress the channel by keeping only the top singular values
-</span>            <span class="n">k</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">compression_factor</span> <span class="o">*</span> <span class="nf">min</span><span class="p">(</span><span class="n">channel</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
-            <span class="n">S_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
+</span>            <span class="n">k</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">compression_factor</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="n">channel</span><span class="p">.</span><span class="n">shape</span><span class="p">))</span>
+            <span class="n">S_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">diag</span><span class="p">(</span><span class="n">S</span><span class="p">[:</span><span class="n">k</span><span class="p">])</span>
             <span class="n">U_compressed</span> <span class="o">=</span> <span class="n">U</span><span class="p">[:,</span> <span class="p">:</span><span class="n">k</span><span class="p">]</span>
             <span class="n">Vt_compressed</span> <span class="o">=</span> <span class="n">Vt</span><span class="p">[:</span><span class="n">k</span><span class="p">,</span> <span class="p">:]</span>
 
             <span class="c1"># Reconstruct the compressed channel
-</span>            <span class="n">img_compressed</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">U_compressed</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">S_compressed</span><span class="p">,</span> <span class="n">Vt_compressed</span><span class="p">))</span>
+</span>            <span class="n">img_compressed</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U_compressed</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">S_compressed</span><span class="p">,</span> <span class="n">Vt_compressed</span><span class="p">))</span>
 
     <span class="c1"># Clip the values to be between 0 and 255, and convert back to uint8
-</span>    <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">img_compressed</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
+</span>    <span class="n">img_compressed</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">clip</span><span class="p">(</span><span class="n">img_compressed</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">).</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">)</span>
 
     <span class="c1"># Generate the output path by adding '_compressed' to the original filename
-</span>    <span class="n">file_name</span><span class="p">,</span> <span class="n">file_extension</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
-    <span class="n">output_path</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">_compressed</span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="sh">"</span>
+</span>    <span class="n">file_name</span><span class="p">,</span> <span class="n">file_extension</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">image_path</span><span class="p">)</span>
+    <span class="n">output_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">file_name</span><span class="si">}</span><span class="s">_compressed</span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s">"</span>
 
     <span class="c1"># Save the compressed image
-</span>    <span class="n">compressed_img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">fromarray</span><span class="p">(</span><span class="n">img_compressed</span><span class="p">)</span>
-    <span class="n">compressed_img</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+</span>    <span class="n">compressed_img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img_compressed</span><span class="p">)</span>
+    <span class="n">compressed_img</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">output_path</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Compress an image using SVD.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">input_file</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Path to the input image file</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--compression_factor</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Compression factor (default: 0.1)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Compress an image using SVD."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"input_file"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Path to the input image file"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--compression_factor"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Compression factor (default: 0.1)"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">output_file</span> <span class="o">=</span> <span class="nf">compress_image</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">input_file</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">compression_factor</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Compressed image saved as: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">output_file</span> <span class="o">=</span> <span class="n">compress_image</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">input_file</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">compression_factor</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Compressed image saved as: </span><span class="si">{</span><span class="n">output_file</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 </code></pre></div></div>
 

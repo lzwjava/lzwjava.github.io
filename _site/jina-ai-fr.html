@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Écosystème Complet d’Outils d’IA | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Écosystème Complet d’Outils d’IA" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="fr" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -262,46 +262,46 @@
 
 <p>Ce script Python interagit avec les services de Jina AI en utilisant des clés API et des arguments en ligne de commande. Il prend en charge deux tâches principales : récupérer le contenu d’une URL et effectuer une requête de recherche. Le script récupère la clé API Jina à partir des variables d’environnement, garantissant un accès sécurisé aux services. Il utilise la bibliothèque <code class="language-plaintext highlighter-rouge">requests</code> pour effectuer des requêtes HTTP et <code class="language-plaintext highlighter-rouge">base64</code> pour décoder la requête de recherche. Le script affiche ensuite la réponse du service Jina AI.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">base64</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">base64</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">JINA_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"JINA_API_KEY"</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">JINA_API_KEY environment variable not set.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"JINA_API_KEY environment variable not set."</span><span class="p">)</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--job</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">search</span><span class="sh">'</span><span class="p">],</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Job to execute (url or search)</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--input</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Input for the job</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--job"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">'url'</span><span class="p">,</span> <span class="s">'search'</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s">"Job to execute (url or search)"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--input"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Input for the job"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://r.jina.ai/</span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="nb">input</span><span class="si">}</span><span class="sh">'</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">'</span><span class="p">}</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Headers: </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">'url'</span><span class="p">:</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'https://r.jina.ai/</span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="nb">input</span><span class="si">}</span><span class="s">'</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s">'Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">'</span><span class="p">}</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Headers: </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
-<span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">'</span><span class="s">search</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">question</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="nf">b64decode</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nb">input</span><span class="p">).</span><span class="nf">decode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="sh">'</span><span class="s">ignore</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">https://s.jina.ai/</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="sh">'</span>
+<span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">'search'</span><span class="p">:</span>
+    <span class="n">question</span> <span class="o">=</span> <span class="n">base64</span><span class="p">.</span><span class="n">b64decode</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nb">input</span><span class="p">).</span><span class="n">decode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s">'ignore'</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'https://s.jina.ai/</span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="s">'</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sa">f</span><span class="sh">'</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">X-Engine</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">direct</span><span class="sh">'</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">X-Retain-Images</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">none</span><span class="sh">'</span>
+        <span class="s">'Authorization'</span><span class="p">:</span> <span class="sa">f</span><span class="s">'Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">'</span><span class="p">,</span>
+        <span class="s">'X-Engine'</span><span class="p">:</span> <span class="s">'direct'</span><span class="p">,</span>
+        <span class="s">'X-Retain-Images'</span><span class="p">:</span> <span class="s">'none'</span>
     <span class="p">}</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Headers: </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"URL: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Headers: </span><span class="si">{</span><span class="n">headers</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="p">)</span>
 
 <span class="k">else</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Please specify --job url or --job search</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Please specify --job url or --job search"</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -318,23 +318,23 @@
   <li>Installer le package Python.</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">tavily</span> <span class="kn">import</span> <span class="n">TavilyClient</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">tavily</span> <span class="kn">import</span> <span class="n">TavilyClient</span>
 
 <span class="c1"># Récupérer la clé API à partir de la variable d'environnement
-</span><span class="n">TAVILY_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">'</span><span class="s">TAVILY_API_KEY</span><span class="sh">'</span><span class="p">)</span>
+</span><span class="n">TAVILY_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">'TAVILY_API_KEY'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">TAVILY_API_KEY</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Clé API introuvable. Veuillez définir la variable d</span><span class="sh">'</span><span class="s">environnement TAVILY_API_KEY.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Clé API introuvable. Veuillez définir la variable d'environnement TAVILY_API_KEY."</span><span class="p">)</span>
 
 <span class="c1"># Initialiser le TavilyClient avec la clé API récupérée
-</span><span class="n">tavily_client</span> <span class="o">=</span> <span class="nc">TavilyClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">TAVILY_API_KEY</span><span class="p">)</span>
+</span><span class="n">tavily_client</span> <span class="o">=</span> <span class="n">TavilyClient</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">TAVILY_API_KEY</span><span class="p">)</span>
 
 <span class="c1"># Effectuer une requête de recherche
-</span><span class="n">response</span> <span class="o">=</span> <span class="n">tavily_client</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sh">"</span><span class="s">Who is Leo Messi?</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">tavily_client</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">"Who is Leo Messi?"</span><span class="p">)</span>
 
 <span class="c1"># Afficher la réponse
-</span><span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 </code></pre></div></div>
 
@@ -425,71 +425,71 @@
   </li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">re</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">re</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
-<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">ELEVENLABS_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"ELEVENLABS_API_KEY"</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">ELEVENLABS_API_KEY environment variable not set.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"ELEVENLABS_API_KEY environment variable not set."</span><span class="p">)</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--file</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Fichier Markdown à convertir en audio</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--text</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Texte à convertir en audio</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--output</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Nom du fichier de sortie</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--voice_id</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">"</span><span class="s">21m00Tcm4TlvDq8iK2G8</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">ID de la voix à utiliser</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--file"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Fichier Markdown à convertir en audio"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--text"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Texte à convertir en audio"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--output"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Nom du fichier de sortie"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--voice_id"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"21m00Tcm4TlvDq8iK2G8"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"ID de la voix à utiliser"</span><span class="p">)</span>
 
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="nb">file</span><span class="p">:</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nb">file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="nb">file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
             <span class="c1"># Supprimer le front matter
-</span>            <span class="n">content</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">---.*?---</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
-            <span class="n">text</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
+</span>            <span class="n">content</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'---.*?---'</span><span class="p">,</span> <span class="s">''</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="n">re</span><span class="p">.</span><span class="n">DOTALL</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur : Fichier introuvable : </span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="nb">file</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur : Fichier introuvable : </span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="nb">file</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors de la lecture du fichier : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors de la lecture du fichier : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">text</span><span class="p">:</span>
     <span class="n">text</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">text</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Erreur : --file ou --text doit être spécifié.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Erreur : --file ou --text doit être spécifié."</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 
-<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.elevenlabs.io/v1/text-to-speech/</span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="n">voice_id</span><span class="si">}</span><span class="sh">"</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://api.elevenlabs.io/v1/text-to-speech/</span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="n">voice_id</span><span class="si">}</span><span class="s">"</span>
 
 <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">audio/mpeg</span><span class="sh">"</span><span class="p">,</span>
-  <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-  <span class="sh">"</span><span class="s">xi-api-key</span><span class="sh">"</span><span class="p">:</span> <span class="n">api_key</span>
+  <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"audio/mpeg"</span><span class="p">,</span>
+  <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+  <span class="s">"xi-api-key"</span><span class="p">:</span> <span class="n">api_key</span>
 <span class="p">}</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
-  <span class="sh">"</span><span class="s">model_id</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">eleven_flash_v2_5</span><span class="sh">"</span><span class="p">,</span>
-  <span class="sh">"</span><span class="s">voice_settings</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="sh">"</span><span class="s">stability</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">similarity_boost</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.5</span>
+  <span class="s">"text"</span><span class="p">:</span> <span class="n">text</span><span class="p">,</span>
+  <span class="s">"model_id"</span><span class="p">:</span> <span class="s">"eleven_flash_v2_5"</span><span class="p">,</span>
+  <span class="s">"voice_settings"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s">"stability"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s">"similarity_boost"</span><span class="p">:</span> <span class="mf">0.5</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Audio enregistré sous </span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Audio enregistré sous </span><span class="si">{</span><span class="n">args</span><span class="p">.</span><span class="n">output</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur : </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur : </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 </code></pre></div></div>
 

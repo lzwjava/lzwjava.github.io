@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>qBittorrent File Verification: SHA-1 Hashing | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="qBittorrent File Verification: SHA-1 Hashing" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -239,60 +239,60 @@
 
 <p>Here’s the script with comments for clarity:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">hashlib</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="k">def</span> <span class="nf">compute_piece_hashes</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Compute SHA-1 hashes for each piece of the file.</span><span class="sh">"""</span>
+    <span class="s">"""Compute SHA-1 hashes for each piece of the file."""</span>
     <span class="n">hashes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">rb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'rb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-            <span class="n">piece</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="n">piece_size</span><span class="p">)</span>
+            <span class="n">piece</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">piece_size</span><span class="p">)</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">piece</span><span class="p">:</span>
                 <span class="k">break</span>
-            <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="nf">sha1</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
-            <span class="n">hashes</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">())</span>
+            <span class="n">hash_obj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">piece</span><span class="p">)</span>
+            <span class="n">hashes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">hash_obj</span><span class="p">.</span><span class="n">hexdigest</span><span class="p">())</span>
     <span class="k">return</span> <span class="n">hashes</span>
 
 <span class="k">def</span> <span class="nf">verify_file_integrity</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Verify the file</span><span class="sh">'</span><span class="s">s integrity by comparing piece hashes.</span><span class="sh">"""</span>
-    <span class="n">current_hashes</span> <span class="o">=</span> <span class="nf">compute_piece_hashes</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">current_hashes</span><span class="p">)</span> <span class="o">!=</span> <span class="nf">len</span><span class="p">(</span><span class="n">expected_hashes</span><span class="p">):</span>
+    <span class="s">"""Verify the file's integrity by comparing piece hashes."""</span>
+    <span class="n">current_hashes</span> <span class="o">=</span> <span class="n">compute_piece_hashes</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">current_hashes</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">expected_hashes</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="k">for</span> <span class="n">current</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">current_hashes</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">current</span><span class="p">,</span> <span class="n">expected</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">current_hashes</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">current</span> <span class="o">!=</span> <span class="n">expected</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
     <span class="k">return</span> <span class="bp">True</span>
 
 <span class="c1"># Create a sample file with known content
-</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">file1.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">Hello, this is a test file.</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file1.txt'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Hello, this is a test file."</span><span class="p">)</span>
 
 <span class="n">piece_size</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># bytes, small for demonstration
 </span>
 <span class="c1"># Compute expected hashes from file1.txt (simulates torrent hashes)
-</span><span class="n">expected_hashes</span> <span class="o">=</span> <span class="nf">compute_piece_hashes</span><span class="p">(</span><span class="sh">'</span><span class="s">file1.txt</span><span class="sh">'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Expected hashes:</span><span class="sh">"</span><span class="p">,</span> <span class="p">[</span><span class="n">h</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">expected_hashes</span><span class="p">])</span>  <span class="c1"># Show first 8 chars for readability
+</span><span class="n">expected_hashes</span> <span class="o">=</span> <span class="n">compute_piece_hashes</span><span class="p">(</span><span class="s">'file1.txt'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Expected hashes:"</span><span class="p">,</span> <span class="p">[</span><span class="n">h</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">expected_hashes</span><span class="p">])</span>  <span class="c1"># Show first 8 chars for readability
 </span>
 <span class="c1"># Copy file1.txt to file2.txt to simulate moving the file
-</span><span class="n">shutil</span><span class="p">.</span><span class="nf">copyfile</span><span class="p">(</span><span class="sh">'</span><span class="s">file1.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">file2.txt</span><span class="sh">'</span><span class="p">)</span>
+</span><span class="n">shutil</span><span class="p">.</span><span class="n">copyfile</span><span class="p">(</span><span class="s">'file1.txt'</span><span class="p">,</span> <span class="s">'file2.txt'</span><span class="p">)</span>
 
 <span class="c1"># Verify file2.txt against expected hashes (should pass)
-</span><span class="n">is_valid</span> <span class="o">=</span> <span class="nf">verify_file_integrity</span><span class="p">(</span><span class="sh">'</span><span class="s">file2.txt</span><span class="sh">'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Verification of file2.txt (unchanged):</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Valid</span><span class="sh">"</span> <span class="k">if</span> <span class="n">is_valid</span> <span class="k">else</span> <span class="sh">"</span><span class="s">Invalid</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">verify_file_integrity</span><span class="p">(</span><span class="s">'file2.txt'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Verification of file2.txt (unchanged):"</span><span class="p">,</span> <span class="s">"Valid"</span> <span class="k">if</span> <span class="n">is_valid</span> <span class="k">else</span> <span class="s">"Invalid"</span><span class="p">)</span>
 
 <span class="c1"># Modify file2.txt to simulate corruption or change
-</span><span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">file2.txt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s"> Modified</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'file2.txt'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">" Modified"</span><span class="p">)</span>
 
 <span class="c1"># Verify again (should fail due to changed content)
-</span><span class="n">is_valid</span> <span class="o">=</span> <span class="nf">verify_file_integrity</span><span class="p">(</span><span class="sh">'</span><span class="s">file2.txt</span><span class="sh">'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Verification of file2.txt (modified):</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Valid</span><span class="sh">"</span> <span class="k">if</span> <span class="n">is_valid</span> <span class="k">else</span> <span class="sh">"</span><span class="s">Invalid</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">is_valid</span> <span class="o">=</span> <span class="n">verify_file_integrity</span><span class="p">(</span><span class="s">'file2.txt'</span><span class="p">,</span> <span class="n">piece_size</span><span class="p">,</span> <span class="n">expected_hashes</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Verification of file2.txt (modified):"</span><span class="p">,</span> <span class="s">"Valid"</span> <span class="k">if</span> <span class="n">is_valid</span> <span class="k">else</span> <span class="s">"Invalid"</span><span class="p">)</span>
 
 <span class="c1"># Clean up the created files
-</span><span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="sh">'</span><span class="s">file1.txt</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="sh">'</span><span class="s">file2.txt</span><span class="sh">'</span><span class="p">)</span>
+</span><span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">'file1.txt'</span><span class="p">)</span>
+<span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">'file2.txt'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="how-it-works">How It Works</h3>

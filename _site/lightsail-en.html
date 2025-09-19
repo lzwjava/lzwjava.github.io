@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Managing AWS Lightsail Instances | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Managing AWS Lightsail Instances" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -329,172 +329,172 @@
 
 <p>This policy can be attached to a user or role to grant the necessary permissions.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">random</span>
-<span class="kn">import</span> <span class="n">string</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">yaml</span>
-<span class="kn">import</span> <span class="n">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
-<span class="n">KEY_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="sh">"</span><span class="s">~/Downloads/LightsailDefaultKey-ap-northeast-1.pem</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">KEY_PATH</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">"~/Downloads/LightsailDefaultKey-ap-northeast-1.pem"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">_get_lightsail_instances</span><span class="p">():</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fetching Lightsail instances...</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Fetching Lightsail instances..."</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">get-instances</span><span class="sh">"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Lightsail instances fetched successfully.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">safe_load</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"get-instances"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Lightsail instances fetched successfully."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">yaml</span><span class="p">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error getting Lightsail instances: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error getting Lightsail instances: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">yaml</span><span class="p">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error decoding YAML response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error decoding YAML response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">_get_lightsail_instance</span><span class="p">(</span><span class="n">instance_name</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fetching details for instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fetching details for instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">get-instance</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--instance-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="n">instance_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="p">.</span><span class="nf">safe_load</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">instance_data</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">instance</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">instance_data</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Could not find instance with name: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"get-instance"</span><span class="p">,</span> <span class="s">"--instance-name"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">instance_data</span> <span class="o">=</span> <span class="n">yaml</span><span class="p">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">stdout</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">instance_data</span> <span class="ow">or</span> <span class="s">'instance'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">instance_data</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Could not find instance with name: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
-        <span class="k">return</span> <span class="n">instance_data</span><span class="p">[</span><span class="sh">'</span><span class="s">instance</span><span class="sh">'</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">instance_data</span><span class="p">[</span><span class="s">'instance'</span><span class="p">]</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error getting instance details: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error getting instance details: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">yaml</span><span class="p">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error decoding YAML response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error decoding YAML response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"An unexpected error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 
-<span class="k">def</span> <span class="nf">create_lightsail_instance</span><span class="p">(</span><span class="n">instance_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">availability_zone</span><span class="o">=</span><span class="sh">"</span><span class="s">ap-northeast-1a</span><span class="sh">"</span><span class="p">,</span> <span class="n">bundle_id</span><span class="o">=</span><span class="sh">"</span><span class="s">nano_2_0</span><span class="sh">"</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">create_lightsail_instance</span><span class="p">(</span><span class="n">instance_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">availability_zone</span><span class="o">=</span><span class="s">"ap-northeast-1a"</span><span class="p">,</span> <span class="n">bundle_id</span><span class="o">=</span><span class="s">"nano_2_0"</span><span class="p">,</span> <span class="n">user_data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">instance_name</span><span class="p">:</span>
-        <span class="n">random_chars</span> <span class="o">=</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
-        <span class="n">instance_name</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">random_chars</span><span class="si">}</span><span class="sh">"</span>
+        <span class="n">random_chars</span> <span class="o">=</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">string</span><span class="p">.</span><span class="n">ascii_lowercase</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">random_chars</span><span class="si">}</span><span class="s">"</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">user_data</span><span class="p">:</span>
-        <span class="n">user_data</span> <span class="o">=</span> <span class="sh">"""</span><span class="s">#!/bin/bash
+        <span class="n">user_data</span> <span class="o">=</span> <span class="s">"""#!/bin/bash
         sudo apt update
-        </span><span class="sh">"""</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Creating Lightsail instance with name: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">, zone: </span><span class="si">{</span><span class="n">availability_zone</span><span class="si">}</span><span class="s">, bundle: </span><span class="si">{</span><span class="n">bundle_id</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>
+        """</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Creating Lightsail instance with name: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">, zone: </span><span class="si">{</span><span class="n">availability_zone</span><span class="si">}</span><span class="s">, bundle: </span><span class="si">{</span><span class="n">bundle_id</span><span class="si">}</span><span class="s">..."</span><span class="p">)</span>
 
     <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">create-instances</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">--instance-names</span><span class="sh">"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">--availability-zone</span><span class="sh">"</span><span class="p">,</span> <span class="n">availability_zone</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">--bundle-id</span><span class="sh">"</span><span class="p">,</span> <span class="n">bundle_id</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">--blueprint-id</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">ubuntu_24_04</span><span class="sh">"</span>
+        <span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"create-instances"</span><span class="p">,</span>
+        <span class="s">"--instance-names"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">,</span>
+        <span class="s">"--availability-zone"</span><span class="p">,</span> <span class="n">availability_zone</span><span class="p">,</span>
+        <span class="s">"--bundle-id"</span><span class="p">,</span> <span class="n">bundle_id</span><span class="p">,</span>
+        <span class="s">"--blueprint-id"</span><span class="p">,</span> <span class="s">"ubuntu_24_04"</span>
     <span class="p">]</span>
     
     <span class="k">if</span> <span class="n">user_data</span><span class="p">:</span>
-        <span class="n">command</span><span class="p">.</span><span class="nf">extend</span><span class="p">([</span><span class="sh">"</span><span class="s">--user-data</span><span class="sh">"</span><span class="p">,</span> <span class="n">user_data</span><span class="p">])</span>
+        <span class="n">command</span><span class="p">.</span><span class="n">extend</span><span class="p">([</span><span class="s">"--user-data"</span><span class="p">,</span> <span class="n">user_data</span><span class="p">])</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Lightsail instance </span><span class="sh">'</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> created successfully.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Lightsail instance '</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">' created successfully."</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">instance_name</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error creating Lightsail instance: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error creating Lightsail instance: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">delete_all_lightsail_instances</span><span class="p">(</span><span class="n">instance_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">instance_name</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Deleting instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Executing command: aws lightsail delete-instance --instance-name </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Deleting instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Executing command: aws lightsail delete-instance --instance-name </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">delete-instance</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--instance-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Lightsail instance </span><span class="sh">'</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> deleted successfully.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"delete-instance"</span><span class="p">,</span> <span class="s">"--instance-name"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Lightsail instance '</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">' deleted successfully."</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error deleting Lightsail instance: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error deleting Lightsail instance: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="n">instances_yaml</span> <span class="o">=</span> <span class="nf">_get_lightsail_instances</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">instances_yaml</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">instances</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">instances_yaml</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No Lightsail instances found to delete.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">instances_yaml</span> <span class="o">=</span> <span class="n">_get_lightsail_instances</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">instances_yaml</span> <span class="ow">or</span> <span class="s">'instances'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">instances_yaml</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"No Lightsail instances found to delete."</span><span class="p">)</span>
         <span class="k">return</span>
 
-    <span class="n">instance_list</span> <span class="o">=</span> <span class="n">instances_yaml</span><span class="p">[</span><span class="sh">'</span><span class="s">instances</span><span class="sh">'</span><span class="p">]</span>
+    <span class="n">instance_list</span> <span class="o">=</span> <span class="n">instances_yaml</span><span class="p">[</span><span class="s">'instances'</span><span class="p">]</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">instance_list</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No Lightsail instances found to delete.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"No Lightsail instances found to delete."</span><span class="p">)</span>
         <span class="k">return</span>
     
     <span class="k">for</span> <span class="n">instance</span> <span class="ow">in</span> <span class="n">instance_list</span><span class="p">:</span>
-        <span class="n">instance_name</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Deleting instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Executing command: aws lightsail delete-instance --instance-name </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">delete-instance</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--instance-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">All Lightsail instances deleted successfully.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="s">'name'</span><span class="p">]</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Deleting instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Executing command: aws lightsail delete-instance --instance-name </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"delete-instance"</span><span class="p">,</span> <span class="s">"--instance-name"</span><span class="p">,</span> <span class="n">instance_name</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"All Lightsail instances deleted successfully."</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">install_outline_server</span><span class="p">(</span><span class="n">instance_name</span><span class="p">):</span>
-    <span class="n">instance</span> <span class="o">=</span> <span class="nf">_get_lightsail_instance</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
+    <span class="n">instance</span> <span class="o">=</span> <span class="n">_get_lightsail_instance</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">instance</span><span class="p">:</span>
         <span class="k">return</span>
-    <span class="n">public_ip</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="sh">'</span><span class="s">publicIpAddress</span><span class="sh">'</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Installing outline server on instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s"> with IP: </span><span class="si">{</span><span class="n">public_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">user_data</span> <span class="o">=</span> <span class="sh">"""</span><span class="s">#!/bin/bash
+    <span class="n">public_ip</span> <span class="o">=</span> <span class="n">instance</span><span class="p">[</span><span class="s">'publicIpAddress'</span><span class="p">]</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Installing outline server on instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s"> with IP: </span><span class="si">{</span><span class="n">public_ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">user_data</span> <span class="o">=</span> <span class="s">"""#!/bin/bash
     sudo apt update
-    sudo bash -c </span><span class="sh">"</span><span class="s">$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)</span><span class="sh">"</span><span class="s">
-    </span><span class="sh">"""</span>
+    sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/Jigsaw-Code/outline-server/master/src/server_manager/install_scripts/install_server.sh)"
+    """</span>
     
     
-    <span class="n">os</span><span class="p">.</span><span class="nf">chmod</span><span class="p">(</span><span class="n">KEY_PATH</span><span class="p">,</span> <span class="mo">0o600</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Executing command: chmod 600 </span><span class="si">{</span><span class="n">KEY_PATH</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">KEY_PATH</span><span class="p">,</span> <span class="mo">0o600</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Executing command: chmod 600 </span><span class="si">{</span><span class="n">KEY_PATH</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
     <span class="n">ssh_command</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="sh">"</span><span class="s">ssh</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">-i</span><span class="sh">"</span><span class="p">,</span>
+        <span class="s">"ssh"</span><span class="p">,</span>
+        <span class="s">"-i"</span><span class="p">,</span>
         <span class="n">KEY_PATH</span><span class="p">,</span>
-        <span class="sa">f</span><span class="sh">"</span><span class="s">ubuntu@</span><span class="si">{</span><span class="n">public_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s">"ubuntu@</span><span class="si">{</span><span class="n">public_ip</span><span class="si">}</span><span class="s">"</span><span class="p">,</span>
         <span class="n">user_data</span>
     <span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Executing command: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">ssh_command</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Executing command: </span><span class="si">{</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">ssh_command</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">ssh_command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Outline server installed on </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s"> successfully.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">ssh_command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Outline server installed on </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s"> successfully."</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error installing outline server: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error installing outline server: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 
 
 <span class="k">def</span> <span class="nf">open_firewall_ports</span><span class="p">(</span><span class="n">instance_name</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Opening firewall ports for instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">protocol</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">"</span><span class="s">tcp</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">udp</span><span class="sh">"</span><span class="p">]:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Opening firewall ports for instance: </span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">protocol</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"tcp"</span><span class="p">,</span> <span class="s">"udp"</span><span class="p">]:</span>
         <span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lightsail</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">open-instance-public-ports</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">--port-info</span><span class="sh">"</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">protocol=</span><span class="si">{</span><span class="n">protocol</span><span class="si">}</span><span class="s">,fromPort=1000,toPort=65535</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">--instance-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">instance_name</span>
+            <span class="s">"aws"</span><span class="p">,</span> <span class="s">"lightsail"</span><span class="p">,</span> <span class="s">"open-instance-public-ports"</span><span class="p">,</span>
+            <span class="s">"--port-info"</span><span class="p">,</span> <span class="sa">f</span><span class="s">"protocol=</span><span class="si">{</span><span class="n">protocol</span><span class="si">}</span><span class="s">,fromPort=1000,toPort=65535"</span><span class="p">,</span>
+            <span class="s">"--instance-name"</span><span class="p">,</span> <span class="n">instance_name</span>
         <span class="p">]</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Executing command: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Firewall ports opened for instance </span><span class="sh">'</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> successfully.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Executing command: </span><span class="si">{</span><span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Firewall ports opened for instance '</span><span class="si">{</span><span class="n">instance_name</span><span class="si">}</span><span class="s">' successfully."</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Create or delete Lightsail instances.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--job</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">create</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">delete</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">install</span><span class="sh">"</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Action type: create, delete, or install</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Create or delete Lightsail instances."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--job"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">"create"</span><span class="p">,</span> <span class="s">"delete"</span><span class="p">,</span> <span class="s">"install"</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Action type: create, delete, or install"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Setting AWS region to ap-northeast-1</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">aws</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">configure</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">set</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">region</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">ap-northeast-1</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Setting AWS region to ap-northeast-1"</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"aws"</span><span class="p">,</span> <span class="s">"configure"</span><span class="p">,</span> <span class="s">"set"</span><span class="p">,</span> <span class="s">"region"</span><span class="p">,</span> <span class="s">"ap-northeast-1"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">create</span><span class="sh">"</span><span class="p">:</span>
-        <span class="n">instance_name</span> <span class="o">=</span> <span class="nf">create_lightsail_instance</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">"create"</span><span class="p">:</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="n">create_lightsail_instance</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">instance_name</span><span class="p">:</span>
-            <span class="nf">open_firewall_ports</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">delete</span><span class="sh">"</span><span class="p">:</span>
-        <span class="n">instance_name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter the instance name to delete: </span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">delete_all_lightsail_instances</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">install</span><span class="sh">"</span><span class="p">:</span>
-        <span class="n">instance_name</span> <span class="o">=</span> <span class="nf">input</span><span class="p">(</span><span class="sh">"</span><span class="s">Enter the instance name to install Outline server on: </span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">install_outline_server</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
+            <span class="n">open_firewall_ports</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">"delete"</span><span class="p">:</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter the instance name to delete: "</span><span class="p">)</span>
+        <span class="n">delete_all_lightsail_instances</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">"install"</span><span class="p">:</span>
+        <span class="n">instance_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s">"Enter the instance name to install Outline server on: "</span><span class="p">)</span>
+        <span class="n">install_outline_server</span><span class="p">(</span><span class="n">instance_name</span><span class="p">)</span>
 
 </code></pre></div></div>
 

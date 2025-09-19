@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Génération Audio de Conversation | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Génération Audio de Conversation" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="fr" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -227,129 +227,129 @@
 
 <h2 id="code">Code</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">random</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
-<span class="kn">import</span> <span class="n">tempfile</span>
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">argparse</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
 
 <span class="c1"># Répertoire de sortie fixe pour les conversations
-</span><span class="n">OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">assets/conversations</span><span class="sh">"</span>
-<span class="n">INPUT_DIRECTORY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">scripts/conversation</span><span class="sh">"</span>
+</span><span class="n">OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="s">"assets/conversations"</span>
+<span class="n">INPUT_DIRECTORY</span> <span class="o">=</span> <span class="s">"scripts/conversation"</span>
 
 <span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">,</span> <span class="n">voice_name</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Génération audio pour : </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Génération audio pour : </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
-        <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">VoiceSelectionParams</span><span class="p">(</span><span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">voice_name</span><span class="p">)</span>
-        <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">AudioConfig</span><span class="p">(</span>
+        <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">TextToSpeechClient</span><span class="p">()</span>
+        <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">VoiceSelectionParams</span><span class="p">(</span><span class="n">language_code</span><span class="o">=</span><span class="s">"en-US"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">voice_name</span><span class="p">)</span>
+        <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioConfig</span><span class="p">(</span>
             <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">MP3</span><span class="p">,</span>
-            <span class="n">effects_profile_id</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">small-bluetooth-speaker-class-device</span><span class="sh">"</span><span class="p">]</span>
+            <span class="n">effects_profile_id</span><span class="o">=</span><span class="p">[</span><span class="s">"small-bluetooth-speaker-class-device"</span><span class="p">]</span>
         <span class="p">)</span>
         
         <span class="n">retries</span> <span class="o">=</span> <span class="mi">5</span>
-        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">retries</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">synthesize_speech</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span><span class="p">)</span>
-                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="sh">'</span><span class="s">wb</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
-                    <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Contenu audio écrit dans </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">synthesize_speech</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span><span class="p">)</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s">'wb'</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+                    <span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Contenu audio écrit dans </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">True</span>
             <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors de la tentative </span><span class="si">{</span><span class="n">attempt</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors de la tentative </span><span class="si">{</span><span class="n">attempt</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">attempt</span> <span class="o">==</span> <span class="n">retries</span><span class="p">:</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Échec de la génération audio après </span><span class="si">{</span><span class="n">retries</span><span class="si">}</span><span class="s"> tentatives.</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Échec de la génération audio après </span><span class="si">{</span><span class="n">retries</span><span class="si">}</span><span class="s"> tentatives."</span><span class="p">)</span>
                     <span class="k">return</span> <span class="bp">False</span>
                 <span class="n">wait_time</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Nouvelle tentative dans </span><span class="si">{</span><span class="n">wait_time</span><span class="si">}</span><span class="s"> secondes...</span><span class="sh">"</span><span class="p">)</span>
-                <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Nouvelle tentative dans </span><span class="si">{</span><span class="n">wait_time</span><span class="si">}</span><span class="s"> secondes..."</span><span class="p">)</span>
+                <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Une erreur s</span><span class="sh">'</span><span class="s">est produite lors de la génération audio pour </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Une erreur s'est produite lors de la génération audio pour </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">process_conversation</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
-    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-    <span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.mp3</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+    <span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">".mp3"</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Le fichier audio existe déjà : </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Le fichier audio existe déjà : </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">conversation</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">conversation</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors du chargement du fichier de conversation </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors du chargement du fichier de conversation </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="n">temp_files</span> <span class="o">=</span> <span class="p">[]</span>
     
-    <span class="n">voice_options</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">en-US-Journey-D</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">en-US-Journey-F</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">en-US-Journey-O</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">voice_name_A</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
-    <span class="n">voice_name_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
+    <span class="n">voice_options</span> <span class="o">=</span> <span class="p">[</span><span class="s">"en-US-Journey-D"</span><span class="p">,</span> <span class="s">"en-US-Journey-F"</span><span class="p">,</span> <span class="s">"en-US-Journey-O"</span><span class="p">]</span>
+    <span class="n">voice_name_A</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
+    <span class="n">voice_name_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
     <span class="k">while</span> <span class="n">voice_name_A</span> <span class="o">==</span> <span class="n">voice_name_B</span><span class="p">:</span>
-        <span class="n">voice_name_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
+        <span class="n">voice_name_B</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">voice_options</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line_data</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">conversation</span><span class="p">):</span>
-        <span class="n">speaker</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">speaker</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">line</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">line</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line_data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">conversation</span><span class="p">):</span>
+        <span class="n">speaker</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"speaker"</span><span class="p">)</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"line"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
             <span class="k">continue</span>
-        <span class="n">temp_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="s">temp_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">.mp3</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">temp_files</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span>
+        <span class="n">temp_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="sa">f</span><span class="s">"temp_</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s">.mp3"</span><span class="p">)</span>
+        <span class="n">temp_files</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span>
         
         <span class="n">voice_name</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="k">if</span> <span class="n">speaker</span> <span class="o">==</span> <span class="sh">"</span><span class="s">A</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">speaker</span> <span class="o">==</span> <span class="s">"A"</span><span class="p">:</span>
             <span class="n">voice_name</span> <span class="o">=</span> <span class="n">voice_name_A</span>
-        <span class="k">elif</span> <span class="n">speaker</span> <span class="o">==</span> <span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">speaker</span> <span class="o">==</span> <span class="s">"B"</span><span class="p">:</span>
             <span class="n">voice_name</span> <span class="o">=</span> <span class="n">voice_name_B</span>
         
-        <span class="k">if</span> <span class="ow">not</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">temp_file</span><span class="p">,</span> <span class="n">voice_name</span><span class="o">=</span><span class="n">voice_name</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Échec de la génération audio pour la ligne </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> de </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">text_to_speech</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">temp_file</span><span class="p">,</span> <span class="n">voice_name</span><span class="o">=</span><span class="n">voice_name</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Échec de la génération audio pour la ligne </span><span class="si">{</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s"> de </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="c1"># Nettoyage des fichiers temporaires
 </span>            <span class="k">for</span> <span class="n">temp_file_to_remove</span> <span class="ow">in</span> <span class="n">temp_files</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">temp_file_to_remove</span><span class="p">):</span>
-                    <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">temp_file_to_remove</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">temp_file_to_remove</span><span class="p">):</span>
+                    <span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_file_to_remove</span><span class="p">)</span>
             <span class="k">return</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">temp_files</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Aucun audio généré pour </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Aucun audio généré pour </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># Concaténation avec ffmpeg
-</span>    <span class="n">concat_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="sh">"</span><span class="s">concat.txt</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">concat_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span>    <span class="n">concat_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="s">"concat.txt"</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">concat_file</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">temp_file</span> <span class="ow">in</span> <span class="n">temp_files</span><span class="p">:</span>
-            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">file </span><span class="sh">'</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">abspath</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="sa">f</span><span class="s">"file '</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
-            <span class="p">[</span><span class="sh">'</span><span class="s">ffmpeg</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-f</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">concat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-safe</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="n">concat_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">-c</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">copy</span><span class="sh">'</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">],</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s">'ffmpeg'</span><span class="p">,</span> <span class="s">'-f'</span><span class="p">,</span> <span class="s">'concat'</span><span class="p">,</span> <span class="s">'-safe'</span><span class="p">,</span> <span class="s">'0'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="n">concat_file</span><span class="p">,</span> <span class="s">'-c'</span><span class="p">,</span> <span class="s">'copy'</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">],</span>
             <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
             <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span>
         <span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Concaténation audio réussie dans </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Concaténation audio réussie dans </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors de la concaténation audio : </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">decode</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors de la concaténation audio : </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">decode</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">finally</span><span class="p">:</span>
-        <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">concat_file</span><span class="p">)</span>
+        <span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">concat_file</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">temp_file</span> <span class="ow">in</span> <span class="n">temp_files</span><span class="p">:</span>
-            <span class="n">os</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">temp_file</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Traite les fichiers JSON de conversation pour générer de l</span><span class="sh">'</span><span class="s">audio.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Traite les fichiers JSON de conversation pour générer de l'audio."</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">"</span><span class="s">.json</span><span class="sh">"</span><span class="p">):</span>
-            <span class="nf">process_conversation</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">INPUT_DIRECTORY</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".json"</span><span class="p">):</span>
+            <span class="n">process_conversation</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="couverture">Couverture</h2>

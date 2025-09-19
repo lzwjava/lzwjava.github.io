@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>每週股票投資與TigerOpen API | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="每週股票投資與TigerOpen API" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -217,71 +217,71 @@
 
 <p>這個腳本下單購買一隻 NVIDIA 股票，檢查其狀態最多 60 秒，如果未成交則取消。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.consts</span> <span class="kn">import</span> <span class="n">Language</span><span class="p">,</span> <span class="n">OrderStatus</span>
-<span class="kn">from</span> <span class="n">tigeropen.tiger_open_config</span> <span class="kn">import</span> <span class="n">TigerOpenClientConfig</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.signature_utils</span> <span class="kn">import</span> <span class="n">read_private_key</span>
-<span class="kn">from</span> <span class="n">tigeropen.trade.trade_client</span> <span class="kn">import</span> <span class="n">TradeClient</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.order_utils</span> <span class="kn">import</span> <span class="n">market_order</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.contract_utils</span> <span class="kn">import</span> <span class="n">stock_contract</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.consts</span> <span class="kn">import</span> <span class="n">Language</span><span class="p">,</span> <span class="n">OrderStatus</span>
+<span class="kn">from</span> <span class="nn">tigeropen.tiger_open_config</span> <span class="kn">import</span> <span class="n">TigerOpenClientConfig</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.signature_utils</span> <span class="kn">import</span> <span class="n">read_private_key</span>
+<span class="kn">from</span> <span class="nn">tigeropen.trade.trade_client</span> <span class="kn">import</span> <span class="n">TradeClient</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.order_utils</span> <span class="kn">import</span> <span class="n">market_order</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.contract_utils</span> <span class="kn">import</span> <span class="n">stock_contract</span>
 
 <span class="k">def</span> <span class="nf">get_client_config</span><span class="p">(</span><span class="n">sandbox</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nc">TigerOpenClientConfig</span><span class="p">(</span><span class="n">sandbox_debug</span><span class="o">=</span><span class="n">sandbox</span><span class="p">)</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">private_key</span> <span class="o">=</span> <span class="nf">read_private_key</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_PEM</span><span class="sh">'</span><span class="p">))</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">tiger_id</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_TIGER_ID</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_ACCOUNT</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">TigerOpenClientConfig</span><span class="p">(</span><span class="n">sandbox_debug</span><span class="o">=</span><span class="n">sandbox</span><span class="p">)</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">private_key</span> <span class="o">=</span> <span class="n">read_private_key</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_PEM'</span><span class="p">))</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">tiger_id</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_TIGER_ID'</span><span class="p">)</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_ACCOUNT'</span><span class="p">)</span>
     <span class="n">client_config</span><span class="p">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">Language</span><span class="p">.</span><span class="n">zh_CN</span>
     <span class="k">return</span> <span class="n">client_config</span>
 
 <span class="c1"># 下單函數
 </span><span class="k">def</span> <span class="nf">place_order</span><span class="p">():</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nf">get_client_config</span><span class="p">()</span>
-    <span class="n">trade_client</span> <span class="o">=</span> <span class="nc">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+    <span class="n">trade_client</span> <span class="o">=</span> <span class="n">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
     <span class="n">account</span> <span class="o">=</span> <span class="n">client_config</span><span class="p">.</span><span class="n">account</span>  <span class="c1"># 存儲帳戶以供後續使用
 </span>
-    <span class="n">contract</span> <span class="o">=</span> <span class="nf">stock_contract</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="sh">'</span><span class="s">NVDA</span><span class="sh">'</span><span class="p">,</span> <span class="n">currency</span><span class="o">=</span><span class="sh">'</span><span class="s">USD</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">stock_order</span> <span class="o">=</span> <span class="nf">market_order</span><span class="p">(</span>
-        <span class="n">account</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">BUY</span><span class="sh">'</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">contract</span> <span class="o">=</span> <span class="n">stock_contract</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s">'NVDA'</span><span class="p">,</span> <span class="n">currency</span><span class="o">=</span><span class="s">'USD'</span><span class="p">)</span>
+    <span class="n">stock_order</span> <span class="o">=</span> <span class="n">market_order</span><span class="p">(</span>
+        <span class="n">account</span><span class="o">=</span><span class="n">account</span><span class="p">,</span> <span class="n">contract</span><span class="o">=</span><span class="n">contract</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'BUY'</span><span class="p">,</span> <span class="n">quantity</span><span class="o">=</span><span class="mi">1</span>
     <span class="p">)</span>
     <span class="c1"># 下單
-</span>    <span class="n">order_id</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="nf">place_order</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">已下單，訂單編號: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">order_id</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"已下單，訂單編號: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
     <span class="c1"># 追蹤時間
-</span>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-    <span class="k">while</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>  <span class="c1"># 1 分鐘超時
+</span>    <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">while</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>  <span class="c1"># 1 分鐘超時
 </span>        <span class="c1"># 获取訂單並找到我們剛剛下的訂單
-</span>        <span class="n">order</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="nf">get_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nf">str</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="nb">id</span><span class="p">)</span> <span class="o">==</span> <span class="nf">str</span><span class="p">(</span><span class="n">order_id</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單編號匹配！檢查訂單狀態: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">order</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="n">get_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">order</span><span class="p">.</span><span class="nb">id</span><span class="p">)</span> <span class="o">==</span> <span class="nb">str</span><span class="p">(</span><span class="n">order_id</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單編號匹配！檢查訂單狀態: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="c1"># 使用 OrderStatus 枚舉值檢查訂單狀態
 </span>            <span class="k">if</span> <span class="n">order</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">OrderStatus</span><span class="p">.</span><span class="n">FILLED</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">訂單成功完成。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"訂單成功完成。"</span><span class="p">)</span>
                 <span class="k">return</span>
             <span class="k">elif</span> <span class="n">order</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">OrderStatus</span><span class="p">.</span><span class="n">REJECTED</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單被拒絕: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-                <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單 </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="s"> 被拒絕</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單被拒絕: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單 </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="s"> 被拒絕"</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">order</span><span class="p">.</span><span class="n">status</span> <span class="ow">in</span> <span class="p">[</span>
                 <span class="n">OrderStatus</span><span class="p">.</span><span class="n">PENDING_NEW</span><span class="p">,</span>
                 <span class="n">OrderStatus</span><span class="p">.</span><span class="n">NEW</span><span class="p">,</span>
                 <span class="n">OrderStatus</span><span class="p">.</span><span class="n">HELD</span><span class="p">,</span>
                 <span class="n">OrderStatus</span><span class="p">.</span><span class="n">PENDING_CANCEL</span>
             <span class="p">]:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單正在處理中，狀態: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單正在處理中，狀態: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單狀態是: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單狀態是: </span><span class="si">{</span><span class="n">order</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
         <span class="c1"># 等待後再檢查
-</span>        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 每 5 秒檢查一次
+</span>        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 每 5 秒檢查一次
 </span>
     <span class="c1"># 如果訂單在 1 分鐘內未完成，則取消訂單
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">訂單在 1 分鐘內未完成。取消訂單。</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">trade_client</span><span class="p">.</span><span class="nf">cancel_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">訂單已取消: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"訂單在 1 分鐘內未完成。取消訂單。"</span><span class="p">)</span>
+    <span class="n">trade_client</span><span class="p">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"訂單已取消: </span><span class="si">{</span><span class="n">order_id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="nf">place_order</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">place_order</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="github-actions-工作流程">GitHub Actions 工作流程</h2>
@@ -297,7 +297,7 @@
 
 <span class="na">concurrency</span><span class="pi">:</span>
   <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">trading'</span>
-  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="no">false</span>
 
 <span class="na">permissions</span><span class="pi">:</span>
   <span class="na">id-token</span><span class="pi">:</span> <span class="s">write</span>

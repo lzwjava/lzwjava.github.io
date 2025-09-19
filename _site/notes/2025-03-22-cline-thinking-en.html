@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Cline Thinking - Debugging a Hetzner Cloud Server Snapshot Script | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Cline Thinking - Debugging a Hetzner Cloud Server Snapshot Script" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -233,10 +233,10 @@ I’ve fixed the issue in the hetzner.py script. The error occurred because the 
 <p>The solution was to use the client’s servers API instead:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Changed from:
-</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="nf">create_snapshot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">create_snapshot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">)</span>
 
 <span class="c1"># To:
-</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">)</span>
 </code></pre></div></div>
 <p>This change calls the create_snapshot method on the client.servers object and passes the server as a parameter, along with using the correct parameter name ‘description’ instead of ‘name’.</p>
 
@@ -358,10 +358,10 @@ I’ve fixed the issue in the Hetzner script by using the correct method to crea
 <p>After examining the hcloud Python library API, I found that the correct method is create_image() on the servers client object:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Changed from:
-</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="nf">create_snapshot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">snapshot</span> <span class="o">=</span> <span class="n">server</span><span class="p">.</span><span class="n">create_snapshot</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">)</span>
 
 <span class="c1"># To:
-</span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="sh">"</span><span class="s">snapshot</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"snapshot"</span><span class="p">)</span>
 </code></pre></div></div>
 <p>The fix worked successfully, and the snapshot for server sg5 was created with ID 225649148.</p>
 

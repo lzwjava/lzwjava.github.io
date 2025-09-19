@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>GROQ Does Not Predict Tokens | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="GROQ Does Not Predict Tokens" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -352,25 +352,25 @@ The “semantic” power you see in Sanity‑based products comes from <strong>t
   <li><strong>Create a serverless function</strong> (e.g., Vercel, Cloudflare Workers, AWS Lambda) that receives a request like <code class="language-plaintext highlighter-rouge">POST /api/generate</code>.</li>
   <li>Inside that function:
     <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1️⃣ Pull the context you need</span>
-<span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">sanityClient</span><span class="p">.</span><span class="nf">fetch</span><span class="p">(</span><span class="s2">`*[_id == $docId]{title, body}[0]`</span><span class="p">,</span> <span class="p">{</span><span class="nx">docId</span><span class="p">});</span>
+<span class="kd">const</span> <span class="nx">ctx</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">sanityClient</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="s2">`*[_id == $docId]{title, body}[0]`</span><span class="p">,</span> <span class="p">{</span><span class="nx">docId</span><span class="p">});</span>
 
 <span class="c1">// 2️⃣ Build a prompt (maybe with few‑shot examples)</span>
 <span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="s2">`Summarize this article:\n\n</span><span class="p">${</span><span class="nx">ctx</span><span class="p">.</span><span class="nx">body</span><span class="p">}</span><span class="s2">\n\nSummary:`</span><span class="p">;</span>
 
 <span class="c1">// 3️⃣ Call the LLM (OpenAI example)</span>
-<span class="kd">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.openai.com/v1/chat/completions</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">resp</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://api.openai.com/v1/chat/completions</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="s2">`Bearer </span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">OPENAI_KEY</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span> <span class="p">},</span>
-  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span>
+  <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
     <span class="na">model</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4o-mini</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">messages</span><span class="p">:</span> <span class="p">[{</span><span class="na">role</span><span class="p">:</span> <span class="dl">'</span><span class="s1">user</span><span class="dl">'</span><span class="p">,</span> <span class="na">content</span><span class="p">:</span> <span class="nx">prompt</span><span class="p">}],</span>
     <span class="na">temperature</span><span class="p">:</span> <span class="mf">0.2</span>
   <span class="p">})</span>
 <span class="p">});</span>
-<span class="kd">const</span> <span class="p">{</span><span class="nx">content</span><span class="p">}</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nf">json</span><span class="p">()).</span><span class="nx">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">;</span>
+<span class="kd">const</span> <span class="p">{</span><span class="nx">content</span><span class="p">}</span> <span class="o">=</span> <span class="p">(</span><span class="k">await</span> <span class="nx">resp</span><span class="p">.</span><span class="nx">json</span><span class="p">()).</span><span class="nx">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">message</span><span class="p">;</span>
 
 <span class="c1">// 4️⃣ Store the result back in Sanity (fast GROQ mutation)</span>
-<span class="k">await</span> <span class="nx">sanityClient</span><span class="p">.</span><span class="nf">patch</span><span class="p">(</span><span class="nx">docId</span><span class="p">).</span><span class="nf">set</span><span class="p">({</span><span class="na">summary</span><span class="p">:</span> <span class="nx">content</span><span class="p">}).</span><span class="nf">commit</span><span class="p">();</span>
+<span class="k">await</span> <span class="nx">sanityClient</span><span class="p">.</span><span class="nx">patch</span><span class="p">(</span><span class="nx">docId</span><span class="p">).</span><span class="kd">set</span><span class="p">({</span><span class="na">summary</span><span class="p">:</span> <span class="nx">content</span><span class="p">}).</span><span class="nx">commit</span><span class="p">();</span>
 </code></pre></div>    </div>
   </li>
   <li>The <strong>latency you see</strong> in the client is the sum of:

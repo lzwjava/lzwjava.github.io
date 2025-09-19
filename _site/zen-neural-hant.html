@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>禪與機器學習的藝術 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="禪與機器學習的藝術" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -368,33 +368,33 @@ g'(b_1) = 1 \\
 <p>打印變量的方法非常有用且簡單，儘管現在人們發明了Jupyter Notebook來做這樣的事情。正如志偉之前提到的，理解神經網絡的關鍵之一是我們應該注意維度。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">print_shape</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
-    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">arr</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
     
-<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span> <span class="c1"># 10
-</span><span class="nf">print_shape</span><span class="p">(</span><span class="n">training_results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># (784, 1)
-</span><span class="nf">print</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="n">training_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># &lt;class 'list'&gt;
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]))</span> <span class="c1"># 10
+</span><span class="n">print_shape</span><span class="p">(</span><span class="n">training_results</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="c1"># (784, 1)
+</span><span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">training_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">])</span> <span class="c1"># &lt;class 'list'&gt;
 </span></code></pre></div></div>
 
 <p>由於志偉剛剛完成了加載數據的部分，他將繼續使用複製幾行並打印變量的方式來學習神經網絡的實際部分。你可以在此處跟進進度，https://github.com/lzwjava/neural-networks-and-zhiwei-learning。</p>
 
 <p>我在進度中卡住了幾次。即使代碼看起來非常簡單，經過一次又一次地嘗試理解它，我還是失敗了。然後我把自己從當前的代碼行中抽離出來，從更高的層次來看它，思考作者為什麼寫那部分代碼，突然間我明白了。代碼如下。</p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">load_data_wrapper</span><span class="p">():</span>
-    <span class="n">tr_d</span><span class="p">,</span> <span class="n">va_d</span><span class="p">,</span> <span class="n">te_d</span> <span class="o">=</span> <span class="nf">load_data</span><span class="p">()</span>
+    <span class="n">tr_d</span><span class="p">,</span> <span class="n">va_d</span><span class="p">,</span> <span class="n">te_d</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
 
-    <span class="n">training_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tr_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="n">training_results</span> <span class="o">=</span> <span class="p">[</span><span class="nf">vectorized_result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tr_d</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
-    <span class="n">training_data</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="n">training_inputs</span><span class="p">,</span> <span class="n">training_results</span><span class="p">)</span>
+    <span class="n">training_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tr_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">training_results</span> <span class="o">=</span> <span class="p">[</span><span class="n">vectorized_result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">tr_d</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">training_data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">training_inputs</span><span class="p">,</span> <span class="n">training_results</span><span class="p">)</span>
 
-    <span class="n">validation_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">va_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="n">validation_data</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="n">validation_inputs</span><span class="p">,</span> <span class="n">va_d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">validation_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">va_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">validation_data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">validation_inputs</span><span class="p">,</span> <span class="n">va_d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="n">test_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">te_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
-    <span class="n">test_data</span> <span class="o">=</span> <span class="nf">zip</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span> <span class="n">te_d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="nf">return </span><span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
+    <span class="n">test_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">(</span><span class="mi">784</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">te_d</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">test_data</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="n">test_inputs</span><span class="p">,</span> <span class="n">te_d</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">training_data</span><span class="p">,</span> <span class="n">validation_data</span><span class="p">,</span> <span class="n">test_data</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">vectorized_result</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>
-    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
     <span class="n">e</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span>
     <span class="k">return</span> <span class="n">e</span>    
 </code></pre></div></div>
@@ -412,17 +412,17 @@ g'(b_1) = 1 \\
 
 <p>此外，當我們在Visual Studio Code中格式化值輸出時，它更具可讀性。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nf">array</span><span class="p">([[</span><span class="mf">0.92733598</span><span class="p">],</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.92733598</span><span class="p">],</span>
        <span class="p">[</span><span class="mf">0.01054299</span><span class="p">],</span>
        <span class="p">[</span><span class="mf">1.0195613</span><span class="p">],</span>
-       <span class="bp">...</span>
+       <span class="p">...</span>
        <span class="p">[</span><span class="mf">0.67045368</span><span class="p">],</span>
        <span class="p">[</span><span class="o">-</span><span class="mf">0.29942482</span><span class="p">],</span>
        <span class="p">[</span><span class="o">-</span><span class="mf">0.35010666</span><span class="p">]]),</span>
- <span class="nf">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.87093344</span><span class="p">],</span>
+ <span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.87093344</span><span class="p">],</span>
         <span class="p">[</span><span class="o">-</span><span class="mf">0.18758503</span><span class="p">],</span>
         <span class="p">[</span><span class="mf">1.35792778</span><span class="p">],</span>
-        <span class="bp">...</span>
+        <span class="p">...</span>
         <span class="p">[</span><span class="mf">0.36830578</span><span class="p">],</span>
         <span class="p">[</span><span class="mf">0.61671649</span><span class="p">],</span>
         <span class="p">[</span><span class="mf">0.67084213</span><span class="p">]])]</span>

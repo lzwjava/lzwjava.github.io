@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Hetzner API Issue | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Hetzner API Issue" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,40 +209,40 @@
 <h3 id="code-breakdown">Code Breakdown:</h3>
 <p>Here’s your script with explanations and where the error originates:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">hcloud</span> <span class="kn">import</span> <span class="n">Client</span>
-<span class="kn">import</span> <span class="n">os</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">hcloud</span> <span class="kn">import</span> <span class="n">Client</span>
+<span class="kn">import</span> <span class="nn">os</span>
 
 <span class="c1"># Get the API token from the environment variable
-</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">HERTZNER_API_KEY</span><span class="sh">'</span><span class="p">)</span>
+</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'HERTZNER_API_KEY'</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="ow">not</span> <span class="n">api_token</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: HERTZNER_API_KEY environment variable not set.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Error: HERTZNER_API_KEY environment variable not set."</span><span class="p">)</span>
+    <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Create a client instance
-</span><span class="n">client</span> <span class="o">=</span> <span class="nc">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">api_token</span><span class="p">)</span>
+</span><span class="n">client</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">api_token</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="sh">"</span><span class="s">snapshot</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"snapshot"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># List all servers
-</span><span class="n">servers</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">get_all</span><span class="p">()</span>
+</span><span class="n">servers</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">get_all</span><span class="p">()</span>
 
 <span class="c1"># Print server details and create snapshots
 </span><span class="k">for</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">servers</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server ID: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server Name: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server Status: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server IPv4: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">public_net</span><span class="p">.</span><span class="n">ipv4</span><span class="p">.</span><span class="n">ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server IPv6: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">public_net</span><span class="p">.</span><span class="n">ipv6</span><span class="p">.</span><span class="n">ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server Type: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">server_type</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Server Location: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">datacenter</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">----------------------------------</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server ID: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server Name: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server Status: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server IPv4: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">public_net</span><span class="p">.</span><span class="n">ipv4</span><span class="p">.</span><span class="n">ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server IPv6: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">public_net</span><span class="p">.</span><span class="n">ipv6</span><span class="p">.</span><span class="n">ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server Type: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">server_type</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Server Location: </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">datacenter</span><span class="p">.</span><span class="n">location</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"----------------------------------"</span><span class="p">)</span>
+    <span class="n">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
 </code></pre></div></div>
 
 <ol>
@@ -302,46 +302,46 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Check if the server is locked by looking at its actions
-</span>        <span class="n">actions</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="nf">get_all</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
+</span>        <span class="n">actions</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">action</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="sh">"</span><span class="s">running</span><span class="sh">"</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Skipping snapshot for </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: Server is locked by action </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">action</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="s">"running"</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Skipping snapshot for </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: Server is locked by action </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
                 <span class="k">return</span>
         <span class="c1"># If no running actions, proceed with snapshot
-</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="sh">"</span><span class="s">snapshot</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"snapshot"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h4 id="2-wait-for-the-lock-to-clear">2. <strong>Wait for the Lock to Clear</strong></h4>
 <p>If you want to wait instead of skipping, you can poll the server’s actions until the lock is gone:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="k">def</span> <span class="nf">wait_for_unlock</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-        <span class="n">actions</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="nf">get_all</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
-        <span class="n">running</span> <span class="o">=</span> <span class="nf">any</span><span class="p">(</span><span class="n">action</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="sh">"</span><span class="s">running</span><span class="sh">"</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">)</span>
+        <span class="n">actions</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="n">get_all</span><span class="p">(</span><span class="n">server</span><span class="o">=</span><span class="n">server</span><span class="p">)</span>
+        <span class="n">running</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">action</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="s">"running"</span> <span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="n">actions</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">running</span><span class="p">:</span>
             <span class="k">break</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Waiting for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> to unlock...</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Wait 5 seconds before checking again
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Waiting for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> to unlock..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># Wait 5 seconds before checking again
 </span>
 <span class="k">def</span> <span class="nf">create_snapshot</span><span class="p">(</span><span class="n">server</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nf">wait_for_unlock</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="nf">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="sh">"</span><span class="s">snapshot</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">wait_for_unlock</span><span class="p">(</span><span class="n">server</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">servers</span><span class="p">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">-snapshot"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s">"snapshot"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Snapshot created for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> with ID: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">image</span><span class="p">.</span><span class="nb">id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error creating snapshot for server </span><span class="si">{</span><span class="n">server</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h4 id="3-manually-investigate-the-lock">3. <strong>Manually Investigate the Lock</strong></h4>
 <ul>
   <li>Use the Hetzner Cloud Console or API to check the status of the action with ID <code class="language-plaintext highlighter-rouge">f21b9dc9d1535310</code>.</li>
   <li>Example API call (via Python):
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">action</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="nf">get_by_id</span><span class="p">(</span><span class="sh">"</span><span class="s">f21b9dc9d1535310</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Action Status: </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">, Command: </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="n">command</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">action</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">actions</span><span class="p">.</span><span class="n">get_by_id</span><span class="p">(</span><span class="s">"f21b9dc9d1535310"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Action Status: </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="n">status</span><span class="si">}</span><span class="s">, Command: </span><span class="si">{</span><span class="n">action</span><span class="p">.</span><span class="n">command</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>If it’s stuck, you may need to contact Hetzner support.</li>

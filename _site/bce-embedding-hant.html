@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>BCEmbedding：雙語嵌入式知識檢索 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="BCEmbedding：雙語嵌入式知識檢索" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -214,16 +214,16 @@
 pip <span class="nb">install</span> <span class="nt">-v</span> <span class="nt">-e</span> <span class="nb">.</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">BCEmbedding</span> <span class="kn">import</span> <span class="n">EmbeddingModel</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">BCEmbedding</span> <span class="kn">import</span> <span class="n">EmbeddingModel</span>
 
 <span class="c1"># 句子列表
-</span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">sentence_0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">sentence_1</span><span class="sh">'</span><span class="p">]</span>
+</span><span class="n">sentences</span> <span class="o">=</span> <span class="p">[</span><span class="s">'sentence_0'</span><span class="p">,</span> <span class="s">'sentence_1'</span><span class="p">]</span>
 
 <span class="c1"># 初始化嵌入模型
-</span><span class="n">model</span> <span class="o">=</span> <span class="nc">EmbeddingModel</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="sh">"</span><span class="s">maidalun1020/bce-embedding-base_v1</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">EmbeddingModel</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="s">"maidalun1020/bce-embedding-base_v1"</span><span class="p">)</span>
 
 <span class="c1"># 提取嵌入向量
-</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</span><span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>程式碼執行成功，如下方日誌所示。</p>
@@ -251,23 +251,23 @@ Extract embeddings: 100%| 1/1 <span class="o">[</span>00:00&lt;00:00,  1.21it/s]
 
 <p>讓我們試試排序模型。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">BCEmbedding</span> <span class="kn">import</span> <span class="n">RerankerModel</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">BCEmbedding</span> <span class="kn">import</span> <span class="n">RerankerModel</span>
 
 <span class="c1"># 您的查詢和對應的段落
-</span><span class="n">query</span> <span class="o">=</span> <span class="sh">'</span><span class="s">input_query</span><span class="sh">'</span>
-<span class="n">passages</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">passage_0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">passage_1</span><span class="sh">'</span><span class="p">]</span>
+</span><span class="n">query</span> <span class="o">=</span> <span class="s">'input_query'</span>
+<span class="n">passages</span> <span class="o">=</span> <span class="p">[</span><span class="s">'passage_0'</span><span class="p">,</span> <span class="s">'passage_1'</span><span class="p">]</span>
 
 <span class="c1"># 建構句子對
 </span><span class="n">sentence_pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="n">query</span><span class="p">,</span> <span class="n">passage</span><span class="p">]</span> <span class="k">for</span> <span class="n">passage</span> <span class="ow">in</span> <span class="n">passages</span><span class="p">]</span>
 
 <span class="c1"># 初始化排序模型
-</span><span class="n">model</span> <span class="o">=</span> <span class="nc">RerankerModel</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="sh">"</span><span class="s">maidalun1020/bce-reranker-base_v1</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">RerankerModel</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="s">"maidalun1020/bce-reranker-base_v1"</span><span class="p">)</span>
 
 <span class="c1"># 方法 0：計算句子對的分數
-</span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">compute_score</span><span class="p">(</span><span class="n">sentence_pairs</span><span class="p">)</span>
+</span><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">compute_score</span><span class="p">(</span><span class="n">sentence_pairs</span><span class="p">)</span>
 
 <span class="c1"># 方法 1：重新排序段落
-</span><span class="n">rerank_results</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">rerank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">passages</span><span class="p">)</span>
+</span><span class="n">rerank_results</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="n">rerank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">passages</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% python scripts/bce_reranker.py

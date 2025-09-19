@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>एआई-सक्षम गिट कमिट संदेश | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="एआई-सक्षम गिट कमिट संदेश" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -207,118 +207,118 @@
 
   <p>यह पायथन स्क्रिप्ट को आपके सिस्टम के PATH में शामिल किए गए किसी डायरेक्टरी में रखा जाना चाहिए, जैसे कि <code class="language-plaintext highlighter-rouge">~/bin</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"MISTRAL_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: MISTRAL_API_KEY पर्यावरण चर सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: MISTRAL_API_KEY पर्यावरण चर सेट नहीं है।"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.mistral.ai/v1/chat/completions"</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">"</span>
     <span class="p">}</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">mistral-large-latest</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="s">"mistral-large-latest"</span><span class="p">,</span>
+        <span class="s">"messages"</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+                <span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span>
+                <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span>
             <span class="p">}</span>
         <span class="p">]</span>
     <span class="p">}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'message'</span><span class="p">][</span><span class="s">'content'</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API त्रुटि: अमान्य प्रतिक्रिया फॉर्मेट: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral API त्रुटि: अमान्य प्रतिक्रिया फॉर्मेट: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral API त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">प्रतिक्रिया स्टेटस कोड: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">प्रतिक्रिया कंटेंट: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"प्रतिक्रिया स्टेटस कोड: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"प्रतिक्रिया कंटेंट: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">gemini_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">GEMINI_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">gemini_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"GEMINI_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">gemini_api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: GEMINI_API_KEY पर्यावरण चर सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: GEMINI_API_KEY पर्यावरण चर सेट नहीं है।"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent</span><span class="sh">"</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">key</span><span class="sh">"</span><span class="p">:</span> <span class="n">gemini_api_key</span><span class="p">}</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">contents</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">parts</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]}]}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">"key"</span><span class="p">:</span> <span class="n">gemini_api_key</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">"contents"</span><span class="p">:</span> <span class="p">[{</span><span class="s">"parts"</span><span class="p">:</span> <span class="p">[{</span><span class="s">"text"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]}]}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>  <span class="c1"># खराब स्टेटस कोड के लिए एक अपवाद उठाएं
-</span>        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">parts</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># खराब स्टेटस कोड के लिए एक अपवाद उठाएं
+</span>        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="s">'candidates'</span> <span class="ow">in</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'candidates'</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'candidates'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'content'</span><span class="p">][</span><span class="s">'parts'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'text'</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gemini API त्रुटि: अमान्य प्रतिक्रिया फॉर्मेट: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Gemini API त्रुटि: अमान्य प्रतिक्रिया फॉर्मेट: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gemini API त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Gemini API त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">प्रतिक्रिया स्टेटस कोड: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">प्रतिक्रिया कंटेंट: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"प्रतिक्रिया स्टेटस कोड: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"प्रतिक्रिया कंटेंट: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: DEEPSEEK_API_KEY पर्यावरण चर सेट नहीं है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: DEEPSEEK_API_KEY पर्यावरण चर सेट नहीं है।"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="n">client</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="sh">"</span><span class="s">https://api.deepseek.com</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s">"https://api.deepseek.com"</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">deepseek-chat</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s">"deepseek-chat"</span><span class="p">,</span>
             <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-                <span class="p">{</span><span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+                <span class="p">{</span><span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
             <span class="p">],</span>
             <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">:</span>
-            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">commit_message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">`</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">commit_message</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'`'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">commit_message</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: API से कोई प्रतिक्रिया नहीं।</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: API से कोई प्रतिक्रिया नहीं।"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">API कॉल के दौरान त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"API कॉल के दौरान त्रुटि: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-<span class="k">def</span> <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="s">'deepseek'</span><span class="p">):</span>
     <span class="c1"># सभी बदलावों को स्टेज करें
-</span>    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">add</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-A</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"add"</span><span class="p">,</span> <span class="s">"-A"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="c1"># बदलावों का एक संक्षिप्त सारांश प्राप्त करें
-</span>    <span class="n">files_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">diff</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--staged</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--name-only</span><span class="sh">"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">files_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"diff"</span><span class="p">,</span> <span class="s">"--staged"</span><span class="p">,</span> <span class="s">"--name-only"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">changed_files</span> <span class="o">=</span> <span class="n">files_process</span><span class="p">.</span><span class="n">stdout</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">changed_files</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">कोई बदलाव कमिट करने के लिए नहीं।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"कोई बदलाव कमिट करने के लिए नहीं।"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># AI के लिए प्रॉम्प्ट तैयार करें
-</span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
+</span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
 Generate a concise commit message in Conventional Commits format for the following code changes.
 Use one of the following types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, or revert.
 If applicable, include a scope in parentheses to describe the part of the codebase affected.
@@ -328,51 +328,51 @@ Changed files:
 </span><span class="si">{</span><span class="n">changed_files</span><span class="si">}</span><span class="s">
 
 Commit message:
-</span><span class="sh">"""</span>
+"""</span>
 
-    <span class="k">if</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'deepseek'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
             <span class="k">return</span>
-    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">gemini</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'gemini'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: Gemini API से कोई प्रतिक्रिया नहीं।</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: Gemini API से कोई प्रतिक्रिया नहीं।"</span><span class="p">)</span>
             <span class="k">return</span>
-    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">mistral</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'mistral'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: Mistral API से कोई प्रतिक्रिया नहीं।</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: Mistral API से कोई प्रतिक्रिया नहीं।"</span><span class="p">)</span>
             <span class="k">return</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">त्रुटि: अमान्य API निर्दिष्ट किया गया: </span><span class="si">{</span><span class="n">api</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"त्रुटि: अमान्य API निर्दिष्ट किया गया: </span><span class="si">{</span><span class="n">api</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># यह देखें कि कमिट संदेश खाली है या नहीं
 </span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">त्रुटि: खाली कमिट संदेश पैदा हुआ। कमिट को रद्द कर रहा है।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"त्रुटि: खाली कमिट संदेश पैदा हुआ। कमिट को रद्द कर रहा है।"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">only_message</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">सुझाया गया कमिट संदेश: </span><span class="si">{</span><span class="n">commit_message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"सुझाया गया कमिट संदेश: </span><span class="si">{</span><span class="n">commit_message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># जेनरेट किए गए संदेश के साथ कमिट करें
-</span>    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">commit</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-m</span><span class="sh">"</span><span class="p">,</span> <span class="n">commit_message</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"commit"</span><span class="p">,</span> <span class="s">"-m"</span><span class="p">,</span> <span class="n">commit_message</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="c1"># बदलावों को पुश करें
 </span>    <span class="k">if</span> <span class="n">push</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">push</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"push"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">बदलाव स्थानीय रूप से कमिट किए गए, लेकिन पुश नहीं किए गए।</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"बदलाव स्थानीय रूप से कमिट किए गए, लेकिन पुश नहीं किए गए।"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">AI के साथ कमिट संदेश जेनरेट करें और बदलावों को कमिट करें।</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--no-push</span><span class="sh">'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sh">'</span><span class="s">push</span><span class="sh">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">store_false</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">पुश किए बिना बदलावों को स्थानीय रूप से कमिट करें।</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--only-message</span><span class="sh">'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sh">'</span><span class="s">only_message</span><span class="sh">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">store_true</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">केवल AI द्वारा जेनरेट किया गया कमिट संदेश प्रिंट करें।</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--api</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">gemini</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">mistral</span><span class="sh">'</span><span class="p">],</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">कमिट संदेश जेनरेशन के लिए उपयोग की जाने वाली API (deepseek, gemini, या mistral)।</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
-    <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">push</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">only_message</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">api</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"AI के साथ कमिट संदेश जेनरेट करें और बदलावों को कमिट करें।"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--no-push'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'push'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_false'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'पुश किए बिना बदलावों को स्थानीय रूप से कमिट करें।'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--only-message'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'only_message'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'केवल AI द्वारा जेनरेट किया गया कमिट संदेश प्रिंट करें।'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--api'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'deepseek'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">'deepseek'</span><span class="p">,</span> <span class="s">'gemini'</span><span class="p">,</span> <span class="s">'mistral'</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s">'कमिट संदेश जेनरेशन के लिए उपयोग की जाने वाली API (deepseek, gemini, या mistral)।'</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">push</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">only_message</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">api</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>इस स्क्रिप्ट को अलग-अलग API के साथ कॉल किया जा सकता है। उदाहरण के लिए:</p>

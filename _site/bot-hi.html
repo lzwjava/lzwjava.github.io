@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>एक AI-संचालित कहानी बॉट बनाएं | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="एक AI-संचालित कहानी बॉट बनाएं" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -273,24 +273,24 @@
   </li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
-    <span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
-    <span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
-    <span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
-    <span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
-    <span class="kn">import</span> <span class="n">logging</span>
-    <span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
-    <span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+    <span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+    <span class="kn">from</span> <span class="nn">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+    <span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+    <span class="kn">from</span> <span class="nn">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+    <span class="kn">import</span> <span class="nn">logging</span>
+    <span class="kn">from</span> <span class="nn">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+    <span class="kn">from</span> <span class="nn">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="nf">from_object</span><span class="p">(</span><span class="sh">'</span><span class="s">api.config.BaseConfig</span><span class="sh">'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_object</span><span class="p">(</span><span class="s">'api.config.BaseConfig'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">db</span><span class="p">.</span><span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-<span class="nf">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-<span class="n">migrate</span> <span class="o">=</span> <span class="nc">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">db</span><span class="p">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 </code></pre></div></div>
 
 <ol>
@@ -302,30 +302,30 @@
   </li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">REQUEST_COUNT</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">(</span><span class="sh">'</span><span class="s">flask_app_request_count</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Flask ऐप की कुल अनुरोध संख्या</span><span class="sh">'</span><span class="p">,</span> <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">endpoint</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">http_status</span><span class="sh">'</span><span class="p">])</span>
-<span class="n">REQUEST_LATENCY</span> <span class="o">=</span> <span class="nc">Gauge</span><span class="p">(</span><span class="sh">'</span><span class="s">flask_app_request_latency_seconds</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">अनुरोध विलंबता</span><span class="sh">'</span><span class="p">,</span> <span class="p">[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">endpoint</span><span class="sh">'</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">REQUEST_COUNT</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="s">'flask_app_request_count'</span><span class="p">,</span> <span class="s">'Flask ऐप की कुल अनुरोध संख्या'</span><span class="p">,</span> <span class="p">[</span><span class="s">'method'</span><span class="p">,</span> <span class="s">'endpoint'</span><span class="p">,</span> <span class="s">'http_status'</span><span class="p">])</span>
+<span class="n">REQUEST_LATENCY</span> <span class="o">=</span> <span class="n">Gauge</span><span class="p">(</span><span class="s">'flask_app_request_latency_seconds'</span><span class="p">,</span> <span class="s">'अनुरोध विलंबता'</span><span class="p">,</span> <span class="p">[</span><span class="s">'method'</span><span class="p">,</span> <span class="s">'endpoint'</span><span class="p">])</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
-    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span><span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
-    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="n">RotatingFileHandler</span><span class="p">(</span><span class="s">'app.log'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="n">CustomLogstashFormatter</span><span class="p">()</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>यह फ़ंक्शन <code class="language-plaintext highlighter-rouge">setup_loggers</code> लॉगर्स को सेटअप करने के लिए है। इसमें <code class="language-plaintext highlighter-rouge">RotatingFileHandler</code> का उपयोग करके एक लॉग फ़ाइल <code class="language-plaintext highlighter-rouge">app.log</code> बनाई जाती है, जिसका अधिकतम आकार 100,000,000 बाइट्स होता है और केवल 1 बैकअप फ़ाइल रखी जाती है। लॉग लेवल को <code class="language-plaintext highlighter-rouge">DEBUG</code> पर सेट किया जाता है और <code class="language-plaintext highlighter-rouge">CustomLogstashFormatter</code> का उपयोग करके लॉग फ़ॉर्मेटर सेट किया जाता है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
-<span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">()</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">root_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>यह कोड Python में logging को configure करने के लिए है। <code class="language-plaintext highlighter-rouge">root_logger</code> नाम का एक logger बनाया गया है, जिसका log level <code class="language-plaintext highlighter-rouge">DEBUG</code> पर सेट किया गया है। इसके बाद, <code class="language-plaintext highlighter-rouge">logstash_handler</code> नाम का एक handler जोड़ा गया है, जो logs को Logstash में भेजने के लिए उपयोग किया जाता है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
-<span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-<span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'werkzeug'</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+<span class="n">werkzeug_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>setup_loggers()
@@ -342,13 +342,13 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
         <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
-        <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+        <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.before_request</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">before_request</span>
 <span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
-    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'X-Trace-Id'</span><span class="p">,</span> <span class="n">generate_trace_id</span><span class="p">())</span>
     <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
 </code></pre></div></div>
 
@@ -360,12 +360,12 @@
   <li>इस ट्रेस आईडी को <code class="language-plaintext highlighter-rouge">g.trace_id</code> में स्टोर किया जाता है, जो Flask के <code class="language-plaintext highlighter-rouge">g</code> ऑब्जेक्ट का उपयोग करता है और यह रिक्वेस्ट के दौरान ग्लोबल रूप से उपलब्ध होता है।</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nd">@app.after_request</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">after_request</span>
     <span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-        <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
-        <span class="n">request_latency</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="sh">'</span><span class="s">start_time</span><span class="sh">'</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">())</span>
-        <span class="n">REQUEST_COUNT</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="n">http_status</span><span class="o">=</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">).</span><span class="nf">inc</span><span class="p">()</span>
-        <span class="n">REQUEST_LATENCY</span><span class="p">.</span><span class="nf">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">).</span><span class="nf">set</span><span class="p">(</span><span class="n">request_latency</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'X-Trace-Id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+        <span class="n">request_latency</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s">'start_time'</span><span class="p">,</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">())</span>
+        <span class="n">REQUEST_COUNT</span><span class="p">.</span><span class="n">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">,</span> <span class="n">http_status</span><span class="o">=</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">).</span><span class="n">inc</span><span class="p">()</span>
+        <span class="n">REQUEST_LATENCY</span><span class="p">.</span><span class="n">labels</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="n">request</span><span class="p">.</span><span class="n">path</span><span class="p">).</span><span class="nb">set</span><span class="p">(</span><span class="n">request_latency</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span>
 </code></pre></div></div>
 
@@ -388,91 +388,91 @@
     <span class="k">import</span> <span class="dl">'</span><span class="s1">./App.css</span><span class="dl">'</span><span class="p">;</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">prompts</span><span class="p">,</span> <span class="nx">setPrompts</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">([]);</span>
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">newPrompt</span><span class="p">,</span> <span class="nx">setNewPrompt</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-      <span class="kd">const</span> <span class="p">[</span><span class="nx">isLoading</span><span class="p">,</span> <span class="nx">setIsLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="kd">function</span> <span class="nx">App</span><span class="p">()</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">prompts</span><span class="p">,</span> <span class="nx">setPrompts</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">([]);</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">newPrompt</span><span class="p">,</span> <span class="nx">setNewPrompt</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+      <span class="kd">const</span> <span class="p">[</span><span class="nx">isLoading</span><span class="p">,</span> <span class="nx">setIsLoading</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nf">fetchPrompts</span><span class="p">();</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">fetchPrompts</span><span class="p">();</span>
 <span class="p">},</span> <span class="p">[]);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fetchPrompts</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">fetchPrompts</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">);</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
-      <span class="nf">setPrompts</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+      <span class="nx">setPrompts</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट्स प्राप्त करने में विफल</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट्स प्राप्त करने में विफल</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट्स प्राप्त करते समय एक त्रुटि हुई</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट्स प्राप्त करते समय एक त्रुटि हुई</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addPrompt</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">newPrompt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="dl">'</span><span class="s1">Prompt content cannot be empty</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addPrompt</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newPrompt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="dl">'</span><span class="s1">Prompt content cannot be empty</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
       <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
       <span class="p">},</span>
-      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">newPrompt</span> <span class="p">}),</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">newPrompt</span> <span class="p">}),</span>
     <span class="p">});</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nf">fetchPrompts</span><span class="p">();</span>
-      <span class="nf">setNewPrompt</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-      <span class="nx">toast</span><span class="p">.</span><span class="nf">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">Prompt added successfully</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">fetchPrompts</span><span class="p">();</span>
+      <span class="nx">setNewPrompt</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+      <span class="nx">toast</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">Prompt added successfully</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Failed to add prompt</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Failed to add prompt</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">An error occurred while adding the prompt</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">An error occurred while adding the prompt</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
 
 <p><strong>हिंदी अनुवाद:</strong></p>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addPrompt</span> <span class="o">=</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="k">if </span><span class="p">(</span><span class="o">!</span><span class="nx">newPrompt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">warn</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट सामग्री खाली नहीं हो सकती</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">addPrompt</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">newPrompt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">warn</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट सामग्री खाली नहीं हो सकती</span><span class="dl">'</span><span class="p">);</span>
     <span class="k">return</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+  <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
   <span class="k">try</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">prompts</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
       <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
         <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
       <span class="p">},</span>
-      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">newPrompt</span> <span class="p">}),</span>
+      <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span> <span class="na">content</span><span class="p">:</span> <span class="nx">newPrompt</span> <span class="p">}),</span>
     <span class="p">});</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nf">fetchPrompts</span><span class="p">();</span>
-      <span class="nf">setNewPrompt</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
-      <span class="nx">toast</span><span class="p">.</span><span class="nf">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट सफलतापूर्वक जोड़ा गया</span><span class="dl">'</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">fetchPrompts</span><span class="p">();</span>
+      <span class="nx">setNewPrompt</span><span class="p">(</span><span class="dl">''</span><span class="p">);</span>
+      <span class="nx">toast</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट सफलतापूर्वक जोड़ा गया</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट जोड़ने में विफल</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट जोड़ने में विफल</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट जोड़ते समय एक त्रुटि हुई</span><span class="dl">'</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">प्रॉम्प्ट जोड़ते समय एक त्रुटि हुई</span><span class="dl">'</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nf">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+    <span class="nx">setIsLoading</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">};</span>
 </code></pre></div></div>
@@ -536,7 +536,7 @@
 
 ```</span><span class="nx">javascript</span>
     <span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="nf">fetch</span><span class="p">(</span><span class="s2">`https://api.yourdomain.com/</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+      <span class="k">return</span> <span class="nx">fetch</span><span class="p">(</span><span class="s2">`https://api.yourdomain.com/</span><span class="p">${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
     <span class="p">};</span>
     <span class="s2">```
 
@@ -552,8 +552,8 @@
 <span class="k">from</span> <span class="nx">fabric</span> <span class="k">import</span> <span class="nx">Connection</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">server_dir</span> <span class="o">=</span> <span class="sh">'</span><span class="s">/home/project/server</span><span class="sh">'</span>
-    <span class="n">web_tmp_dir</span> <span class="o">=</span> <span class="sh">'</span><span class="s">/home/project/server/tmp</span><span class="sh">'</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">server_dir</span> <span class="o">=</span> <span class="s">'/home/project/server'</span>
+    <span class="n">web_tmp_dir</span> <span class="o">=</span> <span class="s">'/home/project/server/tmp'</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>@task

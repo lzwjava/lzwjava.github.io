@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Verfolgung unserer Haushaltsfinanzen | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Verfolgung unserer Haushaltsfinanzen" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="de" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -221,41 +221,41 @@
 
 <p>Der folgende Code hilft dabei, ein PDF aus dem Markdown zu generieren. Er hat einige spezielle Einstellungen, um die Darstellung chinesischer Zeichen in PDFs zu unterstützen.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
 <span class="c1"># Konfiguration
-</span><span class="n">CJK_FONT</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Heiti SC</span><span class="sh">"</span>
-<span class="n">GEOMETRY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">margin=1in</span><span class="sh">"</span>
-<span class="n">input_markdown_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">mortgage.md</span><span class="sh">"</span>  <span class="c1"># Ersetzen Sie dies durch Ihre Eingabe-Markdown-Datei
-</span><span class="n">output_pdf_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">mortgage.pdf</span><span class="sh">"</span>    <span class="c1"># Ersetzen Sie dies durch Ihre gewünschte Ausgabe-PDF-Datei
+</span><span class="n">CJK_FONT</span> <span class="o">=</span> <span class="s">"Heiti SC"</span>
+<span class="n">GEOMETRY</span> <span class="o">=</span> <span class="s">"margin=1in"</span>
+<span class="n">input_markdown_path</span> <span class="o">=</span> <span class="s">"mortgage.md"</span>  <span class="c1"># Ersetzen Sie dies durch Ihre Eingabe-Markdown-Datei
+</span><span class="n">output_pdf_path</span> <span class="o">=</span> <span class="s">"mortgage.pdf"</span>    <span class="c1"># Ersetzen Sie dies durch Ihre gewünschte Ausgabe-PDF-Datei
 </span>
 <span class="c1"># Überprüfen, ob die Eingabedatei existiert
-</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">input_markdown_path</span><span class="p">):</span>
-    <span class="k">raise</span> <span class="nc">Exception</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Eingabedatei existiert nicht: </span><span class="si">{</span><span class="n">input_markdown_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">input_markdown_path</span><span class="p">):</span>
+    <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s">"Eingabedatei existiert nicht: </span><span class="si">{</span><span class="n">input_markdown_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># Pandoc-Befehl konstruieren
 </span><span class="n">command</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="sh">'</span><span class="s">pandoc</span><span class="sh">'</span><span class="p">,</span>
+    <span class="s">'pandoc'</span><span class="p">,</span>
     <span class="n">input_markdown_path</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-o</span><span class="sh">'</span><span class="p">,</span> <span class="n">output_pdf_path</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-f</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">markdown</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">--pdf-engine</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">xelatex</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">'</span><span class="s">CJKmainfont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">'</span><span class="s">CJKsansfont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">'</span><span class="s">CJKmonofont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">'</span><span class="s">geometry:</span><span class="si">{</span><span class="n">GEOMETRY</span><span class="si">}</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">classoption=16pt</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">CJKoptions=Scale=1.1</span><span class="sh">'</span><span class="p">,</span>
-    <span class="sh">'</span><span class="s">-V</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">linestretch=1.5</span><span class="sh">'</span>
+    <span class="s">'-o'</span><span class="p">,</span> <span class="n">output_pdf_path</span><span class="p">,</span>
+    <span class="s">'-f'</span><span class="p">,</span> <span class="s">'markdown'</span><span class="p">,</span>
+    <span class="s">'--pdf-engine'</span><span class="p">,</span> <span class="s">'xelatex'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'CJKmainfont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'CJKsansfont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'CJKmonofont=</span><span class="si">{</span><span class="n">CJK_FONT</span><span class="si">}</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'geometry:</span><span class="si">{</span><span class="n">GEOMETRY</span><span class="si">}</span><span class="s">'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="s">'classoption=16pt'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="s">'CJKoptions=Scale=1.1'</span><span class="p">,</span>
+    <span class="s">'-V'</span><span class="p">,</span> <span class="s">'linestretch=1.5'</span>
 <span class="p">]</span>
 
 <span class="c1"># Pandoc-Befehl ausführen
 </span><span class="k">try</span><span class="p">:</span>
-    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">PDF erfolgreich generiert: </span><span class="si">{</span><span class="n">output_pdf_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"PDF erfolgreich generiert: </span><span class="si">{</span><span class="n">output_pdf_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Generieren des PDFs: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Generieren des PDFs: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 

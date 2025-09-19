@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>個人ステータスページ | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="個人ステータスページ" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ja" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -241,55 +241,55 @@
 
 <p>以下は、<code class="language-plaintext highlighter-rouge">bandwidth_api.py</code>というPythonスクリプトの作成例です。このスクリプトは、Bandwidth APIを使用して何らかの操作を行うための基本的な構造を示しています。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">class</span> <span class="nc">BandwidthAPI</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">api_token</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">api_token</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">api_secret</span> <span class="o">=</span> <span class="n">api_secret</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.bandwidth.com</span><span class="sh">"</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_token</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">api_token</span> <span class="o">=</span> <span class="n">api_token</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">api_secret</span> <span class="o">=</span> <span class="n">api_secret</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">base_url</span> <span class="o">=</span> <span class="s">"https://api.bandwidth.com"</span>
 
-    <span class="k">def</span> <span class="nf">_get_headers</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_get_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Basic </span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">api_token</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">api_secret</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span>
+            <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Basic </span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">api_token</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">api_secret</span><span class="si">}</span><span class="s">"</span><span class="p">,</span>
+            <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span>
         <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">make_request</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">self</span><span class="p">.</span><span class="n">base_url</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="sh">"</span>
-        <span class="n">headers</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">_get_headers</span><span class="p">()</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">make_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">endpoint</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="bp">self</span><span class="p">.</span><span class="n">base_url</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">endpoint</span><span class="si">}</span><span class="s">"</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_get_headers</span><span class="p">()</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">get_account_info</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">make_request</span><span class="p">(</span><span class="sh">"</span><span class="s">GET</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">v1/accounts/me</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">get_account_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">make_request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="s">"v1/accounts/me"</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">from_number</span><span class="p">,</span> <span class="n">to_number</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_number</span><span class="p">,</span> <span class="n">to_number</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
         <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">from</span><span class="sh">"</span><span class="p">:</span> <span class="n">from_number</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">to</span><span class="sh">"</span><span class="p">:</span> <span class="n">to_number</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">text</span>
+            <span class="s">"from"</span><span class="p">:</span> <span class="n">from_number</span><span class="p">,</span>
+            <span class="s">"to"</span><span class="p">:</span> <span class="n">to_number</span><span class="p">,</span>
+            <span class="s">"text"</span><span class="p">:</span> <span class="n">text</span>
         <span class="p">}</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="nf">make_request</span><span class="p">(</span><span class="sh">"</span><span class="s">POST</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">v1/messages</span><span class="sh">"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">make_request</span><span class="p">(</span><span class="s">"POST"</span><span class="p">,</span> <span class="s">"v1/messages"</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
     <span class="c1"># Replace with your actual API token and secret
-</span>    <span class="n">api_token</span> <span class="o">=</span> <span class="sh">"</span><span class="s">your_api_token</span><span class="sh">"</span>
-    <span class="n">api_secret</span> <span class="o">=</span> <span class="sh">"</span><span class="s">your_api_secret</span><span class="sh">"</span>
+</span>    <span class="n">api_token</span> <span class="o">=</span> <span class="s">"your_api_token"</span>
+    <span class="n">api_secret</span> <span class="o">=</span> <span class="s">"your_api_secret"</span>
 
-    <span class="n">bandwidth_api</span> <span class="o">=</span> <span class="nc">BandwidthAPI</span><span class="p">(</span><span class="n">api_token</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">)</span>
+    <span class="n">bandwidth_api</span> <span class="o">=</span> <span class="n">BandwidthAPI</span><span class="p">(</span><span class="n">api_token</span><span class="p">,</span> <span class="n">api_secret</span><span class="p">)</span>
 
     <span class="c1"># Example: Get account info
-</span>    <span class="n">account_info</span> <span class="o">=</span> <span class="n">bandwidth_api</span><span class="p">.</span><span class="nf">get_account_info</span><span class="p">()</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Account Info:</span><span class="sh">"</span><span class="p">,</span> <span class="n">account_info</span><span class="p">)</span>
+</span>    <span class="n">account_info</span> <span class="o">=</span> <span class="n">bandwidth_api</span><span class="p">.</span><span class="n">get_account_info</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Account Info:"</span><span class="p">,</span> <span class="n">account_info</span><span class="p">)</span>
 
     <span class="c1"># Example: Send a message
-</span>    <span class="n">from_number</span> <span class="o">=</span> <span class="sh">"</span><span class="s">+1234567890</span><span class="sh">"</span>
-    <span class="n">to_number</span> <span class="o">=</span> <span class="sh">"</span><span class="s">+0987654321</span><span class="sh">"</span>
-    <span class="n">message_text</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Hello from Bandwidth API!</span><span class="sh">"</span>
-    <span class="n">send_message_response</span> <span class="o">=</span> <span class="n">bandwidth_api</span><span class="p">.</span><span class="nf">send_message</span><span class="p">(</span><span class="n">from_number</span><span class="p">,</span> <span class="n">to_number</span><span class="p">,</span> <span class="n">message_text</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Message Sent:</span><span class="sh">"</span><span class="p">,</span> <span class="n">send_message_response</span><span class="p">)</span>
+</span>    <span class="n">from_number</span> <span class="o">=</span> <span class="s">"+1234567890"</span>
+    <span class="n">to_number</span> <span class="o">=</span> <span class="s">"+0987654321"</span>
+    <span class="n">message_text</span> <span class="o">=</span> <span class="s">"Hello from Bandwidth API!"</span>
+    <span class="n">send_message_response</span> <span class="o">=</span> <span class="n">bandwidth_api</span><span class="p">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">from_number</span><span class="p">,</span> <span class="n">to_number</span><span class="p">,</span> <span class="n">message_text</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Message Sent:"</span><span class="p">,</span> <span class="n">send_message_response</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="説明">説明:</h3>
@@ -314,19 +314,19 @@
 
 <p>このスクリプトは、Bandwidth APIを使用して基本的な操作を行うための出発点として利用できます。必要に応じて、さらに機能を追加したり、エラーハンドリングを強化したりすることができます。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># すべてのルートに対してCORSを有効にする
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># すべてのルートに対してCORSを有効にする
 </span></code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/bandwidth</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/bandwidth'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_bandwidth</span><span class="p">():</span>
     <span class="c1"># eth0の5分間隔のトラフィック統計を取得するためにvnstatコマンドを実行
-</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">'</span><span class="s">vnstat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">eth0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-5</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">--json</span><span class="sh">'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">'vnstat'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="s">'eth0'</span><span class="p">,</span> <span class="s">'-5'</span><span class="p">,</span> <span class="s">'--json'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span>
 </code></pre></div></div>
 
@@ -334,8 +334,8 @@
 return jsonify(data)
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">0.0.0.0</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>このコードは、Pythonのスクリプトが直接実行された場合に、Flaskアプリケーションを起動するためのものです。<code class="language-plaintext highlighter-rouge">host='0.0.0.0'</code>と指定することで、外部からのアクセスを許可し、<code class="language-plaintext highlighter-rouge">port=5000</code>でアプリケーションがリッスンするポートを指定しています。</p>
@@ -352,53 +352,53 @@ return jsonify(data)
 
 <p>以下のHTMLとJavaScriptを使用して、帯域幅データを取得し表示します：</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nf">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">DOMContentLoaded</span><span class="dl">'</span><span class="p">,</span> <span class="nf">function </span><span class="p">()</span> <span class="p">{</span>
-    <span class="nf">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.lzwjava.xyz/bandwidth</span><span class="dl">'</span><span class="p">)</span>
-        <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
-        <span class="p">.</span><span class="nf">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">bandwidthData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">DOMContentLoaded</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="nx">fetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">https://www.lzwjava.xyz/bandwidth</span><span class="dl">'</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span> <span class="o">=&gt;</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">bandwidthData</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 時間を表示するためのコンテナを作成</span>
-<span class="kd">var</span> <span class="nx">timesContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">timesContainer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">div</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="kd">var</span> <span class="nx">currentUtcTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">();</span>
-            <span class="kd">var</span> <span class="nx">currentLocalTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="nx">currentUtcTime</span><span class="p">.</span><span class="nf">getTime</span><span class="p">());</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="kd">var</span> <span class="nx">currentUtcTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+            <span class="kd">var</span> <span class="nx">currentLocalTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nx">currentUtcTime</span><span class="p">.</span><span class="nx">getTime</span><span class="p">());</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="kd">var</span> <span class="nx">pUtcTime</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">);</span>
-            <span class="nx">pUtcTime</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">`UTC時間: </span><span class="p">${</span><span class="nx">currentUtcTime</span><span class="p">.</span><span class="nf">toUTCString</span><span class="p">()}</span><span class="s2">`</span><span class="p">;</span>
-            <span class="nx">timesContainer</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">pUtcTime</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="kd">var</span> <span class="nx">pUtcTime</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">pUtcTime</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">`UTC時間: </span><span class="p">${</span><span class="nx">currentUtcTime</span><span class="p">.</span><span class="nx">toUTCString</span><span class="p">()}</span><span class="s2">`</span><span class="p">;</span>
+            <span class="nx">timesContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">pUtcTime</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pLocalTime</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">);</span>
-<span class="nx">pLocalTime</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">`私の現地時間: </span><span class="p">${</span><span class="nx">currentLocalTime</span><span class="p">.</span><span class="nf">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">;</span>
-<span class="nx">timesContainer</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">pLocalTime</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">pLocalTime</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">p</span><span class="dl">'</span><span class="p">);</span>
+<span class="nx">pLocalTime</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">`私の現地時間: </span><span class="p">${</span><span class="nx">currentLocalTime</span><span class="p">.</span><span class="nx">toString</span><span class="p">()}</span><span class="s2">`</span><span class="p">;</span>
+<span class="nx">timesContainer</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">pLocalTime</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="c1">// タイムズコンテナをステータスdivに追加する</span>
-            <span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">status</span><span class="dl">'</span><span class="p">).</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">timesContainer</span><span class="p">);</span>
+            <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">status</span><span class="dl">'</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">timesContainer</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// テーブルを作成</span>
-<span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">table</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">table</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">table</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">table</span><span class="p">.</span><span class="nx">border</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">1</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">table</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">borderCollapse</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">collapse</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">table</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">100%</span><span class="dl">'</span><span class="p">;</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>            <span class="c1">// テーブルのヘッダーを作成</span>
-            <span class="kd">var</span> <span class="nx">thead</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">thead</span><span class="dl">'</span><span class="p">);</span>
-            <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">tr</span><span class="dl">'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">thead</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">thead</span><span class="dl">'</span><span class="p">);</span>
+            <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">tr</span><span class="dl">'</span><span class="p">);</span>
             <span class="kd">var</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">[</span><span class="dl">'</span><span class="s1">時間</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">トラフィック (KB/s)</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">ステータス</span><span class="dl">'</span><span class="p">];</span>
-            <span class="nx">headers</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">headerText</span> <span class="o">=&gt;</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">th</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">th</span><span class="dl">'</span><span class="p">);</span>
+            <span class="nx">headers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">headerText</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">th</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">th</span><span class="dl">'</span><span class="p">);</span>
                 <span class="nx">th</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">headerText</span><span class="p">;</span>
-                <span class="nx">tr</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">th</span><span class="p">);</span>
+                <span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">th</span><span class="p">);</span>
             <span class="p">});</span>
-            <span class="nx">thead</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
-            <span class="nx">table</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">thead</span><span class="p">);</span>
+            <span class="nx">thead</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+            <span class="nx">table</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">thead</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        // テーブル本体を作成
@@ -406,43 +406,43 @@ return jsonify(data)
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// トラフィックデータを処理する</span>
-<span class="kd">var</span> <span class="nx">fiveMinuteData</span> <span class="o">=</span> <span class="nx">bandwidthData</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">traffic</span><span class="p">.</span><span class="nx">fiveminute</span><span class="p">.</span><span class="nf">reverse</span><span class="p">();</span>
-<span class="nx">fiveMinuteData</span><span class="p">.</span><span class="nf">forEach</span><span class="p">(</span><span class="nx">interval</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">tr</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">fiveMinuteData</span> <span class="o">=</span> <span class="nx">bandwidthData</span><span class="p">.</span><span class="nx">interfaces</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">traffic</span><span class="p">.</span><span class="nx">fiveminute</span><span class="p">.</span><span class="nx">reverse</span><span class="p">();</span>
+<span class="nx">fiveMinuteData</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">interval</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">tr</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">tr</span><span class="dl">'</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">dataTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nc">UTC</span><span class="p">(</span><span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">day</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">hour</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">minute</span><span class="p">));</span>
-<span class="kd">var</span> <span class="nx">timeDifference</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">round</span><span class="p">((</span><span class="nx">currentUtcTime</span> <span class="o">-</span> <span class="nx">dataTime</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="c1">// 時間差を分単位で計算</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">dataTime</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">UTC</span><span class="p">(</span><span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">year</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">month</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">date</span><span class="p">.</span><span class="nx">day</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">hour</span><span class="p">,</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">time</span><span class="p">.</span><span class="nx">minute</span><span class="p">));</span>
+<span class="kd">var</span> <span class="nx">timeDifference</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">((</span><span class="nx">currentUtcTime</span> <span class="o">-</span> <span class="nx">dataTime</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1000</span> <span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="c1">// 時間差を分単位で計算</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tdTimeDifference</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tdTimeDifference</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">tdTimeDifference</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">timeDifference</span> <span class="o">+</span> <span class="dl">'</span><span class="s1"> 分前</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">tr</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tdTimeDifference</span><span class="p">);</span>
+<span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tdTimeDifference</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">averageTraffic</span> <span class="o">=</span> <span class="p">(</span><span class="nx">interval</span><span class="p">.</span><span class="nx">rx</span> <span class="o">+</span> <span class="nx">interval</span><span class="p">.</span><span class="nx">tx</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// RXとTXの平均を計算</span>
-<span class="kd">var</span> <span class="nx">tdTrafficKBs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">var</span> <span class="nx">trafficKBs</span> <span class="o">=</span> <span class="p">(</span><span class="nx">averageTraffic</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)).</span><span class="nf">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// KB/sに変換</span>
+<span class="kd">var</span> <span class="nx">tdTrafficKBs</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">trafficKBs</span> <span class="o">=</span> <span class="p">(</span><span class="nx">averageTraffic</span> <span class="o">/</span> <span class="p">(</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">1024</span><span class="p">)).</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="c1">// KB/sに変換</span>
 <span class="nx">tdTrafficKBs</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">trafficKBs</span><span class="p">;</span>
-<span class="nx">tr</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tdTrafficKBs</span><span class="p">);</span>
+<span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tdTrafficKBs</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tdStatus</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">tdStatus</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="dl">'</span><span class="s1">td</span><span class="dl">'</span><span class="p">);</span>
 <span class="nx">tdStatus</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">trafficKBs</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">Online</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">Offline</span><span class="dl">'</span><span class="p">;</span>
 <span class="nx">tdStatus</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="nx">trafficKBs</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="p">?</span> <span class="dl">'</span><span class="s1">status-online</span><span class="dl">'</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">status-offline</span><span class="dl">'</span><span class="p">;</span>
-<span class="nx">tr</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tdStatus</span><span class="p">);</span>
+<span class="nx">tr</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tdStatus</span><span class="p">);</span>
 </code></pre></div></div>
 
-<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">tbody</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">tbody</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tr</span><span class="p">);</span>
 <span class="p">});</span>
-<span class="nx">table</span><span class="p">.</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">tbody</span><span class="p">);</span>
+<span class="nx">table</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">tbody</span><span class="p">);</span>
 </code></pre></div></div>
 
 <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// テーブルをステータス div に追加</span>
-<span class="nb">document</span><span class="p">.</span><span class="nf">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">status</span><span class="dl">'</span><span class="p">).</span><span class="nf">appendChild</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">status</span><span class="dl">'</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">table</span><span class="p">);</span>
 <span class="p">})</span>
 <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">帯域幅データの取得中にエラーが発生しました:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">帯域幅データの取得中にエラーが発生しました:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">);</span>
 <span class="p">});</span>
 </code></pre></div></div>
 

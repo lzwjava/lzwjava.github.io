@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Training ML Models on GCP with NVIDIA GPUs | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Training ML Models on GCP with NVIDIA GPUs" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -257,27 +257,27 @@ CMD ["python", "train.py"]
     </ul>
   </li>
   <li><strong>Using Python SDK</strong>:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">aiplatform</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">aiplatform</span>
 
-<span class="n">aiplatform</span><span class="p">.</span><span class="nf">init</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="sh">'</span><span class="s">your-project-id</span><span class="sh">'</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="sh">'</span><span class="s">us-central1</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">aiplatform</span><span class="p">.</span><span class="n">init</span><span class="p">(</span><span class="n">project</span><span class="o">=</span><span class="s">'your-project-id'</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s">'us-central1'</span><span class="p">)</span>
 
-<span class="n">job</span> <span class="o">=</span> <span class="n">aiplatform</span><span class="p">.</span><span class="nc">CustomJob</span><span class="p">(</span>
-    <span class="n">display_name</span><span class="o">=</span><span class="sh">'</span><span class="s">your-training-job</span><span class="sh">'</span><span class="p">,</span>
+<span class="n">job</span> <span class="o">=</span> <span class="n">aiplatform</span><span class="p">.</span><span class="n">CustomJob</span><span class="p">(</span>
+    <span class="n">display_name</span><span class="o">=</span><span class="s">'your-training-job'</span><span class="p">,</span>
     <span class="n">worker_pool_specs</span><span class="o">=</span><span class="p">[</span>
         <span class="p">{</span>
-            <span class="sh">'</span><span class="s">machine_spec</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
-                <span class="sh">'</span><span class="s">machine_type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">a3-highgpu-2g</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># 2x H100
-</span>                <span class="sh">'</span><span class="s">accelerator_type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">NVIDIA_H100_80GB</span><span class="sh">'</span><span class="p">,</span>
-                <span class="sh">'</span><span class="s">accelerator_count</span><span class="sh">'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s">'machine_spec'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">'machine_type'</span><span class="p">:</span> <span class="s">'a3-highgpu-2g'</span><span class="p">,</span>  <span class="c1"># 2x H100
+</span>                <span class="s">'accelerator_type'</span><span class="p">:</span> <span class="s">'NVIDIA_H100_80GB'</span><span class="p">,</span>
+                <span class="s">'accelerator_count'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
             <span class="p">},</span>
-            <span class="sh">'</span><span class="s">replica_count</span><span class="sh">'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-            <span class="sh">'</span><span class="s">container_spec</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span>
-                <span class="sh">'</span><span class="s">image_uri</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">gcr.io/your-project/your-image:latest</span><span class="sh">'</span><span class="p">,</span>
+            <span class="s">'replica_count'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s">'container_spec'</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s">'image_uri'</span><span class="p">:</span> <span class="s">'gcr.io/your-project/your-image:latest'</span><span class="p">,</span>
             <span class="p">},</span>
         <span class="p">}</span>
     <span class="p">],</span>
 <span class="p">)</span>
-<span class="n">job</span><span class="p">.</span><span class="nf">run</span><span class="p">()</span>
+<span class="n">job</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div>    </div>
   </li>
   <li><strong>Monitor and Scale</strong>:

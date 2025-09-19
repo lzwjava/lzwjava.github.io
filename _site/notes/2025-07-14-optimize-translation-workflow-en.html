@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Optimize Translation with Paragraph Hashing | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Optimize Translation with Paragraph Hashing" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -284,93 +284,93 @@
 
 <p>Here’s a basic version using line-by-line parsing (no external libs beyond built-ins). It assumes simple Markdown: paragraphs separated by blank lines, fenced code blocks. Upgrade to <code class="language-plaintext highlighter-rouge">mistune</code> for complex syntax.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">hashlib</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">sys</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 <span class="c1"># Assume you have an AI translate function; replace with your DeepSeek/Mistral API call
 </span><span class="k">def</span> <span class="nf">ai_translate</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">lang</span><span class="p">):</span>
     <span class="c1"># Placeholder: return API call result
-</span>    <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Translated to </span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span>  <span class="c1"># Replace with real API
+</span>    <span class="k">return</span> <span class="sa">f</span><span class="s">"Translated to </span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s">"</span>  <span class="c1"># Replace with real API
 </span>
-<span class="n">CACHE_FILE</span> <span class="o">=</span> <span class="sh">'</span><span class="s">translations_cache.json</span><span class="sh">'</span>
-<span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">fr</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">es</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">de</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">it</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">pt</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">zh</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">ja</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">ko</span><span class="sh">'</span><span class="p">]</span>  <span class="c1"># Your 8 languages
+<span class="n">CACHE_FILE</span> <span class="o">=</span> <span class="s">'translations_cache.json'</span>
+<span class="n">LANGUAGES</span> <span class="o">=</span> <span class="p">[</span><span class="s">'fr'</span><span class="p">,</span> <span class="s">'es'</span><span class="p">,</span> <span class="s">'de'</span><span class="p">,</span> <span class="s">'it'</span><span class="p">,</span> <span class="s">'pt'</span><span class="p">,</span> <span class="s">'zh'</span><span class="p">,</span> <span class="s">'ja'</span><span class="p">,</span> <span class="s">'ko'</span><span class="p">]</span>  <span class="c1"># Your 8 languages
 </span>
 <span class="k">def</span> <span class="nf">load_cache</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{}</span>
 
 <span class="k">def</span> <span class="nf">save_cache</span><span class="p">(</span><span class="n">cache</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">CACHE_FILE</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cache</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">compute_hash</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
-    <span class="n">normalized</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>  <span class="c1"># Customize normalization
-</span>    <span class="k">return</span> <span class="n">hashlib</span><span class="p">.</span><span class="nf">sha256</span><span class="p">(</span><span class="n">normalized</span><span class="p">.</span><span class="nf">encode</span><span class="p">(</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)).</span><span class="nf">hexdigest</span><span class="p">()</span>
+    <span class="n">normalized</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>  <span class="c1"># Customize normalization
+</span>    <span class="k">return</span> <span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">(</span><span class="n">normalized</span><span class="p">.</span><span class="n">encode</span><span class="p">(</span><span class="s">'utf-8'</span><span class="p">)).</span><span class="n">hexdigest</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">parse_markdown</span><span class="p">(</span><span class="n">md_text</span><span class="p">):</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="n">md_text</span><span class="p">.</span><span class="nf">splitlines</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">md_text</span><span class="p">.</span><span class="n">splitlines</span><span class="p">()</span>
     <span class="n">blocks</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">current_block</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">in_code</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">```</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">~~~</span><span class="sh">'</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">startswith</span><span class="p">(</span><span class="s">'```'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">startswith</span><span class="p">(</span><span class="s">'~~~'</span><span class="p">):</span>
             <span class="n">in_code</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">in_code</span>
             <span class="k">if</span> <span class="n">current_block</span><span class="p">:</span>
-                <span class="n">blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
+                <span class="n">blocks</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">'text'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
                 <span class="n">current_block</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">'</span><span class="s">code</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+            <span class="n">blocks</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">'code'</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
             <span class="k">continue</span>
         <span class="k">if</span> <span class="n">in_code</span><span class="p">:</span>
-            <span class="n">blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">'</span><span class="s">code</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+            <span class="n">blocks</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">'code'</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">():</span>  <span class="c1"># Non-blank
-</span>                <span class="n">current_block</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">():</span>  <span class="c1"># Non-blank
+</span>                <span class="n">current_block</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">current_block</span><span class="p">:</span>
-                    <span class="n">blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
+                    <span class="n">blocks</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">'text'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
                     <span class="n">current_block</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">current_block</span><span class="p">:</span>
-        <span class="n">blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
+        <span class="n">blocks</span><span class="p">.</span><span class="n">append</span><span class="p">((</span><span class="s">'text'</span><span class="p">,</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_block</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">blocks</span>
 
 <span class="k">def</span> <span class="nf">translate_post</span><span class="p">(</span><span class="n">english_md_path</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">english_md_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">md_text</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">english_md_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">md_text</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
     
-    <span class="n">blocks</span> <span class="o">=</span> <span class="nf">parse_markdown</span><span class="p">(</span><span class="n">md_text</span><span class="p">)</span>
-    <span class="n">cache</span> <span class="o">=</span> <span class="nf">load_cache</span><span class="p">()</span>
+    <span class="n">blocks</span> <span class="o">=</span> <span class="n">parse_markdown</span><span class="p">(</span><span class="n">md_text</span><span class="p">)</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">load_cache</span><span class="p">()</span>
     
     <span class="k">for</span> <span class="n">lang</span> <span class="ow">in</span> <span class="n">LANGUAGES</span><span class="p">:</span>
         <span class="n">translated_blocks</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">block_type</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">blocks</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">block_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">code</span><span class="sh">'</span><span class="p">:</span>
-                <span class="n">translated_blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">block_type</span> <span class="o">==</span> <span class="s">'code'</span><span class="p">:</span>
+                <span class="n">translated_blocks</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>  <span class="c1"># text
-</span>                <span class="n">h</span> <span class="o">=</span> <span class="nf">compute_hash</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span>                <span class="n">h</span> <span class="o">=</span> <span class="n">compute_hash</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">h</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
                     <span class="n">cache</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
                 <span class="k">if</span> <span class="n">lang</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">[</span><span class="n">h</span><span class="p">]:</span>
-                    <span class="n">translation</span> <span class="o">=</span> <span class="nf">ai_translate</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">lang</span><span class="p">)</span>
+                    <span class="n">translation</span> <span class="o">=</span> <span class="n">ai_translate</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">lang</span><span class="p">)</span>
                     <span class="n">cache</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">lang</span><span class="p">]</span> <span class="o">=</span> <span class="n">translation</span>
-                <span class="n">translated_blocks</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">lang</span><span class="p">])</span>
+                <span class="n">translated_blocks</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">cache</span><span class="p">[</span><span class="n">h</span><span class="p">][</span><span class="n">lang</span><span class="p">])</span>
         
         <span class="c1"># Reassemble with newlines
-</span>        <span class="n">translated_md</span> <span class="o">=</span> <span class="sh">'</span><span class="se">\n\n</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">translated_blocks</span><span class="p">)</span>  <span class="c1"># Adjust for Markdown formatting
-</span>        <span class="n">output_path</span> <span class="o">=</span> <span class="n">english_md_path</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">.md</span><span class="sh">'</span><span class="p">,</span> <span class="sa">f</span><span class="sh">'</span><span class="s">_</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">.md</span><span class="sh">'</span><span class="p">)</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">translated_md</span><span class="p">)</span>
+</span>        <span class="n">translated_md</span> <span class="o">=</span> <span class="s">'</span><span class="se">\n\n</span><span class="s">'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">translated_blocks</span><span class="p">)</span>  <span class="c1"># Adjust for Markdown formatting
+</span>        <span class="n">output_path</span> <span class="o">=</span> <span class="n">english_md_path</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.md'</span><span class="p">,</span> <span class="sa">f</span><span class="s">'_</span><span class="si">{</span><span class="n">lang</span><span class="si">}</span><span class="s">.md'</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">translated_md</span><span class="p">)</span>
     
-    <span class="nf">save_cache</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Translations updated.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">save_cache</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Translations updated."</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python script.py path/to/english.md</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py path/to/english.md"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">translate_post</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">translate_post</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p><strong>How to use</strong>:</p>

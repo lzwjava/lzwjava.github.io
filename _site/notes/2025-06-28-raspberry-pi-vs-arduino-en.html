@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Raspberry Pi vs. Arduino for Washing Machine Monitoring with Telegram Alerts | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Raspberry Pi vs. Arduino for Washing Machine Monitoring with Telegram Alerts" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -382,22 +382,22 @@ pip3 <span class="nb">install </span>python-telegram-bot
 Below is a sample Python script for the Raspberry Pi to detect the panel light and send Telegram notifications.</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">cv2</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">from</span> <span class="n">picamera2</span> <span class="kn">import</span> <span class="n">Picamera2</span>
-<span class="kn">import</span> <span class="n">telegram</span>
-<span class="kn">import</span> <span class="n">asyncio</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="nn">picamera2</span> <span class="kn">import</span> <span class="n">Picamera2</span>
+<span class="kn">import</span> <span class="nn">telegram</span>
+<span class="kn">import</span> <span class="nn">asyncio</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># Telegram bot configuration
-</span><span class="n">BOT_TOKEN</span> <span class="o">=</span> <span class="sh">"</span><span class="s">your_bot_token</span><span class="sh">"</span>
-<span class="n">CHAT_ID</span> <span class="o">=</span> <span class="sh">"</span><span class="s">your_chat_id</span><span class="sh">"</span>
-<span class="n">bot</span> <span class="o">=</span> <span class="n">telegram</span><span class="p">.</span><span class="nc">Bot</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">BOT_TOKEN</span><span class="p">)</span>
+</span><span class="n">BOT_TOKEN</span> <span class="o">=</span> <span class="s">"your_bot_token"</span>
+<span class="n">CHAT_ID</span> <span class="o">=</span> <span class="s">"your_chat_id"</span>
+<span class="n">bot</span> <span class="o">=</span> <span class="n">telegram</span><span class="p">.</span><span class="n">Bot</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="n">BOT_TOKEN</span><span class="p">)</span>
 
 <span class="c1"># Camera configuration
-</span><span class="n">picam2</span> <span class="o">=</span> <span class="nc">Picamera2</span><span class="p">()</span>
-<span class="n">picam2</span><span class="p">.</span><span class="nf">configure</span><span class="p">(</span><span class="n">picam2</span><span class="p">.</span><span class="nf">create_still_configuration</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">size</span><span class="sh">"</span><span class="p">:</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)}))</span>
-<span class="n">picam2</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+</span><span class="n">picam2</span> <span class="o">=</span> <span class="n">Picamera2</span><span class="p">()</span>
+<span class="n">picam2</span><span class="p">.</span><span class="n">configure</span><span class="p">(</span><span class="n">picam2</span><span class="p">.</span><span class="n">create_still_configuration</span><span class="p">(</span><span class="n">main</span><span class="o">=</span><span class="p">{</span><span class="s">"size"</span><span class="p">:</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">480</span><span class="p">)}))</span>
+<span class="n">picam2</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
 
 <span class="c1"># ROI configuration (adjust based on camera view)
 </span><span class="n">ROI_X</span><span class="p">,</span> <span class="n">ROI_Y</span><span class="p">,</span> <span class="n">ROI_WIDTH</span><span class="p">,</span> <span class="n">ROI_HEIGHT</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span>
@@ -408,39 +408,39 @@ Below is a sample Python script for the Raspberry Pi to detect the panel light a
 <span class="n">last_on_time</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
-    <span class="k">await</span> <span class="n">bot</span><span class="p">.</span><span class="nf">send_message</span><span class="p">(</span><span class="n">chat_id</span><span class="o">=</span><span class="n">CHAT_ID</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">bot</span><span class="p">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">chat_id</span><span class="o">=</span><span class="n">CHAT_ID</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">message</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">is_light_on</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
     <span class="c1"># Convert to grayscale
-</span>    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nf">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+</span>    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
     <span class="c1"># Apply Gaussian blur
-</span>    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="nc">GaussianBlur</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</span>    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
     <span class="c1"># Extract ROI
 </span>    <span class="n">roi</span> <span class="o">=</span> <span class="n">gray</span><span class="p">[</span><span class="n">ROI_Y</span><span class="p">:</span><span class="n">ROI_Y</span><span class="o">+</span><span class="n">ROI_HEIGHT</span><span class="p">,</span> <span class="n">ROI_X</span><span class="p">:</span><span class="n">ROI_X</span><span class="o">+</span><span class="n">ROI_WIDTH</span><span class="p">]</span>
     <span class="c1"># Calculate average brightness
-</span>    <span class="n">avg_brightness</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span>
+</span>    <span class="n">avg_brightness</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">mean</span><span class="p">(</span><span class="n">roi</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">avg_brightness</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span>
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="k">global</span> <span class="n">machine_running</span><span class="p">,</span> <span class="n">last_on_time</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="c1"># Capture image
-</span>        <span class="n">frame</span> <span class="o">=</span> <span class="n">picam2</span><span class="p">.</span><span class="nf">capture_array</span><span class="p">()</span>
+</span>        <span class="n">frame</span> <span class="o">=</span> <span class="n">picam2</span><span class="p">.</span><span class="n">capture_array</span><span class="p">()</span>
         <span class="c1"># Check if light is on
-</span>        <span class="k">if</span> <span class="nf">is_light_on</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
+</span>        <span class="k">if</span> <span class="n">is_light_on</span><span class="p">(</span><span class="n">frame</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">machine_running</span><span class="p">:</span>
                 <span class="n">machine_running</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Machine is ON</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">last_on_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"Machine is ON"</span><span class="p">)</span>
+            <span class="n">last_on_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">machine_running</span> <span class="ow">and</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">last_on_time</span> <span class="o">&gt;</span> <span class="n">STOP_DELAY</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">machine_running</span> <span class="ow">and</span> <span class="p">(</span><span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">last_on_time</span> <span class="o">&gt;</span> <span class="n">STOP_DELAY</span><span class="p">):</span>
                 <span class="n">machine_running</span> <span class="o">=</span> <span class="bp">False</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Machine stopped</span><span class="sh">"</span><span class="p">)</span>
-                <span class="k">await</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="sh">"</span><span class="s">Washing machine stopped! Time to hang up clothes.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Check every 10 seconds
+                <span class="k">print</span><span class="p">(</span><span class="s">"Machine stopped"</span><span class="p">)</span>
+                <span class="k">await</span> <span class="n">send_telegram_message</span><span class="p">(</span><span class="s">"Washing machine stopped! Time to hang up clothes."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># Check every 10 seconds
 </span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">asyncio</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="nf">main</span><span class="p">())</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">asyncio</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">main</span><span class="p">())</span>
 </code></pre></div></div>
 
 <ol>
@@ -495,11 +495,11 @@ Below is a sample Python script for the Raspberry Pi to detect the panel light a
   <span class="k">while</span> <span class="p">(</span><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span> <span class="o">!=</span> <span class="n">WL_CONNECTED</span><span class="p">)</span> <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
   <span class="n">client</span><span class="p">.</span><span class="n">setInsecure</span><span class="p">();</span>
 <span class="p">}</span>
-<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">loop</span><span class="p">()</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">digitalRead</span><span class="p">(</span><span class="n">VIBRATION_PIN</span><span class="p">))</span> <span class="p">{</span>
     <span class="n">machineRunning</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="n">lastVibrationTime</span> <span class="o">=</span> <span class="n">millis</span><span class="p">();</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="nf">if</span> <span class="p">(</span><span class="n">machineRunning</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">lastVibrationTime</span> <span class="o">&gt;</span> <span class="mi">300000</span><span class="p">))</span> <span class="p">{</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">machineRunning</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">millis</span><span class="p">()</span> <span class="o">-</span> <span class="n">lastVibrationTime</span> <span class="o">&gt;</span> <span class="mi">300000</span><span class="p">))</span> <span class="p">{</span>
     <span class="n">machineRunning</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">bot</span><span class="p">.</span><span class="n">sendMessage</span><span class="p">(</span><span class="n">CHAT_ID</span><span class="p">,</span> <span class="s">"Washing machine stopped!"</span><span class="p">,</span> <span class="s">""</span><span class="p">);</span>
   <span class="p">}</span>

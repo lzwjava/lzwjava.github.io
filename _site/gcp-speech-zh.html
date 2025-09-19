@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Google Text-to-Speech API 入门教程 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Google Text-to-Speech API 入门教程" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="zh" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -275,46 +275,46 @@
 
 <p>现在，你可以使用 Google Cloud Text-to-Speech API 将文本转换为语音。以下是一个 Python 示例，演示如何实现：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">texttospeech</span>
 
 <span class="k">def</span> <span class="nf">text_to_speech</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">):</span>
     <span class="c1"># 初始化 Text-to-Speech 客户端
-</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">TextToSpeechClient</span><span class="p">()</span>
+</span>    <span class="n">client</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">TextToSpeechClient</span><span class="p">()</span>
 
     <span class="c1"># 设置合成输入
-</span>    <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
+</span>    <span class="n">synthesis_input</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">SynthesisInput</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">text</span><span class="p">)</span>
 
     <span class="c1"># 选择语音参数
-</span>    <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">VoiceSelectionParams</span><span class="p">(</span>
-        <span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># 如果需要，可以更改为其他语言
+</span>    <span class="n">voice</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">VoiceSelectionParams</span><span class="p">(</span>
+        <span class="n">language_code</span><span class="o">=</span><span class="s">"en-US"</span><span class="p">,</span>  <span class="c1"># 如果需要，可以更改为其他语言
 </span>        <span class="n">ssml_gender</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">SsmlVoiceGender</span><span class="p">.</span><span class="n">NEUTRAL</span>  <span class="c1"># 可选择男性或女性
 </span>    <span class="p">)</span>
 
     <span class="c1"># 设置音频配置
-</span>    <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="nc">AudioConfig</span><span class="p">(</span>
+</span>    <span class="n">audio_config</span> <span class="o">=</span> <span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioConfig</span><span class="p">(</span>
         <span class="n">audio_encoding</span><span class="o">=</span><span class="n">texttospeech</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">MP3</span>  <span class="c1"># 可选 MP3 或 LINEAR16 (WAV)
 </span>    <span class="p">)</span>
 
     <span class="c1"># 执行文本到语音请求
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">synthesize_speech</span><span class="p">(</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">synthesize_speech</span><span class="p">(</span>
         <span class="nb">input</span><span class="o">=</span><span class="n">synthesis_input</span><span class="p">,</span> <span class="n">voice</span><span class="o">=</span><span class="n">voice</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span>
     <span class="p">)</span>
 
     <span class="c1"># 将音频内容写入文件
-</span>    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="sh">"</span><span class="s">wb</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
-        <span class="n">out</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_filename</span><span class="p">,</span> <span class="s">"wb"</span><span class="p">)</span> <span class="k">as</span> <span class="n">out</span><span class="p">:</span>
+        <span class="n">out</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">audio_content</span><span class="p">)</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">音频内容已写入 </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"音频内容已写入 </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 
 <span class="c1"># 示例使用
-</span><span class="n">article_text</span> <span class="o">=</span> <span class="sh">"""</span><span class="s">
+</span><span class="n">article_text</span> <span class="o">=</span> <span class="s">"""
 在此粘贴你的文章内容。确保文章格式正确，且不超过 API 限制。
-</span><span class="sh">"""</span>
-<span class="n">output_file</span> <span class="o">=</span> <span class="sh">"</span><span class="s">output_audio.mp3</span><span class="sh">"</span>
+"""</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="s">"output_audio.mp3"</span>
 
 <span class="c1"># 调用函数
-</span><span class="nf">text_to_speech</span><span class="p">(</span><span class="n">article_text</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
+</span><span class="n">text_to_speech</span><span class="p">(</span><span class="n">article_text</span><span class="p">,</span> <span class="n">output_file</span><span class="p">)</span>
 </code></pre></div></div>
 
 <hr />

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Reinforcement Learning Example | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Reinforcement Learning Example" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -238,8 +238,8 @@
 
 <p>Here’s a basic implementation of Q-Learning, a popular RL algorithm, in a simple 1D “world” where an agent moves left or right to reach a goal. The agent learns by updating a Q-table based on rewards.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
-<span class="kn">import</span> <span class="n">random</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1"># Environment setup: 1D world with 5 positions (0 to 4), goal at position 4
 </span><span class="n">state_space</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Positions: [0, 1, 2, 3, 4]
@@ -247,7 +247,7 @@
 </span><span class="n">goal</span> <span class="o">=</span> <span class="mi">4</span>
 
 <span class="c1"># Initialize Q-table with zeros (states x actions)
-</span><span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">state_space</span><span class="p">,</span> <span class="n">action_space</span><span class="p">))</span>
+</span><span class="n">q_table</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">state_space</span><span class="p">,</span> <span class="n">action_space</span><span class="p">))</span>
 
 <span class="c1"># Hyperparameters
 </span><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
@@ -266,31 +266,31 @@
 <span class="c1"># Step function: Move agent and get new state
 </span><span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Move left
-</span>        <span class="n">new_state</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span>        <span class="n">new_state</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">state</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>  <span class="c1"># Move right
-</span>        <span class="n">new_state</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">state_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">reward</span> <span class="o">=</span> <span class="nf">get_reward</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
+</span>        <span class="n">new_state</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">state_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">state</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">reward</span> <span class="o">=</span> <span class="n">get_reward</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
     <span class="n">done</span> <span class="o">=</span> <span class="p">(</span><span class="n">new_state</span> <span class="o">==</span> <span class="n">goal</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span>
 
 <span class="c1"># Training loop
-</span><span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">episodes</span><span class="p">):</span>
+</span><span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">episodes</span><span class="p">):</span>
     <span class="n">state</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Start at position 0
 </span>    <span class="n">done</span> <span class="o">=</span> <span class="bp">False</span>
     
     <span class="k">while</span> <span class="ow">not</span> <span class="n">done</span><span class="p">:</span>
         <span class="c1"># Exploration vs Exploitation
-</span>        <span class="k">if</span> <span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">exploration_rate</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">action_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Explore
+</span>        <span class="k">if</span> <span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">exploration_rate</span><span class="p">:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">action_space</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Explore
 </span>        <span class="k">else</span><span class="p">:</span>
-            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>  <span class="c1"># Exploit
+            <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>  <span class="c1"># Exploit
 </span>        
         <span class="c1"># Take action and observe result
-</span>        <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="nf">step</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+</span>        <span class="n">new_state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
         
         <span class="c1"># Update Q-table using the Q-learning formula
 </span>        <span class="n">old_value</span> <span class="o">=</span> <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span>
-        <span class="n">next_max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">new_state</span><span class="p">])</span>
+        <span class="n">next_max</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">new_state</span><span class="p">])</span>
         <span class="n">new_value</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">learning_rate</span><span class="p">)</span> <span class="o">*</span> <span class="n">old_value</span> <span class="o">+</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="p">(</span><span class="n">reward</span> <span class="o">+</span> <span class="n">discount_factor</span> <span class="o">*</span> <span class="n">next_max</span><span class="p">)</span>
         <span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_value</span>
         
@@ -298,22 +298,22 @@
 </span>        <span class="n">state</span> <span class="o">=</span> <span class="n">new_state</span>
     
     <span class="c1"># Decay exploration rate
-</span>    <span class="n">exploration_rate</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">min_exploration_rate</span><span class="p">,</span> <span class="n">exploration_rate</span> <span class="o">*</span> <span class="n">exploration_decay</span><span class="p">)</span>
+</span>    <span class="n">exploration_rate</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_exploration_rate</span><span class="p">,</span> <span class="n">exploration_rate</span> <span class="o">*</span> <span class="n">exploration_decay</span><span class="p">)</span>
 
 <span class="c1"># Test the learned policy
 </span><span class="n">state</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="n">steps</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Testing the learned policy:</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Testing the learned policy:"</span><span class="p">)</span>
 <span class="k">while</span> <span class="n">state</span> <span class="o">!=</span> <span class="n">goal</span><span class="p">:</span>
-    <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
-    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="nf">step</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+    <span class="n">action</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">q_table</span><span class="p">[</span><span class="n">state</span><span class="p">])</span>
+    <span class="n">state</span><span class="p">,</span> <span class="n">reward</span><span class="p">,</span> <span class="n">done</span> <span class="o">=</span> <span class="n">step</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
     <span class="n">steps</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Step </span><span class="si">{</span><span class="n">steps</span><span class="si">}</span><span class="s">: Moved to state </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s">, Action: </span><span class="si">{</span><span class="sh">'</span><span class="s">Left</span><span class="sh">'</span> <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="sh">'</span><span class="s">Right</span><span class="sh">'</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Reached goal in </span><span class="si">{</span><span class="n">steps</span><span class="si">}</span><span class="s"> steps!</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Step </span><span class="si">{</span><span class="n">steps</span><span class="si">}</span><span class="s">: Moved to state </span><span class="si">{</span><span class="n">state</span><span class="si">}</span><span class="s">, Action: </span><span class="si">{</span><span class="s">'Left'</span> <span class="k">if</span> <span class="n">action</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="s">'Right'</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Reached goal in </span><span class="si">{</span><span class="n">steps</span><span class="si">}</span><span class="s"> steps!"</span><span class="p">)</span>
 
 <span class="c1"># Print the Q-table
-</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">Learned Q-table:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">q_table</span><span class="p">)</span>
+</span><span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">Learned Q-table:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">q_table</span><span class="p">)</span>
 </code></pre></div></div>
 
 <hr />

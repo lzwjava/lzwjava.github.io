@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>LSTM Implementation Bugs and Fixes | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="LSTM Implementation Bugs and Fixes" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -337,12 +337,12 @@ Correct:
 <code class="language-plaintext highlighter-rouge">dC_t += dh_t ⊙ o_t ⊙ (1 - tanh(C_t)^2)</code>
 Your code:</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dC</span> <span class="o">+=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="nf">tanh</span><span class="p">(</span><span class="nf">tanh</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">t</span><span class="p">]),</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dC</span> <span class="o">+=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">tanh</span><span class="p">(</span><span class="n">tanh</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">t</span><span class="p">]),</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div>    </div>
 
     <p>That’s <code class="language-plaintext highlighter-rouge">tanh</code> applied twice. Replace with:</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dC</span> <span class="o">+=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o_t</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nf">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dC</span> <span class="o">+=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o_t</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li>
@@ -351,7 +351,7 @@ Correct: <code class="language-plaintext highlighter-rouge">df = dC_t ⊙ C_{t-1
 Your code:</p>
 
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span> <span class="o">=</span> <span class="n">dC</span> <span class="o">*</span> <span class="n">C_prev</span>
-<span class="n">df</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">*</span> <span class="n">df</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">t</span><span class="p">])</span> <span class="o">*</span> <span class="n">df</span>
 </code></pre></div>    </div>
 
     <p>Missing the derivative term. Should be:</p>
@@ -365,7 +365,7 @@ Your code:</p>
 You did:</p>
 
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">di</span> <span class="o">=</span> <span class="n">dC</span> <span class="o">*</span> <span class="n">g</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
-<span class="n">di</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">di</span>
+<span class="n">di</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">i</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">di</span>
 </code></pre></div>    </div>
 
     <p>This is fine <strong>if</strong> <code class="language-plaintext highlighter-rouge">sigmoid(x, True)</code> returns σ’(x) <em>not</em> σ(x). More robust (matching how you stored <code class="language-plaintext highlighter-rouge">i[t]</code> as the gate output) is:</p>
@@ -379,7 +379,7 @@ You did:</p>
 You did:</p>
 
     <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dg</span> <span class="o">=</span> <span class="n">dC</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
-<span class="n">dg</span> <span class="o">=</span> <span class="nf">tanh</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">dg</span>
+<span class="n">dg</span> <span class="o">=</span> <span class="n">tanh</span><span class="p">(</span><span class="n">g</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">dg</span>
 </code></pre></div>    </div>
 
     <p>If <code class="language-plaintext highlighter-rouge">g[t]</code> stores <code class="language-plaintext highlighter-rouge">tanh(preact)</code>, then <code class="language-plaintext highlighter-rouge">tanh’(preact) = 1 - g[t]^2</code>. So:</p>
@@ -392,13 +392,13 @@ You did:</p>
     <p><strong>Output gate:</strong>
 You did:</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="nf">tanh</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
-<span class="n">do</span> <span class="o">=</span> <span class="nf">sigmoid</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">do</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">tanh</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
+<span class="n">do</span> <span class="o">=</span> <span class="n">sigmoid</span><span class="p">(</span><span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">],</span> <span class="n">derivative</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">do</span>
 </code></pre></div>    </div>
 
     <p>With the indexing fix (<code class="language-plaintext highlighter-rouge">C_t = C[t+1]</code>, <code class="language-plaintext highlighter-rouge">o_t = o[t]</code>) and derivative as above:</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span>
 <span class="n">do</span> <span class="o">*=</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
 </code></pre></div>    </div>
   </li>
@@ -415,8 +415,8 @@ Correct:</p>
 
 <p>You want shapes of the <strong>current</strong> h/C (end-of-sequence), not the initial zeros. Use:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dh_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">dC_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dh_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">dC_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </code></pre></div></div>
 
 <h2 id="4-cross-entropy-arithmetic-stability">4) Cross-entropy arithmetic stability</h2>
@@ -424,7 +424,7 @@ Correct:</p>
 <p><code class="language-plaintext highlighter-rouge">loss += -np.mean(np.log(outputs[t]) * targets[t])</code> will be fine if <code class="language-plaintext highlighter-rouge">softmax</code> clamps/epsilons internally. If not, add a small epsilon:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-12</span>
-<span class="n">loss</span> <span class="o">+=</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">))</span>
+<span class="n">loss</span> <span class="o">+=</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">targets</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">+</span> <span class="n">eps</span><span class="p">))</span>
 </code></pre></div></div>
 
 <h2 id="5-training-stability-tweaks">5) Training stability tweaks</h2>
@@ -433,7 +433,7 @@ Correct:</p>
   <li>
     <p><strong>Forget-gate bias:</strong> initialize <code class="language-plaintext highlighter-rouge">b_f</code> to a positive value (e.g., <code class="language-plaintext highlighter-rouge">1.0</code>) so early in training the LSTM tends to keep memory:</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b_f</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.0</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">b_f</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">((</span><span class="n">hidden_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.0</span>
 </code></pre></div>    </div>
   </li>
   <li><strong>Learning rate:</strong> <code class="language-plaintext highlighter-rouge">lr=1e-1</code> with raw SGD is aggressive. Start <code class="language-plaintext highlighter-rouge">1e-2</code> or use Adam.</li>
@@ -446,11 +446,11 @@ Correct:</p>
 
 <p>This sketch shows the indexing and derivative fixes. It assumes <code class="language-plaintext highlighter-rouge">f[t], i[t], g[t], o[t]</code> are <em>outputs</em> of their nonlinearities (as in your forward):</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
-<span class="n">dh_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">dC_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">T</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">outputs</span><span class="p">)</span>
+<span class="n">dh_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">dC_next</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">C</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 
-<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">reversed</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">)):</span>
     <span class="c1"># Short names with correct indexing
 </span>    <span class="n">y_hat</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>                 <span class="c1"># softmax output
 </span>    <span class="n">y_true</span> <span class="o">=</span> <span class="n">targets</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
@@ -459,8 +459,8 @@ Correct:</p>
     <span class="n">C_tm1</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
 
     <span class="c1"># Output layer
-</span>    <span class="n">dv</span> <span class="o">=</span> <span class="n">y_hat</span><span class="p">.</span><span class="nf">copy</span><span class="p">()</span>
-    <span class="n">dv</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">y_true</span><span class="p">)]</span> <span class="o">-=</span> <span class="mi">1</span>
+</span>    <span class="n">dv</span> <span class="o">=</span> <span class="n">y_hat</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dv</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">y_true</span><span class="p">)]</span> <span class="o">-=</span> <span class="mi">1</span>
     <span class="n">W_v_d</span> <span class="o">+=</span> <span class="n">dv</span> <span class="o">@</span> <span class="n">h_t</span><span class="p">.</span><span class="n">T</span>
     <span class="n">b_v_d</span> <span class="o">+=</span> <span class="n">dv</span>
 
@@ -469,13 +469,13 @@ Correct:</p>
     <span class="n">dh</span> <span class="o">+=</span> <span class="n">dh_next</span>
 
     <span class="c1"># Output gate
-</span>    <span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span>
+</span>    <span class="n">do</span> <span class="o">=</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span>
     <span class="n">do</span> <span class="o">*=</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">])</span>
     <span class="n">W_o_d</span> <span class="o">+=</span> <span class="n">do</span> <span class="o">@</span> <span class="n">z</span><span class="p">[</span><span class="n">t</span><span class="p">].</span><span class="n">T</span>
     <span class="n">b_o_d</span> <span class="o">+=</span> <span class="n">do</span>
 
     <span class="c1"># Cell state
-</span>    <span class="n">dC</span> <span class="o">=</span> <span class="n">dC_next</span> <span class="o">+</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nf">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</span>    <span class="n">dC</span> <span class="o">=</span> <span class="n">dC_next</span> <span class="o">+</span> <span class="n">dh</span> <span class="o">*</span> <span class="n">o</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">C_t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 
     <span class="c1"># Candidate (g), Input (i), Forget (f)
 </span>    <span class="n">dg</span> <span class="o">=</span> <span class="n">dC</span> <span class="o">*</span> <span class="n">i</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>

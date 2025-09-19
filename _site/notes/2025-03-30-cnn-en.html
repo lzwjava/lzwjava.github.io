@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Convolutional Neural Network | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Convolutional Neural Network" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -253,7 +253,7 @@ After each convolution or fully connected layer, an activation function like <st
 
 <p>We will implement the <strong>convolution</strong> operation, which involves sliding a filter (kernel) over the input image.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
 <span class="k">def</span> <span class="nf">convolve2d</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">):</span>
     <span class="n">kernel_height</span><span class="p">,</span> <span class="n">kernel_width</span> <span class="o">=</span> <span class="n">kernel</span><span class="p">.</span><span class="n">shape</span>
@@ -263,13 +263,13 @@ After each convolution or fully connected layer, an activation function like <st
 </span>    <span class="n">output_height</span> <span class="o">=</span> <span class="n">image_height</span> <span class="o">-</span> <span class="n">kernel_height</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">output_width</span> <span class="o">=</span> <span class="n">image_width</span> <span class="o">-</span> <span class="n">kernel_width</span> <span class="o">+</span> <span class="mi">1</span>
     
-    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">output_height</span><span class="p">,</span> <span class="n">output_width</span><span class="p">))</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">output_height</span><span class="p">,</span> <span class="n">output_width</span><span class="p">))</span>
     
     <span class="c1"># Sliding the kernel over the input image
-</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">output_height</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">output_width</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">output_height</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">output_width</span><span class="p">):</span>
             <span class="n">region</span> <span class="o">=</span> <span class="n">input_image</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">kernel_height</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="n">kernel_width</span><span class="p">]</span>
-            <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">region</span> <span class="o">*</span> <span class="n">kernel</span><span class="p">)</span>  <span class="c1"># Element-wise multiplication and sum
+            <span class="n">output</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">sum</span><span class="p">(</span><span class="n">region</span> <span class="o">*</span> <span class="n">kernel</span><span class="p">)</span>  <span class="c1"># Element-wise multiplication and sum
 </span>    <span class="k">return</span> <span class="n">output</span>
 </code></pre></div></div>
 
@@ -278,7 +278,7 @@ After each convolution or fully connected layer, an activation function like <st
 <p>ReLU is applied element-wise on the convolution output.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">input_image</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">input_image</span><span class="p">)</span>  <span class="c1"># ReLU operation
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">input_image</span><span class="p">)</span>  <span class="c1"># ReLU operation
 </span></code></pre></div></div>
 
 <h3 id="step-3-pooling-layer-max-pooling">Step 3: Pooling Layer (Max Pooling)</h3>
@@ -290,13 +290,13 @@ After each convolution or fully connected layer, an activation function like <st
     <span class="n">output_height</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_height</span> <span class="o">-</span> <span class="n">pool_size</span><span class="p">)</span> <span class="o">//</span> <span class="n">stride</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">output_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">image_width</span> <span class="o">-</span> <span class="n">pool_size</span><span class="p">)</span> <span class="o">//</span> <span class="n">stride</span> <span class="o">+</span> <span class="mi">1</span>
     
-    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">((</span><span class="n">output_height</span><span class="p">,</span> <span class="n">output_width</span><span class="p">))</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">output_height</span><span class="p">,</span> <span class="n">output_width</span><span class="p">))</span>
     
     <span class="c1"># Apply max pooling
-</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image_height</span> <span class="o">-</span> <span class="n">pool_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image_width</span> <span class="o">-</span> <span class="n">pool_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image_height</span> <span class="o">-</span> <span class="n">pool_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">image_width</span> <span class="o">-</span> <span class="n">pool_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">stride</span><span class="p">):</span>
             <span class="n">region</span> <span class="o">=</span> <span class="n">input_image</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">pool_size</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="n">pool_size</span><span class="p">]</span>
-            <span class="n">output</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="n">stride</span><span class="p">,</span> <span class="n">j</span> <span class="o">//</span> <span class="n">stride</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
+            <span class="n">output</span><span class="p">[</span><span class="n">i</span> <span class="o">//</span> <span class="n">stride</span><span class="p">,</span> <span class="n">j</span> <span class="o">//</span> <span class="n">stride</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">max</span><span class="p">(</span><span class="n">region</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">output</span>
 </code></pre></div></div>
@@ -307,10 +307,10 @@ After each convolution or fully connected layer, an activation function like <st
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fully_connected</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">):</span>
     <span class="c1"># Flatten the input image (if it's multi-dimensional)
-</span>    <span class="n">flattened_input</span> <span class="o">=</span> <span class="n">input_image</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()</span>
+</span>    <span class="n">flattened_input</span> <span class="o">=</span> <span class="n">input_image</span><span class="p">.</span><span class="n">flatten</span><span class="p">()</span>
     
     <span class="c1"># Calculate the output of the fully connected layer
-</span>    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">flattened_input</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span>
+</span>    <span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">flattened_input</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span> <span class="o">+</span> <span class="n">bias</span>
     <span class="k">return</span> <span class="n">output</span>
 </code></pre></div></div>
 
@@ -319,38 +319,38 @@ After each convolution or fully connected layer, an activation function like <st
 <p>Now, let’s define a simple example where we will create a CNN that takes an image, applies convolution, ReLU, pooling, and then a fully connected layer to make a prediction.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example image (5x5)
-</span><span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span><span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
                   <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
 
 <span class="c1"># Define a simple kernel (3x3)
-</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+</span><span class="n">kernel</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
                    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]])</span>
 
 <span class="c1"># Convolution operation
-</span><span class="n">conv_output</span> <span class="o">=</span> <span class="nf">convolve2d</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Convolution Output:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">conv_output</span><span class="p">)</span>
+</span><span class="n">conv_output</span> <span class="o">=</span> <span class="n">convolve2d</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Convolution Output:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">conv_output</span><span class="p">)</span>
 
 <span class="c1"># Apply ReLU activation
-</span><span class="n">relu_output</span> <span class="o">=</span> <span class="nf">relu</span><span class="p">(</span><span class="n">conv_output</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">ReLU Output:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">relu_output</span><span class="p">)</span>
+</span><span class="n">relu_output</span> <span class="o">=</span> <span class="n">relu</span><span class="p">(</span><span class="n">conv_output</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"ReLU Output:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">relu_output</span><span class="p">)</span>
 
 <span class="c1"># Apply Max Pooling
-</span><span class="n">pool_output</span> <span class="o">=</span> <span class="nf">max_pooling</span><span class="p">(</span><span class="n">relu_output</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Max Pooling Output:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">pool_output</span><span class="p">)</span>
+</span><span class="n">pool_output</span> <span class="o">=</span> <span class="n">max_pooling</span><span class="p">(</span><span class="n">relu_output</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Max Pooling Output:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">pool_output</span><span class="p">)</span>
 
 <span class="c1"># Fully connected layer (flattened output, 1D weights and bias)
-</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">pool_output</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># Random weights
-</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">()</span>  <span class="c1"># Random bias
-</span><span class="n">fc_output</span> <span class="o">=</span> <span class="nf">fully_connected</span><span class="p">(</span><span class="n">pool_output</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fully Connected Output:</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">fc_output</span><span class="p">)</span>
+</span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">(</span><span class="n">pool_output</span><span class="p">.</span><span class="n">size</span><span class="p">)</span>  <span class="c1"># Random weights
+</span><span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randn</span><span class="p">()</span>  <span class="c1"># Random bias
+</span><span class="n">fc_output</span> <span class="o">=</span> <span class="n">fully_connected</span><span class="p">(</span><span class="n">pool_output</span><span class="p">,</span> <span class="n">weights</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Fully Connected Output:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">fc_output</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="explanation-of-the-process">Explanation of the Process:</h3>

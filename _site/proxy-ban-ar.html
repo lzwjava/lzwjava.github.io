@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>كشف جدران الحماية العظيمة، وواجهات برمجة التطبيقات الوكية، وكشف شبكات VPN | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="كشف جدران الحماية العظيمة، وواجهات برمجة التطبيقات الوكية، وكشف شبكات VPN" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ar" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -242,24 +242,24 @@
 
 <p>أشغل خادمًا بسيطًا على مثيلي لـ Shadowsocks باستخدام الكود التالي:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># تمكين CORS لجميع المسارات
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># تمكين CORS لجميع المسارات
 </span>
-<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/bandwidth</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/bandwidth'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_bandwidth</span><span class="p">():</span>
     <span class="c1"># تشغيل أمر vnstat للحصول على إحصائيات حركة المرور للفترة الزمنية 5 دقائق لـ eth0
-</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">'</span><span class="s">vnstat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">eth0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-5</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">--json</span><span class="sh">'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">'vnstat'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="s">'eth0'</span><span class="p">,</span> <span class="s">'-5'</span><span class="p">,</span> <span class="s">'--json'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span>
 
     <span class="c1"># إرجاع البيانات المحصورة كاستجابة JSON
-</span>    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">0.0.0.0</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>وأستخدم nginx لخدمة المنفذ 443 كما هو موضح أدناه:</p>
@@ -296,19 +296,19 @@
 
 <h3 id="الخطوة-الأولى-تسجيل-الطلبات">الخطوة الأولى: تسجيل الطلبات</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># قاعدة بيانات لتخزين بيانات الطلبات
 </span><span class="n">request_log</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># دالة لتسجيل الطلبات
 </span><span class="k">def</span> <span class="nf">log_request</span><span class="p">(</span><span class="n">source_ip</span><span class="p">,</span> <span class="n">target_ip</span><span class="p">,</span> <span class="n">target_port</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-    <span class="n">request_log</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
-        <span class="sh">'</span><span class="s">source_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">request_log</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">'source_ip'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
+        <span class="s">'target_ip'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
+        <span class="s">'target_port'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
+        <span class="s">'body'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+        <span class="s">'timestamp'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
     <span class="p">})</span>
 </code></pre></div></div>
 
@@ -318,17 +318,17 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># دالة للتحقق من الطلبات وحظر عناوين الـ IP
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># التكرار عبر جميع الطلبات المسجلة
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># تطبيق الحظر على جميع عناوين الـ IP المحددة
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>تقوم دالة <code class="language-plaintext highlighter-rouge">check_and_ban_ips</code> بالتكرار عبر جميع الطلبات المسجلة، وتحديد وحظر عناوين الـ IP المرتبطة بأنشطة غير قانونية.</p>
@@ -339,7 +339,7 @@
 </span><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># العنصر النائب للمنطق الفعلي للتحقق من الطلبات غير القانونية
 </span>    <span class="c1"># على سبيل المثال، التحقق من جسم الطلب أو الهدف
-</span>    <span class="k">return</span> <span class="sh">"</span><span class="s">illegal</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">]</span>
+</span>    <span class="k">return</span> <span class="s">"illegal"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>هنا، تقوم <code class="language-plaintext highlighter-rouge">is_illegal</code> بالتحقق مما إذا كان جسم الطلب يحتوي على كلمة “illegal”. يمكن توسيع هذا المنطق إلى منطق أكثر تطورًا بناءً على ما يشكل نشاطًا غير قانوني.</p>
@@ -349,7 +349,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># دالة لحظر قائمة من عناوين الـ IP
 </span><span class="k">def</span> <span class="nf">ban_ips</span><span class="p">(</span><span class="n">ip_set</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ip_set</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">حظر عنوان الـ IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"حظر عنوان الـ IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>بعد تحديد عناوين الـ IP غير القانونية، تقوم دالة <code class="language-plaintext highlighter-rouge">ban_ips</code> بحظرها عن طريق طباعة عناوين الـ IP الخاصة بها (أو، في نظام حقيقي، يمكن أن تمنعها).</p>
@@ -358,24 +358,24 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># دالة للتحقق من الطلبات وحظر عناوين الـ IP بناءً على 80٪ من الطلبات غير القانونية
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">illegal_count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">total_requests</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># التكرار عبر جميع الطلبات المسجلة
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
         <span class="n">total_requests</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="n">illegal_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># إذا كانت 80٪ أو أكثر من الطلبات غير قانونية، يتم حظر تلك عناوين الـ IP
 </span>    <span class="k">if</span> <span class="n">total_requests</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">illegal_count</span> <span class="o">/</span> <span class="n">total_requests</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-                <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+                <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># تطبيق الحظر على جميع عناوين الـ IP المحددة
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>تقييم هذه الطريقة البديلة ما إذا كان يجب حظر عنوان الـ IP بناءً على نسبة الطلبات غير القانونية. إذا كانت 80٪ أو أكثر من الطلبات من عنوان الـ IP غير قانونية، يتم حظره.</p>
@@ -384,10 +384,10 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># التحقق مما إذا كان الطلب يستخدم بروتوكول Shadowsocks (جسم الطلب يحتوي على بيانات مشابهة للثنائية)
-</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="s">'target_port'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">elif</span> <span class="nf">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">return</span> <span class="bp">False</span>
 </code></pre></div></div>

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Construyendo un Bot de Hábitos con Mistral | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Construyendo un Bot de Hábitos con Mistral" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="es" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,131 +209,131 @@
 
 <h2 id="código">Código</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">re</span>
-<span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">random</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
 <span class="c1"># Cargar variables de entorno desde el archivo .env
-</span><span class="nf">load_dotenv</span><span class="p">()</span>
+</span><span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="c1"># Variables de entorno
-</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_HABIT_BOT_API_KEY</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_CHAT_ID</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"TELEGRAM_HABIT_BOT_API_KEY"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"TELEGRAM_CHAT_ID"</span><span class="p">)</span>
+<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"MISTRAL_API_KEY"</span><span class="p">)</span>
 
 <span class="c1"># Límite de longitud de mensajes en Telegram
 </span><span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">4096</span>
 
 <span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">bot_token</span><span class="p">,</span> <span class="n">chat_id</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Envía un mensaje a un chat de Telegram usando la API de Telegram Bot.</span><span class="sh">"""</span>
+    <span class="s">"""Envía un mensaje a un chat de Telegram usando la API de Telegram Bot."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">bot_token</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">chat_id</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://api.telegram.org/bot</span><span class="si">{</span><span class="n">bot_token</span><span class="si">}</span><span class="s">/sendMessage"</span>
     <span class="c1"># Eliminar asteriscos de Markdown y URLs para garantizar compatibilidad con Telegram
-</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
-    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
+</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'*'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'(https?://[^\s]+)'</span><span class="p">)</span>
+    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
     <span class="c1"># Dividir el mensaje si excede el límite de longitud de Telegram
 </span>    <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">message_no_links</span>
-    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
-        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="nf">rfind</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">split_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">split_idx</span> <span class="o">&lt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">split_idx</span> <span class="o">=</span> <span class="n">TELEGRAM_MAX_LENGTH</span>
-        <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
+        <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="n">split_idx</span><span class="p">:]</span>
-    <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
     <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">parse_mode</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Markdown</span><span class="sh">"</span>
+            <span class="s">"chat_id"</span><span class="p">:</span> <span class="n">chat_id</span><span class="p">,</span>
+            <span class="s">"text"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
+            <span class="s">"parse_mode"</span><span class="p">:</span> <span class="s">"Markdown"</span>
         <span class="p">}</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mensaje de Telegram enviado exitosamente (</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> caracteres).</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mensaje de Telegram enviado exitosamente (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> caracteres)."</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error al enviar mensaje de Telegram: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error al enviar mensaje de Telegram: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">return</span> <span class="n">success</span>
 
 
-<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-large-latest</span><span class="sh">"</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Llama a la API de Mistral para generar una respuesta.</span><span class="sh">"""</span>
+<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">"mistral-large-latest"</span><span class="p">):</span>
+    <span class="s">"""Llama a la API de Mistral para generar una respuesta."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">MISTRAL_API_KEY</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: La variable de entorno MISTRAL_API_KEY no está configurada.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: La variable de entorno MISTRAL_API_KEY no está configurada."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.mistral.ai/v1/chat/completions"</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">MISTRAL_API_KEY</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">MISTRAL_API_KEY</span><span class="si">}</span><span class="s">"</span>
     <span class="p">}</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s">"messages"</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+                <span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span>
+                <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span>
             <span class="p">}</span>
         <span class="p">],</span>
-        <span class="sh">"</span><span class="s">temperature</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>  <span class="c1"># Ajustar temperatura para creatividad
-</span>        <span class="sh">"</span><span class="s">max_tokens</span><span class="sh">"</span><span class="p">:</span> <span class="mi">300</span>  <span class="c1"># Limitar longitud de la respuesta
+        <span class="s">"temperature"</span><span class="p">:</span> <span class="mf">0.7</span><span class="p">,</span>  <span class="c1"># Ajustar temperatura para creatividad
+</span>        <span class="s">"max_tokens"</span><span class="p">:</span> <span class="mi">300</span>  <span class="c1"># Limitar longitud de la respuesta
 </span>    <span class="p">}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Llamando a la API de Mistral con modelo: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">):</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Contenido de la API de Mistral: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Llamando a la API de Mistral con modelo: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'choices'</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'message'</span><span class="p">][</span><span class="s">'content'</span><span class="p">]</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Contenido de la API de Mistral: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">content</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error en la API de Mistral: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error en la API de Mistral: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">generate_copilot_message</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Genera un mensaje técnico que fomenta el uso de Copilot mediante la API de Mistral.</span><span class="sh">"""</span>
+    <span class="s">"""Genera un mensaje técnico que fomenta el uso de Copilot mediante la API de Mistral."""</span>
     <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="sh">"</span><span class="s">Genera una oración técnica única y específica para un ingeniero de backend</span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Selecciona aleatoriamente una tecnología de: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, IA o DevOps, Linux. Algoritmos y Banca </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Formato como </span><span class="sh">'</span><span class="s">¿Atascado con [desafío específico]? ¡Pregúntale a Copilot!</span><span class="sh">'</span><span class="s"> o </span><span class="sh">'</span><span class="s">¿Problemas con [tarea]? ¡Encuentra ayuda con Copilot!</span><span class="sh">'</span><span class="s"> </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Asegura variedad en los desafíos (ej. configuración, depuración, optimización). </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Manténlo bajo 300 caracteres, evita Markdown o URLs, y solo muestra la oración.</span><span class="sh">"</span>
+        <span class="sa">f</span><span class="s">"Genera una oración técnica única y específica para un ingeniero de backend"</span>
+        <span class="s">"Selecciona aleatoriamente una tecnología de: Java, Spring Boot, Control-M, IBM WebSphere, Maven, multithreading, Nexus, Windows, JVM, Service-NOW, Python, IA o DevOps, Linux. Algoritmos y Banca "</span>
+        <span class="s">"Formato como '¿Atascado con [desafío específico]? ¡Pregúntale a Copilot!' o '¿Problemas con [tarea]? ¡Encuentra ayuda con Copilot!' "</span>
+        <span class="s">"Asegura variedad en los desafíos (ej. configuración, depuración, optimización). "</span>
+        <span class="s">"Manténlo bajo 300 caracteres, evita Markdown o URLs, y solo muestra la oración."</span>
     <span class="p">)</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="n">message</span> <span class="o">=</span> <span class="n">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">message</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">message</span><span class="p">.</span><span class="nf">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
-    <span class="k">return</span> <span class="sh">"</span><span class="s">¿Atascado configurando la fecha de orden en Control-M? ¡Pregúntale a Copilot!</span><span class="sh">"</span>
+        <span class="k">return</span> <span class="n">message</span><span class="p">.</span><span class="n">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s">"¿Atascado configurando la fecha de orden en Control-M? ¡Pregúntale a Copilot!"</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Bot de Recordatorios de Hábitos en Telegram</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--job</span><span class="sh">"</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">send_reminder</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">send_message</span><span class="sh">"</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Tarea a realizar</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--message</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Mensaje a enviar para la tarea </span><span class="sh">'</span><span class="s">send_message</span><span class="sh">'"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Bot de Recordatorios de Hábitos en Telegram"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--job"</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">"send_reminder"</span><span class="p">,</span> <span class="s">"send_message"</span><span class="p">],</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Tarea a realizar"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--message"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Mensaje a enviar para la tarea 'send_message'"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">send_reminder</span><span class="sh">"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">"send_reminder"</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="nf">generate_copilot_message</span><span class="p">()</span>
-            <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">generate_copilot_message</span><span class="p">()</span>
+            <span class="n">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">send_message</span><span class="sh">"</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados."</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">args</span><span class="p">.</span><span class="n">job</span> <span class="o">==</span> <span class="s">"send_message"</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">TELEGRAM_HABIT_BOT_API_KEY</span> <span class="ow">and</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
-            <span class="n">message</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">else</span> <span class="sh">"</span><span class="s">¡Mensaje de prueba predeterminado del bot!</span><span class="sh">"</span>
-            <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">if</span> <span class="n">args</span><span class="p">.</span><span class="n">message</span> <span class="k">else</span> <span class="s">"¡Mensaje de prueba predeterminado del bot!"</span>
+            <span class="n">send_telegram_message</span><span class="p">(</span><span class="n">TELEGRAM_HABIT_BOT_API_KEY</span><span class="p">,</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Error: TELEGRAM_HABIT_BOT_API_KEY o TELEGRAM_CHAT_ID no están configurados."</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="acción-de-github">Acción de GitHub</h2>
@@ -351,11 +351,11 @@
     <span class="na">inputs</span><span class="pi">:</span>
       <span class="na">message</span><span class="pi">:</span>
         <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Mensaje</span><span class="nv"> </span><span class="s">personalizado</span><span class="nv"> </span><span class="s">para</span><span class="nv"> </span><span class="s">pruebas</span><span class="nv"> </span><span class="s">(opcional)'</span>
-        <span class="na">required</span><span class="pi">:</span> <span class="kc">false</span>
+        <span class="na">required</span><span class="pi">:</span> <span class="no">false</span>
         <span class="na">default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Mensaje</span><span class="nv"> </span><span class="s">de</span><span class="nv"> </span><span class="s">prueba</span><span class="nv"> </span><span class="s">desde</span><span class="nv"> </span><span class="s">GitHub</span><span class="nv"> </span><span class="s">Actions.'</span>
       <span class="na">job</span><span class="pi">:</span>
         <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">Tarea</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">ejecutar</span><span class="nv"> </span><span class="s">(opcional)'</span>
-        <span class="na">required</span><span class="pi">:</span> <span class="kc">false</span>
+        <span class="na">required</span><span class="pi">:</span> <span class="no">false</span>
         <span class="na">default</span><span class="pi">:</span> <span class="s1">'</span><span class="s">send_message'</span>
 
   <span class="na">push</span><span class="pi">:</span>
@@ -366,7 +366,7 @@
 
 <span class="na">concurrency</span><span class="pi">:</span>
   <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">habit_reminder'</span>
-  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="no">false</span>
 
 <span class="na">jobs</span><span class="pi">:</span>
   <span class="na">habit_reminder_job</span><span class="pi">:</span>

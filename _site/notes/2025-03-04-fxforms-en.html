@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Using FXForms in iOS | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Using FXForms in iOS" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -259,42 +259,42 @@
 
 <ul>
   <li><strong>Import FXForms</strong>: In your Objective-C file (e.g., a view controller), import the library:
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import &lt;FXForms/FXForms.h&gt;
-</span></code></pre></div>    </div>
+    <pre><code class="language-objective-c">#import &lt;FXForms/FXForms.h&gt;
+</code></pre>
   </li>
   <li><strong>Create a Form Model</strong>: Define a class that conforms to the <code class="language-plaintext highlighter-rouge">FXForm</code> protocol. For example:
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// MyForm.h</span>
-<span class="cp">#import &lt;Foundation/Foundation.h&gt;
+    <pre><code class="language-objective-c">// MyForm.h
+#import &lt;Foundation/Foundation.h&gt;
 #import &lt;FXForms/FXForms.h&gt;
-</span>
-<span class="k">@interface</span> <span class="nc">MyForm</span> <span class="p">:</span> <span class="nc">NSObject</span> <span class="o">&lt;</span><span class="n">FXForm</span><span class="o">&gt;</span>
-<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">name</span><span class="p">;</span>
-<span class="k">@property</span> <span class="p">(</span><span class="n">nonatomic</span><span class="p">,</span> <span class="n">copy</span><span class="p">)</span> <span class="n">NSString</span> <span class="o">*</span><span class="n">email</span><span class="p">;</span>
-<span class="k">@end</span>
 
-<span class="c1">// MyForm.m</span>
-<span class="cp">#import "MyForm.h"
-</span>
-<span class="k">@implementation</span> <span class="nc">MyForm</span>
-<span class="k">-</span> <span class="p">(</span><span class="n">NSArray</span> <span class="o">*</span><span class="p">)</span><span class="n">fields</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="p">@[</span>
-        <span class="p">@{</span><span class="n">FXFormFieldKey</span><span class="o">:</span> <span class="s">@"name"</span><span class="p">,</span> <span class="n">FXFormFieldTitle</span><span class="o">:</span> <span class="s">@"Name"</span><span class="p">},</span>
-        <span class="p">@{</span><span class="n">FXFormFieldKey</span><span class="o">:</span> <span class="s">@"email"</span><span class="p">,</span> <span class="n">FXFormFieldTitle</span><span class="o">:</span> <span class="s">@"Email"</span><span class="p">}</span>
-    <span class="p">];</span>
-<span class="p">}</span>
-<span class="k">@end</span>
-</code></pre></div>    </div>
+@interface MyForm : NSObject &lt;FXForm&gt;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *email;
+@end
+
+// MyForm.m
+#import "MyForm.h"
+
+@implementation MyForm
+- (NSArray *)fields {
+    return @[
+        @{FXFormFieldKey: @"name", FXFormFieldTitle: @"Name"},
+        @{FXFormFieldKey: @"email", FXFormFieldTitle: @"Email"}
+    ];
+}
+@end
+</code></pre>
   </li>
   <li><strong>Display the Form</strong>: In your view controller, present the form using <code class="language-plaintext highlighter-rouge">FXFormViewController</code>:
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "MyForm.h"
-</span>
-<span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">viewDidLoad</span> <span class="p">{</span>
-    <span class="p">[</span><span class="n">super</span> <span class="nf">viewDidLoad</span><span class="p">];</span>
-    <span class="n">FXFormViewController</span> <span class="o">*</span><span class="n">formController</span> <span class="o">=</span> <span class="p">[[</span><span class="n">FXFormViewController</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
-    <span class="n">formController</span><span class="p">.</span><span class="n">form</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MyForm</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
-    <span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">navigationController</span> <span class="nf">pushViewController</span><span class="p">:</span><span class="n">formController</span> <span class="nf">animated</span><span class="p">:</span><span class="nb">YES</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>    </div>
+    <pre><code class="language-objective-c">#import "MyForm.h"
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    FXFormViewController *formController = [[FXFormViewController alloc] init];
+    formController.form = [[MyForm alloc] init];
+    [self.navigationController pushViewController:formController animated:YES];
+}
+</code></pre>
   </li>
 </ul>
 

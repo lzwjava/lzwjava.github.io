@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Automatisierter Nachrichtenzusammenfassungs-Bot | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Automatisierter Nachrichtenzusammenfassungs-Bot" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="de" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,324 +209,324 @@
 
   <p>Dieser Beitrag präsentiert einen Python-basierten News-Bot, der Top-Stories von Hacker News, GitHub Trending und NYTimes (Chinesisch) mithilfe der Mistral-API extrahiert und zusammenfasst. Er sendet täglich kompakte Berichte über Telegram, unterstützt durch einen GitHub Actions-Workflow für die automatisierte Ausführung. Ideal, um mühelos über Tech- und globale Nachrichten auf dem Laufenden zu bleiben.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">re</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
-<span class="n">TELEGRAM_BOT_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_BOT_API_KEY</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">TELEGRAM_CHAT_ID</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">610574272</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">TELEGRAM_BOT_TOKEN</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"TELEGRAM_BOT_API_KEY"</span><span class="p">)</span>
+<span class="n">TELEGRAM_CHAT_ID</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"TELEGRAM_CHAT_ID"</span><span class="p">,</span> <span class="s">"610574272"</span><span class="p">)</span>
+<span class="n">MISTRAL_API_KEY</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"MISTRAL_API_KEY"</span><span class="p">)</span>
 
 <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">=</span> <span class="mi">4096</span>
 
 <span class="k">def</span> <span class="nf">send_telegram_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">TELEGRAM_BOT_TOKEN</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: TELEGRAM_BOT_API_KEY or TELEGRAM_CHAT_ID not set.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: TELEGRAM_BOT_API_KEY or TELEGRAM_CHAT_ID not set."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.telegram.org/bot</span><span class="si">{</span><span class="n">TELEGRAM_BOT_TOKEN</span><span class="si">}</span><span class="s">/sendMessage</span><span class="sh">"</span>
-    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://api.telegram.org/bot</span><span class="si">{</span><span class="n">TELEGRAM_BOT_TOKEN</span><span class="si">}</span><span class="s">/sendMessage"</span>
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'(https?://[^\s]+)'</span><span class="p">)</span>
     <span class="c1"># Entferne alle Sternchen (für Fett/Kursiv) aus der Nachricht
-</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">*</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+</span>    <span class="n">message_no_stars</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'*'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
     <span class="c1"># Entferne Links aus der Nachricht
-</span>    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sh">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
+</span>    <span class="n">message_no_links</span> <span class="o">=</span> <span class="n">url_pattern</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s">''</span><span class="p">,</span> <span class="n">message_no_stars</span><span class="p">)</span>
     <span class="n">messages</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">msg</span> <span class="o">=</span> <span class="n">message_no_links</span>
-    <span class="k">while</span> <span class="nf">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
-        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="nf">rfind</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">:</span>
+        <span class="n">split_idx</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">TELEGRAM_MAX_LENGTH</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">split_idx</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">split_idx</span> <span class="o">&lt;</span> <span class="n">TELEGRAM_MAX_LENGTH</span> <span class="o">//</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">split_idx</span> <span class="o">=</span> <span class="n">TELEGRAM_MAX_LENGTH</span>
-        <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
+        <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">[:</span><span class="n">split_idx</span><span class="p">])</span>
         <span class="n">msg</span> <span class="o">=</span> <span class="n">msg</span><span class="p">[</span><span class="n">split_idx</span><span class="p">:]</span>
-    <span class="n">messages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+    <span class="n">messages</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
     <span class="n">success</span> <span class="o">=</span> <span class="bp">True</span>
     <span class="k">for</span> <span class="n">part</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">:</span>
         <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">chat_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
+            <span class="s">"chat_id"</span><span class="p">:</span> <span class="n">TELEGRAM_CHAT_ID</span><span class="p">,</span>
+            <span class="s">"text"</span><span class="p">:</span> <span class="n">part</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-            <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Telegram-Nachrichtenteil erfolgreich gesendet (</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> Zeichen).</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Telegram-Nachrichtenteil erfolgreich gesendet (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span><span class="si">}</span><span class="s"> Zeichen)."</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Senden der Telegram-Nachricht: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Senden der Telegram-Nachricht: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="n">success</span> <span class="o">=</span> <span class="bp">False</span>
     <span class="k">return</span> <span class="n">success</span>
 
 <span class="k">def</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">HTML-Inhalt wird abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">HTML-Inhalt erfolgreich abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"HTML-Inhalt wird abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"HTML-Inhalt erfolgreich abgerufen von: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">text</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">URL konnte nicht abgerufen werden: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"URL konnte nicht abgerufen werden: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s"> - </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">extract_hacker_news_links</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
     <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">seen</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">.titleline &gt; a</span><span class="sh">'</span><span class="p">):</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">url</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">item?id=</span><span class="sh">'</span><span class="p">):</span>
-            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://news.ycombinator.com/</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">'.titleline &gt; a'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="s">'href'</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">url</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'item?id='</span><span class="p">):</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://news.ycombinator.com/</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span>
         <span class="k">if</span> <span class="n">url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">and</span> <span class="n">title</span><span class="p">:</span>
-            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
-            <span class="n">seen</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">'url'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s">'text'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+            <span class="n">seen</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> Links von Hacker News extrahiert.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> Links von Hacker News extrahiert."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">links</span>
 
 <span class="k">def</span> <span class="nf">extract_github_trending</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="n">max_links</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
     <span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="nf">select</span><span class="p">(</span><span class="sh">'</span><span class="s">article.Box-row h2 a</span><span class="sh">'</span><span class="p">):</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://github.com</span><span class="si">{</span><span class="n">repo</span><span class="p">[</span><span class="sh">'</span><span class="s">href</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">sub</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s+</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">,</span> <span class="n">repo</span><span class="p">.</span><span class="n">text</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">repo</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">.</span><span class="n">select</span><span class="p">(</span><span class="s">'article.Box-row h2 a'</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://github.com</span><span class="si">{</span><span class="n">repo</span><span class="p">[</span><span class="s">'href'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s">'\s+'</span><span class="p">,</span> <span class="s">' '</span><span class="p">,</span> <span class="n">repo</span><span class="p">.</span><span class="n">text</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">title</span> <span class="ow">and</span> <span class="n">url</span><span class="p">:</span>
-            <span class="n">links</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
+            <span class="n">links</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">'url'</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s">'text'</span><span class="p">:</span> <span class="n">title</span><span class="p">})</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_links</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> trendige Repositories von GitHub extrahiert.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span><span class="si">}</span><span class="s"> trendige Repositories von GitHub extrahiert."</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">links</span>
 
-<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-small-latest</span><span class="sh">"</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">"mistral-small-latest"</span><span class="p">):</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="n">MISTRAL_API_KEY</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fehler: MISTRAL_API_KEY Umgebungsvariable nicht gesetzt.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Fehler: MISTRAL_API_KEY Umgebungsvariable nicht gesetzt."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.mistral.ai/v1/chat/completions"</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">"</span>
     <span class="p">}</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s">"messages"</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+                <span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span>
+                <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span>
             <span class="p">}</span>
         <span class="p">]</span>
     <span class="p">}</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API wird aufgerufen mit Modell: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gesendeter Prompt: </span><span class="si">{</span><span class="n">prompt</span><span class="p">[</span><span class="si">:</span><span class="mi">1000</span><span class="p">]</span><span class="si">}</span><span class="s">...</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Antwort: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">):</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Inhalt: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral-API wird aufgerufen mit Modell: </span><span class="si">{</span><span class="n">model</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Gesendeter Prompt: </span><span class="si">{</span><span class="n">prompt</span><span class="p">[</span><span class="si">:</span><span class="mi">1000</span><span class="p">]</span><span class="si">}</span><span class="s">..."</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral-API-Antwort: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'choices'</span><span class="p">):</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'message'</span><span class="p">][</span><span class="s">'content'</span><span class="p">]</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral-API-Inhalt: </span><span class="si">{</span><span class="n">content</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">content</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Fehler: Ungültiges Antwortformat: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral-API-Fehler: Ungültiges Antwortformat: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral-API-Fehler: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="sh">"</span><span class="s">response</span><span class="sh">"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Antwortstatuscode: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Antwortinhalt: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral-API-Fehler: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s">"response"</span><span class="p">)</span> <span class="ow">and</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Antwortstatuscode: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Antwortinhalt: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">fetch_and_summarize</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">fallback_title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Zusammenfassung wird erstellt für: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">html</span> <span class="o">=</span> <span class="nf">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Zusammenfassung wird erstellt für: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">html</span> <span class="o">=</span> <span class="n">fetch_html_content</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">html</span><span class="p">:</span>
-        <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Inhalt konnte nicht abgerufen werden.</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">}</span>
-    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="sh">'</span><span class="s">html.parser</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span> <span class="nf">else </span><span class="p">(</span><span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">)</span>
-    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">find_all</span><span class="p">(</span><span class="sh">'</span><span class="s">p</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">text_content</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="nf">get_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">text_content</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
-        <span class="n">text_content</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">"url"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s">"summary"</span><span class="p">:</span> <span class="s">"Inhalt konnte nicht abgerufen werden."</span><span class="p">,</span> <span class="s">"title"</span><span class="p">:</span> <span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">}</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">,</span> <span class="s">'html.parser'</span><span class="p">)</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">if</span> <span class="n">soup</span><span class="p">.</span><span class="n">title</span> <span class="k">else</span> <span class="p">(</span><span class="n">fallback_title</span> <span class="ow">or</span> <span class="n">url</span><span class="p">)</span>
+    <span class="n">paragraphs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">find_all</span><span class="p">(</span><span class="s">'p'</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">get_text</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">paragraphs</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">text_content</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+        <span class="n">text_content</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">separator</span><span class="o">=</span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text_content</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3000</span><span class="p">:</span>
         <span class="n">text_content</span> <span class="o">=</span> <span class="n">text_content</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text_content</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span> <span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="p">:</span> <span class="n">title</span><span class="p">}</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">ai_summarize</span><span class="p">(</span><span class="n">text_content</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">title</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">"url"</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span> <span class="s">"summary"</span><span class="p">:</span> <span class="n">summary</span><span class="p">,</span> <span class="s">"title"</span><span class="p">:</span> <span class="n">title</span><span class="p">}</span>
 
 <span class="k">def</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">text</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-    <span class="k">return</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span> <span class="o">+</span> <span class="sh">"</span><span class="s">...</span><span class="sh">"</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">text</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">return</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">words</span><span class="p">[:</span><span class="n">n</span><span class="p">])</span> <span class="o">+</span> <span class="s">"..."</span>
 
 <span class="k">def</span> <span class="nf">ai_summarize</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">MISTRAL_API_KEY</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Kein MISTRAL_API_KEY gesetzt. Erste 15 Wörter werden als Zusammenfassung zurückgegeben.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Kein MISTRAL_API_KEY gesetzt. Erste 15 Wörter werden als Zusammenfassung zurückgegeben."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
     <span class="n">prompt</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="sh">"</span><span class="s">Wenn der Originaltext auf Chinesisch ist, fasse ihn auf Englisch zusammen. </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Fasse den folgenden Webseiteninhalt in klarem, prägnantem Englisch zusammen. </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Konzentriere dich auf den wichtigsten Punkt oder die wichtigste Erkenntnis. </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Deine Zusammenfassung sollte etwa 300 Zeichen umfassen. </span><span class="sh">"</span>
-        <span class="sh">"</span><span class="s">Gib nur den Zusammenfassungssatz aus:</span><span class="se">\n</span><span class="sh">"</span>
-        <span class="sa">f</span><span class="sh">"</span><span class="s">Titel: </span><span class="si">{</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="sh">''</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
-        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
-        <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="sh">'</span><span class="s">Original-Link</span><span class="si">:</span> <span class="sh">'</span><span class="s"> + url if url else </span><span class="sh">''</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Wenn der Originaltext auf Chinesisch ist, fasse ihn auf Englisch zusammen. "</span>
+        <span class="s">"Fasse den folgenden Webseiteninhalt in klarem, prägnantem Englisch zusammen. "</span>
+        <span class="s">"Konzentriere dich auf den wichtigsten Punkt oder die wichtigste Erkenntnis. "</span>
+        <span class="s">"Deine Zusammenfassung sollte etwa 300 Zeichen umfassen. "</span>
+        <span class="s">"Gib nur den Zusammenfassungssatz aus:</span><span class="se">\n</span><span class="s">"</span>
+        <span class="sa">f</span><span class="s">"Titel: </span><span class="si">{</span><span class="n">title</span> <span class="k">if</span> <span class="n">title</span> <span class="k">else</span> <span class="s">''</span><span class="si">}</span><span class="se">\n</span><span class="s">"</span>
+        <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="se">\n</span><span class="s">"</span>
+        <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="s">'Original-Link</span><span class="si">:</span> <span class="s">' + url if url else ''</span><span class="si">}</span><span class="s">"</span>
     <span class="p">)</span>
-    <span class="n">summary</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">summary</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nf">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">limit_to_n_words</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
     <span class="c1"># Kürze auf 300 Zeichen als letzten Ausweg
-</span>    <span class="k">return</span> <span class="n">summary</span><span class="p">.</span><span class="nf">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
+</span>    <span class="k">return</span> <span class="n">summary</span><span class="p">.</span><span class="n">strip</span><span class="p">()[:</span><span class="mi">300</span><span class="p">]</span>
 
 <span class="k">def</span> <span class="nf">generate_summarized_report</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">source_name</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">source_name</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
-    <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">-</span><span class="sh">"</span> <span class="o">*</span> <span class="nf">len</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">source_name</span><span class="si">}</span><span class="se">\n</span><span class="s">"</span>
+    <span class="n">text</span> <span class="o">+=</span> <span class="s">"-"</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">source_name</span><span class="p">)</span> <span class="o">+</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">summaries</span><span class="p">:</span>
-        <span class="n">text</span> <span class="o">+=</span> <span class="sh">"</span><span class="s">Keine Einträge gefunden.</span><span class="se">\n\n</span><span class="sh">"</span>
+        <span class="n">text</span> <span class="o">+=</span> <span class="s">"Keine Einträge gefunden.</span><span class="se">\n\n</span><span class="s">"</span>
         <span class="k">return</span> <span class="n">text</span>
-    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(https?://[^\s]+)</span><span class="sh">'</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">summary</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">summary</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="se">\r</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">).strip()
-        summary = summary.replace(</span><span class="sh">'</span><span class="o">*</span><span class="sh">'</span><span class="s">, </span><span class="sh">''</span><span class="s">)
-        summary = url_pattern.sub(</span><span class="sh">''</span><span class="s">, summary)
+    <span class="n">url_pattern</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nb">compile</span><span class="p">(</span><span class="sa">r</span><span class="s">'(https?://[^\s]+)'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">summary</span> <span class="o">=</span> <span class="n">item</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'summary'</span><span class="p">,</span> <span class="s">''</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">,</span> <span class="s">' '</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'</span><span class="se">\r</span><span class="s">'</span><span class="p">,</span> <span class="s">').strip()
+        summary = summary.replace('</span><span class="o">*</span><span class="s">', '')
+        summary = url_pattern.sub('', summary)
         # Kürze jede Zusammenfassung auf 300 Zeichen als letzten Ausweg
         summary = summary[:300]
-        text += f</span><span class="sh">"</span><span class="s">{idx}. {summary}</span><span class="se">\n\n</span><span class="sh">"</span><span class="s">  # Füge eine zusätzliche Leerzeile zwischen den Zusammenfassungen ein
-    text += </span><span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="s">
+        text += f"{idx}. {summary}</span><span class="se">\n\n</span><span class="s">"  # Füge eine zusätzliche Leerzeile zwischen den Zusammenfassungen ein
+    text += "</span><span class="se">\n</span><span class="s">"
     return text
 
 # --- NYTimes (m.cn.nytimes.com) Integration ---
 
 def extract_nytimes_links(html, max_links=5):
-    </span><span class="sh">"""</span><span class="s">
+    """
     Extrahiert Links von der Hauptseite von cn.nytimes.com.
-    Beinhaltet nur Links, die mit </span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="sh">'</span><span class="s"> beginnen.
-    </span><span class="sh">"""</span><span class="s">
-    soup = BeautifulSoup(html, </span><span class="sh">'</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="sh">'</span><span class="s">)
+    Beinhaltet nur Links, die mit '</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="s">' beginnen.
+    """
+    soup = BeautifulSoup(html, '</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="s">')
     links = []
-    for a in soup.find_all(</span><span class="sh">'</span><span class="n">a</span><span class="sh">'</span><span class="s">, href=True):
-        url = a[</span><span class="sh">'</span><span class="n">href</span><span class="sh">'</span><span class="s">]
-        if url.startswith(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="sh">'</span><span class="s">):
+    for a in soup.find_all('</span><span class="n">a</span><span class="s">', href=True):
+        url = a['</span><span class="n">href</span><span class="s">']
+        if url.startswith('</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="s">'):
             links.append({
-                </span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">: url,
-                </span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">: a.text.strip()
+                '</span><span class="n">url</span><span class="s">': url,
+                '</span><span class="n">text</span><span class="s">': a.text.strip()
             })
         if len(links) &gt;= max_links:
             break
-    print(f</span><span class="sh">"</span><span class="s">{len(links)} Links von der Hauptseite extrahiert.</span><span class="sh">"</span><span class="s">)
+    print(f"{len(links)} Links von der Hauptseite extrahiert.")
     return links
 
 def summarize_nytimes_article(url):
     html = fetch_html_content(url)
     if not html:
-        return {</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="s">: url, </span><span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="s">: </span><span class="sh">"</span><span class="s">Inhalt konnte nicht abgerufen werden.</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="s">: url}
-    soup = BeautifulSoup(html, </span><span class="sh">'</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="sh">'</span><span class="s">)
+        return {"url": url, "summary": "Inhalt konnte nicht abgerufen werden.", "title": url}
+    soup = BeautifulSoup(html, '</span><span class="n">html</span><span class="p">.</span><span class="n">parser</span><span class="s">')
     # Versuche, den Hauptartikeltitel zu extrahieren
-    title_element = soup.select_one(</span><span class="sh">'</span><span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">area</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">content</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">header</span> <span class="n">header</span> <span class="n">h1</span><span class="sh">'</span><span class="s">)
+    title_element = soup.select_one('</span><span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">area</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">content</span> <span class="p">.</span><span class="n">article</span><span class="o">-</span><span class="n">header</span> <span class="n">header</span> <span class="n">h1</span><span class="s">')
     title = title_element.text.strip() if title_element else (soup.title.text.strip() if soup.title else url)
     # Extrahiere den Hauptartikeltext
-    article_area = soup.find(</span><span class="sh">'</span><span class="n">section</span><span class="sh">'</span><span class="s">, class_=</span><span class="sh">'</span><span class="n">article</span><span class="o">-</span><span class="n">body</span><span class="sh">'</span><span class="s">)
+    article_area = soup.find('</span><span class="n">section</span><span class="s">', class_='</span><span class="n">article</span><span class="o">-</span><span class="n">body</span><span class="s">')
     if article_area:
-        article_text = article_area.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+        article_text = article_area.get_text(separator='</span>\<span class="n">n</span><span class="s">', strip=True)
     else:
-        article_text = soup.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+        article_text = soup.get_text(separator='</span>\<span class="n">n</span><span class="s">', strip=True)
     if not article_text or len(article_text) &lt; 100:
-        article_text = soup.get_text(separator=</span><span class="sh">'</span>\<span class="n">n</span><span class="sh">'</span><span class="s">, strip=True)
+        article_text = soup.get_text(separator='</span>\<span class="n">n</span><span class="s">', strip=True)
     if len(article_text) &gt; 3000:
         article_text = article_text[:3000]
     summary = ai_summarize(article_text, url, title)
-    return {</span><span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="s">: url, </span><span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="s">: summary, </span><span class="sh">"</span><span class="s">title</span><span class="sh">"</span><span class="s">: title}
+    return {"url": url, "summary": summary, "title": title}
 
 def main():
     # Prüfe auf --test Argument
-    is_test = </span><span class="sh">"</span><span class="s">--test</span><span class="sh">"</span><span class="s"> in sys.argv
+    is_test = "--test" in sys.argv
 
-    today = datetime.datetime.now().strftime(</span><span class="sh">"</span><span class="s">%Y-%m-%d</span><span class="sh">"</span><span class="s">)
-    report = f</span><span class="sh">"</span><span class="s">Tägliche Nachrichtenzusammenfassung - {today}</span><span class="se">\n\n</span><span class="sh">"</span><span class="s">
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    report = f"Tägliche Nachrichtenzusammenfassung - {today}</span><span class="se">\n\n</span><span class="s">"
 
     if is_test:
         # Extrahiere nur einen Link und sende eine Zusammenfassung (NYTimes Chinesisch)
-        ny_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        ny_html = fetch_html_content('</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="s">')
         ny_links = []
         ny_summaries = []
         if ny_html:
             ny_links = extract_nytimes_links(ny_html, max_links=1)
             if ny_links:
                 link = ny_links[0]
-                summary = summarize_nytimes_article(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">])
+                summary = summarize_nytimes_article(link['</span><span class="n">url</span><span class="s">'])
                 ny_summaries.append(summary)
-        report = generate_summarized_report(ny_summaries, </span><span class="sh">"</span><span class="s">NYTimes (Chinesisch)</span><span class="sh">"</span><span class="s">)
+        report = generate_summarized_report(ny_summaries, "NYTimes (Chinesisch)")
         if ny_summaries:
             if send_telegram_message(report):
-                print(</span><span class="sh">"</span><span class="s">Testzusammenfassung erfolgreich an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+                print("Testzusammenfassung erfolgreich an Telegram gesendet.")
                 sys.exit(0)
             else:
-                print(</span><span class="sh">"</span><span class="s">Testzusammenfassung konnte nicht an Telegram gesendet werden.</span><span class="sh">"</span><span class="s">)
+                print("Testzusammenfassung konnte nicht an Telegram gesendet werden.")
                 sys.exit(1)
         else:
-            print(</span><span class="sh">"</span><span class="s">Keine Nachrichten gesammelt, nichts an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+            print("Keine Nachrichten gesammelt, nichts an Telegram gesendet.")
             sys.exit(1)
     else:
         # --- Hacker News ---
-        hn_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">news</span><span class="p">.</span><span class="n">ycombinator</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        hn_html = fetch_html_content('</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">news</span><span class="p">.</span><span class="n">ycombinator</span><span class="p">.</span><span class="n">com</span><span class="s">')
         hn_links = []
         hn_summaries = []
         if hn_html:
             hn_links = extract_hacker_news_links(hn_html)
             for link in hn_links:
-                summary = fetch_and_summarize(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">], fallback_title=link[</span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">])
+                summary = fetch_and_summarize(link['</span><span class="n">url</span><span class="s">'], fallback_title=link['</span><span class="n">text</span><span class="s">'])
                 hn_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(hn_summaries, </span><span class="sh">"</span><span class="s">Hacker News</span><span class="sh">"</span><span class="s">)
+        report += generate_summarized_report(hn_summaries, "Hacker News")
 
         # --- GitHub Trending ---
-        gh_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">trending</span><span class="sh">'</span><span class="s">)
+        gh_html = fetch_html_content('</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">trending</span><span class="s">')
         gh_links = []
         gh_summaries = []
         if gh_html:
             gh_links = extract_github_trending(gh_html)
             for link in gh_links:
-                summary = fetch_and_summarize(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">], fallback_title=link[</span><span class="sh">'</span><span class="n">text</span><span class="sh">'</span><span class="s">])
+                summary = fetch_and_summarize(link['</span><span class="n">url</span><span class="s">'], fallback_title=link['</span><span class="n">text</span><span class="s">'])
                 gh_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(gh_summaries, </span><span class="sh">"</span><span class="s">GitHub Trending</span><span class="sh">"</span><span class="s">)
+        report += generate_summarized_report(gh_summaries, "GitHub Trending")
 
         # --- NYTimes (cn.nytimes.com) ---
-        ny_html = fetch_html_content(</span><span class="sh">'</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="sh">'</span><span class="s">)
+        ny_html = fetch_html_content('</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">m</span><span class="p">.</span><span class="n">cn</span><span class="p">.</span><span class="n">nytimes</span><span class="p">.</span><span class="n">com</span><span class="s">')
         ny_links = []
         ny_summaries = []
         if ny_html:
             ny_links = extract_nytimes_links(ny_html, max_links=5)
             for link in ny_links:
-                summary = summarize_nytimes_article(link[</span><span class="sh">'</span><span class="n">url</span><span class="sh">'</span><span class="s">])
+                summary = summarize_nytimes_article(link['</span><span class="n">url</span><span class="s">'])
                 ny_summaries.append(summary)
                 time.sleep(2)
-        report += generate_summarized_report(ny_summaries, </span><span class="sh">"</span><span class="s">NYTimes (Chinesisch)</span><span class="sh">"</span><span class="s">)
+        report += generate_summarized_report(ny_summaries, "NYTimes (Chinesisch)")
 
         if any([hn_summaries, gh_summaries, ny_summaries]):
             if len(report) &gt; TELEGRAM_MAX_LENGTH:
-                print(f</span><span class="sh">"</span><span class="s">Bericht überschreitet {TELEGRAM_MAX_LENGTH} Zeichen, wird in mehrere Nachrichten aufgeteilt.</span><span class="sh">"</span><span class="s">)
+                print(f"Bericht überschreitet {TELEGRAM_MAX_LENGTH} Zeichen, wird in mehrere Nachrichten aufgeteilt.")
             if send_telegram_message(report):
-                print(</span><span class="sh">"</span><span class="s">Täglicher Nachrichtenbericht erfolgreich an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+                print("Täglicher Nachrichtenbericht erfolgreich an Telegram gesendet.")
                 sys.exit(0)
             else:
-                print(</span><span class="sh">"</span><span class="s">Täglicher Nachrichtenbericht konnte nicht an Telegram gesendet werden.</span><span class="sh">"</span><span class="s">)
+                print("Täglicher Nachrichtenbericht konnte nicht an Telegram gesendet werden.")
                 sys.exit(1)
         else:
-            print(</span><span class="sh">"</span><span class="s">Keine Nachrichten gesammelt, nichts an Telegram gesendet.</span><span class="sh">"</span><span class="s">)
+            print("Keine Nachrichten gesammelt, nichts an Telegram gesendet.")
             sys.exit(1)
 
-if __name__ == </span><span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="s">:
+if __name__ == "__main__":
     main()
 </span></code></pre></div></div>
 
@@ -546,7 +546,7 @@ if __name__ == </span><span class="sh">"</span><span class="s">__main__</span><s
 
 <span class="na">concurrency</span><span class="pi">:</span>
   <span class="na">group</span><span class="pi">:</span> <span class="s1">'</span><span class="s">news'</span>
-  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="kc">false</span>
+  <span class="na">cancel-in-progress</span><span class="pi">:</span> <span class="no">false</span>
 
 <span class="na">jobs</span><span class="pi">:</span>
   <span class="na">send-news</span><span class="pi">:</span>

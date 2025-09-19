@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>MacOS Python Window Capture Methods | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="MacOS Python Window Capture Methods" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,26 +209,26 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>pyobjc
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">Quartz</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">ImageGrab</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">Quartz</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageGrab</span>
 
 <span class="c1"># Get active window bounds
-</span><span class="n">window_info</span> <span class="o">=</span> <span class="n">Quartz</span><span class="p">.</span><span class="nc">CGWindowListCopyWindowInfo</span><span class="p">(</span>
+</span><span class="n">window_info</span> <span class="o">=</span> <span class="n">Quartz</span><span class="p">.</span><span class="n">CGWindowListCopyWindowInfo</span><span class="p">(</span>
     <span class="n">Quartz</span><span class="p">.</span><span class="n">kCGWindowListOptionOnScreenOnly</span><span class="p">,</span> <span class="n">Quartz</span><span class="p">.</span><span class="n">kCGNullWindowID</span>
 <span class="p">)</span>
 
-<span class="n">active_app</span> <span class="o">=</span> <span class="n">Quartz</span><span class="p">.</span><span class="nc">CGWindowListCopyWindowInfo</span><span class="p">(</span>
+<span class="n">active_app</span> <span class="o">=</span> <span class="n">Quartz</span><span class="p">.</span><span class="n">CGWindowListCopyWindowInfo</span><span class="p">(</span>
     <span class="n">Quartz</span><span class="p">.</span><span class="n">kCGWindowListOptionOnScreenOnly</span> <span class="o">|</span> <span class="n">Quartz</span><span class="p">.</span><span class="n">kCGWindowListOptionOnScreenAbove</span><span class="p">,</span>
     <span class="n">Quartz</span><span class="p">.</span><span class="n">kCGNullWindowID</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="k">if</span> <span class="n">active_app</span><span class="p">:</span>
-    <span class="n">bounds</span> <span class="o">=</span> <span class="n">active_app</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">kCGWindowBounds</span><span class="sh">'</span><span class="p">]</span>
-    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="sh">'</span><span class="s">X</span><span class="sh">'</span><span class="p">]),</span> <span class="nf">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="sh">'</span><span class="s">Y</span><span class="sh">'</span><span class="p">])</span>
-    <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="sh">'</span><span class="s">Width</span><span class="sh">'</span><span class="p">]),</span> <span class="nf">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="sh">'</span><span class="s">Height</span><span class="sh">'</span><span class="p">])</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">ImageGrab</span><span class="p">.</span><span class="nf">grab</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">))</span>
-    <span class="n">img</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="sh">"</span><span class="s">active-window.png</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Saved active-window.png size=</span><span class="si">{</span><span class="n">img</span><span class="p">.</span><span class="n">size</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="n">active_app</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'kCGWindowBounds'</span><span class="p">]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="s">'X'</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="s">'Y'</span><span class="p">])</span>
+    <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="s">'Width'</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="s">'Height'</span><span class="p">])</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ImageGrab</span><span class="p">.</span><span class="n">grab</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">))</span>
+    <span class="n">img</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"active-window.png"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Saved active-window.png size=</span><span class="si">{</span><span class="n">img</span><span class="p">.</span><span class="n">size</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>This avoids depending on <code class="language-plaintext highlighter-rouge">pygetwindow</code> and talks directly to CoreGraphics.</p>
@@ -239,11 +239,11 @@
 
 <p>Also from PyObjC, but through AppKit:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">AppKit</span> <span class="kn">import</span> <span class="n">NSWorkspace</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">AppKit</span> <span class="kn">import</span> <span class="n">NSWorkspace</span>
 
-<span class="n">ws</span> <span class="o">=</span> <span class="n">NSWorkspace</span><span class="p">.</span><span class="nf">sharedWorkspace</span><span class="p">()</span>
-<span class="n">active_app</span> <span class="o">=</span> <span class="n">ws</span><span class="p">.</span><span class="nf">frontmostApplication</span><span class="p">()</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Active App:</span><span class="sh">"</span><span class="p">,</span> <span class="n">active_app</span><span class="p">.</span><span class="nf">localizedName</span><span class="p">())</span>
+<span class="n">ws</span> <span class="o">=</span> <span class="n">NSWorkspace</span><span class="p">.</span><span class="n">sharedWorkspace</span><span class="p">()</span>
+<span class="n">active_app</span> <span class="o">=</span> <span class="n">ws</span><span class="p">.</span><span class="n">frontmostApplication</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Active App:"</span><span class="p">,</span> <span class="n">active_app</span><span class="p">.</span><span class="n">localizedName</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>You’d still need <code class="language-plaintext highlighter-rouge">Quartz</code> for coordinates, but AppKit gives you the foreground process more cleanly.</p>
@@ -257,15 +257,15 @@
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 <span class="nt">-m</span> pip <span class="nb">install </span>pywinctl
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pywinctl</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">ImageGrab</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pywinctl</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">ImageGrab</span>
 
-<span class="n">active</span> <span class="o">=</span> <span class="n">pywinctl</span><span class="p">.</span><span class="nf">getActiveWindow</span><span class="p">()</span>
+<span class="n">active</span> <span class="o">=</span> <span class="n">pywinctl</span><span class="p">.</span><span class="n">getActiveWindow</span><span class="p">()</span>
 <span class="k">if</span> <span class="n">active</span><span class="p">:</span>
     <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">active</span><span class="p">.</span><span class="n">left</span><span class="p">,</span> <span class="n">active</span><span class="p">.</span><span class="n">top</span><span class="p">,</span> <span class="n">active</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">active</span><span class="p">.</span><span class="n">height</span>
-    <span class="n">img</span> <span class="o">=</span> <span class="n">ImageGrab</span><span class="p">.</span><span class="nf">grab</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">))</span>
-    <span class="n">img</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="sh">"</span><span class="s">active-window.png</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Saved active-window.png</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">ImageGrab</span><span class="p">.</span><span class="n">grab</span><span class="p">(</span><span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="n">h</span><span class="p">))</span>
+    <span class="n">img</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"active-window.png"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Saved active-window.png"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>This is probably the closest “drop-in” alternative to pygetwindow, but with more consistent macOS support.</p>

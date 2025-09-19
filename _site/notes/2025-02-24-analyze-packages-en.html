@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Analyze Java Packages | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Analyze Java Packages" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -239,12 +239,12 @@
 <h3 id="implementation">Implementation</h3>
 <p>Here’s the complete Python script that meets your requirements:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
 
 <span class="k">def</span> <span class="nf">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Recursively find all .java files in the given directory and its subdirectories.
     
     Args:
@@ -252,14 +252,14 @@
     
     Yields:
         str: The full path to each .java file.
-    </span><span class="sh">"""</span>
-    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+    """</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.java'</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">extract_package</span><span class="p">(</span><span class="n">import_statement</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Extract the package name from an import statement.
     
     Uses the convention that package names are lowercase, while class names
@@ -270,111 +270,111 @@
     
     Returns:
         str: The package name, or empty string if not determined.
-    </span><span class="sh">"""</span>
-    <span class="n">parts</span> <span class="o">=</span> <span class="n">import_statement</span><span class="p">.</span><span class="nf">split</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">import</span><span class="sh">'</span><span class="p">:</span>
+    """</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">import_statement</span><span class="p">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'import'</span><span class="p">:</span>
         <span class="n">parts</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sh">'</span><span class="s">static</span><span class="sh">'</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">'static'</span><span class="p">:</span>
         <span class="n">parts</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
-    <span class="n">import_path</span> <span class="o">=</span> <span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">parts</span><span class="p">).</span><span class="nf">strip</span><span class="p">(</span><span class="sh">'</span><span class="s">;</span><span class="sh">'</span><span class="p">).</span><span class="nf">strip</span><span class="p">()</span>
-    <span class="n">identifiers</span> <span class="o">=</span> <span class="n">import_path</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ident</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">identifiers</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">ident</span> <span class="o">==</span> <span class="sh">'</span><span class="s">*</span><span class="sh">'</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ident</span> <span class="ow">and</span> <span class="n">ident</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">isupper</span><span class="p">()):</span>
+    <span class="n">import_path</span> <span class="o">=</span> <span class="s">' '</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">).</span><span class="n">strip</span><span class="p">(</span><span class="s">';'</span><span class="p">).</span><span class="n">strip</span><span class="p">()</span>
+    <span class="n">identifiers</span> <span class="o">=</span> <span class="n">import_path</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ident</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">identifiers</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">ident</span> <span class="o">==</span> <span class="s">'*'</span> <span class="ow">or</span> <span class="p">(</span><span class="n">ident</span> <span class="ow">and</span> <span class="n">ident</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">isupper</span><span class="p">()):</span>
             <span class="n">package_parts</span> <span class="o">=</span> <span class="n">identifiers</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
             <span class="k">break</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">package_parts</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">package</span> <span class="o">=</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">package_parts</span><span class="p">)</span>
+    <span class="n">package</span> <span class="o">=</span> <span class="s">'.'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">package_parts</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">package</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
     <span class="c1"># Parse command-line arguments
-</span>    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python script.py &lt;root_directory&gt; [level] [--count]</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py &lt;root_directory&gt; [level] [--count]"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">count</span> <span class="o">=</span> <span class="bp">False</span>
     
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sh">"</span><span class="s">--count</span><span class="sh">"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s">"--count"</span><span class="p">:</span>
             <span class="n">count</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">isdigit</span><span class="p">():</span>
-            <span class="n">level</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Invalid argument: </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sh">"</span><span class="s">--count</span><span class="sh">"</span> <span class="ow">and</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">isdigit</span><span class="p">():</span>
-            <span class="n">level</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Invalid argument: </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s">"--count"</span> <span class="ow">and</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">isdigit</span><span class="p">():</span>
+            <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">count</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Invalid arguments: </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Invalid arguments: </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="c1"># Verify the directory exists
-</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">isdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[ERROR] The specified path is not a directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[ERROR] The specified path is not a directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="c1"># Log the start of the analysis
-</span>    <span class="n">level_str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">using full package names</span><span class="sh">"</span> <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="sa">f</span><span class="sh">"</span><span class="s">at level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">count_str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">with appearance counts</span><span class="sh">"</span> <span class="k">if</span> <span class="n">count</span> <span class="k">else</span> <span class="sh">""</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Starting analysis of directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">level_str</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">count_str</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">level_str</span> <span class="o">=</span> <span class="s">"using full package names"</span> <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="sa">f</span><span class="s">"at level </span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">count_str</span> <span class="o">=</span> <span class="s">"with appearance counts"</span> <span class="k">if</span> <span class="n">count</span> <span class="k">else</span> <span class="s">""</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Starting analysis of directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">level_str</span><span class="si">}</span><span class="s"> </span><span class="si">{</span><span class="n">count_str</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
     <span class="c1"># Initialize variables
-</span>    <span class="n">package_counter</span> <span class="o">=</span> <span class="nc">Counter</span><span class="p">()</span>
+</span>    <span class="n">package_counter</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">()</span>
     <span class="n">total_files</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">error_files</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="c1"># Process Java files
-</span>    <span class="k">for</span> <span class="n">java_file</span> <span class="ow">in</span> <span class="nf">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">java_file</span> <span class="ow">in</span> <span class="n">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">java_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">file_packages</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">java_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">file_packages</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-                    <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">import</span><span class="sh">'</span><span class="p">):</span>
-                        <span class="n">package</span> <span class="o">=</span> <span class="nf">extract_package</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="k">if</span> <span class="n">line</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'import'</span><span class="p">):</span>
+                        <span class="n">package</span> <span class="o">=</span> <span class="n">extract_package</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">package</span><span class="p">:</span>
                             <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                                <span class="n">parts</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)</span>
-                                <span class="n">truncated_package</span> <span class="o">=</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[:</span><span class="n">level</span><span class="p">])</span>
+                                <span class="n">parts</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)</span>
+                                <span class="n">truncated_package</span> <span class="o">=</span> <span class="s">'.'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[:</span><span class="n">level</span><span class="p">])</span>
                             <span class="k">else</span><span class="p">:</span>
                                 <span class="n">truncated_package</span> <span class="o">=</span> <span class="n">package</span>
-                            <span class="n">file_packages</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">truncated_package</span><span class="p">)</span>
+                            <span class="n">file_packages</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">truncated_package</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="n">file_packages</span><span class="p">:</span>
                 <span class="n">package_counter</span><span class="p">[</span><span class="n">pkg</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="n">total_files</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[ERROR] Could not read file </span><span class="si">{</span><span class="n">java_file</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[ERROR] Could not read file </span><span class="si">{</span><span class="n">java_file</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="n">error_files</span> <span class="o">+=</span> <span class="mi">1</span>
             <span class="k">continue</span>
     
     <span class="c1"># Print summary
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Total Java files attempted: </span><span class="si">{</span><span class="n">total_files</span> <span class="o">+</span> <span class="n">error_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Successfully processed: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Files with errors: </span><span class="si">{</span><span class="n">error_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Total Java files attempted: </span><span class="si">{</span><span class="n">total_files</span> <span class="o">+</span> <span class="n">error_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Successfully processed: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Files with errors: </span><span class="si">{</span><span class="n">error_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Total unique packages with counts: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">package_counter</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Total unique packages with counts: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">package_counter</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Total unique packages: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">package_counter</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Total unique packages: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">package_counter</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
     <span class="c1"># Print results with appropriate sorting
 </span>    <span class="k">if</span> <span class="n">package_counter</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">count</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">[INFO] Analysis complete. Printing unique packages with counts (sorted by count descending):</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"[INFO] Analysis complete. Printing unique packages with counts (sorted by count descending):"</span><span class="p">)</span>
             <span class="c1"># Sort by count descending, then by package name ascending
-</span>            <span class="k">for</span> <span class="n">pkg</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">package_counter</span><span class="p">.</span><span class="nf">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">pkg</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">cnt</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>            <span class="k">for</span> <span class="n">pkg</span><span class="p">,</span> <span class="n">cnt</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">package_counter</span><span class="p">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">pkg</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">cnt</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">[INFO] Analysis complete. Printing unique packages (sorted by name ascending):</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"[INFO] Analysis complete. Printing unique packages (sorted by name ascending):"</span><span class="p">)</span>
             <span class="c1"># Sort by package name ascending
-</span>            <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">package_counter</span><span class="p">):</span>
-                <span class="nf">print</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
+</span>            <span class="k">for</span> <span class="n">pkg</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">package_counter</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">[INFO] No packages found.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"[INFO] No packages found."</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="how-it-works">How It Works</h3>

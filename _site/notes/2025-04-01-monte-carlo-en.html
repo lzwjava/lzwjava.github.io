@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Monte Carlo Tree Search | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Monte Carlo Tree Search" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -295,43 +295,43 @@ UCT = \bar{X}_i + C \sqrt{\frac{\ln(N)}{n_i}}
 <p>Here’s a basic MCTS implementation:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">visits</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">parent</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">children</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">visits</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">reward</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="k">def</span> <span class="nf">mcts</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">iterations</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nf">selection</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="nf">is_terminal</span><span class="p">():</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="nf">expansion</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-        <span class="n">reward</span> <span class="o">=</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">)</span>
-        <span class="nf">backpropagation</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nf">best_child</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">selection</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">is_terminal</span><span class="p">():</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">expansion</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">simulation</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="n">backpropagation</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">reward</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">best_child</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">selection</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-    <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="nf">is_terminal</span><span class="p">():</span>
-        <span class="n">node</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">uct</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">node</span><span class="p">.</span><span class="n">children</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">is_terminal</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">uct</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">node</span>
 
 <span class="k">def</span> <span class="nf">expansion</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-    <span class="n">untried_moves</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="nf">get_untried_moves</span><span class="p">()</span>
+    <span class="n">untried_moves</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">get_untried_moves</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">untried_moves</span><span class="p">:</span>
-        <span class="n">move</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">untried_moves</span><span class="p">)</span>
-        <span class="n">new_state</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="nf">apply_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
-        <span class="n">child</span> <span class="o">=</span> <span class="nc">Node</span><span class="p">(</span><span class="n">new_state</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
-        <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">move</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">untried_moves</span><span class="p">)</span>
+        <span class="n">new_state</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">state</span><span class="p">.</span><span class="n">apply_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+        <span class="n">child</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">new_state</span><span class="p">,</span> <span class="n">parent</span><span class="o">=</span><span class="n">node</span><span class="p">)</span>
+        <span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">child</span>
     <span class="k">return</span> <span class="n">node</span>
 
 <span class="k">def</span> <span class="nf">simulation</span><span class="p">(</span><span class="n">state</span><span class="p">):</span>
-    <span class="n">current</span> <span class="o">=</span> <span class="n">state</span><span class="p">.</span><span class="nf">clone</span><span class="p">()</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">current</span><span class="p">.</span><span class="nf">is_terminal</span><span class="p">():</span>
-        <span class="n">move</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="nf">get_moves</span><span class="p">())</span>
-        <span class="n">current</span><span class="p">.</span><span class="nf">apply_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="nf">get_result</span><span class="p">()</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">state</span><span class="p">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">current</span><span class="p">.</span><span class="n">is_terminal</span><span class="p">():</span>
+        <span class="n">move</span> <span class="o">=</span> <span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="n">get_moves</span><span class="p">())</span>
+        <span class="n">current</span><span class="p">.</span><span class="n">apply_move</span><span class="p">(</span><span class="n">move</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="n">get_result</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">backpropagation</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">reward</span><span class="p">):</span>
     <span class="k">while</span> <span class="n">node</span><span class="p">:</span>
@@ -341,11 +341,11 @@ UCT = \bar{X}_i + C \sqrt{\frac{\ln(N)}{n_i}}
 
 <span class="k">def</span> <span class="nf">uct</span><span class="p">(</span><span class="n">child</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">child</span><span class="p">.</span><span class="n">visits</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">inf</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># Explore unvisited nodes
-</span>    <span class="nf">return </span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">reward</span> <span class="o">/</span> <span class="n">child</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.41</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span> <span class="o">/</span> <span class="n">child</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s">'inf'</span><span class="p">)</span>  <span class="c1"># Explore unvisited nodes
+</span>    <span class="k">return</span> <span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">reward</span> <span class="o">/</span> <span class="n">child</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1.41</span> <span class="o">*</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">math</span><span class="p">.</span><span class="n">log</span><span class="p">(</span><span class="n">child</span><span class="p">.</span><span class="n">parent</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span> <span class="o">/</span> <span class="n">child</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">best_child</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nf">max</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span>  <span class="c1"># Or use reward/visits
+    <span class="k">return</span> <span class="nb">max</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="n">children</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="p">.</span><span class="n">visits</span><span class="p">)</span>  <span class="c1"># Or use reward/visits
 </span></code></pre></div></div>
 
 <hr />

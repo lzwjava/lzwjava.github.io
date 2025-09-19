@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>人工智能驱动的Git提交信息 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="人工智能驱动的Git提交信息" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="zh" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -207,118 +207,118 @@
 
   <p>这个 Python 脚本应该放在系统 PATH 中的目录下，例如 <code class="language-plaintext highlighter-rouge">~/bin</code>。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"MISTRAL_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: MISTRAL_API_KEY 环境变量未设置。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"错误: MISTRAL_API_KEY 环境变量未设置。"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/chat/completions</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.mistral.ai/v1/chat/completions"</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">"</span>
     <span class="p">}</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">mistral-large-latest</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="s">"mistral-large-latest"</span><span class="p">,</span>
+        <span class="s">"messages"</span><span class="p">:</span> <span class="p">[</span>
             <span class="p">{</span>
-                <span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span>
+                <span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span>
+                <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span>
             <span class="p">}</span>
         <span class="p">]</span>
     <span class="p">}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">choices</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">message</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'choices'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'message'</span><span class="p">][</span><span class="s">'content'</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API 错误: 无效的响应格式: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral API 错误: 无效的响应格式: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral API 错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral API 错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应状态码: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应内容: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"响应状态码: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"响应内容: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">gemini_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">GEMINI_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">gemini_api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"GEMINI_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">gemini_api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: GEMINI_API_KEY 环境变量未设置。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"错误: GEMINI_API_KEY 环境变量未设置。"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent</span><span class="sh">"</span>
-    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">key</span><span class="sh">"</span><span class="p">:</span> <span class="n">gemini_api_key</span><span class="p">}</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">contents</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">parts</span><span class="sh">"</span><span class="p">:</span> <span class="p">[{</span><span class="sh">"</span><span class="s">text</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]}]}</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s">"key"</span><span class="p">:</span> <span class="n">gemini_api_key</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">"contents"</span><span class="p">:</span> <span class="p">[{</span><span class="s">"parts"</span><span class="p">:</span> <span class="p">[{</span><span class="s">"text"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]}]}</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>  <span class="c1"># 对于错误状态码抛出异常
-</span>        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">candidates</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">content</span><span class="sh">'</span><span class="p">][</span><span class="sh">'</span><span class="s">parts</span><span class="sh">'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">payload</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>  <span class="c1"># 对于错误状态码抛出异常
+</span>        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="s">'candidates'</span> <span class="ow">in</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'candidates'</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">response_json</span><span class="p">[</span><span class="s">'candidates'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'content'</span><span class="p">][</span><span class="s">'parts'</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s">'text'</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gemini API 错误: 无效的响应格式: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Gemini API 错误: 无效的响应格式: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Gemini API 错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Gemini API 错误: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应状态码: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">响应内容: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"响应状态码: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"响应内容: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: DEEPSEEK_API_KEY 环境变量未设置。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"错误: DEEPSEEK_API_KEY 环境变量未设置。"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-    <span class="n">client</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="sh">"</span><span class="s">https://api.deepseek.com</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">base_url</span><span class="o">=</span><span class="s">"https://api.deepseek.com"</span><span class="p">)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
-            <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">deepseek-chat</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="s">"deepseek-chat"</span><span class="p">,</span>
             <span class="n">messages</span><span class="o">=</span><span class="p">[</span>
-                <span class="p">{</span><span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
+                <span class="p">{</span><span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}</span>
             <span class="p">],</span>
             <span class="n">max_tokens</span><span class="o">=</span><span class="mi">100</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">response</span> <span class="ow">and</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">:</span>
-            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="nf">strip</span><span class="p">()</span>
-            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">commit_message</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">`</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">commit_message</span> <span class="o">=</span> <span class="n">commit_message</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'`'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">commit_message</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: API 无响应。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"错误: API 无响应。"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">API 调用时出错: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"API 调用时出错: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
-<span class="k">def</span> <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="s">'deepseek'</span><span class="p">):</span>
     <span class="c1"># 暂存所有更改
-</span>    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">add</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-A</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"add"</span><span class="p">,</span> <span class="s">"-A"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="c1"># 获取更改的简要摘要
-</span>    <span class="n">files_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">diff</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--staged</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--name-only</span><span class="sh">"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">files_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"diff"</span><span class="p">,</span> <span class="s">"--staged"</span><span class="p">,</span> <span class="s">"--name-only"</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">changed_files</span> <span class="o">=</span> <span class="n">files_process</span><span class="p">.</span><span class="n">stdout</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">changed_files</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">无更改提交。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"无更改提交。"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># 为 AI 准备提示
-</span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"""</span><span class="s">
+</span>    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"""
 生成简洁的提交消息，格式为 Conventional Commits，针对以下代码更改。
 使用以下类型之一: feat, fix, docs, style, refactor, test, chore, perf, ci, build, 或 revert。
 如适用，包含一个括号中的范围，描述受影响的代码库部分。
@@ -328,51 +328,51 @@
 </span><span class="si">{</span><span class="n">changed_files</span><span class="si">}</span><span class="s">
 
 提交消息:
-</span><span class="sh">"""</span>
+"""</span>
 
-    <span class="k">if</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'deepseek'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
             <span class="k">return</span>
-    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">gemini</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'gemini'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_gemini_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: Gemini API 无响应。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"错误: Gemini API 无响应。"</span><span class="p">)</span>
             <span class="k">return</span>
-    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="sh">'</span><span class="s">mistral</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">commit_message</span> <span class="o">=</span> <span class="nf">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">api</span> <span class="o">==</span> <span class="s">'mistral'</span><span class="p">:</span>
+        <span class="n">commit_message</span> <span class="o">=</span> <span class="n">call_mistral_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: Mistral API 无响应。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"错误: Mistral API 无响应。"</span><span class="p">)</span>
             <span class="k">return</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">错误: 指定的 API 无效: </span><span class="si">{</span><span class="n">api</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"错误: 指定的 API 无效: </span><span class="si">{</span><span class="n">api</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># 检查提交消息是否为空
 </span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">commit_message</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">错误: 生成的提交消息为空。中止提交。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"错误: 生成的提交消息为空。中止提交。"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="k">if</span> <span class="n">only_message</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">建议的提交消息: </span><span class="si">{</span><span class="n">commit_message</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"建议的提交消息: </span><span class="si">{</span><span class="n">commit_message</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="c1"># 使用生成的消息提交
-</span>    <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">commit</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-m</span><span class="sh">"</span><span class="p">,</span> <span class="n">commit_message</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"commit"</span><span class="p">,</span> <span class="s">"-m"</span><span class="p">,</span> <span class="n">commit_message</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
     <span class="c1"># 推送更改
 </span>    <span class="k">if</span> <span class="n">push</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">git</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">push</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"git"</span><span class="p">,</span> <span class="s">"push"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">更改已提交到本地，但未推送。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"更改已提交到本地，但未推送。"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">使用 AI 生成提交消息并提交更改。</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--no-push</span><span class="sh">'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sh">'</span><span class="s">push</span><span class="sh">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">store_false</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">在本地提交更改而不推送。</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--only-message</span><span class="sh">'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="sh">'</span><span class="s">only_message</span><span class="sh">'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">'</span><span class="s">store_true</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">仅打印 AI 生成的提交消息。</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--api</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">deepseek</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">gemini</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">mistral</span><span class="sh">'</span><span class="p">],</span> <span class="nb">help</span><span class="o">=</span><span class="sh">'</span><span class="s">用于生成提交消息的 API (deepseek, gemini 或 mistral)。</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
-    <span class="nf">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">push</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">only_message</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">api</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"使用 AI 生成提交消息并提交更改。"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--no-push'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'push'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_false'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'在本地提交更改而不推送。'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--only-message'</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">'only_message'</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">'store_true'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">'仅打印 AI 生成的提交消息。'</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--api'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'deepseek'</span><span class="p">,</span> <span class="n">choices</span><span class="o">=</span><span class="p">[</span><span class="s">'deepseek'</span><span class="p">,</span> <span class="s">'gemini'</span><span class="p">,</span> <span class="s">'mistral'</span><span class="p">],</span> <span class="n">help</span><span class="o">=</span><span class="s">'用于生成提交消息的 API (deepseek, gemini 或 mistral)。'</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="n">gitmessageai</span><span class="p">(</span><span class="n">push</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">push</span><span class="p">,</span> <span class="n">only_message</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">only_message</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">api</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>可以使用不同的 API 调用此脚本。例如:</p>

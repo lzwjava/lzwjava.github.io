@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>DeepSeek R1 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="DeepSeek R1" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -239,21 +239,21 @@
 
 <p>It’s challenging to provide a direct, runnable code example that fully replicates DeepSeek’s RL training process due to its complexity and scale. However, the following conceptual PyTorch-like snippet illustrates the core idea of GRPO and a rule-based reward:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
-<span class="kn">import</span> <span class="n">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
-<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
 
 <span class="c1"># Assume you have a pre-trained language model and tokenizer
-</span><span class="n">model_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">gpt2</span><span class="sh">"</span>  <span class="c1"># Replace with a more suitable base model
-</span><span class="n">policy_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="nc">AdamW</span><span class="p">(</span><span class="n">policy_model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">5e-6</span><span class="p">)</span>
-<span class="n">device</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="nf">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="sh">"</span><span class="s">cpu</span><span class="sh">"</span>
-<span class="n">policy_model</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="s">"gpt2"</span>  <span class="c1"># Replace with a more suitable base model
+</span><span class="n">policy_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">policy_model</span><span class="p">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">5e-6</span><span class="p">)</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s">"cpu"</span>
+<span class="n">policy_model</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">generate_responses</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_responses</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">):</span>
-    <span class="n">input_tokens</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-    <span class="n">outputs</span> <span class="o">=</span> <span class="n">policy_model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
+    <span class="n">input_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">policy_model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
         <span class="n">input_tokens</span><span class="p">.</span><span class="n">input_ids</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="n">max_length</span><span class="p">,</span>
         <span class="n">num_return_sequences</span><span class="o">=</span><span class="n">num_responses</span><span class="p">,</span>
@@ -262,52 +262,52 @@
         <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
         <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_token_id</span>
     <span class="p">)</span>
-    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">]</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="k">for</span> <span class="n">output</span> <span class="ow">in</span> <span class="n">outputs</span><span class="p">]</span>
     <span class="k">return</span> <span class="n">responses</span>
 
 <span class="k">def</span> <span class="nf">calculate_accuracy_reward</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
     <span class="c1"># Simplified example for a math problem: "What is 2 + 2?"
-</span>    <span class="k">if</span> <span class="sh">"</span><span class="s">2 + 2</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">and</span> <span class="sh">"</span><span class="s">4</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+</span>    <span class="k">if</span> <span class="s">"2 + 2"</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">and</span> <span class="s">"4"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">1.0</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
 
 <span class="k">def</span> <span class="nf">calculate_format_reward</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-    <span class="k">if</span> <span class="sh">"</span><span class="s">&lt;think&gt;</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">and</span> <span class="sh">"</span><span class="s">&lt;/think&gt;</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s">"&lt;think&gt;"</span> <span class="ow">in</span> <span class="n">response</span> <span class="ow">and</span> <span class="s">"&lt;/think&gt;"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.5</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="mf">0.0</span>
 
 <span class="k">def</span> <span class="nf">calculate_combined_reward</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-    <span class="n">accuracy_reward</span> <span class="o">=</span> <span class="nf">calculate_accuracy_reward</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
-    <span class="n">format_reward</span> <span class="o">=</span> <span class="nf">calculate_format_reward</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="n">accuracy_reward</span> <span class="o">=</span> <span class="n">calculate_accuracy_reward</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="n">format_reward</span> <span class="o">=</span> <span class="n">calculate_format_reward</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">accuracy_reward</span> <span class="o">+</span> <span class="n">format_reward</span>
 
 <span class="k">def</span> <span class="nf">train_step</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
-    <span class="n">optimizer</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
-    <span class="n">responses</span> <span class="o">=</span> <span class="nf">generate_responses</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
-    <span class="n">rewards</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="nf">calculate_combined_reward</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">]).</span><span class="nf">float</span><span class="p">().</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">optimizer</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="n">generate_responses</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">calculate_combined_reward</span><span class="p">(</span><span class="n">resp</span><span class="p">)</span> <span class="k">for</span> <span class="n">resp</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">]).</span><span class="nb">float</span><span class="p">().</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
     <span class="c1"># Simplified GRPO-like update: Encourage higher reward responses
-</span>    <span class="n">best_reward_index</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
+</span>    <span class="n">best_reward_index</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">rewards</span><span class="p">)</span>
     <span class="n">best_response</span> <span class="o">=</span> <span class="n">responses</span><span class="p">[</span><span class="n">best_reward_index</span><span class="p">]</span>
-    <span class="n">inputs</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-    <span class="n">outputs</span> <span class="o">=</span> <span class="nf">policy_model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">inputs</span><span class="p">.</span><span class="n">input_ids</span><span class="p">)</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="n">policy_model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">inputs</span><span class="p">.</span><span class="n">input_ids</span><span class="p">)</span>
     <span class="n">loss</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">.</span><span class="n">loss</span>
-    <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
-    <span class="n">optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">loss</span><span class="p">.</span><span class="nf">item</span><span class="p">(),</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">rewards</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+    <span class="n">loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
+    <span class="n">optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">loss</span><span class="p">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">rewards</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
 
 <span class="c1"># Training loop (very simplified)
 </span><span class="n">num_episodes</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">training_prompts</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">Solve: 2 + 2 = ?</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Explain the concept of gravity &lt;think&gt;</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Write a short story about a cat.</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">training_prompts</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Solve: 2 + 2 = ?"</span><span class="p">,</span> <span class="s">"Explain the concept of gravity &lt;think&gt;"</span><span class="p">,</span> <span class="s">"Write a short story about a cat."</span><span class="p">]</span>
 
-<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
-    <span class="n">prompt</span> <span class="o">=</span> <span class="n">training_prompts</span><span class="p">[</span><span class="n">episode</span> <span class="o">%</span> <span class="nf">len</span><span class="p">(</span><span class="n">training_prompts</span><span class="p">)]</span>
-    <span class="n">loss</span><span class="p">,</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">rewards</span> <span class="o">=</span> <span class="nf">train_step</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Episode </span><span class="si">{</span><span class="n">episode</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">, Best Response: </span><span class="sh">'</span><span class="si">{</span><span class="n">best_response</span><span class="si">}</span><span class="sh">'</span><span class="s">, Rewards: </span><span class="si">{</span><span class="n">rewards</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_episodes</span><span class="p">):</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="n">training_prompts</span><span class="p">[</span><span class="n">episode</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">training_prompts</span><span class="p">)]</span>
+    <span class="n">loss</span><span class="p">,</span> <span class="n">best_response</span><span class="p">,</span> <span class="n">rewards</span> <span class="o">=</span> <span class="n">train_step</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Episode </span><span class="si">{</span><span class="n">episode</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">, Best Response: '</span><span class="si">{</span><span class="n">best_response</span><span class="si">}</span><span class="s">', Rewards: </span><span class="si">{</span><span class="n">rewards</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Simplified RL Training Done!</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Simplified RL Training Done!"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Important Notes on the Code:</strong></p>

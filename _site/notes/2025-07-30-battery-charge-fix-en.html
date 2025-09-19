@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Battery Charge Estimation Fix | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Battery Charge Estimation Fix" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -207,13 +207,13 @@
 
 <p>Here’s a fixed Python script that dynamically detects the battery name and handles variations in sysfs file names (e.g., <code class="language-plaintext highlighter-rouge">energy_now</code> instead of <code class="language-plaintext highlighter-rouge">charge_now</code> for some systems). It also includes better error handling and permission checks:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">psutil</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">glob</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">psutil</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
 
 <span class="k">def</span> <span class="nf">find_battery_path</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Find the battery directory in /sys/class/power_supply.</span><span class="sh">"""</span>
-    <span class="n">battery_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="sh">'</span><span class="s">/sys/class/power_supply/BAT*</span><span class="sh">'</span><span class="p">)</span>
+    <span class="s">"""Find the battery directory in /sys/class/power_supply."""</span>
+    <span class="n">battery_paths</span> <span class="o">=</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="s">'/sys/class/power_supply/BAT*'</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">battery_paths</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">return</span> <span class="n">battery_paths</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Return the first battery found (e.g., BAT0 or BAT1)
@@ -221,81 +221,81 @@
 <span class="k">def</span> <span class="nf">get_battery_info</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Get battery information using psutil
-</span>        <span class="n">battery</span> <span class="o">=</span> <span class="n">psutil</span><span class="p">.</span><span class="nf">sensors_battery</span><span class="p">()</span>
+</span>        <span class="n">battery</span> <span class="o">=</span> <span class="n">psutil</span><span class="p">.</span><span class="n">sensors_battery</span><span class="p">()</span>
         
         <span class="k">if</span> <span class="n">battery</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No battery detected.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"No battery detected."</span><span class="p">)</span>
             <span class="k">return</span>
 
         <span class="c1"># Battery percentage
 </span>        <span class="n">percent</span> <span class="o">=</span> <span class="n">battery</span><span class="p">.</span><span class="n">percent</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Battery Percentage: </span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Battery Percentage: </span><span class="si">{</span><span class="n">percent</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%"</span><span class="p">)</span>
 
         <span class="c1"># Check if battery is charging
 </span>        <span class="n">is_charging</span> <span class="o">=</span> <span class="n">battery</span><span class="p">.</span><span class="n">power_plugged</span>
-        <span class="n">status</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Charging</span><span class="sh">"</span> <span class="k">if</span> <span class="n">is_charging</span> <span class="k">else</span> <span class="sh">"</span><span class="s">Discharging</span><span class="sh">"</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">status</span> <span class="o">=</span> <span class="s">"Charging"</span> <span class="k">if</span> <span class="n">is_charging</span> <span class="k">else</span> <span class="s">"Discharging"</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Status: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
         <span class="c1"># Estimate remaining time (only when discharging)
 </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_charging</span> <span class="ow">and</span> <span class="n">battery</span><span class="p">.</span><span class="n">secsleft</span> <span class="o">!=</span> <span class="n">psutil</span><span class="p">.</span><span class="n">POWER_TIME_UNLIMITED</span><span class="p">:</span>
             <span class="n">remaining_secs</span> <span class="o">=</span> <span class="n">battery</span><span class="p">.</span><span class="n">secsleft</span>
             <span class="n">hours</span> <span class="o">=</span> <span class="n">remaining_secs</span> <span class="o">//</span> <span class="mi">3600</span>
             <span class="n">minutes</span> <span class="o">=</span> <span class="p">(</span><span class="n">remaining_secs</span> <span class="o">%</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Estimated Time Remaining: </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s"> hours, </span><span class="si">{</span><span class="n">minutes</span><span class="si">}</span><span class="s"> minutes</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Estimated Time Remaining: </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s"> hours, </span><span class="si">{</span><span class="n">minutes</span><span class="si">}</span><span class="s"> minutes"</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">is_charging</span><span class="p">:</span>
             <span class="c1"># Try to estimate time to full charge using sysfs
-</span>            <span class="n">battery_path</span> <span class="o">=</span> <span class="nf">find_battery_path</span><span class="p">()</span>
+</span>            <span class="n">battery_path</span> <span class="o">=</span> <span class="n">find_battery_path</span><span class="p">()</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">battery_path</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Cannot estimate time to full charge (no battery found in sysfs).</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"Cannot estimate time to full charge (no battery found in sysfs)."</span><span class="p">)</span>
                 <span class="k">return</span>
 
             <span class="k">try</span><span class="p">:</span>
                 <span class="c1"># Check for charge or energy-based files
-</span>                <span class="n">charge_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">charge_now</span><span class="sh">'</span><span class="p">)</span>
-                <span class="n">energy_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">energy_now</span><span class="sh">'</span><span class="p">)</span>
-                <span class="n">charge_full_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">charge_full</span><span class="sh">'</span><span class="p">)</span>
-                <span class="n">energy_full_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">charge_full_design</span><span class="sh">'</span><span class="p">)</span>
-                <span class="n">current_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">current_now</span><span class="sh">'</span><span class="p">)</span>
+</span>                <span class="n">charge_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="s">'charge_now'</span><span class="p">)</span>
+                <span class="n">energy_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="s">'energy_now'</span><span class="p">)</span>
+                <span class="n">charge_full_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="s">'charge_full'</span><span class="p">)</span>
+                <span class="n">energy_full_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="s">'charge_full_design'</span><span class="p">)</span>
+                <span class="n">current_now_file</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">battery_path</span><span class="p">,</span> <span class="s">'current_now'</span><span class="p">)</span>
 
                 <span class="c1"># Determine which files to use (charge or energy)
-</span>                <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">charge_now_file</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">charge_full_file</span><span class="p">):</span>
+</span>                <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">charge_now_file</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">charge_full_file</span><span class="p">):</span>
                     <span class="n">now_file</span><span class="p">,</span> <span class="n">full_file</span> <span class="o">=</span> <span class="n">charge_now_file</span><span class="p">,</span> <span class="n">charge_full_file</span>
-                <span class="k">elif</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">energy_now_file</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">energy_full_file</span><span class="p">):</span>
+                <span class="k">elif</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">energy_now_file</span><span class="p">)</span> <span class="ow">and</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">energy_full_file</span><span class="p">):</span>
                     <span class="n">now_file</span><span class="p">,</span> <span class="n">full_file</span> <span class="o">=</span> <span class="n">energy_now_file</span><span class="p">,</span> <span class="n">energy_full_file</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Cannot estimate time to full charge (charge/energy files not found).</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"Cannot estimate time to full charge (charge/energy files not found)."</span><span class="p">)</span>
                     <span class="k">return</span>
 
                 <span class="c1"># Read battery data
-</span>                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">now_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">charge_now</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>
-                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">full_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">charge_full</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>
-                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">current_now_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">current_now</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">().</span><span class="nf">strip</span><span class="p">())</span>
+</span>                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">now_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">charge_now</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">strip</span><span class="p">())</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">full_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">charge_full</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">strip</span><span class="p">())</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">current_now_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">current_now</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">().</span><span class="n">strip</span><span class="p">())</span>
 
                 <span class="k">if</span> <span class="n">current_now</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">charge_remaining</span> <span class="o">=</span> <span class="n">charge_full</span> <span class="o">-</span> <span class="n">charge_now</span>
                     <span class="n">seconds_to_full</span> <span class="o">=</span> <span class="p">(</span><span class="n">charge_remaining</span> <span class="o">/</span> <span class="n">current_now</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3600</span>
-                    <span class="n">hours</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">seconds_to_full</span> <span class="o">//</span> <span class="mi">3600</span><span class="p">)</span>
-                    <span class="n">minutes</span> <span class="o">=</span> <span class="nf">int</span><span class="p">((</span><span class="n">seconds_to_full</span> <span class="o">%</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span><span class="p">)</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Estimated Time to Full Charge: </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s"> hours, </span><span class="si">{</span><span class="n">minutes</span><span class="si">}</span><span class="s"> minutes</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="n">hours</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds_to_full</span> <span class="o">//</span> <span class="mi">3600</span><span class="p">)</span>
+                    <span class="n">minutes</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">seconds_to_full</span> <span class="o">%</span> <span class="mi">3600</span><span class="p">)</span> <span class="o">//</span> <span class="mi">60</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Estimated Time to Full Charge: </span><span class="si">{</span><span class="n">hours</span><span class="si">}</span><span class="s"> hours, </span><span class="si">{</span><span class="n">minutes</span><span class="si">}</span><span class="s"> minutes"</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Cannot estimate time to full charge (current_now is 0).</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">except</span> <span class="nb">PermissionError</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Cannot estimate time to full charge (permission denied). Try running with sudo.</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">"Cannot estimate time to full charge (current_now is 0)."</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">PermissionError</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="s">"Cannot estimate time to full charge (permission denied). Try running with sudo."</span><span class="p">)</span>
             <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Cannot estimate time to full charge (sysfs files not found in </span><span class="si">{</span><span class="n">battery_path</span><span class="si">}</span><span class="s">).</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Cannot estimate time to full charge (sysfs files not found in </span><span class="si">{</span><span class="n">battery_path</span><span class="si">}</span><span class="s">)."</span><span class="p">)</span>
             <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error estimating time to full charge: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error estimating time to full charge: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No remaining time estimate available.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"No remaining time estimate available."</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error retrieving battery information: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error retrieving battery information: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">get_battery_info</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">get_battery_info</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h3 id="changes-made">Changes Made</h3>

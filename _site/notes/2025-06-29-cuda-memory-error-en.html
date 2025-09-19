@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Fixing Thrust CUDA Memory Allocation Errors | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Fixing Thrust CUDA Memory Allocation Errors" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -250,7 +250,7 @@ nvidia-smi
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kt">void</span> <span class="nf">parallel_sort_gpu</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">parallel_sort_gpu</span><span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">cudaError_t</span> <span class="n">err</span><span class="p">;</span>
     <span class="n">thrust</span><span class="o">::</span><span class="n">device_vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">d_vec</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">n</span><span class="p">);</span>
     <span class="n">err</span> <span class="o">=</span> <span class="n">cudaGetLastError</span><span class="p">();</span>
@@ -265,7 +265,7 @@ nvidia-smi
     <span class="n">checkCudaError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="s">"After thrust::copy"</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="kt">double</span> <span class="nf">benchmark</span><span class="p">(</span><span class="kt">int</span> <span class="n">list_size</span><span class="p">)</span> <span class="p">{</span>
+<span class="kt">double</span> <span class="n">benchmark</span><span class="p">(</span><span class="kt">int</span> <span class="n">list_size</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="o">*</span><span class="n">arr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">list_size</span> <span class="o">*</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">arr</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">"Host memory allocation failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
@@ -283,7 +283,7 @@ nvidia-smi
     <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">/</span> <span class="n">CLOCKS_PER_SEC</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">list_size</span> <span class="o">=</span> <span class="mi">10000000</span><span class="p">;</span> <span class="c1">// Reduced for testing</span>
     <span class="kt">int</span> <span class="n">num_runs</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
 

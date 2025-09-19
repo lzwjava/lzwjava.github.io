@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Verwalten von DigitalOcean Reserved IPs | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Verwalten von DigitalOcean Reserved IPs" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="de" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -217,173 +217,173 @@
 
 <p>Hier ist das Python-Skript:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">socket</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># Funktion, um die DigitalOcean API-Header zu erhalten
 </span><span class="k">def</span> <span class="nf">get_digitalocean_headers</span><span class="p">():</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">DO_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"DO_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fehler: DO_API_KEY nicht in den Umgebungsvariablen gefunden.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Fehler: DO_API_KEY nicht in den Umgebungsvariablen gefunden."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">return</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">"</span><span class="p">,</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span>
     <span class="p">}</span>
 
 <span class="c1"># Funktion, um alle reservierten IPs von DigitalOcean abzurufen
 </span><span class="k">def</span> <span class="nf">fetch_reserved_ips</span><span class="p">():</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">get_digitalocean_headers</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips</span><span class="sh">"</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">reserved_ips_data</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="nf">json</span><span class="p">().</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">reserved_ips</span><span class="sh">"</span><span class="p">,</span> <span class="p">[])</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">response.json</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">reserved_ips_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Speichert die Antwort zur Fehlerbehebung in einer Datei
+        <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.digitalocean.com/v2/reserved_ips"</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">reserved_ips_data</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="n">json</span><span class="p">().</span><span class="n">get</span><span class="p">(</span><span class="s">"reserved_ips"</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'response.json'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">reserved_ips_data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># Speichert die Antwort zur Fehlerbehebung in einer Datei
 </span>        <span class="k">return</span> <span class="n">reserved_ips_data</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Abrufen der reservierten IP-Adresse: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Abrufen der reservierten IP-Adresse: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="c1"># Funktion, um eine reservierte IP von einem Droplet zu entfernen
 </span><span class="k">def</span> <span class="nf">unassign_ip_from_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">get_digitalocean_headers</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="sh">"</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> erfolgreich vom Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> entfernt</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">"</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> erfolgreich vom Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> entfernt"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Entfernen der IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> vom Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Entfernen der IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> vom Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="c1"># Funktion, um eine reservierte IP einem Droplet zuzuweisen
 </span><span class="k">def</span> <span class="nf">assign_ip_to_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">get_digitalocean_headers</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">/actions</span><span class="sh">"</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"https://api.digitalocean.com/v2/reserved_ips/</span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">/actions"</span>
         <span class="n">req</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">assign</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">droplet_id</span><span class="sh">"</span><span class="p">:</span> <span class="n">droplet_id</span>
+            <span class="s">"type"</span><span class="p">:</span> <span class="s">"assign"</span><span class="p">,</span>
+            <span class="s">"droplet_id"</span><span class="p">:</span> <span class="n">droplet_id</span>
         <span class="p">}</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
-        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> erfolgreich dem Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> zugewiesen</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> erfolgreich dem Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> zugewiesen"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Zuweisen der IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> zum Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Zuweisen der IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> zum Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="c1"># Funktion, um reservierte IPs zu verarbeiten, Zuweisungen zu überprüfen und bei Bedarf neu zuzuweisen
 </span><span class="k">def</span> <span class="nf">process_reserved_ips</span><span class="p">(</span><span class="n">reserved_ips</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">,</span> <span class="n">only_check</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">reserved_ips</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Keine reservierten IPs in Ihrem Konto gefunden.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Keine reservierten IPs in Ihrem Konto gefunden."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
     <span class="k">for</span> <span class="n">reserved_ip</span> <span class="ow">in</span> <span class="n">reserved_ips</span><span class="p">:</span>
-        <span class="n">ip_address</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">ip</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">ip_address</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"ip"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">ip_address</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Keine IP-Adresse für eine reservierte IP gefunden.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Keine IP-Adresse für eine reservierte IP gefunden."</span><span class="p">)</span>
             <span class="k">continue</span>
 
-        <span class="n">droplet</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">droplet</span><span class="sh">"</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="n">droplet</span> <span class="o">=</span> <span class="n">reserved_ip</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"droplet"</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">droplet_name</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">droplet</span> <span class="ow">and</span> <span class="n">droplet</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">)</span> <span class="o">==</span> <span class="n">droplet_name</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Die reservierte IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> ist dem Droplet zugewiesen: </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">droplet</span> <span class="ow">and</span> <span class="n">droplet</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"name"</span><span class="p">)</span> <span class="o">==</span> <span class="n">droplet_name</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Die reservierte IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> ist dem Droplet zugewiesen: </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">only_check</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nf">check_port_80</span><span class="p">(</span><span class="n">ip_address</span><span class="p">):</span>
-                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Port 80 ist auf </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> für das Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> geöffnet</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">check_port_80</span><span class="p">(</span><span class="n">ip_address</span><span class="p">):</span>
+                        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Port 80 ist auf </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> für das Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> geöffnet"</span><span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Port 80 ist auf </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> für das Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> geschlossen</span><span class="sh">"</span><span class="p">)</span>
+                        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Port 80 ist auf </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> für das Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> geschlossen"</span><span class="p">)</span>
                     <span class="k">return</span> <span class="n">ip_address</span>
-                <span class="n">droplet_id</span> <span class="o">=</span> <span class="n">droplet</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">id</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">droplet_id</span> <span class="o">=</span> <span class="n">droplet</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"id"</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">droplet_id</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="nf">unassign_ip_from_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">unassign_ip_from_droplet</span><span class="p">(</span><span class="n">ip_address</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
                         <span class="c1"># Versucht, nach dem Entfernen eine neue IP zuzuweisen
 </span>                        
-                        <span class="n">new_ip</span> <span class="o">=</span> <span class="nf">create_new_reserved_ip</span><span class="p">(</span><span class="n">droplet_id</span><span class="p">)</span>
+                        <span class="n">new_ip</span> <span class="o">=</span> <span class="n">create_new_reserved_ip</span><span class="p">(</span><span class="n">droplet_id</span><span class="p">)</span>
                         <span class="k">if</span> <span class="n">new_ip</span><span class="p">:</span>
-                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Warte 10 Sekunden, bevor die neue IP zugewiesen wird...</span><span class="sh">"</span><span class="p">)</span>
-                            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-                            <span class="k">if</span> <span class="nf">assign_ip_to_droplet</span><span class="p">(</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
-                                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Neue IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s"> erfolgreich dem Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> zugewiesen</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s">"Warte 10 Sekunden, bevor die neue IP zugewiesen wird..."</span><span class="p">)</span>
+                            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+                            <span class="k">if</span> <span class="n">assign_ip_to_droplet</span><span class="p">(</span><span class="n">new_ip</span><span class="p">,</span> <span class="n">droplet_id</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">):</span>
+                                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Neue IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s"> erfolgreich dem Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s"> zugewiesen"</span><span class="p">)</span>
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Zuweisen der neuen IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s"> zum Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Zuweisen der neuen IP </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s"> zum Droplet </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
                         <span class="k">else</span><span class="p">:</span>
-                            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Keine verfügbare IP zum Zuweisen</span><span class="sh">"</span><span class="p">)</span>
+                            <span class="k">print</span><span class="p">(</span><span class="s">"Keine verfügbare IP zum Zuweisen"</span><span class="p">)</span>
                     
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Konnte die IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> nicht entfernen, da die Droplet-ID nicht gefunden wurde.</span><span class="sh">"</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Konnte die IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> nicht entfernen, da die Droplet-ID nicht gefunden wurde."</span><span class="p">)</span>
                 <span class="k">return</span> <span class="bp">None</span>
             <span class="k">elif</span> <span class="n">droplet</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Die reservierte IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> ist nicht dem Droplet zugewiesen: </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Die reservierte IP </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s"> ist nicht dem Droplet zugewiesen: </span><span class="si">{</span><span class="n">droplet_name</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Keine Droplets sind der reservierten IP zugewiesen: </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Keine Droplets sind der reservierten IP zugewiesen: </span><span class="si">{</span><span class="n">ip_address</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">ip_address</span>
     <span class="k">return</span> <span class="bp">None</span>
 
 <span class="c1"># Funktion, um eine neue reservierte IP zu erstellen
 </span><span class="k">def</span> <span class="nf">create_new_reserved_ip</span><span class="p">(</span><span class="n">droplet_id</span><span class="p">):</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="nf">get_digitalocean_headers</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">get_digitalocean_headers</span><span class="p">()</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">headers</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Fehler beim Abrufen der DigitalOcean-Header.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Fehler beim Abrufen der DigitalOcean-Header."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.digitalocean.com/v2/reserved_ips</span><span class="sh">"</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.digitalocean.com/v2/reserved_ips"</span>
         <span class="n">req</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">region</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">sgp1</span><span class="sh">"</span><span class="p">,</span> <span class="c1"># Sie können die Region bei Bedarf ändern
+            <span class="s">"region"</span><span class="p">:</span> <span class="s">"sgp1"</span><span class="p">,</span> <span class="c1"># Sie können die Region bei Bedarf ändern
 </span>        <span class="p">}</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Versuche, eine neue reservierte IP für die Droplet-ID zu erstellen: </span><span class="si">{</span><span class="n">droplet_id</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
-        <span class="n">resp</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">new_ip</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="nf">json</span><span class="p">().</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">reserved_ip</span><span class="sh">"</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">ip</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Neue reservierte IP erfolgreich erstellt: </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Versuche, eine neue reservierte IP für die Droplet-ID zu erstellen: </span><span class="si">{</span><span class="n">droplet_id</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">req</span><span class="p">)</span>
+        <span class="n">resp</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">new_ip</span> <span class="o">=</span> <span class="n">resp</span><span class="p">.</span><span class="n">json</span><span class="p">().</span><span class="n">get</span><span class="p">(</span><span class="s">"reserved_ip"</span><span class="p">,</span> <span class="p">{}).</span><span class="n">get</span><span class="p">(</span><span class="s">"ip"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Neue reservierte IP erfolgreich erstellt: </span><span class="si">{</span><span class="n">new_ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">new_ip</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fehler beim Erstellen einer neuen reservierten IP: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fehler beim Erstellen einer neuen reservierten IP: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="c1"># Funktion, um zu überprüfen, ob Port 80 auf einer IP-Adresse geöffnet ist
 </span><span class="k">def</span> <span class="nf">check_port_80</span><span class="p">(</span><span class="n">ip_address</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
-            <span class="n">s</span><span class="p">.</span><span class="nf">settimeout</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-            <span class="n">s</span><span class="p">.</span><span class="nf">connect</span><span class="p">((</span><span class="n">ip_address</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
+        <span class="k">with</span> <span class="n">socket</span><span class="p">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span> <span class="k">as</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">s</span><span class="p">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">s</span><span class="p">.</span><span class="n">connect</span><span class="p">((</span><span class="n">ip_address</span><span class="p">,</span> <span class="mi">80</span><span class="p">))</span>
             <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="c1"># Hauptfunktion, um die reservierte IP zu erhalten
 </span><span class="k">def</span> <span class="nf">get_reserved_ip</span><span class="p">(</span><span class="n">droplet_name</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">only_check</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="n">reserved_ips</span> <span class="o">=</span> <span class="nf">fetch_reserved_ips</span><span class="p">()</span>
+    <span class="n">reserved_ips</span> <span class="o">=</span> <span class="n">fetch_reserved_ips</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">reserved_ips</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span>
-    <span class="k">return</span> <span class="nf">process_reserved_ips</span><span class="p">(</span><span class="n">reserved_ips</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">,</span> <span class="n">only_check</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">process_reserved_ips</span><span class="p">(</span><span class="n">reserved_ips</span><span class="p">,</span> <span class="n">droplet_name</span><span class="p">,</span> <span class="n">only_check</span><span class="p">)</span>
     
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Reservierte IP-Adresse von DigitalOcean abrufen.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--droplet-name</span><span class="sh">"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Name des Droplets, um zu überprüfen, ob die reservierte IP zugewiesen ist.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--only-check</span><span class="sh">"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="sh">"</span><span class="s">store_true</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Nur überprüfen, ob die IP dem Droplet zugewiesen ist, nicht neu zuweisen.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Reservierte IP-Adresse von DigitalOcean abrufen."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--droplet-name"</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Name des Droplets, um zu überprüfen, ob die reservierte IP zugewiesen ist."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--only-check"</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">"store_true"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Nur überprüfen, ob die IP dem Droplet zugewiesen ist, nicht neu zuweisen."</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="n">reserved_ip</span> <span class="o">=</span> <span class="nf">get_reserved_ip</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">droplet_name</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">only_check</span><span class="p">)</span>
+    <span class="n">reserved_ip</span> <span class="o">=</span> <span class="n">get_reserved_ip</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">droplet_name</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">only_check</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">reserved_ip</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Die reservierte IP-Adresse lautet: </span><span class="si">{</span><span class="n">reserved_ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Die reservierte IP-Adresse lautet: </span><span class="si">{</span><span class="n">reserved_ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Erklärung:</strong></p>

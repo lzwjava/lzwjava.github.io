@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Analyze Java Dependencies | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Analyze Java Dependencies" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -204,13 +204,13 @@
 
 <h3 id="modified-script">Modified Script</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">re</span>
-<span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="k">def</span> <span class="nf">get_package</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Extract the package name from a .java file.
 
     Args:
@@ -218,19 +218,19 @@
 
     Returns:
         str: The package name, or None if not found.
-    </span><span class="sh">"""</span>
+    """</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">^\s*package\s+([\w.]+);</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'^\s*package\s+([\w.]+);'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-                    <span class="k">return</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="k">return</span> <span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Warning: Could not read </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Warning: Could not read </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">get_specific_imports</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Extract specific class imports from a .java file, excluding wildcard imports.
 
     Args:
@@ -238,94 +238,94 @@
 
     Returns:
         list: List of fully qualified imported class names.
-    </span><span class="sh">"""</span>
+    """</span>
     <span class="n">imports</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">^\s*import\s+([\w.]+);</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'^\s*import\s+([\w.]+);'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-                    <span class="n">imp</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="n">imp</span> <span class="o">=</span> <span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                     <span class="c1"># Exclude wildcard imports (e.g., import java.util.*;)
-</span>                    <span class="k">if</span> <span class="ow">not</span> <span class="n">imp</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">.*</span><span class="sh">'</span><span class="p">):</span>
-                        <span class="n">imports</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">imp</span><span class="p">)</span>
+</span>                    <span class="k">if</span> <span class="ow">not</span> <span class="n">imp</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.*'</span><span class="p">):</span>
+                        <span class="n">imports</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">imp</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Warning: Could not read </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Warning: Could not read </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">imports</span>
 
 <span class="k">def</span> <span class="nf">get_package_group</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">,</span> <span class="n">level</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
-    Get the package group based on the first </span><span class="sh">'</span><span class="s">level</span><span class="sh">'</span><span class="s"> parts of the package name.
+    <span class="s">"""
+    Get the package group based on the first 'level' parts of the package name.
 
     Args:
-        full_class_name (str): Fully qualified class name (e.g., </span><span class="sh">"</span><span class="s">org.springframework.boot.App</span><span class="sh">"</span><span class="s">).
-        level (int): Number of package levels to include (e.g., 1 for </span><span class="sh">"</span><span class="s">org</span><span class="sh">"</span><span class="s">, 2 for </span><span class="sh">"</span><span class="s">org.springframework</span><span class="sh">"</span><span class="s">).
+        full_class_name (str): Fully qualified class name (e.g., "org.springframework.boot.App").
+        level (int): Number of package levels to include (e.g., 1 for "org", 2 for "org.springframework").
 
     Returns:
-        str: The package group (e.g., </span><span class="sh">"</span><span class="s">org</span><span class="sh">"</span><span class="s"> or </span><span class="sh">"</span><span class="s">org.springframework</span><span class="sh">"</span><span class="s">).
-    </span><span class="sh">"""</span>
-    <span class="n">package</span> <span class="o">=</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Extract package, excluding class name
-</span>    <span class="n">parts</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="p">:</span>
+        str: The package group (e.g., "org" or "org.springframework").
+    """</span>
+    <span class="n">package</span> <span class="o">=</span> <span class="s">'.'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Extract package, excluding class name
+</span>    <span class="n">parts</span> <span class="o">=</span> <span class="n">package</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'.'</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">package</span>  <span class="c1"># Use full package if it has fewer or equal parts than level
 </span>    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="sh">'</span><span class="s">.</span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[:</span><span class="n">level</span><span class="p">])</span>  <span class="c1"># Use first 'level' parts
+        <span class="k">return</span> <span class="s">'.'</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">parts</span><span class="p">[:</span><span class="n">level</span><span class="p">])</span>  <span class="c1"># Use first 'level' parts
 </span>
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
     <span class="c1"># Check for command-line arguments: root_directory and level
-</span>    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python script.py &lt;root_directory&gt; &lt;level&gt;</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py &lt;root_directory&gt; &lt;level&gt;"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">level</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">level</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="nb">ValueError</span>
     <span class="k">except</span> <span class="nb">ValueError</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: level must be a positive integer</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: level must be a positive integer"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">all_classes</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">all_classes</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># First pass: Collect all fully qualified class names in the project
-</span>    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">):</span>
-                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-                <span class="n">package</span> <span class="o">=</span> <span class="nf">get_package</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.java'</span><span class="p">):</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+                <span class="n">package</span> <span class="o">=</span> <span class="n">get_package</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">package</span><span class="p">:</span>
-                    <span class="n">class_name</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
-                    <span class="n">full_class_name</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s">.</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="sh">"</span>
-                    <span class="n">all_classes</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">)</span>
+                    <span class="n">class_name</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.java'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+                    <span class="n">full_class_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s">.</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s">"</span>
+                    <span class="n">all_classes</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">)</span>
 
     <span class="c1"># Store dependencies between package groups
-</span>    <span class="n">group_dependencies</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+</span>    <span class="n">group_dependencies</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># Second pass: Analyze dependencies based on package groups
-</span>    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">root</span><span class="p">,</span> <span class="n">dirs</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">):</span>
-                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-                <span class="n">package</span> <span class="o">=</span> <span class="nf">get_package</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">file</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.java'</span><span class="p">):</span>
+                <span class="n">file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+                <span class="n">package</span> <span class="o">=</span> <span class="n">get_package</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
                 <span class="k">if</span> <span class="n">package</span><span class="p">:</span>
-                    <span class="n">class_name</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
-                    <span class="n">full_class_name</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s">.</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="sh">"</span>
-                    <span class="n">importer_group</span> <span class="o">=</span> <span class="nf">get_package_group</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
-                    <span class="n">imports</span> <span class="o">=</span> <span class="nf">get_specific_imports</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
+                    <span class="n">class_name</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'.java'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
+                    <span class="n">full_class_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">package</span><span class="si">}</span><span class="s">.</span><span class="si">{</span><span class="n">class_name</span><span class="si">}</span><span class="s">"</span>
+                    <span class="n">importer_group</span> <span class="o">=</span> <span class="n">get_package_group</span><span class="p">(</span><span class="n">full_class_name</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+                    <span class="n">imports</span> <span class="o">=</span> <span class="n">get_specific_imports</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">imports</span><span class="p">:</span>
                         <span class="c1"># Only include dependencies on classes within the project
 </span>                        <span class="c1"># Exclude self-dependencies
 </span>                        <span class="k">if</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">all_classes</span> <span class="ow">and</span> <span class="n">imp</span> <span class="o">!=</span> <span class="n">full_class_name</span><span class="p">:</span>
-                            <span class="n">imported_group</span> <span class="o">=</span> <span class="nf">get_package_group</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+                            <span class="n">imported_group</span> <span class="o">=</span> <span class="n">get_package_group</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
                             <span class="k">if</span> <span class="n">imported_group</span> <span class="o">!=</span> <span class="n">importer_group</span><span class="p">:</span>
-                                <span class="n">group_dependencies</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="n">importer_group</span><span class="p">,</span> <span class="n">imported_group</span><span class="p">))</span>
+                                <span class="n">group_dependencies</span><span class="p">.</span><span class="n">add</span><span class="p">((</span><span class="n">importer_group</span><span class="p">,</span> <span class="n">imported_group</span><span class="p">))</span>
 
     <span class="c1"># Output the dependency graph in DOT format
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">digraph G {</span><span class="sh">'</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">from_group</span><span class="p">,</span> <span class="n">to_group</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">group_dependencies</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">  </span><span class="sh">"</span><span class="si">{</span><span class="n">from_group</span><span class="si">}</span><span class="sh">"</span><span class="s"> -&gt; </span><span class="sh">"</span><span class="si">{</span><span class="n">to_group</span><span class="si">}</span><span class="sh">"</span><span class="s">;</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">}</span><span class="sh">'</span><span class="p">)</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">'digraph G {'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">from_group</span><span class="p">,</span> <span class="n">to_group</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">group_dependencies</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">'  "</span><span class="si">{</span><span class="n">from_group</span><span class="si">}</span><span class="s">" -&gt; "</span><span class="si">{</span><span class="n">to_group</span><span class="si">}</span><span class="s">";'</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'}'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="explanation-of-changes">Explanation of Changes</h3>

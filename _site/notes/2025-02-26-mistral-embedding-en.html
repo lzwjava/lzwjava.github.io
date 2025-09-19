@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Mistral AI Embeddings | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Mistral AI Embeddings" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -215,56 +215,56 @@
 
 <p>Here’s a complete Python script that generates embeddings for three sentences and calculates their pairwise similarities:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
 
-<span class="k">def</span> <span class="nf">call_mistral_embeddings_api</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">mistral-embed</span><span class="sh">"</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+<span class="k">def</span> <span class="nf">call_mistral_embeddings_api</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s">"mistral-embed"</span><span class="p">):</span>
+    <span class="s">"""
     Call the Mistral AI embeddings API to generate embeddings for a list of texts.
     
     Args:
         texts (list): List of strings to embed.
-        model (str): The embedding model to use (default: </span><span class="sh">"</span><span class="s">mistral-embed</span><span class="sh">"</span><span class="s">).
+        model (str): The embedding model to use (default: "mistral-embed").
     
     Returns:
         list: List of embedding vectors, or None if the request fails.
-    </span><span class="sh">"""</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">MISTRAL_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    """</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"MISTRAL_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: MISTRAL_API_KEY environment variable not set.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: MISTRAL_API_KEY environment variable not set."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
     
-    <span class="n">url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://api.mistral.ai/v1/embeddings</span><span class="sh">"</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://api.mistral.ai/v1/embeddings"</span>
     <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Accept</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="sh">"</span>
+        <span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Accept"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="sa">f</span><span class="s">"Bearer </span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s">"</span>
     <span class="p">}</span>
     <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">model</span><span class="sh">"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">input</span><span class="sh">"</span><span class="p">:</span> <span class="n">texts</span>
+        <span class="s">"model"</span><span class="p">:</span> <span class="n">model</span><span class="p">,</span>
+        <span class="s">"input"</span><span class="p">:</span> <span class="n">texts</span>
     <span class="p">}</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="sh">"</span><span class="s">data</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response_json</span><span class="p">:</span>
-            <span class="n">embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="sh">"</span><span class="s">embedding</span><span class="sh">"</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response_json</span><span class="p">[</span><span class="sh">"</span><span class="s">data</span><span class="sh">"</span><span class="p">]]</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">response_json</span> <span class="ow">and</span> <span class="s">"data"</span> <span class="ow">in</span> <span class="n">response_json</span><span class="p">:</span>
+            <span class="n">embeddings</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s">"embedding"</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">response_json</span><span class="p">[</span><span class="s">"data"</span><span class="p">]]</span>
             <span class="k">return</span> <span class="n">embeddings</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral Embeddings API Error: Invalid response format: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral Embeddings API Error: Invalid response format: </span><span class="si">{</span><span class="n">response_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mistral Embeddings API Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Mistral Embeddings API Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Response status code: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Response content: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Response status code: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Response content: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">response</span><span class="p">.</span><span class="n">text</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 <span class="k">def</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">emb1</span><span class="p">,</span> <span class="n">emb2</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Calculate the similarity between two embeddings using dot product.
     
     Args:
@@ -273,36 +273,36 @@
     
     Returns:
         float: Similarity score (dot product, equivalent to cosine similarity for normalized vectors).
-    </span><span class="sh">"""</span>
-    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">emb1</span><span class="p">,</span> <span class="n">emb2</span><span class="p">)</span>
+    """</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">emb1</span><span class="p">,</span> <span class="n">emb2</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
     <span class="c1"># Example texts to embed
 </span>    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="sh">"</span><span class="s">I love programming in Python.</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Python is a great programming language.</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">The weather is sunny today.</span><span class="sh">"</span>
+        <span class="s">"I love programming in Python."</span><span class="p">,</span>
+        <span class="s">"Python is a great programming language."</span><span class="p">,</span>
+        <span class="s">"The weather is sunny today."</span>
     <span class="p">]</span>
     
     <span class="c1"># Generate embeddings
-</span>    <span class="n">embeddings</span> <span class="o">=</span> <span class="nf">call_mistral_embeddings_api</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
+</span>    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">call_mistral_embeddings_api</span><span class="p">(</span><span class="n">texts</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">embeddings</span><span class="p">:</span>
         <span class="c1"># Print embedding dimension
-</span>        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Embedding dimension: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Embedding dimension: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         
         <span class="c1"># Calculate pairwise similarities
-</span>        <span class="n">sim_12</span> <span class="o">=</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-        <span class="n">sim_13</span> <span class="o">=</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="n">sim_23</span> <span class="o">=</span> <span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</span>        <span class="n">sim_12</span> <span class="o">=</span> <span class="n">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">sim_13</span> <span class="o">=</span> <span class="n">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">sim_23</span> <span class="o">=</span> <span class="n">calculate_similarity</span><span class="p">(</span><span class="n">embeddings</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">embeddings</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         
         <span class="c1"># Display results
-</span>        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Similarity Results:</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Text 1: </span><span class="sh">'</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="sh">'"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Text 2: </span><span class="sh">'</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="sh">'"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Text 3: </span><span class="sh">'</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="sh">'"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">Similarity between Text 1 and Text 2: </span><span class="si">{</span><span class="n">sim_12</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Similarity between Text 1 and Text 3: </span><span class="si">{</span><span class="n">sim_13</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Similarity between Text 2 and Text 3: </span><span class="si">{</span><span class="n">sim_23</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Similarity Results:"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Text 1: '</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Text 2: '</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Text 3: '</span><span class="si">{</span><span class="n">texts</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">Similarity between Text 1 and Text 2: </span><span class="si">{</span><span class="n">sim_12</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Similarity between Text 1 and Text 3: </span><span class="si">{</span><span class="n">sim_13</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Similarity between Text 2 and Text 3: </span><span class="si">{</span><span class="n">sim_23</span><span class="si">:</span><span class="p">.</span><span class="mi">4</span><span class="n">f</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="how-to-run">How to Run</h3>
@@ -358,17 +358,17 @@ Similarity between Text 2 and Text 3: 0.6700
 <p>Embeddings from Mistral AI can be applied beyond similarity detection:</p>
 <ul>
   <li><strong>Clustering</strong>: Group similar texts using algorithms like K-means (requires <code class="language-plaintext highlighter-rouge">scikit-learn</code>).
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
-<span class="n">kmeans</span> <span class="o">=</span> <span class="nc">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">).</span><span class="nf">fit</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">kmeans</span><span class="p">.</span><span class="n">labels_</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">2</span><span class="p">).</span><span class="n">fit</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">embeddings</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">kmeans</span><span class="p">.</span><span class="n">labels_</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li><strong>Search</strong>: Embed a query and find the most similar text:
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Tell me about Python.</span><span class="sh">"</span>
-<span class="n">query_emb</span> <span class="o">=</span> <span class="nf">call_mistral_embeddings_api</span><span class="p">([</span><span class="n">query</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">similarities</span> <span class="o">=</span> <span class="p">[</span><span class="nf">calculate_similarity</span><span class="p">(</span><span class="n">query_emb</span><span class="p">,</span> <span class="n">emb</span><span class="p">)</span> <span class="k">for</span> <span class="n">emb</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">]</span>
-<span class="n">most_similar</span> <span class="o">=</span> <span class="n">texts</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">similarities</span><span class="p">)]</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Most similar text: </span><span class="sh">'</span><span class="si">{</span><span class="n">most_similar</span><span class="si">}</span><span class="sh">'"</span><span class="p">)</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">query</span> <span class="o">=</span> <span class="s">"Tell me about Python."</span>
+<span class="n">query_emb</span> <span class="o">=</span> <span class="n">call_mistral_embeddings_api</span><span class="p">([</span><span class="n">query</span><span class="p">])[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">similarities</span> <span class="o">=</span> <span class="p">[</span><span class="n">calculate_similarity</span><span class="p">(</span><span class="n">query_emb</span><span class="p">,</span> <span class="n">emb</span><span class="p">)</span> <span class="k">for</span> <span class="n">emb</span> <span class="ow">in</span> <span class="n">embeddings</span><span class="p">]</span>
+<span class="n">most_similar</span> <span class="o">=</span> <span class="n">texts</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">similarities</span><span class="p">)]</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Most similar text: '</span><span class="si">{</span><span class="n">most_similar</span><span class="si">}</span><span class="s">'"</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
   <li><strong>Classification</strong>: Use embeddings as features in a machine learning model.</li>

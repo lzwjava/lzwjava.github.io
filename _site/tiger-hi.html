@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>टाइगर ट्रेड ओपन एपीआई | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="टाइगर ट्रेड ओपन एपीआई" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,74 +209,74 @@
 
   <p>यह कोड स्निपेट टाइगर ओपन एपीआई का उपयोग करके हांगकांग स्टॉक एक्सचेंज में सूचीबद्ध कुछ सबसे बड़ी कंपनियों के वर्तमान शेयर मूल्यों को पुनः प्राप्त करता है और प्रिंट करता है। यह एक क्लाइंट को इनिशियलाइज़ करता है, शेयर मूल्यों को पुनः प्राप्त करता है, और परिणाम प्रिंट करता है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">tigeropen.common.consts</span> <span class="kn">import</span> <span class="n">Language</span><span class="p">,</span> <span class="n">Market</span><span class="p">,</span> <span class="n">BarPeriod</span><span class="p">,</span> <span class="n">QuoteRight</span>
-<span class="kn">from</span> <span class="n">tigeropen.tiger_open_config</span> <span class="kn">import</span> <span class="n">TigerOpenClientConfig</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.signature_utils</span> <span class="kn">import</span> <span class="n">read_private_key</span>
-<span class="kn">from</span> <span class="n">tigeropen.quote.quote_client</span> <span class="kn">import</span> <span class="n">QuoteClient</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">tigeropen.trade.trade_client</span> <span class="kn">import</span> <span class="n">TradeClient</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.order_utils</span> <span class="kn">import</span> <span class="n">market_order</span>
-<span class="kn">from</span> <span class="n">tigeropen.common.util.contract_utils</span> <span class="kn">import</span> <span class="n">stock_contract</span>
-<span class="kn">import</span> <span class="n">sys</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">tigeropen.common.consts</span> <span class="kn">import</span> <span class="n">Language</span><span class="p">,</span> <span class="n">Market</span><span class="p">,</span> <span class="n">BarPeriod</span><span class="p">,</span> <span class="n">QuoteRight</span>
+<span class="kn">from</span> <span class="nn">tigeropen.tiger_open_config</span> <span class="kn">import</span> <span class="n">TigerOpenClientConfig</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.signature_utils</span> <span class="kn">import</span> <span class="n">read_private_key</span>
+<span class="kn">from</span> <span class="nn">tigeropen.quote.quote_client</span> <span class="kn">import</span> <span class="n">QuoteClient</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">tigeropen.trade.trade_client</span> <span class="kn">import</span> <span class="n">TradeClient</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.order_utils</span> <span class="kn">import</span> <span class="n">market_order</span>
+<span class="kn">from</span> <span class="nn">tigeropen.common.util.contract_utils</span> <span class="kn">import</span> <span class="n">stock_contract</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
 
 <span class="k">def</span> <span class="nf">get_client_config</span><span class="p">(</span><span class="n">sandbox</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nc">TigerOpenClientConfig</span><span class="p">(</span><span class="n">sandbox_debug</span><span class="o">=</span><span class="n">sandbox</span><span class="p">)</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">private_key</span> <span class="o">=</span> <span class="nf">read_private_key</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_PEM</span><span class="sh">'</span><span class="p">))</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">tiger_id</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_TIGER_ID</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">client_config</span><span class="p">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">TIGER_ACCOUNT</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">TigerOpenClientConfig</span><span class="p">(</span><span class="n">sandbox_debug</span><span class="o">=</span><span class="n">sandbox</span><span class="p">)</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">private_key</span> <span class="o">=</span> <span class="n">read_private_key</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_PEM'</span><span class="p">))</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">tiger_id</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_TIGER_ID'</span><span class="p">)</span>
+    <span class="n">client_config</span><span class="p">.</span><span class="n">account</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'TIGER_ACCOUNT'</span><span class="p">)</span>
     <span class="n">client_config</span><span class="p">.</span><span class="n">language</span> <span class="o">=</span> <span class="n">Language</span><span class="p">.</span><span class="n">zh_CN</span>
     <span class="k">return</span> <span class="n">client_config</span>
 
 
 <span class="k">def</span> <span class="nf">get_stocks_briefs</span><span class="p">():</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nf">get_client_config</span><span class="p">()</span>
-    <span class="n">quote_client</span> <span class="o">=</span> <span class="nc">QuoteClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+    <span class="n">quote_client</span> <span class="o">=</span> <span class="n">QuoteClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
 
     <span class="n">hong_kong_biggest_companies_codes</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="sh">'</span><span class="s">00700</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Tencent Holdings Ltd.
-</span>        <span class="sh">'</span><span class="s">09988</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Alibaba Group Holding Ltd.
-</span>        <span class="sh">'</span><span class="s">01299</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># AIA Group Ltd.
-</span>        <span class="sh">'</span><span class="s">00941</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># China Mobile Ltd.
-</span>        <span class="sh">'</span><span class="s">00388</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Hong Kong Exchanges and Clearing Ltd.
-</span>        <span class="sh">'</span><span class="s">03690</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Meituan
-</span>        <span class="sh">'</span><span class="s">01398</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Industrial and Commercial Bank of China Ltd.
-</span>        <span class="sh">'</span><span class="s">02318</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Ping An Insurance Group Co. of China Ltd.
-</span>        <span class="sh">'</span><span class="s">01810</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Xiaomi Corporation
-</span>        <span class="sh">'</span><span class="s">03988</span><span class="sh">'</span><span class="p">,</span>  <span class="c1"># Bank of China Ltd.
+        <span class="s">'00700'</span><span class="p">,</span>  <span class="c1"># Tencent Holdings Ltd.
+</span>        <span class="s">'09988'</span><span class="p">,</span>  <span class="c1"># Alibaba Group Holding Ltd.
+</span>        <span class="s">'01299'</span><span class="p">,</span>  <span class="c1"># AIA Group Ltd.
+</span>        <span class="s">'00941'</span><span class="p">,</span>  <span class="c1"># China Mobile Ltd.
+</span>        <span class="s">'00388'</span><span class="p">,</span>  <span class="c1"># Hong Kong Exchanges and Clearing Ltd.
+</span>        <span class="s">'03690'</span><span class="p">,</span>  <span class="c1"># Meituan
+</span>        <span class="s">'01398'</span><span class="p">,</span>  <span class="c1"># Industrial and Commercial Bank of China Ltd.
+</span>        <span class="s">'02318'</span><span class="p">,</span>  <span class="c1"># Ping An Insurance Group Co. of China Ltd.
+</span>        <span class="s">'01810'</span><span class="p">,</span>  <span class="c1"># Xiaomi Corporation
+</span>        <span class="s">'03988'</span><span class="p">,</span>  <span class="c1"># Bank of China Ltd.
 </span>    <span class="p">]</span>
 
-    <span class="n">stock_prices</span> <span class="o">=</span> <span class="n">quote_client</span><span class="p">.</span><span class="nf">get_stock_briefs</span><span class="p">(</span><span class="n">hong_kong_biggest_companies_codes</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)</span>
+    <span class="n">stock_prices</span> <span class="o">=</span> <span class="n">quote_client</span><span class="p">.</span><span class="n">get_stock_briefs</span><span class="p">(</span><span class="n">hong_kong_biggest_companies_codes</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stock_prices</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">place_order</span><span class="p">():</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nf">get_client_config</span><span class="p">()</span>
-    <span class="n">trade_client</span> <span class="o">=</span> <span class="nc">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
-    <span class="n">contract</span> <span class="o">=</span> <span class="nf">stock_contract</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="sh">'</span><span class="s">NVDA</span><span class="sh">'</span><span class="p">,</span> <span class="n">currency</span><span class="o">=</span><span class="sh">'</span><span class="s">USD</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">stock_order</span> <span class="o">=</span> <span class="nf">market_order</span><span class="p">(</span><span class="n">account</span><span class="o">=</span><span class="n">client_config</span><span class="p">.</span><span class="n">account</span><span class="p">,</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+    <span class="n">trade_client</span> <span class="o">=</span> <span class="n">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
+    <span class="n">contract</span> <span class="o">=</span> <span class="n">stock_contract</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s">'NVDA'</span><span class="p">,</span> <span class="n">currency</span><span class="o">=</span><span class="s">'USD'</span><span class="p">)</span>
+    <span class="n">stock_order</span> <span class="o">=</span> <span class="n">market_order</span><span class="p">(</span><span class="n">account</span><span class="o">=</span><span class="n">client_config</span><span class="p">.</span><span class="n">account</span><span class="p">,</span>
                                 <span class="n">contract</span> <span class="o">=</span> <span class="n">contract</span><span class="p">,</span>
-                                <span class="n">action</span> <span class="o">=</span> <span class="sh">'</span><span class="s">BUY</span><span class="sh">'</span><span class="p">,</span>
+                                <span class="n">action</span> <span class="o">=</span> <span class="s">'BUY'</span><span class="p">,</span>
                                 <span class="n">quantity</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
-    <span class="n">trade_client</span><span class="p">.</span><span class="nf">place_order</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
+    <span class="n">trade_client</span><span class="p">.</span><span class="n">place_order</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">stock_order</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">cancel_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">):</span>
-    <span class="n">client_config</span> <span class="o">=</span> <span class="nf">get_client_config</span><span class="p">()</span>
-    <span class="n">trade_client</span> <span class="o">=</span> <span class="nc">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
-    <span class="n">is_cancelled</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="nf">cancel_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Order cancellation status: </span><span class="si">{</span><span class="n">is_cancelled</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">client_config</span> <span class="o">=</span> <span class="n">get_client_config</span><span class="p">()</span>
+    <span class="n">trade_client</span> <span class="o">=</span> <span class="n">TradeClient</span><span class="p">(</span><span class="n">client_config</span><span class="p">)</span>
+    <span class="n">is_cancelled</span> <span class="o">=</span> <span class="n">trade_client</span><span class="p">.</span><span class="n">cancel_order</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">order_id</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Order cancellation status: </span><span class="si">{</span><span class="n">is_cancelled</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
 
     <span class="n">job</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">if</span> <span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">get_stocks_briefs</span><span class="sh">"</span><span class="p">:</span>
-        <span class="nf">get_stocks_briefs</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">place_order</span><span class="sh">"</span><span class="p">:</span>
-        <span class="nf">place_order</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">job</span> <span class="o">==</span> <span class="sh">"</span><span class="s">cancel_order</span><span class="sh">"</span><span class="p">:</span>
-        <span class="n">order_id</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-        <span class="nf">cancel_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">job</span> <span class="o">==</span> <span class="s">"get_stocks_briefs"</span><span class="p">:</span>
+        <span class="n">get_stocks_briefs</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">job</span> <span class="o">==</span> <span class="s">"place_order"</span><span class="p">:</span>
+        <span class="n">place_order</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">job</span> <span class="o">==</span> <span class="s">"cancel_order"</span><span class="p">:</span>
+        <span class="n">order_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">cancel_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">)</span>
 
 
 </code></pre></div></div>

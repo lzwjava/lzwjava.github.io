@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Use ‘BLOCK_LOW_AND_ABOVE’ Only | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Use ‘BLOCK_LOW_AND_ABOVE’ Only" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -211,25 +211,25 @@
 
 <p>Simply update the <code class="language-plaintext highlighter-rouge">safety_filter_level</code> to the supported value:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">google</span> <span class="kn">import</span> <span class="n">genai</span>
-<span class="kn">from</span> <span class="n">google.genai.types</span> <span class="kn">import</span> <span class="n">GenerateImagesConfig</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">google</span> <span class="kn">import</span> <span class="n">genai</span>
+<span class="kn">from</span> <span class="nn">google.genai.types</span> <span class="kn">import</span> <span class="n">GenerateImagesConfig</span>
 
-<span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="p">.</span><span class="nc">Client</span><span class="p">()</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">genai</span><span class="p">.</span><span class="n">Client</span><span class="p">()</span>
 
-<span class="n">image</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="nf">generate_images</span><span class="p">(</span>
-    <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">imagen-4.0-generate-preview-06-06</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="sh">"</span><span class="s">A dog reading a newspaper</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">config</span><span class="o">=</span><span class="nc">GenerateImagesConfig</span><span class="p">(</span>
-        <span class="n">image_size</span><span class="o">=</span><span class="sh">"</span><span class="s">2K</span><span class="sh">"</span><span class="p">,</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="n">generate_images</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="s">"imagen-4.0-generate-preview-06-06"</span><span class="p">,</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s">"A dog reading a newspaper"</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">GenerateImagesConfig</span><span class="p">(</span>
+        <span class="n">image_size</span><span class="o">=</span><span class="s">"2K"</span><span class="p">,</span>
         <span class="n">number_of_images</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">safety_filter_level</span><span class="o">=</span><span class="sh">"</span><span class="s">BLOCK_LOW_AND_ABOVE</span><span class="sh">"</span><span class="p">,</span>
-        <span class="n">person_generation</span><span class="o">=</span><span class="sh">"</span><span class="s">ALLOW_ADULT</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">safety_filter_level</span><span class="o">=</span><span class="s">"BLOCK_LOW_AND_ABOVE"</span><span class="p">,</span>
+        <span class="n">person_generation</span><span class="o">=</span><span class="s">"ALLOW_ADULT"</span><span class="p">,</span>
     <span class="p">),</span>
 <span class="p">)</span>
 
-<span class="n">image</span><span class="p">.</span><span class="n">generated_images</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">image</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="sh">"</span><span class="s">output-image.png</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span>
-    <span class="sa">f</span><span class="sh">"</span><span class="s">Created image using </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">generated_images</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">image</span><span class="p">.</span><span class="n">image_bytes</span><span class="p">)</span><span class="si">}</span><span class="s"> bytes</span><span class="sh">"</span>
+<span class="n">image</span><span class="p">.</span><span class="n">generated_images</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="s">"output-image.png"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s">"Created image using </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">.</span><span class="n">generated_images</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">image</span><span class="p">.</span><span class="n">image_bytes</span><span class="p">)</span><span class="si">}</span><span class="s"> bytes"</span>
 <span class="p">)</span>
 </code></pre></div></div>
 

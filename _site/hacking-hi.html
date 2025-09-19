@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>हैकिंग | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="हैकिंग" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -283,15 +283,15 @@
   <li><strong>समाधान:</strong> Rate Limiting को संभालने के लिए, आपको अपने कोड में थ्रॉटलिंग और रिट्री लॉजिक को लागू करना चाहिए। इसके अलावा, API प्रदाता द्वारा प्रदान किए गए Rate Limiting हेडर को मॉनिटर करना भी महत्वपूर्ण है।</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="n">time</span>
-   <span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="nn">time</span>
+   <span class="kn">import</span> <span class="nn">requests</span>
 
    <span class="k">def</span> <span class="nf">make_api_call</span><span class="p">():</span>
-       <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://api.example.com/data</span><span class="sh">'</span><span class="p">)</span>
+       <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.example.com/data'</span><span class="p">)</span>
        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">429</span><span class="p">:</span>
-           <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="nf">int</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">Retry-After</span><span class="sh">'</span><span class="p">]))</span>
-           <span class="nf">make_api_call</span><span class="p">()</span>
-       <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+           <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'Retry-After'</span><span class="p">]))</span>
+           <span class="n">make_api_call</span><span class="p">()</span>
+       <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h3 id="2-authentication-and-authorization">2. <strong>Authentication and Authorization</strong></h3>
@@ -300,14 +300,14 @@
   <li><strong>समाधान:</strong> सुनिश्चित करें कि आपका कोड सही ढंग से API कुंजी या टोकन को पास कर रहा है। इसके अलावा, टोकन को समय-समय पर रिफ्रेश करना भी आवश्यक है।</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="nn">requests</span>
 
    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-       <span class="sh">'</span><span class="s">Authorization</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Bearer YOUR_ACCESS_TOKEN</span><span class="sh">'</span>
+       <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer YOUR_ACCESS_TOKEN'</span>
    <span class="p">}</span>
 
-   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://api.example.com/data</span><span class="sh">'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
-   <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.example.com/data'</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre></div></div>
 
 <h3 id="3-error-handling">3. <strong>Error Handling</strong></h3>
@@ -316,15 +316,15 @@
   <li><strong>समाधान:</strong> अपने कोड में उचित Error Handling लागू करें। यह सुनिश्चित करें कि आपका कोड विभिन्न HTTP स्टेटस कोड को संभाल सकता है और उपयोगकर्ता को सही त्रुटि संदेश प्रदर्शित कर सकता है।</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="nn">requests</span>
 
    <span class="k">try</span><span class="p">:</span>
-       <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://api.example.com/data</span><span class="sh">'</span><span class="p">)</span>
-       <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
+       <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.example.com/data'</span><span class="p">)</span>
+       <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
    <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">HTTPError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-       <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">HTTP error occurred: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+       <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"HTTP error occurred: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
-       <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Other error occurred: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+       <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Other error occurred: </span><span class="si">{</span><span class="n">err</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="4-data-validation">4. <strong>Data Validation</strong></h3>
@@ -334,10 +334,10 @@
 </ul>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">validate_data</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
-       <span class="k">if</span> <span class="ow">not</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-           <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Expected a dictionary</span><span class="sh">"</span><span class="p">)</span>
-       <span class="k">if</span> <span class="sh">'</span><span class="s">key</span><span class="sh">'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-           <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">Missing </span><span class="sh">'</span><span class="s">key</span><span class="sh">'</span><span class="s"> in data</span><span class="sh">"</span><span class="p">)</span>
+       <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+           <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Expected a dictionary"</span><span class="p">)</span>
+       <span class="k">if</span> <span class="s">'key'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+           <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"Missing 'key' in data"</span><span class="p">)</span>
        <span class="k">return</span> <span class="n">data</span>
 </code></pre></div></div>
 
@@ -347,10 +347,10 @@
   <li><strong>समाधान:</strong> API के संस्करण को ध्यान में रखें और अपने कोड को नए संस्करण के साथ अपडेट करें। API प्रदाता द्वारा प्रदान किए गए Versioning दस्तावेज़ को पढ़ें और उसके अनुसार अपने कोड को संशोधित करें।</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="kn">import</span> <span class="nn">requests</span>
 
-   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">https://api.example.com/v2/data</span><span class="sh">'</span><span class="p">)</span>
-   <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+   <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'https://api.example.com/v2/data'</span><span class="p">)</span>
+   <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre></div></div>
 
 <h3 id="6-edge-cases">6. <strong>Edge Cases</strong></h3>
@@ -361,9 +361,9 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">handle_edge_cases</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
        <span class="k">if</span> <span class="ow">not</span> <span class="n">data</span><span class="p">:</span>
-           <span class="k">return</span> <span class="sh">"</span><span class="s">No data available</span><span class="sh">"</span>
-       <span class="k">if</span> <span class="sh">'</span><span class="s">error</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-           <span class="k">return</span> <span class="sa">f</span><span class="sh">"</span><span class="s">Error: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="sh">'</span><span class="s">error</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span>
+           <span class="k">return</span> <span class="s">"No data available"</span>
+       <span class="k">if</span> <span class="s">'error'</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+           <span class="k">return</span> <span class="sa">f</span><span class="s">"Error: </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="s">'error'</span><span class="p">]</span><span class="si">}</span><span class="s">"</span>
        <span class="k">return</span> <span class="n">data</span>
 </code></pre></div></div>
 

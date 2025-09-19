@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Google Cloud Transcription | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Google Cloud Transcription" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ja" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -207,136 +207,136 @@
 
   <p>最近、Google CloudのSpeech-to-Text APIを試してみました。以下は、その文字起こしを行うために使用したPython関数です。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">storage</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">storage</span>
 
-<span class="kn">from</span> <span class="n">google.cloud.speech_v2</span> <span class="kn">import</span> <span class="n">SpeechClient</span>
-<span class="kn">from</span> <span class="n">google.cloud.speech_v2.types</span> <span class="kn">import</span> <span class="n">cloud_speech</span>
+<span class="kn">from</span> <span class="nn">google.cloud.speech_v2</span> <span class="kn">import</span> <span class="n">SpeechClient</span>
+<span class="kn">from</span> <span class="nn">google.cloud.speech_v2.types</span> <span class="kn">import</span> <span class="n">cloud_speech</span>
 
 <span class="n">MAX_AUDIO_LENGTH_SECS</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span>
-<span class="n">OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="sh">"</span><span class="s">assets/transcriptions</span><span class="sh">"</span>
+<span class="n">OUTPUT_DIRECTORY</span> <span class="o">=</span> <span class="s">"assets/transcriptions"</span>
 
 
-<span class="k">def</span> <span class="nf">run_batch_recognize</span><span class="p">(</span><span class="n">audio_gcs_uri</span><span class="p">,</span> <span class="n">output_gcs_folder</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+<span class="k">def</span> <span class="nf">run_batch_recognize</span><span class="p">(</span><span class="n">audio_gcs_uri</span><span class="p">,</span> <span class="n">output_gcs_folder</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="s">"en-US"</span><span class="p">):</span>
+    <span class="s">"""
     Google Cloud Speech-to-Text Batch APIを使用して音声ファイルを文字起こしします。
 
     Args:
         audio_gcs_uri: 音声ファイルのGCS URI。
         output_gcs_folder: 文字起こし結果を保存するフォルダのGCS URI。
-        language_code: 文字起こしの言語コード（例: </span><span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span><span class="s">, </span><span class="sh">"</span><span class="s">cmn-CN</span><span class="sh">"</span><span class="s">）。
-    </span><span class="sh">"""</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="nc">SpeechClient</span><span class="p">()</span>
+        language_code: 文字起こしの言語コード（例: "en-US", "cmn-CN"）。
+    """</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">SpeechClient</span><span class="p">()</span>
 
-    <span class="n">config</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="nc">RecognitionConfig</span><span class="p">(</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="n">RecognitionConfig</span><span class="p">(</span>
         <span class="n">auto_decoding_config</span><span class="o">=</span><span class="p">{},</span>
-        <span class="n">features</span><span class="o">=</span><span class="n">cloud_speech</span><span class="p">.</span><span class="nc">RecognitionFeatures</span><span class="p">(</span>
+        <span class="n">features</span><span class="o">=</span><span class="n">cloud_speech</span><span class="p">.</span><span class="n">RecognitionFeatures</span><span class="p">(</span>
             <span class="n">enable_word_confidence</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
             <span class="n">enable_word_time_offsets</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="p">),</span>
-        <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">long</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s">"long"</span><span class="p">,</span>
         <span class="n">language_codes</span><span class="o">=</span><span class="p">[</span><span class="n">language_code</span><span class="p">],</span>
     <span class="p">)</span>
 
-    <span class="n">output_config</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="nc">RecognitionOutputConfig</span><span class="p">(</span>
-        <span class="n">gcs_output_config</span><span class="o">=</span><span class="n">cloud_speech</span><span class="p">.</span><span class="nc">GcsOutputConfig</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">output_gcs_folder</span><span class="p">),</span>
+    <span class="n">output_config</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="n">RecognitionOutputConfig</span><span class="p">(</span>
+        <span class="n">gcs_output_config</span><span class="o">=</span><span class="n">cloud_speech</span><span class="p">.</span><span class="n">GcsOutputConfig</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">output_gcs_folder</span><span class="p">),</span>
     <span class="p">)</span>
 
-    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">cloud_speech</span><span class="p">.</span><span class="nc">BatchRecognizeFileMetadata</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">audio_gcs_uri</span><span class="p">)]</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="n">cloud_speech</span><span class="p">.</span><span class="n">BatchRecognizeFileMetadata</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">audio_gcs_uri</span><span class="p">)]</span>
 
-    <span class="n">request</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="nc">BatchRecognizeRequest</span><span class="p">(</span>
-        <span class="n">recognizer</span><span class="o">=</span><span class="sh">"</span><span class="s">projects/graphite-ally-445108-k3/locations/global/recognizers/_</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">request</span> <span class="o">=</span> <span class="n">cloud_speech</span><span class="p">.</span><span class="n">BatchRecognizeRequest</span><span class="p">(</span>
+        <span class="n">recognizer</span><span class="o">=</span><span class="s">"projects/graphite-ally-445108-k3/locations/global/recognizers/_"</span><span class="p">,</span>
         <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
         <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
         <span class="n">recognition_output_config</span><span class="o">=</span><span class="n">output_config</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">operation</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">batch_recognize</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+    <span class="n">operation</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">batch_recognize</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Waiting for operation to complete...</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">response</span> <span class="o">=</span> <span class="n">operation</span><span class="p">.</span><span class="nf">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="n">MAX_AUDIO_LENGTH_SECS</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Waiting for operation to complete..."</span><span class="p">)</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">operation</span><span class="p">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">3</span> <span class="o">*</span> <span class="n">MAX_AUDIO_LENGTH_SECS</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">process_audio_files</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">):</span>
-    <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="n">all_audio_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="p">.</span><span class="nf">endswith</span><span class="p">((</span><span class="sh">'</span><span class="s">.mp3</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">.wav</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">.m4a</span><span class="sh">'</span><span class="p">))]</span>
-    <span class="n">total_files</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">all_audio_files</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">処理する音声ファイルの総数: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">all_audio_files</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_dir</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="p">.</span><span class="n">endswith</span><span class="p">((</span><span class="s">'.mp3'</span><span class="p">,</span> <span class="s">'.wav'</span><span class="p">,</span> <span class="s">'.m4a'</span><span class="p">))]</span>
+    <span class="n">total_files</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_audio_files</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"処理する音声ファイルの総数: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">total_files</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"'</span><span class="si">{</span><span class="n">input_dir</span><span class="si">}</span><span class="sh">'</span><span class="s"> ディレクトリに音声ファイルが見つかりません。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"'</span><span class="si">{</span><span class="n">input_dir</span><span class="si">}</span><span class="s">' ディレクトリに音声ファイルが見つかりません。"</span><span class="p">)</span>
         <span class="k">return</span>
 
     <span class="n">files_processed</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">all_audio_files</span><span class="p">:</span>
-        <span class="n">audio_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">.txt</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> をスキップ: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s"> は既に存在します。</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">audio_file_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">output_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">.txt"</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_filename</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> をスキップ: </span><span class="si">{</span><span class="n">output_filename</span><span class="si">}</span><span class="s"> は既に存在します。"</span><span class="p">)</span>
             <span class="k">continue</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">処理中 </span><span class="si">{</span><span class="n">files_processed</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="se">\n</span><span class="s">処理中 </span><span class="si">{</span><span class="n">files_processed</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># ファイル名のサフィックスに基づいて言語を決定
-</span>            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">-zh.mp3</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">-zh.wav</span><span class="sh">'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">-zh.m4a</span><span class="sh">'</span><span class="p">):</span>
-                <span class="n">language_code</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cmn-CN</span><span class="sh">"</span>
+</span>            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'-zh.mp3'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'-zh.wav'</span><span class="p">)</span> <span class="ow">or</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'-zh.m4a'</span><span class="p">):</span>
+                <span class="n">language_code</span> <span class="o">=</span> <span class="s">"cmn-CN"</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">language_code</span> <span class="o">=</span> <span class="sh">"</span><span class="s">en-US</span><span class="sh">"</span>
+                <span class="n">language_code</span> <span class="o">=</span> <span class="s">"en-US"</span>
 
             <span class="c1"># GCS URIを構築
-</span>            <span class="n">gcs_audio_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">gs://test2x/audio-files/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span>  <span class="c1"># バケットとフォルダを置き換えてください
-</span>            <span class="n">gcs_output_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">gs://test2x/transcripts/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span> <span class="c1"># バケットとフォルダを置き換えてください
+</span>            <span class="n">gcs_audio_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"gs://test2x/audio-files/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">"</span>  <span class="c1"># バケットとフォルダを置き換えてください
+</span>            <span class="n">gcs_output_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"gs://test2x/transcripts/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">"</span> <span class="c1"># バケットとフォルダを置き換えてください
 </span>            
             <span class="c1"># ファイルが存在しない場合はGCSにアップロード
 </span>            <span class="c1"># この部分は実装されていません。ファイルをGCSにアップロードするコードを追加する必要があります
 </span>            <span class="c1"># 例えば、google-cloud-storageライブラリを使用して
 </span>
-            <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="p">.</span><span class="nc">Client</span><span class="p">()</span>
-            <span class="n">bucket</span> <span class="o">=</span> <span class="n">storage_client</span><span class="p">.</span><span class="nf">bucket</span><span class="p">(</span><span class="sh">"</span><span class="s">test2x</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="nf">blob</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">audio-files/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">blob</span><span class="p">.</span><span class="nf">exists</span><span class="p">():</span>
-                <span class="n">blob</span><span class="p">.</span><span class="nf">upload_from_filename</span><span class="p">(</span><span class="n">audio_file_path</span><span class="p">)</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> をGCSにアップロードしました。</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">storage_client</span> <span class="o">=</span> <span class="n">storage</span><span class="p">.</span><span class="n">Client</span><span class="p">()</span>
+            <span class="n">bucket</span> <span class="o">=</span> <span class="n">storage_client</span><span class="p">.</span><span class="n">bucket</span><span class="p">(</span><span class="s">"test2x"</span><span class="p">)</span>
+            <span class="n">blob</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">.</span><span class="n">blob</span><span class="p">(</span><span class="sa">f</span><span class="s">"audio-files/</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">blob</span><span class="p">.</span><span class="n">exists</span><span class="p">():</span>
+                <span class="n">blob</span><span class="p">.</span><span class="n">upload_from_filename</span><span class="p">(</span><span class="n">audio_file_path</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> をGCSにアップロードしました。"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> は既にGCSに存在します。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> は既にGCSに存在します。"</span><span class="p">)</span>
 
 
-            <span class="nf">run_batch_recognize</span><span class="p">(</span>
+            <span class="n">run_batch_recognize</span><span class="p">(</span>
                 <span class="n">audio_gcs_uri</span><span class="o">=</span><span class="n">gcs_audio_uri</span><span class="p">,</span>
                 <span class="n">output_gcs_folder</span><span class="o">=</span><span class="n">gcs_output_uri</span><span class="p">,</span>
                 <span class="n">language_code</span><span class="o">=</span><span class="n">language_code</span>
             <span class="p">)</span>
             <span class="n">files_processed</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">ファイル </span><span class="si">{</span><span class="n">files_processed</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s"> を処理しました。</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"ファイル </span><span class="si">{</span><span class="n">files_processed</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s"> を処理しました。</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 
             <span class="c1"># 文字起こし結果をダウンロード
-</span>            <span class="n">output_gcs_uri_json</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">gcs_output_uri</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">_transcript_*.json</span><span class="sh">"</span>
+</span>            <span class="n">output_gcs_uri_json</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">gcs_output_uri</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">_transcript_*.json"</span>
             
-            <span class="n">blobs</span> <span class="o">=</span> <span class="n">storage_client</span><span class="p">.</span><span class="nf">list_blobs</span><span class="p">(</span><span class="sh">"</span><span class="s">test2x</span><span class="sh">"</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="sh">"</span><span class="s">transcripts/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">blobs</span> <span class="o">=</span> <span class="n">storage_client</span><span class="p">.</span><span class="n">list_blobs</span><span class="p">(</span><span class="s">"test2x"</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="sa">f</span><span class="s">"transcripts/</span><span class="si">{</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             
             <span class="k">for</span> <span class="n">blob</span> <span class="ow">in</span> <span class="n">blobs</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">"</span><span class="s">.json</span><span class="sh">"</span><span class="p">):</span>
-                    <span class="n">local_output_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
-                    <span class="n">blob</span><span class="p">.</span><span class="nf">download_to_filename</span><span class="p">(</span><span class="n">local_output_path</span><span class="p">)</span>
-                    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> を </span><span class="si">{</span><span class="n">local_output_path</span><span class="si">}</span><span class="s"> にダウンロードしました。</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">".json"</span><span class="p">):</span>
+                    <span class="n">local_output_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="p">))</span>
+                    <span class="n">blob</span><span class="p">.</span><span class="n">download_to_filename</span><span class="p">(</span><span class="n">local_output_path</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">blob</span><span class="p">.</span><span class="n">name</span><span class="si">}</span><span class="s"> を </span><span class="si">{</span><span class="n">local_output_path</span><span class="si">}</span><span class="s"> にダウンロードしました。"</span><span class="p">)</span>
 
 
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> の処理に失敗しました: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> の処理に失敗しました: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">continue</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">処理が完了しました！ </span><span class="si">{</span><span class="n">files_processed</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s"> ファイルを処理しました。</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"処理が完了しました！ </span><span class="si">{</span><span class="n">files_processed</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s"> ファイルを処理しました。"</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">音声ファイルを処理して文字起こしを生成します。</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--input_dir</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">"</span><span class="s">assets/audios</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">音声ファイルの入力ディレクトリ。</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"音声ファイルを処理して文字起こしを生成します。"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--input_dir'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"assets/audios"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"音声ファイルの入力ディレクトリ。"</span><span class="p">)</span>
 
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-    <span class="nf">process_audio_files</span><span class="p">(</span>
+    <span class="n">process_audio_files</span><span class="p">(</span>
         <span class="n">input_dir</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">input_dir</span><span class="p">,</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="n">OUTPUT_DIRECTORY</span><span class="p">,</span>
     <span class="p">)</span>

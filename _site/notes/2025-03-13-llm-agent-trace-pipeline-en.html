@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>End-to-End Trace to LLM Agent Pipeline | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="End-to-End Trace to LLM Agent Pipeline" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -278,49 +278,49 @@
 <p>Once logs are JSON-ish or parseable lines, a tiny generator can emit deterministic tests:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># gen_tests_from_logs.py
-</span><span class="kn">import</span> <span class="n">json</span><span class="p">,</span> <span class="n">re</span><span class="p">,</span> <span class="n">pathlib</span>
+</span><span class="kn">import</span> <span class="nn">json</span><span class="p">,</span> <span class="n">re</span><span class="p">,</span> <span class="n">pathlib</span>
 
 <span class="k">def</span> <span class="nf">extract_calls</span><span class="p">(</span><span class="n">log_text</span><span class="p">):</span>
     <span class="n">calls</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_text</span><span class="p">.</span><span class="nf">splitlines</span><span class="p">():</span>
-        <span class="k">if</span> <span class="sh">'"</span><span class="s">HTTP_IN</span><span class="sh">"'</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">HTTP_IN</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
-            <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">({.*})</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">).</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
-            <span class="n">calls</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
-              <span class="sh">"</span><span class="s">method</span><span class="sh">"</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="sh">"</span><span class="s">method</span><span class="sh">"</span><span class="p">],</span>
-              <span class="sh">"</span><span class="s">url</span><span class="sh">"</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="sh">"</span><span class="s">path</span><span class="sh">"</span><span class="p">],</span>
-              <span class="sh">"</span><span class="s">headers</span><span class="sh">"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">headers</span><span class="sh">"</span><span class="p">,</span> <span class="p">{}),</span>
-              <span class="sh">"</span><span class="s">body</span><span class="sh">"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">body</span><span class="sh">"</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
-              <span class="sh">"</span><span class="s">expect_status</span><span class="sh">"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">status</span><span class="sh">"</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">log_text</span><span class="p">.</span><span class="n">splitlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="s">'"HTTP_IN"'</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="s">'HTTP_IN'</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'({.*})'</span><span class="p">,</span> <span class="n">line</span><span class="p">).</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+            <span class="n">calls</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+              <span class="s">"method"</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s">"method"</span><span class="p">],</span>
+              <span class="s">"url"</span><span class="p">:</span> <span class="n">d</span><span class="p">[</span><span class="s">"path"</span><span class="p">],</span>
+              <span class="s">"headers"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"headers"</span><span class="p">,</span> <span class="p">{}),</span>
+              <span class="s">"body"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"body"</span><span class="p">,</span> <span class="bp">None</span><span class="p">),</span>
+              <span class="s">"expect_status"</span><span class="p">:</span> <span class="n">d</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"status"</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
             <span class="p">})</span>
     <span class="k">return</span> <span class="n">calls</span>
 
 <span class="k">def</span> <span class="nf">emit_pytest</span><span class="p">(</span><span class="n">calls</span><span class="p">):</span>
     <span class="n">lines</span> <span class="o">=</span> <span class="p">[</span>
-      <span class="sh">"</span><span class="s">import requests</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">import pytest</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">""</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">@pytest.mark.parametrize(</span><span class="sh">'</span><span class="s">call</span><span class="sh">'</span><span class="s">, [</span><span class="sh">"</span>
+      <span class="s">"import requests"</span><span class="p">,</span>
+      <span class="s">"import pytest"</span><span class="p">,</span>
+      <span class="s">""</span><span class="p">,</span>
+      <span class="s">"@pytest.mark.parametrize('call', ["</span>
     <span class="p">]</span>
     <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">calls</span><span class="p">:</span>
-      <span class="n">lines</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  </span><span class="si">{</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s">,</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="sh">"</span><span class="s">])</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">def test_replay(call):</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">    resp = requests.request(call[</span><span class="sh">'</span><span class="s">method</span><span class="sh">'</span><span class="s">], </span><span class="sh">'</span><span class="s">http://localhost:8080</span><span class="sh">'</span><span class="s">+call[</span><span class="sh">'</span><span class="s">url</span><span class="sh">'</span><span class="s">],</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">                             headers=call.get(</span><span class="sh">'</span><span class="s">headers</span><span class="sh">'</span><span class="s">),</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">                             json=call.get(</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="s">))</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">    assert resp.status_code == call[</span><span class="sh">'</span><span class="s">expect_status</span><span class="sh">'</span><span class="s">]</span><span class="sh">"</span><span class="p">,</span>
-      <span class="sh">"</span><span class="s">    # optionally assert on structured fields from response JSON</span><span class="sh">"</span><span class="p">,</span>
+      <span class="n">lines</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s">"  </span><span class="si">{</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s">,"</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">+=</span> <span class="p">[</span><span class="s">"])"</span><span class="p">,</span>
+      <span class="s">"def test_replay(call):"</span><span class="p">,</span>
+      <span class="s">"    resp = requests.request(call['method'], 'http://localhost:8080'+call['url'],"</span><span class="p">,</span>
+      <span class="s">"                             headers=call.get('headers'),"</span><span class="p">,</span>
+      <span class="s">"                             json=call.get('body'))"</span><span class="p">,</span>
+      <span class="s">"    assert resp.status_code == call['expect_status']"</span><span class="p">,</span>
+      <span class="s">"    # optionally assert on structured fields from response JSON"</span><span class="p">,</span>
     <span class="p">]</span>
-    <span class="k">return</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="n">all_calls</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pathlib</span><span class="p">.</span><span class="nc">Path</span><span class="p">(</span><span class="sh">'</span><span class="s">logs</span><span class="sh">'</span><span class="p">).</span><span class="nf">glob</span><span class="p">(</span><span class="sh">'</span><span class="s">*.log</span><span class="sh">'</span><span class="p">):</span>
-      <span class="n">all_calls</span> <span class="o">+=</span> <span class="nf">extract_calls</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="nf">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">))</span>
-    <span class="n">pathlib</span><span class="p">.</span><span class="nc">Path</span><span class="p">(</span><span class="sh">'</span><span class="s">tests/test_replay_generated.py</span><span class="sh">'</span><span class="p">).</span><span class="nf">write_text</span><span class="p">(</span><span class="nf">emit_pytest</span><span class="p">(</span><span class="n">all_calls</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">pathlib</span><span class="p">.</span><span class="n">Path</span><span class="p">(</span><span class="s">'logs'</span><span class="p">).</span><span class="n">glob</span><span class="p">(</span><span class="s">'*.log'</span><span class="p">):</span>
+      <span class="n">all_calls</span> <span class="o">+=</span> <span class="n">extract_calls</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">))</span>
+    <span class="n">pathlib</span><span class="p">.</span><span class="n">Path</span><span class="p">(</span><span class="s">'tests/test_replay_generated.py'</span><span class="p">).</span><span class="n">write_text</span><span class="p">(</span><span class="n">emit_pytest</span><span class="p">(</span><span class="n">all_calls</span><span class="p">),</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>Tips:</p>

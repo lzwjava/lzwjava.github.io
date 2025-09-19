@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Nvidia ड्राइवर, LLaMA और ChatGPT | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Nvidia ड्राइवर, LLaMA और ChatGPT" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hi" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -319,7 +319,7 @@ achieved tok/s: 185.527329
 <p>ज़िवेई: क्या आप नीचे दिए गए कोड्स को समझा सकते हैं?</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   <span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
-        <span class="n">self</span><span class="p">,</span>
+        <span class="bp">self</span><span class="p">,</span>
         <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
         <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
@@ -327,15 +327,15 @@ achieved tok/s: 185.527329
         <span class="n">logprobs</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
         <span class="n">echo</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="bp">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]]:</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
-        <span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+        <span class="n">bsz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
         <span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
-<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
-<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>यह कोड स्निपेट निम्नलिखित कार्य करता है:</p>
@@ -347,71 +347,71 @@ achieved tok/s: 185.527329
   <li><code class="language-plaintext highlighter-rouge">total_len</code> में <code class="language-plaintext highlighter-rouge">params.max_seq_len</code> और <code class="language-plaintext highlighter-rouge">max_gen_len + max_prompt_len</code> के बीच की न्यूनतम मान को स्टोर करता है।</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
-    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
 <span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
-<span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
-            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="n">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
             <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span>
             <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 <span class="c1"># केवल टोकन को बदलें यदि प्रॉम्प्ट पहले ही जनरेट हो चुका है
-</span><span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+</span><span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">where</span><span class="p">(</span>
     <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
 <span class="p">)</span>
 <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
 <span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
-    <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+    <span class="n">next_token</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
 <span class="p">)</span>
 <span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
-<span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+<span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
     <span class="k">break</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+            <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
         <span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="n">tolist</span><span class="p">()):</span>
             <span class="c1"># max gen len तक काटें
-</span>            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">echo</span> <span class="k">else</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+</span>            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">echo</span> <span class="k">else</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[</span><span class="n">start</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
             <span class="n">probs</span> <span class="o">=</span> <span class="bp">None</span>
             <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-                <span class="n">probs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">start</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
+                <span class="n">probs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">start</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="n">max_gen_len</span><span class="p">]</span>
             <span class="c1"># eos tok तक काटें, यदि कोई हो
-</span>            <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span> <span class="ow">in</span> <span class="n">toks</span><span class="p">:</span>
-                <span class="n">eos_idx</span> <span class="o">=</span> <span class="n">toks</span><span class="p">.</span><span class="nf">index</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span><span class="p">)</span>
+</span>            <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span> <span class="ow">in</span> <span class="n">toks</span><span class="p">:</span>
+                <span class="n">eos_idx</span> <span class="o">=</span> <span class="n">toks</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span><span class="p">)</span>
                 <span class="n">toks</span> <span class="o">=</span> <span class="n">toks</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span>
                 <span class="n">probs</span> <span class="o">=</span> <span class="n">probs</span><span class="p">[:</span><span class="n">eos_idx</span><span class="p">]</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span>
-            <span class="n">out_tokens</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span>
-            <span class="n">out_logprobs</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
-        <span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+            <span class="n">out_tokens</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">toks</span><span class="p">)</span>
+            <span class="n">out_logprobs</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">probs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>ChatGPT: ज़रूर, यहां दिए गए कोड की व्याख्या है:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">generate</span><span class="p">(</span>
-    <span class="n">self</span><span class="p">,</span>
+    <span class="bp">self</span><span class="p">,</span>
     <span class="n">prompt_tokens</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
     <span class="n">max_gen_len</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
     <span class="n">temperature</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">,</span>
@@ -434,8 +434,8 @@ achieved tok/s: 185.527329
   <li><code class="language-plaintext highlighter-rouge">echo</code> एक बूलियन है जो यह दर्शाता है कि उत्पन्न करने के दौरान इनपुट को प्रतिध्वनित करना है या नहीं।</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
-<span class="n">bsz</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">params</span>
+<span class="n">bsz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">bsz</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">,</span> <span class="p">(</span><span class="n">bsz</span><span class="p">,</span> <span class="n">params</span><span class="p">.</span><span class="n">max_batch_size</span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -443,20 +443,20 @@ achieved tok/s: 185.527329
 
 <p>यहां, फ़ंक्शन मॉडल पैरामीटर्स प्राप्त करता है और प्रॉम्प्ट्स के बैच आकार की गणना करता है। यह सुनिश्चित करता है कि बैच आकार मॉडल पैरामीटर्स में निर्दिष्ट अधिकतम बैच आकार से अधिक न हो।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
-<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">min_prompt_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
+<span class="n">max_prompt_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">prompt_tokens</span><span class="p">)</span>
 <span class="k">assert</span> <span class="n">max_prompt_len</span> <span class="o">&lt;=</span> <span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span>
-<span class="n">total_len</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
+<span class="n">total_len</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">params</span><span class="p">.</span><span class="n">max_seq_len</span><span class="p">,</span> <span class="n">max_gen_len</span> <span class="o">+</span> <span class="n">max_prompt_len</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपने मूल रूप में ही रहना चाहिए।)</p>
 
 <p>ये लाइन्स प्रॉम्प्ट्स की न्यूनतम और अधिकतम लंबाई की गणना करती हैं और यह सुनिश्चित करती हैं कि प्रॉम्प्ट की अधिकतम लंबाई मॉडल पैरामीटर्स में निर्दिष्ट अधिकतम अनुक्रम लंबाई से अधिक न हो। कुल लंबाई की गणना अधिकतम उत्पन्न लंबाई और अधिकतम प्रॉम्प्ट लंबाई के आधार पर की जाती है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
-<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
-    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">pad_id</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_id</span>
+<span class="n">tokens</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">full</span><span class="p">((</span><span class="n">bsz</span><span class="p">,</span> <span class="n">total_len</span><span class="p">),</span> <span class="n">pad_id</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">prompt_tokens</span><span class="p">):</span>
+    <span class="n">tokens</span><span class="p">[</span><span class="n">k</span><span class="p">,</span> <span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">long</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे मूल रूप में ही रखना चाहिए।)</p>
@@ -464,7 +464,7 @@ achieved tok/s: 185.527329
 <p>यह खंड <code class="language-plaintext highlighter-rouge">tokens</code> टेंसर को पैडिंग टोकन के साथ प्रारंभ करता है और इसे प्रॉम्प्ट्स से टोकन अनुक्रमों से भरता है।</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">tokens</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="nb">float</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>(यह कोड ब्लॉक है, इसलिए इसे अनुवादित नहीं किया गया है।)</p>
@@ -472,7 +472,7 @@ achieved tok/s: 185.527329
 <p>यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो लॉग प्रायिकताओं को संग्रहीत करने के लिए एक टेंसर <code class="language-plaintext highlighter-rouge">token_logprobs</code> बनाया जाता है।</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">prev_pos</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">eos_reached</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">([</span><span class="bp">False</span><span class="p">]</span> <span class="o">*</span> <span class="n">bsz</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s">"cuda"</span><span class="p">)</span>
 <span class="n">input_text_mask</span> <span class="o">=</span> <span class="n">tokens</span> <span class="o">!=</span> <span class="n">pad_id</span>
 </code></pre></div></div>
 
@@ -482,39 +482,39 @@ achieved tok/s: 185.527329
 
 <p>निम्नलिखित लूप न्यूनतम प्रॉम्प्ट लंबाई से शुरू होकर कुल लंबाई तक टोकन उत्पन्न करता है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
-    <span class="n">logits</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nf">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">cur_pos</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_prompt_len</span><span class="p">,</span> <span class="n">total_len</span><span class="p">):</span>
+    <span class="n">logits</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">forward</span><span class="p">(</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span><span class="p">:</span><span class="n">cur_pos</span><span class="p">],</span> <span class="n">prev_pos</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="nf">cross_entropy</span><span class="p">(</span>
-            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="nf">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">token_logprobs</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">F</span><span class="p">.</span><span class="n">cross_entropy</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">logits</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
             <span class="n">target</span><span class="o">=</span><span class="n">tokens</span><span class="p">[:,</span> <span class="n">prev_pos</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">cur_pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span>
-            <span class="n">reduction</span><span class="o">=</span><span class="sh">"</span><span class="s">none</span><span class="sh">"</span><span class="p">,</span>
+            <span class="n">reduction</span><span class="o">=</span><span class="s">"none"</span><span class="p">,</span>
             <span class="n">ignore_index</span><span class="o">=</span><span class="n">pad_id</span><span class="p">,</span>
         <span class="p">)</span>
     <span class="k">if</span> <span class="n">temperature</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">next_token</span> <span class="o">=</span> <span class="nf">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">sample_top_p</span><span class="p">(</span><span class="n">probs</span><span class="p">,</span> <span class="n">top_p</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">logits</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">next_token</span> <span class="o">=</span> <span class="n">next_token</span><span class="p">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">next_token</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">where</span><span class="p">(</span>
         <span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">],</span> <span class="n">next_token</span>
     <span class="p">)</span>
     <span class="n">tokens</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">next_token</span>
     <span class="n">eos_reached</span> <span class="o">|=</span> <span class="p">(</span><span class="o">~</span><span class="n">input_text_mask</span><span class="p">[:,</span> <span class="n">cur_pos</span><span class="p">])</span> <span class="o">&amp;</span> <span class="p">(</span>
-        <span class="n">next_token</span> <span class="o">==</span> <span class="n">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
+        <span class="n">next_token</span> <span class="o">==</span> <span class="bp">self</span><span class="p">.</span><span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_id</span>
     <span class="p">)</span>
     <span class="n">prev_pos</span> <span class="o">=</span> <span class="n">cur_pos</span>
-    <span class="k">if</span> <span class="nf">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">eos_reached</span><span class="p">):</span>
         <span class="k">break</span>
 </code></pre></div></div>
 
 <p>इस लूप के अंदर, मॉडल अगले टोकन के लिए एक प्रायिकता वितरण <code class="language-plaintext highlighter-rouge">logits</code> उत्पन्न करता है। यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो यह क्रॉस-एन्ट्रॉपी का उपयोग करके लॉग प्रायिकताओं की गणना करता है। <code class="language-plaintext highlighter-rouge">temperature</code> के आधार पर, यह अगले टोकन का चयन करने के लिए softmax या argmax का उपयोग करता है। फिर यह <code class="language-plaintext highlighter-rouge">tokens</code> टेंसर को अपडेट करता है और अनुक्रम के अंत (end-of-sequence) के टोकन की जांच करता है।</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">logprobs</span><span class="p">:</span>
-    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()</span>
+    <span class="n">token_logprobs</span> <span class="o">=</span> <span class="n">token_logprobs</span><span class="p">.</span><span class="n">tolist</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>(यह कोड ब्लॉक को हिंदी में अनुवाद करने की आवश्यकता नहीं है क्योंकि यह प्रोग्रामिंग कोड है और इसे अपरिवर्तित छोड़ दिया जाना चाहिए।)</p>
@@ -522,13 +522,13 @@ achieved tok/s: 185.527329
 <p>यदि <code class="language-plaintext highlighter-rouge">logprobs</code> True है, तो लॉग प्रायिकता टेंसर को Python लिस्ट में बदल दिया जाता है।</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="nf">tolist</span><span class="p">()):</span>
-    <span class="bp">...</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">toks</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="n">tolist</span><span class="p">()):</span>
+    <span class="p">...</span>
 </code></pre></div></div>
 
 <p>इस लूप में, प्रत्येक इनपुट सैंपल के लिए, यह आउटपुट टोकन अनुक्रम और संबंधित लॉग प्रायिकताएं उत्पन्न करता है।</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">return </span><span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="p">(</span><span class="n">out_tokens</span><span class="p">,</span> <span class="n">out_logprobs</span> <span class="k">if</span> <span class="n">logprobs</span> <span class="k">else</span> <span class="bp">None</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>(यह कोड ब्लॉक है, इसे अनुवादित नहीं किया जाना चाहिए।)</p>

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Selenium Script | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Selenium Script" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -210,140 +210,140 @@
   <li><strong>Error handling</strong> for robustness.</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
-<span class="kn">from</span> <span class="n">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
-<span class="kn">from</span> <span class="n">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
-<span class="kn">from</span> <span class="n">selenium.webdriver.chrome.options</span> <span class="kn">import</span> <span class="n">Options</span>
-<span class="kn">from</span> <span class="n">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
-<span class="kn">from</span> <span class="n">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
-<span class="kn">from</span> <span class="n">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
-<span class="kn">from</span> <span class="n">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">Select</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.common.by</span> <span class="kn">import</span> <span class="n">By</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.chrome.options</span> <span class="kn">import</span> <span class="n">Options</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">WebDriverWait</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support</span> <span class="kn">import</span> <span class="n">expected_conditions</span> <span class="k">as</span> <span class="n">EC</span>
+<span class="kn">from</span> <span class="nn">selenium.common.exceptions</span> <span class="kn">import</span> <span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span>
+<span class="kn">from</span> <span class="nn">selenium.webdriver.support.ui</span> <span class="kn">import</span> <span class="n">Select</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># Page Object for Product Listing Page
 </span><span class="k">class</span> <span class="nc">ProductListingPage</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">product_cards</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">product-card</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">product_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">product-name</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">product_price</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="sh">"</span><span class="s">product-price</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">next_page_button</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="sh">"</span><span class="s">next-page</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">sort_dropdown</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="sh">"</span><span class="s">sort-options</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">product_cards</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s">"product-card"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">product_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s">"product-name"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">product_price</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CLASS_NAME</span><span class="p">,</span> <span class="s">"product-price"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">next_page_button</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="s">"next-page"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">sort_dropdown</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="s">"sort-options"</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">sort_by_price</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sort_by_price</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">sort_select</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nf">until</span><span class="p">(</span>
-                <span class="n">EC</span><span class="p">.</span><span class="nf">element_to_be_clickable</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">sort_dropdown</span><span class="p">)</span>
+            <span class="n">sort_select</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="p">.</span><span class="n">element_to_be_clickable</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">sort_dropdown</span><span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">select</span> <span class="o">=</span> <span class="nc">Select</span><span class="p">(</span><span class="n">sort_select</span><span class="p">)</span>
-            <span class="n">select</span><span class="p">.</span><span class="nf">select_by_value</span><span class="p">(</span><span class="sh">"</span><span class="s">price-asc</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Allow sorting to apply
+            <span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="n">sort_select</span><span class="p">)</span>
+            <span class="n">select</span><span class="p">.</span><span class="n">select_by_value</span><span class="p">(</span><span class="s">"price-asc"</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Allow sorting to apply
 </span>        <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Sort dropdown not found or timed out</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Sort dropdown not found or timed out"</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_products</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_products</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">cards</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nf">until</span><span class="p">(</span>
-                <span class="n">EC</span><span class="p">.</span><span class="nf">presence_of_all_elements_located</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">product_cards</span><span class="p">)</span>
+            <span class="n">cards</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="p">.</span><span class="n">presence_of_all_elements_located</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">product_cards</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="n">products</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">card</span> <span class="ow">in</span> <span class="n">cards</span><span class="p">:</span>
-                <span class="n">name</span> <span class="o">=</span> <span class="n">card</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">self</span><span class="p">.</span><span class="n">product_name</span><span class="p">).</span><span class="n">text</span>
-                <span class="n">price</span> <span class="o">=</span> <span class="n">card</span><span class="p">.</span><span class="nf">find_element</span><span class="p">(</span><span class="o">*</span><span class="n">self</span><span class="p">.</span><span class="n">product_price</span><span class="p">).</span><span class="n">text</span>
-                <span class="n">products</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="sh">"</span><span class="s">price</span><span class="sh">"</span><span class="p">:</span> <span class="n">price</span><span class="p">})</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">card</span><span class="p">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="p">.</span><span class="n">product_name</span><span class="p">).</span><span class="n">text</span>
+                <span class="n">price</span> <span class="o">=</span> <span class="n">card</span><span class="p">.</span><span class="n">find_element</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="p">.</span><span class="n">product_price</span><span class="p">).</span><span class="n">text</span>
+                <span class="n">products</span><span class="p">.</span><span class="n">append</span><span class="p">({</span><span class="s">"name"</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s">"price"</span><span class="p">:</span> <span class="n">price</span><span class="p">})</span>
             <span class="k">return</span> <span class="n">products</span>
-        <span class="nf">except </span><span class="p">(</span><span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error retrieving products: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">except</span> <span class="p">(</span><span class="n">TimeoutException</span><span class="p">,</span> <span class="n">NoSuchElementException</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error retrieving products: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="k">return</span> <span class="p">[]</span>
 
-    <span class="k">def</span> <span class="nf">go_to_next_page</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">go_to_next_page</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">next_button</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nf">until</span><span class="p">(</span>
-                <span class="n">EC</span><span class="p">.</span><span class="nf">element_to_be_clickable</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">next_page_button</span><span class="p">)</span>
+            <span class="n">next_button</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="p">.</span><span class="n">element_to_be_clickable</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">next_page_button</span><span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">next_button</span><span class="p">.</span><span class="nf">click</span><span class="p">()</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wait for page load
+            <span class="n">next_button</span><span class="p">.</span><span class="n">click</span><span class="p">()</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wait for page load
 </span>            <span class="k">return</span> <span class="bp">True</span>
         <span class="k">except</span> <span class="n">TimeoutException</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">No next page button found or timed out</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"No next page button found or timed out"</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">False</span>
 
 <span class="c1"># Page Object for Search Page
 </span><span class="k">class</span> <span class="nc">SearchPage</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">search_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="sh">"</span><span class="s">search-bar</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">search_button</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="sh">"</span><span class="s">search-submit</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">search_input</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="s">"search-bar"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">search_button</span> <span class="o">=</span> <span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ID</span><span class="p">,</span> <span class="s">"search-submit"</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">search_box</span> <span class="o">=</span> <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nf">until</span><span class="p">(</span>
-                <span class="n">EC</span><span class="p">.</span><span class="nf">presence_of_element_located</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">search_input</span><span class="p">)</span>
+            <span class="n">search_box</span> <span class="o">=</span> <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="p">.</span><span class="n">presence_of_element_located</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">search_input</span><span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">search_box</span><span class="p">.</span><span class="nf">clear</span><span class="p">()</span>
-            <span class="n">search_box</span><span class="p">.</span><span class="nf">send_keys</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
-            <span class="nc">WebDriverWait</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="nf">until</span><span class="p">(</span>
-                <span class="n">EC</span><span class="p">.</span><span class="nf">element_to_be_clickable</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">search_button</span><span class="p">)</span>
-            <span class="p">).</span><span class="nf">click</span><span class="p">()</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wait for search results
+            <span class="n">search_box</span><span class="p">.</span><span class="n">clear</span><span class="p">()</span>
+            <span class="n">search_box</span><span class="p">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+            <span class="n">WebDriverWait</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">driver</span><span class="p">,</span> <span class="mi">10</span><span class="p">).</span><span class="n">until</span><span class="p">(</span>
+                <span class="n">EC</span><span class="p">.</span><span class="n">element_to_be_clickable</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">search_button</span><span class="p">)</span>
+            <span class="p">).</span><span class="n">click</span><span class="p">()</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wait for search results
 </span>        <span class="k">except</span> <span class="n">TimeoutException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Search failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Search failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># Main script
 </span><span class="k">def</span> <span class="nf">scrape_ecommerce_site</span><span class="p">():</span>
     <span class="c1"># Set up headless Chrome
-</span>    <span class="n">chrome_options</span> <span class="o">=</span> <span class="nc">Options</span><span class="p">()</span>
-    <span class="n">chrome_options</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--headless</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">chrome_options</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--disable-gpu</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">chrome_options</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--window-size=1920,1080</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">chrome_options</span> <span class="o">=</span> <span class="n">Options</span><span class="p">()</span>
+    <span class="n">chrome_options</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--headless"</span><span class="p">)</span>
+    <span class="n">chrome_options</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--disable-gpu"</span><span class="p">)</span>
+    <span class="n">chrome_options</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--window-size=1920,1080"</span><span class="p">)</span>
 
-    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="nc">Chrome</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">chrome_options</span><span class="p">)</span>
+    <span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="p">.</span><span class="n">Chrome</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="n">chrome_options</span><span class="p">)</span>
     <span class="n">all_products</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Navigate to the website
-</span>        <span class="n">driver</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">https://example.com</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">driver</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"https://example.com"</span><span class="p">)</span>
         
         <span class="c1"># Initialize page objects
-</span>        <span class="n">search_page</span> <span class="o">=</span> <span class="nc">SearchPage</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
-        <span class="n">product_page</span> <span class="o">=</span> <span class="nc">ProductListingPage</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+</span>        <span class="n">search_page</span> <span class="o">=</span> <span class="n">SearchPage</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
+        <span class="n">product_page</span> <span class="o">=</span> <span class="n">ProductListingPage</span><span class="p">(</span><span class="n">driver</span><span class="p">)</span>
         
         <span class="c1"># Perform search
-</span>        <span class="n">search_page</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sh">"</span><span class="s">laptop</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">search_page</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="s">"laptop"</span><span class="p">)</span>
         
         <span class="c1"># Sort by price
-</span>        <span class="n">product_page</span><span class="p">.</span><span class="nf">sort_by_price</span><span class="p">()</span>
+</span>        <span class="n">product_page</span><span class="p">.</span><span class="n">sort_by_price</span><span class="p">()</span>
         
         <span class="c1"># Scrape multiple pages
 </span>        <span class="n">page_count</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">max_pages</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Limit for demo
 </span>        
         <span class="k">while</span> <span class="n">page_count</span> <span class="o">&lt;</span> <span class="n">max_pages</span><span class="p">:</span>
-            <span class="n">products</span> <span class="o">=</span> <span class="n">product_page</span><span class="p">.</span><span class="nf">get_products</span><span class="p">()</span>
-            <span class="n">all_products</span><span class="p">.</span><span class="nf">extend</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Scraped page </span><span class="si">{</span><span class="n">page_count</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">products</span><span class="p">)</span><span class="si">}</span><span class="s"> products</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">products</span> <span class="o">=</span> <span class="n">product_page</span><span class="p">.</span><span class="n">get_products</span><span class="p">()</span>
+            <span class="n">all_products</span><span class="p">.</span><span class="n">extend</span><span class="p">(</span><span class="n">products</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Scraped page </span><span class="si">{</span><span class="n">page_count</span> <span class="o">+</span> <span class="mi">1</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">products</span><span class="p">)</span><span class="si">}</span><span class="s"> products"</span><span class="p">)</span>
             
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">product_page</span><span class="p">.</span><span class="nf">go_to_next_page</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">product_page</span><span class="p">.</span><span class="n">go_to_next_page</span><span class="p">():</span>
                 <span class="k">break</span>
             <span class="n">page_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
         <span class="c1"># Generate summary
 </span>        <span class="n">summary</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">total_products</span><span class="sh">"</span><span class="p">:</span> <span class="nf">len</span><span class="p">(</span><span class="n">all_products</span><span class="p">),</span>
-            <span class="sh">"</span><span class="s">average_price</span><span class="sh">"</span><span class="p">:</span> <span class="nf">calculate_average_price</span><span class="p">(</span><span class="n">all_products</span><span class="p">),</span>
-            <span class="sh">"</span><span class="s">timestamp</span><span class="sh">"</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">strftime</span><span class="p">(</span><span class="sh">"</span><span class="s">%Y-%m-%d %H:%M:%S</span><span class="sh">"</span><span class="p">)</span>
+            <span class="s">"total_products"</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_products</span><span class="p">),</span>
+            <span class="s">"average_price"</span><span class="p">:</span> <span class="n">calculate_average_price</span><span class="p">(</span><span class="n">all_products</span><span class="p">),</span>
+            <span class="s">"timestamp"</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"%Y-%m-%d %H:%M:%S"</span><span class="p">)</span>
         <span class="p">}</span>
         
         <span class="c1"># Save results to JSON
-</span>        <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">product_data.json</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">({</span><span class="sh">"</span><span class="s">products</span><span class="sh">"</span><span class="p">:</span> <span class="n">all_products</span><span class="p">,</span> <span class="sh">"</span><span class="s">summary</span><span class="sh">"</span><span class="p">:</span> <span class="n">summary</span><span class="p">},</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Results saved to product_data.json</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">"product_data.json"</span><span class="p">,</span> <span class="s">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">({</span><span class="s">"products"</span><span class="p">:</span> <span class="n">all_products</span><span class="p">,</span> <span class="s">"summary"</span><span class="p">:</span> <span class="n">summary</span><span class="p">},</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Results saved to product_data.json"</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"An error occurred: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
     <span class="k">finally</span><span class="p">:</span>
-        <span class="n">driver</span><span class="p">.</span><span class="nf">quit</span><span class="p">()</span>
+        <span class="n">driver</span><span class="p">.</span><span class="n">quit</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">calculate_average_price</span><span class="p">(</span><span class="n">products</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">products</span><span class="p">:</span>
@@ -351,14 +351,14 @@
     <span class="n">prices</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">product</span> <span class="ow">in</span> <span class="n">products</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">price_str</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="sh">"</span><span class="s">price</span><span class="sh">"</span><span class="p">].</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">$</span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">"</span><span class="s">,</span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">)</span>
-            <span class="n">prices</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">float</span><span class="p">(</span><span class="n">price_str</span><span class="p">))</span>
-        <span class="nf">except </span><span class="p">(</span><span class="nb">ValueError</span><span class="p">,</span> <span class="nb">AttributeError</span><span class="p">):</span>
+            <span class="n">price_str</span> <span class="o">=</span> <span class="n">product</span><span class="p">[</span><span class="s">"price"</span><span class="p">].</span><span class="n">replace</span><span class="p">(</span><span class="s">"$"</span><span class="p">,</span> <span class="s">""</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">","</span><span class="p">,</span> <span class="s">""</span><span class="p">)</span>
+            <span class="n">prices</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">price_str</span><span class="p">))</span>
+        <span class="k">except</span> <span class="p">(</span><span class="nb">ValueError</span><span class="p">,</span> <span class="nb">AttributeError</span><span class="p">):</span>
             <span class="k">continue</span>
-    <span class="k">return</span> <span class="nf">sum</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="o">/</span> <span class="nf">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="k">if</span> <span class="n">prices</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span> <span class="k">if</span> <span class="n">prices</span> <span class="k">else</span> <span class="mi">0</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">scrape_ecommerce_site</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">scrape_ecommerce_site</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h3 id="explanation-of-the-example">Explanation of the Example</h3>

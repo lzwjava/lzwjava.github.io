@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Introducción a Redis | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Introducción a Redis" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="es" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -260,12 +260,12 @@ OK
 
 <p>Ejecuta el siguiente código.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">redis</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">bar</span><span class="sh">'</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">foo</span><span class="sh">'</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">r</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="s">'foo'</span><span class="p">,</span> <span class="s">'bar'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'foo'</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>Salida:</p>
@@ -284,29 +284,29 @@ b<span class="s1">'bar'</span>
 <h3 id="paso-2-crear-un-script-para-calcular-la-secuencia-de-fibonacci">Paso 2: Crear un script para calcular la secuencia de Fibonacci</h3>
 <p>Vamos a crear un script en Python que interactúe con <code class="language-plaintext highlighter-rouge">Redis</code> para calcular y almacenar los valores de la secuencia de Fibonacci.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">redis</span>
 
 <span class="c1"># Conectar a Redis
-</span><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="nc">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">localhost</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span class="n">r</span> <span class="o">=</span> <span class="n">redis</span><span class="p">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'localhost'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">db</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="c1"># Verificar si el valor ya está en Redis
-</span>    <span class="k">if</span> <span class="n">r</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span>    <span class="k">if</span> <span class="n">r</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     
     <span class="c1"># Caso base
 </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
-        <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+        <span class="n">r</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">n</span>
     
     <span class="c1"># Calcular Fibonacci recursivamente y almacenar en Redis
-</span>    <span class="n">fib_value</span> <span class="o">=</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fib_value</span><span class="p">)</span>
+</span>    <span class="n">fib_value</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">r</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">fib_value</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">fib_value</span>
 
 <span class="c1"># Ejemplo de uso
 </span><span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Fibonacci(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s">) = </span><span class="si">{</span><span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Fibonacci(</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s">) = </span><span class="si">{</span><span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="paso-3-ejecutar-el-script">Paso 3: Ejecutar el script</h3>
@@ -338,26 +338,26 @@ b<span class="s1">'bar'</span>
 <h3 id="conclusión">Conclusión</h3>
 <p>Este enfoque utiliza <code class="language-plaintext highlighter-rouge">Redis</code> como una caché para almacenar y recuperar los valores de la secuencia de Fibonacci, lo que puede ser útil para optimizar el cálculo de valores grandes en la secuencia. Además, <code class="language-plaintext highlighter-rouge">Redis</code> es una herramienta poderosa para manejar datos en memoria, lo que hace que este método sea eficiente para aplicaciones que requieren cálculos repetitivos.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">redis</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">redis</span>
 </code></pre></div></div>
 
 <p>r = redis.Redis(host=’localhost’, port=6379, db=0)</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">nr</span> <span class="o">=</span> <span class="n">r</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">nr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nf">int</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">nr</span><span class="p">)</span>
     <span class="n">res_n</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
         <span class="n">res_n</span> <span class="o">=</span> <span class="n">n</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">res_n</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">res_n</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
     
-    <span class="n">r</span><span class="p">.</span><span class="nf">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">res_n</span><span class="p">)</span>
+    <span class="n">r</span><span class="p">.</span><span class="nb">set</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">res_n</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res_n</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">print</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>¡Y listo! Así de fácil.</p>

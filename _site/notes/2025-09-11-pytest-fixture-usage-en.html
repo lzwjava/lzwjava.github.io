@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Understanding Pytest Fixture Usage | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Understanding Pytest Fixture Usage" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -215,15 +215,15 @@
 
 <h3 id="basic-fixture-example">Basic Fixture Example</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
 
-<span class="nd">@pytest.fixture</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">sample_data</span><span class="p">():</span>
     <span class="c1"># Setup code
-</span>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">John</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">age</span><span class="sh">"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+</span>    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="s">"John"</span><span class="p">,</span> <span class="s">"age"</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
     <span class="k">yield</span> <span class="n">data</span>  <span class="c1"># Test runs here
 </span>    <span class="c1"># Teardown code (runs after test)
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Cleaning up sample data</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="s">"Cleaning up sample data"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h2 id="why-we-need-fixtures">Why We Need Fixtures</h2>
@@ -244,34 +244,34 @@
 
 <p>Fixtures can depend on other fixtures, creating a dependency graph:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@pytest.fixture</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">database_connection</span><span class="p">():</span>
     <span class="c1"># Setup database connection
-</span>    <span class="n">conn</span> <span class="o">=</span> <span class="nf">create_connection</span><span class="p">()</span>
+</span>    <span class="n">conn</span> <span class="o">=</span> <span class="n">create_connection</span><span class="p">()</span>
     <span class="k">yield</span> <span class="n">conn</span>
-    <span class="n">conn</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
-<span class="nd">@pytest.fixture</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">user_table</span><span class="p">(</span><span class="n">database_connection</span><span class="p">):</span>
     <span class="c1"># Uses the database_connection fixture
-</span>    <span class="nf">create_table</span><span class="p">(</span><span class="n">database_connection</span><span class="p">,</span> <span class="sh">"</span><span class="s">users</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">create_table</span><span class="p">(</span><span class="n">database_connection</span><span class="p">,</span> <span class="s">"users"</span><span class="p">)</span>
     <span class="k">yield</span>
-    <span class="nf">drop_table</span><span class="p">(</span><span class="n">database_connection</span><span class="p">,</span> <span class="sh">"</span><span class="s">users</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">drop_table</span><span class="p">(</span><span class="n">database_connection</span><span class="p">,</span> <span class="s">"users"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="2-scope-control">2. Scope Control</h3>
 
 <p>Fixtures can have different lifetimes:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="sh">"</span><span class="s">function</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># Default - runs once per test
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s">"function"</span><span class="p">)</span>  <span class="c1"># Default - runs once per test
 </span><span class="k">def</span> <span class="nf">per_test_fixture</span><span class="p">():</span>
     <span class="k">pass</span>
 
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="sh">"</span><span class="s">module</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># Runs once per module
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s">"module"</span><span class="p">)</span>  <span class="c1"># Runs once per module
 </span><span class="k">def</span> <span class="nf">per_module_fixture</span><span class="p">():</span>
     <span class="k">pass</span>
 
-<span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="sh">"</span><span class="s">session</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># Runs once per test session
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">scope</span><span class="o">=</span><span class="s">"session"</span><span class="p">)</span>  <span class="c1"># Runs once per test session
 </span><span class="k">def</span> <span class="nf">per_session_fixture</span><span class="p">():</span>
     <span class="k">pass</span>
 </code></pre></div></div>
@@ -280,7 +280,7 @@
 
 <p>Fixtures can run automatically without being requested:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">always_run_this</span><span class="p">():</span>
     <span class="c1"># This runs before every test in the module
 </span>    <span class="k">yield</span>
@@ -291,7 +291,7 @@
 
 <p>Fixtures can generate multiple sets of data:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@pytest.fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">number</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">request</span><span class="p">.</span><span class="n">param</span>  <span class="c1"># Will run tests with 1, 2, and 3
 </span></code></pre></div></div>
@@ -300,34 +300,34 @@
 
 <p>Here’s how fixtures help with your financial header testing scenario:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="nd">@pytest.fixture</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">financial_header</span><span class="p">():</span>
     <span class="c1"># Setup - create header
-</span>    <span class="n">headers</span> <span class="o">=</span> <span class="nf">create_financial_header</span><span class="p">()</span>  <span class="c1"># Your creation logic
+</span>    <span class="n">headers</span> <span class="o">=</span> <span class="n">create_financial_header</span><span class="p">()</span>  <span class="c1"># Your creation logic
 </span>    <span class="k">yield</span> <span class="n">headers</span>  <span class="c1"># Test runs here with these headers
 </span>
     <span class="c1"># Teardown - delete header
-</span>    <span class="nf">delete_financial_header</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>  <span class="c1"># Your cleanup logic
+</span>    <span class="n">delete_financial_header</span><span class="p">(</span><span class="n">headers</span><span class="p">)</span>  <span class="c1"># Your cleanup logic
 </span>
 <span class="k">def</span> <span class="nf">test_submit_transaction</span><span class="p">(</span><span class="n">financial_header</span><span class="p">):</span>
     <span class="c1"># The fixture provides the headers automatically
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">https://api.example.com/transactions</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="s">"https://api.example.com/transactions"</span><span class="p">,</span>
         <span class="n">headers</span><span class="o">=</span><span class="n">financial_header</span><span class="p">,</span>
-        <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">amount</span><span class="sh">"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
+        <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s">"amount"</span><span class="p">:</span> <span class="mi">100</span><span class="p">}</span>
     <span class="p">)</span>
     <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">201</span>
 
 <span class="k">def</span> <span class="nf">test_validate_header</span><span class="p">(</span><span class="n">financial_header</span><span class="p">):</span>
     <span class="c1"># Same fixture used in another test
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">https://api.example.com/validate</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">"https://api.example.com/validate"</span><span class="p">,</span>
         <span class="n">headers</span><span class="o">=</span><span class="n">financial_header</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()[</span><span class="sh">"</span><span class="s">valid</span><span class="sh">"</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">True</span>
+    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">"valid"</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">True</span>
 </code></pre></div></div>
 
 <h2 id="comparison-with-unittest">Comparison with unittest</h2>

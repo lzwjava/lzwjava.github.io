@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Proxy Scheme Not Supported | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Proxy Scheme Not Supported" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -298,22 +298,22 @@
   <li><strong>Bypass Proxy in Code</strong>
     <ul>
       <li>Modify your <code class="language-plaintext highlighter-rouge">gitmessageai.py</code> script to explicitly disable proxies in the <code class="language-plaintext highlighter-rouge">OpenAI</code> client:
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">import</span> <span class="n">httpx</span>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
 
 <span class="k">def</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY environment variable is not set</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">(</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY environment variable is not set"</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
         <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
-        <span class="n">base_url</span><span class="o">=</span><span class="sh">"</span><span class="s">https://api.deepseek.com</span><span class="sh">"</span><span class="p">,</span>
-        <span class="n">http_client</span><span class="o">=</span><span class="n">httpx</span><span class="p">.</span><span class="nc">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># Disable proxies
+        <span class="n">base_url</span><span class="o">=</span><span class="s">"https://api.deepseek.com"</span><span class="p">,</span>
+        <span class="n">http_client</span><span class="o">=</span><span class="n">httpx</span><span class="p">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>  <span class="c1"># Disable proxies
 </span>    <span class="p">)</span>
     <span class="c1"># Your API call logic here
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">deepseek</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># Replace with correct model
-</span>        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s">"deepseek"</span><span class="p">,</span>  <span class="c1"># Replace with correct model
+</span>        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span>
 </code></pre></div>        </div>
@@ -340,25 +340,25 @@
   <li><strong>Update Your Code</strong>
     <ul>
       <li>Modify your script to use the SOCKS proxy explicitly:
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
-<span class="kn">import</span> <span class="n">httpx</span>
-<span class="kn">from</span> <span class="n">httpx_socks</span> <span class="kn">import</span> <span class="n">SyncProxyTransport</span>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">openai</span> <span class="kn">import</span> <span class="n">OpenAI</span>
+<span class="kn">import</span> <span class="nn">httpx</span>
+<span class="kn">from</span> <span class="nn">httpx_socks</span> <span class="kn">import</span> <span class="n">SyncProxyTransport</span>
 
 <span class="k">def</span> <span class="nf">call_deepseek_api</span><span class="p">(</span><span class="n">prompt</span><span class="p">):</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY"</span><span class="p">)</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nc">ValueError</span><span class="p">(</span><span class="sh">"</span><span class="s">DEEPSEEK_API_KEY environment variable is not set</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">"DEEPSEEK_API_KEY environment variable is not set"</span><span class="p">)</span>
     <span class="c1"># Configure SOCKS5 proxy
-</span>    <span class="n">proxy_transport</span> <span class="o">=</span> <span class="n">SyncProxyTransport</span><span class="p">.</span><span class="nf">from_url</span><span class="p">(</span><span class="sh">"</span><span class="s">socks5://127.0.0.1:7891</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">client</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">(</span>
+</span>    <span class="n">proxy_transport</span> <span class="o">=</span> <span class="n">SyncProxyTransport</span><span class="p">.</span><span class="n">from_url</span><span class="p">(</span><span class="s">"socks5://127.0.0.1:7891"</span><span class="p">)</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
         <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span>
-        <span class="n">base_url</span><span class="o">=</span><span class="sh">"</span><span class="s">https://api.deepseek.com</span><span class="sh">"</span><span class="p">,</span>
-        <span class="n">http_client</span><span class="o">=</span><span class="n">httpx</span><span class="p">.</span><span class="nc">Client</span><span class="p">(</span><span class="n">transport</span><span class="o">=</span><span class="n">proxy_transport</span><span class="p">)</span>
+        <span class="n">base_url</span><span class="o">=</span><span class="s">"https://api.deepseek.com"</span><span class="p">,</span>
+        <span class="n">http_client</span><span class="o">=</span><span class="n">httpx</span><span class="p">.</span><span class="n">Client</span><span class="p">(</span><span class="n">transport</span><span class="o">=</span><span class="n">proxy_transport</span><span class="p">)</span>
     <span class="p">)</span>
     <span class="c1"># Your API call logic here
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="nf">create</span><span class="p">(</span>
-        <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">deepseek</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># Replace with correct model
-</span>        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="sh">"</span><span class="s">role</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">user</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">content</span><span class="sh">"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">chat</span><span class="p">.</span><span class="n">completions</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+        <span class="n">model</span><span class="o">=</span><span class="s">"deepseek"</span><span class="p">,</span>  <span class="c1"># Replace with correct model
+</span>        <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s">"role"</span><span class="p">:</span> <span class="s">"user"</span><span class="p">,</span> <span class="s">"content"</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}]</span>
     <span class="p">)</span>
     <span class="k">return</span> <span class="n">response</span><span class="p">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">message</span><span class="p">.</span><span class="n">content</span>
 </code></pre></div>        </div>
@@ -398,8 +398,8 @@
   <li><strong>Log Proxy Usage</strong>
     <ul>
       <li>Add logging to your script to confirm which proxy is being used:
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span>
-<span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
 </code></pre></div>        </div>
       </li>
     </ul>

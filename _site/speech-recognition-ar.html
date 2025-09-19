@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>التعرف على الكلام في الوقت الحقيقي | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="التعرف على الكلام في الوقت الحقيقي" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ar" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,57 +209,57 @@
 
   <p>يقوم هذا الكود بلغة بايثون بتنفيذ التعرف على الكلام في الوقت الحقيقي باستخدام واجهة برمجة تطبيقات Google Cloud Speech-to-Text و مكتبة PyAudio.  يقوم الكود بالتقاط الصوت من الميكروفون، ويبثه إلى واجهة برمجة تطبيقات Speech-to-Text، ويطبع النص المُنسخ. تتعامل فئة <code class="language-plaintext highlighter-rouge">MicrophoneStream</code> مع إدخال الصوت، وتقوم الدالة <code class="language-plaintext highlighter-rouge">main</code> بإعداد عميل التعرف على الكلام ومعالجة تدفق الصوت.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">io</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">time</span>
 
-<span class="kn">from</span> <span class="n">google.cloud</span> <span class="kn">import</span> <span class="n">speech</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">speech</span>
 
-<span class="kn">import</span> <span class="n">pyaudio</span>
-<span class="kn">from</span> <span class="n">six.moves</span> <span class="kn">import</span> <span class="n">queue</span>
+<span class="kn">import</span> <span class="nn">pyaudio</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="n">queue</span>
 
 
 <span class="c1"># معلمات تسجيل الصوت
 </span><span class="n">RATE</span> <span class="o">=</span> <span class="mi">16000</span>
-<span class="n">CHUNK</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">RATE</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 100ms
+<span class="n">CHUNK</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">RATE</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># 100ms
 </span>
 
 <span class="k">class</span> <span class="nc">MicrophoneStream</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">يفتح دفق تسجيل كمولد يُنتج أجزاء الصوت.</span><span class="sh">"""</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_rate</span> <span class="o">=</span> <span class="n">rate</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="n">chunk</span>
+    <span class="s">"""يفتح دفق تسجيل كمولد يُنتج أجزاء الصوت."""</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">,</span> <span class="n">chunk</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_rate</span> <span class="o">=</span> <span class="n">rate</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_chunk</span> <span class="o">=</span> <span class="n">chunk</span>
 
         <span class="c1"># إنشاء واجهة صوتية باستخدام PyAudio
-</span>        <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="p">.</span><span class="nc">PyAudio</span><span class="p">()</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_audio_stream</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">_audio_interface</span> <span class="o">=</span> <span class="n">pyaudio</span><span class="p">.</span><span class="n">PyAudio</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_audio_stream</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span>
             <span class="nb">format</span><span class="o">=</span><span class="n">pyaudio</span><span class="p">.</span><span class="n">paInt16</span><span class="p">,</span>
             <span class="c1"># تدعم واجهة البرمجة حاليًا الصوت أحادي القناة فقط (مونو)
 </span>            <span class="c1"># https://goo.gl/z726ff
-</span>            <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_rate</span><span class="p">,</span>
-            <span class="nb">input</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">frames_per_buffer</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_chunk</span><span class="p">,</span>
+</span>            <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">_rate</span><span class="p">,</span>
+            <span class="nb">input</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">frames_per_buffer</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">_chunk</span><span class="p">,</span>
             <span class="c1"># تشغيل دفق الصوت بشكل غير متزامن لملء كائن المخزن المؤقت.
 </span>            <span class="c1"># هذا ضروري حتى لا يفيض المخزن المؤقت لجهاز الإدخال
 </span>            <span class="c1"># بينما يقوم مؤشر ترابط الاتصال بطلبات الشبكة، إلخ.
-</span>            <span class="n">stream_callback</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">_fill_buffer</span><span class="p">,</span>
+</span>            <span class="n">stream_callback</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">_fill_buffer</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">False</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="nc">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_buff</span> <span class="o">=</span> <span class="n">queue</span><span class="p">.</span><span class="n">Queue</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_fill_buffer</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">in_data</span><span class="p">,</span> <span class="n">frame_count</span><span class="p">,</span> <span class="n">time_info</span><span class="p">,</span> <span class="n">status_flags</span><span class="p">):</span>
-        <span class="sh">"""</span><span class="s">جمع البيانات باستمرار من دفق الصوت، في المخزن المؤقت.</span><span class="sh">"""</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">in_data</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">_fill_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_data</span><span class="p">,</span> <span class="n">frame_count</span><span class="p">,</span> <span class="n">time_info</span><span class="p">,</span> <span class="n">status_flags</span><span class="p">):</span>
+        <span class="s">"""جمع البيانات باستمرار من دفق الصوت، في المخزن المؤقت."""</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">in_data</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="n">pyaudio</span><span class="p">.</span><span class="n">paContinue</span>
 
-    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record_seconds</span><span class="p">):</span>
-        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="ow">and</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">record_seconds</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">generator</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record_seconds</span><span class="p">):</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">.</span><span class="n">closed</span> <span class="ow">and</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">record_seconds</span><span class="p">:</span>
             <span class="c1"># استخدام دالة get() المُحجزة للتأكد من وجود جزء واحد على الأقل من
 </span>            <span class="c1"># البيانات، وإيقاف التكرار إذا كان الجزء فارغًا، مما يشير إلى
 </span>            <span class="c1"># نهاية دفق الصوت.
-</span>            <span class="n">chunk</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">get</span><span class="p">()</span>
+</span>            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                 <span class="k">return</span>
             <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">chunk</span><span class="p">]</span>
@@ -267,73 +267,73 @@
             <span class="c1"># الآن استهلك أي بيانات أخرى لا تزال مُخزنة مؤقتًا.
 </span>            <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">chunk</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+                    <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">block</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
                     <span class="k">if</span> <span class="n">chunk</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
                         <span class="k">return</span>
-                    <span class="n">data</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+                    <span class="n">data</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
                 <span class="k">except</span> <span class="n">queue</span><span class="p">.</span><span class="n">Empty</span><span class="p">:</span>
                     <span class="k">break</span>
 
-            <span class="k">yield</span> <span class="sa">b</span><span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">yield</span> <span class="sa">b</span><span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">closed</span> <span class="o">=</span> <span class="bp">True</span>
         <span class="c1"># إرسال إشارة إلى المولد لإنهاء عمله حتى لا
 </span>        <span class="c1"># تحجب طريقة التعرف على البث في العميل عملية الإنهاء.
-</span>        <span class="n">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_audio_stream</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">_buff</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_audio_stream</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_audio_interface</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">self</span>
+    <span class="k">def</span> <span class="nf">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="sh">'</span><span class="s">en-US</span><span class="sh">'</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="s">'en-US'</span><span class="p">):</span>
     <span class="c1"># انظر http://g.co/cloud/speech/docs/languages
 </span>    <span class="c1"># للحصول على قائمة باللغات المدعومة.
 </span>    <span class="c1"># language_code = 'en-US'  # وسم لغة BCP-47
 </span>
-    <span class="n">client</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">SpeechClient</span><span class="p">()</span>
-    <span class="n">config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">RecognitionConfig</span><span class="p">(</span>
+    <span class="n">client</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="n">SpeechClient</span><span class="p">()</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="n">RecognitionConfig</span><span class="p">(</span>
         <span class="n">encoding</span><span class="o">=</span><span class="n">speech</span><span class="p">.</span><span class="n">RecognitionConfig</span><span class="p">.</span><span class="n">AudioEncoding</span><span class="p">.</span><span class="n">LINEAR16</span><span class="p">,</span>
         <span class="n">sample_rate_hertz</span><span class="o">=</span><span class="n">RATE</span><span class="p">,</span>
         <span class="n">language_code</span><span class="o">=</span><span class="n">language_code</span><span class="p">,</span>
-        <span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">latest_long</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">model</span><span class="o">=</span><span class="s">"latest_long"</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="n">streaming_config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="nc">StreamingRecognitionConfig</span><span class="p">(</span>
+    <span class="n">streaming_config</span> <span class="o">=</span> <span class="n">speech</span><span class="p">.</span><span class="n">StreamingRecognitionConfig</span><span class="p">(</span>
         <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
         <span class="n">interim_results</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">with</span> <span class="nc">MicrophoneStream</span><span class="p">(</span><span class="n">RATE</span><span class="p">,</span> <span class="n">CHUNK</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
-        <span class="n">audio_generator</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="nf">generator</span><span class="p">(</span><span class="n">record_seconds</span><span class="p">)</span>
-        <span class="n">requests</span> <span class="o">=</span> <span class="p">(</span><span class="n">speech</span><span class="p">.</span><span class="nc">StreamingRecognizeRequest</span><span class="p">(</span><span class="n">audio_content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">MicrophoneStream</span><span class="p">(</span><span class="n">RATE</span><span class="p">,</span> <span class="n">CHUNK</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+        <span class="n">audio_generator</span> <span class="o">=</span> <span class="n">stream</span><span class="p">.</span><span class="n">generator</span><span class="p">(</span><span class="n">record_seconds</span><span class="p">)</span>
+        <span class="n">requests</span> <span class="o">=</span> <span class="p">(</span><span class="n">speech</span><span class="p">.</span><span class="n">StreamingRecognizeRequest</span><span class="p">(</span><span class="n">audio_content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
                     <span class="k">for</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">audio_generator</span><span class="p">)</span>
 
-        <span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">streaming_recognize</span><span class="p">(</span><span class="n">streaming_config</span><span class="p">,</span> <span class="n">requests</span><span class="p">)</span>
+        <span class="n">responses</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="n">streaming_recognize</span><span class="p">(</span><span class="n">streaming_config</span><span class="p">,</span> <span class="n">requests</span><span class="p">)</span>
 
         <span class="c1"># الآن، استخدام استجابات النسخ.
-</span>        <span class="n">transcript</span> <span class="o">=</span> <span class="sh">""</span>
+</span>        <span class="n">transcript</span> <span class="o">=</span> <span class="s">""</span>
         <span class="k">for</span> <span class="n">response</span> <span class="ow">in</span> <span class="n">responses</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
             <span class="c1"># بمجرد الانتهاء من النسخ، اطبع النتيجة.
 </span>            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">results</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">result</span><span class="p">.</span><span class="n">is_final</span><span class="p">:</span>
                     <span class="n">alternative</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">alternatives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-                    <span class="n">transcript</span> <span class="o">+=</span> <span class="n">alternative</span><span class="p">.</span><span class="n">transcript</span> <span class="o">+</span> <span class="sh">"</span><span class="s"> </span><span class="sh">"</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">u</span><span class="sh">'</span><span class="s">Transcript: {}</span><span class="sh">'</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">transcript</span><span class="p">))</span>
+                    <span class="n">transcript</span> <span class="o">+=</span> <span class="n">alternative</span><span class="p">.</span><span class="n">transcript</span> <span class="o">+</span> <span class="s">" "</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">u</span><span class="s">'Transcript: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">transcript</span><span class="p">))</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">التعرف على الكلام في الوقت الحقيقي مع مدة قابلة للتعديل.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--duration</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">مدة التسجيل بالثواني.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">'</span><span class="s">--language_code</span><span class="sh">'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">'</span><span class="s">en-US</span><span class="sh">'</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">رمز اللغة للنسخ.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">من فضلك تحدث...</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">language_code</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"التعرف على الكلام في الوقت الحقيقي مع مدة قابلة للتعديل."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--duration'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"مدة التسجيل بالثواني."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">'--language_code'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">'en-US'</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"رمز اللغة للنسخ."</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"من فضلك تحدث..."</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">record_seconds</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">duration</span><span class="p">,</span> <span class="n">language_code</span><span class="o">=</span><span class="n">args</span><span class="p">.</span><span class="n">language_code</span><span class="p">)</span>
 
 </code></pre></div></div>
 

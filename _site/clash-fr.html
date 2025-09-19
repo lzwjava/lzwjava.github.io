@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Automatisation de la Gestion des Proxies de Clash | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Automatisation de la Gestion des Proxies de Clash" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="fr" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,135 +209,135 @@
 
 <h2 id="clashpy">clash.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">urllib.parse</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
 
 <span class="c1"># Supposant que speed.py est dans le même répertoire ou accessible dans PYTHONPATH
-</span><span class="kn">from</span> <span class="n">speed</span> <span class="kn">import</span> <span class="n">get_top_proxies</span> 
+</span><span class="kn">from</span> <span class="nn">speed</span> <span class="kn">import</span> <span class="n">get_top_proxies</span> 
 
 <span class="c1"># --- Configuration ---
-</span><span class="n">CLASH_CONTROLLER_HOST</span> <span class="o">=</span> <span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span>
+</span><span class="n">CLASH_CONTROLLER_HOST</span> <span class="o">=</span> <span class="s">"127.0.0.1"</span>
 <span class="n">CLASH_CONTROLLER_PORT</span> <span class="o">=</span> <span class="mi">9090</span>
-<span class="n">CLASH_API_BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_PORT</span><span class="si">}</span><span class="sh">"</span>
+<span class="n">CLASH_API_BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_PORT</span><span class="si">}</span><span class="s">"</span>
 <span class="c1"># Le nom du groupe de proxy auquel le meilleur proxy individuel sera assigné.
 # Assurez-vous que ce groupe existe dans votre configuration Clash.
-</span><span class="n">TARGET_PROXY_GROUP</span> <span class="o">=</span> <span class="sh">"</span><span class="s">🚧Proxy</span><span class="sh">"</span> 
+</span><span class="n">TARGET_PROXY_GROUP</span> <span class="o">=</span> <span class="s">"🚧Proxy"</span> 
 
 <span class="k">def</span> <span class="nf">setup_logging</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Configure le logging de base pour le script.</span><span class="sh">"""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="sh">'</span><span class="s">clash.log</span><span class="sh">'</span><span class="p">,</span> 
+    <span class="s">"""Configure le logging de base pour le script."""</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="s">'clash.log'</span><span class="p">,</span> 
         <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="sh">'</span><span class="s">%(asctime)s - %(message)s</span><span class="sh">'</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="sh">'</span><span class="s">%Y-%m-%d %H:%M:%S</span><span class="sh">'</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s">'%(asctime)s - %(message)s'</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s">'%Y-%m-%d %H:%M:%S'</span>
     <span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">global_proxy_address</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Définit les variables d</span><span class="sh">'</span><span class="s">environnement du proxy système.</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">GLOBAL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_proxy_address</span> <span class="c1"># Défini pour cohérence si nécessaire ailleurs
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
+    <span class="s">"""Définit les variables d'environnement du proxy système."""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"GLOBAL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_proxy_address</span> <span class="c1"># Défini pour cohérence si nécessaire ailleurs
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"https_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
     <span class="c1"># Ces variables n'ont généralement pas besoin d'être explicitement définies à "false" avec les outils modernes,
 </span>    <span class="c1"># mais conservées pour compatibilité avec l'intention originale de votre script.
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span> 
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Proxy système défini sur : </span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"false"</span> 
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"false"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"ALL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Proxy système défini sur : </span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">stop_system_proxy</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Efface les variables d</span><span class="sh">'</span><span class="s">environnement du proxy système.</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span> <span class="c1"># Revenir à la valeur par défaut
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Proxy système arrêté (variables d</span><span class="sh">'</span><span class="s">environnement effacées).</span><span class="sh">"</span><span class="p">)</span>
+    <span class="s">"""Efface les variables d'environnement du proxy système."""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"https_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"true"</span> <span class="c1"># Revenir à la valeur par défaut
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"true"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"ALL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Proxy système arrêté (variables d'environnement effacées)."</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">proxy_name</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Bascule le proxy actif dans un groupe de proxy Clash spécifié vers un nouveau proxy.
-    </span><span class="sh">"""</span>
-    <span class="n">encoded_group_name</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span><span class="p">.</span><span class="nf">quote</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">/proxies/</span><span class="si">{</span><span class="n">encoded_group_name</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">}</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="n">proxy_name</span><span class="p">}</span>
+    """</span>
+    <span class="n">encoded_group_name</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span><span class="p">.</span><span class="n">quote</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">/proxies/</span><span class="si">{</span><span class="n">encoded_group_name</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">proxy_name</span><span class="p">}</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Bascule réussie de </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> vers </span><span class="sh">'</span><span class="si">{</span><span class="n">proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Bascule réussie de '</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">' vers '</span><span class="si">{</span><span class="n">proxy_name</span><span class="si">}</span><span class="s">'."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="nb">ConnectionError</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur : Impossible de se connecter à l</span><span class="sh">'</span><span class="s">API Clash à </span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s"> pour basculer le proxy.</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">Assurez-vous que Clash est en cours d</span><span class="sh">'</span><span class="s">exécution et que son external-controller est configuré.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur : Impossible de se connecter à l'API Clash à </span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s"> pour basculer le proxy."</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Assurez-vous que Clash est en cours d'exécution et que son external-controller est configuré."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">Timeout</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur : Connexion à l</span><span class="sh">'</span><span class="s">API Clash expirée lors de la bascule du proxy pour </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur : Connexion à l'API Clash expirée lors de la bascule du proxy pour '</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">'."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Une erreur inattendue s</span><span class="sh">'</span><span class="s">est produite lors de la bascule du proxy pour </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Une erreur inattendue s'est produite lors de la bascule du proxy pour '</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">' : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Fonction principale pour gérer la configuration de Clash, le redémarrage et la sélection du meilleur proxy.</span><span class="sh">"""</span>
-    <span class="nf">setup_logging</span><span class="p">()</span>
+    <span class="s">"""Fonction principale pour gérer la configuration de Clash, le redémarrage et la sélection du meilleur proxy."""</span>
+    <span class="n">setup_logging</span><span class="p">()</span>
     
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Script de configuration et de gestion de Clash.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--minutes</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Minutes entre les mises à jour (par défaut : 10)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--iterations</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Nombre d</span><span class="sh">'</span><span class="s">itérations (par défaut : 1000)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">--config-url</span><span class="sh">"</span><span class="p">,</span> 
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Script de configuration et de gestion de Clash."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--minutes"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Minutes entre les mises à jour (par défaut : 10)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--iterations"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Nombre d'itérations (par défaut : 1000)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s">"--config-url"</span><span class="p">,</span> 
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
-        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">CLASH_DOWNLOAD_URL</span><span class="sh">"</span><span class="p">),</span>
-        <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">URL pour télécharger la configuration de Clash. Par défaut, utilise la variable d</span><span class="sh">'</span><span class="s">environnement CLASH_DOWNLOAD_URL si définie, sinon une URL codée en dur.</span><span class="sh">"</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"CLASH_DOWNLOAD_URL"</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s">"URL pour télécharger la configuration de Clash. Par défaut, utilise la variable d'environnement CLASH_DOWNLOAD_URL si définie, sinon une URL codée en dur."</span>
     <span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
     <span class="n">ITERATIONS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">iterations</span>
     <span class="n">SLEEP_SECONDS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
     <span class="n">config_download_url</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">config_url</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">config_download_url</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">Erreur : Aucune URL de téléchargement de configuration fournie. Veuillez définir la variable d</span><span class="sh">'</span><span class="s">environnement CLASH_DOWNLOAD_URL ou utiliser l</span><span class="sh">'</span><span class="s">argument --config-url.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="s">"Erreur : Aucune URL de téléchargement de configuration fournie. Veuillez définir la variable d'environnement CLASH_DOWNLOAD_URL ou utiliser l'argument --config-url."</span><span class="p">)</span>
         <span class="k">return</span> <span class="c1"># Quitte si aucune URL n'est disponible
 </span>
-    <span class="n">clash_executable_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">/home/lzw/clash-linux-386-v1.17.0/clash-linux-386</span><span class="sh">"</span>
-    <span class="n">clash_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="sh">"</span><span class="s">~/.config/clash</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">clash_config_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="sh">"</span><span class="s">config.yaml</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">clash_executable_path</span> <span class="o">=</span> <span class="s">"/home/lzw/clash-linux-386-v1.17.0/clash-linux-386"</span>
+    <span class="n">clash_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">"~/.config/clash"</span><span class="p">)</span>
+    <span class="n">clash_config_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="s">"config.yaml"</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ITERATIONS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- Début de l</span><span class="sh">'</span><span class="s">itération </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> sur </span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ITERATIONS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"--- Début de l'itération </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> sur </span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> ---"</span><span class="p">)</span>
 
         <span class="c1"># Étape 1 : Arrête tous les paramètres de proxy système existants
-</span>        <span class="nf">stop_system_proxy</span><span class="p">()</span>
+</span>        <span class="n">stop_system_proxy</span><span class="p">()</span>
         
         <span class="c1"># Étape 2 : Télécharge et met à jour la configuration de Clash
 </span>        <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Téléchargement de la nouvelle configuration depuis : </span><span class="si">{</span><span class="n">config_download_url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">wget</span><span class="sh">"</span><span class="p">,</span> <span class="n">config_download_url</span><span class="p">,</span> <span class="sh">"</span><span class="s">-O</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">shutil</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">,</span> <span class="n">clash_config_path</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Configuration de Clash mise à jour avec succès !</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Téléchargement de la nouvelle configuration depuis : </span><span class="si">{</span><span class="n">config_download_url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"wget"</span><span class="p">,</span> <span class="n">config_download_url</span><span class="p">,</span> <span class="s">"-O"</span><span class="p">,</span> <span class="s">"zhs4.yaml"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="s">"zhs4.yaml"</span><span class="p">,</span> <span class="n">clash_config_path</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Configuration de Clash mise à jour avec succès !"</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Échec du téléchargement ou du déplacement du fichier de configuration : </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">decode</span><span class="p">().</span><span class="nf">strip</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">Passage à l</span><span class="sh">'</span><span class="s">itération suivante.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Attend un peu avant de réessayer
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Échec du téléchargement ou du déplacement du fichier de configuration : </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">decode</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Passage à l'itération suivante."</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Attend un peu avant de réessayer
 </span>            <span class="k">continue</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Une erreur inattendue s</span><span class="sh">'</span><span class="s">est produite lors de la mise à jour de la configuration : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">Passage à l</span><span class="sh">'</span><span class="s">itération suivante.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Une erreur inattendue s'est produite lors de la mise à jour de la configuration : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Passage à l'itération suivante."</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
             <span class="k">continue</span>
 
         <span class="c1"># Étape 3 : Démarre Clash en arrière-plan
@@ -345,72 +345,72 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Il est crucial que Clash démarre avec l'external-controller activé et accessible
 </span>            <span class="c1"># Ceci est généralement configuré dans le fichier config.yaml lui-même.
-</span>            <span class="n">clash_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nc">Popen</span><span class="p">([</span><span class="n">clash_executable_path</span><span class="p">],</span> 
+</span>            <span class="n">clash_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">clash_executable_path</span><span class="p">],</span> 
                                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Clash démarré avec le PID </span><span class="si">{</span><span class="n">clash_process</span><span class="p">.</span><span class="n">pid</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Clash démarré avec le PID </span><span class="si">{</span><span class="n">clash_process</span><span class="p">.</span><span class="n">pid</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="c1"># Donne un moment à Clash pour s'initialiser complètement et ouvrir son port API
-</span>            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
+</span>            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
         <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Exécutable Clash introuvable à l</span><span class="sh">'</span><span class="s">emplacement : </span><span class="si">{</span><span class="n">clash_executable_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">Veuillez vérifier que le chemin est correct et que Clash est installé.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s">"Exécutable Clash introuvable à l'emplacement : </span><span class="si">{</span><span class="n">clash_executable_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="s">"Veuillez vérifier que le chemin est correct et que Clash est installé."</span><span class="p">)</span>
             <span class="k">return</span> <span class="c1"># Erreur critique, quitte le script
 </span>        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Échec du démarrage de Clash : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">Passage à l</span><span class="sh">'</span><span class="s">itération suivante.</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span> <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Échec du démarrage de Clash : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Passage à l'itération suivante."</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span> <span class="n">clash_process</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
             <span class="k">continue</span>
 
         <span class="c1"># Étape 4 : Teste les vitesses des proxies et sélectionne le meilleur
 </span>        <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Test des vitesses des proxies pour trouver le meilleur...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">top_proxies</span> <span class="o">=</span> <span class="nf">get_top_proxies</span><span class="p">(</span><span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Obtient uniquement le meilleur proxy
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Test des vitesses des proxies pour trouver le meilleur..."</span><span class="p">)</span>
+            <span class="n">top_proxies</span> <span class="o">=</span> <span class="n">get_top_proxies</span><span class="p">(</span><span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Obtient uniquement le meilleur proxy
 </span>            <span class="k">if</span> <span class="n">top_proxies</span><span class="p">:</span>
-                <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Meilleur proxy identifié : </span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> avec une latence de </span><span class="si">{</span><span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">latency</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">ms</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Meilleur proxy identifié : '</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="s">' avec une latence de </span><span class="si">{</span><span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'latency'</span><span class="p">]</span><span class="si">}</span><span class="s">ms"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Aucun test de proxy réussi. Impossible de sélectionner un meilleur proxy pour cette itération.</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Aucun test de proxy réussi. Impossible de sélectionner un meilleur proxy pour cette itération."</span><span class="p">)</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors du test de vitesse des proxies : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors du test de vitesse des proxies : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
         <span class="c1"># Étape 5 : Bascule le groupe de proxy de Clash vers le meilleur proxy (si trouvé)
 </span>        <span class="k">if</span> <span class="n">best_proxy_name</span><span class="p">:</span>
             <span class="c1"># Avant de définir le proxy système, assure que Clash est correctement configuré.
 </span>            <span class="c1"># Définit le proxy système pour pointer vers le proxy HTTP local de Clash.
 </span>            <span class="c1"># Clash exécute généralement son proxy HTTP sur le port 7890 (ou similaire, vérifiez votre configuration).
-</span>            <span class="n">clash_local_proxy_address</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:7890</span><span class="sh">"</span> <span class="c1"># Ajustez si votre port HTTP Clash est différent
-</span>            <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">clash_local_proxy_address</span><span class="p">)</span>
+</span>            <span class="n">clash_local_proxy_address</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:7890"</span> <span class="c1"># Ajustez si votre port HTTP Clash est différent
+</span>            <span class="n">start_system_proxy</span><span class="p">(</span><span class="n">clash_local_proxy_address</span><span class="p">)</span>
             
-            <span class="k">if</span> <span class="ow">not</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">TARGET_PROXY_GROUP</span><span class="p">,</span> <span class="n">best_proxy_name</span><span class="p">):</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Échec de la bascule du groupe Clash </span><span class="sh">'</span><span class="si">{</span><span class="n">TARGET_PROXY_GROUP</span><span class="si">}</span><span class="sh">'</span><span class="s"> vers </span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">switch_clash_proxy_group</span><span class="p">(</span><span class="n">TARGET_PROXY_GROUP</span><span class="p">,</span> <span class="n">best_proxy_name</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Échec de la bascule du groupe Clash '</span><span class="si">{</span><span class="n">TARGET_PROXY_GROUP</span><span class="si">}</span><span class="s">' vers '</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="s">'."</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Aucun meilleur proxy trouvé, saute la bascule du groupe de proxy et la configuration du proxy système pour cette itération.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Aucun meilleur proxy trouvé, saute la bascule du groupe de proxy et la configuration du proxy système pour cette itération."</span><span class="p">)</span>
             
         <span class="c1"># Étape 6 : Attend la durée spécifiée
-</span>        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Attente de </span><span class="si">{</span><span class="n">SLEEP_SECONDS</span> <span class="o">/</span> <span class="mi">60</span><span class="si">}</span><span class="s"> minutes avant la prochaine itération...</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">SLEEP_SECONDS</span><span class="p">)</span>
+</span>        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Attente de </span><span class="si">{</span><span class="n">SLEEP_SECONDS</span> <span class="o">/</span> <span class="mi">60</span><span class="si">}</span><span class="s"> minutes avant la prochaine itération..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">SLEEP_SECONDS</span><span class="p">)</span>
 
         <span class="c1"># Étape 7 : Arrête le processus Clash
 </span>        <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Arrêt du processus Clash...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Arrêt du processus Clash..."</span><span class="p">)</span>
+            <span class="n">clash_process</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Donne un peu plus de temps à Clash pour s'arrêter proprement
-</span>                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Clash arrêté avec succès.</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Donne un peu plus de temps à Clash pour s'arrêter proprement
+</span>                <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Clash arrêté avec succès."</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Clash ne s</span><span class="sh">'</span><span class="s">est pas arrêté proprement, kill du processus.</span><span class="sh">"</span><span class="p">)</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">kill</span><span class="p">()</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">()</span> <span class="c1"># S'assure que le processus est bien tué
+                <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Clash ne s'est pas arrêté proprement, kill du processus."</span><span class="p">)</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">kill</span><span class="p">()</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">wait</span><span class="p">()</span> <span class="c1"># S'assure que le processus est bien tué
 </span>            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Erreur lors de l</span><span class="sh">'</span><span class="s">attente de l</span><span class="sh">'</span><span class="s">arrêt de Clash : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Erreur lors de l'attente de l'arrêt de Clash : </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- Itération </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> terminée ---</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"--- Itération </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> terminée ---"</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> itérations terminées. Script terminé.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> itérations terminées. Script terminé."</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="speedpy">speed.py</h2>

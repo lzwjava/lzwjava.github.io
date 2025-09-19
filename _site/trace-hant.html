@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>端到端追蹤ID實現 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="端到端追蹤ID實現" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -272,7 +272,7 @@
     <span class="kd">const</span> <span class="p">{</span> <span class="nx">width</span><span class="p">,</span> <span class="nx">height</span> <span class="p">}</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">screen</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">connection</span> <span class="o">=</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">connection</span> <span class="o">||</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">mozConnection</span> <span class="o">||</span> <span class="nb">navigator</span><span class="p">.</span><span class="nx">webkitConnection</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">networkType</span> <span class="o">=</span> <span class="nx">connection</span> <span class="p">?</span> <span class="nx">connection</span><span class="p">.</span><span class="nx">effectiveType</span> <span class="p">:</span> <span class="dl">'</span><span class="s1">unknown</span><span class="dl">'</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">timeZone</span> <span class="o">=</span> <span class="nx">Intl</span><span class="p">.</span><span class="nc">DateTimeFormat</span><span class="p">().</span><span class="nf">resolvedOptions</span><span class="p">().</span><span class="nx">timeZone</span><span class="p">;</span>
+    <span class="kd">const</span> <span class="nx">timeZone</span> <span class="o">=</span> <span class="nx">Intl</span><span class="p">.</span><span class="nx">DateTimeFormat</span><span class="p">().</span><span class="nx">resolvedOptions</span><span class="p">().</span><span class="nx">timeZone</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">referrer</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">referrer</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">viewportWidth</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerWidth</span><span class="p">;</span>
     <span class="kd">const</span> <span class="nx">viewportHeight</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="p">;</span>
@@ -297,27 +297,27 @@
 <span class="k">export</span> <span class="kd">const</span> <span class="nx">generateTraceId</span> <span class="o">=</span> <span class="p">(</span><span class="nx">length</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">characters</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789</span><span class="dl">'</span><span class="p">;</span>
     <span class="kd">let</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
-    <span class="k">for </span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">const</span> <span class="nx">randomIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nf">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">characters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
-        <span class="nx">traceId</span> <span class="o">+=</span> <span class="nx">characters</span><span class="p">.</span><span class="nf">charAt</span><span class="p">(</span><span class="nx">randomIndex</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">randomIndex</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="nx">characters</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>
+        <span class="nx">traceId</span> <span class="o">+=</span> <span class="nx">characters</span><span class="p">.</span><span class="nx">charAt</span><span class="p">(</span><span class="nx">randomIndex</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="nx">traceId</span><span class="p">;</span>
 <span class="p">};</span>
 
-<span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">const</span> <span class="nx">apiFetch</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="nx">endpoint</span><span class="p">,</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">url</span> <span class="o">=</span> <span class="s2">`</span><span class="p">${</span><span class="nx">BASE_URL</span><span class="p">}${</span><span class="nx">endpoint</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
-    <span class="kd">const</span> <span class="nx">clientInfo</span> <span class="o">=</span> <span class="nf">getClientInfo</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">clientInfo</span> <span class="o">=</span> <span class="nx">getClientInfo</span><span class="p">();</span>
 
-    <span class="kd">const</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">traceId</span> <span class="o">||</span> <span class="nf">generateTraceId</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">traceId</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">traceId</span> <span class="o">||</span> <span class="nx">generateTraceId</span><span class="p">();</span>
 
     <span class="kd">const</span> <span class="nx">headers</span> <span class="o">=</span> <span class="p">{</span>
         <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
-        <span class="dl">'</span><span class="s1">X-Client-Info</span><span class="dl">'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">clientInfo</span><span class="p">),</span>
+        <span class="dl">'</span><span class="s1">X-Client-Info</span><span class="dl">'</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">clientInfo</span><span class="p">),</span>
         <span class="dl">'</span><span class="s1">X-Trace-Id</span><span class="dl">'</span><span class="p">:</span> <span class="nx">traceId</span><span class="p">,</span>
         <span class="p">...(</span><span class="nx">options</span><span class="p">.</span><span class="nx">headers</span> <span class="o">||</span> <span class="p">{})</span>
     <span class="p">};</span>
 
-    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">fetch</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span> <span class="p">{</span>
         <span class="p">...</span><span class="nx">options</span><span class="p">,</span>
         <span class="nx">headers</span>
     <span class="p">});</span>
@@ -329,41 +329,41 @@
 <h3 id="appjs"><code class="language-plaintext highlighter-rouge">App.js</code></h3>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">try</span> <span class="p">{</span>
-  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nf">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">apiFetch</span><span class="p">(</span><span class="dl">'</span><span class="s1">api</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">POST</span><span class="dl">'</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
+    <span class="na">body</span><span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">content</span><span class="p">),</span>
     <span class="na">traceId</span><span class="p">:</span> <span class="nx">traceId</span>
   <span class="p">});</span>
 
-  <span class="k">if </span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">ok</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
     <span class="c1">//...        </span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nf">json</span><span class="p">();</span>
+    <span class="kd">const</span> <span class="nx">errorData</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
     <span class="kd">const</span> <span class="nx">errorMessage</span> <span class="o">=</span> <span class="nx">errorData</span><span class="p">.</span><span class="nx">message</span> <span class="o">||</span> <span class="dl">'</span><span class="s1">An unknown error occurred</span><span class="dl">'</span><span class="p">;</span>
     <span class="kd">let</span> <span class="nx">errorToastMessage</span> <span class="o">=</span> <span class="nx">errorMessage</span><span class="p">;</span>
     <span class="nx">errorToastMessage</span> <span class="o">+=</span> <span class="s2">` (Trace ID: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
-    <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">,</span> <span class="p">{</span>
       <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
     <span class="p">});</span>
-    <span class="nf">setError</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">);</span>
+    <span class="nx">setError</span><span class="p">(</span><span class="nx">errorToastMessage</span><span class="p">);</span>
   <span class="p">}</span>
-<span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">errorString</span> <span class="o">=</span> <span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">errorString</span> <span class="o">=</span> <span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span> <span class="p">?</span> <span class="nx">error</span><span class="p">.</span><span class="nx">message</span> <span class="p">:</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
-  <span class="kd">const</span> <span class="nx">duration</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nf">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+  <span class="kd">const</span> <span class="nx">duration</span> <span class="o">=</span> <span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
 
-  <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 請求已發出，但服務器回應的狀態碼不在2xx範圍內</span>
     <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (HTTP </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">status</span><span class="p">}</span><span class="s2">: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">statusText</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Response error data:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
-  <span class="p">}</span> <span class="k">else</span> <span class="k">if </span><span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Response error data:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// 請求已發出，但未收到回應</span>
     <span class="nx">errorString</span> <span class="o">+=</span> <span class="dl">'</span><span class="s1"> (No response received)</span><span class="dl">'</span><span class="p">;</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Request error data:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="dl">'</span><span class="s1">Request error data:</span><span class="dl">'</span><span class="p">,</span> <span class="nx">error</span><span class="p">.</span><span class="nx">request</span><span class="p">);</span>
   <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
     <span class="c1">// 在設置請求時發生了錯誤，觸發了Error</span>
     <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (Error setting up request: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
@@ -371,20 +371,20 @@
 
   <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (Trace ID: </span><span class="p">${</span><span class="nx">traceId</span><span class="p">}</span><span class="s2">)`</span><span class="p">;</span>
 
-  <span class="k">if </span><span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span> <span class="k">instanceof</span> <span class="nb">Error</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">`\nStack: </span><span class="p">${</span><span class="nx">error</span><span class="p">.</span><span class="nx">stack</span><span class="p">}</span><span class="s2">`</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="nx">errorString</span> <span class="o">+=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nf">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="nx">errorString</span> <span class="o">+=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
   <span class="nx">errorString</span> <span class="o">+=</span> <span class="s2">` (Duration: </span><span class="p">${</span><span class="nx">duration</span><span class="p">}</span><span class="s2"> seconds)`</span><span class="p">;</span>
 
-  <span class="nx">toast</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="s2">`Error: </span><span class="p">${</span><span class="nx">errorString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">`Error: </span><span class="p">${</span><span class="nx">errorString</span><span class="p">}</span><span class="s2">`</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">autoClose</span><span class="p">:</span> <span class="mi">8000</span>
   <span class="p">});</span>
-  <span class="nf">setError</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
+  <span class="nx">setError</span><span class="p">(</span><span class="nx">errorString</span><span class="p">);</span>
 <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-  <span class="nx">toast</span><span class="p">.</span><span class="nf">dismiss</span><span class="p">(</span><span class="nx">toastId</span><span class="p">);</span>
+  <span class="nx">toast</span><span class="p">.</span><span class="nx">dismiss</span><span class="p">(</span><span class="nx">toastId</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -394,120 +394,120 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># -*- encoding: utf-8 -*-
 </span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">uuid</span>
-<span class="kn">import</span> <span class="n">string</span>
-<span class="kn">import</span> <span class="n">random</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">import</span> <span class="nn">random</span>
 
-<span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">has_request_context</span>
-<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">Response</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">has_request_context</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
 
-<span class="kn">from</span> <span class="n">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
-<span class="kn">from</span> <span class="n">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
-<span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="n">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
-<span class="kn">from</span> <span class="n">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
-<span class="kn">from</span> <span class="n">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
-<span class="kn">from</span> <span class="n">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
+<span class="kn">from</span> <span class="nn">.routes</span> <span class="kn">import</span> <span class="n">initialize_routes</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">insert_default_config</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">logging.handlers</span> <span class="kn">import</span> <span class="n">RotatingFileHandler</span>
+<span class="kn">from</span> <span class="nn">prometheus_client</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">generate_latest</span><span class="p">,</span> <span class="n">Gauge</span>
+<span class="kn">from</span> <span class="nn">flask_migrate</span> <span class="kn">import</span> <span class="n">Migrate</span>
+<span class="kn">from</span> <span class="nn">logstash_formatter</span> <span class="kn">import</span> <span class="n">LogstashFormatterV1</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="nf">from_object</span><span class="p">(</span><span class="sh">'</span><span class="s">api.config.BaseConfig</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">app</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">from_object</span><span class="p">(</span><span class="s">'api.config.BaseConfig'</span><span class="p">)</span>
 
-<span class="n">db</span><span class="p">.</span><span class="nf">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-<span class="nf">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">db</span><span class="p">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">initialize_routes</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
 
-<span class="n">migrate</span> <span class="o">=</span> <span class="nc">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
+<span class="n">migrate</span> <span class="o">=</span> <span class="n">Migrate</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">db</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">RequestFormatter</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">Formatter</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
-            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="s">'trace_id'</span><span class="p">,</span> <span class="s">'unknown'</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
-        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="s">'unknown'</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">().</span><span class="nb">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
 
 
 <span class="k">class</span> <span class="nc">CustomLogstashFormatter</span><span class="p">(</span><span class="n">LogstashFormatterV1</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nf">has_request_context</span><span class="p">():</span>
-            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nf">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">has_request_context</span><span class="p">():</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="s">'trace_id'</span><span class="p">,</span> <span class="s">'unknown'</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="sh">'</span><span class="s">unknown</span><span class="sh">'</span>
-        <span class="k">return</span> <span class="nf">super</span><span class="p">().</span><span class="nf">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+            <span class="n">record</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="s">'unknown'</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">().</span><span class="nb">format</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">setup_loggers</span><span class="p">():</span>
-    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
-        <span class="sh">'</span><span class="s">app.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="nc">CustomLogstashFormatter</span><span class="p">()</span>
-    <span class="n">logstash_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
+    <span class="n">logstash_handler</span> <span class="o">=</span> <span class="n">RotatingFileHandler</span><span class="p">(</span>
+        <span class="s">'app.log'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logstash_formatter</span> <span class="o">=</span> <span class="n">CustomLogstashFormatter</span><span class="p">()</span>
+    <span class="n">logstash_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">logstash_formatter</span><span class="p">)</span>
 
-    <span class="n">txt_handler</span> <span class="o">=</span> <span class="nc">RotatingFileHandler</span><span class="p">(</span>
-        <span class="sh">'</span><span class="s">plain.log</span><span class="sh">'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">txt_handler</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="n">txt_formatter</span> <span class="o">=</span> <span class="nc">RequestFormatter</span><span class="p">(</span>
-        <span class="sh">'</span><span class="s">%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d] [trace_id: %(trace_id)s]</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">txt_handler</span><span class="p">.</span><span class="nf">setFormatter</span><span class="p">(</span><span class="n">txt_formatter</span><span class="p">)</span>
+    <span class="n">txt_handler</span> <span class="o">=</span> <span class="n">RotatingFileHandler</span><span class="p">(</span>
+        <span class="s">'plain.log'</span><span class="p">,</span> <span class="n">maxBytes</span><span class="o">=</span><span class="mi">100000000</span><span class="p">,</span> <span class="n">backupCount</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">txt_handler</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">txt_formatter</span> <span class="o">=</span> <span class="n">RequestFormatter</span><span class="p">(</span>
+        <span class="s">'%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d] [trace_id: %(trace_id)s]'</span><span class="p">)</span>
+    <span class="n">txt_handler</span><span class="p">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">txt_formatter</span><span class="p">)</span>
 
-    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">()</span>
-    <span class="n">root_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
-    <span class="n">root_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
 
-    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
-    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
 
-    <span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="nf">getLogger</span><span class="p">(</span><span class="sh">'</span><span class="s">werkzeug</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
-    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
-    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="nf">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
+    <span class="n">werkzeug_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="p">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s">'werkzeug'</span><span class="p">)</span>
+    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="p">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logstash_handler</span><span class="p">)</span>
+    <span class="n">werkzeug_logger</span><span class="p">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">txt_handler</span><span class="p">)</span>
 
 
-<span class="nf">setup_loggers</span><span class="p">()</span>
+<span class="n">setup_loggers</span><span class="p">()</span>
 
 
 <span class="k">def</span> <span class="nf">generate_trace_id</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">):</span>
     <span class="n">characters</span> <span class="o">=</span> <span class="n">string</span><span class="p">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="p">.</span><span class="n">digits</span>
-    <span class="k">return</span> <span class="sh">''</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s">''</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">random</span><span class="p">.</span><span class="n">choice</span><span class="p">(</span><span class="n">characters</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
 
 
-<span class="nd">@app.before_request</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">before_request</span>
 <span class="k">def</span> <span class="nf">before_request</span><span class="p">():</span>
-    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
-    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">,</span> <span class="nf">generate_trace_id</span><span class="p">())</span>
+    <span class="n">request</span><span class="p">.</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">trace_id</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'X-Trace-Id'</span><span class="p">,</span> <span class="n">generate_trace_id</span><span class="p">())</span>
     <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span> <span class="o">=</span> <span class="n">trace_id</span>
 
-    <span class="n">client_info</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">X-Client-Info</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">client_info</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">headers</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'X-Client-Info'</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">client_info</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">client_info_json</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">client_info</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Client Info: </span><span class="si">{</span><span class="n">client_info_json</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">client_info_json</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">client_info</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"Client Info: </span><span class="si">{</span><span class="n">client_info_json</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">json</span><span class="p">.</span><span class="n">JSONDecodeError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Invalid JSON format for X-Client-Info header</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Invalid JSON format for X-Client-Info header"</span><span class="p">)</span>
 
 
-<span class="nd">@app.after_request</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">after_request</span>
 <span class="k">def</span> <span class="nf">after_request</span><span class="p">(</span><span class="n">response</span><span class="p">):</span>
-    <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="sh">'</span><span class="s">X-Trace-Id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+    <span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">[</span><span class="s">'X-Trace-Id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
 
     <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">Response status code: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">Response body: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="nf">get_data</span><span class="p">(</span><span class="n">as_text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="si">}</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">'Response status code: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">'Response body: </span><span class="si">{</span><span class="n">response</span><span class="p">.</span><span class="n">get_data</span><span class="p">(</span><span class="n">as_text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="si">}</span><span class="s">'</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">content_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">application/json</span><span class="sh">'</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">content_type</span> <span class="o">==</span> <span class="s">'application/json'</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">get_json</span><span class="p">()</span>
-                <span class="n">response_json</span><span class="p">[</span><span class="sh">'</span><span class="s">trace_id</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
-                <span class="n">response</span><span class="p">.</span><span class="nf">set_data</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">response_json</span><span class="p">))</span>
+                <span class="n">response_json</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+                <span class="n">response_json</span><span class="p">[</span><span class="s">'trace_id'</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">.</span><span class="n">trace_id</span>
+                <span class="n">response</span><span class="p">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">response_json</span><span class="p">))</span>
             <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error adding trace_id to response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error adding trace_id to response: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">response</span>
 </code></pre></div></div>

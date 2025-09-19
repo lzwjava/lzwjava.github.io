@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Unofficial Python wrapper for GitHub Copilot | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Unofficial Python wrapper for GitHub Copilot" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -249,11 +249,11 @@ Some forks of this repo include a token extractor script.</li>
 </ol>
 
 <h4 id="set-the-token-in-python"><strong>Set the Token in Python</strong></h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
 
-<span class="n">copilot</span> <span class="o">=</span> <span class="nc">Copilot</span><span class="p">(</span>
-    <span class="n">auth_token</span><span class="o">=</span><span class="sh">"</span><span class="s">YOUR_COPILOT_TOKEN</span><span class="sh">"</span><span class="p">,</span>  <span class="c1"># From DevTools
-</span>    <span class="n">proxy</span><span class="o">=</span><span class="sh">"</span><span class="s">http://your-proxy:port</span><span class="sh">"</span>    <span class="c1"># Optional (if behind a proxy)
+<span class="n">copilot</span> <span class="o">=</span> <span class="n">Copilot</span><span class="p">(</span>
+    <span class="n">auth_token</span><span class="o">=</span><span class="s">"YOUR_COPILOT_TOKEN"</span><span class="p">,</span>  <span class="c1"># From DevTools
+</span>    <span class="n">proxy</span><span class="o">=</span><span class="s">"http://your-proxy:port"</span>    <span class="c1"># Optional (if behind a proxy)
 </span><span class="p">)</span>
 </code></pre></div></div>
 
@@ -261,27 +261,27 @@ Some forks of this repo include a token extractor script.</li>
 
 <h3 id="3-basic-usage-examples"><strong>3. Basic Usage Examples</strong></h3>
 <h4 id="get-code-completions"><strong>Get Code Completions</strong></h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="nf">get_completion</span><span class="p">(</span>
-    <span class="n">prompt</span><span class="o">=</span><span class="sh">"</span><span class="s">def calculate_factorial(n):</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">language</span><span class="o">=</span><span class="sh">"</span><span class="s">python</span><span class="sh">"</span><span class="p">,</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="n">get_completion</span><span class="p">(</span>
+    <span class="n">prompt</span><span class="o">=</span><span class="s">"def calculate_factorial(n):"</span><span class="p">,</span>
+    <span class="n">language</span><span class="o">=</span><span class="s">"python"</span><span class="p">,</span>
     <span class="n">n</span><span class="o">=</span><span class="mi">3</span>  <span class="c1"># Number of suggestions
 </span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre></div></div>
 <p><strong>Output Example:</strong></p>
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span>
-    <span class="sh">"</span><span class="s">def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    if n == 0:</span><span class="se">\n</span><span class="s">        return 1</span><span class="se">\n</span><span class="s">    else:</span><span class="se">\n</span><span class="s">        return n * calculate_factorial(n-1)</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    result = 1</span><span class="se">\n</span><span class="s">    for i in range(1, n+1):</span><span class="se">\n</span><span class="s">        result *= i</span><span class="se">\n</span><span class="s">    return result</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    return 1 if n &lt;= 1 else n * calculate_factorial(n - 1)</span><span class="sh">"</span>
+    <span class="s">"def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    if n == 0:</span><span class="se">\n</span><span class="s">        return 1</span><span class="se">\n</span><span class="s">    else:</span><span class="se">\n</span><span class="s">        return n * calculate_factorial(n-1)"</span><span class="p">,</span>
+    <span class="s">"def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    result = 1</span><span class="se">\n</span><span class="s">    for i in range(1, n+1):</span><span class="se">\n</span><span class="s">        result *= i</span><span class="se">\n</span><span class="s">    return result"</span><span class="p">,</span>
+    <span class="s">"def calculate_factorial(n):</span><span class="se">\n</span><span class="s">    return 1 if n &lt;= 1 else n * calculate_factorial(n - 1)"</span>
 <span class="p">]</span>
 </code></pre></div></div>
 
 <h4 id="get-code-explanation"><strong>Get Code Explanation</strong></h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">explanation</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="nf">explain_code</span><span class="p">(</span>
-    <span class="n">code</span><span class="o">=</span><span class="sh">"</span><span class="s">def factorial(n): return 1 if n &lt;= 1 else n * factorial(n - 1)</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">language</span><span class="o">=</span><span class="sh">"</span><span class="s">python</span><span class="sh">"</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">explanation</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="n">explain_code</span><span class="p">(</span>
+    <span class="n">code</span><span class="o">=</span><span class="s">"def factorial(n): return 1 if n &lt;= 1 else n * factorial(n - 1)"</span><span class="p">,</span>
+    <span class="n">language</span><span class="o">=</span><span class="s">"python"</span>
 <span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">explanation</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">explanation</span><span class="p">)</span>
 </code></pre></div></div>
 <p><strong>Output Example:</strong></p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>This is a recursive function to calculate the factorial of a number `n`.
@@ -291,44 +291,44 @@ Some forks of this repo include a token extractor script.</li>
 
 <h4 id="chat-with-copilot-if-supported"><strong>Chat with Copilot (if supported)</strong></h4>
 <p>Some versions allow conversational interactions:</p>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="nf">chat</span><span class="p">(</span>
-    <span class="n">message</span><span class="o">=</span><span class="sh">"</span><span class="s">How do I sort a list in Python?</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">context</span><span class="o">=</span><span class="sh">"</span><span class="s">python</span><span class="sh">"</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">response</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="n">chat</span><span class="p">(</span>
+    <span class="n">message</span><span class="o">=</span><span class="s">"How do I sort a list in Python?"</span><span class="p">,</span>
+    <span class="n">context</span><span class="o">=</span><span class="s">"python"</span>
 <span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
 </code></pre></div></div>
 
 <hr />
 
 <h3 id="4-advanced-usage"><strong>4. Advanced Usage</strong></h3>
 <h4 id="using-in-a-custom-cli-tool"><strong>Using in a Custom CLI Tool</strong></h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">from</span> <span class="n">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">from</span> <span class="nn">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
 
-<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">()</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--prompt</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--language</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">"</span><span class="s">python</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--prompt"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">required</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--language"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"python"</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
-<span class="n">copilot</span> <span class="o">=</span> <span class="nc">Copilot</span><span class="p">(</span><span class="n">auth_token</span><span class="o">=</span><span class="sh">"</span><span class="s">YOUR_TOKEN</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">completions</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="nf">get_completion</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">prompt</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">language</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">copilot</span> <span class="o">=</span> <span class="n">Copilot</span><span class="p">(</span><span class="n">auth_token</span><span class="o">=</span><span class="s">"YOUR_TOKEN"</span><span class="p">)</span>
+<span class="n">completions</span> <span class="o">=</span> <span class="n">copilot</span><span class="p">.</span><span class="n">get_completion</span><span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">prompt</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">language</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">completions</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- Suggestion </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> ---</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">code</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">completions</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"--- Suggestion </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> ---"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">code</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h4 id="integrating-with-fastapi-web-app"><strong>Integrating with FastAPI (Web App)</strong></h4>
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
-<span class="kn">from</span> <span class="n">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span> <span class="nn">copilot</span> <span class="kn">import</span> <span class="n">Copilot</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">FastAPI</span><span class="p">()</span>
-<span class="n">copilot</span> <span class="o">=</span> <span class="nc">Copilot</span><span class="p">(</span><span class="n">auth_token</span><span class="o">=</span><span class="sh">"</span><span class="s">YOUR_TOKEN</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span>
+<span class="n">copilot</span> <span class="o">=</span> <span class="n">Copilot</span><span class="p">(</span><span class="n">auth_token</span><span class="o">=</span><span class="s">"YOUR_TOKEN"</span><span class="p">)</span>
 
-<span class="nd">@app.get</span><span class="p">(</span><span class="sh">"</span><span class="s">/complete</span><span class="sh">"</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">complete_code</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="sh">"</span><span class="s">python</span><span class="sh">"</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">copilot</span><span class="p">.</span><span class="nf">get_completion</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"/complete"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">complete_code</span><span class="p">(</span><span class="n">prompt</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s">"python"</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">copilot</span><span class="p">.</span><span class="n">get_completion</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">language</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <hr />

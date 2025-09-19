@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Using Apache Kafka in Java | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Using Apache Kafka in Java" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -234,9 +234,9 @@
             <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
                 <span class="nc">String</span> <span class="n">key</span> <span class="o">=</span> <span class="s">"key"</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
                 <span class="nc">String</span> <span class="n">value</span> <span class="o">=</span> <span class="s">"Hello, Kafka "</span> <span class="o">+</span> <span class="n">i</span><span class="o">;</span>
-                <span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="kd">record</span> <span class="err">=</span> <span class="nc">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="n">topic</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+                <span class="nc">ProducerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ProducerRecord</span><span class="o">&lt;&gt;(</span><span class="n">topic</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
 
-                <span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="kd">record</span><span class="err">,</span> <span class="err">(</span><span class="nc">metadata</span><span class="o">,</span> <span class="n">exception</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">producer</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">record</span><span class="o">,</span> <span class="o">(</span><span class="n">metadata</span><span class="o">,</span> <span class="n">exception</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
                     <span class="k">if</span> <span class="o">(</span><span class="n">exception</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
                         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sent message: "</span> <span class="o">+</span> <span class="n">value</span> <span class="o">+</span> <span class="s">" to partition "</span> <span class="o">+</span> <span class="n">metadata</span><span class="o">.</span><span class="na">partition</span><span class="o">());</span>
                     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
@@ -281,9 +281,9 @@
             <span class="c1">// Poll for messages</span>
             <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
                 <span class="nc">ConsumerRecords</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">records</span> <span class="o">=</span> <span class="n">consumer</span><span class="o">.</span><span class="na">poll</span><span class="o">(</span><span class="mi">1000</span><span class="o">);</span> <span class="c1">// Timeout in ms</span>
-                <span class="k">for</span> <span class="o">(</span><span class="nc">ConsumerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="kd">record</span> <span class="err">:</span> <span class="nc">records</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="nc">ConsumerRecord</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">String</span><span class="o">&gt;</span> <span class="n">record</span> <span class="o">:</span> <span class="n">records</span><span class="o">)</span> <span class="o">{</span>
                     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"Received: key=%s, value=%s, partition=%d, offset=%d%n"</span><span class="o">,</span>
-                            <span class="kd">record</span><span class="err">.</span><span class="nc">key</span><span class="o">(),</span> <span class="kd">record</span><span class="err">.</span><span class="nc">value</span><span class="o">(),</span> <span class="kd">record</span><span class="err">.</span><span class="nc">partition</span><span class="o">(),</span> <span class="kd">record</span><span class="err">.</span><span class="nc">offset</span><span class="o">());</span>
+                            <span class="n">record</span><span class="o">.</span><span class="na">key</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">value</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">partition</span><span class="o">(),</span> <span class="n">record</span><span class="o">.</span><span class="na">offset</span><span class="o">());</span>
                 <span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>

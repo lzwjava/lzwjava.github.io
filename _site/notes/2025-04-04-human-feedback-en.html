@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Human Feedback Reinforcement Learning (RLHF) Explained | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Human Feedback Reinforcement Learning (RLHF) Explained" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -273,70 +273,70 @@
 
 <p>This is a highly simplified conceptual example to illustrate the core ideas. A full RLHF implementation is significantly more complex and involves libraries like Hugging Face Transformers, Accelerate, and RL libraries.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
-<span class="kn">import</span> <span class="n">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
-<span class="kn">import</span> <span class="n">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
-<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
 
 <span class="c1"># Assume you have collected human preference data:
 # List of tuples: (prompt, preferred_response, less_preferred_response)
 </span><span class="n">preference_data</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Write a short story about a cat.</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Whiskers the cat lived in a cozy cottage...</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">A cat story. The end.</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Summarize this article:</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">The article discusses...</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Article summary.</span><span class="sh">"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Write a short story about a cat."</span><span class="p">,</span> <span class="s">"Whiskers the cat lived in a cozy cottage..."</span><span class="p">,</span> <span class="s">"A cat story. The end."</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Summarize this article:"</span><span class="p">,</span> <span class="s">"The article discusses..."</span><span class="p">,</span> <span class="s">"Article summary."</span><span class="p">),</span>
     <span class="c1"># ... more data
 </span><span class="p">]</span>
 
 <span class="c1"># 1. Load pre-trained language model and tokenizer
-</span><span class="n">model_name</span> <span class="o">=</span> <span class="sh">"</span><span class="s">gpt2</span><span class="sh">"</span>  <span class="c1"># Or another suitable pre-trained model
-</span><span class="n">policy_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
-<span class="n">device</span> <span class="o">=</span> <span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="nf">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="sh">"</span><span class="s">cpu</span><span class="sh">"</span>
-<span class="n">policy_model</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+</span><span class="n">model_name</span> <span class="o">=</span> <span class="s">"gpt2"</span>  <span class="c1"># Or another suitable pre-trained model
+</span><span class="n">policy_model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+<span class="n">device</span> <span class="o">=</span> <span class="s">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="p">.</span><span class="n">cuda</span><span class="p">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s">"cpu"</span>
+<span class="n">policy_model</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
 <span class="c1"># 2. Define a simple Reward Model
 </span><span class="k">class</span> <span class="nc">RewardModel</span><span class="p">(</span><span class="n">nn</span><span class="p">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">base_model</span><span class="p">):</span>
-        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">()</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">base_model</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">.</span><span class="n">transformer</span>  <span class="c1"># Use the transformer layers
-</span>        <span class="n">self</span><span class="p">.</span><span class="n">v_head</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">Linear</span><span class="p">(</span><span class="n">base_model</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_model</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">base_model</span> <span class="o">=</span> <span class="n">base_model</span><span class="p">.</span><span class="n">transformer</span>  <span class="c1"># Use the transformer layers
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">v_head</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">base_model</span><span class="p">.</span><span class="n">config</span><span class="p">.</span><span class="n">n_embd</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">):</span>
-        <span class="n">outputs</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">base_model</span><span class="p">(</span><span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="p">):</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">base_model</span><span class="p">(</span><span class="n">input_ids</span><span class="o">=</span><span class="n">input_ids</span><span class="p">,</span> <span class="n">attention_mask</span><span class="o">=</span><span class="n">attention_mask</span><span class="p">)</span>
         <span class="n">last_hidden_states</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">.</span><span class="n">last_hidden_state</span>
-        <span class="n">reward</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">v_head</span><span class="p">(</span><span class="n">last_hidden_states</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Get reward from the last token
+        <span class="n">reward</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">v_head</span><span class="p">(</span><span class="n">last_hidden_states</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Get reward from the last token
 </span>        <span class="k">return</span> <span class="n">reward</span>
 
-<span class="n">reward_model</span> <span class="o">=</span> <span class="nc">RewardModel</span><span class="p">(</span><span class="n">policy_model</span><span class="p">)</span>
-<span class="n">reward_model</span><span class="p">.</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-<span class="n">reward_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="nc">AdamW</span><span class="p">(</span><span class="n">reward_model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
-<span class="n">reward_criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="nc">MarginRankingLoss</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># Encourage higher reward for preferred
+<span class="n">reward_model</span> <span class="o">=</span> <span class="n">RewardModel</span><span class="p">(</span><span class="n">policy_model</span><span class="p">)</span>
+<span class="n">reward_model</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+<span class="n">reward_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">reward_model</span><span class="p">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">reward_criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="p">.</span><span class="n">MarginRankingLoss</span><span class="p">(</span><span class="n">margin</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span> <span class="c1"># Encourage higher reward for preferred
 </span>
 <span class="c1"># Train the Reward Model
 </span><span class="n">num_reward_epochs</span> <span class="o">=</span> <span class="mi">3</span>
-<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_reward_epochs</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_reward_epochs</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">preferred</span><span class="p">,</span> <span class="n">less_preferred</span> <span class="ow">in</span> <span class="n">preference_data</span><span class="p">:</span>
-        <span class="n">preferred_tokens</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">preferred</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">less_preferred_tokens</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">less_preferred</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">preferred_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">preferred</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">less_preferred_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">less_preferred</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
 
-        <span class="n">preferred_reward</span> <span class="o">=</span> <span class="nf">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">preferred_tokens</span><span class="p">)</span>
-        <span class="n">less_preferred_reward</span> <span class="o">=</span> <span class="nf">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">less_preferred_tokens</span><span class="p">)</span>
+        <span class="n">preferred_reward</span> <span class="o">=</span> <span class="n">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">preferred_tokens</span><span class="p">)</span>
+        <span class="n">less_preferred_reward</span> <span class="o">=</span> <span class="n">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">less_preferred_tokens</span><span class="p">)</span>
 
-        <span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="n">preferred_reward</span><span class="p">.</span><span class="nf">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="c1"># We want preferred &gt; less preferred
-</span>        <span class="n">loss</span> <span class="o">=</span> <span class="nf">reward_criterion</span><span class="p">(</span><span class="n">preferred_reward</span><span class="p">,</span> <span class="n">less_preferred_reward</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">preferred_reward</span><span class="p">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span> <span class="c1"># We want preferred &gt; less preferred
+</span>        <span class="n">loss</span> <span class="o">=</span> <span class="n">reward_criterion</span><span class="p">(</span><span class="n">preferred_reward</span><span class="p">,</span> <span class="n">less_preferred_reward</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
 
-        <span class="n">reward_optimizer</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
-        <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
-        <span class="n">reward_optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Reward Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="p">.</span><span class="nf">item</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">reward_optimizer</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">reward_optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Reward Epoch </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="p">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="c1"># 3. Reinforcement Learning Fine-tuning (Conceptual - PPO is complex)
-</span><span class="n">policy_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="nc">AdamW</span><span class="p">(</span><span class="n">policy_model</span><span class="p">.</span><span class="nf">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">5e-6</span><span class="p">)</span>
+</span><span class="n">policy_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="p">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">policy_model</span><span class="p">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">5e-6</span><span class="p">)</span>
 
 <span class="n">num_rl_episodes</span> <span class="o">=</span> <span class="mi">5</span>
-<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_rl_episodes</span><span class="p">):</span>
+<span class="k">for</span> <span class="n">episode</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_rl_episodes</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="p">[</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">preference_data</span><span class="p">]:</span> <span class="c1"># Sample prompts
-</span>        <span class="n">input_tokens</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">output_sequences</span> <span class="o">=</span> <span class="n">policy_model</span><span class="p">.</span><span class="nf">generate</span><span class="p">(</span>
+</span>        <span class="n">input_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">output_sequences</span> <span class="o">=</span> <span class="n">policy_model</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
             <span class="n">input_tokens</span><span class="p">.</span><span class="n">input_ids</span><span class="p">,</span>
             <span class="n">max_length</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
             <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
@@ -344,20 +344,20 @@
             <span class="n">top_k</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
             <span class="n">top_p</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">generated_response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">.</span><span class="nf">decode</span><span class="p">(</span><span class="n">output_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+        <span class="n">generated_response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">output_sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-        <span class="n">response_tokens</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">generated_response</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="nf">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
-        <span class="n">reward</span> <span class="o">=</span> <span class="nf">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">response_tokens</span><span class="p">)</span>
+        <span class="n">response_tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span> <span class="o">+</span> <span class="n">generated_response</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">).</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="p">)</span>
+        <span class="n">reward</span> <span class="o">=</span> <span class="n">reward_model</span><span class="p">(</span><span class="o">**</span><span class="n">response_tokens</span><span class="p">)</span>
 
         <span class="c1"># (Simplified) Policy Update - In reality, PPO uses more sophisticated methods
-</span>        <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">reward</span><span class="p">.</span><span class="nf">mean</span><span class="p">()</span> <span class="c1"># Try to maximize reward
-</span>        <span class="n">policy_optimizer</span><span class="p">.</span><span class="nf">zero_grad</span><span class="p">()</span>
-        <span class="n">loss</span><span class="p">.</span><span class="nf">backward</span><span class="p">()</span>
-        <span class="n">policy_optimizer</span><span class="p">.</span><span class="nf">step</span><span class="p">()</span>
+</span>        <span class="n">loss</span> <span class="o">=</span> <span class="o">-</span><span class="n">reward</span><span class="p">.</span><span class="n">mean</span><span class="p">()</span> <span class="c1"># Try to maximize reward
+</span>        <span class="n">policy_optimizer</span><span class="p">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">loss</span><span class="p">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">policy_optimizer</span><span class="p">.</span><span class="n">step</span><span class="p">()</span>
 
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">RL Episode </span><span class="si">{</span><span class="n">episode</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Reward: </span><span class="si">{</span><span class="n">reward</span><span class="p">.</span><span class="nf">item</span><span class="p">()</span><span class="si">}</span><span class="s">, Response: </span><span class="si">{</span><span class="n">generated_response</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"RL Episode </span><span class="si">{</span><span class="n">episode</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s">, Reward: </span><span class="si">{</span><span class="n">reward</span><span class="p">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s">, Response: </span><span class="si">{</span><span class="n">generated_response</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">RLHF Training Done!</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"RLHF Training Done!"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Key Challenges in RLHF:</strong></p>

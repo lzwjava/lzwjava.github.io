@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Comment fonctionne YYText | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Comment fonctionne YYText" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="fr" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -281,16 +281,16 @@
 
 <p>Depuis le tableau <code class="language-plaintext highlighter-rouge">ctLines</code>, on obtient un <code class="language-plaintext highlighter-rouge">CTLine</code>, puis on crée un objet <code class="language-plaintext highlighter-rouge">YYTextLine</code> qui est ensuite ajouté au tableau <code class="language-plaintext highlighter-rouge">lines</code>. Ensuite, on effectue quelques calculs de frame pour la <code class="language-plaintext highlighter-rouge">line</code>. Le constructeur de <code class="language-plaintext highlighter-rouge">YYTextLine</code> est assez simple : il sauvegarde d’abord la position, si le texte est en mode vertical, et l’objet <code class="language-plaintext highlighter-rouge">CTLine</code> :</p>
 
-<div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithCTLine</span><span class="p">:(</span><span class="n">CTLineRef</span><span class="p">)</span><span class="nv">ctLine</span> <span class="nf">position</span><span class="p">:(</span><span class="n">CGPoint</span><span class="p">)</span><span class="nv">position</span> <span class="nf">vertical</span><span class="p">:(</span><span class="n">BOOL</span><span class="p">)</span><span class="nv">vertical</span> <span class="p">{</span>
-    <span class="n">self</span> <span class="o">=</span> <span class="p">[</span><span class="n">super</span> <span class="nf">init</span><span class="p">];</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">_ctLine</span> <span class="o">=</span> <span class="n">CFRetain</span><span class="p">(</span><span class="n">ctLine</span><span class="p">);</span>
-        <span class="n">_position</span> <span class="o">=</span> <span class="n">position</span><span class="p">;</span>
-        <span class="n">_vertical</span> <span class="o">=</span> <span class="n">vertical</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">self</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div></div>
+<pre><code class="language-objective-c">- (instancetype)initWithCTLine:(CTLineRef)ctLine position:(CGPoint)position vertical:(BOOL)vertical {
+    self = [super init];
+    if (self) {
+        _ctLine = CFRetain(ctLine);
+        _position = position;
+        _vertical = vertical;
+    }
+    return self;
+}
+</code></pre>
 
 <p>Une fois que vous avez bien compris <code class="language-plaintext highlighter-rouge">lines</code>, revenons à la fonction <code class="language-plaintext highlighter-rouge">YYTextDrawShadow</code> précédente :</p>
 

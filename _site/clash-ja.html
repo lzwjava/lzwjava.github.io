@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>自動化されたクラッシュプロキシ管理 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="自動化されたクラッシュプロキシ管理" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ja" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,135 +209,135 @@
 
 <h2 id="clashpy">clash.py</h2>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">time</span>
-<span class="kn">import</span> <span class="n">shutil</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">import</span> <span class="n">requests</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">import</span> <span class="n">urllib.parse</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">urllib.parse</span>
 
 <span class="c1"># speed.pyが同じディレクトリまたはPYTHONPATHでアクセス可能であると仮定
-</span><span class="kn">from</span> <span class="n">speed</span> <span class="kn">import</span> <span class="n">get_top_proxies</span> 
+</span><span class="kn">from</span> <span class="nn">speed</span> <span class="kn">import</span> <span class="n">get_top_proxies</span> 
 
 <span class="c1"># --- 設定 ---
-</span><span class="n">CLASH_CONTROLLER_HOST</span> <span class="o">=</span> <span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span>
+</span><span class="n">CLASH_CONTROLLER_HOST</span> <span class="o">=</span> <span class="s">"127.0.0.1"</span>
 <span class="n">CLASH_CONTROLLER_PORT</span> <span class="o">=</span> <span class="mi">9090</span>
-<span class="n">CLASH_API_BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_PORT</span><span class="si">}</span><span class="sh">"</span>
+<span class="n">CLASH_API_BASE_URL</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_PORT</span><span class="si">}</span><span class="s">"</span>
 <span class="c1"># 最適な個々のプロキシが割り当てられるグループプロキシ名
 # Clash設定にこのグループが存在することを確認してください
-</span><span class="n">TARGET_PROXY_GROUP</span> <span class="o">=</span> <span class="sh">"</span><span class="s">🚧Proxy</span><span class="sh">"</span> 
+</span><span class="n">TARGET_PROXY_GROUP</span> <span class="o">=</span> <span class="s">"🚧Proxy"</span> 
 
 <span class="k">def</span> <span class="nf">setup_logging</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">スクリプトの基本的なロギングを設定</span><span class="sh">"""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span>
-        <span class="n">filename</span><span class="o">=</span><span class="sh">'</span><span class="s">clash.log</span><span class="sh">'</span><span class="p">,</span> 
+    <span class="s">"""スクリプトの基本的なロギングを設定"""</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">filename</span><span class="o">=</span><span class="s">'clash.log'</span><span class="p">,</span> 
         <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span>
-        <span class="nb">format</span><span class="o">=</span><span class="sh">'</span><span class="s">%(asctime)s - %(message)s</span><span class="sh">'</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="sh">'</span><span class="s">%Y-%m-%d %H:%M:%S</span><span class="sh">'</span>
+        <span class="nb">format</span><span class="o">=</span><span class="s">'%(asctime)s - %(message)s'</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s">'%Y-%m-%d %H:%M:%S'</span>
     <span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">global_proxy_address</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">システム全体のプロキシ環境変数を設定</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">GLOBAL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_proxy_address</span> <span class="c1"># 必要に応じて他の場所で一貫性を持たせる
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="s">http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span>
+    <span class="s">"""システム全体のプロキシ環境変数を設定"""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"GLOBAL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">global_proxy_address</span> <span class="c1"># 必要に応じて他の場所で一貫性を持たせる
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"https_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"http://</span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span>
     <span class="c1"># これらは通常、現代のツールでは明示的に「false」に設定する必要はありませんが、
 </span>    <span class="c1"># 元のスクリプトの意図との互換性のために保持
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span> 
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">false</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">システム全体のプロキシを設定: </span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"false"</span> 
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"false"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"ALL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"システム全体のプロキシを設定: </span><span class="si">{</span><span class="n">global_proxy_address</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">stop_system_proxy</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">システム全体のプロキシ環境変数をクリア</span><span class="sh">"""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">http_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">https_proxy</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTP_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span> <span class="c1"># デフォルトに戻す
-</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">HTTPS_PROXY_REQUEST_FULLURI</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">true</span><span class="sh">"</span>
-    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">ALL_PROXY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">""</span>
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">システム全体のプロキシを停止（環境変数をクリア）</span><span class="sh">"</span><span class="p">)</span>
+    <span class="s">"""システム全体のプロキシ環境変数をクリア"""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"http_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"https_proxy"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTP_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"true"</span> <span class="c1"># デフォルトに戻す
+</span>    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"HTTPS_PROXY_REQUEST_FULLURI"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"true"</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"ALL_PROXY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">""</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"システム全体のプロキシを停止（環境変数をクリア）"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">group_name</span><span class="p">,</span> <span class="n">proxy_name</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     指定されたClashプロキシグループのアクティブなプロキシを新しいプロキシに切り替える
-    </span><span class="sh">"""</span>
-    <span class="n">encoded_group_name</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span><span class="p">.</span><span class="nf">quote</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
-    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">/proxies/</span><span class="si">{</span><span class="n">encoded_group_name</span><span class="si">}</span><span class="sh">"</span>
-    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">Content-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">application/json</span><span class="sh">"</span><span class="p">}</span>
-    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="sh">"</span><span class="s">name</span><span class="sh">"</span><span class="p">:</span> <span class="n">proxy_name</span><span class="p">}</span>
+    """</span>
+    <span class="n">encoded_group_name</span> <span class="o">=</span> <span class="n">urllib</span><span class="p">.</span><span class="n">parse</span><span class="p">.</span><span class="n">quote</span><span class="p">(</span><span class="n">group_name</span><span class="p">)</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">/proxies/</span><span class="si">{</span><span class="n">encoded_group_name</span><span class="si">}</span><span class="s">"</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">"Content-Type"</span><span class="p">:</span> <span class="s">"application/json"</span><span class="p">}</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span> <span class="n">proxy_name</span><span class="p">}</span>
     
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="nf">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-        <span class="n">response</span><span class="p">.</span><span class="nf">raise_for_status</span><span class="p">()</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">を</span><span class="sh">'</span><span class="si">{</span><span class="n">proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">に切り替え成功</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="p">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">response</span><span class="p">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">'を'</span><span class="si">{</span><span class="n">proxy_name</span><span class="si">}</span><span class="s">'に切り替え成功"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="nb">ConnectionError</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">エラー: Clash APIに接続できません </span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">Clashが実行中でexternal-controllerが設定されていることを確認してください</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"エラー: Clash APIに接続できません </span><span class="si">{</span><span class="n">CLASH_API_BASE_URL</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"Clashが実行中でexternal-controllerが設定されていることを確認してください"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">Timeout</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">エラー: </span><span class="sh">'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">のプロキシ切り替え中にClash APIへの接続がタイムアウト</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"エラー: '</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">'のプロキシ切り替え中にClash APIへの接続がタイムアウト"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">except</span> <span class="n">requests</span><span class="p">.</span><span class="n">exceptions</span><span class="p">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="sh">'</span><span class="s">のプロキシ切り替え中に予期せぬエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"'</span><span class="si">{</span><span class="n">group_name</span><span class="si">}</span><span class="s">'のプロキシ切り替え中に予期せぬエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="sh">"""</span><span class="s">Clash設定の管理、再起動、最適なプロキシの選択を行うメイン関数</span><span class="sh">"""</span>
-    <span class="nf">setup_logging</span><span class="p">()</span>
+    <span class="s">"""Clash設定の管理、再起動、最適なプロキシの選択を行うメイン関数"""</span>
+    <span class="n">setup_logging</span><span class="p">()</span>
     
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Clash設定と管理スクリプト</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--minutes</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">更新間隔（分、デフォルト: 10）</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">--iterations</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">繰り返し回数（デフォルト: 1000）</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">--config-url</span><span class="sh">"</span><span class="p">,</span> 
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Clash設定と管理スクリプト"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--minutes"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"更新間隔（分、デフォルト: 10）"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"--iterations"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"繰り返し回数（デフォルト: 1000）"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span>
+        <span class="s">"--config-url"</span><span class="p">,</span> 
         <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> 
-        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">CLASH_DOWNLOAD_URL</span><span class="sh">"</span><span class="p">),</span>
-        <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Clash設定をダウンロードするURL。CLASH_DOWNLOAD_URL環境変数が設定されていない場合はハードコードされたURLを使用</span><span class="sh">"</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"CLASH_DOWNLOAD_URL"</span><span class="p">),</span>
+        <span class="n">help</span><span class="o">=</span><span class="s">"Clash設定をダウンロードするURL。CLASH_DOWNLOAD_URL環境変数が設定されていない場合はハードコードされたURLを使用"</span>
     <span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
     <span class="n">ITERATIONS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">iterations</span>
     <span class="n">SLEEP_SECONDS</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">minutes</span> <span class="o">*</span> <span class="mi">60</span>
     <span class="n">config_download_url</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">config_url</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">config_download_url</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">エラー: 設定ダウンロードURLが指定されていません。CLASH_DOWNLOAD_URL環境変数を設定するか--config-url引数を使用してください</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="s">"エラー: 設定ダウンロードURLが指定されていません。CLASH_DOWNLOAD_URL環境変数を設定するか--config-url引数を使用してください"</span><span class="p">)</span>
         <span class="k">return</span> <span class="c1"># URLが利用できない場合は終了
 </span>
-    <span class="n">clash_executable_path</span> <span class="o">=</span> <span class="sh">"</span><span class="s">/home/lzw/clash-linux-386-v1.17.0/clash-linux-386</span><span class="sh">"</span>
-    <span class="n">clash_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">expanduser</span><span class="p">(</span><span class="sh">"</span><span class="s">~/.config/clash</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">clash_config_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="sh">"</span><span class="s">config.yaml</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">clash_executable_path</span> <span class="o">=</span> <span class="s">"/home/lzw/clash-linux-386-v1.17.0/clash-linux-386"</span>
+    <span class="n">clash_config_dir</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">"~/.config/clash"</span><span class="p">)</span>
+    <span class="n">clash_config_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="s">"config.yaml"</span><span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ITERATIONS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- 繰り返し </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> 開始 ---</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">ITERATIONS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"--- 繰り返し </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">/</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s"> 開始 ---"</span><span class="p">)</span>
 
         <span class="c1"># ステップ1: 既存のシステムプロキシ設定を停止
-</span>        <span class="nf">stop_system_proxy</span><span class="p">()</span>
+</span>        <span class="n">stop_system_proxy</span><span class="p">()</span>
         
         <span class="c1"># ステップ2: Clash設定をダウンロードして更新
 </span>        <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">設定をダウンロード中: </span><span class="si">{</span><span class="n">config_download_url</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">"</span><span class="s">wget</span><span class="sh">"</span><span class="p">,</span> <span class="n">config_download_url</span><span class="p">,</span> <span class="sh">"</span><span class="s">-O</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-            <span class="n">shutil</span><span class="p">.</span><span class="nf">move</span><span class="p">(</span><span class="sh">"</span><span class="s">zhs4.yaml</span><span class="sh">"</span><span class="p">,</span> <span class="n">clash_config_path</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Clash設定の更新成功!</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"設定をダウンロード中: </span><span class="si">{</span><span class="n">config_download_url</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">"wget"</span><span class="p">,</span> <span class="n">config_download_url</span><span class="p">,</span> <span class="s">"-O"</span><span class="p">,</span> <span class="s">"zhs4.yaml"</span><span class="p">],</span> <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">clash_config_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">shutil</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="s">"zhs4.yaml"</span><span class="p">,</span> <span class="n">clash_config_path</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Clash設定の更新成功!"</span><span class="p">)</span>
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">設定ファイルのダウンロードまたは移動に失敗: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">decode</span><span class="p">().</span><span class="nf">strip</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">次の繰り返しにスキップ</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 再試行前に少し待機
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"設定ファイルのダウンロードまたは移動に失敗: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">decode</span><span class="p">().</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"次の繰り返しにスキップ"</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 再試行前に少し待機
 </span>            <span class="k">continue</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">設定更新中に予期せぬエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">次の繰り返しにスキップ</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"設定更新中に予期せぬエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"次の繰り返しにスキップ"</span><span class="p">)</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
             <span class="k">continue</span>
 
         <span class="c1"># ステップ3: バックグラウンドでClashを起動
@@ -345,71 +345,71 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># external-controllerが有効でアクセス可能な状態でClashを起動することが重要
 </span>            <span class="c1"># これは通常config.yaml内で設定される
-</span>            <span class="n">clash_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nc">Popen</span><span class="p">([</span><span class="n">clash_executable_path</span><span class="p">],</span> 
+</span>            <span class="n">clash_process</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">Popen</span><span class="p">([</span><span class="n">clash_executable_path</span><span class="p">],</span> 
                                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">ClashをPID </span><span class="si">{</span><span class="n">clash_process</span><span class="p">.</span><span class="n">pid</span><span class="si">}</span><span class="s">で起動</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"ClashをPID </span><span class="si">{</span><span class="n">clash_process</span><span class="p">.</span><span class="n">pid</span><span class="si">}</span><span class="s">で起動"</span><span class="p">)</span>
             <span class="c1"># Clashが完全に初期化されAPIポートを開くまで少し待機
-</span>            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
+</span>            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> 
         <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Clash実行ファイルが見つかりません: </span><span class="si">{</span><span class="n">clash_executable_path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">critical</span><span class="p">(</span><span class="sh">"</span><span class="s">パスが正しくClashがインストールされていることを確認してください</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="sa">f</span><span class="s">"Clash実行ファイルが見つかりません: </span><span class="si">{</span><span class="n">clash_executable_path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">critical</span><span class="p">(</span><span class="s">"パスが正しくClashがインストールされていることを確認してください"</span><span class="p">)</span>
             <span class="k">return</span> <span class="c1"># 重大なエラー、スクリプト終了
 </span>        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Clashの起動に失敗: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">次の繰り返しにスキップ</span><span class="sh">"</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span> <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
-            <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Clashの起動に失敗: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"次の繰り返しにスキップ"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span> <span class="n">clash_process</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
+            <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
             <span class="k">continue</span>
 
         <span class="c1"># ステップ4: プロキシ速度をテストし最適なものを選択
 </span>        <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="bp">None</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">最適なプロキシを見つけるため速度テスト中...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">top_proxies</span> <span class="o">=</span> <span class="nf">get_top_proxies</span><span class="p">(</span><span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 最速のプロキシ1つのみ取得
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"最適なプロキシを見つけるため速度テスト中..."</span><span class="p">)</span>
+            <span class="n">top_proxies</span> <span class="o">=</span> <span class="n">get_top_proxies</span><span class="p">(</span><span class="n">num_results</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 最速のプロキシ1つのみ取得
 </span>            <span class="k">if</span> <span class="n">top_proxies</span><span class="p">:</span>
-                <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">]</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">最適なプロキシを特定: </span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s"> レイテンシ </span><span class="si">{</span><span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="sh">'</span><span class="s">latency</span><span class="sh">'</span><span class="p">]</span><span class="si">}</span><span class="s">ms</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">best_proxy_name</span> <span class="o">=</span> <span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'name'</span><span class="p">]</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"最適なプロキシを特定: '</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="s">' レイテンシ </span><span class="si">{</span><span class="n">top_proxies</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s">'latency'</span><span class="p">]</span><span class="si">}</span><span class="s">ms"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">成功したプロキシテストがありません。この繰り返しでは最適なプロキシを選択できません</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"成功したプロキシテストがありません。この繰り返しでは最適なプロキシを選択できません"</span><span class="p">)</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">プロキシ速度テスト中のエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"プロキシ速度テスト中のエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
         <span class="c1"># ステップ5: Clashのプロキシグループを最適なプロキシに切り替え（見つかった場合）
 </span>        <span class="k">if</span> <span class="n">best_proxy_name</span><span class="p">:</span>
             <span class="c1"># システムプロキシを設定する前に、Clashが正しく設定されていることを確認
 </span>            <span class="c1"># システム全体のプロキシをClashのローカルHTTPプロキシ（通常ポート7890）に設定
-</span>            <span class="n">clash_local_proxy_address</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:7890</span><span class="sh">"</span> <span class="c1"># Clash HTTPポートが異なる場合は調整
-</span>            <span class="nf">start_system_proxy</span><span class="p">(</span><span class="n">clash_local_proxy_address</span><span class="p">)</span>
+</span>            <span class="n">clash_local_proxy_address</span> <span class="o">=</span> <span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">CLASH_CONTROLLER_HOST</span><span class="si">}</span><span class="s">:7890"</span> <span class="c1"># Clash HTTPポートが異なる場合は調整
+</span>            <span class="n">start_system_proxy</span><span class="p">(</span><span class="n">clash_local_proxy_address</span><span class="p">)</span>
             
-            <span class="k">if</span> <span class="ow">not</span> <span class="nf">switch_clash_proxy_group</span><span class="p">(</span><span class="n">TARGET_PROXY_GROUP</span><span class="p">,</span> <span class="n">best_proxy_name</span><span class="p">):</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Clashグループ</span><span class="sh">'</span><span class="si">{</span><span class="n">TARGET_PROXY_GROUP</span><span class="si">}</span><span class="sh">'</span><span class="s">を</span><span class="sh">'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="sh">'</span><span class="s">に切り替え失敗</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">switch_clash_proxy_group</span><span class="p">(</span><span class="n">TARGET_PROXY_GROUP</span><span class="p">,</span> <span class="n">best_proxy_name</span><span class="p">):</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Clashグループ'</span><span class="si">{</span><span class="n">TARGET_PROXY_GROUP</span><span class="si">}</span><span class="s">'を'</span><span class="si">{</span><span class="n">best_proxy_name</span><span class="si">}</span><span class="s">'に切り替え失敗"</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">最適なプロキシが見つからなかったため、プロキシグループの切り替えとシステムプロキシ設定をスキップ</span><span class="sh">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"最適なプロキシが見つからなかったため、プロキシグループの切り替えとシステムプロキシ設定をスキップ"</span><span class="p">)</span>
             
         <span class="c1"># ステップ6: 指定時間待機
-</span>        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">次の繰り返しまで</span><span class="si">{</span><span class="n">SLEEP_SECONDS</span> <span class="o">/</span> <span class="mi">60</span><span class="si">}</span><span class="s">分待機...</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">time</span><span class="p">.</span><span class="nf">sleep</span><span class="p">(</span><span class="n">SLEEP_SECONDS</span><span class="p">)</span>
+</span>        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"次の繰り返しまで</span><span class="si">{</span><span class="n">SLEEP_SECONDS</span> <span class="o">/</span> <span class="mi">60</span><span class="si">}</span><span class="s">分待機..."</span><span class="p">)</span>
+        <span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">SLEEP_SECONDS</span><span class="p">)</span>
 
         <span class="c1"># ステップ7: Clashプロセスを停止
 </span>        <span class="k">if</span> <span class="n">clash_process</span><span class="p">:</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Clashプロセスを終了中...</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">clash_process</span><span class="p">.</span><span class="nf">terminate</span><span class="p">()</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Clashプロセスを終了中..."</span><span class="p">)</span>
+            <span class="n">clash_process</span><span class="p">.</span><span class="n">terminate</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Clashが正常に終了するまで少し待機
-</span>                <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sh">"</span><span class="s">Clashの停止に成功</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># Clashが正常に終了するまで少し待機
+</span>                <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s">"Clashの停止に成功"</span><span class="p">)</span>
             <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">TimeoutExpired</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">warning</span><span class="p">(</span><span class="sh">"</span><span class="s">Clashが正常に終了しなかったため、プロセスを強制終了</span><span class="sh">"</span><span class="p">)</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">kill</span><span class="p">()</span>
-                <span class="n">clash_process</span><span class="p">.</span><span class="nf">wait</span><span class="p">()</span> <span class="c1"># プロセスが完全に終了したことを確認
+                <span class="n">logging</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="s">"Clashが正常に終了しなかったため、プロセスを強制終了"</span><span class="p">)</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">kill</span><span class="p">()</span>
+                <span class="n">clash_process</span><span class="p">.</span><span class="n">wait</span><span class="p">()</span> <span class="c1"># プロセスが完全に終了したことを確認
 </span>            <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Clashの停止待機中にエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Clashの停止待機中にエラー: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         
-        <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">--- 繰り返し </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> 完了 ---</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"--- 繰り返し </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s"> 完了 ---"</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="p">.</span><span class="nf">info</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s">回の繰り返しを完了。スクリプト終了</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">logging</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">ITERATIONS</span><span class="si">}</span><span class="s">回の繰り返しを完了。スクリプト終了"</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h2 id="speedpy">speed.py</h2>

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Scale PDF Content for Printing | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Scale PDF Content for Printing" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -207,53 +207,53 @@
 
   <p>I need to print papers, and I’ve noticed that the whitespace around the content is often too large, wasting paper and making the text appear smaller than it should. This script helps to automatically scale the PDF content to better fit the page by detecting the content area and scaling it up to fill the page, while respecting a small margin.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="n">pdf2image</span> <span class="kn">import</span> <span class="n">convert_from_path</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">pdf2image</span> <span class="kn">import</span> <span class="n">convert_from_path</span>
 
 <span class="n">MARGIN_PERCENT</span> <span class="o">=</span> <span class="mf">0.005</span>
 <span class="n">DPI</span> <span class="o">=</span> <span class="mi">72</span>
 
 <span class="k">def</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">pixels</span><span class="p">,</span> <span class="n">dpi</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Converts pixels to points.</span><span class="sh">"""</span>
+    <span class="s">"""Converts pixels to points."""</span>
     <span class="k">return</span> <span class="n">pixels</span> <span class="o">*</span> <span class="mi">72</span> <span class="o">/</span> <span class="n">dpi</span>
 
 <span class="k">def</span> <span class="nf">get_image_dimensions</span><span class="p">(</span><span class="n">image</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Gets image dimensions in pixels and points.</span><span class="sh">"""</span>
+    <span class="s">"""Gets image dimensions in pixels and points."""</span>
     <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">size</span>
-    <span class="n">dpi</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">info</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">dpi</span><span class="sh">'</span><span class="p">,</span> <span class="p">(</span><span class="n">DPI</span><span class="p">,</span> <span class="n">DPI</span><span class="p">))</span>
-    <span class="n">width_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">height_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">dpi</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">info</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'dpi'</span><span class="p">,</span> <span class="p">(</span><span class="n">DPI</span><span class="p">,</span> <span class="n">DPI</span><span class="p">))</span>
+    <span class="n">width_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">height_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width_points</span><span class="p">,</span> <span class="n">height_points</span><span class="p">,</span> <span class="n">dpi</span>
 
 <span class="k">def</span> <span class="nf">analyze_whitespace</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Analyzes whitespace to find content bounding box.</span><span class="sh">"""</span>
+    <span class="s">"""Analyzes whitespace to find content bounding box."""</span>
     <span class="n">left_margin_px</span> <span class="o">=</span> <span class="n">width</span>
     <span class="n">right_margin_px</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">top_margin_px</span> <span class="o">=</span> <span class="n">height</span>
     <span class="n">bottom_margin_px</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">found_content</span> <span class="o">=</span> <span class="bp">False</span>
 
-    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-            <span class="n">pixel</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="nf">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-            <span class="k">if</span> <span class="nf">isinstance</span><span class="p">(</span><span class="n">pixel</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
-                <span class="k">if</span> <span class="nf">any</span><span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">250</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">pixel</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
+            <span class="n">pixel</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pixel</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">c</span> <span class="o">&lt;</span> <span class="mi">250</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">pixel</span><span class="p">):</span>
                     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_content</span><span class="p">:</span>
                         <span class="n">left_margin_px</span> <span class="o">=</span> <span class="n">x</span>
                         <span class="n">top_margin_px</span> <span class="o">=</span> <span class="n">y</span>
                         <span class="n">found_content</span> <span class="o">=</span> <span class="bp">True</span>
-                    <span class="n">right_margin_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-                    <span class="n">bottom_margin_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                    <span class="n">right_margin_px</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                    <span class="n">bottom_margin_px</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
             <span class="k">elif</span> <span class="n">pixel</span> <span class="o">&lt;</span> <span class="mi">250</span><span class="p">:</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">found_content</span><span class="p">:</span>
                     <span class="n">left_margin_px</span> <span class="o">=</span> <span class="n">x</span>
                     <span class="n">top_margin_px</span> <span class="o">=</span> <span class="n">y</span>
                     <span class="n">found_content</span> <span class="o">=</span> <span class="bp">True</span>
-                <span class="n">right_margin_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
-                <span class="n">bottom_margin_px</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+                <span class="n">right_margin_px</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+                <span class="n">bottom_margin_px</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
     
     <span class="k">if</span> <span class="ow">not</span> <span class="n">found_content</span><span class="p">:</span>
         <span class="k">return</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span><span class="p">,</span> <span class="bp">None</span>
@@ -263,24 +263,24 @@
     <span class="k">return</span> <span class="n">left_margin_px</span><span class="p">,</span> <span class="n">right_margin_px</span><span class="p">,</span> <span class="n">top_margin_px</span><span class="p">,</span> <span class="n">bottom_margin_px</span>
 
 <span class="k">def</span> <span class="nf">calculate_scale_factor</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Detects the dimensions of the first page of a PDF, analyzes whitespace,
     and calculates the scale factor based on the PDF content and target A4 dimensions with margins.
     Returns the scale factor or None if an error occurs.
-    </span><span class="sh">"""</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Calculating scale factor for: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    """</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Calculating scale factor for: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">images</span> <span class="o">=</span> <span class="nf">convert_from_path</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">first_page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">last_page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="n">convert_from_path</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">first_page</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">last_page</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">images</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">  Could not convert PDF to image.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"  Could not convert PDF to image."</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
         
         <span class="n">image</span> <span class="o">=</span> <span class="n">images</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width_points</span><span class="p">,</span> <span class="n">height_points</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="nf">get_image_dimensions</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">width_points</span><span class="p">,</span> <span class="n">height_points</span><span class="p">,</span> <span class="n">dpi</span> <span class="o">=</span> <span class="n">get_image_dimensions</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
         
-        <span class="n">margins</span> <span class="o">=</span> <span class="nf">analyze_whitespace</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+        <span class="n">margins</span> <span class="o">=</span> <span class="n">analyze_whitespace</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">margins</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">  Could not determine content bounding box.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"  Could not determine content bounding box."</span><span class="p">)</span>
             <span class="n">left_margin_points</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">right_margin_points</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">top_margin_points</span> <span class="o">=</span> <span class="mi">0</span>
@@ -290,19 +290,19 @@
             <span class="n">content_width_px</span> <span class="o">=</span> <span class="n">right_margin_px</span> <span class="o">-</span> <span class="n">left_margin_px</span>
             <span class="n">content_height_px</span> <span class="o">=</span> <span class="n">bottom_margin_px</span> <span class="o">-</span> <span class="n">top_margin_px</span>
             
-            <span class="n">left_margin_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">left_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">right_margin_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-            <span class="n">top_margin_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">top_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-            <span class="n">bottom_margin_points</span> <span class="o">=</span> <span class="nf">convert_pixels_to_points</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">left_margin_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">left_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">right_margin_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">right_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">top_margin_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">top_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">bottom_margin_points</span> <span class="o">=</span> <span class="n">convert_pixels_to_points</span><span class="p">(</span><span class="n">bottom_margin_px</span><span class="p">,</span> <span class="n">dpi</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Content box: left=</span><span class="si">{</span><span class="n">left_margin_px</span><span class="si">}</span><span class="s">, upper=</span><span class="si">{</span><span class="n">top_margin_px</span><span class="si">}</span><span class="s">, right=</span><span class="si">{</span><span class="n">right_margin_px</span><span class="si">}</span><span class="s">, lower=</span><span class="si">{</span><span class="n">bottom_margin_px</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Content dimensions (pixels): width=</span><span class="si">{</span><span class="n">content_width_px</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">content_height_px</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Margins (points): left=</span><span class="si">{</span><span class="n">left_margin_points</span><span class="si">}</span><span class="s">, right=</span><span class="si">{</span><span class="n">right_margin_points</span><span class="si">}</span><span class="s">, top=</span><span class="si">{</span><span class="n">top_margin_points</span><span class="si">}</span><span class="s">, bottom=</span><span class="si">{</span><span class="n">bottom_margin_points</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Content box: left=</span><span class="si">{</span><span class="n">left_margin_px</span><span class="si">}</span><span class="s">, upper=</span><span class="si">{</span><span class="n">top_margin_px</span><span class="si">}</span><span class="s">, right=</span><span class="si">{</span><span class="n">right_margin_px</span><span class="si">}</span><span class="s">, lower=</span><span class="si">{</span><span class="n">bottom_margin_px</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Content dimensions (pixels): width=</span><span class="si">{</span><span class="n">content_width_px</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">content_height_px</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Margins (points): left=</span><span class="si">{</span><span class="n">left_margin_points</span><span class="si">}</span><span class="s">, right=</span><span class="si">{</span><span class="n">right_margin_points</span><span class="si">}</span><span class="s">, top=</span><span class="si">{</span><span class="n">top_margin_points</span><span class="si">}</span><span class="s">, bottom=</span><span class="si">{</span><span class="n">bottom_margin_points</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Detected dimensions: width=</span><span class="si">{</span><span class="n">width_points</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">height_points</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Detected dimensions: width=</span><span class="si">{</span><span class="n">width_points</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">height_points</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-        <span class="n">width_margin_points</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">left_margin_points</span><span class="p">,</span> <span class="n">right_margin_points</span><span class="p">)</span>
-        <span class="n">height_margin_points</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">top_margin_points</span><span class="p">,</span> <span class="n">bottom_margin_points</span><span class="p">)</span>        
+        <span class="n">width_margin_points</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">left_margin_points</span><span class="p">,</span> <span class="n">right_margin_points</span><span class="p">)</span>
+        <span class="n">height_margin_points</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">top_margin_points</span><span class="p">,</span> <span class="n">bottom_margin_points</span><span class="p">)</span>        
         
         <span class="n">content_width</span> <span class="o">=</span> <span class="n">width_points</span> <span class="o">-</span> <span class="n">width_margin_points</span> <span class="o">*</span> <span class="mi">2</span>
         <span class="n">content_height</span> <span class="o">=</span> <span class="n">height_points</span> <span class="o">-</span> <span class="n">height_margin_points</span> <span class="o">*</span> <span class="mi">2</span>
@@ -313,65 +313,65 @@
         <span class="n">width_scale</span> <span class="o">=</span> <span class="n">target_width</span> <span class="o">/</span> <span class="n">content_width</span>
         <span class="n">height_scale</span> <span class="o">=</span> <span class="n">target_height</span> <span class="o">/</span> <span class="n">content_height</span>
 
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Content dimensions (points): width=</span><span class="si">{</span><span class="n">content_width</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">content_height</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Content dimensions (points): width=</span><span class="si">{</span><span class="n">content_width</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">content_height</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">content_width</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">content_height</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: Could not determine content dimensions.</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"Error: Could not determine content dimensions."</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">None</span>
         
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Target dimensions: width=</span><span class="si">{</span><span class="n">target_width</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">target_height</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Calculated width scale: </span><span class="si">{</span><span class="n">width_scale</span><span class="si">}</span><span class="s">, height scale: </span><span class="si">{</span><span class="n">height_scale</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Target dimensions: width=</span><span class="si">{</span><span class="n">target_width</span><span class="si">}</span><span class="s">, height=</span><span class="si">{</span><span class="n">target_height</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Calculated width scale: </span><span class="si">{</span><span class="n">width_scale</span><span class="si">}</span><span class="s">, height scale: </span><span class="si">{</span><span class="n">height_scale</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         
-        <span class="n">scale_factor</span> <span class="o">=</span> <span class="nf">min</span><span class="p">(</span><span class="n">width_scale</span><span class="p">,</span> <span class="n">height_scale</span><span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">  Final scale factor: </span><span class="si">{</span><span class="n">scale_factor</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">scale_factor</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">width_scale</span><span class="p">,</span> <span class="n">height_scale</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"  Final scale factor: </span><span class="si">{</span><span class="n">scale_factor</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         
         <span class="k">return</span> <span class="n">scale_factor</span>
 
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error getting PDF dimensions or calculating scale factor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error getting PDF dimensions or calculating scale factor: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">None</span>
 
 
 <span class="k">def</span> <span class="nf">scale_pdf</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">output_pdf</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Scales a PDF using pdfjam.</span><span class="sh">"""</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Scaling </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="s"> with scale factor: </span><span class="si">{</span><span class="n">scale_factor</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="s">"""Scales a PDF using pdfjam."""</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Scaling </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="s"> with scale factor: </span><span class="si">{</span><span class="n">scale_factor</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
             <span class="p">[</span>
-                <span class="sh">"</span><span class="s">pdfjam</span><span class="sh">"</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">--scale</span><span class="sh">"</span><span class="p">,</span>
-                <span class="nf">str</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">),</span>
+                <span class="s">"pdfjam"</span><span class="p">,</span>
+                <span class="s">"--scale"</span><span class="p">,</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">),</span>
                 <span class="n">input_pdf</span><span class="p">,</span>
-                <span class="sh">"</span><span class="s">--outfile</span><span class="sh">"</span><span class="p">,</span>
+                <span class="s">"--outfile"</span><span class="p">,</span>
                 <span class="n">output_pdf</span><span class="p">,</span>
             <span class="p">],</span>
             <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Successfully scaled </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Successfully scaled </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error scaling PDF: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error scaling PDF: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Error: pdfjam command not found. Please ensure it is installed and in your system</span><span class="sh">'</span><span class="s">s PATH.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: pdfjam command not found. Please ensure it is installed and in your system's PATH."</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python scale-pdf.py &lt;input_pdf&gt; &lt;output_pdf&gt;</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python scale-pdf.py &lt;input_pdf&gt; &lt;output_pdf&gt;"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
     <span class="n">input_pdf</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">output_pdf</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Input PDF: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s">, Output PDF: </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Input PDF: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s">, Output PDF: </span><span class="si">{</span><span class="n">output_pdf</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error: Input PDF file not found: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error: Input PDF file not found: </span><span class="si">{</span><span class="n">input_pdf</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="n">scale_factor</span> <span class="o">=</span> <span class="nf">calculate_scale_factor</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">)</span>
+    <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">calculate_scale_factor</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">scale_factor</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 
-    <span class="nf">scale_pdf</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">output_pdf</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">)</span>
+    <span class="n">scale_pdf</span><span class="p">(</span><span class="n">input_pdf</span><span class="p">,</span> <span class="n">output_pdf</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">)</span>
 
 </code></pre></div></div>
 

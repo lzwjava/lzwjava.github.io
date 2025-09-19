@@ -4,7 +4,7 @@
 
 Welcome to my personal blog! Here, I share my thoughts, experiences, and knowledge on various topics.
 
-Please visit [lzwjava.github.io](https://lzwjava.github.io).
+Please visit [https://lzwjava.github.io](https://lzwjava.github.io).
 
 
 

@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>IP en la Nube, Interfaz de Red y Optimización de WiFi | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="IP en la Nube, Interfaz de Red y Optimización de WiFi" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="es" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -316,27 +316,27 @@ outline-tun0: <span class="nv">flags</span><span class="o">=</span>4305&lt;UP,PO
 
 <p>Este script ayuda a identificar dispositivos en la red, como un enrutador TP-LINK mesh operando en modo puente cableado, mediante el escaneo de direcciones IP activas.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">ipaddress</span>
-<span class="kn">import</span> <span class="n">threading</span>
-<span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">socket</span>
-<span class="kn">import</span> <span class="n">argparse</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">ipaddress</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">socket</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
 
 <span class="n">MAX_THREADS</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># Número máximo de hilos a utilizar
 </span>
 <span class="k">def</span> <span class="nf">is_host_up</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Verifica si un host está activo usando ping o telnet.
     Si se especifica un puerto, usa telnet para verificar si el puerto está abierto.
     De lo contrario, usa ping.
     Devuelve True si el host está activo, False en caso contrario.
-    </span><span class="sh">"""</span>
+    """</span>
     <span class="k">if</span> <span class="n">port</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="nf">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
-            <span class="n">sock</span><span class="p">.</span><span class="nf">settimeout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">sock</span><span class="p">.</span><span class="nf">connect_ex</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
+            <span class="n">sock</span> <span class="o">=</span> <span class="n">socket</span><span class="p">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="p">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="p">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+            <span class="n">sock</span><span class="p">.</span><span class="n">settimeout</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">sock</span><span class="p">.</span><span class="n">connect_ex</span><span class="p">((</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">result</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">True</span>
             <span class="k">else</span><span class="p">:</span>
@@ -344,12 +344,12 @@ outline-tun0: <span class="nv">flags</span><span class="o">=</span>4305&lt;UP,PO
         <span class="k">except</span> <span class="n">socket</span><span class="p">.</span><span class="n">error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="n">sock</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+            <span class="n">sock</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># -c 1: Envía solo 1 paquete
 </span>            <span class="c1"># -W 1: Espera 1 segundo por una respuesta
-</span>            <span class="n">subprocess</span><span class="p">.</span><span class="nf">check_output</span><span class="p">([</span><span class="sh">"</span><span class="s">ping</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-c</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-W</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span><span class="p">,</span> <span class="n">host</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span>            <span class="n">subprocess</span><span class="p">.</span><span class="n">check_output</span><span class="p">([</span><span class="s">"ping"</span><span class="p">,</span> <span class="s">"-c"</span><span class="p">,</span> <span class="s">"1"</span><span class="p">,</span> <span class="s">"-W"</span><span class="p">,</span> <span class="s">"1"</span><span class="p">,</span> <span class="n">host</span><span class="p">],</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
             <span class="k">return</span> <span class="bp">True</span>
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">False</span>
@@ -357,55 +357,55 @@ outline-tun0: <span class="nv">flags</span><span class="o">=</span>4305&lt;UP,PO
             <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">scan_ip</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,</span> <span class="n">up_ips</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Escanea una única dirección IP y muestra su estado.
-    </span><span class="sh">"""</span>
-    <span class="k">if</span> <span class="nf">is_host_up</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">ip_str</span><span class="si">}</span><span class="s"> está activo</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">up_ips</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">ip_str</span><span class="p">)</span>
+    """</span>
+    <span class="k">if</span> <span class="n">is_host_up</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,</span> <span class="n">port</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">ip_str</span><span class="si">}</span><span class="s"> está activo"</span><span class="p">)</span>
+        <span class="n">up_ips</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">ip_str</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">ip_str</span><span class="si">}</span><span class="s"> está inactivo</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">ip_str</span><span class="si">}</span><span class="s"> está inactivo"</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">scan_network</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Escanea una red en busca de hosts activos usando hilos, limitando el número de hilos concurrentes.
-    </span><span class="sh">"""</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Escaneando red: </span><span class="si">{</span><span class="n">network</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    """</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Escaneando red: </span><span class="si">{</span><span class="n">network</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="n">threads</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">semaphore</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Semaphore</span><span class="p">(</span><span class="n">MAX_THREADS</span><span class="p">)</span>  <span class="c1"># Limita el número de hilos concurrentes
+    <span class="n">semaphore</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Semaphore</span><span class="p">(</span><span class="n">MAX_THREADS</span><span class="p">)</span>  <span class="c1"># Limita el número de hilos concurrentes
 </span>    <span class="n">up_ips</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="nf">scan_ip_with_semaphore</span><span class="p">(</span><span class="n">ip_str</span><span class="p">):</span>
-        <span class="n">semaphore</span><span class="p">.</span><span class="nf">acquire</span><span class="p">()</span>
+        <span class="n">semaphore</span><span class="p">.</span><span class="n">acquire</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="nf">scan_ip</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,</span> <span class="n">up_ips</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+            <span class="n">scan_ip</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,</span> <span class="n">up_ips</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
         <span class="k">finally</span><span class="p">:</span>
-            <span class="n">semaphore</span><span class="p">.</span><span class="nf">release</span><span class="p">()</span>
+            <span class="n">semaphore</span><span class="p">.</span><span class="n">release</span><span class="p">()</span>
 
-    <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ipaddress</span><span class="p">.</span><span class="nc">IPv4Network</span><span class="p">(</span><span class="n">network</span><span class="p">):</span>
-        <span class="n">ip_str</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
-        <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="nc">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scan_ip_with_semaphore</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,))</span>
-        <span class="n">threads</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
-        <span class="n">thread</span><span class="p">.</span><span class="nf">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ipaddress</span><span class="p">.</span><span class="n">IPv4Network</span><span class="p">(</span><span class="n">network</span><span class="p">):</span>
+        <span class="n">ip_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+        <span class="n">thread</span> <span class="o">=</span> <span class="n">threading</span><span class="p">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">scan_ip_with_semaphore</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">ip_str</span><span class="p">,))</span>
+        <span class="n">threads</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">thread</span><span class="p">)</span>
+        <span class="n">thread</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
 
     <span class="k">for</span> <span class="n">thread</span> <span class="ow">in</span> <span class="n">threads</span><span class="p">:</span>
-        <span class="n">thread</span><span class="p">.</span><span class="nf">join</span><span class="p">()</span>
+        <span class="n">thread</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">up_ips</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Escanea una red en busca de hosts activos.</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">network</span><span class="sh">"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="sh">'</span><span class="s">?</span><span class="sh">'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="sh">"</span><span class="s">192.168.1.0/24</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">La red a escanear (ejemplo: 192.168.1.0/24)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">-p</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">--port</span><span class="sh">"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">El puerto a verificar (opcional)</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Escanea una red en busca de hosts activos."</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"network"</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s">'?'</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s">"192.168.1.0/24"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"La red a escanear (ejemplo: 192.168.1.0/24)"</span><span class="p">)</span>
+    <span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"-p"</span><span class="p">,</span> <span class="s">"--port"</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"El puerto a verificar (opcional)"</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
     <span class="n">network_to_scan</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">network</span>
     <span class="n">port_to_scan</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">port</span>
 
-    <span class="n">up_ips</span> <span class="o">=</span> <span class="nf">scan_network</span><span class="p">(</span><span class="n">network_to_scan</span><span class="p">,</span> <span class="n">port_to_scan</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">IPs activas:</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">up_ips</span> <span class="o">=</span> <span class="n">scan_network</span><span class="p">(</span><span class="n">network_to_scan</span><span class="p">,</span> <span class="n">port_to_scan</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n</span><span class="s">IPs activas:"</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">up_ips</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">ip</span><span class="p">)</span>
 </code></pre></div></div>
 
 <hr />

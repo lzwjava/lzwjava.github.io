@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Connecting Python to Java Agent | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Connecting Python to Java Agent" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -223,21 +223,21 @@
       <li>Example use case: If the Java agent exposes APIs or methods, Python can call them directly.</li>
     </ul>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">jpype</span> <span class="kn">import</span> <span class="n">startJVM</span><span class="p">,</span> <span class="n">JVMNotFoundException</span><span class="p">,</span> <span class="n">isJVMStarted</span><span class="p">,</span> <span class="n">JClass</span>
-<span class="kn">import</span> <span class="n">jpype.imports</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">jpype</span> <span class="kn">import</span> <span class="n">startJVM</span><span class="p">,</span> <span class="n">JVMNotFoundException</span><span class="p">,</span> <span class="n">isJVMStarted</span><span class="p">,</span> <span class="n">JClass</span>
+<span class="kn">import</span> <span class="nn">jpype.imports</span>
 
 <span class="c1"># Start the JVM
 </span><span class="k">try</span><span class="p">:</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="nf">isJVMStarted</span><span class="p">():</span>
-        <span class="nf">startJVM</span><span class="p">(</span><span class="sh">"</span><span class="s">-Djava.class.path=/path/to/java-agent.jar</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">-ea</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">isJVMStarted</span><span class="p">():</span>
+        <span class="n">startJVM</span><span class="p">(</span><span class="s">"-Djava.class.path=/path/to/java-agent.jar"</span><span class="p">,</span> <span class="s">"-ea"</span><span class="p">)</span>
       
     <span class="c1"># Load a class from the Java agent
-</span>    <span class="n">AgentClass</span> <span class="o">=</span> <span class="nc">JClass</span><span class="p">(</span><span class="sh">"</span><span class="s">com.example.Agent</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">agent_instance</span> <span class="o">=</span> <span class="nc">AgentClass</span><span class="p">()</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">agent_instance</span><span class="p">.</span><span class="nf">someMethod</span><span class="p">()</span>  <span class="c1"># Call a method from the Java agent
-</span>    <span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span>    <span class="n">AgentClass</span> <span class="o">=</span> <span class="n">JClass</span><span class="p">(</span><span class="s">"com.example.Agent"</span><span class="p">)</span>
+    <span class="n">agent_instance</span> <span class="o">=</span> <span class="n">AgentClass</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">agent_instance</span><span class="p">.</span><span class="n">someMethod</span><span class="p">()</span>  <span class="c1"># Call a method from the Java agent
+</span>    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="k">except</span> <span class="n">JVMNotFoundException</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">JVM not found. Ensure Java is installed.</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"JVM not found. Ensure Java is installed."</span><span class="p">)</span>
 </code></pre></div>    </div>
 
     <p><strong>Note</strong>: Replace <code class="language-plaintext highlighter-rouge">/path/to/java-agent.jar</code> with the actual path to the Java agent’s JAR file and <code class="language-plaintext highlighter-rouge">com.example.Agent</code> with the appropriate class.</p>
@@ -249,11 +249,11 @@
       <li>Example: If the Java agent is running and listening on a Py4J gateway, Python can invoke its methods.</li>
     </ul>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">py4j.java_gateway</span> <span class="kn">import</span> <span class="n">JavaGateway</span>
-<span class="n">gateway</span> <span class="o">=</span> <span class="nc">JavaGateway</span><span class="p">()</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">py4j.java_gateway</span> <span class="kn">import</span> <span class="n">JavaGateway</span>
+<span class="n">gateway</span> <span class="o">=</span> <span class="n">JavaGateway</span><span class="p">()</span>
 <span class="n">agent</span> <span class="o">=</span> <span class="n">gateway</span><span class="p">.</span><span class="n">entry_point</span>  <span class="c1"># Assumes the Java agent exposes an entry point
-</span><span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="nf">someAgentMethod</span><span class="p">()</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">agent</span><span class="p">.</span><span class="n">someAgentMethod</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div>    </div>
   </li>
 </ul>
@@ -273,11 +273,11 @@
   <li>
     <p><strong>REST API</strong>: If the Java agent provides a REST interface (e.g., for monitoring data), Python can use libraries like <code class="language-plaintext highlighter-rouge">requests</code> to interact with it.</p>
 
-    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">requests</span>
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="c1"># Example: Java agent exposes a REST API
-</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">"</span><span class="s">http://localhost:8080/agent/status</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+</span><span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">"http://localhost:8080/agent/status"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre></div>    </div>
   </li>
   <li><strong>Message Queues</strong>: Use tools like RabbitMQ or Kafka to exchange messages between Python and the Java agent.</li>
@@ -286,14 +286,14 @@
 <h4 id="4-attaching-a-java-agent-dynamically">4. <strong>Attaching a Java Agent Dynamically</strong></h4>
 <p>If you want Python to attach a Java agent to a running JVM, you can use the <code class="language-plaintext highlighter-rouge">com.sun.tools.attach</code> API (part of the JDK) via JPype or Py4J. This allows Python to dynamically load a Java agent into a running Java application.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">from</span> <span class="n">jpype</span> <span class="kn">import</span> <span class="n">startJVM</span><span class="p">,</span> <span class="n">JClass</span>
-  <span class="kn">import</span> <span class="n">jpype.imports</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="kn">from</span> <span class="nn">jpype</span> <span class="kn">import</span> <span class="n">startJVM</span><span class="p">,</span> <span class="n">JClass</span>
+  <span class="kn">import</span> <span class="nn">jpype.imports</span>
 
-  <span class="nf">startJVM</span><span class="p">(</span><span class="sh">"</span><span class="s">-Djava.class.path=/path/to/tools.jar:/path/to/java-agent.jar</span><span class="sh">"</span><span class="p">)</span>
-  <span class="n">VirtualMachine</span> <span class="o">=</span> <span class="nc">JClass</span><span class="p">(</span><span class="sh">"</span><span class="s">com.sun.tools.attach.VirtualMachine</span><span class="sh">"</span><span class="p">)</span>
-  <span class="n">vm</span> <span class="o">=</span> <span class="n">VirtualMachine</span><span class="p">.</span><span class="nf">attach</span><span class="p">(</span><span class="sh">"</span><span class="s">12345</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># JVM process ID
-</span>  <span class="n">vm</span><span class="p">.</span><span class="nf">loadAgent</span><span class="p">(</span><span class="sh">"</span><span class="s">/path/to/java-agent.jar</span><span class="sh">"</span><span class="p">)</span>
-  <span class="n">vm</span><span class="p">.</span><span class="nf">detach</span><span class="p">()</span>
+  <span class="n">startJVM</span><span class="p">(</span><span class="s">"-Djava.class.path=/path/to/tools.jar:/path/to/java-agent.jar"</span><span class="p">)</span>
+  <span class="n">VirtualMachine</span> <span class="o">=</span> <span class="n">JClass</span><span class="p">(</span><span class="s">"com.sun.tools.attach.VirtualMachine"</span><span class="p">)</span>
+  <span class="n">vm</span> <span class="o">=</span> <span class="n">VirtualMachine</span><span class="p">.</span><span class="n">attach</span><span class="p">(</span><span class="s">"12345"</span><span class="p">)</span>  <span class="c1"># JVM process ID
+</span>  <span class="n">vm</span><span class="p">.</span><span class="n">loadAgent</span><span class="p">(</span><span class="s">"/path/to/java-agent.jar"</span><span class="p">)</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">detach</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><strong>Note</strong>: The <code class="language-plaintext highlighter-rouge">tools.jar</code> (or equivalent in newer JDKs) and the agent’s JAR file must be accessible.</p>

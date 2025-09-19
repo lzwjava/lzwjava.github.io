@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>مقدمة في برمجة الويب | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="مقدمة في برمجة الويب" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ar" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -208,50 +208,50 @@
   <p>في المقالة السابقة، تحدثنا عن كيفية تحويل وظيفة متتالية فيبوناتشي إلى نسخة موجهة للكائنات، وقمنا بتنفيذ واجهة طرفية.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># server.py
-</span><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+</span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/echo</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/echo'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">echo</span><span class="p">():</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">json</span>
-    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BaseHandler</span><span class="p">:</span>
-  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
     <span class="k">pass</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Server</span><span class="p">:</span>
-  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">handlerClass</span><span class="p">):</span>
-    <span class="n">self</span><span class="p">.</span><span class="n">handlerClass</span> <span class="o">=</span> <span class="n">handlerClass</span>
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">handlerClass</span><span class="p">):</span>
+    <span class="bp">self</span><span class="p">.</span><span class="n">handlerClass</span> <span class="o">=</span> <span class="n">handlerClass</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>    
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-      <span class="n">request</span> <span class="o">=</span> <span class="nf">input</span><span class="p">()</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">handlerClass</span><span class="p">().</span><span class="nf">handle</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+      <span class="n">request</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">handlerClass</span><span class="p">().</span><span class="n">handle</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">fib_handle.py</code>:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">fib</span> <span class="kn">import</span> <span class="n">f</span>
-<span class="kn">from</span> <span class="n">server</span> <span class="kn">import</span> <span class="n">BaseHandler</span><span class="p">,</span> <span class="n">Server</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">fib</span> <span class="kn">import</span> <span class="n">f</span>
+<span class="kn">from</span> <span class="nn">server</span> <span class="kn">import</span> <span class="n">BaseHandler</span><span class="p">,</span> <span class="n">Server</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">FibHandler</span><span class="p">(</span><span class="n">BaseHandler</span><span class="p">):</span>
-  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sh">'</span><span class="s">f(n)=</span><span class="sh">'</span><span class="p">,</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+  <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'f(n)='</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
     <span class="k">pass</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="nc">Server</span><span class="p">(</span><span class="n">FibHandler</span><span class="p">)</span>
-<span class="n">server</span><span class="p">.</span><span class="nf">run</span><span class="p">()</span>  
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="n">Server</span><span class="p">(</span><span class="n">FibHandler</span><span class="p">)</span>
+<span class="n">server</span><span class="p">.</span><span class="n">run</span><span class="p">()</span>  
 </code></pre></div></div>
 <h2 id="خادم-ويب-بسيط">خادم ويب بسيط</h2>
 
@@ -292,21 +292,21 @@
 
 <p>كيفية استخدامه لبناء خدمة متتالية فيبوناتشي الخاصة بنا. أولاً، ابحث عن نموذج للكود على الإنترنت، وقم بتعديله قليلاً، ثم اكتب خادم ويب بسيطًا:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">SimpleHTTPRequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">send_header</span><span class="p">(</span><span class="sh">'</span><span class="s">Content-type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">end_headers</span><span class="p">()</span>
-      <span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="sh">"</span><span class="s">مرحبًا</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-type'</span><span class="p">,</span> <span class="s">'text'</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">end_headers</span><span class="p">()</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="s">"مرحبًا"</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="nc">HTTPServer</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="n">HTTPServer</span><span class="p">((</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="nf">serve_forever</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="n">serve_forever</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>هل تبدو هذه مألوفة؟ إنها تقريبًا مثل استخدامنا لـ <code class="language-plaintext highlighter-rouge">Server</code> أعلاه. لاحظ أن <code class="language-plaintext highlighter-rouge">SimpleHTTPRequestHandler</code> ليس فئة أساسية، بل هناك فئة أخرى تسمى <code class="language-plaintext highlighter-rouge">BaseHTTPRequestHandler</code>. <code class="language-plaintext highlighter-rouge">SimpleHTTPRequestHandler</code> يعالج بعض الأشياء الإضافية مقارنة بـ <code class="language-plaintext highlighter-rouge">BaseHTTPRequestHandler</code>. إضافة وظيفة معالجة متسلسلة فيبوناتشي إلى هذه الفئة أمر سهل.</p>
@@ -317,60 +317,60 @@
 
 <p>ثم حاول مرة أخرى الحصول على المعلمات من الطلب.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
-<span class="kn">from</span> <span class="n">fib</span> <span class="kn">import</span> <span class="n">f</span>
-<span class="kn">from</span> <span class="n">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span><span class="n">parse_qs</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
+<span class="kn">from</span> <span class="nn">fib</span> <span class="kn">import</span> <span class="n">f</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span><span class="n">parse_qs</span>
 </code></pre></div></div>
 
 <p>تم ترجمة الكود أعلاه إلى العربية كما يلي:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
-<span class="kn">from</span> <span class="n">fib</span> <span class="kn">import</span> <span class="n">f</span>
-<span class="kn">from</span> <span class="n">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span><span class="n">parse_qs</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
+<span class="kn">from</span> <span class="nn">fib</span> <span class="kn">import</span> <span class="n">f</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span><span class="n">parse_qs</span>
 </code></pre></div></div>
 
 <p>ملاحظة: الكود لم يتغير لأنه يحتوي على أسماء مكتبات ووظائف بلغة Python، والتي لا يتم ترجمتها عادةً.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">SimpleHTTPRequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">send_header</span><span class="p">(</span><span class="sh">'</span><span class="s">Content-type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">)</span>      
-        <span class="n">self</span><span class="p">.</span><span class="nf">end_headers</span><span class="p">()</span>
-        <span class="n">parsed</span> <span class="o">=</span> <span class="nf">urlparse</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
-        <span class="n">qs</span> <span class="o">=</span> <span class="nf">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>      
-        <span class="n">result</span> <span class="o">=</span> <span class="sh">""</span>
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-type'</span><span class="p">,</span> <span class="s">'text'</span><span class="p">)</span>      
+        <span class="bp">self</span><span class="p">.</span><span class="n">end_headers</span><span class="p">()</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>      
+        <span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">ns</span> <span class="o">=</span> <span class="n">qs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>          
-                <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>          
+                <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود أعلاه إلى:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">SimpleHTTPRequestHandler</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">send_header</span><span class="p">(</span><span class="sh">'</span><span class="s">Content-type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">)</span>      
-        <span class="n">self</span><span class="p">.</span><span class="nf">end_headers</span><span class="p">()</span>
-        <span class="n">parsed</span> <span class="o">=</span> <span class="nf">urlparse</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
-        <span class="n">qs</span> <span class="o">=</span> <span class="nf">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>      
-        <span class="n">result</span> <span class="o">=</span> <span class="sh">""</span>
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-type'</span><span class="p">,</span> <span class="s">'text'</span><span class="p">)</span>      
+        <span class="bp">self</span><span class="p">.</span><span class="n">end_headers</span><span class="p">()</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">qs</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>      
+        <span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">ns</span> <span class="o">=</span> <span class="n">qs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>          
-                <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
-                <span class="n">result</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>          
+                <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>ملاحظة: الكود لم يتم تغييره لأنه يحتوي على أسماء دوال ومتغيرات بالإنجليزية، ويجب الحفاظ عليها كما هي.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="nc">HTTPServer</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="n">HTTPServer</span><span class="p">((</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="nf">serve_forever</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="n">serve_forever</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><img src="/assets/images/web/n10.png" alt="n10" style="zoom:50%;" /></p>
@@ -388,9 +388,9 @@
 
 <p>دعونا نقوم بإعادة هيكلة بسيطة للكود.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
-<span class="kn">from</span> <span class="n">fib</span> <span class="kn">import</span> <span class="n">f</span>
-<span class="kn">from</span> <span class="n">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">http.server</span> <span class="kn">import</span> <span class="n">SimpleHTTPRequestHandler</span><span class="p">,</span> <span class="n">HTTPServer</span>
+<span class="kn">from</span> <span class="nn">fib</span> <span class="kn">import</span> <span class="n">f</span>
+<span class="kn">from</span> <span class="nn">urllib.parse</span> <span class="kn">import</span> <span class="n">urlparse</span><span class="p">,</span> <span class="n">parse_qs</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Handler</span><span class="p">(</span><span class="n">SimpleHTTPRequestHandler</span><span class="p">):</span>
@@ -402,50 +402,50 @@
 
 <p>في هذا الكود، يتم تعريف فئة جديدة باسم <code class="language-plaintext highlighter-rouge">Handler</code> والتي ترث من الفئة <code class="language-plaintext highlighter-rouge">SimpleHTTPRequestHandler</code>. هذه الفئة تُستخدم عادةً لمعالجة طلبات HTTP في خوادم الويب البسيطة.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">parse_n</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-      <span class="n">parsed</span> <span class="o">=</span> <span class="nf">urlparse</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-      <span class="n">qs</span> <span class="o">=</span> <span class="nf">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>
-      <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-        <span class="n">ns</span> <span class="o">=</span> <span class="n">qs</span><span class="p">[</span><span class="sh">'</span><span class="s">n</span><span class="sh">'</span><span class="p">]</span>
-        <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-          <span class="n">n</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">def</span> <span class="nf">parse_n</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+      <span class="n">parsed</span> <span class="o">=</span> <span class="n">urlparse</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+      <span class="n">qs</span> <span class="o">=</span> <span class="n">parse_qs</span><span class="p">(</span><span class="n">parsed</span><span class="p">.</span><span class="n">query</span><span class="p">)</span>
+      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">qs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ns</span> <span class="o">=</span> <span class="n">qs</span><span class="p">[</span><span class="s">'n'</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ns</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
           <span class="k">return</span> <span class="n">n</span>
       <span class="k">return</span> <span class="bp">None</span>
       
-    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">send_header</span><span class="p">(</span><span class="sh">'</span><span class="s">Content-type</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">text</span><span class="sh">'</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">.</span><span class="nf">end_headers</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">do_GET</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">send_response</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">send_header</span><span class="p">(</span><span class="s">'Content-type'</span><span class="p">,</span> <span class="s">'text'</span><span class="p">)</span>
+      <span class="bp">self</span><span class="p">.</span><span class="n">end_headers</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود أعلاه إلى اللغة العربية مع الحفاظ على الأسماء الإنجليزية كما هي. إذا كنت بحاجة إلى أي تعديلات إضافية، فلا تتردد في إعلامي!</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="sh">""</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">parse_n</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">parse_n</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
               
-<span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
-<span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود أعلاه إلى:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="sh">""</span>
-<span class="n">n</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="nf">parse_n</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">result</span> <span class="o">=</span> <span class="s">""</span>
+<span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="p">.</span><span class="n">parse_n</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">path</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="nf">str</span><span class="p">(</span><span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
               
-<span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
-<span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="nf">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="sh">"</span><span class="s">utf-8</span><span class="sh">"</span><span class="p">))</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
+<span class="bp">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="nb">bytes</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s">"utf-8"</span><span class="p">))</span>
 </code></pre></div></div>
 
 <p>ملاحظة: الكود لم يتغير لأنه يحتوي على أسماء دوال ومتغيرات بالإنجليزية، والتي لا يتم ترجمتها.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="nc">HTTPServer</span><span class="p">((</span><span class="sh">"</span><span class="s">127.0.0.1</span><span class="sh">"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span> <span class="o">=</span> <span class="n">HTTPServer</span><span class="p">((</span><span class="s">"127.0.0.1"</span><span class="p">,</span> <span class="mi">8000</span><span class="p">),</span> <span class="n">Handler</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="nf">serve_forever</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">server</span><span class="p">.</span><span class="n">serve_forever</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>تم إدخال دالة <code class="language-plaintext highlighter-rouge">parse_n</code> لتغليف عملية استخراج القيمة <code class="language-plaintext highlighter-rouge">n</code> من مسار الطلب.</p>
@@ -456,25 +456,25 @@
 
 <p>إليك مثال بسيط باستخدام Python وFlask:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="n">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
 
-<span class="nd">@lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="o">@</span><span class="n">lru_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">n</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/fibonacci/&lt;int:n&gt;</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/fibonacci/&lt;int:n&gt;'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">({</span><span class="n">n</span><span class="p">:</span> <span class="n">result</span><span class="p">})</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="n">n</span><span class="p">:</span> <span class="n">result</span><span class="p">})</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>في هذا المثال، نستخدم الديكوراتور <code class="language-plaintext highlighter-rouge">@lru_cache</code> لتخزين نتائج الدالة <code class="language-plaintext highlighter-rouge">fibonacci</code> مؤقتًا. هذا يعني أنه عند طلب نفس العدد مرة أخرى، سيتم استرجاع النتيجة من التخزين المؤقت بدلاً من إعادة حسابها، مما يحسن بشكل كبير من كفاءة الخدمة.</p>
@@ -495,15 +495,15 @@ IndexError: فهرس القائمة خارج النطاق
 <p>إذا كانت المصفوفة غير كافية في الحجم، فلنغير مصفوفة <code class="language-plaintext highlighter-rouge">v</code> إلى 10000.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود أعلاه إلى:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>في هذا الكود، يتم إنشاء قائمة فارغة <code class="language-plaintext highlighter-rouge">v</code>، ثم يتم إضافة القيمة <code class="language-plaintext highlighter-rouge">-1</code> إلى القائمة 10000 مرة باستخدام حلقة <code class="language-plaintext highlighter-rouge">for</code>. النتيجة النهائية هي قائمة تحتوي على 10000 عنصر، كل عنصر منها هو <code class="language-plaintext highlighter-rouge">-1</code>.</p>
@@ -526,16 +526,16 @@ RecursionError: تم تجاوز الحد الأقصى لعمق الاستدعا�
 <p>بعد حساب 400 و1200 بهذه الطريقة، ثم حساب 2000، سيكون عمق الاستدعاء الذاتي حوالي 800، ولن يحدث خطأ في تجاوز عمق الاستدعاء الذاتي.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">:</span>         
-      <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="n">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -546,7 +546,7 @@ RecursionError: تم تجاوز الحد الأقصى لعمق الاستدعا�
       <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
          <span class="n">a</span> <span class="o">=</span> <span class="n">n</span>
       <span class="k">else</span><span class="p">:</span>
-         <span class="n">a</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
       <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div></div>
@@ -583,30 +583,30 @@ RecursionError: تم تجاوز الحد الأقصى لعمق الاستدعا�
 
 <p>جربها الآن.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">demofile2.txt</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">Now the file has more content!</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"demofile2.txt"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Now the file has more content!"</span><span class="p">)</span>
+<span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><strong>ترجمة الكود:</strong></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">demofile2.txt</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">a</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># فتح الملف "demofile2.txt" في وضع الإلحاق (append)
-</span><span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">"</span><span class="s">Now the file has more content!</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># إضافة النص "Now the file has more content!" إلى الملف
-</span><span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>  <span class="c1"># إغلاق الملف
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"demofile2.txt"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">)</span>  <span class="c1"># فتح الملف "demofile2.txt" في وضع الإلحاق (append)
+</span><span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Now the file has more content!"</span><span class="p">)</span>  <span class="c1"># إضافة النص "Now the file has more content!" إلى الملف
+</span><span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>  <span class="c1"># إغلاق الملف
 </span></code></pre></div></div>
 
 <p><strong>ملاحظة:</strong> الكود يفتح ملفًا نصيًا باسم <code class="language-plaintext highlighter-rouge">demofile2.txt</code> في وضع الإلحاق (<code class="language-plaintext highlighter-rouge">"a"</code>)، مما يعني أنه سيتم إضافة النص الجديد إلى نهاية الملف دون حذف المحتوى الحالي. بعد ذلك، يتم إغلاق الملف.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># افتح واقرأ الملف بعد الإضافة:
-</span><span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">demofile2.txt</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">r</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">())</span>
+</span><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">"demofile2.txt"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p>الوسيط الثاني للدالة <code class="language-plaintext highlighter-rouge">open</code> يمكن أن يكون <code class="language-plaintext highlighter-rouge">a</code>، مما يعني أنه سيتم إضافة المحتوى في نهاية الملف؛ أو <code class="language-plaintext highlighter-rouge">w</code>، مما يعني أنه سيتم استبدال محتوى الملف الحالي.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">hi</span><span class="sh">'</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'hi'</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>بعد التشغيل، وجدت بالفعل ملفًا باسم <code class="language-plaintext highlighter-rouge">fib_v</code>.</p>
@@ -624,17 +624,17 @@ RecursionError: تم تجاوز الحد الأقصى لعمق الاستدعا�
 
 <p>كيف يمكنني إدراج سطر جديد؟</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">a</span><span class="sh">'</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="sh">'</span><span class="s">hi</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'a'</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">'hi</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>هذا سيتم طباعته مرة واحدة، وستظهر <code class="language-plaintext highlighter-rouge">hihihi</code>، ولم يتم ملاحظة أي سطر جديد. ومع ذلك، عند الطباعة مرة أخرى، يتم إدراج سطر جديد. وهذا يدل على أن السطر الجديد قد تم طباعته بالفعل في المرة الأولى، ولكنه كان في النهاية ولم يكن مرئيًا.</p>
 
 <p>كيف يمكن القراءة؟</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">())</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">())</span>
 </code></pre></div></div>
 
 <p><strong>ملاحظة:</strong> الكود أعلاه مكتوب بلغة Python ويقوم بفتح ملف باسم <code class="language-plaintext highlighter-rouge">fib_v</code> للقراءة (<code class="language-plaintext highlighter-rouge">'r'</code>) ثم يطبع محتوى الملف. لا يوجد تغيير في الكود لأنه مكتوب بلغة برمجية عالمية ولا يحتاج إلى ترجمة.</p>
@@ -647,61 +647,61 @@ hi
 <p>بعد ذلك، دعونا نعدل برنامجنا لحساب متتالية فيبوناتشي.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-   <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-   <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-   <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-      <span class="n">lines</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>
-      <span class="nf">if </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
-           <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+   <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+   <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">lines</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>
+           <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p><strong>ترجمة الكود إلى العربية:</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-   <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># فتح الملف 'fib_v' للقراءة
-</span>   <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>  <span class="c1"># قراءة محتوى الملف
-</span>   <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># إذا كان المحتوى غير فارغ
-</span>      <span class="n">lines</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="se">\n</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># تقسيم المحتوى إلى أسطر
-</span>      <span class="nf">if </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># إذا كان هناك أسطر
-</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>  <span class="c1"># التكرار عبر كل الأسطر
-</span>           <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="c1"># تحويل السطر إلى عدد صحيح وتخزينه في القائمة v
+   <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>  <span class="c1"># فتح الملف 'fib_v' للقراءة
+</span>   <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># قراءة محتوى الملف
+</span>   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># إذا كان المحتوى غير فارغ
+</span>      <span class="n">lines</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>  <span class="c1"># تقسيم المحتوى إلى أسطر
+</span>      <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>  <span class="c1"># إذا كان هناك أسطر
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)):</span>  <span class="c1"># التكرار عبر كل الأسطر
+</span>           <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="c1"># تحويل السطر إلى عدد صحيح وتخزينه في القائمة v
 </span></code></pre></div></div>
 
 <p><strong>ملاحظة:</strong> الكود يفترض وجود قائمة <code class="language-plaintext highlighter-rouge">v</code> مُعرفة مسبقًا لتخزين القيم التي يتم قراءتها من الملف.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
-   <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_v</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-   <span class="n">s</span> <span class="o">=</span> <span class="sh">''</span>
+   <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_v'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+   <span class="n">s</span> <span class="o">=</span> <span class="s">''</span>
    <span class="n">start</span> <span class="o">=</span> <span class="bp">True</span>
    <span class="k">for</span> <span class="n">vv</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
       <span class="k">if</span> <span class="n">vv</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
          <span class="k">break</span>      
       <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
-         <span class="n">s</span> <span class="o">+=</span> <span class="sh">'</span><span class="se">\n</span><span class="sh">'</span>
+         <span class="n">s</span> <span class="o">+=</span> <span class="s">'</span><span class="se">\n</span><span class="s">'</span>
       <span class="n">start</span> <span class="o">=</span> <span class="bp">False</span>   
-      <span class="n">s</span> <span class="o">+=</span> <span class="nf">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
-   <span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-   <span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+      <span class="n">s</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+   <span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+   <span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fcache</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-   <span class="n">x</span> <span class="o">=</span> <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
-   <span class="nf">save</span><span class="p">()</span>
+   <span class="n">x</span> <span class="o">=</span> <span class="n">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+   <span class="n">save</span><span class="p">()</span>
    <span class="k">return</span> <span class="n">x</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">:</span>         
-      <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="n">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -712,7 +712,7 @@ hi
       <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
          <span class="n">a</span> <span class="o">=</span> <span class="n">n</span>
       <span class="k">else</span><span class="p">:</span>
-         <span class="n">a</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
       <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div></div>
@@ -771,20 +771,20 @@ save()
 
 <p>بعد ذلك، نحتاج إلى تحويل مصفوفة <code class="language-plaintext highlighter-rouge">v</code> إلى سلسلة نصية بتنسيق <code class="language-plaintext highlighter-rouge">json</code>.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">json</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">json</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">:</span>         
-      <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="n">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -795,16 +795,16 @@ save()
       <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
          <span class="n">a</span> <span class="o">=</span> <span class="n">n</span>
       <span class="k">else</span><span class="p">:</span>
-         <span class="n">a</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
       <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">fplus</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">s</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-<span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fplus</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>عندما نكتب بهذه الطريقة، حدث خطأ: <code class="language-plaintext highlighter-rouge">TypeError: dump() missing 1 required positional argument: 'fp'</code>. في <code class="language-plaintext highlighter-rouge">vscode</code>، يمكننا رؤية تعريف الدالة بهذه الطريقة.</p>
@@ -813,10 +813,10 @@ save()
 
 <p>يمكنك تحريك الماوس فوق <code class="language-plaintext highlighter-rouge">dump</code> فقط. أليس ذلك مريحًا؟</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">fplus</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-<span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fplus</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+<span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>لحساب الأرقام حتى 100، سيتم عرض عدد كبير من الأرقام، لذا سنقوم بتغييرها إلى 10. في الأصل، يمكن تمرير الكائن <code class="language-plaintext highlighter-rouge">file</code> كمعامل ثاني للدالة <code class="language-plaintext highlighter-rouge">dump</code>.</p>
@@ -829,38 +829,38 @@ save()
 <p>لاحظ أن هناك العديد من <code class="language-plaintext highlighter-rouge">-1</code> تم حذفها لاحقًا.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-    <span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><strong>ترجمة:</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
             <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-    <span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>قراءة()</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">vv</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">vv</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>عندما يحدث هذا، يمكننا أن نرى أن الطباعة تظهر:</p>
@@ -881,20 +881,20 @@ save()
 <p>دعونا نتحقق من هذه الدوال معًا:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود إلى:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
-    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="nf">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'r'</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">sv</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sv</span><span class="p">)):</span>
         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </code></pre></div></div>
 
@@ -902,14 +902,14 @@ save()
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
     <span class="n">sv</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">sv</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">sv</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>        
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">fib_j</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">json</span><span class="p">.</span><span class="nf">dump</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
-    <span class="nb">file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'fib_j'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="n">json</span><span class="p">.</span><span class="n">dump</span><span class="p">(</span><span class="n">sv</span><span class="p">,</span> <span class="nb">file</span><span class="p">)</span>
+    <span class="nb">file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <pre><code class="language-read()">fplus(100)
@@ -927,11 +927,11 @@ save()
 
 <p>في وثائق الموقع الرسمي وجدت مثالًا.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sqlite3</span>
-<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">example.db</span><span class="sh">'</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'example.db'</span><span class="p">)</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h1 id="إنشاء-جدول">إنشاء جدول</h1>
@@ -946,33 +946,33 @@ save()
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># يمكننا أيضًا إغلاق الاتصال إذا انتهينا منه.
 # فقط تأكد من أن أي تغييرات قد تم حفظها (commit) وإلا سيتم فقدانها.
-</span><span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</span><span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * FROM stocks ORDER BY price</span><span class="sh">'</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * FROM stocks ORDER BY price'</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>(ملاحظة: الكود المذكور أعلاه مكتوب بلغة Python ويقوم بطباعة الصفوف من جدول “stocks” مرتبة حسب السعر. لم يتم ترجمة الكود لأنه يحتوي على أوامر برمجية يجب أن تبقى كما هي.)</p>
 
 <p><code class="language-plaintext highlighter-rouge">cursor</code> تعني المؤشر، وهو يشبه المؤشر الذي تراه على الشاشة. ما سبق يوضح كيفية الاتصال بقاعدة البيانات، وإنشاء الجداول، وإدخال البيانات، وإرسال التغييرات، وإغلاق الاتصال. المثال الأخير يوضح كيفية استعلام البيانات.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sqlite3</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Connection</span><span class="p">):</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE vs(v text)'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود أعلاه إلى:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Connection</span><span class="p">):</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE vs(v text)'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>في هذه الدالة، يتم إنشاء جدول جديد باسم <code class="language-plaintext highlighter-rouge">vs</code> يحتوي على عمود واحد من نوع النص (<code class="language-plaintext highlighter-rouge">text</code>).</p>
@@ -982,16 +982,16 @@ save()
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">fib.db</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>
-    <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'fib.db'</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">vv</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">vv</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">INSERT INTO vs VALUES(</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'INSERT INTO vs VALUES('</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="s">')'</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <pre><code class="language-fplus(10)">save()
@@ -1114,20 +1114,20 @@ CREATE TABLE vs(v text);
 
 <p>بالفعل، قمنا بكتابة البيانات بشكل صحيح. لاحظ أننا استخدمنا <code class="language-plaintext highlighter-rouge">text</code> لأن أرقامنا كبيرة وقد لا يتمكن نوع الأعداد الصحيحة في قاعدة البيانات من حفظها.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">sqlite3</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">sqlite3</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">v</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
-   <span class="n">v</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">):</span>
+   <span class="n">v</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
    <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">800</span><span class="p">:</span>         
-      <span class="nf">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="n">fplus</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">800</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
    <span class="k">else</span><span class="p">:</span>
-      <span class="k">return</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -1138,76 +1138,76 @@ CREATE TABLE vs(v text);
       <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
          <span class="n">a</span> <span class="o">=</span> <span class="n">n</span>
       <span class="k">else</span><span class="p">:</span>
-         <span class="n">a</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="nf">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
       <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span>
       <span class="k">return</span> <span class="n">v</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Connection</span><span class="p">):</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE vs(v text)'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">fib.db</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>    
-    <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'fib.db'</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>    
+    <span class="n">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * from vs</span><span class="sh">'</span><span class="p">):</span>
-         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * from vs'</span><span class="p">):</span>
+         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>تمت ترجمة الكود إلى:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">fib.db</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>    
-    <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'fib.db'</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>    
+    <span class="n">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * from vs</span><span class="sh">'</span><span class="p">):</span>
-         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * from vs'</span><span class="p">):</span>
+         <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>ملاحظة: الكود الأصلي يحتوي على بعض الأخطاء المحتملة، مثل عدم تعريف المتغير <code class="language-plaintext highlighter-rouge">v</code> قبل استخدامه، وعدم زيادة قيمة <code class="language-plaintext highlighter-rouge">i</code> داخل الحلقة. هذه الأخطاء لم يتم تصحيحها في الترجمة.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">save</span><span class="p">():</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">fib.db</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>
-    <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'fib.db'</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>
+    <span class="n">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">vv</span> <span class="ow">in</span> <span class="n">v</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">vv</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
-            <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">INSERT INTO vs VALUES(</span><span class="sh">'</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="sh">'</span><span class="s">)</span><span class="sh">'</span><span class="p">)</span>
+            <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'INSERT INTO vs VALUES('</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="s">')'</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">break</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">commit</span><span class="p">()</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">read</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">read</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>نستمر بإضافة دالة <code class="language-plaintext highlighter-rouge">read</code>. ومع ذلك، بعد التشغيل، ظهر خطأ.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">$</span> <span class="n">python</span> <span class="n">fib_db</span><span class="p">.</span><span class="n">py</span>
-  <span class="bp">...</span>
-  <span class="n">File</span> <span class="sh">"</span><span class="s">fib_db.py</span><span class="sh">"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">27</span><span class="p">,</span> <span class="ow">in</span> <span class="n">create_table</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+  <span class="p">...</span>
+  <span class="n">File</span> <span class="s">"fib_db.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">27</span><span class="p">,</span> <span class="ow">in</span> <span class="n">create_table</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE vs(v text)'</span><span class="p">)</span>
 <span class="n">sqlite3</span><span class="p">.</span><span class="n">OperationalError</span><span class="p">:</span> <span class="n">الجدول</span> <span class="n">vs</span> <span class="n">موجود</span> <span class="n">بالفعل</span>
 </code></pre></div></div>
 
 <p>لا يمكننا إنشاء الجدول مرة أخرى، الجدول موجود بالفعل. سنقوم بتعديل الصيغة قليلاً.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Connection</span><span class="p">):</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE IF NOT EXISTS vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE IF NOT EXISTS vs(v text)'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>الترجمة:</strong></p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">:</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">Connection</span><span class="p">):</span>
-    <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">CREATE TABLE IF NOT EXISTS vs(v text)</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'CREATE TABLE IF NOT EXISTS vs(v text)'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>ملاحظة:</strong> الكود المقدم لا يحتاج إلى ترجمة حيث أنه مكتوب بلغة برمجة Python، والترجمة هنا هي نفس الكود الأصلي.</p>
@@ -1220,9 +1220,9 @@ TypeError: يجب أن تكون وسيطة int<span class="o">()</span> عبار
 
 <p><code class="language-plaintext highlighter-rouge">tuple</code> هو نوع من أنواع البيانات في Python. يعني أن الدالة <code class="language-plaintext highlighter-rouge">row</code> تُرجع <code class="language-plaintext highlighter-rouge">tuple</code>. دعنا نطبعها.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * from vs</span><span class="sh">'</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * from vs'</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>النتيجة هي:</p>
@@ -1233,13 +1233,13 @@ TypeError: يجب أن تكون وسيطة int<span class="o">()</span> عبار
 <p>في الواقع، <code class="language-plaintext highlighter-rouge">tuple</code> يشبه إلى حد كبير المصفوفة. الفرق الرئيسي هو أن عناصر <code class="language-plaintext highlighter-rouge">tuple</code> يمكن أن تكون مختلفة عن بعضها البعض، على عكس المصفوفة التي يجب أن تكون جميع عناصرها من نفس النوع.</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read</span><span class="p">():</span>
-    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="nf">connect</span><span class="p">(</span><span class="sh">'</span><span class="s">fib.db</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="nf">cursor</span><span class="p">()</span>    
-    <span class="nf">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="n">con</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="p">.</span><span class="n">connect</span><span class="p">(</span><span class="s">'fib.db'</span><span class="p">)</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="p">.</span><span class="n">cursor</span><span class="p">()</span>    
+    <span class="n">create_table</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * from vs</span><span class="sh">'</span><span class="p">):</span>
-        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">con</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * from vs'</span><span class="p">):</span>
+        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">con</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p><strong>ملاحظة:</strong> الكود أعلاه مكتوب بلغة Python ويقوم بقراءة البيانات من قاعدة بيانات SQLite. لا يتم تغيير الكود أثناء الترجمة.</p>
@@ -1260,8 +1260,8 @@ TypeError: يجب أن تكون وسيطة int<span class="o">()</span> عبار
 
 <p>اتضح أن المتغير <code class="language-plaintext highlighter-rouge">i</code> لم يتم زيادته.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">'</span><span class="s">SELECT * from vs</span><span class="sh">'</span><span class="p">):</span>
-        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">'SELECT * from vs'</span><span class="p">):</span>
+        <span class="n">v</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
 </code></pre></div></div>
 
@@ -1308,7 +1308,7 @@ ValueError: قيمة غير صالحة لـ int<span class="o">()</span> بال�
 
 <p>غيّر أو عدّل</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cur</span><span class="p">.</span><span class="nf">execute</span><span class="p">(</span><span class="sh">"</span><span class="s">INSERT INTO vs VALUES(</span><span class="sh">'"</span> <span class="o">+</span><span class="nf">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="sh">"'</span><span class="s">)</span><span class="sh">"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cur</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="s">"INSERT INTO vs VALUES('"</span> <span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">+</span> <span class="s">"')"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>في الكود أعلاه، يتم إدراج قيمة المتغير <code class="language-plaintext highlighter-rouge">vv</code> في جدول يسمى <code class="language-plaintext highlighter-rouge">vs</code> باستخدام أمر SQL <code class="language-plaintext highlighter-rouge">INSERT INTO</code>. يتم تحويل قيمة <code class="language-plaintext highlighter-rouge">vv</code> إلى سلسلة نصية باستخدام الدالة <code class="language-plaintext highlighter-rouge">str()</code> قبل إدراجها في الاستعلام.</p>

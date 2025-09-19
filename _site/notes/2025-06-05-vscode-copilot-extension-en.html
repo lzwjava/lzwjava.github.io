@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>How to Call GitHub Copilot from a VSCode Extension | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="How to Call GitHub Copilot from a VSCode Extension" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -280,32 +280,32 @@
   <li><strong>Code</strong>:</li>
 </ul>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="kd">as </span><span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Register the command to trigger Copilot Chat</span>
-  <span class="kd">let</span> <span class="nx">disposable</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nf">registerCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.triggerCopilotChat</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">disposable</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">registerCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.triggerCopilotChat</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// Get user input for the prompt</span>
-    <span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showInputBox</span><span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showInputBox</span><span class="p">({</span>
       <span class="na">prompt</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Enter your query for GitHub Copilot</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">placeHolder</span><span class="p">:</span> <span class="dl">'</span><span class="s1">e.g., Write a JavaScript function to sort an array</span><span class="dl">'</span>
     <span class="p">});</span>
 
-    <span class="k">if </span><span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">try</span> <span class="p">{</span>
         <span class="c1">// Execute the command to open Copilot Chat with the prompt</span>
-        <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nf">executeCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">workbench.action.chat.open</span><span class="dl">'</span><span class="p">,</span> <span class="nx">prompt</span><span class="p">);</span>
-        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showInformationMessage</span><span class="p">(</span><span class="dl">'</span><span class="s1">Sent prompt to Copilot Chat!</span><span class="dl">'</span><span class="p">);</span>
-      <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showErrorMessage</span><span class="p">(</span><span class="s2">`Failed to trigger Copilot Chat: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">executeCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">workbench.action.chat.open</span><span class="dl">'</span><span class="p">,</span> <span class="nx">prompt</span><span class="p">);</span>
+        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showInformationMessage</span><span class="p">(</span><span class="dl">'</span><span class="s1">Sent prompt to Copilot Chat!</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showErrorMessage</span><span class="p">(</span><span class="s2">`Failed to trigger Copilot Chat: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>
 
-  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">disposable</span><span class="p">);</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">disposable</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">deactivate</span><span class="p">()</span> <span class="p">{}</span>
 </code></pre></div></div>
 
 <ul>
@@ -327,39 +327,39 @@
   <li><strong>Modified Code</strong> (<code class="language-plaintext highlighter-rouge">src/extension.ts</code>):</li>
 </ul>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="kd">as </span><span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">let</span> <span class="nx">disposable</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nf">registerCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.triggerCopilotChat</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">disposable</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">registerCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.triggerCopilotChat</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="c1">// Get selected text from the active editor</span>
     <span class="kd">const</span> <span class="nx">editor</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">activeTextEditor</span><span class="p">;</span>
     <span class="kd">let</span> <span class="nx">context</span> <span class="o">=</span> <span class="dl">''</span><span class="p">;</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">editor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">editor</span><span class="p">)</span> <span class="p">{</span>
       <span class="kd">const</span> <span class="nx">selection</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nx">selection</span><span class="p">;</span>
-      <span class="nx">context</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nf">getText</span><span class="p">(</span><span class="nx">selection</span><span class="p">);</span>
+      <span class="nx">context</span> <span class="o">=</span> <span class="nx">editor</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getText</span><span class="p">(</span><span class="nx">selection</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// Prompt for user input</span>
-    <span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showInputBox</span><span class="p">({</span>
+    <span class="kd">const</span> <span class="nx">prompt</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showInputBox</span><span class="p">({</span>
       <span class="na">prompt</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Enter your query for GitHub Copilot</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">placeHolder</span><span class="p">:</span> <span class="dl">'</span><span class="s1">e.g., Explain this code</span><span class="dl">'</span><span class="p">,</span>
       <span class="na">value</span><span class="p">:</span> <span class="nx">context</span> <span class="p">?</span> <span class="s2">`Regarding this code: \n</span><span class="se">\`\`\`</span><span class="s2">\n</span><span class="p">${</span><span class="nx">context</span><span class="p">}</span><span class="s2">\n</span><span class="se">\`\`\`</span><span class="s2">\n`</span> <span class="p">:</span> <span class="dl">''</span>
     <span class="p">});</span>
 
-    <span class="k">if </span><span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">prompt</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">try</span> <span class="p">{</span>
-        <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nf">executeCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">workbench.action.chat.open</span><span class="dl">'</span><span class="p">,</span> <span class="nx">prompt</span><span class="p">);</span>
-        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showInformationMessage</span><span class="p">(</span><span class="dl">'</span><span class="s1">Sent prompt to Copilot Chat!</span><span class="dl">'</span><span class="p">);</span>
-      <span class="p">}</span> <span class="k">catch </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nf">showErrorMessage</span><span class="p">(</span><span class="s2">`Failed to trigger Copilot Chat: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
+        <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">executeCommand</span><span class="p">(</span><span class="dl">'</span><span class="s1">workbench.action.chat.open</span><span class="dl">'</span><span class="p">,</span> <span class="nx">prompt</span><span class="p">);</span>
+        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showInformationMessage</span><span class="p">(</span><span class="dl">'</span><span class="s1">Sent prompt to Copilot Chat!</span><span class="dl">'</span><span class="p">);</span>
+      <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">vscode</span><span class="p">.</span><span class="nb">window</span><span class="p">.</span><span class="nx">showErrorMessage</span><span class="p">(</span><span class="s2">`Failed to trigger Copilot Chat: </span><span class="p">${</span><span class="nx">error</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span>
   <span class="p">});</span>
 
-  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">disposable</span><span class="p">);</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">disposable</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">deactivate</span><span class="p">()</span> <span class="p">{}</span>
 </code></pre></div></div>
 
 <ul>
@@ -391,29 +391,29 @@
   <li><strong>Example Code</strong> (<code class="language-plaintext highlighter-rouge">src/extension.ts</code>):</li>
 </ul>
 
-<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="kd">as </span><span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
+<div class="language-typescript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">vscode</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">vscode</span><span class="dl">'</span><span class="p">;</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">activate</span><span class="p">(</span><span class="nx">context</span><span class="p">:</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ExtensionContext</span><span class="p">)</span> <span class="p">{</span>
   <span class="c1">// Register a chat participant</span>
-  <span class="kd">const</span> <span class="nx">participant</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nf">createChatParticipant</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.myParticipant</span><span class="dl">'</span><span class="p">,</span> <span class="k">async </span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">stream</span><span class="p">.</span><span class="nf">markdown</span><span class="p">(</span><span class="dl">'</span><span class="s1">Processing your query...</span><span class="se">\n</span><span class="dl">'</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="nx">participant</span> <span class="o">=</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">chat</span><span class="p">.</span><span class="nx">createChatParticipant</span><span class="p">(</span><span class="dl">'</span><span class="s1">copilot-api-caller.myParticipant</span><span class="dl">'</span><span class="p">,</span> <span class="k">async</span> <span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">context</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">token</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">stream</span><span class="p">.</span><span class="nx">markdown</span><span class="p">(</span><span class="dl">'</span><span class="s1">Processing your query...</span><span class="se">\n</span><span class="dl">'</span><span class="p">);</span>
     <span class="c1">// Use the Language Model API to generate a response</span>
-    <span class="kd">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">lm</span><span class="p">.</span><span class="nf">selectChatModels</span><span class="p">({</span> <span class="na">family</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4</span><span class="dl">'</span> <span class="p">})[</span><span class="mi">0</span><span class="p">];</span>
-    <span class="k">if </span><span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">model</span><span class="p">.</span><span class="nf">sendRequest</span><span class="p">([{</span> <span class="na">text</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">prompt</span> <span class="p">}],</span> <span class="p">{},</span> <span class="nx">token</span><span class="p">);</span>
-      <span class="k">for</span> <span class="k">await </span><span class="p">(</span><span class="kd">const</span> <span class="nx">chunk</span> <span class="k">of</span> <span class="nx">response</span><span class="p">.</span><span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">stream</span><span class="p">.</span><span class="nf">markdown</span><span class="p">(</span><span class="nx">chunk</span><span class="p">);</span>
+    <span class="kd">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">lm</span><span class="p">.</span><span class="nx">selectChatModels</span><span class="p">({</span> <span class="na">family</span><span class="p">:</span> <span class="dl">'</span><span class="s1">gpt-4</span><span class="dl">'</span> <span class="p">})[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">model</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kd">const</span> <span class="nx">response</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">model</span><span class="p">.</span><span class="nx">sendRequest</span><span class="p">([{</span> <span class="na">text</span><span class="p">:</span> <span class="nx">request</span><span class="p">.</span><span class="nx">prompt</span> <span class="p">}],</span> <span class="p">{},</span> <span class="nx">token</span><span class="p">);</span>
+      <span class="k">for</span> <span class="k">await</span> <span class="p">(</span><span class="kd">const</span> <span class="nx">chunk</span> <span class="k">of</span> <span class="nx">response</span><span class="p">.</span><span class="nx">stream</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">stream</span><span class="p">.</span><span class="nx">markdown</span><span class="p">(</span><span class="nx">chunk</span><span class="p">);</span>
       <span class="p">}</span>
     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="nx">stream</span><span class="p">.</span><span class="nf">markdown</span><span class="p">(</span><span class="dl">'</span><span class="s1">No suitable model available.</span><span class="dl">'</span><span class="p">);</span>
+      <span class="nx">stream</span><span class="p">.</span><span class="nx">markdown</span><span class="p">(</span><span class="dl">'</span><span class="s1">No suitable model available.</span><span class="dl">'</span><span class="p">);</span>
     <span class="p">}</span>
   <span class="p">});</span>
 
-  <span class="nx">participant</span><span class="p">.</span><span class="nx">iconPath</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vscode</span><span class="p">.</span><span class="nc">ThemeIcon</span><span class="p">(</span><span class="dl">'</span><span class="s1">sparkle</span><span class="dl">'</span><span class="p">);</span>
-  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">participant</span><span class="p">);</span>
+  <span class="nx">participant</span><span class="p">.</span><span class="nx">iconPath</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">vscode</span><span class="p">.</span><span class="nx">ThemeIcon</span><span class="p">(</span><span class="dl">'</span><span class="s1">sparkle</span><span class="dl">'</span><span class="p">);</span>
+  <span class="nx">context</span><span class="p">.</span><span class="nx">subscriptions</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">participant</span><span class="p">);</span>
 <span class="p">}</span>
 
-<span class="k">export</span> <span class="kd">function</span> <span class="nf">deactivate</span><span class="p">()</span> <span class="p">{}</span>
+<span class="k">export</span> <span class="kd">function</span> <span class="nx">deactivate</span><span class="p">()</span> <span class="p">{}</span>
 </code></pre></div></div>
 
 <ul>

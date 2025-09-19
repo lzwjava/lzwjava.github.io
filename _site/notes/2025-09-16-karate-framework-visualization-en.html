@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Karate Test Framework Architecture Visualization | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Karate Test Framework Architecture Visualization" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -208,146 +208,146 @@
 
 <p>Code:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">networkx</span> <span class="k">as</span> <span class="n">nx</span>
-<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="n">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 
 <span class="c1"># Try to use Graphviz for a cleaner layout if available; fall back to spring_layout otherwise.
 </span><span class="k">def</span> <span class="nf">get_layout</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Try PyGraphviz
-</span>        <span class="kn">from</span> <span class="n">networkx.drawing.nx_agraph</span> <span class="kn">import</span> <span class="n">graphviz_layout</span>
-        <span class="k">return</span> <span class="nf">graphviz_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="sh">"</span><span class="s">dot</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="kn">from</span> <span class="nn">networkx.drawing.nx_agraph</span> <span class="kn">import</span> <span class="n">graphviz_layout</span>
+        <span class="k">return</span> <span class="n">graphviz_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="s">"dot"</span><span class="p">)</span>
     <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="c1"># Try pydot
-</span>            <span class="kn">from</span> <span class="n">networkx.drawing.nx_pydot</span> <span class="kn">import</span> <span class="n">graphviz_layout</span>
-            <span class="k">return</span> <span class="nf">graphviz_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="sh">"</span><span class="s">dot</span><span class="sh">"</span><span class="p">)</span>
+</span>            <span class="kn">from</span> <span class="nn">networkx.drawing.nx_pydot</span> <span class="kn">import</span> <span class="n">graphviz_layout</span>
+            <span class="k">return</span> <span class="n">graphviz_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">prog</span><span class="o">=</span><span class="s">"dot"</span><span class="p">)</span>
         <span class="k">except</span> <span class="nb">Exception</span><span class="p">:</span>
             <span class="c1"># Fallback: spring layout
-</span>            <span class="k">return</span> <span class="n">nx</span><span class="p">.</span><span class="nf">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span>            <span class="k">return</span> <span class="n">nx</span><span class="p">.</span><span class="n">spring_layout</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
 
-<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="nc">DiGraph</span><span class="p">()</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="p">.</span><span class="n">DiGraph</span><span class="p">()</span>
 
 <span class="c1"># Define nodes grouped by category
 </span><span class="n">nodes</span> <span class="o">=</span> <span class="p">{</span>
     <span class="c1"># Authoring
-</span>    <span class="sh">"</span><span class="s">Feature files (.feature)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Authoring</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Reusable features (call/read)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Authoring</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">karate-config.js / properties</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Authoring</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Test data (JSON/CSV)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Authoring</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"Feature files (.feature)"</span><span class="p">:</span> <span class="s">"Authoring"</span><span class="p">,</span>
+    <span class="s">"Reusable features (call/read)"</span><span class="p">:</span> <span class="s">"Authoring"</span><span class="p">,</span>
+    <span class="s">"karate-config.js / properties"</span><span class="p">:</span> <span class="s">"Authoring"</span><span class="p">,</span>
+    <span class="s">"Test data (JSON/CSV)"</span><span class="p">:</span> <span class="s">"Authoring"</span><span class="p">,</span>
 
     <span class="c1"># Execution
-</span>    <span class="sh">"</span><span class="s">Runner (CLI/JUnit5/Maven/Gradle)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Execution</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Parallel runner</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Execution</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"Runner (CLI/JUnit5/Maven/Gradle)"</span><span class="p">:</span> <span class="s">"Execution"</span><span class="p">,</span>
+    <span class="s">"Parallel runner"</span><span class="p">:</span> <span class="s">"Execution"</span><span class="p">,</span>
 
     <span class="c1"># Runtime
-</span>    <span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Runtime</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">JS engine</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Runtime</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Variable/context</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Runtime</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Assertions &amp; matchers</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Runtime</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"Karate engine (DSL interpreter)"</span><span class="p">:</span> <span class="s">"Runtime"</span><span class="p">,</span>
+    <span class="s">"JS engine"</span><span class="p">:</span> <span class="s">"Runtime"</span><span class="p">,</span>
+    <span class="s">"Variable/context"</span><span class="p">:</span> <span class="s">"Runtime"</span><span class="p">,</span>
+    <span class="s">"Assertions &amp; matchers"</span><span class="p">:</span> <span class="s">"Runtime"</span><span class="p">,</span>
 
     <span class="c1"># Protocols / IO
-</span>    <span class="sh">"</span><span class="s">HTTP/REST/SOAP/GraphQL</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Protocols</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">WebSocket</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Protocols</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">UI driver (web)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Protocols</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Mock server</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Protocols</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"HTTP/REST/SOAP/GraphQL"</span><span class="p">:</span> <span class="s">"Protocols"</span><span class="p">,</span>
+    <span class="s">"WebSocket"</span><span class="p">:</span> <span class="s">"Protocols"</span><span class="p">,</span>
+    <span class="s">"UI driver (web)"</span><span class="p">:</span> <span class="s">"Protocols"</span><span class="p">,</span>
+    <span class="s">"Mock server"</span><span class="p">:</span> <span class="s">"Protocols"</span><span class="p">,</span>
 
     <span class="c1"># External
-</span>    <span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">External</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"External systems/services"</span><span class="p">:</span> <span class="s">"External"</span><span class="p">,</span>
 
     <span class="c1"># Reporting
-</span>    <span class="sh">"</span><span class="s">Reports (HTML, JUnit, JSON)</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Reporting</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">CI/CD</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Reporting</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="s">"Reports (HTML, JUnit, JSON)"</span><span class="p">:</span> <span class="s">"Reporting"</span><span class="p">,</span>
+    <span class="s">"CI/CD"</span><span class="p">:</span> <span class="s">"Reporting"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># Add nodes with category attribute
-</span><span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
-    <span class="n">G</span><span class="p">.</span><span class="nf">add_node</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">cat</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">G</span><span class="p">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span>
 
 <span class="c1"># Define edges (u -&gt; v) with optional labels
 </span><span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
     <span class="c1"># Authoring to Execution
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">Feature files (.feature)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Runner (CLI/JUnit5/Maven/Gradle)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">execute</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">karate-config.js / properties</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Runner (CLI/JUnit5/Maven/Gradle)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">configure</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Test data (JSON/CSV)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Feature files (.feature)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">data-driven</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Reusable features (call/read)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Feature files (.feature)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">reuse</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"Feature files (.feature)"</span><span class="p">,</span> <span class="s">"Runner (CLI/JUnit5/Maven/Gradle)"</span><span class="p">,</span> <span class="s">"execute"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"karate-config.js / properties"</span><span class="p">,</span> <span class="s">"Runner (CLI/JUnit5/Maven/Gradle)"</span><span class="p">,</span> <span class="s">"configure"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Test data (JSON/CSV)"</span><span class="p">,</span> <span class="s">"Feature files (.feature)"</span><span class="p">,</span> <span class="s">"data-driven"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Reusable features (call/read)"</span><span class="p">,</span> <span class="s">"Feature files (.feature)"</span><span class="p">,</span> <span class="s">"reuse"</span><span class="p">),</span>
 
     <span class="c1"># Execution to Runtime
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">Runner (CLI/JUnit5/Maven/Gradle)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Parallel runner</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">optional</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Runner (CLI/JUnit5/Maven/Gradle)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">invoke</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Parallel runner</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">parallelize</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"Runner (CLI/JUnit5/Maven/Gradle)"</span><span class="p">,</span> <span class="s">"Parallel runner"</span><span class="p">,</span> <span class="s">"optional"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Runner (CLI/JUnit5/Maven/Gradle)"</span><span class="p">,</span> <span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"invoke"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Parallel runner"</span><span class="p">,</span> <span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"parallelize"</span><span class="p">),</span>
 
     <span class="c1"># Runtime internals
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">JS engine</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">script expressions</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Variable/context</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">manage state</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"JS engine"</span><span class="p">,</span> <span class="s">"script expressions"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"Variable/context"</span><span class="p">,</span> <span class="s">"manage state"</span><span class="p">),</span>
 
     <span class="c1"># Engine to protocols
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">HTTP/REST/SOAP/GraphQL</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">call APIs</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">WebSocket</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">send/receive</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">UI driver (web)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">drive UI</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Mock server</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">start/stub</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"HTTP/REST/SOAP/GraphQL"</span><span class="p">,</span> <span class="s">"call APIs"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"WebSocket"</span><span class="p">,</span> <span class="s">"send/receive"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"UI driver (web)"</span><span class="p">,</span> <span class="s">"drive UI"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"Mock server"</span><span class="p">,</span> <span class="s">"start/stub"</span><span class="p">),</span>
 
     <span class="c1"># Protocols to external systems
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">HTTP/REST/SOAP/GraphQL</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">requests</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">WebSocket</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">messages</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">UI driver (web)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">browser/app</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Mock server</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">simulate</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"HTTP/REST/SOAP/GraphQL"</span><span class="p">,</span> <span class="s">"External systems/services"</span><span class="p">,</span> <span class="s">"requests"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"WebSocket"</span><span class="p">,</span> <span class="s">"External systems/services"</span><span class="p">,</span> <span class="s">"messages"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"UI driver (web)"</span><span class="p">,</span> <span class="s">"External systems/services"</span><span class="p">,</span> <span class="s">"browser/app"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Mock server"</span><span class="p">,</span> <span class="s">"External systems/services"</span><span class="p">,</span> <span class="s">"simulate"</span><span class="p">),</span>
 
     <span class="c1"># Responses flowing back to engine
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">External systems/services</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">responses</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"External systems/services"</span><span class="p">,</span> <span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"responses"</span><span class="p">),</span>
 
     <span class="c1"># Assertions and reporting
-</span>    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Assertions &amp; matchers</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">verify</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Assertions &amp; matchers</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Reports (HTML, JUnit, JSON)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">results</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Karate engine (DSL interpreter)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Reports (HTML, JUnit, JSON)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">runtime logs</span><span class="sh">"</span><span class="p">),</span>
-    <span class="p">(</span><span class="sh">"</span><span class="s">Reports (HTML, JUnit, JSON)</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">CI/CD</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">publish</span><span class="sh">"</span><span class="p">),</span>
+</span>    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"Assertions &amp; matchers"</span><span class="p">,</span> <span class="s">"verify"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Assertions &amp; matchers"</span><span class="p">,</span> <span class="s">"Reports (HTML, JUnit, JSON)"</span><span class="p">,</span> <span class="s">"results"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Karate engine (DSL interpreter)"</span><span class="p">,</span> <span class="s">"Reports (HTML, JUnit, JSON)"</span><span class="p">,</span> <span class="s">"runtime logs"</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">"Reports (HTML, JUnit, JSON)"</span><span class="p">,</span> <span class="s">"CI/CD"</span><span class="p">,</span> <span class="s">"publish"</span><span class="p">),</span>
 <span class="p">]</span>
 
 <span class="c1"># Add edges to graph
 </span><span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
-    <span class="n">G</span><span class="p">.</span><span class="nf">add_edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+    <span class="n">G</span><span class="p">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
 
 <span class="c1"># Colors per category
 </span><span class="n">category_colors</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="sh">"</span><span class="s">Authoring</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#4C78A8</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Execution</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#F58518</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Runtime</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#B279A2</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Protocols</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#54A24B</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">External</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#9A9A9A</span><span class="sh">"</span><span class="p">,</span>
-    <span class="sh">"</span><span class="s">Reporting</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">#E45756</span><span class="sh">"</span><span class="p">,</span>
+    <span class="s">"Authoring"</span><span class="p">:</span> <span class="s">"#4C78A8"</span><span class="p">,</span>
+    <span class="s">"Execution"</span><span class="p">:</span> <span class="s">"#F58518"</span><span class="p">,</span>
+    <span class="s">"Runtime"</span><span class="p">:</span> <span class="s">"#B279A2"</span><span class="p">,</span>
+    <span class="s">"Protocols"</span><span class="p">:</span> <span class="s">"#54A24B"</span><span class="p">,</span>
+    <span class="s">"External"</span><span class="p">:</span> <span class="s">"#9A9A9A"</span><span class="p">,</span>
+    <span class="s">"Reporting"</span><span class="p">:</span> <span class="s">"#E45756"</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="c1"># Build color list for nodes
-</span><span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">category_colors</span><span class="p">[</span><span class="n">G</span><span class="p">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="sh">"</span><span class="s">category</span><span class="sh">"</span><span class="p">]]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="p">.</span><span class="nf">nodes</span><span class="p">()]</span>
+</span><span class="n">node_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">category_colors</span><span class="p">[</span><span class="n">G</span><span class="p">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="s">"category"</span><span class="p">]]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="p">.</span><span class="n">nodes</span><span class="p">()]</span>
 
 <span class="c1"># Compute layout
-</span><span class="n">pos</span> <span class="o">=</span> <span class="nf">get_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+</span><span class="n">pos</span> <span class="o">=</span> <span class="n">get_layout</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="c1"># Draw nodes
-</span><span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1600</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">nx</span><span class="p">.</span><span class="n">draw_networkx_nodes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="n">node_colors</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">1600</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">edgecolors</span><span class="o">=</span><span class="s">"black"</span><span class="p">)</span>
 <span class="c1"># Draw edges
-</span><span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="sh">"</span><span class="s">-|&gt;</span><span class="sh">"</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="sh">"</span><span class="s">arc3,rad=0.06</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">nx</span><span class="p">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">arrows</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">arrowstyle</span><span class="o">=</span><span class="s">"-|&gt;"</span><span class="p">,</span> <span class="n">arrowsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.2</span><span class="p">,</span> <span class="n">connectionstyle</span><span class="o">=</span><span class="s">"arc3,rad=0.06"</span><span class="p">)</span>
 <span class="c1"># Draw labels
-</span><span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="sh">"</span><span class="s">white</span><span class="sh">"</span><span class="p">)</span>
+</span><span class="n">nx</span><span class="p">.</span><span class="n">draw_networkx_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">font_color</span><span class="o">=</span><span class="s">"white"</span><span class="p">)</span>
 
 <span class="c1"># Draw a subset of edge labels to reduce clutter
 </span><span class="n">important_edge_labels</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="n">d</span><span class="p">[</span><span class="sh">"</span><span class="s">label</span><span class="sh">"</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">G</span><span class="p">.</span><span class="nf">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="sh">"</span><span class="s">label</span><span class="sh">"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="sh">"</span><span class="s">execute</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">invoke</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">parallelize</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">call APIs</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">start/stub</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">verify</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">results</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">publish</span><span class="sh">"</span><span class="p">}</span>
+    <span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="n">d</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">G</span><span class="p">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="s">"label"</span><span class="p">]</span> <span class="ow">in</span> <span class="p">{</span><span class="s">"execute"</span><span class="p">,</span> <span class="s">"invoke"</span><span class="p">,</span> <span class="s">"parallelize"</span><span class="p">,</span> <span class="s">"call APIs"</span><span class="p">,</span> <span class="s">"start/stub"</span><span class="p">,</span> <span class="s">"verify"</span><span class="p">,</span> <span class="s">"results"</span><span class="p">,</span> <span class="s">"publish"</span><span class="p">}</span>
 <span class="p">}</span>
-<span class="n">nx</span><span class="p">.</span><span class="nf">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">important_edge_labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">nx</span><span class="p">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">important_edge_labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">rotate</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
 <span class="c1"># Legend
-</span><span class="kn">import</span> <span class="n">matplotlib.patches</span> <span class="k">as</span> <span class="n">mpatches</span>
-<span class="n">legend_patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="p">.</span><span class="nc">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span> <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">category_colors</span><span class="p">.</span><span class="nf">items</span><span class="p">()]</span>
-<span class="n">plt</span><span class="p">.</span><span class="nf">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_patches</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="sh">"</span><span class="s">lower center</span><span class="sh">"</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</span><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="n">mpatches</span>
+<span class="n">legend_patches</span> <span class="o">=</span> <span class="p">[</span><span class="n">mpatches</span><span class="p">.</span><span class="n">Patch</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">)</span> <span class="k">for</span> <span class="n">cat</span><span class="p">,</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">category_colors</span><span class="p">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_patches</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">"lower center"</span><span class="p">,</span> <span class="n">ncol</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.05</span><span class="p">),</span> <span class="n">frameon</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">How the Karate Test Framework Works (High-Level Flow)</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
-<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">"How the Karate Test Framework Works (High-Level Flow)"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">axis</span><span class="p">(</span><span class="s">"off"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>What this diagram conveys:</p>

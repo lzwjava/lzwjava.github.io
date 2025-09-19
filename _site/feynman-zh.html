@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>mathjax2mobi：将MathJax HTML转换为电子书 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="mathjax2mobi：将MathJax HTML转换为电子书" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="zh" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -270,10 +270,10 @@
 
 <p>从 GitHub 上找到一个项目<code class="language-plaintext highlighter-rouge">tuxu/latex2svg</code>。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
-<span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\( e^{i \pi} + 1 = 0 \)</span><span class="sh">'</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">depth</span><span class="sh">'</span><span class="p">])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
+<span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="sa">r</span><span class="s">'\( e^{i \pi} + 1 = 0 \)'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'depth'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>试着运行，但出错了。</p>
@@ -286,12 +286,12 @@ RuntimeError: latex not found
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># Run LaTeX and create DVI file
 </span>    <span class="k">try</span><span class="p">:</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="sh">'</span><span class="s">latex_cmd</span><span class="sh">'</span><span class="p">]</span><span class="o">+</span><span class="sh">'</span><span class="s"> code.tex</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">'latex_cmd'</span><span class="p">]</span><span class="o">+</span><span class="s">' code.tex'</span><span class="p">),</span>
                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
                              <span class="n">cwd</span><span class="o">=</span><span class="n">working_directory</span><span class="p">)</span>
-        <span class="n">ret</span><span class="p">.</span><span class="nf">check_returncode</span><span class="p">()</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">check_returncode</span><span class="p">()</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">'</span><span class="s">latex not found</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nb">RuntimeError</span><span class="p">(</span><span class="s">'latex not found'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>原来这也依赖于<code class="language-plaintext highlighter-rouge">latex</code>命令。</p>
@@ -324,38 +324,38 @@ This is pdfTeX, Version 3.14159265-2.6-1.40.21 <span class="o">(</span>TeX Live 
 <span class="k">**</span>
 </code></pre></div></div>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\( e^{i \pi} + 1 = 0 \)</span><span class="sh">'</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">depth</span><span class="sh">'</span><span class="p">])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="sa">r</span><span class="s">'\( e^{i \pi} + 1 = 0 \)'</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'depth'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
 
-<span class="n">svg</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">1.svg</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">svg</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
-<span class="n">svg</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="n">svg</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'1.svg'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="n">svg</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
+<span class="n">svg</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>可以生成<code class="language-plaintext highlighter-rouge">svg</code>了。</p>
 
 <p>所以试试把<code class="language-plaintext highlighter-rouge">mathjax</code>中得到的<code class="language-plaintext highlighter-rouge">latex</code>文本都生成一下。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">from</span> <span class="n">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
 
-<span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html'</span><span class="p">)</span>
+<span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 
-<span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex</span><span class="sh">'</span><span class="p">})</span>
+<span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex'</span><span class="p">})</span>
 <span class="k">for</span> <span class="n">mathjax</span> <span class="ow">in</span> <span class="n">mathjaxs</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
 </code></pre></div></div>
 
 <p>可惜出错了。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">returncode</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">args</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span>
-<span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span><span class="p">:</span> <span class="n">Command</span> <span class="sh">'</span><span class="s">[</span><span class="sh">'</span><span class="n">latex</span><span class="sh">'</span><span class="s">, </span><span class="sh">'</span><span class="o">-</span><span class="n">interaction</span><span class="sh">'</span><span class="s">, </span><span class="sh">'</span><span class="n">nonstopmode</span><span class="sh">'</span><span class="s">, </span><span class="sh">'</span><span class="o">-</span><span class="n">halt</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">error</span><span class="sh">'</span><span class="s">, </span><span class="sh">'</span><span class="n">code</span><span class="p">.</span><span class="n">tex</span><span class="sh">'</span><span class="s">]</span><span class="sh">'</span> <span class="n">returned</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="nb">exit</span> <span class="n">status</span> <span class="mf">1.</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">raise</span> <span class="n">CalledProcessError</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">returncode</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">args</span><span class="p">,</span> <span class="bp">self</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span>
+<span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span><span class="p">:</span> <span class="n">Command</span> <span class="s">'['</span><span class="n">latex</span><span class="s">', '</span><span class="o">-</span><span class="n">interaction</span><span class="s">', '</span><span class="n">nonstopmode</span><span class="s">', '</span><span class="o">-</span><span class="n">halt</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">error</span><span class="s">', '</span><span class="n">code</span><span class="p">.</span><span class="n">tex</span><span class="s">']'</span> <span class="n">returned</span> <span class="n">non</span><span class="o">-</span><span class="n">zero</span> <span class="nb">exit</span> <span class="n">status</span> <span class="mf">1.</span>
 </code></pre></div></div>
 
 <p>具体哪个公式错了呢。</p>
@@ -528,31 +528,31 @@ l.12 <span class="se">\t</span>frac<span class="o">{</span>1<span class="o">}{</
 
 <p>进行各种试探。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">from</span> <span class="n">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
 
-<span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html'</span><span class="p">)</span>
+<span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 
-<span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
 
-<span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex</span><span class="sh">'</span><span class="p">})</span>
+<span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex'</span><span class="p">})</span>
 <span class="k">for</span> <span class="n">mathjax</span> <span class="ow">in</span> <span class="n">mathjaxs</span><span class="p">:</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
-    <span class="n">wrap</span> <span class="o">=</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="s">'$'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="s">'$'</span>
     <span class="c1"># if 'frac' in mathjax.string:
 </span>    <span class="c1">#     wrap = '$' + mathjax.string + '$'
-</span>    <span class="k">if</span> <span class="sh">'</span><span class="s">FLP</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+</span>    <span class="k">if</span> <span class="s">'FLP'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="k">elif</span> <span class="sh">'</span><span class="s">Fig</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s">'Fig'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="k">elif</span> <span class="sh">'</span><span class="s">eps</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s">'eps'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>
     <span class="c1"># print(out)
-</span>    <span class="n">node</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-    <span class="n">svg</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">mathjax</span><span class="p">.</span><span class="nf">insert_after</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
+</span>    <span class="n">node</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">],</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+    <span class="n">svg</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">'svg'</span><span class="p">)</span>
+    <span class="n">mathjax</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
     <span class="c1"># print(out['svg'])
 </span>    <span class="c1"># break
 </span>    <span class="c1"># mathjax.replaceWith(out['svg'])    
@@ -565,9 +565,9 @@ l.12 <span class="se">\t</span>frac<span class="o">{</span>1<span class="o">}{</
 </span>
 <span class="c1"># print(len(soup.contents))
 </span>    
-<span class="n">output_file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">out.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-<span class="n">output_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
-<span class="n">output_file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'out.html'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+<span class="n">output_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="n">prettify</span><span class="p">())</span>
+<span class="n">output_file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 <span class="c1"># print(soup.contents)
 </span>
 <span class="c1"># out = latex2svg(r'\( e^{i \pi} + 1 = 0 \)')
@@ -582,11 +582,11 @@ l.12 <span class="se">\t</span>frac<span class="o">{</span>1<span class="o">}{</
 
 <p>这些我都在试探什么呢。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">if</span> <span class="sh">'</span><span class="s">FLP</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">if</span> <span class="s">'FLP'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="k">elif</span> <span class="sh">'</span><span class="s">Fig</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s">'Fig'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
-    <span class="k">elif</span> <span class="sh">'</span><span class="s">eps</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="s">'eps'</span> <span class="ow">in</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">:</span>
         <span class="k">continue</span>
 </code></pre></div></div>
 
@@ -634,7 +634,7 @@ l.13     <span class="se">\F</span>LPF
 <p>这到底是什么问题。我后来才注意到在<code class="language-plaintext highlighter-rouge">html</code>中的这段代码。</p>
 
 <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config;executed=true"</span><span class="nt">&gt;</span>
-      <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nc">Config</span><span class="p">({</span>
+      <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nx">Config</span><span class="p">({</span>
         <span class="na">TeX</span><span class="p">:</span> <span class="p">{</span>
           <span class="na">Macros</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">FLPvec</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">boldsymbol{#1}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="na">Figvec</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">mathbf{#1}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="na">FLPC</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{C}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPF</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{F}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPa</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{a}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPb</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{b}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPr</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{r}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPs</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{s}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FLPv</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">FLPvec{v}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">ddt</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">frac{d#1}{d#2}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="na">epsO</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">epsilon_0</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="na">FigC</span><span class="p">:</span> <span class="p">[</span><span class="dl">"</span><span class="se">\\</span><span class="s2">Figvec{C}</span><span class="dl">"</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
@@ -684,93 +684,93 @@ l.13     <span class="se">\F</span>LPF
 
 <p>来看看最后的代码。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">from</span> <span class="n">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
-<span class="kn">from</span> <span class="n">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+<span class="kn">from</span> <span class="nn">latex2svg</span> <span class="kn">import</span> <span class="n">latex2svg</span>
 
 <span class="k">def</span> <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
-    <span class="n">previews</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">class</span><span class="sh">'</span><span class="p">:</span> <span class="n">cls</span><span class="p">})</span>
+    <span class="n">previews</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="n">cls</span><span class="p">})</span>
     <span class="k">for</span> <span class="n">preview</span> <span class="ow">in</span> <span class="n">previews</span><span class="p">:</span>
-        <span class="n">preview</span><span class="p">.</span><span class="nf">decompose</span><span class="p">()</span>
+        <span class="n">preview</span><span class="p">.</span><span class="n">decompose</span><span class="p">()</span>
         
 <span class="k">def</span> <span class="nf">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">):</span>
-    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scripts</span><span class="p">:</span>
-        <span class="n">s</span><span class="p">.</span><span class="nf">decompose</span><span class="p">()</span>    
+        <span class="n">s</span><span class="p">.</span><span class="n">decompose</span><span class="p">()</span>    
 
 <span class="k">def</span> <span class="nf">wrap_latex</span><span class="p">(</span><span class="n">mathjax</span><span class="p">,</span> <span class="n">equation</span> <span class="o">=</span> <span class="bp">False</span><span class="p">):</span>
-    <span class="n">wrap</span> <span class="o">=</span> <span class="sh">''</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="s">''</span>
     <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
         <span class="n">wrap</span> <span class="o">=</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">wrap</span> <span class="o">=</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span>
-    <span class="n">wrap</span> <span class="o">=</span> <span class="n">wrap</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">label</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">wrap</span> <span class="o">=</span> <span class="s">'$'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="s">'$'</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="n">wrap</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'label'</span><span class="p">,</span> <span class="s">'tag'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrap</span>
  
 <span class="k">def</span> <span class="nf">wrap_svg</span><span class="p">(</span><span class="n">svg</span><span class="p">,</span> <span class="n">equation</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">&lt;div style=</span><span class="sh">"</span><span class="s">text-align:center;</span><span class="sh">"</span><span class="s">&gt;&lt;/div&gt;</span><span class="sh">'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">p</span><span class="p">.</span><span class="n">div</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="sa">f</span><span class="s">'&lt;div style="text-align:center;"&gt;&lt;/div&gt;'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">div</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">p</span><span class="p">.</span><span class="n">div</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">svg</span>
 
 <span class="k">def</span> <span class="nf">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
-        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="sh">'</span><span class="s">eq_</span><span class="sh">'</span>
+        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="s">'eq_'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="sh">'</span><span class="s">in_</span><span class="sh">'</span>
+        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="s">'in_'</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">mathjax</span> <span class="ow">in</span> <span class="n">mathjaxs</span><span class="p">:</span>     
-        <span class="nf">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
-        <span class="n">wrap</span> <span class="o">=</span> <span class="nf">wrap_latex</span><span class="p">(</span><span class="n">mathjax</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="n">equation</span><span class="p">)</span>   
+        <span class="k">print</span><span class="p">(</span><span class="n">mathjax</span><span class="p">.</span><span class="n">string</span><span class="p">)</span>
+        <span class="n">wrap</span> <span class="o">=</span> <span class="n">wrap_latex</span><span class="p">(</span><span class="n">mathjax</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="n">equation</span><span class="p">)</span>   
         <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>   
+            <span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>   
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">err</span>      
             
-        <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
-        <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s">'svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
         
-        <span class="n">node</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="sh">'</span><span class="s">&lt;img&gt;</span><span class="sh">'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">img</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">src</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">./svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg</span><span class="sh">'</span>
-        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">style</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sh">'</span><span class="s">vertical-align: middle; margin: 0.5em 0;</span><span class="sh">'</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="s">'&lt;img&gt;'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">'img'</span><span class="p">)</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="s">'src'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'./svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg'</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="s">'style'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'vertical-align: middle; margin: 0.5em 0;'</span>
         
-        <span class="n">p</span> <span class="o">=</span> <span class="nf">wrap_svg</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">equation</span><span class="p">)</span>
-        <span class="n">mathjax</span><span class="p">.</span><span class="nf">insert_after</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">wrap_svg</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">equation</span><span class="p">)</span>
+        <span class="n">mathjax</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
         <span class="n">i</span> <span class="o">+=</span><span class="mi">1</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>    
-    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html'</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
     
-    <span class="n">soup</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax_Display</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax_Preview</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'span'</span><span class="p">,</span> <span class="s">'MathJax'</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'div'</span><span class="p">,</span> <span class="s">'MathJax_Display'</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'span'</span><span class="p">,</span> <span class="s">'MathJax_Preview'</span><span class="p">)</span>
     
-    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex</span><span class="sh">'</span><span class="p">})</span>
-    <span class="nf">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex'</span><span class="p">})</span>
+    <span class="n">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     
-    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex; mode=display</span><span class="sh">'</span><span class="p">})</span>   
-    <span class="nf">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex; mode=display'</span><span class="p">})</span>   
+    <span class="n">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     
-    <span class="nf">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+    <span class="n">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
     
-    <span class="n">output_file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">out.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">output_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
-    <span class="n">output_file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>    
+    <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'out.html'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="n">output_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="n">prettify</span><span class="p">())</span>
+    <span class="n">output_file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>    
 
-<span class="nf">main</span><span class="p">()</span>
+<span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>当我们想转换整个电子书时，可以先用一个页面来试试。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'The Feynman Lectures on Physics Vol. I Ch. 13_ Work and Potential Energy (A).html'</span><span class="p">)</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="nb">file</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>这里便是下载了一个页面。</p>
@@ -787,22 +787,22 @@ l.13     <span class="se">\F</span>LPF
 <p>这些很讨厌，也会影响我们的文本。因为已经有<code class="language-plaintext highlighter-rouge">svg</code>了，不需要这些了。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">cls</span><span class="p">):</span>
-    <span class="n">previews</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">class</span><span class="sh">'</span><span class="p">:</span> <span class="n">cls</span><span class="p">})</span>
+    <span class="n">previews</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="p">{</span><span class="s">'class'</span><span class="p">:</span> <span class="n">cls</span><span class="p">})</span>
     <span class="k">for</span> <span class="n">preview</span> <span class="ow">in</span> <span class="n">previews</span><span class="p">:</span>
-        <span class="n">preview</span><span class="p">.</span><span class="nf">decompose</span><span class="p">()</span>
+        <span class="n">preview</span><span class="p">.</span><span class="n">decompose</span><span class="p">()</span>
 
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">div</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax_Display</span><span class="sh">'</span><span class="p">)</span>
-    <span class="nf">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="sh">'</span><span class="s">span</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">MathJax_Preview</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'span'</span><span class="p">,</span> <span class="s">'MathJax'</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'div'</span><span class="p">,</span> <span class="s">'MathJax_Display'</span><span class="p">)</span>
+    <span class="n">clean_mathjax</span><span class="p">(</span><span class="n">soup</span><span class="p">,</span> <span class="s">'span'</span><span class="p">,</span> <span class="s">'MathJax_Preview'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>把它们都去掉。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex</span><span class="sh">'</span><span class="p">})</span>
-    <span class="nf">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex'</span><span class="p">})</span>
+    <span class="n">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
     
-    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">,</span> <span class="p">{</span><span class="sh">'</span><span class="s">type</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">math/tex; mode=display</span><span class="sh">'</span><span class="p">})</span>   
-    <span class="nf">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">mathjaxs</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">,</span> <span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'math/tex; mode=display'</span><span class="p">})</span>   
+    <span class="n">to_svg</span><span class="p">(</span><span class="n">mathjaxs</span><span class="p">,</span> <span class="n">equation</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>注意到这里分成两种的<code class="language-plaintext highlighter-rouge">script</code>。</p>
@@ -847,9 +847,9 @@ l.26 <span class="se">\t</span>frac<span class="o">{</span>1<span class="o">}{</
 <p>接下来看看如何转换<code class="language-plaintext highlighter-rouge">latex</code>成<code class="language-plaintext highlighter-rouge">svg</code>。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
-        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="sh">'</span><span class="s">eq_</span><span class="sh">'</span>
+        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="s">'eq_'</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="sh">'</span><span class="s">in_</span><span class="sh">'</span>
+        <span class="n">svg_prefix</span> <span class="o">=</span> <span class="s">'in_'</span>
 </code></pre></div></div>
 
 <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>% tree svgs
@@ -862,12 +862,12 @@ svgs
 <p>这样来保存<code class="language-plaintext highlighter-rouge">svg</code>。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">wrap_latex</span><span class="p">(</span><span class="n">mathjax</span><span class="p">,</span> <span class="n">equation</span> <span class="o">=</span> <span class="bp">False</span><span class="p">):</span>
-    <span class="n">wrap</span> <span class="o">=</span> <span class="sh">''</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="s">''</span>
     <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
         <span class="n">wrap</span> <span class="o">=</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">wrap</span> <span class="o">=</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="sh">'</span><span class="s">$</span><span class="sh">'</span>
-    <span class="n">wrap</span> <span class="o">=</span> <span class="n">wrap</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">label</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">tag</span><span class="sh">'</span><span class="p">)</span>
+        <span class="n">wrap</span> <span class="o">=</span> <span class="s">'$'</span> <span class="o">+</span> <span class="n">mathjax</span><span class="p">.</span><span class="n">string</span> <span class="o">+</span> <span class="s">'$'</span>
+    <span class="n">wrap</span> <span class="o">=</span> <span class="n">wrap</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s">'label'</span><span class="p">,</span> <span class="s">'tag'</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">wrap</span>
 </code></pre></div></div>
 
@@ -881,7 +881,7 @@ svgs
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">out</span> <span class="o">=</span> <span class="nf">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>   
+            <span class="n">out</span> <span class="o">=</span> <span class="n">latex2svg</span><span class="p">(</span><span class="n">wrap</span><span class="p">)</span>   
         <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">err</span>    
 </code></pre></div></div>
@@ -890,12 +890,12 @@ svgs
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="c1"># Run LaTeX and create DVI file
 </span>    <span class="k">try</span><span class="p">:</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="sh">'</span><span class="s">latex_cmd</span><span class="sh">'</span><span class="p">]</span><span class="o">+</span><span class="sh">'</span><span class="s"> code.tex</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">'latex_cmd'</span><span class="p">]</span><span class="o">+</span><span class="s">' code.tex'</span><span class="p">),</span>
                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
                              <span class="n">cwd</span><span class="o">=</span><span class="n">working_directory</span><span class="p">)</span>
-        <span class="n">ret</span><span class="p">.</span><span class="nf">check_returncode</span><span class="p">()</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">check_returncode</span><span class="p">()</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">'</span><span class="s">latex not found</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nb">RuntimeError</span><span class="p">(</span><span class="s">'latex not found'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>这里是在调用<code class="language-plaintext highlighter-rouge">latex</code>命令。</p>
@@ -908,12 +908,12 @@ Usage: pdftex <span class="o">[</span>OPTION]... <span class="o">[</span>TEXNAME
 </code></pre></div></div>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="k">try</span><span class="p">:</span>
-        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="sh">'</span><span class="s">dvisvgm_cmd</span><span class="sh">'</span><span class="p">]</span><span class="o">+</span><span class="sh">'</span><span class="s"> code.dvi</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">shlex</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="s">'dvisvgm_cmd'</span><span class="p">]</span><span class="o">+</span><span class="s">' code.dvi'</span><span class="p">),</span>
                              <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="p">.</span><span class="n">PIPE</span><span class="p">,</span>
                              <span class="n">cwd</span><span class="o">=</span><span class="n">working_directory</span><span class="p">,</span> <span class="n">env</span><span class="o">=</span><span class="n">env</span><span class="p">)</span>
-        <span class="n">ret</span><span class="p">.</span><span class="nf">check_returncode</span><span class="p">()</span>
+        <span class="n">ret</span><span class="p">.</span><span class="n">check_returncode</span><span class="p">()</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">'</span><span class="s">dvisvgm not found</span><span class="sh">'</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="nb">RuntimeError</span><span class="p">(</span><span class="s">'dvisvgm not found'</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>这里是在调用<code class="language-plaintext highlighter-rouge">dvisvgm</code>命令。</p>
@@ -931,7 +931,7 @@ Usage: dvisvgm <span class="o">[</span>options] dvifile
 
 <p>上面说的<code class="language-plaintext highlighter-rouge">latex</code>自定义宏写在哪儿呢。这里要改一下<code class="language-plaintext highlighter-rouge">latex2svg.py</code>。改改<code class="language-plaintext highlighter-rouge">default_preamble</code>。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">default_preamble</span> <span class="o">=</span> <span class="sa">r</span><span class="sh">"""</span><span class="s">
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">default_preamble</span> <span class="o">=</span> <span class="sa">r</span><span class="s">"""
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -951,59 +951,59 @@ Usage: dvisvgm <span class="o">[</span>options] dvifile
 \newcommand{\ddt}[2]{\frac{d#1}{d#2}}
 \newcommand{\epsO}{\epsilon_0}
 \newcommand{\FigC}{\Figvec{C}}
-</span><span class="sh">"""</span>
+"""</span>
 </code></pre></div></div>
 
 <p>转换成功后，写入到文件。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">f</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">f</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="sh">'</span><span class="s">svg</span><span class="sh">'</span><span class="p">])</span>
-        <span class="n">f</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s">'svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">out</span><span class="p">[</span><span class="s">'svg'</span><span class="p">])</span>
+        <span class="n">f</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></div>
 
 <p>继续。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">node</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="sh">'</span><span class="s">&lt;img&gt;</span><span class="sh">'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">img</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="sh">'</span><span class="s">img</span><span class="sh">'</span><span class="p">)</span>
-        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">src</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">./svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg</span><span class="sh">'</span>
-        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="sh">'</span><span class="s">style</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="sh">'</span><span class="s">vertical-align: middle; margin: 0.5em 0;</span><span class="sh">'</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>        <span class="n">node</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="s">'&lt;img&gt;'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">'img'</span><span class="p">)</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="s">'src'</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s">'./svgs/</span><span class="si">{</span><span class="n">svg_prefix</span><span class="si">}{</span><span class="n">i</span><span class="si">}</span><span class="s">.svg'</span>
+        <span class="n">img</span><span class="p">.</span><span class="n">attrs</span><span class="p">[</span><span class="s">'style'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'vertical-align: middle; margin: 0.5em 0;'</span>
 </code></pre></div></div>
 
 <p>这里构造一个<code class="language-plaintext highlighter-rouge">img</code>标签。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">wrap_svg</span><span class="p">(</span><span class="n">svg</span><span class="p">,</span> <span class="n">equation</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">equation</span><span class="p">:</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="nc">BeautifulSoup</span><span class="p">(</span><span class="sa">f</span><span class="sh">'</span><span class="s">&lt;div style=</span><span class="sh">"</span><span class="s">text-align:center;</span><span class="sh">"</span><span class="s">&gt;&lt;/div&gt;</span><span class="sh">'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="sh">"</span><span class="s">lxml</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">p</span><span class="p">.</span><span class="n">div</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="sa">f</span><span class="s">'&lt;div style="text-align:center;"&gt;&lt;/div&gt;'</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="s">"lxml"</span><span class="p">)</span>
+        <span class="n">p</span><span class="p">.</span><span class="n">div</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">svg</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">p</span><span class="p">.</span><span class="n">div</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">svg</span>
       
-<span class="n">p</span> <span class="o">=</span> <span class="nf">wrap_svg</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">equation</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">wrap_svg</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">equation</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>如果是独段的<code class="language-plaintext highlighter-rouge">latex</code>，那么用<code class="language-plaintext highlighter-rouge">div</code>包起来，并且居中。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mathjax</span><span class="p">.</span><span class="nf">insert_after</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mathjax</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>这里把<code class="language-plaintext highlighter-rouge">div</code>标签或<code class="language-plaintext highlighter-rouge">img</code>标签加在原来的<code class="language-plaintext highlighter-rouge">script</code>后面。</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">):</span>
-    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="nf">findAll</span><span class="p">(</span><span class="sh">'</span><span class="s">script</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">scripts</span> <span class="o">=</span> <span class="n">soup</span><span class="p">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">'script'</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scripts</span><span class="p">:</span>
-        <span class="n">s</span><span class="p">.</span><span class="nf">decompose</span><span class="p">()</span>    
+        <span class="n">s</span><span class="p">.</span><span class="n">decompose</span><span class="p">()</span>    
         
-<span class="nf">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
+<span class="n">clean_script</span><span class="p">(</span><span class="n">soup</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>把所有的<code class="language-plaintext highlighter-rouge">latex</code>替换完<code class="language-plaintext highlighter-rouge">svg</code>后，就不需要<code class="language-plaintext highlighter-rouge">script</code>了。把它们删掉，这样整洁一点。</p>
 
 <p>最后，再写入把修改后的整个<code class="language-plaintext highlighter-rouge">html</code>写入到一个文件里。</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">output_file</span> <span class="o">=</span> <span class="nf">open</span><span class="p">(</span><span class="sh">'</span><span class="s">out.html</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">)</span>
-    <span class="n">output_file</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="nf">prettify</span><span class="p">())</span>
-    <span class="n">output_file</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>    
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">output_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">'out.html'</span><span class="p">,</span> <span class="s">'w'</span><span class="p">)</span>
+    <span class="n">output_file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">soup</span><span class="p">.</span><span class="n">prettify</span><span class="p">())</span>
+    <span class="n">output_file</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>    
 </code></pre></div></div>
 
 <p>接着用<code class="language-plaintext highlighter-rouge">pandoc</code>工具，转换成<code class="language-plaintext highlighter-rouge">epub</code>。</p>

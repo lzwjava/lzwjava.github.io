@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>GFW, APIs de Proxy, Detección de VPN | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="GFW, APIs de Proxy, Detección de VPN" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="es" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -242,24 +242,24 @@
 
 <p>Ejecuto un servidor simple en mi instancia de Shadowsocks con el siguiente código:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># Habilitar CORS para todas las rutas
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># Habilitar CORS para todas las rutas
 </span>
-<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/bandwidth</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/bandwidth'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_bandwidth</span><span class="p">():</span>
     <span class="c1"># Ejecutar el comando vnstat para obtener estadísticas de tráfico en intervalos de 5 minutos para eth0
-</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">'</span><span class="s">vnstat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">eth0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-5</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">--json</span><span class="sh">'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">'vnstat'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="s">'eth0'</span><span class="p">,</span> <span class="s">'-5'</span><span class="p">,</span> <span class="s">'--json'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span>
 
     <span class="c1"># Devolver los datos capturados como respuesta JSON
-</span>    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">0.0.0.0</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Y uso nginx para servir el puerto 443 como se muestra a continuación:</p>
@@ -296,19 +296,19 @@
 
 <h3 id="paso-1-registrar-solicitudes">Paso 1: Registrar solicitudes</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># Base de datos para almacenar datos de solicitudes
 </span><span class="n">request_log</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># Función para registrar solicitudes
 </span><span class="k">def</span> <span class="nf">log_request</span><span class="p">(</span><span class="n">source_ip</span><span class="p">,</span> <span class="n">target_ip</span><span class="p">,</span> <span class="n">target_port</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-    <span class="n">request_log</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
-        <span class="sh">'</span><span class="s">source_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">request_log</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">'source_ip'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
+        <span class="s">'target_ip'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
+        <span class="s">'target_port'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
+        <span class="s">'body'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+        <span class="s">'timestamp'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
     <span class="p">})</span>
 </code></pre></div></div>
 
@@ -318,17 +318,17 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Función para verificar solicitudes y bloquear IPs
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># Iterar sobre todas las solicitudes registradas
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># Aplicar bloqueos a todas las IPs identificadas
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>La función <code class="language-plaintext highlighter-rouge">check_and_ban_ips</code> recorre todas las solicitudes registradas, identificando y bloqueando IPs asociadas con actividades ilegales.</p>
@@ -339,7 +339,7 @@
 </span><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># Marcador de posición para la lógica real de verificación de solicitudes ilegales
 </span>    <span class="c1"># Por ejemplo, verificar el cuerpo de la solicitud o el destino
-</span>    <span class="k">return</span> <span class="sh">"</span><span class="s">illegal</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">]</span>
+</span>    <span class="k">return</span> <span class="s">"illegal"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>Aquí, <code class="language-plaintext highlighter-rouge">is_illegal</code> verifica si el cuerpo de la solicitud contiene la palabra “illegal”. Esto puede expandirse a una lógica más sofisticada según lo que constituya una actividad ilegal.</p>
@@ -349,7 +349,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Función para bloquear una lista de IPs
 </span><span class="k">def</span> <span class="nf">ban_ips</span><span class="p">(</span><span class="n">ip_set</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ip_set</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Bloqueando IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Bloqueando IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Una vez identificadas las IPs ilegales, la función <code class="language-plaintext highlighter-rouge">ban_ips</code> las bloquea imprimiendo sus direcciones IP (o, en un sistema real, podría bloquearlas).</p>
@@ -358,24 +358,24 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Función para verificar solicitudes y bloquear IPs según el 80% de solicitudes ilegales
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">illegal_count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">total_requests</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># Iterar sobre todas las solicitudes registradas
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
         <span class="n">total_requests</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="n">illegal_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># Si el 80% o más de las solicitudes son ilegales, bloquear esas IPs
 </span>    <span class="k">if</span> <span class="n">total_requests</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">illegal_count</span> <span class="o">/</span> <span class="n">total_requests</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-                <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+                <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># Aplicar bloqueos a todas las IPs identificadas
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>Este método alternativo evalúa si una IP debe ser bloqueada según el porcentaje de solicitudes ilegales. Si el 80% o más de las solicitudes de una IP son ilegales, se bloquea.</p>
@@ -384,10 +384,10 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># Verificar si la solicitud utiliza el protocolo Shadowsocks (el cuerpo contiene datos similares a binarios)
-</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="s">'target_port'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">elif</span> <span class="nf">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">return</span> <span class="bp">False</span>
 </code></pre></div></div>

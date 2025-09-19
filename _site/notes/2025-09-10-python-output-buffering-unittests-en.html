@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Resolving Python Output Buffering in Unittests | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Resolving Python Output Buffering in Unittests" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -226,26 +226,26 @@ py <span class="nt">-3</span>.11 <span class="nt">-u</span> <span class="nt">-m<
 
 <p>Put this at the very top of your test bootstrap (or <code class="language-plaintext highlighter-rouge">if __name__ == "__main__":</code> block):</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span>
-<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="nf">setdefault</span><span class="p">(</span><span class="sh">"</span><span class="s">PYTHONUNBUFFERED</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">1</span><span class="sh">"</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span><span class="p">,</span> <span class="n">sys</span>
+<span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">"PYTHONUNBUFFERED"</span><span class="p">,</span> <span class="s">"1"</span><span class="p">)</span>
 
 <span class="c1"># Python 3.7+
-</span><span class="k">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span> <span class="sh">"</span><span class="s">reconfigure</span><span class="sh">"</span><span class="p">):</span>
-    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="nf">reconfigure</span><span class="p">(</span><span class="n">line_buffering</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_through</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="nf">reconfigure</span><span class="p">(</span><span class="n">line_buffering</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_through</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span><span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s">"reconfigure"</span><span class="p">):</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">line_buffering</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_through</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">sys</span><span class="p">.</span><span class="n">stderr</span><span class="p">.</span><span class="n">reconfigure</span><span class="p">(</span><span class="n">line_buffering</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">write_through</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">booting tests...</span><span class="sh">"</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"booting tests..."</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>And whenever you <code class="language-plaintext highlighter-rouge">print(...)</code>, add <code class="language-plaintext highlighter-rouge">flush=True</code> for critical spots.</p>
 
 <h3 id="if-you-use-the-logging-module">If you use the <code class="language-plaintext highlighter-rouge">logging</code> module</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">logging</span><span class="p">,</span> <span class="n">sys</span>
-<span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">logging</span><span class="p">,</span> <span class="n">sys</span>
+<span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">INFO</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="sh">"</span><span class="s">%(asctime)s %(levelname)s %(message)s</span><span class="sh">"</span><span class="p">,</span>
-    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">logging</span><span class="p">.</span><span class="nc">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">)],</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s">"%(asctime)s %(levelname)s %(message)s"</span><span class="p">,</span>
+    <span class="n">handlers</span><span class="o">=</span><span class="p">[</span><span class="n">logging</span><span class="p">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">stdout</span><span class="p">)],</span>
     <span class="n">force</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>  <span class="c1"># 3.8+
 </span><span class="p">)</span>
 <span class="c1"># StreamHandler flushes each record; this ensures it points to stdout

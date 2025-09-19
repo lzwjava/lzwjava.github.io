@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>GloVe Format and Loading Guide | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="GloVe Format and Loading Guide" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -227,14 +227,14 @@ U.S. 0.3459  0.21513  -0.09982  0.25344 ... 0.024118
 <p>Your loader</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">read_glove_vecs</span><span class="p">(</span><span class="n">glove_file</span><span class="p">):</span>
-    <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">glove_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">glove_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">words</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
         <span class="n">word_to_vec_map</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
-            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">strip</span><span class="p">().</span><span class="nf">split</span><span class="p">()</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">split</span><span class="p">()</span>
             <span class="n">curr_word</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-            <span class="n">words</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">curr_word</span><span class="p">)</span>
-            <span class="n">word_to_vec_map</span><span class="p">[</span><span class="n">curr_word</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float64</span><span class="p">)</span>
+            <span class="n">words</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">curr_word</span><span class="p">)</span>
+            <span class="n">word_to_vec_map</span><span class="p">[</span><span class="n">curr_word</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float64</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">words</span><span class="p">,</span> <span class="n">word_to_vec_map</span>
 </code></pre></div></div>
 
@@ -244,17 +244,17 @@ U.S. 0.3459  0.21513  -0.09982  0.25344 ... 0.024118
   <li>Use float32 to cut memory in half:</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">vec</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
 </code></pre></div></div>
 
 <ol>
   <li>Skip accidental “headers” or bad lines (some repackaged files add one):</li>
 </ol>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">().</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">)</span>
-<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">parts</span> <span class="o">=</span> <span class="n">line</span><span class="p">.</span><span class="n">rstrip</span><span class="p">().</span><span class="n">split</span><span class="p">(</span><span class="s">' '</span><span class="p">)</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> 
     <span class="k">continue</span>
-<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">isdigit</span><span class="p">()</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">isdigit</span><span class="p">():</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">and</span> <span class="n">parts</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">isdigit</span><span class="p">():</span>
     <span class="c1"># looks like a word2vec-style header: "&lt;vocab&gt; &lt;dim&gt;"
 </span>    <span class="k">continue</span>
 <span class="n">word</span><span class="p">,</span> <span class="o">*</span><span class="n">vals</span> <span class="o">=</span> <span class="n">parts</span>
@@ -265,14 +265,14 @@ U.S. 0.3459  0.21513  -0.09982  0.25344 ... 0.024118
 <p>After you create <code class="language-plaintext highlighter-rouge">dictionary: word -&gt; id</code>, map GloVe rows into a weight matrix for your <code class="language-plaintext highlighter-rouge">nn.Embedding</code>:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">build_embedding_matrix</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">glove_path</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">):</span>
-    <span class="n">_</span><span class="p">,</span> <span class="n">glove</span> <span class="o">=</span> <span class="nf">read_glove_vecs</span><span class="p">(</span><span class="n">glove_path</span><span class="p">)</span>  <span class="c1"># as above, but dtype=float32
-</span>    <span class="n">V</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
-    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">dim</span><span class="p">)).</span><span class="nf">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">.</span><span class="nf">items</span><span class="p">():</span>
-        <span class="n">vec</span> <span class="o">=</span> <span class="n">glove</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">glove</span> <span class="o">=</span> <span class="n">read_glove_vecs</span><span class="p">(</span><span class="n">glove_path</span><span class="p">)</span>  <span class="c1"># as above, but dtype=float32
+</span>    <span class="n">V</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dictionary</span><span class="p">)</span>
+    <span class="n">W</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">dim</span><span class="p">)).</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">w</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">vec</span> <span class="o">=</span> <span class="n">glove</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">vec</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span> <span class="ow">and</span> <span class="n">vec</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">dim</span><span class="p">:</span>
             <span class="n">W</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">vec</span>
-    <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="nf">tensor</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 
 <span class="c1"># usage
 # emb_weight = build_embedding_matrix(dictionary, "glove.6B.300d.txt", dim=300)

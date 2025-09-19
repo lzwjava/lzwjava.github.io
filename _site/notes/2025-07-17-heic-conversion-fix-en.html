@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Fixing Pillow HEIC Support Error | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Fixing Pillow HEIC Support Error" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -240,98 +240,98 @@ pip <span class="nb">install </span>pillow
   <li>Compresses output JPGs to ~500KB.</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">argparse</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
-<span class="kn">import</span> <span class="n">logging</span>
-<span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="n">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
 <span class="c1"># Set up logging
-</span><span class="n">logging</span><span class="p">.</span><span class="nf">basicConfig</span><span class="p">(</span>
-    <span class="n">filename</span><span class="o">=</span><span class="sh">"</span><span class="s">conversion_errors.log</span><span class="sh">"</span><span class="p">,</span>
+</span><span class="n">logging</span><span class="p">.</span><span class="n">basicConfig</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s">"conversion_errors.log"</span><span class="p">,</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="p">.</span><span class="n">ERROR</span><span class="p">,</span>
-    <span class="nb">format</span><span class="o">=</span><span class="sh">"</span><span class="s">%(asctime)s - %(levelname)s - %(message)s</span><span class="sh">"</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s">"%(asctime)s - %(levelname)s - %(message)s"</span>
 <span class="p">)</span>
 
 <span class="c1"># Parse command-line arguments
-</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="nc">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="sh">"</span><span class="s">Convert HEIC images to JPG and compress to ~500KB.</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">parser</span><span class="p">.</span><span class="nf">add_argument</span><span class="p">(</span><span class="sh">"</span><span class="s">input_dir</span><span class="sh">"</span><span class="p">,</span> <span class="nb">help</span><span class="o">=</span><span class="sh">"</span><span class="s">Directory containing HEIC files</span><span class="sh">"</span><span class="p">)</span>
-<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="nf">parse_args</span><span class="p">()</span>
+</span><span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="p">.</span><span class="n">ArgumentParser</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s">"Convert HEIC images to JPG and compress to ~500KB."</span><span class="p">)</span>
+<span class="n">parser</span><span class="p">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">"input_dir"</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">"Directory containing HEIC files"</span><span class="p">)</span>
+<span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="p">.</span><span class="n">parse_args</span><span class="p">()</span>
 
 <span class="c1"># Define input and output directories
-</span><span class="n">input_dir</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">input_dir</span><span class="p">.</span><span class="nf">rstrip</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">sep</span><span class="p">)</span>
-<span class="n">output_dir</span> <span class="o">=</span> <span class="n">input_dir</span> <span class="o">+</span> <span class="sh">"</span><span class="s">_compressed</span><span class="sh">"</span>
+</span><span class="n">input_dir</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="n">input_dir</span><span class="p">.</span><span class="n">rstrip</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">sep</span><span class="p">)</span>
+<span class="n">output_dir</span> <span class="o">=</span> <span class="n">input_dir</span> <span class="o">+</span> <span class="s">"_compressed"</span>
 <span class="n">target_size_kb</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># Target file size in KB
 </span>
 <span class="c1"># Create output directory if it doesn't exist
-</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
-    <span class="n">os</span><span class="p">.</span><span class="nf">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+</span><span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="n">output_dir</span><span class="p">):</span>
+    <span class="n">os</span><span class="p">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">get_file_size</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Return file size in KB.</span><span class="sh">"""</span>
-    <span class="k">return</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">getsize</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
+    <span class="s">"""Return file size in KB."""</span>
+    <span class="k">return</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1024</span>
 
 <span class="k">def</span> <span class="nf">convert_with_imagemagick</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Fallback to ImageMagick for HEIC to JPG conversion.</span><span class="sh">"""</span>
+    <span class="s">"""Fallback to ImageMagick for HEIC to JPG conversion."""</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span>
-            <span class="p">[</span><span class="sh">"</span><span class="s">magick</span><span class="sh">"</span><span class="p">,</span> <span class="n">heic_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">-quality</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">85</span><span class="sh">"</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">],</span>
+        <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">(</span>
+            <span class="p">[</span><span class="s">"magick"</span><span class="p">,</span> <span class="n">heic_path</span><span class="p">,</span> <span class="s">"-quality"</span><span class="p">,</span> <span class="s">"85"</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">],</span>
             <span class="n">check</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">CalledProcessError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">ImageMagick failed for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"ImageMagick failed for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="p">.</span><span class="n">stderr</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
     <span class="k">except</span> <span class="nb">FileNotFoundError</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sh">"</span><span class="s">ImageMagick not installed. Install it with </span><span class="sh">'</span><span class="s">brew install imagemagick</span><span class="sh">'</span><span class="s">.</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s">"ImageMagick not installed. Install it with 'brew install imagemagick'."</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">False</span>
 
 <span class="k">def</span> <span class="nf">convert_heic_to_jpg</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">85</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">Convert HEIC to JPG and compress to approximate target size.</span><span class="sh">"""</span>
+    <span class="s">"""Convert HEIC to JPG and compress to approximate target size."""</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Try Pillow first
-</span>        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">heic_path</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">image</span><span class="p">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="sh">"</span><span class="s">RGB</span><span class="sh">"</span><span class="p">:</span>
-            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="sh">"</span><span class="s">RGB</span><span class="sh">"</span><span class="p">)</span>
+</span>        <span class="n">image</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">heic_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">image</span><span class="p">.</span><span class="n">mode</span> <span class="o">!=</span> <span class="s">"RGB"</span><span class="p">:</span>
+            <span class="n">image</span> <span class="o">=</span> <span class="n">image</span><span class="p">.</span><span class="n">convert</span><span class="p">(</span><span class="s">"RGB"</span><span class="p">)</span>
         
         <span class="c1"># Save as JPG with initial quality
-</span>        <span class="n">image</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">JPEG</span><span class="sh">"</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">)</span>
+</span>        <span class="n">image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">,</span> <span class="s">"JPEG"</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">)</span>
         
         <span class="c1"># Adjust quality to approach target size
-</span>        <span class="n">current_size</span> <span class="o">=</span> <span class="nf">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span>
+</span>        <span class="n">current_size</span> <span class="o">=</span> <span class="n">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span>
         <span class="n">low</span><span class="p">,</span> <span class="n">high</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span>
-        <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span> <span class="ow">and</span> <span class="nf">abs</span><span class="p">(</span><span class="n">current_size</span> <span class="o">-</span> <span class="n">target_size_kb</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+        <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">current_size</span> <span class="o">-</span> <span class="n">target_size_kb</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
             <span class="n">quality</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-            <span class="n">image</span><span class="p">.</span><span class="nf">save</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">JPEG</span><span class="sh">"</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">)</span>
-            <span class="n">current_size</span> <span class="o">=</span> <span class="nf">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span>
+            <span class="n">image</span><span class="p">.</span><span class="n">save</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">,</span> <span class="s">"JPEG"</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="n">quality</span><span class="p">)</span>
+            <span class="n">current_size</span> <span class="o">=</span> <span class="n">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">current_size</span> <span class="o">&gt;</span> <span class="n">target_size_kb</span><span class="p">:</span>
                 <span class="n">high</span> <span class="o">=</span> <span class="n">quality</span> <span class="o">-</span> <span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">low</span> <span class="o">=</span> <span class="n">quality</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Pillow failed for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"Pillow failed for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
         <span class="c1"># Fallback to ImageMagick
-</span>        <span class="k">return</span> <span class="nf">convert_with_imagemagick</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">)</span>
+</span>        <span class="k">return</span> <span class="n">convert_with_imagemagick</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">)</span>
 
 <span class="c1"># Process all HEIC files in the input directory
-</span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">input_dir</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">lower</span><span class="p">().</span><span class="nf">endswith</span><span class="p">((</span><span class="sh">"</span><span class="s">.heic</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">.heif</span><span class="sh">"</span><span class="p">)):</span>
-        <span class="n">heic_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
-        <span class="n">jpg_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="sh">"</span><span class="s">.jpg</span><span class="sh">"</span>
-        <span class="n">jpg_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">jpg_filename</span><span class="p">)</span>
+</span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">input_dir</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">lower</span><span class="p">().</span><span class="n">endswith</span><span class="p">((</span><span class="s">".heic"</span><span class="p">,</span> <span class="s">".heif"</span><span class="p">)):</span>
+        <span class="n">heic_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">input_dir</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+        <span class="n">jpg_filename</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filename</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s">".jpg"</span>
+        <span class="n">jpg_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">jpg_filename</span><span class="p">)</span>
 
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nf">convert_heic_to_jpg</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">):</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Converted </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">jpg_filename</span><span class="si">}</span><span class="s">, size: </span><span class="si">{</span><span class="nf">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s"> KB</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">convert_heic_to_jpg</span><span class="p">(</span><span class="n">heic_path</span><span class="p">,</span> <span class="n">jpg_path</span><span class="p">):</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Converted </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s"> to </span><span class="si">{</span><span class="n">jpg_filename</span><span class="si">}</span><span class="s">, size: </span><span class="si">{</span><span class="n">get_file_size</span><span class="p">(</span><span class="n">jpg_path</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s"> KB"</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error processing </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">: Conversion failed (check conversion_errors.log)</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error processing </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">: Conversion failed (check conversion_errors.log)"</span><span class="p">)</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Error processing </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-            <span class="n">logging</span><span class="p">.</span><span class="nf">error</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">General error for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Error processing </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+            <span class="n">logging</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s">"General error for </span><span class="si">{</span><span class="n">heic_path</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Batch conversion complete! Check conversion_errors.log for any issues.</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Batch conversion complete! Check conversion_errors.log for any issues."</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="how-to-use">How to Use</h3>
@@ -379,9 +379,9 @@ If any files fail to convert, check <code class="language-plaintext highlighter-
         <p>If this fails, reinstall <code class="language-plaintext highlighter-rouge">libheif</code> and Pillow.</p>
       </li>
       <li>Test a single file manually:
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="sh">"</span><span class="s">./assets/images/yuebei/IMG_5988.HEIC</span><span class="sh">"</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Image opened successfully</span><span class="sh">"</span><span class="p">)</span>
+        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="s">"./assets/images/yuebei/IMG_5988.HEIC"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Image opened successfully"</span><span class="p">)</span>
 </code></pre></div>        </div>
         <p>If this fails, the file may be corrupted or in an unsupported HEIC variant.</p>
       </li>

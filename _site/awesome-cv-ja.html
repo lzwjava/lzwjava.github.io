@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Awesome-CVを使用してプロフェッショナルな履歴書を作成する | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Awesome-CVを使用してプロフェッショナルな履歴書を作成する" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ja" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -288,8 +288,8 @@
 <span class="nv">EXAMPLES_DIR</span> <span class="o">=</span> awesome-cv
 <span class="nv">RESUME_DIR</span> <span class="o">=</span> awesome-cv/resume
 <span class="nv">RESUME_ZH_DIR</span> <span class="o">=</span> awesome-cv/resume-zh
-<span class="nv">RESUME_SRCS</span> <span class="o">=</span> <span class="p">$(</span>shell find <span class="p">$(</span>RESUME_DIR<span class="p">)</span> <span class="nt">-name</span> <span class="s1">'*.tex'</span><span class="p">)</span>
-<span class="nv">RESUME_ZH_SRCS</span> <span class="o">=</span> <span class="p">$(</span>shell find <span class="p">$(</span>RESUME_ZH_DIR<span class="p">)</span> <span class="nt">-name</span> <span class="s1">'*.tex'</span><span class="p">)</span>
+<span class="nv">RESUME_SRCS</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> find <span class="nv">$(RESUME_DIR)</span> <span class="nt">-name</span> <span class="s1">'*.tex'</span><span class="nf">)</span>
+<span class="nv">RESUME_ZH_SRCS</span> <span class="o">=</span> <span class="nf">$(</span><span class="nb">shell</span> find <span class="nv">$(RESUME_ZH_DIR)</span> <span class="nt">-name</span> <span class="s1">'*.tex'</span><span class="nf">)</span>
 </code></pre></div></div>
 
 <p>このMakefileの設定は、以下のように翻訳できます：</p>
@@ -306,7 +306,7 @@
 <p>awesome-cv: $(foreach x, coverletter resume-zh resume, $x.pdf)</p>
 
 <div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">resume.pdf</span><span class="o">:</span> <span class="nf">$(EXAMPLES_DIR)/resume.tex $(RESUME_SRCS)</span>
-	<span class="p">$(</span>CC<span class="p">)</span> <span class="nt">-output-directory</span><span class="o">=</span><span class="p">$(</span>EXAMPLES_DIR<span class="p">)</span> <span class="nv">$&lt;</span>
+	<span class="nv">$(CC)</span> <span class="nt">-output-directory</span><span class="o">=</span><span class="nv">$(EXAMPLES_DIR)</span> <span class="nv">$&lt;</span>
 </code></pre></div></div>
 
 <p>このMakefileのルールは、<code class="language-plaintext highlighter-rouge">resume.pdf</code>というファイルを生成するためのものです。具体的には、<code class="language-plaintext highlighter-rouge">$(EXAMPLES_DIR)/resume.tex</code>と<code class="language-plaintext highlighter-rouge">$(RESUME_SRCS)</code>に依存しており、これらのファイルが変更されると、<code class="language-plaintext highlighter-rouge">resume.pdf</code>が再生成されます。</p>
@@ -323,7 +323,7 @@
 	$(CC) -output-directory=$(EXAMPLES_DIR) $&lt;</p>
 
 <div class="language-makefile highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">coverletter.pdf</span><span class="o">:</span> <span class="nf">$(EXAMPLES_DIR)/coverletter.tex</span>
-	<span class="p">$(</span>CC<span class="p">)</span> <span class="nt">-output-directory</span><span class="o">=</span><span class="p">$(</span>EXAMPLES_DIR<span class="p">)</span> <span class="nv">$&lt;</span>
+	<span class="nv">$(CC)</span> <span class="nt">-output-directory</span><span class="o">=</span><span class="nv">$(EXAMPLES_DIR)</span> <span class="nv">$&lt;</span>
 </code></pre></div></div>
 
 <p>このMakefileのルールは、<code class="language-plaintext highlighter-rouge">coverletter.pdf</code> というファイルを生成するためのものです。具体的には、<code class="language-plaintext highlighter-rouge">$(EXAMPLES_DIR)/coverletter.tex</code> というLaTeXファイルをコンパイルしてPDFを生成します。<code class="language-plaintext highlighter-rouge">$(CC)</code> はLaTeXコンパイラ（例えば <code class="language-plaintext highlighter-rouge">pdflatex</code>）を指し、<code class="language-plaintext highlighter-rouge">-output-directory=$(EXAMPLES_DIR)</code> オプションで出力ディレクトリを指定しています。<code class="language-plaintext highlighter-rouge">$&lt;</code> は依存ファイル（この場合は <code class="language-plaintext highlighter-rouge">coverletter.tex</code>）を指します。</p>

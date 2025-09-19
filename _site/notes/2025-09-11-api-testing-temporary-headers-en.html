@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>API Testing with Temporary Headers | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="API Testing with Temporary Headers" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -215,123 +215,123 @@
 
 <h3 id="1-basic-structure-with-pytest">1. Basic Structure with pytest</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
-<span class="nd">@pytest.fixture</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">financial_header</span><span class="p">():</span>
     <span class="c1"># Setup - create the header
 </span>    <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="sh">"</span><span class="s">X-Financial-Id</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">test_123</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">X-Transaction-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">payment</span><span class="sh">"</span><span class="p">,</span>
-        <span class="sh">"</span><span class="s">Authorization</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">Bearer test_token</span><span class="sh">"</span>
+        <span class="s">"X-Financial-Id"</span><span class="p">:</span> <span class="s">"test_123"</span><span class="p">,</span>
+        <span class="s">"X-Transaction-Type"</span><span class="p">:</span> <span class="s">"payment"</span><span class="p">,</span>
+        <span class="s">"Authorization"</span><span class="p">:</span> <span class="s">"Bearer test_token"</span>
     <span class="p">}</span>
     <span class="k">yield</span> <span class="n">headers</span>  <span class="c1"># This is where the test runs
 </span>
     <span class="c1"># Teardown - delete the header (if needed)
 </span>    <span class="c1"># This might involve calling a cleanup API endpoint
-</span>    <span class="n">cleanup_url</span> <span class="o">=</span> <span class="sh">"</span><span class="s">http://your-api/cleanup</span><span class="sh">"</span>
-    <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="n">cleanup_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+</span>    <span class="n">cleanup_url</span> <span class="o">=</span> <span class="s">"http://your-api/cleanup"</span>
+    <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">cleanup_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">test_api_with_header</span><span class="p">(</span><span class="n">financial_header</span><span class="p">):</span>
     <span class="c1"># Use the header in your test
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">http://your-api/endpoint</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">"http://your-api/endpoint"</span><span class="p">,</span>
         <span class="n">headers</span><span class="o">=</span><span class="n">financial_header</span>
     <span class="p">)</span>
 
     <span class="c1"># Validate the response
 </span>    <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
-    <span class="k">assert</span> <span class="sh">"</span><span class="s">expected_field</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()</span>
+    <span class="k">assert</span> <span class="s">"expected_field"</span> <span class="ow">in</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
 </code></pre></div></div>
 
 <h3 id="2-more-advanced-example-with-multiple-test-phases">2. More Advanced Example with Multiple Test Phases</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pytest</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">class</span> <span class="nc">FinancialHeaderManager</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="bp">None</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">False</span>
 
-    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># API call to create header
-</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span><span class="sh">"</span><span class="s">http://your-api/headers</span><span class="sh">"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
-            <span class="sh">"</span><span class="s">type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">financial</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">metadata</span><span class="sh">"</span><span class="p">:</span> <span class="p">{</span><span class="sh">"</span><span class="s">test</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+</span>        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s">"http://your-api/headers"</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span>
+            <span class="s">"type"</span><span class="p">:</span> <span class="s">"financial"</span><span class="p">,</span>
+            <span class="s">"metadata"</span><span class="p">:</span> <span class="p">{</span><span class="s">"test"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
         <span class="p">})</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">()[</span><span class="sh">"</span><span class="s">header</span><span class="sh">"</span><span class="p">]</span>
-        <span class="n">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">header</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">"header"</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">True</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">header</span>
 
-    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">created</span><span class="p">:</span>
-            <span class="n">requests</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span>
-                <span class="sh">"</span><span class="s">http://your-api/headers</span><span class="sh">"</span><span class="p">,</span>
-                <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">X-Header-Id</span><span class="sh">"</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">header</span><span class="p">[</span><span class="sh">"</span><span class="s">id</span><span class="sh">"</span><span class="p">]}</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="p">.</span><span class="n">created</span><span class="p">:</span>
+            <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span>
+                <span class="s">"http://your-api/headers"</span><span class="p">,</span>
+                <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">"X-Header-Id"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">header</span><span class="p">[</span><span class="s">"id"</span><span class="p">]}</span>
             <span class="p">)</span>
-            <span class="n">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">False</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">created</span> <span class="o">=</span> <span class="bp">False</span>
 
-<span class="nd">@pytest.fixture</span>
+<span class="o">@</span><span class="n">pytest</span><span class="p">.</span><span class="n">fixture</span>
 <span class="k">def</span> <span class="nf">header_manager</span><span class="p">():</span>
-    <span class="n">manager</span> <span class="o">=</span> <span class="nc">FinancialHeaderManager</span><span class="p">()</span>
-    <span class="n">manager</span><span class="p">.</span><span class="nf">create</span><span class="p">()</span>
+    <span class="n">manager</span> <span class="o">=</span> <span class="n">FinancialHeaderManager</span><span class="p">()</span>
+    <span class="n">manager</span><span class="p">.</span><span class="n">create</span><span class="p">()</span>
     <span class="k">yield</span> <span class="n">manager</span>
-    <span class="n">manager</span><span class="p">.</span><span class="nf">delete</span><span class="p">()</span>
+    <span class="n">manager</span><span class="p">.</span><span class="n">delete</span><span class="p">()</span>
 
 <span class="k">def</span> <span class="nf">test_header_lifecycle</span><span class="p">(</span><span class="n">header_manager</span><span class="p">):</span>
     <span class="c1"># Test creation
 </span>    <span class="k">assert</span> <span class="n">header_manager</span><span class="p">.</span><span class="n">created</span>
-    <span class="k">assert</span> <span class="sh">"</span><span class="s">X-Financial-Id</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">header_manager</span><span class="p">.</span><span class="n">header</span>
+    <span class="k">assert</span> <span class="s">"X-Financial-Id"</span> <span class="ow">in</span> <span class="n">header_manager</span><span class="p">.</span><span class="n">header</span>
 
     <span class="c1"># Test usage
-</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">http://your-api/protected</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
+        <span class="s">"http://your-api/protected"</span><span class="p">,</span>
         <span class="n">headers</span><span class="o">=</span><span class="n">header_manager</span><span class="p">.</span><span class="n">header</span>
     <span class="p">)</span>
     <span class="k">assert</span> <span class="n">response</span><span class="p">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span>
 
     <span class="c1"># Test validation (if your API has a validation endpoint)
-</span>    <span class="n">validation</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">post</span><span class="p">(</span>
-        <span class="sh">"</span><span class="s">http://your-api/validate</span><span class="sh">"</span><span class="p">,</span>
+</span>    <span class="n">validation</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="s">"http://your-api/validate"</span><span class="p">,</span>
         <span class="n">headers</span><span class="o">=</span><span class="n">header_manager</span><span class="p">.</span><span class="n">header</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">validation</span><span class="p">.</span><span class="nf">json</span><span class="p">()[</span><span class="sh">"</span><span class="s">valid</span><span class="sh">"</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">validation</span><span class="p">.</span><span class="n">json</span><span class="p">()[</span><span class="s">"valid"</span><span class="p">]</span>
 </code></pre></div></div>
 
 <h3 id="3-if-you-prefer-unittest">3. If You Prefer unittest</h3>
 
 <p>While pytest is recommended, here’s how you could do it with unittest:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">unittest</span>
-<span class="kn">import</span> <span class="n">requests</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">requests</span>
 
 <span class="k">class</span> <span class="nc">TestFinancialAPI</span><span class="p">(</span><span class="n">unittest</span><span class="p">.</span><span class="n">TestCase</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Create header
-</span>        <span class="n">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="sh">"</span><span class="s">X-Financial-Id</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">test_123</span><span class="sh">"</span><span class="p">,</span>
-            <span class="sh">"</span><span class="s">X-Transaction-Type</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">payment</span><span class="sh">"</span>
+</span>        <span class="bp">self</span><span class="p">.</span><span class="n">header</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s">"X-Financial-Id"</span><span class="p">:</span> <span class="s">"test_123"</span><span class="p">,</span>
+            <span class="s">"X-Transaction-Type"</span><span class="p">:</span> <span class="s">"payment"</span>
         <span class="p">}</span>
         <span class="c1"># If you need to call an API to create it:
 </span>        <span class="c1"># response = requests.post(...)
 </span>        <span class="c1"># self.header = response.json()
 </span>
-    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">tearDown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Delete header
-</span>        <span class="n">requests</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span>
-            <span class="sh">"</span><span class="s">http://your-api/headers</span><span class="sh">"</span><span class="p">,</span>
-            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">X-Header-Id</span><span class="sh">"</span><span class="p">:</span> <span class="n">self</span><span class="p">.</span><span class="n">header</span><span class="p">[</span><span class="sh">"</span><span class="s">X-Financial-Id</span><span class="sh">"</span><span class="p">]}</span>
+</span>        <span class="n">requests</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="s">"http://your-api/headers"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s">"X-Header-Id"</span><span class="p">:</span> <span class="bp">self</span><span class="p">.</span><span class="n">header</span><span class="p">[</span><span class="s">"X-Financial-Id"</span><span class="p">]}</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">test_api_with_header</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span>
-            <span class="sh">"</span><span class="s">http://your-api/endpoint</span><span class="sh">"</span><span class="p">,</span>
-            <span class="n">headers</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">header</span>
+    <span class="k">def</span> <span class="nf">test_api_with_header</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s">"http://your-api/endpoint"</span><span class="p">,</span>
+            <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="p">.</span><span class="n">header</span>
         <span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
-        <span class="n">self</span><span class="p">.</span><span class="nf">assertIn</span><span class="p">(</span><span class="sh">"</span><span class="s">expected_field</span><span class="sh">"</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="nf">json</span><span class="p">())</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status_code</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s">"expected_field"</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="n">json</span><span class="p">())</span>
 </code></pre></div></div>
 
 <h2 id="best-practices">Best Practices</h2>

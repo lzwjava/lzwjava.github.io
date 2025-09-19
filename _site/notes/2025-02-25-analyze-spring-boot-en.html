@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Analyze Spring Boot Projects | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Analyze Spring Boot Projects" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -212,13 +212,13 @@
 
 <h3 id="python-script">Python Script</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">sys</span>
-<span class="kn">import</span> <span class="n">re</span>
-<span class="kn">from</span> <span class="n">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
 
 <span class="k">def</span> <span class="nf">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Recursively find all .java files in the given directory and its subdirectories.
     
     Args:
@@ -226,81 +226,81 @@
     
     Yields:
         str: The full path to each .java file.
-    </span><span class="sh">"""</span>
-    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+    """</span>
+    <span class="k">for</span> <span class="n">dirpath</span><span class="p">,</span> <span class="n">dirnames</span><span class="p">,</span> <span class="n">filenames</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">filenames</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="nf">endswith</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">filename</span><span class="p">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">'.java'</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirpath</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">annotation_type</span><span class="p">):</span>
-    <span class="sh">"""</span><span class="s">
+    <span class="s">"""
     Extract path values from a Spring annotation (@GetMapping, @PostMapping, or @RequestMapping).
     
     Args:
         line (str): The line containing the annotation.
-        annotation_type (str): The type of annotation (</span><span class="sh">'</span><span class="s">GetMapping</span><span class="sh">'</span><span class="s">, </span><span class="sh">'</span><span class="s">PostMapping</span><span class="sh">'</span><span class="s">, or </span><span class="sh">'</span><span class="s">RequestMapping</span><span class="sh">'</span><span class="s">).
+        annotation_type (str): The type of annotation ('GetMapping', 'PostMapping', or 'RequestMapping').
     
     Returns:
         list: A list of path strings extracted from the annotation.
-    </span><span class="sh">"""</span>
-    <span class="k">if</span> <span class="n">annotation_type</span> <span class="ow">in</span> <span class="p">[</span><span class="sh">'</span><span class="s">GetMapping</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">PostMapping</span><span class="sh">'</span><span class="p">]:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">rf</span><span class="sh">'</span><span class="s">@</span><span class="si">{</span><span class="n">annotation_type</span><span class="si">}</span><span class="s">\\((.*)\\)</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+    """</span>
+    <span class="k">if</span> <span class="n">annotation_type</span> <span class="ow">in</span> <span class="p">[</span><span class="s">'GetMapping'</span><span class="p">,</span> <span class="s">'PostMapping'</span><span class="p">]:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">rf</span><span class="s">'@</span><span class="si">{</span><span class="n">annotation_type</span><span class="si">}</span><span class="s">\\((.*)\\)'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="c1"># Extract all string literals within quotes
-</span>            <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">findall</span><span class="p">(</span><span class="sa">r</span><span class="sh">'"</span><span class="s">([^</span><span class="sh">"</span><span class="s">]*)</span><span class="sh">"'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span>            <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s">'"([^"]*)"'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">paths</span>
         <span class="k">return</span> <span class="p">[]</span>
-    <span class="k">elif</span> <span class="n">annotation_type</span> <span class="o">==</span> <span class="sh">'</span><span class="s">RequestMapping</span><span class="sh">'</span><span class="p">:</span>
-        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">@RequestMapping\\((.*)\\)</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">annotation_type</span> <span class="o">==</span> <span class="s">'RequestMapping'</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'@RequestMapping\\((.*)\\)'</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
-            <span class="n">content</span> <span class="o">=</span> <span class="k">match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="n">match</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
             <span class="c1"># Look for 'value' or 'path' attribute
-</span>            <span class="n">value_match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">(value|path)\s*=\s*({[^}]*}|</span><span class="sh">"</span><span class="s">[^</span><span class="sh">"</span><span class="s">]*</span><span class="sh">"</span><span class="s">)</span><span class="sh">'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span>            <span class="n">value_match</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'(value|path)\s*=\s*({[^}]*}|"[^"]*")'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">value_match</span><span class="p">:</span>
-                <span class="n">value</span> <span class="o">=</span> <span class="n">value_match</span><span class="p">.</span><span class="nf">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-                <span class="k">if</span> <span class="n">value</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="sh">'</span><span class="s">{</span><span class="sh">'</span><span class="p">):</span>
-                    <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">findall</span><span class="p">(</span><span class="sa">r</span><span class="sh">'"</span><span class="s">([^</span><span class="sh">"</span><span class="s">]*)</span><span class="sh">"'</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value_match</span><span class="p">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">value</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">'{'</span><span class="p">):</span>
+                    <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s">'"([^"]*)"'</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="nf">strip</span><span class="p">(</span><span class="sh">'"'</span><span class="p">)]</span>
+                    <span class="n">paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">value</span><span class="p">.</span><span class="n">strip</span><span class="p">(</span><span class="s">'"'</span><span class="p">)]</span>
                 <span class="k">return</span> <span class="n">paths</span>
             <span class="c1"># If no 'value' or 'path', assume direct path specification
-</span>            <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="nf">findall</span><span class="p">(</span><span class="sa">r</span><span class="sh">'"</span><span class="s">([^</span><span class="sh">"</span><span class="s">]*)</span><span class="sh">"'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
+</span>            <span class="n">paths</span> <span class="o">=</span> <span class="n">re</span><span class="p">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s">'"([^"]*)"'</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span>
             <span class="k">return</span> <span class="n">paths</span>
         <span class="k">return</span> <span class="p">[]</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
     <span class="c1"># Parse command-line arguments
-</span>    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Usage: python script.py &lt;root_directory&gt;</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Usage: python script.py &lt;root_directory&gt;"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
     <span class="n">root_dir</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">isdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[ERROR] The specified path is not a directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="n">sys</span><span class="p">.</span><span class="nf">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[ERROR] The specified path is not a directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">sys</span><span class="p">.</span><span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Starting analysis of directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Starting analysis of directory: </span><span class="si">{</span><span class="n">root_dir</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
     <span class="c1"># Initialize a dictionary to store controller mappings
-</span>    <span class="n">controllers</span> <span class="o">=</span> <span class="nf">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">:</span> <span class="p">[],</span> <span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">:</span> <span class="p">[]})</span>
+</span>    <span class="n">controllers</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="p">{</span><span class="s">'GET'</span><span class="p">:</span> <span class="p">[],</span> <span class="s">'POST'</span><span class="p">:</span> <span class="p">[]})</span>
     <span class="n">total_files</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">error_files</span> <span class="o">=</span> <span class="mi">0</span>
     
     <span class="c1"># Process all Java files
-</span>    <span class="k">for</span> <span class="n">java_file</span> <span class="ow">in</span> <span class="nf">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
+</span>    <span class="k">for</span> <span class="n">java_file</span> <span class="ow">in</span> <span class="n">find_java_files</span><span class="p">(</span><span class="n">root_dir</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">java_file</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">readlines</span><span class="p">()</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">java_file</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">readlines</span><span class="p">()</span>
             
             <span class="c1"># Check if the file is a controller
-</span>            <span class="k">if</span> <span class="nf">any</span><span class="p">(</span><span class="sh">'</span><span class="s">@Controller</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="sh">'</span><span class="s">@RestController</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">):</span>
-                <span class="n">controller_name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">basename</span><span class="p">(</span><span class="n">java_file</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="sh">'</span><span class="s">.java</span><span class="sh">'</span><span class="p">,</span> <span class="sh">''</span><span class="p">)</span>
+</span>            <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="s">'@Controller'</span> <span class="ow">in</span> <span class="n">line</span> <span class="ow">or</span> <span class="s">'@RestController'</span> <span class="ow">in</span> <span class="n">line</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">):</span>
+                <span class="n">controller_name</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">basename</span><span class="p">(</span><span class="n">java_file</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="s">'.java'</span><span class="p">,</span> <span class="s">''</span><span class="p">)</span>
                 
                 <span class="c1"># Find the class declaration line to separate class-level and method-level annotations
 </span>                <span class="n">class_line_index</span> <span class="o">=</span> <span class="bp">None</span>
-                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">public\s+(class|abstract\s+class|interface)\s+\w+</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lines</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'public\s+(class|abstract\s+class|interface)\s+\w+'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
                         <span class="n">class_line_index</span> <span class="o">=</span> <span class="n">i</span>
                         <span class="k">break</span>
                 <span class="k">if</span> <span class="n">class_line_index</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
@@ -309,55 +309,55 @@
                 <span class="c1"># Extract class-level @RequestMapping as base paths
 </span>                <span class="n">base_paths</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[:</span><span class="n">class_line_index</span><span class="p">]:</span>
-                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s*@RequestMapping</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-                        <span class="n">base_paths</span> <span class="o">=</span> <span class="nf">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sh">'</span><span class="s">RequestMapping</span><span class="sh">'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'\s*@RequestMapping'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                        <span class="n">base_paths</span> <span class="o">=</span> <span class="n">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">'RequestMapping'</span><span class="p">)</span>
                         <span class="k">break</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="n">base_paths</span><span class="p">:</span>
-                    <span class="n">base_paths</span> <span class="o">=</span> <span class="p">[</span><span class="sh">''</span><span class="p">]</span>
+                    <span class="n">base_paths</span> <span class="o">=</span> <span class="p">[</span><span class="s">''</span><span class="p">]</span>
                 
                 <span class="c1"># Extract method-level @GetMapping and @PostMapping
 </span>                <span class="n">get_paths</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">post_paths</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">[</span><span class="n">class_line_index</span><span class="p">:]:</span>
-                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s*@GetMapping</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-                        <span class="n">paths</span> <span class="o">=</span> <span class="nf">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sh">'</span><span class="s">GetMapping</span><span class="sh">'</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'\s*@GetMapping'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                        <span class="n">paths</span> <span class="o">=</span> <span class="n">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">'GetMapping'</span><span class="p">)</span>
                         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">base_paths</span><span class="p">:</span>
                             <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
                                 <span class="n">full_path</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">path</span>
-                                <span class="n">get_paths</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
-                    <span class="k">elif</span> <span class="n">re</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="sa">r</span><span class="sh">'</span><span class="s">\s*@PostMapping</span><span class="sh">'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
-                        <span class="n">paths</span> <span class="o">=</span> <span class="nf">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="sh">'</span><span class="s">PostMapping</span><span class="sh">'</span><span class="p">)</span>
+                                <span class="n">get_paths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+                    <span class="k">elif</span> <span class="n">re</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s">'\s*@PostMapping'</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                        <span class="n">paths</span> <span class="o">=</span> <span class="n">extract_paths</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="s">'PostMapping'</span><span class="p">)</span>
                         <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">base_paths</span><span class="p">:</span>
                             <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">paths</span><span class="p">:</span>
                                 <span class="n">full_path</span> <span class="o">=</span> <span class="n">base</span> <span class="o">+</span> <span class="n">path</span>
-                                <span class="n">post_paths</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+                                <span class="n">post_paths</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
                 
                 <span class="c1"># Store unique paths
-</span>                <span class="n">get_paths</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">get_paths</span><span class="p">)))</span>
-                <span class="n">post_paths</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="nf">set</span><span class="p">(</span><span class="n">post_paths</span><span class="p">)))</span>
+</span>                <span class="n">get_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">get_paths</span><span class="p">)))</span>
+                <span class="n">post_paths</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">post_paths</span><span class="p">)))</span>
                 
                 <span class="k">if</span> <span class="n">get_paths</span> <span class="ow">or</span> <span class="n">post_paths</span><span class="p">:</span>
-                    <span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">][</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_paths</span>
-                    <span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">][</span><span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">post_paths</span>
+                    <span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">][</span><span class="s">'GET'</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_paths</span>
+                    <span class="n">controllers</span><span class="p">[</span><span class="n">controller_name</span><span class="p">][</span><span class="s">'POST'</span><span class="p">]</span> <span class="o">=</span> <span class="n">post_paths</span>
             
             <span class="n">total_files</span> <span class="o">+=</span> <span class="mi">1</span>
         <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[ERROR] Could not read file </span><span class="si">{</span><span class="n">java_file</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[ERROR] Could not read file </span><span class="si">{</span><span class="n">java_file</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
             <span class="n">error_files</span> <span class="o">+=</span> <span class="mi">1</span>
     
     <span class="c1"># Print summary
-</span>    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Total Java files attempted: </span><span class="si">{</span><span class="n">total_files</span> <span class="o">+</span> <span class="n">error_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Successfully processed: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Files with errors: </span><span class="si">{</span><span class="n">error_files</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">[INFO] Total controllers found: </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">controllers</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Total Java files attempted: </span><span class="si">{</span><span class="n">total_files</span> <span class="o">+</span> <span class="n">error_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Successfully processed: </span><span class="si">{</span><span class="n">total_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Files with errors: </span><span class="si">{</span><span class="n">error_files</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"[INFO] Total controllers found: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">controllers</span><span class="p">)</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     
     <span class="c1"># Print results in the specified format
-</span>    <span class="k">for</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mappings</span> <span class="ow">in</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">controllers</span><span class="p">.</span><span class="nf">items</span><span class="p">()):</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s">:</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">get </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">[</span><span class="sh">'</span><span class="s">POST</span><span class="sh">'</span><span class="p">]:</span>
-            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">post </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</span>    <span class="k">for</span> <span class="n">controller</span><span class="p">,</span> <span class="n">mappings</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">controllers</span><span class="p">.</span><span class="n">items</span><span class="p">()):</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"</span><span class="si">{</span><span class="n">controller</span><span class="si">}</span><span class="s">:"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">[</span><span class="s">'GET'</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"get </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">mappings</span><span class="p">[</span><span class="s">'POST'</span><span class="p">]:</span>
+            <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"post </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <h3 id="explanation">Explanation</h3>

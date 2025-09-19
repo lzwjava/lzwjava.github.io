@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Using PopMenu in iOS | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Using PopMenu in iOS" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -268,15 +268,15 @@
   <li><strong>Import the Library</strong>:
     <ul>
       <li>In your Objective-C file (e.g., <code class="language-plaintext highlighter-rouge">ViewController.m</code>):
-        <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "PopMenu.h"
-</span></code></pre></div>        </div>
+        <pre><code class="language-objective-c">#import "PopMenu.h"
+</code></pre>
       </li>
       <li>If you’re using Swift, create a bridging header:
         <ul>
           <li>Go to <code class="language-plaintext highlighter-rouge">File &gt; New &gt; File &gt; Header File</code> (e.g., <code class="language-plaintext highlighter-rouge">YourAppName-Bridging-Header.h</code>).</li>
           <li>Add:
-            <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#import "PopMenu.h"
-</span></code></pre></div>            </div>
+            <pre><code class="language-objective-c">#import "PopMenu.h"
+</code></pre>
           </li>
           <li>In Xcode, set the bridging header under <code class="language-plaintext highlighter-rouge">Build Settings &gt; Swift Compiler - General &gt; Objective-C Bridging Header</code> to the path of your header file (e.g., <code class="language-plaintext highlighter-rouge">YourAppName/YourAppName-Bridging-Header.h</code>).</li>
         </ul>
@@ -285,28 +285,28 @@
   </li>
   <li><strong>Create Menu Items</strong>:
 Define the items you want in the pop-up menu. Each item can have a title, icon, and glow color.
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">NSMutableArray</span> <span class="o">*</span><span class="n">items</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSMutableArray</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <pre><code class="language-objective-c">NSMutableArray *items = [[NSMutableArray alloc] init];
    
-<span class="n">MenuItem</span> <span class="o">*</span><span class="n">menuItem1</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MenuItem</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithTitle</span><span class="p">:</span><span class="s">@"Flickr"</span> 
-                                            <span class="nl">iconName:</span><span class="s">@"post_type_bubble_flickr"</span> 
-                                           <span class="nl">glowColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="nf">grayColor</span><span class="p">]</span> 
-                                               <span class="nl">index:</span><span class="mi">0</span><span class="p">];</span>
-<span class="p">[</span><span class="n">items</span> <span class="nf">addObject</span><span class="p">:</span><span class="n">menuItem1</span><span class="p">];</span>
+MenuItem *menuItem1 = [[MenuItem alloc] initWithTitle:@"Flickr" 
+                                            iconName:@"post_type_bubble_flickr" 
+                                           glowColor:[UIColor grayColor] 
+                                               index:0];
+[items addObject:menuItem1];
    
-<span class="n">MenuItem</span> <span class="o">*</span><span class="n">menuItem2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">MenuItem</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithTitle</span><span class="p">:</span><span class="s">@"Twitter"</span> 
-                                            <span class="nl">iconName:</span><span class="s">@"post_type_bubble_twitter"</span> 
-                                           <span class="nl">glowColor:</span><span class="p">[</span><span class="n">UIColor</span> <span class="nf">blueColor</span><span class="p">]</span> 
-                                               <span class="nl">index:</span><span class="mi">1</span><span class="p">];</span>
-<span class="p">[</span><span class="n">items</span> <span class="nf">addObject</span><span class="p">:</span><span class="n">menuItem2</span><span class="p">];</span>
-</code></pre></div>    </div>
+MenuItem *menuItem2 = [[MenuItem alloc] initWithTitle:@"Twitter" 
+                                            iconName:@"post_type_bubble_twitter" 
+                                           glowColor:[UIColor blueColor] 
+                                               index:1];
+[items addObject:menuItem2];
+</code></pre>
   </li>
   <li><strong>Initialize and Show the Menu</strong>:
 Create a <code class="language-plaintext highlighter-rouge">PopMenu</code> instance and display it in your view.
-    <div class="language-objective-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PopMenu</span> <span class="o">*</span><span class="n">popMenu</span> <span class="o">=</span> <span class="p">[[</span><span class="n">PopMenu</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">initWithFrame</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">.</span><span class="n">bounds</span> <span class="nf">items</span><span class="p">:</span><span class="n">items</span><span class="p">];</span>
-<span class="n">popMenu</span><span class="p">.</span><span class="n">menuAnimationType</span> <span class="o">=</span> <span class="n">kPopMenuAnimationTypeNetEase</span><span class="p">;</span> <span class="c1">// Options: kPopMenuAnimationTypeSina or kPopMenuAnimationTypeNetEase</span>
-<span class="n">popMenu</span><span class="p">.</span><span class="n">perRowItemCount</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="c1">// Number of items per row</span>
-<span class="p">[</span><span class="n">popMenu</span> <span class="nf">showMenuAtView</span><span class="p">:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">];</span>
-</code></pre></div>    </div>
+    <pre><code class="language-objective-c">PopMenu *popMenu = [[PopMenu alloc] initWithFrame:self.view.bounds items:items];
+popMenu.menuAnimationType = kPopMenuAnimationTypeNetEase; // Options: kPopMenuAnimationTypeSina or kPopMenuAnimationTypeNetEase
+popMenu.perRowItemCount = 2; // Number of items per row
+[popMenu showMenuAtView:self.view];
+</code></pre>
   </li>
   <li><strong>Handle Selection (Optional)</strong>:
 You can subclass or extend functionality to detect taps, though PopMenu’s basic version (circa 2.4) may not natively support a delegate out of the box. Check the library’s documentation on GitHub (<code class="language-plaintext highlighter-rouge">xhzengAIB/PopMenu</code>) for any updates or customizations.</li>

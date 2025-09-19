@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Reranker | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Reranker" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -209,22 +209,22 @@
 
   <p><a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">bge-reranker</a></p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">FlagEmbedding</span> <span class="kn">import</span> <span class="n">FlagReranker</span>
-<span class="n">reranker</span> <span class="o">=</span> <span class="nc">FlagReranker</span><span class="p">(</span><span class="sh">'</span><span class="s">BAAI/bge-reranker-base</span><span class="sh">'</span><span class="p">,</span> <span class="n">use_fp16</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># Setting use_fp16 to True speeds up computation with a slight performance degradation
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">FlagEmbedding</span> <span class="kn">import</span> <span class="n">FlagReranker</span>
+<span class="n">reranker</span> <span class="o">=</span> <span class="n">FlagReranker</span><span class="p">(</span><span class="s">'BAAI/bge-reranker-base'</span><span class="p">,</span> <span class="n">use_fp16</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span> <span class="c1"># Setting use_fp16 to True speeds up computation with a slight performance degradation
 </span>
-<span class="n">score</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">compute_score</span><span class="p">([</span><span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">passage</span><span class="sh">'</span><span class="p">])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="c1"># -5.65234375
-</span>
-<span class="c1"># You can map the scores into a 0-1 range by setting "normalize=True", which will apply a sigmoid function to the score.
-</span><span class="n">score</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">compute_score</span><span class="p">([</span><span class="sh">'</span><span class="s">query</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">passage</span><span class="sh">'</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="c1"># 0.003497010252573502
-</span>
-<span class="n">scores</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">compute_score</span><span class="p">([[</span><span class="sh">'</span><span class="s">what is panda?</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">hi</span><span class="sh">'</span><span class="p">],</span> <span class="p">[</span><span class="sh">'</span><span class="s">what is panda?</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">The giant panda (Ailuropoda melanoleuca), sometimes called a panda bear or simply panda, is a bear species endemic to China.</span><span class="sh">'</span><span class="p">]])</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># [-8.1875, 5.26171875]
+<span class="n">score</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="n">compute_score</span><span class="p">([</span><span class="s">'query'</span><span class="p">,</span> <span class="s">'passage'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="c1"># -5.65234375
 </span>
 <span class="c1"># You can map the scores into a 0-1 range by setting "normalize=True", which will apply a sigmoid function to the score.
-</span><span class="n">scores</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">compute_score</span><span class="p">([[</span><span class="sh">'</span><span class="s">what is panda?</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">hi</span><span class="sh">'</span><span class="p">],</span> <span class="p">[</span><span class="sh">'</span><span class="s">what is panda?</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">The giant panda (Ailuropoda melanoleuca), sometimes called a panda bear or simply panda, is a bear species endemic to China.</span><span class="sh">'</span><span class="p">]],</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># [0.00027803096387751553, 0.9948403768236574]
+</span><span class="n">score</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="n">compute_score</span><span class="p">([</span><span class="s">'query'</span><span class="p">,</span> <span class="s">'passage'</span><span class="p">],</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span> <span class="c1"># 0.003497010252573502
+</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="n">compute_score</span><span class="p">([[</span><span class="s">'what is panda?'</span><span class="p">,</span> <span class="s">'hi'</span><span class="p">],</span> <span class="p">[</span><span class="s">'what is panda?'</span><span class="p">,</span> <span class="s">'The giant panda (Ailuropoda melanoleuca), sometimes called a panda bear or simply panda, is a bear species endemic to China.'</span><span class="p">]])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># [-8.1875, 5.26171875]
+</span>
+<span class="c1"># You can map the scores into a 0-1 range by setting "normalize=True", which will apply a sigmoid function to the score.
+</span><span class="n">scores</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="n">compute_score</span><span class="p">([[</span><span class="s">'what is panda?'</span><span class="p">,</span> <span class="s">'hi'</span><span class="p">],</span> <span class="p">[</span><span class="s">'what is panda?'</span><span class="p">,</span> <span class="s">'The giant panda (Ailuropoda melanoleuca), sometimes called a panda bear or simply panda, is a bear species endemic to China.'</span><span class="p">]],</span> <span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="c1"># [0.00027803096387751553, 0.9948403768236574]
 </span></code></pre></div></div>
 
 <p>Error</p>

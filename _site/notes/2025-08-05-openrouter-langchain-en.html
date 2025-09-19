@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>Use OpenRouter with LangChain | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="Use OpenRouter with LangChain" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -76,7 +76,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -99,7 +99,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -200,33 +200,33 @@
 
   <p>You can point LangChain at OpenRouter by specifying its base URL and your OpenRouter key when you instantiate the LLM. For example:</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">from</span> <span class="n">langchain</span> <span class="kn">import</span> <span class="n">OpenAI</span><span class="p">,</span> <span class="n">LLMChain</span><span class="p">,</span> <span class="n">PromptTemplate</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">langchain</span> <span class="kn">import</span> <span class="n">OpenAI</span><span class="p">,</span> <span class="n">LLMChain</span><span class="p">,</span> <span class="n">PromptTemplate</span>
 
 <span class="c1"># 1. (Optionally) set your OpenRouter key in env
-</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">OPENAI_API_KEY</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">pk-OPENROUTER_YOUR_KEY_HERE</span><span class="sh">"</span>
+</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"OPENAI_API_KEY"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"pk-OPENROUTER_YOUR_KEY_HERE"</span>
 <span class="c1"># and the base URL:
-</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="sh">"</span><span class="s">OPENAI_API_BASE</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="sh">"</span><span class="s">https://openrouter.ai/api/v1</span><span class="sh">"</span>
+</span><span class="n">os</span><span class="p">.</span><span class="n">environ</span><span class="p">[</span><span class="s">"OPENAI_API_BASE"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"https://openrouter.ai/api/v1"</span>
 
 <span class="c1"># 2. Initialize the LLM to use OpenRouter
-</span><span class="n">llm</span> <span class="o">=</span> <span class="nc">OpenAI</span><span class="p">(</span>
-    <span class="n">model_name</span><span class="o">=</span><span class="sh">"</span><span class="s">gpt-4o</span><span class="sh">"</span><span class="p">,</span>                <span class="c1"># or "gpt-3.5-turbo" etc.
+</span><span class="n">llm</span> <span class="o">=</span> <span class="n">OpenAI</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s">"gpt-4o"</span><span class="p">,</span>                <span class="c1"># or "gpt-3.5-turbo" etc.
 </span>    <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
-    <span class="n">openai_api_key</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">OPENAI_API_KEY</span><span class="sh">"</span><span class="p">),</span>
-    <span class="n">openai_api_base</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="nf">getenv</span><span class="p">(</span><span class="sh">"</span><span class="s">OPENAI_API_BASE</span><span class="sh">"</span><span class="p">),</span>
-    <span class="n">openai_api_type</span><span class="o">=</span><span class="sh">"</span><span class="s">open_router</span><span class="sh">"</span>       <span class="c1"># tell LangChain it’s OpenRouter
+    <span class="n">openai_api_key</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"OPENAI_API_KEY"</span><span class="p">),</span>
+    <span class="n">openai_api_base</span><span class="o">=</span><span class="n">os</span><span class="p">.</span><span class="n">getenv</span><span class="p">(</span><span class="s">"OPENAI_API_BASE"</span><span class="p">),</span>
+    <span class="n">openai_api_type</span><span class="o">=</span><span class="s">"open_router"</span>       <span class="c1"># tell LangChain it’s OpenRouter
 </span><span class="p">)</span>
 
 <span class="c1"># 3. Create your prompt template
-</span><span class="n">template</span> <span class="o">=</span> <span class="nc">PromptTemplate</span><span class="p">(</span>
-    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">product</span><span class="sh">"</span><span class="p">],</span>
-    <span class="n">template</span><span class="o">=</span><span class="sh">"</span><span class="s">Write a short marketing blurb for the product: {product}.</span><span class="sh">"</span>
+</span><span class="n">template</span> <span class="o">=</span> <span class="n">PromptTemplate</span><span class="p">(</span>
+    <span class="n">input_variables</span><span class="o">=</span><span class="p">[</span><span class="s">"product"</span><span class="p">],</span>
+    <span class="n">template</span><span class="o">=</span><span class="s">"Write a short marketing blurb for the product: {product}."</span>
 <span class="p">)</span>
 
 <span class="c1"># 4. Build and run the chain
-</span><span class="n">chain</span> <span class="o">=</span> <span class="nc">LLMChain</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="nf">run</span><span class="p">({</span><span class="sh">"</span><span class="s">product</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">wireless noise-cancelling headphones</span><span class="sh">"</span><span class="p">})</span>
-<span class="nf">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span><span class="n">chain</span> <span class="o">=</span> <span class="n">LLMChain</span><span class="p">(</span><span class="n">llm</span><span class="o">=</span><span class="n">llm</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">template</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">chain</span><span class="p">.</span><span class="n">run</span><span class="p">({</span><span class="s">"product"</span><span class="p">:</span> <span class="s">"wireless noise-cancelling headphones"</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><strong>Key points</strong></p>

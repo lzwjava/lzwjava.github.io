@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>防火墙、代理API与VPN检测 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="防火墙、代理API与VPN检测" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="zh" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -240,24 +240,24 @@
 
 <p>我在Shadowsocks实例上运行了一个简易服务器，代码如下：</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
-<span class="kn">from</span> <span class="n">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
-<span class="kn">import</span> <span class="n">subprocess</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span> <span class="nn">flask_cors</span> <span class="kn">import</span> <span class="n">CORS</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="nc">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
-<span class="nc">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># 为所有路由启用CORS
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">CORS</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>  <span class="c1"># 为所有路由启用CORS
 </span>
-<span class="nd">@app.route</span><span class="p">(</span><span class="sh">'</span><span class="s">/bandwidth</span><span class="sh">'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">GET</span><span class="sh">'</span><span class="p">])</span>
+<span class="o">@</span><span class="n">app</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/bandwidth'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'GET'</span><span class="p">])</span>
 <span class="k">def</span> <span class="nf">get_bandwidth</span><span class="p">():</span>
     <span class="c1"># 运行vnstat命令获取eth0网卡5分钟间隔流量统计
-</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="nf">run</span><span class="p">([</span><span class="sh">'</span><span class="s">vnstat</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-i</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">eth0</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">-5</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">--json</span><span class="sh">'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="n">subprocess</span><span class="p">.</span><span class="n">run</span><span class="p">([</span><span class="s">'vnstat'</span><span class="p">,</span> <span class="s">'-i'</span><span class="p">,</span> <span class="s">'eth0'</span><span class="p">,</span> <span class="s">'-5'</span><span class="p">,</span> <span class="s">'--json'</span><span class="p">],</span> <span class="n">capture_output</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">result</span><span class="p">.</span><span class="n">stdout</span>
 
     <span class="c1"># 将捕获的数据作为JSON响应返回
-</span>    <span class="k">return</span> <span class="nf">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</span>    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">'</span><span class="s">__main__</span><span class="sh">'</span><span class="p">:</span>
-    <span class="n">app</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="sh">'</span><span class="s">0.0.0.0</span><span class="sh">'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+    <span class="n">app</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s">'0.0.0.0'</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>并使用nginx配置443端口服务如下：</p>
@@ -294,19 +294,19 @@
 
 <h3 id="步骤1记录请求">步骤1：记录请求</h3>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">time</span>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">time</span>
 
 <span class="c1"># 存储请求数据的数据库
 </span><span class="n">request_log</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="c1"># 请求记录函数
 </span><span class="k">def</span> <span class="nf">log_request</span><span class="p">(</span><span class="n">source_ip</span><span class="p">,</span> <span class="n">target_ip</span><span class="p">,</span> <span class="n">target_port</span><span class="p">,</span> <span class="n">body</span><span class="p">):</span>
-    <span class="n">request_log</span><span class="p">.</span><span class="nf">append</span><span class="p">({</span>
-        <span class="sh">'</span><span class="s">source_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
-        <span class="sh">'</span><span class="s">timestamp</span><span class="sh">'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+    <span class="n">request_log</span><span class="p">.</span><span class="n">append</span><span class="p">({</span>
+        <span class="s">'source_ip'</span><span class="p">:</span> <span class="n">source_ip</span><span class="p">,</span>
+        <span class="s">'target_ip'</span><span class="p">:</span> <span class="n">target_ip</span><span class="p">,</span>
+        <span class="s">'target_port'</span><span class="p">:</span> <span class="n">target_port</span><span class="p">,</span>
+        <span class="s">'body'</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+        <span class="s">'timestamp'</span><span class="p">:</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
     <span class="p">})</span>
 </code></pre></div></div>
 
@@ -316,17 +316,17 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 检查请求并封禁IP的函数
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="c1"># 遍历所有已记录请求
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">banned_ips</span><span class="p">.</span><span class="nf">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="n">banned_ips</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># 对所有识别出的IP实施封禁
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p><code class="language-plaintext highlighter-rouge">check_and_ban_ips</code>函数遍历所有已记录请求，识别并封禁与非法活动关联的IP。</p>
@@ -337,7 +337,7 @@
 </span><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># 实际非法请求检查逻辑的占位符
 </span>    <span class="c1"># 例如检查请求体或目标特征
-</span>    <span class="k">return</span> <span class="sh">"</span><span class="s">illegal</span><span class="sh">"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">body</span><span class="sh">'</span><span class="p">]</span>
+</span>    <span class="k">return</span> <span class="s">"illegal"</span> <span class="ow">in</span> <span class="n">request</span><span class="p">[</span><span class="s">'body'</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p>此处<code class="language-plaintext highlighter-rouge">is_illegal</code>检查请求体是否包含”illegal”一词。此逻辑可扩展为更复杂的判定机制。</p>
@@ -347,7 +347,7 @@
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 封禁IP列表的函数
 </span><span class="k">def</span> <span class="nf">ban_ips</span><span class="p">(</span><span class="n">ip_set</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">ip</span> <span class="ow">in</span> <span class="n">ip_set</span><span class="p">:</span>
-        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">封禁IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"封禁IP: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>识别非法IP后，<code class="language-plaintext highlighter-rouge">ban_ips</code>函数通过打印IP地址实施封禁（真实系统中可能执行阻塞操作）。</p>
@@ -356,24 +356,24 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 根据80%非法请求比例检查并封禁IP的函数
 </span><span class="k">def</span> <span class="nf">check_and_ban_ips</span><span class="p">():</span>
-    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+    <span class="n">banned_ips</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="n">illegal_count</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="n">total_requests</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># 遍历所有已记录请求
 </span>    <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
         <span class="n">total_requests</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="n">illegal_count</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="c1"># 若80%及以上请求为非法，则封禁相关IP
 </span>    <span class="k">if</span> <span class="n">total_requests</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="p">(</span><span class="n">illegal_count</span> <span class="o">/</span> <span class="n">total_requests</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">request</span> <span class="ow">in</span> <span class="n">request_log</span><span class="p">:</span>
-            <span class="k">if</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-                <span class="n">banned_ips</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_ip</span><span class="sh">'</span><span class="p">])</span>
+            <span class="k">if</span> <span class="n">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+                <span class="n">banned_ips</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">request</span><span class="p">[</span><span class="s">'target_ip'</span><span class="p">])</span>
 
     <span class="c1"># 对所有识别出的IP实施封禁
-</span>    <span class="nf">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
+</span>    <span class="n">ban_ips</span><span class="p">(</span><span class="n">banned_ips</span><span class="p">)</span>
 </code></pre></div></div>
 
 <p>此替代方案根据非法请求比例判定IP是否应被封禁。若某IP的非法请求占比达80%或更高，则予以封禁。</p>
@@ -382,10 +382,10 @@
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">is_illegal</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="c1"># 检查是否使用Shadowsocks协议（请求体含类二进制数据）
-</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="sh">'</span><span class="s">target_port</span><span class="sh">'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nf">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+</span>    <span class="k">if</span> <span class="n">request</span><span class="p">[</span><span class="s">'target_port'</span><span class="p">]</span> <span class="o">==</span> <span class="mi">443</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_trojan</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
             <span class="k">return</span> <span class="bp">True</span>
-    <span class="k">elif</span> <span class="nf">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">elif</span> <span class="n">is_shadowsocks</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">True</span>
     <span class="k">return</span> <span class="bp">False</span>
 </code></pre></div></div>

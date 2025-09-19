@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>LibreChat Search Functionality Guide | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="LibreChat Search Functionality Guide" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -254,7 +254,7 @@
       <li>Uses <code class="language-plaintext highlighter-rouge">$text</code> search on <code class="language-plaintext highlighter-rouge">messages.content</code> and <code class="language-plaintext highlighter-rouge">conversations.title</code>.</li>
       <li>Requires a <a href="https://www.mongodb.com/docs/manual/core/index-text/">text index</a> (LibreChat sets this up automatically).</li>
       <li>Example query:
-        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nf">find</span><span class="p">({</span> <span class="na">$text</span><span class="p">:</span> <span class="p">{</span> <span class="na">$search</span><span class="p">:</span> <span class="dl">"</span><span class="s2">React hooks</span><span class="dl">"</span> <span class="p">}</span> <span class="p">})</span>
+        <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">messages</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span> <span class="na">$text</span><span class="p">:</span> <span class="p">{</span> <span class="na">$search</span><span class="p">:</span> <span class="dl">"</span><span class="s2">React hooks</span><span class="dl">"</span> <span class="p">}</span> <span class="p">})</span>
 </code></pre></div>        </div>
       </li>
     </ul>
@@ -317,7 +317,7 @@
 <h4 id="for-developersself-hosters"><strong>For Developers/Self-Hosters</strong></h4>
 <ul>
   <li><strong>Add weights to indexes</strong>: Prioritize <code class="language-plaintext highlighter-rouge">title</code> over <code class="language-plaintext highlighter-rouge">content</code> in MongoDB:
-    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nf">createIndex</span><span class="p">(</span>
+    <div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">db</span><span class="p">.</span><span class="nx">conversations</span><span class="p">.</span><span class="nx">createIndex</span><span class="p">(</span>
   <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span><span class="p">,</span> <span class="dl">"</span><span class="s2">messages.content</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">text</span><span class="dl">"</span> <span class="p">},</span>
   <span class="p">{</span> <span class="na">weights</span><span class="p">:</span> <span class="p">{</span> <span class="na">title</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="dl">"</span><span class="s2">messages.content</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span> <span class="p">}</span> <span class="p">}</span>
 <span class="p">);</span>

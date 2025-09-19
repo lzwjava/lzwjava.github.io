@@ -28,7 +28,7 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <title>微调模型 | Zhiwei Li</title>
-<meta name="generator" content="Jekyll v4.4.1" />
+<meta name="generator" content="Jekyll v3.10.0" />
 <meta property="og:title" content="微调模型" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="zh" />
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=">
+  <link rel="stylesheet" href="/assets/css/style.css?v=4183853c234c82904263a4ecc11161b823061862">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=4183853c234c82904263a4ecc11161b823061862" defer></script> -->
 </head>
 
 <body>
@@ -205,46 +205,46 @@
 
   <hr>
 
-  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">os</span>
-<span class="kn">import</span> <span class="n">glob</span>
-<span class="kn">import</span> <span class="n">json</span>
-<span class="kn">from</span> <span class="n">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
-<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">Trainer</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">DataCollatorForLanguageModeling</span><span class="p">,</span> <span class="n">LlamaTokenizerFast</span>
-<span class="kn">from</span> <span class="n">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">load_dataset</span>
-<span class="kn">import</span> <span class="n">torch</span>
+  <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+<span class="kn">from</span> <span class="nn">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">Trainer</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">DataCollatorForLanguageModeling</span><span class="p">,</span> <span class="n">LlamaTokenizerFast</span>
+<span class="kn">from</span> <span class="nn">datasets</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">load_dataset</span>
+<span class="kn">import</span> <span class="nn">torch</span>
 
-<span class="nf">load_dotenv</span><span class="p">()</span>
+<span class="n">load_dotenv</span><span class="p">()</span>
 
-<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="sh">"</span><span class="s">deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B</span><span class="sh">"</span>  <span class="c1"># 改为指定的模型
-</span><span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="sh">"</span><span class="s">trained_model</span><span class="sh">"</span>
-<span class="n">TRAIN_FILE</span> <span class="o">=</span> <span class="sh">"</span><span class="s">train.jsonl</span><span class="sh">"</span>
+<span class="n">MODEL_NAME</span> <span class="o">=</span> <span class="s">"deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"</span>  <span class="c1"># 改为指定的模型
+</span><span class="n">OUTPUT_DIR</span> <span class="o">=</span> <span class="s">"trained_model"</span>
+<span class="n">TRAIN_FILE</span> <span class="o">=</span> <span class="s">"train.jsonl"</span>
 <span class="n">MAX_LENGTH</span> <span class="o">=</span> <span class="mi">512</span>
 <span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">8</span>
 <span class="n">EPOCHS</span> <span class="o">=</span> <span class="mi">3</span>
 
 <span class="k">def</span> <span class="nf">create_training_data</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">):</span>
     <span class="n">all_texts</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">lang_dir</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="nf">listdir</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">):</span>
-        <span class="n">lang_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">,</span> <span class="n">lang_dir</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">isdir</span><span class="p">(</span><span class="n">lang_path</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">lang_dir</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">):</span>
+        <span class="n">lang_path</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">,</span> <span class="n">lang_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">lang_path</span><span class="p">):</span>
             <span class="k">continue</span>
-        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="nf">glob</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">lang_path</span><span class="p">,</span> <span class="sh">"</span><span class="s">*.md</span><span class="sh">"</span><span class="p">)):</span>
+        <span class="k">for</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">glob</span><span class="p">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">lang_path</span><span class="p">,</span> <span class="s">"*.md"</span><span class="p">)):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="k">with</span> <span class="nf">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="sh">'</span><span class="s">r</span><span class="sh">'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="sh">'</span><span class="s">utf-8</span><span class="sh">'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-                    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="nf">read</span><span class="p">()</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s">'r'</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">'utf-8'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="n">content</span> <span class="o">=</span> <span class="n">f</span><span class="p">.</span><span class="n">read</span><span class="p">()</span>
                     <span class="c1"># 移除前言
-</span>                    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">"</span><span class="s">---</span><span class="sh">"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="nf">strip</span><span class="p">()</span>
-                    <span class="n">all_texts</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</span>                    <span class="n">content</span> <span class="o">=</span> <span class="n">content</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">"---"</span><span class="p">,</span> <span class="mi">2</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">strip</span><span class="p">()</span>
+                    <span class="n">all_texts</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
             <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">读取文件 </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s"> 时出错: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+                <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"读取文件 </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s"> 时出错: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">all_texts</span>
 
 <span class="k">def</span> <span class="nf">prepare_dataset</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-    <span class="n">encodings</span> <span class="o">=</span> <span class="nf">tokenizer</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">MAX_LENGTH</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="sh">"</span><span class="s">pt</span><span class="sh">"</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">Dataset</span><span class="p">.</span><span class="nf">from_dict</span><span class="p">(</span><span class="n">encodings</span><span class="p">)</span>
+    <span class="n">encodings</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="n">MAX_LENGTH</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s">"pt"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">Dataset</span><span class="p">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">encodings</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">):</span>
-    <span class="n">training_args</span> <span class="o">=</span> <span class="nc">TrainingArguments</span><span class="p">(</span>
+    <span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="n">OUTPUT_DIR</span><span class="p">,</span>
         <span class="n">overwrite_output_dir</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">num_train_epochs</span><span class="o">=</span><span class="n">EPOCHS</span><span class="p">,</span>
@@ -254,27 +254,27 @@
         <span class="n">prediction_loss_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
         <span class="n">remove_unused_columns</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">data_collator</span> <span class="o">=</span> <span class="nc">DataCollatorForLanguageModeling</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">mlm</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
-    <span class="n">trainer</span> <span class="o">=</span> <span class="nc">Trainer</span><span class="p">(</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorForLanguageModeling</span><span class="p">(</span><span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">mlm</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
         <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
         <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
         <span class="n">train_dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
         <span class="n">data_collator</span><span class="o">=</span><span class="n">data_collator</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="n">trainer</span><span class="p">.</span><span class="nf">train</span><span class="p">()</span>
-    <span class="n">trainer</span><span class="p">.</span><span class="nf">save_model</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">)</span>
+    <span class="n">trainer</span><span class="p">.</span><span class="n">train</span><span class="p">()</span>
+    <span class="n">trainer</span><span class="p">.</span><span class="n">save_model</span><span class="p">(</span><span class="n">OUTPUT_DIR</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">posts_dir</span> <span class="o">=</span> <span class="sh">"</span><span class="s">_posts</span><span class="sh">"</span>
-    <span class="n">texts</span> <span class="o">=</span> <span class="nf">create_training_data</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">)</span>
-    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">LlamaTokenizerFast</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">posts_dir</span> <span class="o">=</span> <span class="s">"_posts"</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="n">create_training_data</span><span class="p">(</span><span class="n">posts_dir</span><span class="p">)</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">LlamaTokenizerFast</span><span class="p">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">MODEL_NAME</span><span class="p">,</span> <span class="n">trust_remote_code</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_fast</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">tokenizer</span><span class="p">.</span><span class="n">pad_token</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">.</span><span class="n">eos_token</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="nf">prepare_dataset</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
-    <span class="nf">train_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">prepare_dataset</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    <span class="n">train_model</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
-    <span class="nf">main</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </code></pre></div></div>
 
 
