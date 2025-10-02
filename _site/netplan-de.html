@@ -9,7 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
     href="https://lzwjava.github.io/feeds/feed.xml" />
 
-  <title>Netplan ausprobieren</title>
+  <title>Netplan, Systemd, SSH, Conda-Bereinigung</title>
 
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
           data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
@@ -27,24 +27,24 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Netplan ausprobieren | Zhiwei Li</title>
+<title>Netplan, Systemd, SSH, Conda-Bereinigung | Zhiwei Li</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Netplan ausprobieren" />
+<meta property="og:title" content="Netplan, Systemd, SSH, Conda-Bereinigung" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="de" />
-<meta name="description" content="Ich habe die folgende Konfiguration versucht, um einer Ubuntu-Maschine eine statische IP-Adresse zuzuweisen. Ich betreibe OpenWebUI und llama.cpp auf diesem Server." />
-<meta property="og:description" content="Ich habe die folgende Konfiguration versucht, um einer Ubuntu-Maschine eine statische IP-Adresse zuzuweisen. Ich betreibe OpenWebUI und llama.cpp auf diesem Server." />
+<meta name="description" content="Inhalt" />
+<meta property="og:description" content="Inhalt" />
 <link rel="canonical" href="https://lzwjava.github.io/netplan-de" />
 <meta property="og:url" content="https://lzwjava.github.io/netplan-de" />
 <meta property="og:site_name" content="Zhiwei Li" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-02-16T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Netplan ausprobieren" />
+<meta property="twitter:title" content="Netplan, Systemd, SSH, Conda-Bereinigung" />
 <meta name="twitter:site" content="@lzwjava" />
 <meta name="twitter:creator" content="@lzwjava" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"Ich habe die folgende Konfiguration versucht, um einer Ubuntu-Maschine eine statische IP-Adresse zuzuweisen. Ich betreibe OpenWebUI und llama.cpp auf diesem Server.","headline":"Netplan ausprobieren","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-de"},"url":"https://lzwjava.github.io/netplan-de"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"Inhalt","headline":"Netplan, Systemd, SSH, Conda-Bereinigung","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-de"},"url":"https://lzwjava.github.io/netplan-de"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a">
+  <link rel="stylesheet" href="/assets/css/style.css?v=6a524666d180dcc344f8359d75f70e53dc9498af">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=6a524666d180dcc344f8359d75f70e53dc9498af" defer></script> -->
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
   <div class="title-row post-title-row">
     <h2 class="title post-title">
-       Netplan ausprobieren | Original, von KI übersetzt
+       Netplan, Systemd, SSH, Conda-Bereinigung | Original, von KI übersetzt
     </h2>
   </div>
 
@@ -129,9 +129,7 @@
 
 
 
-    <!-- 
-    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/de/2025-02-16-netplan-de.md">Audio</a>
-     -->
+    <!--  -->
 
         <!-- Date Button -->
     
@@ -207,7 +205,45 @@
 
   <hr>
 
-  <p>Ich habe die folgende Konfiguration versucht, um einer Ubuntu-Maschine eine statische IP-Adresse zuzuweisen. Ich betreibe OpenWebUI und llama.cpp auf diesem Server.</p>
+  <h3 id="inhalt">Inhalt</h3>
+
+<ol>
+  <li><a href="#trying-netplan">Netplan ausprobieren</a>
+    <ul>
+      <li>Statische IP-Konfiguration führte zu SSH-Verlust</li>
+      <li>Physischer Zugriff zum Zurücksetzen erforderlich</li>
+      <li>Die DNS-Resolver-Datei des Systems wurde geändert</li>
+    </ul>
+  </li>
+  <li><a href="#systemd-service">Systemd Dienst</a>
+    <ul>
+      <li>Dienst für lokale LLM-Inferenz konfigurieren</li>
+      <li>Weboberfläche für LLM-Modelle einrichten</li>
+      <li>Regelbasierten Proxy-Tool-Dienst einrichten</li>
+      <li>systemctl-Befehle zur Dienstverwaltung verwenden</li>
+    </ul>
+  </li>
+  <li><a href="#ssh-configuration">SSH-Konfiguration</a>
+    <ul>
+      <li>Externe Verbindungen über corkscrew proxieren</li>
+      <li>Lokales Netzwerk vom Proxy ausschließen</li>
+      <li>SSH-Schlüssel über Keychain und Agent verwalten</li>
+      <li>Standard-Speicherort für private Schlüssel festlegen</li>
+    </ul>
+  </li>
+  <li><a href="#delete-conda-in-linux">Conda in Linux löschen</a>
+    <ul>
+      <li>Gesamtes Conda-Installationsverzeichnis entfernen</li>
+      <li>Conda-Initialisierungscode aus bashrc löschen</li>
+      <li>PATH-Umgebungsvariable aktualisieren</li>
+      <li>Conda-Binärdateien aus dem Systempfad entfernen</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="netplan-ausprobieren">Netplan ausprobieren</h2>
+
+<p>Ich habe die folgende Konfiguration ausprobiert, um einer Ubuntu-Maschine eine statische IP-Adresse zuzuweisen. Ich betreibe OpenWebUI und llama.cpp auf diesem Server.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>network:
   version: 2
@@ -219,11 +255,182 @@
       gateway4: 192.168.1.1
 </code></pre></div></div>
 
-<p>Nach dem Ausführen von <code class="language-plaintext highlighter-rouge">sudo netplan apply</code> konnte der Zugriff auf die Maschine über <code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code> nicht mehr erfolgen.</p>
+<p>Nachdem ich <code class="language-plaintext highlighter-rouge">sudo netplan apply</code> ausgeführt hatte, konnte die Maschine nicht mehr über <code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code> erreicht werden.</p>
 
-<p>Tastatur und Maus wurden verwendet, um sich bei der Maschine anzumelden, die Dateien zu entfernen und die Einstellungen zurückzusetzen.</p>
+<p>Tastatur und Maus wurden verwendet, um sich an der Maschine anzumelden, die Dateien zu entfernen und die Einstellungen zurückzusetzen.</p>
 
 <p><code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code> wurde geändert.</p>
+
+<hr />
+
+<h2 id="systemd-dienst">Systemd Dienst</h2>
+
+<p><em>2025.02.13</em></p>
+
+<h2 id="llama-serverdienstkonfiguration">LLaMA Serverdienstkonfiguration</h2>
+
+<p>Dieser Abschnitt erklärt, wie ein systemd-Dienst für den Betrieb des LLaMA-Servers eingerichtet wird, der lokale LLM-Inferenzfunktionen bereitstellt.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emacs /etc/systemd/system/llama.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>llama.service
+journalctl <span class="nt">-u</span> llama.service
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Llama Script
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/Projects/llama.cpp/build/bin/llama-server <span class="nt">-m</span> /home/lzw/Projects/llama.cpp/models/DeepSeek-R1-Distill-Qwen-14B-Q5_K_M.gguf <span class="nt">--port</span> 8000  <span class="nt">--ctx-size</span> 2048 <span class="nt">--batch-size</span> 512 <span class="nt">--n-gpu-layers</span> 49 <span class="nt">--threads</span> 8 <span class="nt">--parallel</span> 1
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/Projects/llama.cpp
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/llama.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/llama.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<h2 id="open-webui-dienstkonfiguration">Open WebUI Dienstkonfiguration</h2>
+
+<p>Dieser Abschnitt erklärt, wie ein systemd-Dienst für den Betrieb von Open WebUI eingerichtet wird, das eine Weboberfläche für die Interaktion mit LLM-Modellen bietet.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Open Web UI Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/.local/bin/open-webui serve
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/open-webui.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/open-webui.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>openwebui.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start  openwebui.service
+</code></pre></div></div>
+
+<h2 id="clash-dienstkonfiguration">Clash Dienstkonfiguration</h2>
+
+<p>Dieser Abschnitt erklärt, wie ein systemd-Dienst für den Betrieb von Clash, einem regelbasierten Proxy-Tool, eingerichtet wird.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Clash Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0/clash-linux-386
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/clash.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/clash.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Erstellen Sie die Dienstdatei</span>
+<span class="nb">sudo </span>emacs /etc/systemd/system/clash.service 
+
+<span class="c"># Laden Sie den systemd-Daemon neu</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+
+<span class="c"># Aktivieren und starten Sie den Dienst</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>clash.service
+<span class="nb">sudo </span>systemctl start clash.service
+<span class="nb">sudo </span>systemctl restart clash.service
+
+<span class="c"># Status prüfen</span>
+<span class="nb">sudo </span>systemctl status clash.service
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ssh-konfiguration">SSH Konfiguration</h2>
+
+<p><em>2025.02.09</em></p>
+
+<p>Diese <code class="language-plaintext highlighter-rouge">ssh-config</code>-Datei konfiguriert das Verhalten des SSH-Clients. Lassen Sie uns jeden Teil aufschlüsseln:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host * !192.*.*.*</code>: Dieser Abschnitt gilt für alle Hosts <em>außer</em> denen, die dem Muster <code class="language-plaintext highlighter-rouge">192.*.*.*</code> entsprechen (typischerweise lokale Netzwerkadressen).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ProxyCommand corkscrew localhost 7890 %h %p</code>: Das ist der entscheidende Teil. Es weist SSH an, das Programm <code class="language-plaintext highlighter-rouge">corkscrew</code> zu verwenden, um sich mit dem Zielhost zu verbinden.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">corkscrew</code>: Ein Tool, das es Ihnen ermöglicht, SSH-Verbindungen über HTTP- oder HTTPS-Proxys zu tunneln.</li>
+          <li><code class="language-plaintext highlighter-rouge">localhost 7890</code>: Gibt die Adresse (<code class="language-plaintext highlighter-rouge">localhost</code>) und den Port (<code class="language-plaintext highlighter-rouge">7890</code>) des Proxy-Servers an. Dies setzt voraus, dass auf Ihrem lokalen Rechner ein Proxy-Server läuft, der auf Port 7890 lauscht (z. B. Shadowsocks, ein SOCKS-Proxy oder eine andere Tunneling-Lösung).</li>
+          <li><code class="language-plaintext highlighter-rouge">%h</code>: Eine spezielle SSH-Variable, die zum Ziel-Hostname erweitert wird, mit dem Sie sich verbinden möchten.</li>
+          <li><code class="language-plaintext highlighter-rouge">%p</code>: Eine weitere SSH-Variable, die zum Ziel-Port erweitert wird (normalerweise 22 für SSH).</li>
+        </ul>
+      </li>
+      <li>Zusammenfassend konfiguriert dieser <code class="language-plaintext highlighter-rouge">Host</code>-Block SSH so, dass der <code class="language-plaintext highlighter-rouge">corkscrew</code>-Proxy für alle Verbindungen <em>außer</em> denen zum lokalen Netzwerk verwendet wird.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Host *</code>: Dieser Abschnitt gilt für <em>alle</em> Hosts.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">UseKeychain yes</code>: Unter macOS weist dies SSH an, SSH-Schlüssel aus Ihrem Keychain zu speichern und abzurufen, sodass Sie nicht jedes Mal Ihr Passwort eingeben müssen.</li>
+      <li><code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code>: Dies fügt Ihre SSH-Schlüssel automatisch dem SSH-Agenten hinzu, sodass Sie sie nach jedem Neustart nicht manuell hinzufügen müssen.</li>
+      <li><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code>: Gibt den Pfad zu Ihrer privaten SSH-Schlüsseldatei an. <code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa</code> ist der Standardspeicherort für den RSA-Privatschlüssel.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Im Wesentlichen richtet diese Konfiguration einen Proxy für alle SSH-Verbindungen ein, außer denen im lokalen Netzwerk, und konfiguriert die Schlüsselverwaltung für mehr Komfort.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host 192.168.1.<span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa 
+Host <span class="k">*</span> <span class="o">!</span>192.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span> <span class="o">!</span>47.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+    ProxyCommand corkscrew localhost 7890 %h %p
+Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa    
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="conda-in-linux-löschen">Conda in Linux löschen</h2>
+
+<p><em>2025.02.07</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> ~/anaconda3
+</code></pre></div></div>
+
+<p>Löschen Sie den folgenden Code in <code class="language-plaintext highlighter-rouge">.bashrc</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c"># !! Contents within this block are managed by 'conda init' !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="s1">'/home/lzw/anaconda3/bin/conda'</span> <span class="s1">'shell.bash'</span> <span class="s1">'hook'</span> 2&gt; /dev/null<span class="si">)</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="s2">"</span><span class="nv">$__conda_setup</span><span class="s2">"</span>
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span>
+    <span class="k">else
+        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/lzw/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+    <span class="k">fi
+fi
+</span><span class="nb">unset </span>__conda_setup
+<span class="c"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+</code></pre></div></div>
+
+<p>Pfad aktualisieren von:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/anaconda3/bin:/home/lzw/anaconda3/condabin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
+
+<p>Zu:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
 
 
   <hr>

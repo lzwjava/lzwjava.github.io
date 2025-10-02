@@ -9,7 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
     href="https://lzwjava.github.io/feeds/feed.xml" />
 
-  <title>嘗試 Netplan</title>
+  <title>Netplan、Systemd、SSH、Conda 清理</title>
 
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
           data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
@@ -27,24 +27,24 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>嘗試 Netplan | Zhiwei Li</title>
+<title>Netplan、Systemd、SSH、Conda 清理 | Zhiwei Li</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="嘗試 Netplan" />
+<meta property="og:title" content="Netplan、Systemd、SSH、Conda 清理" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="hant" />
-<meta name="description" content="我嘗試了以下配置來為一台Ubuntu機器分配靜態IP地址。我在該伺服器上運行OpenWebUI和llama.cpp。" />
-<meta property="og:description" content="我嘗試了以下配置來為一台Ubuntu機器分配靜態IP地址。我在該伺服器上運行OpenWebUI和llama.cpp。" />
+<meta name="description" content="目錄" />
+<meta property="og:description" content="目錄" />
 <link rel="canonical" href="https://lzwjava.github.io/netplan-hant" />
 <meta property="og:url" content="https://lzwjava.github.io/netplan-hant" />
 <meta property="og:site_name" content="Zhiwei Li" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-02-16T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="嘗試 Netplan" />
+<meta property="twitter:title" content="Netplan、Systemd、SSH、Conda 清理" />
 <meta name="twitter:site" content="@lzwjava" />
 <meta name="twitter:creator" content="@lzwjava" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"我嘗試了以下配置來為一台Ubuntu機器分配靜態IP地址。我在該伺服器上運行OpenWebUI和llama.cpp。","headline":"嘗試 Netplan","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-hant"},"url":"https://lzwjava.github.io/netplan-hant"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"目錄","headline":"Netplan、Systemd、SSH、Conda 清理","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-hant"},"url":"https://lzwjava.github.io/netplan-hant"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a">
+  <link rel="stylesheet" href="/assets/css/style.css?v=6a524666d180dcc344f8359d75f70e53dc9498af">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=6a524666d180dcc344f8359d75f70e53dc9498af" defer></script> -->
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
   <div class="title-row post-title-row">
     <h2 class="title post-title">
-       嘗試 Netplan | 原創，AI翻譯
+       Netplan、Systemd、SSH、Conda 清理 | 原創，AI翻譯
     </h2>
   </div>
 
@@ -129,9 +129,7 @@
 
 
 
-    <!-- 
-    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/hant/2025-02-16-netplan-hant.md">Audio</a>
-     -->
+    <!--  -->
 
         <!-- Date Button -->
     
@@ -207,7 +205,45 @@
 
   <hr>
 
-  <p>我嘗試了以下配置來為一台Ubuntu機器分配靜態IP地址。我在該伺服器上運行OpenWebUI和llama.cpp。</p>
+  <h3 id="目錄">目錄</h3>
+
+<ol>
+  <li><a href="#trying-netplan">嘗試 Netplan</a>
+    <ul>
+      <li>靜態 IP 配置導致 SSH 中斷</li>
+      <li>需要實體接觸才能還原</li>
+      <li>修改系統的 DNS 解析器檔案</li>
+    </ul>
+  </li>
+  <li><a href="#systemd-service">Systemd 服務</a>
+    <ul>
+      <li>配置本地 LLM 推理服務</li>
+      <li>設置 LLM 模型的 Web 介面</li>
+      <li>建立基於規則的代理工具服務</li>
+      <li>使用 systemctl 命令進行服務管理</li>
+    </ul>
+  </li>
+  <li><a href="#ssh-configuration">SSH 配置</a>
+    <ul>
+      <li>透過 corkscrew 代理外部連線</li>
+      <li>將本地網絡排除在代理之外</li>
+      <li>透過鑰匙圈和代理管理 SSH 密鑰</li>
+      <li>指定預設私鑰位置</li>
+    </ul>
+  </li>
+  <li><a href="#delete-conda-in-linux">在 Linux 中刪除 Conda</a>
+    <ul>
+      <li>移除整個 conda 安裝目錄</li>
+      <li>從 bashrc 刪除 conda 初始化代碼</li>
+      <li>更新 PATH 環境變數</li>
+      <li>從系統路徑中清除 conda 二進制檔案</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="嘗試-netplan">嘗試 Netplan</h2>
+
+<p>我嘗試了以下配置，為 Ubuntu 機器分配靜態 IP 地址。我在該伺服器上執行 OpenWebUI 和 llama.cpp。</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>network:
   version: 2
@@ -219,11 +255,182 @@
       gateway4: 192.168.1.1
 </code></pre></div></div>
 
-<p>在運行<code class="language-plaintext highlighter-rouge">sudo netplan apply</code>後，無法再通過<code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code>訪問該機器。</p>
+<p>執行 <code class="language-plaintext highlighter-rouge">sudo netplan apply</code> 後，無法再透過 <code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code> 訪問該機器。</p>
 
-<p>使用鍵盤和滑鼠登錄到機器，刪除文件並恢復設置。</p>
+<p>使用鍵盤和滑鼠登入機器，刪除檔案並還原設定。</p>
 
-<p><code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code>已被更改。</p>
+<p><code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code> 已被更改。</p>
+
+<hr />
+
+<h2 id="systemd-服務">Systemd 服務</h2>
+
+<p><em>2025.02.13</em></p>
+
+<h2 id="llama-伺服器服務設定">LLaMA 伺服器服務設定</h2>
+
+<p>本節說明如何設定 systemd 服務，以執行 LLaMA 伺服器，該伺服器提供本地 LLM 推理功能。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emacs /etc/systemd/system/llama.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>llama.service
+journalctl <span class="nt">-u</span> llama.service
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Llama Script
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/Projects/llama.cpp/build/bin/llama-server <span class="nt">-m</span> /home/lzw/Projects/llama.cpp/models/DeepSeek-R1-Distill-Qwen-14B-Q5_K_M.gguf <span class="nt">--port</span> 8000  <span class="nt">--ctx-size</span> 2048 <span class="nt">--batch-size</span> 512 <span class="nt">--n-gpu-layers</span> 49 <span class="nt">--threads</span> 8 <span class="nt">--parallel</span> 1
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/Projects/llama.cpp
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/llama.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/llama.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<h2 id="open-webui-服務設定">Open WebUI 服務設定</h2>
+
+<p>本節說明如何設定 systemd 服務，以執行 Open WebUI，該服務提供了一個用於與 LLM 模型互動的 Web 介面。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Open Web UI Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/.local/bin/open-webui serve
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/open-webui.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/open-webui.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>openwebui.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start  openwebui.service
+</code></pre></div></div>
+
+<h2 id="clash-服務設定">Clash 服務設定</h2>
+
+<p>本節說明如何設定 systemd 服務，以執行 Clash，一個基於規則的代理工具。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Clash Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0/clash-linux-386
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/clash.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/clash.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 建立服務檔案</span>
+<span class="nb">sudo </span>emacs /etc/systemd/system/clash.service 
+
+<span class="c"># 重新載入 systemd daemon</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+
+<span class="c"># 啟用並啟動服務</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>clash.service
+<span class="nb">sudo </span>systemctl start clash.service
+<span class="nb">sudo </span>systemctl restart clash.service
+
+<span class="c"># 檢查狀態</span>
+<span class="nb">sudo </span>systemctl status clash.service
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ssh-配置">SSH 配置</h2>
+
+<p><em>2025.02.09</em></p>
+
+<p>這個 <code class="language-plaintext highlighter-rouge">ssh-config</code> 檔案配置了 SSH 客戶端的行為。我們來分解每個部分：</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host * !192.*.*.*</code>: 此部分適用於所有主機，<em>除了</em>與 <code class="language-plaintext highlighter-rouge">192.*.*.*</code> 模式匹配的主機（通常是本地網路地址）。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ProxyCommand corkscrew localhost 7890 %h %p</code>: 這是關鍵部分。它指示 SSH 使用 <code class="language-plaintext highlighter-rouge">corkscrew</code> 程式連接到目標主機。
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">corkscrew</code>: 一個工具，允許您透過 HTTP 或 HTTPS 代理隧穿 SSH 連線。</li>
+          <li><code class="language-plaintext highlighter-rouge">localhost 7890</code>: 指定代理伺服器的地址 (<code class="language-plaintext highlighter-rouge">localhost</code>) 和埠 (<code class="language-plaintext highlighter-rouge">7890</code>)。這假設您的本地機器上正在執行代理伺服器，並偵聽埠 7890（例如，Shadowsocks、SOCKS 代理或其他隧穿解決方案）。</li>
+          <li><code class="language-plaintext highlighter-rouge">%h</code>: 一個特殊的 SSH 變數，展開為您嘗試連接的目標主機名。</li>
+          <li><code class="language-plaintext highlighter-rouge">%p</code>: 另一個 SSH 變數，展開為目標埠（SSH 通常為 22）。</li>
+        </ul>
+      </li>
+      <li>總之，這個 <code class="language-plaintext highlighter-rouge">Host</code> 塊配置 SSH 使用 <code class="language-plaintext highlighter-rouge">corkscrew</code> 代理進行所有連接，<em>除了</em>連接到本地網路的那些。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Host *</code>: 此部分適用於<em>所有</em>主機。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">UseKeychain yes</code>: 在 macOS 上，這會指示 SSH 將 SSH 密鑰儲存並從您的鑰匙圈中檢索，這樣您就不必每次都輸入密碼。</li>
+      <li><code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code>: 這會自動將您的 SSH 密鑰添加到 SSH 代理中，這樣您就不必在每次重啟後手動添加它們。</li>
+      <li><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code>: 指定您的私有 SSH 密鑰檔案的路徑。<code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa</code> 是 RSA 私鑰的預設位置。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>本質上，此配置為所有 SSH 連接（本地網路除外）設定了代理，並為方便起見配置了密鑰管理。</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host 192.168.1.<span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa 
+Host <span class="k">*</span> <span class="o">!</span>192.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span> <span class="o">!</span>47.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+    ProxyCommand corkscrew localhost 7890 %h %p
+Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa    
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="在-linux-中刪除-conda">在 Linux 中刪除 Conda</h2>
+
+<p><em>2025.02.07</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> ~/anaconda3
+</code></pre></div></div>
+
+<p>刪除 <code class="language-plaintext highlighter-rouge">.bashrc</code> 中的以下代碼：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c"># !! Contents within this block are managed by 'conda init' !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="s1">'/home/lzw/anaconda3/bin/conda'</span> <span class="s1">'shell.bash'</span> <span class="s1">'hook'</span> 2&gt; /dev/null<span class="si">)</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="s2">"</span><span class="nv">$__conda_setup</span><span class="s2">"</span>
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span>
+    <span class="k">else
+        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/lzw/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+    <span class="k">fi
+fi
+</span><span class="nb">unset </span>__conda_setup
+<span class="c"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+</code></pre></div></div>
+
+<p>將路徑從：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/anaconda3/bin:/home/lzw/anaconda3/condabin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
+
+<p>更改為：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
 
 
   <hr>

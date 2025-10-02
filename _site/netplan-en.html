@@ -9,7 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
     href="https://lzwjava.github.io/feeds/feed.xml" />
 
-  <title>Trying Netplan</title>
+  <title>Netplan, Systemd, SSH, Conda Cleanup</title>
 
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
           data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
@@ -27,24 +27,24 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Trying Netplan | Zhiwei Li</title>
+<title>Netplan, Systemd, SSH, Conda Cleanup | Zhiwei Li</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Trying Netplan" />
+<meta property="og:title" content="Netplan, Systemd, SSH, Conda Cleanup" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="I tried the configuration below to assign a static IP address to an Ubuntu machine. I run OpenWebUI and llama.cpp on that server." />
-<meta property="og:description" content="I tried the configuration below to assign a static IP address to an Ubuntu machine. I run OpenWebUI and llama.cpp on that server." />
+<meta name="description" content="Table of Contents" />
+<meta property="og:description" content="Table of Contents" />
 <link rel="canonical" href="https://lzwjava.github.io/netplan-en" />
 <meta property="og:url" content="https://lzwjava.github.io/netplan-en" />
 <meta property="og:site_name" content="Zhiwei Li" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-02-16T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Trying Netplan" />
+<meta property="twitter:title" content="Netplan, Systemd, SSH, Conda Cleanup" />
 <meta name="twitter:site" content="@lzwjava" />
 <meta name="twitter:creator" content="@lzwjava" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"I tried the configuration below to assign a static IP address to an Ubuntu machine. I run OpenWebUI and llama.cpp on that server.","headline":"Trying Netplan","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-en"},"url":"https://lzwjava.github.io/netplan-en"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"Table of Contents","headline":"Netplan, Systemd, SSH, Conda Cleanup","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-en"},"url":"https://lzwjava.github.io/netplan-en"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a">
+  <link rel="stylesheet" href="/assets/css/style.css?v=6a524666d180dcc344f8359d75f70e53dc9498af">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=6a524666d180dcc344f8359d75f70e53dc9498af" defer></script> -->
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
   <div class="title-row post-title-row">
     <h2 class="title post-title">
-       Trying Netplan | Original
+       Netplan, Systemd, SSH, Conda Cleanup | Original
     </h2>
   </div>
 
@@ -129,9 +129,7 @@
 
 
 
-    <!-- 
-    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/en/2025-02-16-netplan-en.md">Audio</a>
-     -->
+    <!--  -->
 
         <!-- Date Button -->
     
@@ -207,7 +205,45 @@
 
   <hr>
 
-  <p>I tried the configuration below to assign a static IP address to an Ubuntu machine. I run OpenWebUI and llama.cpp on that server.</p>
+  <h3 id="table-of-contents">Table of Contents</h3>
+
+<ol>
+  <li><a href="#trying-netplan">Trying Netplan</a>
+    <ul>
+      <li>Static IP configuration caused SSH loss</li>
+      <li>Required physical access to revert</li>
+      <li>Modified system’s DNS resolver file</li>
+    </ul>
+  </li>
+  <li><a href="#systemd-service">Systemd Service</a>
+    <ul>
+      <li>Configure service for local LLM inference</li>
+      <li>Set up web interface for LLM models</li>
+      <li>Establish rule-based proxy tool service</li>
+      <li>Use systemctl commands for service management</li>
+    </ul>
+  </li>
+  <li><a href="#ssh-configuration">SSH Configuration</a>
+    <ul>
+      <li>Proxy external connections through corkscrew</li>
+      <li>Exclude local network from proxy</li>
+      <li>Manage SSH keys via keychain and agent</li>
+      <li>Specify default private key location</li>
+    </ul>
+  </li>
+  <li><a href="#delete-conda-in-linux">Delete Conda in Linux</a>
+    <ul>
+      <li>Remove entire conda installation directory</li>
+      <li>Delete conda initialization code from bashrc</li>
+      <li>Update PATH environment variable</li>
+      <li>Eliminate conda binaries from system path</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="trying-netplan">Trying Netplan</h2>
+
+<p>I tried the configuration below to assign a static IP address to an Ubuntu machine. I run OpenWebUI and llama.cpp on that server.</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>network:
   version: 2
@@ -224,6 +260,177 @@
 <p>The keyboard and mouse were used to log in to the machine, remove the files, and revert the settings.</p>
 
 <p><code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code> was changed.</p>
+
+<hr />
+
+<h2 id="systemd-service">Systemd Service</h2>
+
+<p><em>2025.02.13</em></p>
+
+<h2 id="llama-server-service-configuration">LLaMA Server Service Configuration</h2>
+
+<p>This section explains how to set up a systemd service for running the LLaMA server, which provides local LLM inference capabilities.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emacs /etc/systemd/system/llama.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>llama.service
+journalctl <span class="nt">-u</span> llama.service
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Llama Script
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/Projects/llama.cpp/build/bin/llama-server <span class="nt">-m</span> /home/lzw/Projects/llama.cpp/models/DeepSeek-R1-Distill-Qwen-14B-Q5_K_M.gguf <span class="nt">--port</span> 8000  <span class="nt">--ctx-size</span> 2048 <span class="nt">--batch-size</span> 512 <span class="nt">--n-gpu-layers</span> 49 <span class="nt">--threads</span> 8 <span class="nt">--parallel</span> 1
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/Projects/llama.cpp
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/llama.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/llama.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<h2 id="open-webui-service-configuration">Open WebUI Service Configuration</h2>
+
+<p>This section explains how to set up a systemd service for running Open WebUI, which provides a web interface for interacting with LLM models.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Open Web UI Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/.local/bin/open-webui serve
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/open-webui.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/open-webui.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>openwebui.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start  openwebui.service
+</code></pre></div></div>
+
+<h2 id="clash-service-configuration">Clash Service Configuration</h2>
+
+<p>This section explains how to set up a systemd service for running Clash, a rule-based proxy tool.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Clash Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0/clash-linux-386
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/clash.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/clash.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create the service file</span>
+<span class="nb">sudo </span>emacs /etc/systemd/system/clash.service 
+
+<span class="c"># Reload systemd daemon</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+
+<span class="c"># Enable and start the service</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>clash.service
+<span class="nb">sudo </span>systemctl start clash.service
+<span class="nb">sudo </span>systemctl restart clash.service
+
+<span class="c"># Check status</span>
+<span class="nb">sudo </span>systemctl status clash.service
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ssh-configuration">SSH Configuration</h2>
+
+<p><em>2025.02.09</em></p>
+
+<p>This <code class="language-plaintext highlighter-rouge">ssh-config</code> file configures SSH client behavior. Let’s break down each part:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host * !192.*.*.*</code>: This section applies to all hosts <em>except</em> those matching the <code class="language-plaintext highlighter-rouge">192.*.*.*</code> pattern (typically, local network addresses).
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ProxyCommand corkscrew localhost 7890 %h %p</code>:  This is the key part. It tells SSH to use the <code class="language-plaintext highlighter-rouge">corkscrew</code> program to connect to the target host.
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">corkscrew</code>: A tool that allows you to tunnel SSH connections through HTTP or HTTPS proxies.</li>
+          <li><code class="language-plaintext highlighter-rouge">localhost 7890</code>:  Specifies the proxy server’s address (<code class="language-plaintext highlighter-rouge">localhost</code>) and port (<code class="language-plaintext highlighter-rouge">7890</code>).  This assumes you have a proxy server running on your local machine, listening on port 7890 (e.g., Shadowsocks, a SOCKS proxy, or another tunneling solution).</li>
+          <li><code class="language-plaintext highlighter-rouge">%h</code>:  A special SSH variable that expands to the target hostname you’re trying to connect to.</li>
+          <li><code class="language-plaintext highlighter-rouge">%p</code>:  Another SSH variable that expands to the target port (usually 22 for SSH).</li>
+        </ul>
+      </li>
+      <li>In summary, this <code class="language-plaintext highlighter-rouge">Host</code> block configures SSH to use the <code class="language-plaintext highlighter-rouge">corkscrew</code> proxy for all connections <em>except</em> those to the local network.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Host *</code>: This section applies to <em>all</em> hosts.
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">UseKeychain yes</code>:  On macOS, this tells SSH to store and retrieve SSH keys from your Keychain, so you don’t have to enter your password every time.</li>
+      <li><code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code>:  This automatically adds your SSH keys to the SSH agent, so you don’t have to manually add them after each reboot.</li>
+      <li><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code>:  Specifies the path to your private SSH key file.  <code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa</code> is the default location for the RSA private key.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>In essence, this configuration sets up a proxy for all SSH connections except those on the local network, and it configures key management for convenience.</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host 192.168.1.<span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa 
+Host <span class="k">*</span> <span class="o">!</span>192.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span> <span class="o">!</span>47.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+    ProxyCommand corkscrew localhost 7890 %h %p
+Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa    
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="delete-conda-in-linux">Delete Conda in Linux</h2>
+
+<p><em>2025.02.07</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> ~/anaconda3
+</code></pre></div></div>
+
+<p>Delete below code in <code class="language-plaintext highlighter-rouge">.bashrc</code>:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c"># !! Contents within this block are managed by 'conda init' !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="s1">'/home/lzw/anaconda3/bin/conda'</span> <span class="s1">'shell.bash'</span> <span class="s1">'hook'</span> 2&gt; /dev/null<span class="si">)</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="s2">"</span><span class="nv">$__conda_setup</span><span class="s2">"</span>
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span>
+    <span class="k">else
+        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/lzw/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+    <span class="k">fi
+fi
+</span><span class="nb">unset </span>__conda_setup
+<span class="c"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+</code></pre></div></div>
+
+<p>Update path from:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/anaconda3/bin:/home/lzw/anaconda3/condabin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
+
+<p>To:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
 
 
   <hr>

@@ -9,7 +9,7 @@
   <link rel="alternate" type="application/rss+xml" title="RSS Feed for Zhiwei Li"
     href="https://lzwjava.github.io/feeds/feed.xml" />
 
-  <title>Netplanを試す</title>
+  <title>Netplan、Systemd、SSH、Condaクリーンアップ</title>
 
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' 
           data-cf-beacon='{"token": "70fc8c466cc1445098b3fc6f209c22c2"}'>
@@ -27,24 +27,24 @@
   <meta charset="UTF-8">
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Netplanを試す | Zhiwei Li</title>
+<title>Netplan、Systemd、SSH、Condaクリーンアップ | Zhiwei Li</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="Netplanを試す" />
+<meta property="og:title" content="Netplan、Systemd、SSH、Condaクリーンアップ" />
 <meta name="author" content="Zhiwei Li" />
 <meta property="og:locale" content="ja" />
-<meta name="description" content="以下の設定を使用して、Ubuntuマシンに静的IPアドレスを割り当てようとしました。そのサーバーでOpenWebUIとllama.cppを実行しています。" />
-<meta property="og:description" content="以下の設定を使用して、Ubuntuマシンに静的IPアドレスを割り当てようとしました。そのサーバーでOpenWebUIとllama.cppを実行しています。" />
+<meta name="description" content="目次" />
+<meta property="og:description" content="目次" />
 <link rel="canonical" href="https://lzwjava.github.io/netplan-ja" />
 <meta property="og:url" content="https://lzwjava.github.io/netplan-ja" />
 <meta property="og:site_name" content="Zhiwei Li" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2025-02-16T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Netplanを試す" />
+<meta property="twitter:title" content="Netplan、Systemd、SSH、Condaクリーンアップ" />
 <meta name="twitter:site" content="@lzwjava" />
 <meta name="twitter:creator" content="@lzwjava" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"以下の設定を使用して、Ubuntuマシンに静的IPアドレスを割り当てようとしました。そのサーバーでOpenWebUIとllama.cppを実行しています。","headline":"Netplanを試す","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-ja"},"url":"https://lzwjava.github.io/netplan-ja"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Zhiwei Li"},"dateModified":"2025-02-16T00:00:00+08:00","datePublished":"2025-02-16T00:00:00+08:00","description":"目次","headline":"Netplan、Systemd、SSH、Condaクリーンアップ","mainEntityOfPage":{"@type":"WebPage","@id":"https://lzwjava.github.io/netplan-ja"},"url":"https://lzwjava.github.io/netplan-ja"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -77,7 +77,7 @@
   <meta name="twitter:image" content="https://lzwjava.github.io/assets/images/og/og4.jpg">
 
 
-  <link rel="stylesheet" href="/assets/css/style.css?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a">
+  <link rel="stylesheet" href="/assets/css/style.css?v=6a524666d180dcc344f8359d75f70e53dc9498af">
 
   <!-- for mathjax support -->
   <script type="text/x-mathjax-config">
@@ -100,7 +100,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-  <!-- <script src="/assets/js/donatePopup.js?v=4ba61b8ce89505d1538a7b863ffbe5946ebb831a" defer></script> -->
+  <!-- <script src="/assets/js/donatePopup.js?v=6a524666d180dcc344f8359d75f70e53dc9498af" defer></script> -->
 </head>
 
 <body>
@@ -114,7 +114,7 @@
 
   <div class="title-row post-title-row">
     <h2 class="title post-title">
-       Netplanを試す | オリジナル、AI翻訳
+       Netplan、Systemd、SSH、Condaクリーンアップ | オリジナル、AI翻訳
     </h2>
   </div>
 
@@ -129,9 +129,7 @@
 
 
 
-    <!-- 
-    <a href="#" id="playAudioButton" class="button audio-button" data-file-path="_posts/ja/2025-02-16-netplan-ja.md">Audio</a>
-     -->
+    <!--  -->
 
         <!-- Date Button -->
     
@@ -207,23 +205,232 @@
 
   <hr>
 
-  <p>以下の設定を使用して、Ubuntuマシンに静的IPアドレスを割り当てようとしました。そのサーバーでOpenWebUIとllama.cppを実行しています。</p>
+  <h3 id="目次">目次</h3>
 
-<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">network</span><span class="pi">:</span>
-  <span class="na">version</span><span class="pi">:</span> <span class="m">2</span>
-  <span class="na">ethernets</span><span class="pi">:</span>
-    <span class="na">eth0</span><span class="pi">:</span>
-      <span class="na">dhcp4</span><span class="pi">:</span> <span class="s">no</span>
-      <span class="na">addresses</span><span class="pi">:</span>
-        <span class="pi">-</span> <span class="s">192.168.1.128/32</span>
-      <span class="na">gateway4</span><span class="pi">:</span> <span class="s">192.168.1.1</span>
+<ol>
+  <li><a href="#trying-netplan">Netplanを試す</a>
+    <ul>
+      <li>静的IPアドレスの設定によりSSH接続が失われた</li>
+      <li>物理的なアクセスによる復元が必要</li>
+      <li>システムのDNSリゾルバファイルを変更</li>
+    </ul>
+  </li>
+  <li><a href="#systemd-service">Systemdサービス</a>
+    <ul>
+      <li>ローカルLLM推論のためのサービス設定</li>
+      <li>LLMモデル用ウェブインターフェースの設定</li>
+      <li>ルールベースのプロキシツールサービスを確立</li>
+      <li>サービス管理に<code class="language-plaintext highlighter-rouge">systemctl</code>コマンドを使用</li>
+    </ul>
+  </li>
+  <li><a href="#ssh-configuration">SSH設定</a>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">corkscrew</code>経由での外部接続のプロキシ</li>
+      <li>ローカルネットワークをプロキシから除外</li>
+      <li><code class="language-plaintext highlighter-rouge">keychain</code>と<code class="language-plaintext highlighter-rouge">agent</code>によるSSHキーの管理</li>
+      <li>デフォルトの秘密鍵の場所を指定</li>
+    </ul>
+  </li>
+  <li><a href="#delete-conda-in-linux">LinuxでCondaを削除する</a>
+    <ul>
+      <li>Condaのインストールディレクトリ全体を削除</li>
+      <li><code class="language-plaintext highlighter-rouge">.bashrc</code>からConda初期化コードを削除</li>
+      <li><code class="language-plaintext highlighter-rouge">PATH</code>環境変数を更新</li>
+      <li>システムパスからCondaのバイナリを削除</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="netplanを試す">Netplanを試す</h2>
+
+<p>Ubuntuマシンに静的IPアドレスを割り当てるために、以下の構成を試しました。このサーバーではOpenWebUIとllama.cppを実行しています。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses:
+        - 192.168.1.128/32
+      gateway4: 192.168.1.1
 </code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">sudo netplan apply</code>を実行した後、<code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code>経由でマシンにアクセスできなくなりました。</p>
+<p><code class="language-plaintext highlighter-rouge">sudo netplan apply</code>を実行した後、マシンには<code class="language-plaintext highlighter-rouge">ssh lzw@192.168.1.128</code>経由でアクセスできなくなりました。</p>
 
-<p>キーボードとマウスを使用してマシンにログインし、ファイルを削除し、設定を元に戻しました。</p>
+<p>キーボードとマウスを使ってマシンにログインし、ファイルを削除して設定を元に戻しました。</p>
 
 <p><code class="language-plaintext highlighter-rouge">/etc/resolv.conf</code>が変更されました。</p>
+
+<hr />
+
+<h2 id="systemdサービス">Systemdサービス</h2>
+
+<p><em>2025.02.13</em></p>
+
+<h2 id="llamaサーバーサービスの設定">LLaMAサーバーサービスの設定</h2>
+
+<p>このセクションでは、ローカルLLM推論機能を提供するLLaMAサーバーを実行するためのsystemdサービスを設定する方法について説明します。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>emacs /etc/systemd/system/llama.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>llama.service
+journalctl <span class="nt">-u</span> llama.service
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Llama Script
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/Projects/llama.cpp/build/bin/llama-server <span class="nt">-m</span> /home/lzw/Projects/llama.cpp/models/DeepSeek-R1-Distill-Qwen-14B-Q5_K_M.gguf <span class="nt">--port</span> 8000  <span class="nt">--ctx-size</span> 2048 <span class="nt">--batch-size</span> 512 <span class="nt">--n-gpu-layers</span> 49 <span class="nt">--threads</span> 8 <span class="nt">--parallel</span> 1
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/Projects/llama.cpp
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/llama.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/llama.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<h2 id="open-webuiサービスの設定">Open WebUIサービスの設定</h2>
+
+<p>このセクションでは、LLMモデルと対話するためのウェブインターフェースを提供するOpen WebUIを実行するためのsystemdサービスを設定する方法について説明します。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Open Web UI Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/.local/bin/open-webui serve
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/open-webui.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/open-webui.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>systemctl <span class="nb">enable </span>openwebui.service
+<span class="nb">sudo </span>systemctl daemon-reload
+<span class="nb">sudo </span>systemctl start  openwebui.service
+</code></pre></div></div>
+
+<h2 id="clashサービスの設定">Clashサービスの設定</h2>
+
+<p>このセクションでは、ルールベースのプロキシツールであるClashを実行するためのsystemdサービスを設定する方法について説明します。</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>Unit]
+<span class="nv">Description</span><span class="o">=</span>Clash Service
+
+<span class="o">[</span>Service]
+<span class="nv">ExecStart</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0/clash-linux-386
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/home/lzw/clash-linux-386-v1.17.0
+<span class="nv">StandardOutput</span><span class="o">=</span>append:/home/lzw/clash.log
+<span class="nv">StandardError</span><span class="o">=</span>append:/home/lzw/clash.err
+<span class="nv">Restart</span><span class="o">=</span>always
+<span class="nv">User</span><span class="o">=</span>lzw
+
+<span class="o">[</span>Install]
+<span class="nv">WantedBy</span><span class="o">=</span>default.target
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># サービスファイルの作成</span>
+<span class="nb">sudo </span>emacs /etc/systemd/system/clash.service 
+
+<span class="c"># systemdデーモンのリロード</span>
+<span class="nb">sudo </span>systemctl daemon-reload
+
+<span class="c"># サービスの有効化と開始</span>
+<span class="nb">sudo </span>systemctl <span class="nb">enable </span>clash.service
+<span class="nb">sudo </span>systemctl start clash.service
+<span class="nb">sudo </span>systemctl restart clash.service
+
+<span class="c"># ステータスの確認</span>
+<span class="nb">sudo </span>systemctl status clash.service
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="ssh設定">SSH設定</h2>
+
+<p><em>2025.02.09</em></p>
+
+<p>この<code class="language-plaintext highlighter-rouge">ssh-config</code>ファイルは、SSHクライアントの動作を設定します。各部分を詳しく見ていきましょう。</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Host * !192.*.*.*</code>: このセクションは、<code class="language-plaintext highlighter-rouge">192.*.*.*</code>パターン（通常、ローカルネットワークアドレス）に一致するホストを<em>除く</em>すべてのホストに適用されます。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">ProxyCommand corkscrew localhost 7890 %h %p</code>: これが重要な部分です。SSHに<code class="language-plaintext highlighter-rouge">corkscrew</code>プログラムを使用してターゲットホストに接続するように指示します。
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">corkscrew</code>: HTTPまたはHTTPSプロキシ経由でSSH接続をトンネルできるツールです。</li>
+          <li><code class="language-plaintext highlighter-rouge">localhost 7890</code>: プロキシサーバーのアドレス（<code class="language-plaintext highlighter-rouge">localhost</code>）とポート（<code class="language-plaintext highlighter-rouge">7890</code>）を指定します。これは、ローカルマシン上でポート7890でリッスンしているプロキシサーバー（例：Shadowsocks、SOCKSプロキシ、または別のトンネリングソリューション）が実行されていることを前提としています。</li>
+          <li><code class="language-plaintext highlighter-rouge">%h</code>: 接続しようとしているターゲットホスト名に展開される特殊なSSH変数です。</li>
+          <li><code class="language-plaintext highlighter-rouge">%p</code>: ターゲットポート（SSHの場合は通常22）に展開される別のSSH変数です。</li>
+        </ul>
+      </li>
+      <li>要するに、この<code class="language-plaintext highlighter-rouge">Host</code>ブロックは、ローカルネットワークへの接続を除くすべての接続に対してSSHが<code class="language-plaintext highlighter-rouge">corkscrew</code>プロキシを使用するように設定します。</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Host *</code>: このセクションは<em>すべて</em>のホストに適用されます。
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">UseKeychain yes</code>: macOSでは、SSHにSSHキーをKeychainに保存および取得するように指示するため、毎回パスワードを入力する必要がありません。</li>
+      <li><code class="language-plaintext highlighter-rouge">AddKeysToAgent yes</code>: これにより、SSHキーがSSHエージェントに自動的に追加されるため、再起動後に手動で追加する必要がありません。</li>
+      <li><code class="language-plaintext highlighter-rouge">IdentityFile ~/.ssh/id_rsa</code>: プライベートSSHキーファイルのパスを指定します。<code class="language-plaintext highlighter-rouge">~/.ssh/id_rsa</code>はRSAプライベートキーのデフォルトの場所です。</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>要するに、この設定は、ローカルネットワーク上の接続を除くすべてのSSH接続に対してプロキシを設定し、利便性のためにキー管理を設定します。</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host 192.168.1.<span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa 
+Host <span class="k">*</span> <span class="o">!</span>192.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span> <span class="o">!</span>47.<span class="k">*</span>.<span class="k">*</span>.<span class="k">*</span>
+    ProxyCommand corkscrew localhost 7890 %h %p
+Host <span class="k">*</span>
+    UseKeychain <span class="nb">yes
+    </span>AddKeysToAgent <span class="nb">yes
+    </span>IdentityFile ~/.ssh/id_rsa    
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="linuxでcondaを削除する">LinuxでCondaを削除する</h2>
+
+<p><em>2025.02.07</em></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">rm</span> <span class="nt">-rf</span> ~/anaconda3
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">.bashrc</code>の以下のコードを削除してください：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># &gt;&gt;&gt; conda initialize &gt;&gt;&gt;</span>
+<span class="c"># !! Contents within this block are managed by 'conda init' !!</span>
+<span class="nv">__conda_setup</span><span class="o">=</span><span class="s2">"</span><span class="si">$(</span><span class="s1">'/home/lzw/anaconda3/bin/conda'</span> <span class="s1">'shell.bash'</span> <span class="s1">'hook'</span> 2&gt; /dev/null<span class="si">)</span><span class="s2">"</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="nt">-eq</span> 0 <span class="o">]</span><span class="p">;</span> <span class="k">then
+    </span><span class="nb">eval</span> <span class="s2">"</span><span class="nv">$__conda_setup</span><span class="s2">"</span>
+<span class="k">else
+    if</span> <span class="o">[</span> <span class="nt">-f</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+        <span class="nb">.</span> <span class="s2">"/home/lzw/anaconda3/etc/profile.d/conda.sh"</span>
+    <span class="k">else
+        </span><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/home/lzw/anaconda3/bin:</span><span class="nv">$PATH</span><span class="s2">"</span>
+    <span class="k">fi
+fi
+</span><span class="nb">unset </span>__conda_setup
+<span class="c"># &lt;&lt;&lt; conda initialize &lt;&lt;&lt;</span>
+</code></pre></div></div>
+
+<p>パスを以下から：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/anaconda3/bin:/home/lzw/anaconda3/condabin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
+
+<p>以下に更新：</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">export </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">"/usr/local/cuda-12.2/bin:/home/lzw/.local/share/gem/ruby/3.0.0/bin:/home/lzw/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin"</span>
+</code></pre></div></div>
 
 
   <hr>
